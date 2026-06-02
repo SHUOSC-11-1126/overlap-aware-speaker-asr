@@ -1,0 +1,218 @@
+[
+  {
+    "tier": "ALL",
+    "strategy": "fixed_mixed_whisper",
+    "average_cer": 0.311442,
+    "sample_count": 25
+  },
+  {
+    "tier": "ALL",
+    "strategy": "fixed_separated_whisper",
+    "average_cer": 0.380701,
+    "sample_count": 25
+  },
+  {
+    "tier": "ALL",
+    "strategy": "fixed_separated_whisper_cleaned",
+    "average_cer": 0.203778,
+    "sample_count": 25
+  },
+  {
+    "tier": "ALL",
+    "strategy": "oracle_best",
+    "average_cer": 0.082239,
+    "sample_count": 25
+  },
+  {
+    "tier": "ALL",
+    "strategy": "rule_router_v1",
+    "average_cer": 0.350902,
+    "sample_count": 25
+  },
+  {
+    "tier": "ALL",
+    "strategy": "feature_router_v2",
+    "average_cer": 0.167553,
+    "sample_count": 25
+  },
+  {
+    "tier": "SyntheticHeavyOverlap",
+    "strategy": "fixed_mixed_whisper",
+    "average_cer": 0.455293,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticHeavyOverlap",
+    "strategy": "fixed_separated_whisper",
+    "average_cer": 0.26253,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticHeavyOverlap",
+    "strategy": "fixed_separated_whisper_cleaned",
+    "average_cer": 0.26253,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticHeavyOverlap",
+    "strategy": "oracle_best",
+    "average_cer": 0.116376,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticHeavyOverlap",
+    "strategy": "rule_router_v1",
+    "average_cer": 0.26253,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticHeavyOverlap",
+    "strategy": "feature_router_v2",
+    "average_cer": 0.26253,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticLightOverlap",
+    "strategy": "fixed_mixed_whisper",
+    "average_cer": 0.118353,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticLightOverlap",
+    "strategy": "fixed_separated_whisper",
+    "average_cer": 0.214838,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticLightOverlap",
+    "strategy": "fixed_separated_whisper_cleaned",
+    "average_cer": 0.214838,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticLightOverlap",
+    "strategy": "oracle_best",
+    "average_cer": 0.060991,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticLightOverlap",
+    "strategy": "rule_router_v1",
+    "average_cer": 0.118353,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticLightOverlap",
+    "strategy": "feature_router_v2",
+    "average_cer": 0.118353,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticMidOverlap",
+    "strategy": "fixed_mixed_whisper",
+    "average_cer": 0.210019,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticMidOverlap",
+    "strategy": "fixed_separated_whisper",
+    "average_cer": 0.26253,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticMidOverlap",
+    "strategy": "fixed_separated_whisper_cleaned",
+    "average_cer": 0.26253,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticMidOverlap",
+    "strategy": "oracle_best",
+    "average_cer": 0.100991,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticMidOverlap",
+    "strategy": "rule_router_v1",
+    "average_cer": 0.210019,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticMidOverlap",
+    "strategy": "feature_router_v2",
+    "average_cer": 0.210019,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticNoOverlap",
+    "strategy": "fixed_mixed_whisper",
+    "average_cer": 0.185019,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticNoOverlap",
+    "strategy": "fixed_separated_whisper",
+    "average_cer": 1.101761,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticNoOverlap",
+    "strategy": "fixed_separated_whisper_cleaned",
+    "average_cer": 0.217145,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticNoOverlap",
+    "strategy": "oracle_best",
+    "average_cer": 0.070991,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticNoOverlap",
+    "strategy": "rule_router_v1",
+    "average_cer": 1.101761,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticNoOverlap",
+    "strategy": "feature_router_v2",
+    "average_cer": 0.185019,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticOppositeOverlap",
+    "strategy": "fixed_mixed_whisper",
+    "average_cer": 0.588526,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticOppositeOverlap",
+    "strategy": "fixed_separated_whisper",
+    "average_cer": 0.061846,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticOppositeOverlap",
+    "strategy": "fixed_separated_whisper_cleaned",
+    "average_cer": 0.061846,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticOppositeOverlap",
+    "strategy": "oracle_best",
+    "average_cer": 0.061846,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticOppositeOverlap",
+    "strategy": "rule_router_v1",
+    "average_cer": 0.061846,
+    "sample_count": 5
+  },
+  {
+    "tier": "SyntheticOppositeOverlap",
+    "strategy": "feature_router_v2",
+    "average_cer": 0.061846,
+    "sample_count": 5
+  }
+]

@@ -48,3 +48,26 @@
 
 - Detailed speaker-aware table: results/figures/speaker_cer_summary.md
 - Speaker-aware plot: results/figures/speaker_cer_by_case.png
+
+## Feature Router v2
+
+- v1 performs well on the five verified gold cases, but synthetic silver validation exposed a NoOverlap failure mode.
+- v2 adds instability features such as length inflation and duplicate removal count to avoid blindly choosing separated transcripts when the output looks pathological.
+
+### Gold Average CER
+
+- fixed_mixed_whisper: 0.302093
+- fixed_separated_whisper: 0.191846
+- fixed_separated_whisper_cleaned: 0.181681
+- oracle_best: 0.120042
+- rule_router_v1: 0.120042
+- feature_router_v2: 0.120042
+
+### Synthetic Average CER
+
+- fixed_mixed_whisper: 0.311442
+- fixed_separated_whisper: 0.380701
+- fixed_separated_whisper_cleaned: 0.203778
+- oracle_best: 0.082239
+- rule_router_v1: 0.350902
+- feature_router_v2: 0.167553

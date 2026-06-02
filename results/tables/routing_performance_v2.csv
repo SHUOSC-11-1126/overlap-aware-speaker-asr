@@ -1,0 +1,7 @@
+﻿strategy,average_cer,sample_count
+fixed_mixed_whisper,0.302093,5
+fixed_separated_whisper,0.191846,5
+fixed_separated_whisper_cleaned,0.181681,5
+oracle_best,0.120042,5
+rule_router_v1,0.120042,5
+feature_router_v2,0.120042,5
