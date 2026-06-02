@@ -1,0 +1,16 @@
+{
+  "project_root": "D:\\mlproject\\overlap-aware-speaker-asr",
+  "core_files_present": true,
+  "missing_core_files": [],
+  "gold_cases": {
+    "NoOverlap": true,
+    "LightOverlap": true,
+    "MidOverlap": true,
+    "HeavyOverlap": true,
+    "OppositeOverlap": true
+  },
+  "synthetic_status": {
+    "status": "synthetic_overlap"
+  },
+  "gold_and_synthetic_separated": true
+}

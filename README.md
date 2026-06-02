@@ -101,3 +101,22 @@ python -m src.adaptive_router
 - The repository keeps verified references for all five benchmark cases.
 - `LLM` and `RAG` are treated as future extensions rather than the core experimental path.
 - The current research focus is adaptive routing, error analysis, and speaker-aware evaluation.
+
+## Project Maintenance and Future Skills
+
+Future contributors should read these files before making changes:
+
+- [AGENTS.md](AGENTS.md)
+- [docs/project_state.md](docs/project_state.md)
+- [docs/roadmap.md](docs/roadmap.md)
+- [docs/maintenance_harness.md](docs/maintenance_harness.md)
+- [docs/skills/README.md](docs/skills/README.md)
+
+The skill cards are not model-training prompts. They are small research and maintenance guides for future work:
+
+- [Skill 01: Separation Phase Diagram](docs/skills/skill_01_separation_phase_diagram.md)
+- [Skill 02: Compute-aware Cascade](docs/skills/skill_02_compute_aware_cascade.md)
+- [Skill 03: Speaker Profile / Voiceprint-assisted Risk Detection](docs/skills/skill_03_speaker_profile_voiceprint.md)
+- [Skill 04: MeetEval / cpWER Compatibility Plan](docs/skills/skill_04_meeteval_compatibility.md)
+
+If you are continuing the project, read those files first, then inspect the current results and only then decide whether a new experiment is justified.
