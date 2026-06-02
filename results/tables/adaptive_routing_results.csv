@@ -1,0 +1,6 @@
+﻿case_id,overlap_level,mixed_cer,separated_cer,separated_cleaned_cer,best_method,best_cer,observation
+HeavyOverlap,3,0.386861,0.109489,0.145985,separated_whisper,0.109489,Oracle routing selects the lowest-CER method for this case.
+LightOverlap,1,0.210714,0.475,0.382143,mixed_whisper,0.210714,Oracle routing selects the lowest-CER method for this case.
+MidOverlap,2,0.178947,0.273684,0.207018,mixed_whisper,0.178947,Oracle routing selects the lowest-CER method for this case.
+NoOverlap,0,0.215827,0.053957,0.089928,separated_whisper,0.053957,Oracle routing selects the lowest-CER method for this case.
+OppositeOverlap,4,0.518116,0.047101,0.083333,separated_whisper,0.047101,Oracle routing selects the lowest-CER method for this case.
