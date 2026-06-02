@@ -1,4 +1,7 @@
 ﻿case_id,method,reference_type,hypothesis_path,reference_length,hypothesis_length,edit_distance,cer
+HeavyOverlap,mixed_whisper,verified_reference,results/transcripts_raw/HeavyOverlap_mixed_whisper.json,274,246,106,0.386861
+HeavyOverlap,separated_whisper,verified_reference,results/transcripts_speaker/HeavyOverlap_separated_speaker_transcript.json,274,275,30,0.109489
+HeavyOverlap,separated_whisper_cleaned,verified_reference,results/transcripts_postprocessed/HeavyOverlap_separated_speaker_transcript_cleaned.json,274,265,40,0.145985
 LightOverlap,mixed_whisper,verified_reference,results/transcripts_raw/LightOverlap_mixed_whisper.json,280,282,59,0.210714
 LightOverlap,separated_whisper,verified_reference,results/transcripts_speaker/LightOverlap_separated_speaker_transcript.json,280,315,133,0.475
 LightOverlap,separated_whisper_cleaned,verified_reference,results/transcripts_postprocessed/LightOverlap_separated_speaker_transcript_cleaned.json,280,279,107,0.382143

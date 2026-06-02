@@ -2,10 +2,10 @@
   {
     "case_id": "HeavyOverlap",
     "overlap_level": 3,
-    "mixed_cer": "",
-    "separated_cer": "",
-    "separated_cleaned_cer": "",
-    "best_method": "",
+    "mixed_cer": 0.386861,
+    "separated_cer": 0.109489,
+    "separated_cleaned_cer": 0.145985,
+    "best_method": "separated_whisper",
     "observation": "Benchmark case available for comparative analysis."
   },
   {

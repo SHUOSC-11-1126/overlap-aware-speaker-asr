@@ -1,5 +1,35 @@
 [
   {
+    "case_id": "HeavyOverlap",
+    "method": "mixed_whisper",
+    "reference_type": "verified_reference",
+    "hypothesis_path": "results/transcripts_raw/HeavyOverlap_mixed_whisper.json",
+    "reference_length": 274,
+    "hypothesis_length": 246,
+    "edit_distance": 106,
+    "cer": 0.386861
+  },
+  {
+    "case_id": "HeavyOverlap",
+    "method": "separated_whisper",
+    "reference_type": "verified_reference",
+    "hypothesis_path": "results/transcripts_speaker/HeavyOverlap_separated_speaker_transcript.json",
+    "reference_length": 274,
+    "hypothesis_length": 275,
+    "edit_distance": 30,
+    "cer": 0.109489
+  },
+  {
+    "case_id": "HeavyOverlap",
+    "method": "separated_whisper_cleaned",
+    "reference_type": "verified_reference",
+    "hypothesis_path": "results/transcripts_postprocessed/HeavyOverlap_separated_speaker_transcript_cleaned.json",
+    "reference_length": 274,
+    "hypothesis_length": 265,
+    "edit_distance": 40,
+    "cer": 0.145985
+  },
+  {
     "case_id": "LightOverlap",
     "method": "mixed_whisper",
     "reference_type": "verified_reference",
