@@ -11,6 +11,11 @@ This audit classifies the repository's Markdown files by how they should be trea
 | `REPORT.md` | current | keep as the paper-style report |
 | `docs/README.md` | current | keep as the docs index |
 | `docs/markdown_audit.md` | current | keep as the Markdown audit record |
+| `docs/contributions/README.md` | current | keep as the contribution record index |
+| `docs/contributions/WUFANGZHOU.md` | current | keep as the core contribution record |
+| `docs/contributions/TEAM_CONTRIBUTION_TEMPLATE.md` | current | keep as the team template |
+| `docs/handoff/WUFANGZHOU_HANDOFF.md` | current | keep as the handoff note |
+| `docs/backup_plan.md` | current | keep as the backup plan |
 | `docs/project_state.md` | current | keep synchronized with project changes |
 | `docs/roadmap.md` | current | keep as the forward-looking roadmap |
 | `docs/maintenance_harness.md` | current | keep as the maintenance policy |

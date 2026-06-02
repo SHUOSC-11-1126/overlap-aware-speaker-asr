@@ -50,3 +50,6 @@ api_keys.json
 
 # Temporary chat upload bundles
 chat_upload/
+
+# Local backups
+backups/

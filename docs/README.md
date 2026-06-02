@@ -9,6 +9,9 @@ This folder is the documentation entry point for the project.
 - [docs/roadmap.md](roadmap.md)
 - [docs/maintenance_harness.md](maintenance_harness.md)
 - [docs/markdown_audit.md](markdown_audit.md)
+- [docs/contributions/README.md](contributions/README.md)
+- [docs/handoff/WUFANGZHOU_HANDOFF.md](handoff/WUFANGZHOU_HANDOFF.md)
+- [docs/backup_plan.md](backup_plan.md)
 - [docs/technical_implementation_plan_v2.md](technical_implementation_plan_v2.md)
 - [REPORT.md](../REPORT.md)
 - [README.md](../README.md)
@@ -28,6 +31,14 @@ This folder is the documentation entry point for the project.
 ## Skills
 
 - [docs/skills/README.md](skills/README.md)
+
+## Contribution and Handoff
+
+- [docs/contributions/README.md](contributions/README.md)
+- [docs/contributions/WUFANGZHOU.md](contributions/WUFANGZHOU.md)
+- [docs/contributions/TEAM_CONTRIBUTION_TEMPLATE.md](contributions/TEAM_CONTRIBUTION_TEMPLATE.md)
+- [docs/handoff/WUFANGZHOU_HANDOFF.md](handoff/WUFANGZHOU_HANDOFF.md)
+- [docs/backup_plan.md](backup_plan.md)
 
 ## Results Interpretation
 

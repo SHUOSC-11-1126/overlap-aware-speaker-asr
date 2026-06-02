@@ -30,6 +30,9 @@ This document is for future Codex / AI coding agents so they can resume work wit
 - skills cards
 - roadmap
 - maintenance harness
+- contribution records
+- handoff notes
+- backup plan
 
 ## Current Core Findings
 

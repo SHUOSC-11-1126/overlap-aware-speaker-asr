@@ -115,6 +115,12 @@ The skill cards are not model-training prompts. They are small research and main
 - [Skill 03: Speaker Profile / Voiceprint-assisted Risk Detection](docs/skills/skill_03_speaker_profile_voiceprint.md)
 - [Skill 04: MeetEval / cpWER Compatibility Plan](docs/skills/skill_04_meeteval_compatibility.md)
 
+Additional maintenance docs:
+
+- [Contribution records](docs/contributions/)
+- [Handoff notes](docs/handoff/)
+- [Backup plan](docs/backup_plan.md)
+
 If you are continuing the project, read the docs above first, then inspect the current results, and only then decide whether a new experiment is justified.
 
 ## Notes

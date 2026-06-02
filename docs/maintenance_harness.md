@@ -42,6 +42,7 @@ This document explains how to keep the project maintainable and prevent it from 
 - If a new experimental branch is added, explicitly label it as `gold`, `silver`, or `optional`.
 - If a new module is not part of the core line, place it in `docs/skills/` or future work.
 - Do not promote exploratory results directly into a final claim.
+- If contribution records, handoff notes, or backup plans are added, link them from `docs/README.md` and `README.md`.
 
 ## Recommended Command Discipline
 
