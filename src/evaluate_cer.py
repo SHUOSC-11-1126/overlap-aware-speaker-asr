@@ -26,7 +26,7 @@ def load_reference(case_id: str) -> dict[str, Any]:
     path = PROJECT_ROOT / "references" / "reference_transcripts.json"
     if not path.exists():
         raise FileNotFoundError(f"Missing reference file: {path.relative_to(PROJECT_ROOT)}")
-    data = json.loads(path.read_text(encoding="utf-8"))
+    data = json.loads(path.read_text(encoding="utf-8-sig"))
     if case_id not in data:
         raise KeyError(
             f"Missing verified reference for case '{case_id}' in references/reference_transcripts.json"
@@ -41,7 +41,7 @@ def list_verified_cases() -> list[str]:
     path = PROJECT_ROOT / "references" / "reference_transcripts.json"
     if not path.exists():
         raise FileNotFoundError(f"Missing reference file: {path.relative_to(PROJECT_ROOT)}")
-    data = json.loads(path.read_text(encoding="utf-8"))
+    data = json.loads(path.read_text(encoding="utf-8-sig"))
     return [
         case_id
         for case_id, reference in data.items()
@@ -52,7 +52,7 @@ def list_verified_cases() -> list[str]:
 def load_json(path: Path) -> dict[str, Any]:
     if not path.exists():
         raise FileNotFoundError(f"Missing transcript: {path.relative_to(PROJECT_ROOT)}")
-    return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(path.read_text(encoding="utf-8-sig"))
 
 
 def normalize_text(text: str) -> str:
@@ -198,7 +198,7 @@ def main() -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     csv_path = output_dir / "cer_results.csv"
     json_path = output_dir / "cer_results.json"
-    with csv_path.open("w", newline="", encoding="utf-8") as f:
+    with csv_path.open("w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=CSV_COLUMNS)
         writer.writeheader()
         writer.writerows(rows)

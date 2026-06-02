@@ -1,0 +1,47 @@
+[
+  {
+    "case_id": "HeavyOverlap",
+    "overlap_level": 3,
+    "mixed_cer": "",
+    "separated_cer": "",
+    "separated_cleaned_cer": "",
+    "best_method": "",
+    "observation": "Benchmark case available for comparative analysis."
+  },
+  {
+    "case_id": "LightOverlap",
+    "overlap_level": 1,
+    "mixed_cer": 0.210714,
+    "separated_cer": 0.475,
+    "separated_cleaned_cer": 0.382143,
+    "best_method": "mixed_whisper",
+    "observation": "Separated ASR performed worse than mixed ASR due to repeated hallucinated fragments; duplicate suppression reduced but did not fully solve the issue."
+  },
+  {
+    "case_id": "MidOverlap",
+    "overlap_level": 2,
+    "mixed_cer": "",
+    "separated_cer": "",
+    "separated_cleaned_cer": "",
+    "best_method": "",
+    "observation": "Benchmark case available for comparative analysis."
+  },
+  {
+    "case_id": "NoOverlap",
+    "overlap_level": 0,
+    "mixed_cer": 0.215827,
+    "separated_cer": 0.053957,
+    "separated_cleaned_cer": "",
+    "best_method": "separated_whisper",
+    "observation": "Separated speaker-track ASR substantially reduced CER compared with mixed ASR."
+  },
+  {
+    "case_id": "OppositeOverlap",
+    "overlap_level": 4,
+    "mixed_cer": "",
+    "separated_cer": "",
+    "separated_cleaned_cer": "",
+    "best_method": "",
+    "observation": "Benchmark case available for comparative analysis."
+  }
+]

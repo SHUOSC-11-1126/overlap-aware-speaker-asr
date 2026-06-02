@@ -112,7 +112,7 @@ def write_outputs(report: dict[str, Any]) -> tuple[Path, Path]:
         "## Suspected Repeated Phrases",
         json.dumps(report["suspected_repeated_phrases"], ensure_ascii=False, indent=2),
     ]
-    md_path.write_text("\n".join(md_lines), encoding="utf-8")
+    md_path.write_text("\n".join(md_lines), encoding="utf-8-sig")
     json_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     return md_path, json_path
 
