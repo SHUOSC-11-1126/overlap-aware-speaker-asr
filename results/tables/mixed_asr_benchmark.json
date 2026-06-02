@@ -1,0 +1,57 @@
+[
+  {
+    "case_id": "NoOverlap",
+    "overlap_level": 0,
+    "audio_path": "resources/mixed_audio/NoOverlap.wav",
+    "model": "whisper-small",
+    "runtime_sec": 8.045,
+    "segments_count": 26,
+    "text_length": 280,
+    "text_preview": "你方式要 那他是怎么缓解我们的空虚的他让你在那个时间段里拥有了自己没问题 没问题 先不着急哪怕这个自己是一个刷抖音的自己因为有一个前提性的问题 没有讨论我方这里再稍微解释一下实在讲的熬夜所谓的熬夜就是晚睡晚起 是吧其实部落分义是一种要好 我",
+    "transcript_path": "results/transcripts_raw/NoOverlap_mixed_whisper.json"
+  },
+  {
+    "case_id": "LightOverlap",
+    "overlap_level": 1,
+    "audio_path": "resources/mixed_audio/LightOverlap.wav",
+    "model": "whisper-small",
+    "runtime_sec": 5.491,
+    "segments_count": 25,
+    "text_length": 288,
+    "text_preview": "你方式要 那他是怎么缓解我们的空虚的他让你在那个时间段里拥有了自己没问题 没问题 你先不着急哪怕这个自己是一个刷抖音的自己因为有一个前提性的问题 没有讨论我方这里再稍微解释一下他实在讲的熬夜所谓的熬夜就是晚睡晚起 是吧其实部落分义是一种要好",
+    "transcript_path": "results/transcripts_raw/LightOverlap_mixed_whisper.json"
+  },
+  {
+    "case_id": "MidOverlap",
+    "overlap_level": 2,
+    "audio_path": "resources/mixed_audio/MidOverlap.wav",
+    "model": "whisper-small",
+    "runtime_sec": 4.84,
+    "segments_count": 28,
+    "text_length": 278,
+    "text_preview": "你方式要 那他是怎么缓解我们的空虚的他让你在那个时间段里拥有了自己没问题 没问题 先不着急哪怕这个自己是一个刷抖音的自己因为有一个前提性的问题 没有讨论我往这里再稍微解释一下他实在讲的熬夜所谓的熬夜就是晚睡晚起是吧其实不落分也是一种要好 我",
+    "transcript_path": "results/transcripts_raw/MidOverlap_mixed_whisper.json"
+  },
+  {
+    "case_id": "HeavyOverlap",
+    "overlap_level": 3,
+    "audio_path": "resources/mixed_audio/HeavyOverlap.wav",
+    "model": "whisper-small",
+    "runtime_sec": 4.368,
+    "segments_count": 24,
+    "text_length": 250,
+    "text_preview": "你方式要 那他是怎么缓解我们的风气他让你在那个时间段里拥有了自己没问题 没问题 什么招式他觉得自己是一个刷抖音的自己因为有一个前提性的话我说你再稍微解释一下他实在讲的熬夜所谓的熬夜就是晚睡晚睡不过分一是要好 我先聊晚睡晚睡晚睡晚起也是熬夜既",
+    "transcript_path": "results/transcripts_raw/HeavyOverlap_mixed_whisper.json"
+  },
+  {
+    "case_id": "OppositeOverlap",
+    "overlap_level": 4,
+    "audio_path": "resources/mixed_audio/OppositeOverlap.wav",
+    "model": "whisper-small",
+    "runtime_sec": 3.355,
+    "segments_count": 24,
+    "text_length": 189,
+    "text_preview": "你方式要 那他是怎么玩他让你在那个时间段里拥有了自己没问题 没问题你先不着急他说自己是一个刷抖音的自己因为有一个前提你先有问题你先好好说实在讲的熬夜所谓的熬夜就是晚睡这不获分一种要熬夜到晚睡少夜晚睡早睡没问题你上班的时候是定期网你下班的时候",
+    "transcript_path": "results/transcripts_raw/OppositeOverlap_mixed_whisper.json"
+  }
+]
