@@ -30,3 +30,21 @@
 - LightOverlap separated output is insertion-heavy and repetition-heavy, which explains why separation hurts in that case.
 - MidOverlap shows a similar pattern, with insertion errors and repeated fragments still present after separation.
 - Detailed error type summary: results/figures/error_type_summary.md
+
+## Speaker-aware Evaluation
+
+- Normal CER can miss speaker attribution problems because it collapses the transcript into one string.
+- Speaker-aware CER compares each speaker track separately, so we can see whether a method preserves who said what.
+- Separated speaker-track ASR is useful, but cleaned transcripts can trade repetition reduction for content loss.
+
+### Average speaker macro CER
+
+- separated_whisper: 0.116538
+- separated_whisper_cleaned: 0.124558
+
+### Largest speaker gap
+
+- MidOverlap / separated_whisper: 0.267901
+
+- Detailed speaker-aware table: results/figures/speaker_cer_summary.md
+- Speaker-aware plot: results/figures/speaker_cer_by_case.png
