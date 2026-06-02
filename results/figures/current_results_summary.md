@@ -6,4 +6,4 @@
 | LightOverlap | 1 | 0.210714 | 0.475 | 0.382143 | mixed_whisper | Separated ASR performed worse than mixed ASR due to repeated hallucinated fragments; duplicate suppression reduced but did not fully solve the issue. |
 | MidOverlap | 2 | 0.178947 | 0.273684 | 0.207018 | mixed_whisper | Benchmark case available for comparative analysis. |
 | NoOverlap | 0 | 0.215827 | 0.053957 | 0.089928 | separated_whisper | Separated speaker-track ASR substantially reduced CER compared with mixed ASR. |
-| OppositeOverlap | 4 |  |  |  |  | Benchmark case available for comparative analysis. |
+| OppositeOverlap | 4 | 0.518116 | 0.047101 | 0.083333 | separated_whisper | Benchmark case available for comparative analysis. |

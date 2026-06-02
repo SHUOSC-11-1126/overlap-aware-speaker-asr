@@ -38,10 +38,10 @@
   {
     "case_id": "OppositeOverlap",
     "overlap_level": 4,
-    "mixed_cer": "",
-    "separated_cer": "",
-    "separated_cleaned_cer": "",
-    "best_method": "",
+    "mixed_cer": 0.518116,
+    "separated_cer": 0.047101,
+    "separated_cleaned_cer": 0.083333,
+    "best_method": "separated_whisper",
     "observation": "Benchmark case available for comparative analysis."
   }
 ]

@@ -118,5 +118,35 @@
     "hypothesis_length": 267,
     "edit_distance": 25,
     "cer": 0.089928
+  },
+  {
+    "case_id": "OppositeOverlap",
+    "method": "mixed_whisper",
+    "reference_type": "verified_reference",
+    "hypothesis_path": "results/transcripts_raw/OppositeOverlap_mixed_whisper.json",
+    "reference_length": 276,
+    "hypothesis_length": 187,
+    "edit_distance": 143,
+    "cer": 0.518116
+  },
+  {
+    "case_id": "OppositeOverlap",
+    "method": "separated_whisper",
+    "reference_type": "verified_reference",
+    "hypothesis_path": "results/transcripts_speaker/OppositeOverlap_separated_speaker_transcript.json",
+    "reference_length": 276,
+    "hypothesis_length": 274,
+    "edit_distance": 13,
+    "cer": 0.047101
+  },
+  {
+    "case_id": "OppositeOverlap",
+    "method": "separated_whisper_cleaned",
+    "reference_type": "verified_reference",
+    "hypothesis_path": "results/transcripts_postprocessed/OppositeOverlap_separated_speaker_transcript_cleaned.json",
+    "reference_length": 276,
+    "hypothesis_length": 264,
+    "edit_distance": 23,
+    "cer": 0.083333
   }
 ]
