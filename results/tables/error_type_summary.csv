@@ -1,0 +1,16 @@
+﻿case_id,method,reference_length,hypothesis_length,length_ratio,substitution_count,deletion_count,insertion_count,edit_distance,cer,repetition_count,removed_count_if_cleaned,dominant_error_type,observation
+NoOverlap,mixed_whisper,278,274,0.985612,24,20,16,60,0.215827,3,0,substitution,Mixed baseline used as the direct ASR control.
+NoOverlap,separated_whisper,278,277,0.996403,12,2,1,15,0.053957,3,0,substitution,"For NoOverlap separated_whisper, all error counts are lower than mixed, indicating separation is beneficial under strong overlap."
+NoOverlap,separated_whisper_cleaned,278,267,0.960432,12,12,1,25,0.089928,2,1,substitution,"For NoOverlap cleaned separated output, the dominant error mode is substitution."
+LightOverlap,mixed_whisper,280,282,1.007143,13,22,24,59,0.210714,3,0,insertion,Mixed baseline used as the direct ASR control.
+LightOverlap,separated_whisper,280,315,1.125,60,19,54,133,0.475,38,0,insertion,"For LightOverlap separated_whisper, insertion and repetition dominate, suggesting separation-triggered ASR hallucination."
+LightOverlap,separated_whisper_cleaned,280,279,0.996429,20,44,43,107,0.382143,2,6,insertion,"For LightOverlap cleaned separated output, duplicate suppression reduces repetition but insertion errors still remain."
+MidOverlap,mixed_whisper,285,273,0.957895,15,24,12,51,0.178947,3,0,deletion,Mixed baseline used as the direct ASR control.
+MidOverlap,separated_whisper,285,301,1.05614,42,10,26,78,0.273684,59,0,insertion,"For MidOverlap separated_whisper, insertion and repetition dominate, suggesting separation-triggered ASR hallucination."
+MidOverlap,separated_whisper_cleaned,285,270,0.947368,18,28,13,59,0.207018,2,4,deletion,"For MidOverlap cleaned separated output, duplicate suppression reduces repetition but insertion errors still remain."
+HeavyOverlap,mixed_whisper,274,246,0.89781,68,33,5,106,0.386861,2,0,substitution,Mixed baseline used as the direct ASR control.
+HeavyOverlap,separated_whisper,274,275,1.00365,23,3,4,30,0.109489,3,0,substitution,"For HeavyOverlap separated_whisper, all error counts are lower than mixed, indicating separation is beneficial under strong overlap."
+HeavyOverlap,separated_whisper_cleaned,274,265,0.967153,23,13,4,40,0.145985,2,1,substitution,"For HeavyOverlap cleaned separated output, the dominant error mode is substitution."
+OppositeOverlap,mixed_whisper,276,187,0.677536,42,95,6,143,0.518116,1,0,deletion,Mixed baseline used as the direct ASR control.
+OppositeOverlap,separated_whisper,276,274,0.992754,11,2,0,13,0.047101,3,0,substitution,"For OppositeOverlap separated_whisper, all error counts are lower than mixed, indicating separation is beneficial under strong overlap."
+OppositeOverlap,separated_whisper_cleaned,276,264,0.956522,11,12,0,23,0.083333,2,1,deletion,"For OppositeOverlap cleaned separated output, the dominant error mode is deletion."

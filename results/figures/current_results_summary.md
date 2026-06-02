@@ -24,3 +24,9 @@
 - fixed_separated_whisper_cleaned: 0.181681
 - oracle_best: 0.120042
 - rule_router: 0.120042
+
+## Error Type Analysis
+
+- LightOverlap separated output is insertion-heavy and repetition-heavy, which explains why separation hurts in that case.
+- MidOverlap shows a similar pattern, with insertion errors and repeated fragments still present after separation.
+- Detailed error type summary: results/figures/error_type_summary.md
