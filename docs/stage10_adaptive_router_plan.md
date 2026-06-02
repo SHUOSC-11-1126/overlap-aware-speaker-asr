@@ -1,5 +1,7 @@
 # Stage 10 Adaptive Router Plan
 
+> Status: Historical document. The current project direction is maintained in docs/technical_implementation_plan_v2.md and docs/project_state.md.
+
 ## Stage 10 Goal
 
 Implement a real adaptive router that selects one of:

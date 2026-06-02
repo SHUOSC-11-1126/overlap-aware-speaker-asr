@@ -1,5 +1,7 @@
 # Stage 13A: Synthetic Overlap Benchmark Plan
 
+> Status: Historical document. The current project direction is maintained in docs/technical_implementation_plan_v2.md and docs/project_state.md.
+
 ## Goal
 
 The current benchmark has only five verified cases. That is enough to establish the core trend, but it also makes the adaptive router look fragile because it is evaluated on a very small set. This stage adds a synthetic benchmark built from existing short snippets so we can test whether the routing logic remains sensible on more samples.

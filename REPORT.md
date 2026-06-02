@@ -1,25 +1,29 @@
-# Overlap-Aware Speaker-Attributed ASR with Adaptive Routing
+# When Should We Separate? Boundary-aware, Compute-aware, and Speaker-aware Adaptive ASR for Overlapping Speech
 
 ## 1. Introduction
 
-Multi-speaker audio is difficult to transcribe reliably when speakers interrupt each other or speak at the same time. In these cases, a single ASR pass often produces repeated fragments, insertions, missing spans, and speaker attribution errors. This project studies how to improve speaker-attributed ASR for overlapping conversation by comparing mixed transcription, separated speaker-track transcription, duplicate suppression, and a rule-based adaptive router.
+Multi-speaker audio is hard to transcribe reliably when speakers interrupt each other or talk at the same time. In those cases, a single ASR pass often produces repeated fragments, insertions, missing spans, and speaker attribution errors.
 
-The central question is not simply whether speech separation improves ASR, but when it helps and when it hurts. On this benchmark, separation is beneficial under stronger overlap, but it can also introduce hallucinated repetitions and insertions under lighter overlap. The final system therefore emphasizes selective routing rather than one-size-fits-all separation.
+This project asks a focused question:
+
+> When should we separate, and when does separation hurt more than it helps?
+
+The answer is not a single model or a universal separation rule. Instead, the project studies mixed ASR, separated speaker-track ASR, cleaned separated transcripts, adaptive routing, speaker-aware evaluation, and risk-aware selection.
 
 ## 2. Background and Motivation
 
-The repository is based on XuTong's multi-speaker conversation management work and uses that project as the starting point for a more systematic evaluation of overlap-aware transcription. The benchmark contains five overlap conditions ranging from clean audio to heavy cross-talk. These cases make it possible to isolate failure modes and measure whether speaker-specific content is preserved.
+The repository started from an earlier overlapping-speech ASR project and turned it into a benchmark-driven research engineering pipeline. The goal is to understand the conditions under which separation improves accuracy and when it introduces hallucinated repetition or over-deletion.
 
-The motivation for the project is practical:
+The motivation is practical:
 
 - meeting and debate audio often contains overlap;
-- raw ASR can transcribe words correctly but still lose who said what;
-- separation can help, but may also amplify hallucinated fragments;
-- a better system should route audio to the most suitable transcript type.
+- raw ASR may transcribe the words but still lose who said what;
+- separation can help, but it can also amplify repetition and insertion errors;
+- a better system should select the safest transcript type for the observed overlap regime.
 
 ## 3. Dataset and Benchmark
 
-We evaluate five benchmark cases:
+The gold benchmark contains five manually verified cases:
 
 | case_id | overlap_level | purpose |
 | --- | ---: | --- |
@@ -31,86 +35,116 @@ We evaluate five benchmark cases:
 
 Each case has:
 
-- the mixed audio waveform,
-- two separated speaker tracks,
-- mixed ASR transcripts,
-- separated speaker-track ASR transcripts,
-- cleaned separated transcripts after duplicate suppression,
+- mixed audio,
+- separated speaker tracks,
+- mixed ASR output,
+- separated speaker-track ASR output,
+- duplicate-suppressed cleaned separated output,
 - a verified reference transcript pair for speaker-aware evaluation.
 
-The verified references were assembled from LLM-assisted drafts and manually checked by the team. The reference file contains `full_text` plus `speaker_1_text` and `speaker_2_text` so that both transcript-level and speaker-aware metrics can be computed.
+In addition, the repository contains synthetic silver benchmarks and a held-out synthetic split. These are used for robustness validation only and are not gold evaluation.
 
 ## 4. Method
 
-### 4.1 Mixed Whisper Baseline
+### 4.1 Mixed ASR
 
-The mixed baseline uses `whisper-small` on the mixed audio. This is the simplest reference point and the default non-separation path. It measures what can be achieved without trying to disentangle speakers.
+The mixed baseline uses `whisper-small` directly on the mixed audio. It is the simplest non-separation path and provides the baseline against which all other methods are measured.
 
 ### 4.2 Separated Speaker-track ASR
 
-For each case, the already separated `spk1` and `spk2` waveforms are transcribed independently with `whisper-small`. The resulting segments are merged into a speaker-attributed transcript by ordering segments by start time and attaching the speaker label from the source track.
+For each case, the already-separated `spk1` and `spk2` waveforms are transcribed independently with `whisper-small`. The resulting segments are merged into a speaker-attributed transcript in start-time order.
 
-This method tests the intuition that a cleaner signal should help ASR. The experiments show that this is true in some overlap regimes, but not all.
+This tests the hypothesis that a cleaner signal should help ASR. The benchmark shows that this is true in some overlap regimes, but not all.
 
 ### 4.3 Duplicate Suppression
 
-The cleaned transcript is produced by a lightweight heuristic duplicate suppression pass over the separated speaker transcript. The goal is to reduce repeated hallucinated fragments that appear near the end of some separated outputs.
+The cleaned transcript is produced by a lightweight duplicate suppression pass over the separated speaker transcript. The goal is to remove repeated hallucinated fragments while preserving speaker order.
 
-The cleanup rules remove:
+The heuristic removes:
 
 - identical neighboring segments,
 - short repeated phrases from the same speaker within a local window,
-- obvious repeated hallucination bursts.
-
-The cleaned transcript is not a rewrite. It is a conservative post-processing step designed to reduce repetition while keeping speaker order intact.
+- obvious repetition bursts.
 
 ### 4.4 Error Type Analysis
 
-To explain why separation sometimes degrades transcription quality, we analyze the edit structure of the CER errors and summarize substitution, deletion, insertion, and repetition-related patterns.
+We analyze the edit structure of the CER errors and summarize substitution, deletion, insertion, and repetition-related patterns.
 
-This analysis shows that the problematic separated cases are not dominated by random mistakes. Instead, `LightOverlap` and `MidOverlap` are strongly affected by insertion and repeated fragments, which is consistent with separation-triggered hallucination.
+This explains why separation can degrade quality in lighter overlap:
 
-### 4.5 Rule-based Adaptive Router
+- `LightOverlap` is dominated by insertion and repetition hallucination;
+- `MidOverlap` shows a similar pattern;
+- `HeavyOverlap` and `OppositeOverlap` benefit more clearly from separation.
 
-We implement a simple router that selects a transcript type without using ground-truth CER as an input feature. The initial rule is:
+### 4.5 Adaptive Router v1 and v2
 
-- if `overlap_level == 0`, choose `separated_whisper`;
-- if `overlap_level in [1, 2]`, choose `mixed_whisper`;
-- if `overlap_level >= 3`, choose `separated_whisper`;
-- otherwise choose `mixed_whisper`.
+The router selects one of:
 
-This router uses only observable metadata such as overlap level, runtime, segment counts, text lengths, and duplicate counts. CER is only used after the decision is made, for evaluation.
+- `mixed_whisper`
+- `separated_whisper`
+- `separated_whisper_cleaned`
 
-### 4.6 Speaker-aware CER Evaluation
+The router does not use ground-truth CER as an input feature. CER is only used after the decision is fixed.
 
-Normal CER collapses the transcript into one string and can hide speaker attribution problems. Speaker-aware CER evaluates `speaker_1_text` and `speaker_2_text` separately, then reports per-speaker CER, macro CER, and speaker gap.
+The first router version is overlap-only. The second version adds transcript-instability signals such as:
 
-This metric is important because a transcript can look acceptable at the global text level while still mixing speaker content unevenly.
+- length inflation,
+- duplicate removal count,
+- repetition proxy signals,
+- speaker length imbalance,
+- method disagreement proxies.
+
+### 4.6 Speaker-aware CER
+
+Normal CER collapses the transcript into one string and can hide speaker attribution problems. Speaker-aware CER evaluates `speaker_1_text` and `speaker_2_text` separately and reports per-speaker CER, macro CER, and speaker gap.
+
+### 4.7 cpCER-lite
+
+cpCER-lite is a lightweight permutation-aware evaluation. It compares direct and swapped speaker mappings and chooses the better one. This helps check whether the main issue is speaker swap or content-level transcription quality.
+
+### 4.8 Synthetic Silver Validation
+
+Synthetic overlap samples are used as supplementary robustness evidence. They are not gold evaluation. Their purpose is to show whether the router behavior remains stable outside the five verified benchmark cases.
+
+### 4.9 Held-out Synthetic Split
+
+A larger synthetic split is divided into dev and test subsets. Dev is useful for inspecting thresholds and behavior, but test is reserved for final evaluation. The held-out split checks whether the router generalizes beyond the original synthetic set.
+
+### 4.10 Risk-aware Final Selector
+
+The risk-aware selector is a reference-free final selection layer. It uses only deployment-visible stability signals and risk proxies to choose a final transcript type. Ground-truth CER is used only after selection, for evaluation.
 
 ## 5. Experiments
 
 ### 5.1 Global CER
-
-The global CER results are summarized below:
 
 | strategy | average CER |
 | --- | ---: |
 | fixed_mixed_whisper | 0.302093 |
 | fixed_separated_whisper | 0.191846 |
 | fixed_separated_whisper_cleaned | 0.181681 |
+| router_v2 | 0.120042 |
 | oracle_best | 0.120042 |
-| rule_router | 0.120042 |
 
-Key observations:
+The gold benchmark shows that:
 
-- raw separation is already better than mixed ASR on average;
-- duplicate suppression provides a small additional gain;
-- the rule-based router matches the oracle best on this benchmark;
-- the benchmark is small, so this should be treated as a strong empirical result, not a universal guarantee.
+- separation is useful on average, but not always;
+- cleaned separated output is slightly better than raw separated on average;
+- router_v2 matches the oracle best average on this benchmark.
 
-### 5.2 Adaptive Routing
+### 5.2 Error Type Analysis
 
-The router chooses the following best method per case:
+The error-type study reveals the main failure mode of separated ASR under light and moderate overlap:
+
+- repeated hallucinations,
+- insertion-heavy errors,
+- duplicated tail fragments.
+
+This matches the qualitative inspection of the cleaned transcripts and explains why duplicate suppression helps but does not fully solve the problem.
+
+### 5.3 Adaptive Routing
+
+The router chooses the following best method per gold case:
 
 | case_id | selected_method |
 | --- | --- |
@@ -120,65 +154,96 @@ The router chooses the following best method per case:
 | HeavyOverlap | separated_whisper |
 | OppositeOverlap | separated_whisper |
 
-The adaptive router performs well because it captures the main pattern of this benchmark: clean and strongly overlapping cases benefit from separation, while lighter overlap is often safer with the mixed baseline.
+The main result is not that separation always wins. The main result is that the best transcript type depends on the overlap regime.
 
-### 5.3 Error Type Analysis
+### 5.4 Synthetic Silver Validation
 
-The error-type study explains the failure mode of separated ASR under light and moderate overlap:
+Original synthetic silver results:
 
-- `LightOverlap` separated output is dominated by insertions and repeated fragments.
-- `MidOverlap` shows a similar pattern, with many insertions and repetitions remaining after separation.
-- `HeavyOverlap` and `OppositeOverlap` do not show the same failure profile and benefit more clearly from separation.
+| strategy | average CER |
+| --- | ---: |
+| v1 | 0.350902 |
+| v2 | 0.167553 |
+| oracle | 0.082239 |
 
-This supports the main thesis of the project: speech separation is useful, but not universally beneficial.
+The synthetic silver benchmark exposed a stability issue in the overlap-only router. It looked strong on the gold benchmark but failed on synthetic NoOverlap. The feature-based router v2 improved robustness by reacting to instability signals.
 
-### 5.4 Speaker-aware Evaluation
+### 5.5 Held-out Synthetic Split
 
-Speaker-aware CER results:
+Held-out synthetic test results:
 
-| case_id | separated_whisper macro CER | separated_whisper_cleaned macro CER | note |
-| --- | ---: | ---: | --- |
-| NoOverlap | 0.054312 | 0.089278 | raw separated is better |
-| LightOverlap | 0.194170 | 0.135164 | cleaned improves speaker-level quality |
-| MidOverlap | 0.175908 | 0.168620 | cleaned slightly improves macro CER |
-| HeavyOverlap | 0.110821 | 0.146535 | raw separated is better |
-| OppositeOverlap | 0.047479 | 0.083193 | raw separated is better |
+| strategy | average CER |
+| --- | ---: |
+| v1 | 0.361350 |
+| v2 | 0.335326 |
+| oracle | 0.115181 |
 
-This shows that cleaning helps the light and moderate overlap cases, but it can also remove useful content. In the clean and strongly overlapping cases, the raw separated transcript still preserves speaker-specific content better.
+The held-out split confirms that v2 is more stable than v1, but there is still a non-trivial gap to oracle performance.
+
+### 5.6 Router Ablation
+
+Router ablation shows that repetition and duplicate-removal features are more useful than length ratio alone. This supports the idea that instability signals matter more than overlap level by itself.
+
+### 5.7 Speaker-aware CER
+
+Speaker-aware CER shows that cleaned separated output can improve some overlap cases, but raw separated output remains better in others.
+
+| case_id | separated_whisper macro CER | separated_whisper_cleaned macro CER |
+| --- | ---: | ---: |
+| NoOverlap | 0.054312 | 0.089278 |
+| LightOverlap | 0.194170 | 0.135164 |
+| MidOverlap | 0.175908 | 0.168620 |
+| HeavyOverlap | 0.110821 | 0.146535 |
+| OppositeOverlap | 0.047479 | 0.083193 |
+
+### 5.8 cpCER-lite
+
+cpCER-lite did not find speaker permutation mismatch in the five gold cases. The direct speaker assignment is always better than the swapped one, which means the main errors are content-level rather than speaker-swap-level.
+
+### 5.9 Risk-aware Selector
+
+| strategy | average CER |
+| --- | ---: |
+| risk_aware_selector | 0.134587 |
+| router_v2 | 0.120042 |
+| oracle_best | 0.120042 |
+
+The risk-aware selector is deliberately conservative and explainable. It is not the best-CER result, but it is useful as a deployment-oriented final selector.
 
 ## 6. Results and Discussion
 
-The project leads to four main findings:
+The project leads to six main findings:
 
 1. Speech separation is useful, but not universally beneficial.
 2. The main degradation in `LightOverlap` and `MidOverlap` is caused by insertion and repetition hallucination.
-3. A simple rule-based router can match the oracle best average CER on this benchmark.
-4. Speaker-aware CER reveals differences that global CER alone cannot show.
+3. Speaker swap is not the dominant error source in the five gold cases.
+4. Router v1 is fragile outside the small gold benchmark, while router v2 is more stable.
+5. Synthetic silver validation is valuable for exposing overfitting, but it is not gold evaluation.
+6. Speaker-aware and permutation-aware evaluation reveal behaviors that global CER alone does not show.
 
-The speaker-aware evaluation is especially important because it shows that a transcript can improve at the global CER level while still being uneven across speakers. This is why the cleaned transcript is worth keeping as a candidate, but not as the only answer.
+The strongest practical conclusion is that a system should separate selectively, not blindly. A mixed transcript is safer in some overlap regimes, while separated or cleaned separated output is better in others.
 
 ## 7. Limitations
 
-This project is intentionally small and benchmark-driven.
+This project is intentionally bounded.
 
-- The benchmark has only five cases.
-- The router is rule-based, not learned.
-- The duplicate suppression heuristic is lightweight and may remove useful content in some cases.
-- Speaker-aware evaluation depends on manually verified references.
-- The project does not yet include an end-to-end learned diarization or routing model.
+- No new ASR model training was performed.
+- The gold benchmark is small.
+- Synthetic references are silver, not gold.
+- The router is rule-based rather than learned.
+- External benchmark validation is not yet complete.
+- LLM/RAG remains a future extension rather than the core quantitative result.
 
 ## 8. Future Work
 
-Several extensions would be natural next steps:
+Natural next steps include:
 
-- learn a router from overlap and transcript features rather than using fixed rules;
-- add a better hallucination detector for repeated fragments;
-- expand the benchmark with more realistic meeting audio;
-- integrate lexical constraints or domain terminology retrieval;
-- add a learned speaker-attributed correction step.
-
-LLM/RAG is a plausible extension, but it is not required for the current core result.
+- separation phase diagram;
+- compute-aware cascade;
+- speaker profile / voiceprint exploration;
+- MeetEval / cpWER compatibility work;
+- external mini validation.
 
 ## 9. Conclusion
 
-This project shows that the best transcript strategy depends on the overlap regime. Mixed ASR is safer under light overlap, separated ASR is stronger under heavier overlap, and duplicate suppression can reduce repetition without fully solving separated hallucinations. A simple rule-based router reaches the oracle-best average CER on the current benchmark, and speaker-aware CER confirms that raw and cleaned separated transcripts trade off content preservation in different ways.
+This project shows that the best transcript strategy depends on the overlap regime. Mixed ASR is safer under light overlap, separated ASR is stronger under heavier overlap, and duplicate suppression can reduce repetition without fully solving separated hallucinations. Router_v2 matches the oracle-best average CER on the gold benchmark, while synthetic validation and risk-aware selection help explain where the system remains fragile.

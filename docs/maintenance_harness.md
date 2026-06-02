@@ -35,6 +35,14 @@ This document explains how to keep the project maintainable and prevent it from 
 - Prefer versioned outputs for new experimental branches.
 - Keep synthetic silver separate from gold.
 
+## Documentation Freshness Policy
+
+- Every major stage completion must update `docs/project_state.md`.
+- If the core conclusion changes, update `README.md` and `REPORT.md` together.
+- If a new experimental branch is added, explicitly label it as `gold`, `silver`, or `optional`.
+- If a new module is not part of the core line, place it in `docs/skills/` or future work.
+- Do not promote exploratory results directly into a final claim.
+
 ## Recommended Command Discipline
 
 ```powershell
@@ -45,6 +53,7 @@ python -m src.evaluate_cpcer_lite --case all
 python -m src.risk_aware_selector --case all
 python -m src.router_ablation
 python -m src.router_ablation_split
+python -m src.project_harness
 ```
 
 ## Maintenance Goal
@@ -55,4 +64,3 @@ The project should remain:
 - reproducible
 - extendable by multiple people
 - resistant to scope creep
-

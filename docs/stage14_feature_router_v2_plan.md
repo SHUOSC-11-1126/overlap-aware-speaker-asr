@@ -1,5 +1,7 @@
 # Stage 14: Feature-Based Adaptive Router v2
 
+> Status: Historical document. The current project direction is maintained in docs/technical_implementation_plan_v2.md and docs/project_state.md.
+
 ## Motivation
 
 The v1 adaptive router used only `overlap_level`. It worked well on the five verified gold benchmark cases, but the synthetic silver validation exposed a failure mode on `SyntheticNoOverlap`, where v1 incorrectly chose the separated transcript and performed very poorly.

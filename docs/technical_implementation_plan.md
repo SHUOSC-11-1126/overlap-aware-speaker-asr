@@ -1,5 +1,7 @@
 # Technical Implementation Plan for Codex
 
+> Status: Historical document. The current project direction is maintained in docs/technical_implementation_plan_v2.md and docs/project_state.md.
+
 ## Project Title
 
 **Overlap-Aware Speaker-Attributed ASR with RAG-Enhanced LLM Correction**

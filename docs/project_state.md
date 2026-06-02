@@ -4,7 +4,7 @@ This document is for future Codex / AI coding agents so they can resume work wit
 
 ## Current Project Title
 
-**When Should We Separate? Adaptive Routing and Speaker-Aware Evaluation for Overlapping Speech ASR**
+**When Should We Separate? Boundary-aware, Compute-aware, and Speaker-aware Adaptive ASR for Overlapping Speech**
 
 ## Completed Stages
 
@@ -16,15 +16,32 @@ This document is for future Codex / AI coding agents so they can resume work wit
 - global CER
 - error type analysis
 - adaptive router v1
-- speaker-aware CER
-- synthetic overlap benchmark
-- synthetic silver evaluation
-- router v2
-- synthetic audit
+- adaptive router v2
 - router ablation
+- synthetic silver benchmark
+- synthetic silver evaluation
 - held-out synthetic split validation
+- speaker-aware CER
 - cpCER-lite
 - risk-aware selector
+- project context docs
+- docs index
+- markdown audit
+- skills cards
+- roadmap
+- maintenance harness
+
+## Current Core Findings
+
+1. Speech separation is useful but not universally beneficial.
+2. `NoOverlap`, `HeavyOverlap`, and `OppositeOverlap` benefit strongly from separated speaker-track ASR.
+3. `LightOverlap` and `MidOverlap` degradation is mainly caused by insertion and repetition hallucination.
+4. Speaker swap is not the dominant error source in the five gold cases.
+5. Overlap-only router v1 performs perfectly on gold but fails on synthetic silver validation.
+6. Feature-based router v2 improves robustness using repetition and duplicate-removal signals.
+7. Risk-aware selector is a deployability and explainability layer, not the best-CER result.
+8. Synthetic benchmarks are silver robustness validation, not gold evaluation.
+9. LLM/RAG is optional future extension, not the current core quantitative contribution.
 
 ## Gold Benchmark Final CER Table
 
@@ -63,7 +80,7 @@ This document is for future Codex / AI coding agents so they can resume work wit
 - `separated_whisper_cleaned: 0.083333`
 - `best: separated_whisper`
 
-### Average
+### Averages
 
 - `fixed mixed: 0.302093`
 - `fixed separated: 0.191846`
@@ -71,33 +88,7 @@ This document is for future Codex / AI coding agents so they can resume work wit
 - `router_v2: 0.120042`
 - `oracle best: 0.120042`
 
-## Error Type Findings
-
-- LightOverlap separated degradation is mainly insertion + repetition.
-- MidOverlap separated degradation is also insertion + repetition.
-- HeavyOverlap / OppositeOverlap benefit strongly from separation.
-- Duplicate suppression helps Light/Mid but is not universally better.
-
-## Speaker-Aware Findings
-
-- `speaker_macro_cer` shows whether the ASR preserves content for each speaker.
-- `separated_whisper` and `separated_whisper_cleaned` are both better measured with speaker-aware metrics than with plain CER alone.
-
-### speaker_macro_cer
-
-- `NoOverlap separated: 0.054312, cleaned: 0.089278`
-- `LightOverlap separated: 0.194170, cleaned: 0.135164`
-- `MidOverlap separated: 0.175908, cleaned: 0.168620`
-- `HeavyOverlap separated: 0.110821, cleaned: 0.146535`
-- `OppositeOverlap separated: 0.047479, cleaned: 0.083193`
-
-## cpCER-lite Findings
-
-- No obvious speaker permutation mismatch was found in the verified gold cases.
-- `speaker_assignment_gap = 0.0` for all five gold cases.
-- Main errors are content-level, not speaker-swap-level.
-
-## Synthetic Benchmark Findings
+## Synthetic Findings
 
 ### Original 25 synthetic silver
 
@@ -113,9 +104,25 @@ This document is for future Codex / AI coding agents so they can resume work wit
 
 ### Interpretation
 
-- `v2` improves stability but still has a large gap to oracle.
-- The largest improvement comes from `SyntheticNoOverlap`.
+- `v2` improves stability but still has a gap to oracle.
+- Improvement mainly comes from `SyntheticNoOverlap`.
 - Synthetic results are silver robustness evidence, not gold evaluation.
+
+## Speaker-Aware Findings
+
+### speaker_macro_cer
+
+- `NoOverlap separated: 0.054312, cleaned: 0.089278`
+- `LightOverlap separated: 0.194170, cleaned: 0.135164`
+- `MidOverlap separated: 0.175908, cleaned: 0.168620`
+- `HeavyOverlap separated: 0.110821, cleaned: 0.146535`
+- `OppositeOverlap separated: 0.047479, cleaned: 0.083193`
+
+## cpCER-lite Findings
+
+- No obvious speaker permutation mismatch.
+- `speaker_assignment_gap = 0.0` for all five gold cases.
+- Main errors are content-level, not speaker-swap-level.
 
 ## Risk-Aware Selector Findings
 
@@ -131,11 +138,16 @@ This document is for future Codex / AI coding agents so they can resume work wit
 - `router_v2: 0.120042`
 - `oracle_best: 0.120042`
 
-### Interpretation
+## What Should Happen Next
 
-- Risk-aware selector is more conservative and explainable.
-- It is not the primary best-CER result.
-- It provides reference-free risk detection and selective repair.
+The next stage is not another experimental detour. It should focus on:
+
+- final REPORT.md polish
+- README polish
+- Streamlit demo
+- presentation / video script
+- contribution / maintenance clarity
+- optional skills exploration
 
 ## How to Resume Work
 
@@ -149,6 +161,7 @@ python -m src.evaluate_cpcer_lite --case all
 python -m src.risk_aware_selector --case all
 python -m src.router_ablation
 python -m src.router_ablation_split
+python -m src.project_harness
 ```
 
 ## Notes for Future Agents
@@ -157,3 +170,4 @@ python -m src.router_ablation_split
 - References and CER are for evaluation only.
 - Keep gold and synthetic evaluation clearly separated.
 - Prefer adding new outputs over overwriting existing benchmark files.
+- If a new stage changes the main conclusion, update README and REPORT together.

@@ -1,50 +1,76 @@
-# Overlap-Aware Speaker-Attributed ASR with Adaptive Routing
+# When Should We Separate? Boundary-aware, Compute-aware, and Speaker-aware Adaptive ASR for Overlapping Speech
 
-This repository studies when speech separation helps multi-speaker ASR, when it hurts, and how a simple rule-based router can choose the best transcript type for a given overlap level.
+We study when speech separation helps or hurts multi-speaker ASR, and we build adaptive routing and risk-aware evaluation tools for speaker-attributed transcription.
 
-## Project Overview
+## What This Project Is
 
-The project evaluates five benchmark cases:
+- ASR pipeline optimization
+- adaptive routing
+- error type analysis
+- speaker-aware evaluation
+- synthetic robustness validation
+- risk-aware selection
 
-- `NoOverlap`
-- `LightOverlap`
-- `MidOverlap`
-- `HeavyOverlap`
-- `OppositeOverlap`
+## What This Project Is Not
 
-We compare three transcript families:
-
-1. `mixed_whisper`
-2. `separated_whisper`
-3. `separated_whisper_cleaned`
-
-The main findings are:
-
-- Speech separation is useful, but not universally beneficial.
-- LightOverlap and MidOverlap degradation is mainly caused by insertion and repetition hallucination.
-- A rule-based adaptive router reaches an average CER of `0.120042`, matching the oracle best average on this benchmark.
-- Speaker-aware CER shows that the cleaned transcript helps LightOverlap and MidOverlap, while the raw separated transcript remains better for NoOverlap, HeavyOverlap, and OppositeOverlap.
+- not training a new ASR model
+- not training a new speech separation model
+- not claiming synthetic silver results as gold
+- not using ground-truth CER as router input
 
 ## Main Results
 
-### Global CER
+### Gold Benchmark Averages
 
-| Strategy | Average CER |
+| strategy | average CER |
 | --- | ---: |
 | fixed_mixed_whisper | 0.302093 |
 | fixed_separated_whisper | 0.191846 |
 | fixed_separated_whisper_cleaned | 0.181681 |
+| router_v2 | 0.120042 |
 | oracle_best | 0.120042 |
-| rule_router | 0.120042 |
 
-### Speaker-aware CER
+### Synthetic Validation
 
-| Strategy | Average speaker macro CER |
+| setting | v1 | v2 | oracle |
+| --- | ---: | ---: | ---: |
+| original 25 | 0.350902 | 0.167553 | 0.082239 |
+| held-out split test | 0.361350 | 0.335326 | 0.115181 |
+
+### Risk-Aware Selector
+
+| strategy | average CER |
 | --- | ---: |
-| separated_whisper | 0.116538 |
-| separated_whisper_cleaned | 0.124558 |
+| risk_aware_selector | 0.134587 |
+| router_v2 | 0.120042 |
+| oracle_best | 0.120042 |
 
-## Figures and Summary
+## Core Findings
+
+- Speech separation is useful, but not universally beneficial.
+- `NoOverlap`, `HeavyOverlap`, and `OppositeOverlap` benefit strongly from separated speaker-track ASR.
+- `LightOverlap` and `MidOverlap` degradation is mainly caused by insertion and repetition hallucination.
+- `cpCER-lite` did not find speaker swap as the dominant error source in the five gold cases.
+- Feature-based router v2 is more stable than overlap-only v1 on synthetic validation.
+- The risk-aware selector is an explainability and deployability layer, not the best-CER result.
+
+## How to Reproduce
+
+Run the main evaluation chain:
+
+```powershell
+python -m src.evaluate_cer --case all
+python -m src.adaptive_router_v2
+python -m src.evaluate_error_types --case all
+python -m src.evaluate_speaker_cer --case all
+python -m src.evaluate_cpcer_lite --case all
+python -m src.risk_aware_selector --case all
+python -m src.router_ablation
+python -m src.router_ablation_split
+python -m src.project_harness
+```
+
+## Figures and Summary Files
 
 - [Current results summary](results/figures/current_results_summary.md)
 - [CER by case](results/figures/cer_by_case.png)
@@ -52,65 +78,35 @@ The main findings are:
 - [Adaptive routing summary](results/figures/best_method_by_case.md)
 - [Error type summary](results/figures/error_type_summary.md)
 - [Speaker-aware summary](results/figures/speaker_cer_summary.md)
-
-## Quick Start
-
-Run the full evaluation pipeline:
-
-```powershell
-python -m src.transcribe_whisper --case all --mode mixed
-python -m src.transcribe_whisper --case all --mode separated
-python -m src.merge_speaker_tracks --case all
-python -m src.postprocess_transcript --case all --method duplicate_suppression
-python -m src.evaluate_cer --case all
-python -m src.adaptive_router
-python -m src.evaluate_error_types --case all
-python -m src.evaluate_speaker_cer --case all
-python -m src.summarize_results
-```
-
-For the minimal adaptive routing path:
-
-```powershell
-python -m src.run_experiment --stage separated
-python -m src.run_experiment --stage compare
-python -m src.adaptive_router
-```
+- [cpCER-lite summary](results/figures/cpcer_lite_summary.md)
+- [Risk-aware summary](results/figures/risk_aware_selection_summary.md)
+- [Router ablation summary](results/figures/router_ablation_summary.md)
+- [Synthetic routing summary](results/figures/synthetic_routing_summary.md)
+- [Synthetic split summary](results/figures/synthetic_split_routing_summary.md)
 
 ## Repository Structure
 
 - `configs/`: project configuration
-- `resources/`: migrated audio inputs and glossary resources
 - `references/`: verified reference transcripts
+- `resources/`: migrated audio inputs, snippets, and synthetic assets
 - `src/`: experiment scripts and analysis utilities
 - `results/`: generated transcripts, tables, figures, and summaries
-- `docs/`: implementation notes and stage plans
+- `docs/`: project docs, stage notes, skills, and maintenance guidance
 - `chat_upload/`: local-only upload bundles for draft preparation
 
-## How to Reproduce
+## Documentation Map
 
-1. Install dependencies from `requirements.txt`.
-2. Ensure the audio and reference files are present under `resources/` and `references/`.
-3. Run the mixed and separated ASR stages.
-4. Merge speaker tracks and apply duplicate suppression.
-5. Run CER, error-type, speaker-aware, and adaptive routing analyses.
-6. Open the summary markdown files in `results/figures/` and the CSV tables in `results/tables/`.
-
-## Notes
-
-- The repository keeps verified references for all five benchmark cases.
-- `LLM` and `RAG` are treated as future extensions rather than the core experimental path.
-- The current research focus is adaptive routing, error analysis, and speaker-aware evaluation.
-
-## Project Maintenance and Future Skills
-
-Future contributors should read these files before making changes:
+New contributors should read these files before modifying code:
 
 - [AGENTS.md](AGENTS.md)
 - [docs/project_state.md](docs/project_state.md)
 - [docs/roadmap.md](docs/roadmap.md)
 - [docs/maintenance_harness.md](docs/maintenance_harness.md)
+- [docs/markdown_audit.md](docs/markdown_audit.md)
+- [docs/README.md](docs/README.md)
 - [docs/skills/README.md](docs/skills/README.md)
+
+## Project Maintenance and Future Skills
 
 The skill cards are not model-training prompts. They are small research and maintenance guides for future work:
 
@@ -119,4 +115,10 @@ The skill cards are not model-training prompts. They are small research and main
 - [Skill 03: Speaker Profile / Voiceprint-assisted Risk Detection](docs/skills/skill_03_speaker_profile_voiceprint.md)
 - [Skill 04: MeetEval / cpWER Compatibility Plan](docs/skills/skill_04_meeteval_compatibility.md)
 
-If you are continuing the project, read those files first, then inspect the current results and only then decide whether a new experiment is justified.
+If you are continuing the project, read the docs above first, then inspect the current results, and only then decide whether a new experiment is justified.
+
+## Notes
+
+- The repository keeps verified references for all five benchmark cases.
+- `LLM` and `RAG` are future extensions rather than the core experimental path.
+- The current research focus is adaptive routing, error analysis, speaker-aware evaluation, and stability checking.
