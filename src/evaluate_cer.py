@@ -143,10 +143,16 @@ def rows_for_case(case_id: str) -> list[dict[str, Any]]:
     separated_path = (
         PROJECT_ROOT / "results" / "transcripts_speaker" / f"{case_id}_separated_speaker_transcript.json"
     )
+    cleaned_path = (
+        PROJECT_ROOT
+        / "results"
+        / "transcripts_postprocessed"
+        / f"{case_id}_separated_speaker_transcript_cleaned.json"
+    )
     mixed = load_json(mixed_path)
     separated = load_json(separated_path)
 
-    return [
+    rows = [
         build_row(case_id, "mixed_whisper", reference_text, mixed.get("text", ""), mixed_path),
         build_row(
             case_id,
@@ -156,6 +162,23 @@ def rows_for_case(case_id: str) -> list[dict[str, Any]]:
             separated_path,
         ),
     ]
+    if cleaned_path.exists():
+        cleaned = load_json(cleaned_path)
+        rows.append(
+            build_row(
+                case_id,
+                "separated_whisper_cleaned",
+                reference_text,
+                cleaned.get("cleaned_full_text", ""),
+                cleaned_path,
+            )
+        )
+    else:
+        print(
+            f"skip missing cleaned transcript for case '{case_id}': "
+            f"{cleaned_path.relative_to(PROJECT_ROOT)}"
+        )
+    return rows
 
 
 def main() -> None:

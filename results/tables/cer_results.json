@@ -20,23 +20,33 @@
     "cer": 0.475
   },
   {
+    "case_id": "LightOverlap",
+    "method": "separated_whisper_cleaned",
+    "reference_type": "verified_reference",
+    "hypothesis_path": "results/transcripts_postprocessed/LightOverlap_separated_speaker_transcript_cleaned.json",
+    "reference_length": 280,
+    "hypothesis_length": 279,
+    "edit_distance": 107,
+    "cer": 0.382143
+  },
+  {
     "case_id": "NoOverlap",
     "method": "mixed_whisper",
     "reference_type": "verified_reference",
     "hypothesis_path": "results/transcripts_raw/NoOverlap_mixed_whisper.json",
-    "reference_length": 278,
-    "hypothesis_length": 274,
-    "edit_distance": 60,
-    "cer": 0.215827
+    "reference_length": "278",
+    "hypothesis_length": "274",
+    "edit_distance": "60",
+    "cer": "0.215827"
   },
   {
     "case_id": "NoOverlap",
     "method": "separated_whisper",
     "reference_type": "verified_reference",
     "hypothesis_path": "results/transcripts_speaker/NoOverlap_separated_speaker_transcript.json",
-    "reference_length": 278,
-    "hypothesis_length": 277,
-    "edit_distance": 15,
-    "cer": 0.053957
+    "reference_length": "278",
+    "hypothesis_length": "277",
+    "edit_distance": "15",
+    "cer": "0.053957"
   }
 ]
