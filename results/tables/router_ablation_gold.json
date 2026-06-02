@@ -1,0 +1,62 @@
+[
+  {
+    "strategy": "fixed_mixed_whisper",
+    "average_cer": 0.302093,
+    "gap_to_oracle": 0.182051,
+    "notes": "Fixed baseline that always chooses mixed_whisper."
+  },
+  {
+    "strategy": "fixed_separated_whisper",
+    "average_cer": 0.191846,
+    "gap_to_oracle": 0.071804,
+    "notes": "Fixed baseline that always chooses separated_whisper."
+  },
+  {
+    "strategy": "fixed_separated_whisper_cleaned",
+    "average_cer": 0.181681,
+    "gap_to_oracle": 0.061639,
+    "notes": "Fixed baseline that always chooses separated_whisper_cleaned."
+  },
+  {
+    "strategy": "oracle_best",
+    "average_cer": 0.120042,
+    "gap_to_oracle": 0.0,
+    "notes": "Upper bound: chooses the lowest CER method per sample/case."
+  },
+  {
+    "strategy": "v1_overlap_only",
+    "average_cer": 0.120042,
+    "gap_to_oracle": 0.0,
+    "notes": "Uses overlap level only; this is the current rule-based baseline."
+  },
+  {
+    "strategy": "length_ratio_only",
+    "average_cer": 0.302093,
+    "gap_to_oracle": 0.182051,
+    "notes": "Uses length inflation as the only instability signal, then falls back to v1."
+  },
+  {
+    "strategy": "repetition_only",
+    "average_cer": 0.159942,
+    "gap_to_oracle": 0.0399,
+    "notes": "Uses repetition hallucination as the only instability signal, then falls back to v1."
+  },
+  {
+    "strategy": "removed_count_only",
+    "average_cer": 0.159942,
+    "gap_to_oracle": 0.0399,
+    "notes": "Uses cleaned duplicate-removal count as the only instability signal, then falls back to v1."
+  },
+  {
+    "strategy": "length_plus_repetition",
+    "average_cer": 0.181681,
+    "gap_to_oracle": 0.061639,
+    "notes": "Combines length inflation and repetition as instability signals."
+  },
+  {
+    "strategy": "v2_full_features",
+    "average_cer": 0.120042,
+    "gap_to_oracle": 0.0,
+    "notes": "Current feature router v2 with all observable instability features."
+  }
+]
