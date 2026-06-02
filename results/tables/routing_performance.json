@@ -1,0 +1,22 @@
+[
+  {
+    "strategy": "fixed_mixed_whisper",
+    "average_cer": 0.302093
+  },
+  {
+    "strategy": "fixed_separated_whisper",
+    "average_cer": 0.191846
+  },
+  {
+    "strategy": "fixed_separated_whisper_cleaned",
+    "average_cer": 0.181681
+  },
+  {
+    "strategy": "oracle_best",
+    "average_cer": 0.120042
+  },
+  {
+    "strategy": "rule_router",
+    "average_cer": 0.120042
+  }
+]

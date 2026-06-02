@@ -5,21 +5,22 @@
 - Separated speaker-track ASR is the best method on NoOverlap, HeavyOverlap, and OppositeOverlap.
 - Mixed ASR remains the best method on LightOverlap and MidOverlap.
 - Duplicate suppression improves the separated transcript on LightOverlap and MidOverlap, but does not overtake mixed ASR there.
-- Oracle routing across the verified cases gives the lowest average CER among the three fixed pipelines.
+- The rule-based router does not use CER as an input feature.
 
-## Average CER
+## Rule Router Decision Table
 
-- Mixed average: 0.302093
-- Separated average: 0.191846
-- Cleaned average: 0.181681
-- Adaptive best average: 0.120042
+| case_id | overlap_level | selected_method | decision_rule |
+| --- | ---: | --- | --- |
+| HeavyOverlap | 3 | separated_whisper | if overlap_level >= 3, choose separated_whisper |
+| LightOverlap | 1 | mixed_whisper | if overlap_level in [1, 2], choose mixed_whisper |
+| MidOverlap | 2 | mixed_whisper | if overlap_level in [1, 2], choose mixed_whisper |
+| NoOverlap | 0 | separated_whisper | if overlap_level == 0, choose separated_whisper |
+| OppositeOverlap | 4 | separated_whisper | if overlap_level >= 3, choose separated_whisper |
 
-## Best Method By Case
+## Average CER Comparison
 
-| case_id | best_method | best_cer |
-| --- | --- | ---: |
-| HeavyOverlap | separated_whisper | 0.109489 |
-| LightOverlap | mixed_whisper | 0.210714 |
-| MidOverlap | mixed_whisper | 0.178947 |
-| NoOverlap | separated_whisper | 0.053957 |
-| OppositeOverlap | separated_whisper | 0.047101 |
+- fixed_mixed_whisper: 0.302093
+- fixed_separated_whisper: 0.191846
+- fixed_separated_whisper_cleaned: 0.181681
+- oracle_best: 0.120042
+- rule_router: 0.120042
