@@ -1,45 +1,103 @@
 # Overlap-Aware Speaker-Attributed ASR with Adaptive Routing
 
-This project extends XuTong's multi-speaker conversation management system by focusing on overlap-aware speaker-attributed ASR. Instead of applying speech separation to all audio, we evaluate different overlap intensities and test whether separated speaker tracks improve transcription quality selectively.
+This repository studies when speech separation helps multi-speaker ASR, when it hurts, and how a simple rule-based router can choose the best transcript type for a given overlap level.
 
-## Problem Statement
+## Project Overview
 
-Multi-speaker audio becomes difficult to transcribe when speakers interrupt or overlap. This project studies when speech separation helps, when it may hurt, and how retrieval-enhanced LLM correction can improve terminology and speaker-attributed transcripts.
+The project evaluates five benchmark cases:
 
-## Method Overview
+- `NoOverlap`
+- `LightOverlap`
+- `MidOverlap`
+- `HeavyOverlap`
+- `OppositeOverlap`
 
-The planned comparison includes:
+We compare three transcript families:
 
-1. Mixed audio to ASR.
-2. Mixed audio to an alternative ASR baseline.
-3. Separated speaker tracks to ASR to speaker-attributed transcript.
-4. Duplicate suppression post-processing for separated transcripts.
-5. Adaptive/oracle routing over mixed, separated, and cleaned separated outputs.
+1. `mixed_whisper`
+2. `separated_whisper`
+3. `separated_whisper_cleaned`
+
+The main findings are:
+
+- Speech separation is useful, but not universally beneficial.
+- LightOverlap and MidOverlap degradation is mainly caused by insertion and repetition hallucination.
+- A rule-based adaptive router reaches an average CER of `0.120042`, matching the oracle best average on this benchmark.
+- Speaker-aware CER shows that the cleaned transcript helps LightOverlap and MidOverlap, while the raw separated transcript remains better for NoOverlap, HeavyOverlap, and OppositeOverlap.
+
+## Main Results
+
+### Global CER
+
+| Strategy | Average CER |
+| --- | ---: |
+| fixed_mixed_whisper | 0.302093 |
+| fixed_separated_whisper | 0.191846 |
+| fixed_separated_whisper_cleaned | 0.181681 |
+| oracle_best | 0.120042 |
+| rule_router | 0.120042 |
+
+### Speaker-aware CER
+
+| Strategy | Average speaker macro CER |
+| --- | ---: |
+| separated_whisper | 0.116538 |
+| separated_whisper_cleaned | 0.124558 |
+
+## Figures and Summary
+
+- [Current results summary](results/figures/current_results_summary.md)
+- [CER by case](results/figures/cer_by_case.png)
+- [CER by method average](results/figures/cer_by_method_average.png)
+- [Adaptive routing summary](results/figures/best_method_by_case.md)
+- [Error type summary](results/figures/error_type_summary.md)
+- [Speaker-aware summary](results/figures/speaker_cer_summary.md)
+
+## Quick Start
+
+Run the full evaluation pipeline:
+
+```powershell
+python -m src.transcribe_whisper --case all --mode mixed
+python -m src.transcribe_whisper --case all --mode separated
+python -m src.merge_speaker_tracks --case all
+python -m src.postprocess_transcript --case all --method duplicate_suppression
+python -m src.evaluate_cer --case all
+python -m src.adaptive_router
+python -m src.evaluate_error_types --case all
+python -m src.evaluate_speaker_cer --case all
+python -m src.summarize_results
+```
+
+For the minimal adaptive routing path:
+
+```powershell
+python -m src.run_experiment --stage separated
+python -m src.run_experiment --stage compare
+python -m src.adaptive_router
+```
 
 ## Repository Structure
 
-- `configs/`: project configuration.
-- `resources/`: migrated audio and glossary resources.
-- `references/`: manual references for evaluation.
-- `src/`: experiment and utility code.
-- `results/`: generated transcripts, tables, summaries, and figures.
-- `demo/`: future Streamlit demo.
-- `docs/`: project notes, contribution docs, and video script.
+- `configs/`: project configuration
+- `resources/`: migrated audio inputs and glossary resources
+- `references/`: verified reference transcripts
+- `src/`: experiment scripts and analysis utilities
+- `results/`: generated transcripts, tables, figures, and summaries
+- `docs/`: implementation notes and stage plans
+- `chat_upload/`: local-only upload bundles for draft preparation
 
-## Current Stage
+## How to Reproduce
 
-Stage 1 only initializes the repository, migrates audio resources, creates configuration, and generates an audio manifest. No heavy models are run in this stage.
+1. Install dependencies from `requirements.txt`.
+2. Ensure the audio and reference files are present under `resources/` and `references/`.
+3. Run the mixed and separated ASR stages.
+4. Merge speaker tracks and apply duplicate suppression.
+5. Run CER, error-type, speaker-aware, and adaptive routing analyses.
+6. Open the summary markdown files in `results/figures/` and the CSV tables in `results/tables/`.
 
-## Current Research Focus
+## Notes
 
-The project currently focuses on:
-
-1. Adaptive routing between mixed ASR, separated ASR, and cleaned separated ASR.
-2. Error type analysis for repeated hallucinations and insertion errors.
-3. Speaker-aware evaluation for speaker-attributed ASR.
-
-LLM/RAG is treated as an optional future extension, not the core experimental line at present.
-
-## Core Claim
-
-Speech separation is useful, but not universally beneficial. It improves CER for clean or heavily overlapping cases, while it can hurt ASR under lighter overlap because of repeated hallucinations and insertion errors. The project therefore emphasizes when to separate, how to detect failure modes, and how to evaluate speaker-attributed output more carefully.
+- The repository keeps verified references for all five benchmark cases.
+- `LLM` and `RAG` are treated as future extensions rather than the core experimental path.
+- The current research focus is adaptive routing, error analysis, and speaker-aware evaluation.
