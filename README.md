@@ -355,6 +355,11 @@ Current external validation slice receipt result:
 - `results/figures/external_validation_slice_receipt.md` now materializes the expected evidence target for that first external slice
 - This still does not claim any external execution: it defines the template-only writeback slot, expected inputs, and expected outputs so a future narrow dry run has a concrete receipt to fill
 
+Current external validation skill result:
+
+- `docs/skills/skill_07_external_validation.md` now provides a dedicated skill card for the external mini-validation frontier
+- The frontier is therefore directly pickable from the skills index as well as from the roadmap and project-state layers
+
 Current demo storyboard result:
 
 - `results/figures/demo_storyboard.md` now provides a one-page demo-facing story that explains the problem, pipeline, findings, and current frontier extensions with a lightweight Mermaid diagram
