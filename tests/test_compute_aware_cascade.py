@@ -216,6 +216,20 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertEqual(mixed["robustness_rank"], 1)
         self.assertEqual(router["robustness_rank"], 2)
 
+    def test_build_robustness_gap_rows_aligns_router_v2_strategy_names(self) -> None:
+        gold_rows = [
+            {"dataset": "gold", "scope": "ALL", "strategy": "router_v2_costed", "average_cer": 0.12, "average_compute_cost": 5.5, "average_rtf": 0.08},
+        ]
+        synthetic_rows = [
+            {"dataset": "synthetic_split", "scope": "ALL", "strategy": "router_v2_synthetic_costed", "average_cer": 0.28, "average_compute_cost": 0.78, "average_rtf": 0.15},
+        ]
+
+        rows = build_robustness_gap_rows(gold_rows, synthetic_rows)
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["strategy"], "router_v2")
+        self.assertEqual(rows[0]["cer_gap_vs_gold"], 0.16)
+
 
 if __name__ == "__main__":
     unittest.main()

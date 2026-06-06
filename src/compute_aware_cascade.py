@@ -601,8 +601,21 @@ def build_robustness_gap_rows(
     gold_rows: list[dict[str, Any]],
     synthetic_rows: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
-    gold_lookup = {str(row.get("strategy", "")): row for row in gold_rows if str(row.get("scope", "ALL")) == "ALL"}
-    synthetic_lookup = {str(row.get("strategy", "")): row for row in synthetic_rows if str(row.get("scope", "ALL")) == "ALL"}
+    def canonical_strategy_name(strategy: str) -> str:
+        if strategy in {"router_v2_costed", "router_v2_synthetic_costed"}:
+            return "router_v2"
+        return strategy
+
+    gold_lookup = {
+        canonical_strategy_name(str(row.get("strategy", ""))): row
+        for row in gold_rows
+        if str(row.get("scope", "ALL")) == "ALL"
+    }
+    synthetic_lookup = {
+        canonical_strategy_name(str(row.get("strategy", ""))): row
+        for row in synthetic_rows
+        if str(row.get("scope", "ALL")) == "ALL"
+    }
     shared = sorted(set(gold_lookup) & set(synthetic_lookup))
     rows: list[dict[str, Any]] = []
     for strategy in shared:
