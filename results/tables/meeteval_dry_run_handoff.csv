@@ -1,0 +1,2 @@
+﻿bridge_status,source_mix,recommended_slice,dry_run_goal,primary_blocker,expected_evidence,handoff_note
+ready_for_dry_run,cleaned_fallback_dominant,single_verified_case,Run one narrow diagnostic pass to validate the export path before any broader MeetEval or cpWER claim.,"Cleaned fallback still dominates the current hypothesis mix, so the first dry run should stay diagnostic.",results/tables/meeteval_dry_run_receipt.json,MeetEval / cpWER has not been run yet; this card only frames the first dry run.
