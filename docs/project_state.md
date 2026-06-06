@@ -420,6 +420,12 @@ MeetEval compatibility bridge:
 - `results/tables/meeteval_hypothesis_segments.jsonl`
 - This bridge now exports verified gold reference segments and speaker-attributed hypothesis segments in a simple JSONL form so future agents can continue toward MeetEval / cpWER compatibility without overstating the current evaluation scope.
 
+MeetEval readiness bridge:
+
+- `results/figures/meeteval_readiness.md`
+- `results/tables/meeteval_readiness.csv`
+- This bridge now turns the compatibility export into a small handoff card for a narrow dry run. It still does not claim MeetEval execution, and it makes the current limitation visible by recording that cleaned fallback remains common across the exported cases.
+
 Speaker profile similarity bridge:
 
 - `results/figures/speaker_profile_risk_summary.md`

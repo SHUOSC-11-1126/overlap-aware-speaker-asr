@@ -275,6 +275,12 @@ Update: `meeteval_compatibility` now has a first concrete bridge artifact.
 - Segment exports: `results/tables/meeteval_reference_segments.jsonl`, `results/tables/meeteval_hypothesis_segments.jsonl`
 - This is a compatibility bridge only: it exports segment-level reference and hypothesis candidates for future MeetEval / cpWER work without claiming that standard meeting metrics have already been run.
 
+Update: `meeteval_compatibility` now also has a readiness handoff card.
+
+- Readiness card: `results/tables/meeteval_readiness.csv`
+- Summary view: `results/figures/meeteval_readiness.md`
+- This keeps the scope narrow: it says the export is ready for a diagnostic dry run, while also recording that cleaned fallback remains common and therefore the bridge is not yet a clean raw-transcript benchmark story.
+
 Update: `speaker_profile` now has a first lightweight risk-signal artifact.
 
 - Profile summary: `results/figures/speaker_profile_risk_summary.md`
