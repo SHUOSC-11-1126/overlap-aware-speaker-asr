@@ -217,6 +217,10 @@ Current speaker profile result:
 
 - `results/figures/speaker_profile_risk_summary.md` now provides a lightweight text-profile overlap report that compares direct vs swapped alignment and currently exposes a useful failure mode rather than a speaker-ID success claim
 
+Current llm critic result:
+
+- `results/figures/llm_critic_qualitative_note.md` now provides a qualitative/demo critic note that explains likely risk, suggests a repair direction, and preserves uncertainty instead of claiming verified transcript repair
+
 ## Core Findings
 
 - Speech separation is useful, but not universally beneficial.

@@ -426,6 +426,12 @@ Speaker profile similarity bridge:
 - `results/tables/speaker_profile_similarity.csv`
 - This bridge now turns `con/pro` snippet transcripts into a lightweight text-profile overlap signal. The current result is useful mainly because it exposes a failure mode: the simple profile signal prefers swapped alignment across the verified gold cases, which argues for caution rather than confidence.
 
+LLM critic qualitative bridge:
+
+- `results/figures/llm_critic_qualitative_note.md`
+- `results/tables/llm_critic_qualitative_summary.csv`
+- This bridge now turns structured risk cues into a qualitative critic-style note. It is intentionally labeled `qualitative/demo` and helps explain what might be repaired first without claiming that any transcript has been verified or improved.
+
 ## How to Resume Work
 
 Common commands:

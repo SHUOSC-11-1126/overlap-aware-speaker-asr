@@ -257,6 +257,12 @@ Update: `speaker_profile` now has a first lightweight risk-signal artifact.
 - Table: `results/tables/speaker_profile_similarity.csv`
 - This remains a narrow text-profile bridge rather than a voiceprint result, and its current value is diagnostic: the simple profile signal prefers swapped alignment across the verified gold cases, so it is useful as a warning sign rather than a deployment-ready attribution tool.
 
+Update: `llm_critic` now has a first qualitative artifact.
+
+- Critic note: `results/figures/llm_critic_qualitative_note.md`
+- Table: `results/tables/llm_critic_qualitative_summary.csv`
+- This is intentionally a qualitative/demo bridge only: it converts structured risk cues into critic-style explanations, candidate repairs, and uncertainty notes without claiming that an actual LLM has verified or fixed the transcript.
+
 ## Healthy Project Principles
 
 - New experiments should be isolated.
