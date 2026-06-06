@@ -173,6 +173,19 @@ ARTIFACT_INDEX_COLUMNS = [
     "intended_use",
 ]
 
+BENCHMARK_READINESS_COLUMNS = [
+    "artifact_id",
+    "dataset",
+    "label",
+    "artifact_group",
+    "artifact_path",
+    "benchmark_priority",
+    "benchmark_priority_rank",
+    "benchmark_status",
+    "readiness_tier",
+    "next_evidence_step",
+]
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Compute-aware cascade evaluation.")
@@ -1382,6 +1395,106 @@ def write_artifact_index_outputs(
     summary_path.write_text("\n".join(build_artifact_index_lines(rows)) + "\n", encoding="utf-8")
 
 
+def benchmark_priority_rank(priority: str) -> int:
+    return {"high": 0, "medium": 1, "low": 2}.get(priority, 9)
+
+
+def build_benchmark_readiness_rows(artifact_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for artifact in artifact_rows:
+        artifact_id = str(artifact.get("artifact_id", ""))
+        dataset = str(artifact.get("dataset", ""))
+        artifact_group = str(artifact.get("artifact_group", ""))
+
+        if "runtime" in artifact_id:
+            priority = "high"
+            status = "repo_local_runtime_only"
+            readiness_tier = "benchmark_foundation"
+            next_step = "Run a controlled same-hardware timing sweep for the selected routes."
+        elif artifact_group in {"performance", "figure"}:
+            priority = "high"
+            status = "repo_local_runtime_only"
+            readiness_tier = "benchmark_surface"
+            next_step = "Rebuild this artifact after controlled route timing is collected."
+        elif dataset == "cross_dataset":
+            priority = "medium"
+            status = "inherits_repo_local_runtime"
+            readiness_tier = "downstream_summary"
+            next_step = "Refresh after gold and synthetic controlled benchmark evidence lands."
+        elif artifact_group in {"recommendation", "report", "summary"}:
+            priority = "medium"
+            status = "inherits_repo_local_runtime"
+            readiness_tier = "downstream_summary"
+            next_step = "Refresh after controlled benchmark evidence replaces repository-local timing."
+        else:
+            priority = "low"
+            status = "reference_only"
+            readiness_tier = "registry_support"
+            next_step = "Keep as lookup support unless benchmark scope expands."
+
+        rows.append(
+            {
+                "artifact_id": artifact_id,
+                "dataset": dataset,
+                "label": artifact.get("label", ""),
+                "artifact_group": artifact_group,
+                "artifact_path": artifact.get("artifact_path", ""),
+                "benchmark_priority": priority,
+                "benchmark_priority_rank": benchmark_priority_rank(priority),
+                "benchmark_status": status,
+                "readiness_tier": readiness_tier,
+                "next_evidence_step": next_step,
+            }
+        )
+    return sorted(
+        rows,
+        key=lambda row: (
+            to_int(row.get("benchmark_priority_rank")),
+            str(row.get("dataset", "")),
+            str(row.get("artifact_id", "")),
+        ),
+    )
+
+
+def build_benchmark_readiness_lines(rows: list[dict[str, Any]]) -> list[str]:
+    lines = [
+        "# Cascade Benchmark Readiness",
+        "",
+        "This generated note identifies which cascade artifacts most need controlled hardware/runtime evidence next.",
+        "",
+    ]
+    priorities = ["high", "medium", "low"]
+    for priority in priorities:
+        scoped_rows = [row for row in rows if str(row.get("benchmark_priority", "")) == priority]
+        if not scoped_rows:
+            continue
+        lines.extend(
+            [
+                f"## {priority} priority",
+                "",
+                "| artifact_id | dataset | benchmark_status | readiness_tier | artifact_path | next_evidence_step |",
+                "| --- | --- | --- | --- | --- | --- |",
+            ]
+        )
+        for row in scoped_rows:
+            lines.append(
+                f"| {row['artifact_id']} | {row['dataset']} | {row['benchmark_status']} | {row['readiness_tier']} | {row['artifact_path']} | {row['next_evidence_step']} |"
+            )
+        lines.append("")
+    return lines
+
+
+def write_benchmark_readiness_outputs(
+    rows: list[dict[str, Any]],
+    csv_path: Path,
+    json_path: Path,
+    summary_path: Path,
+) -> None:
+    write_csv_json(rows, csv_path, json_path, BENCHMARK_READINESS_COLUMNS)
+    summary_path.parent.mkdir(parents=True, exist_ok=True)
+    summary_path.write_text("\n".join(build_benchmark_readiness_lines(rows)) + "\n", encoding="utf-8")
+
+
 def set_pixel(pixels: bytearray, width: int, height: int, x: int, y: int, color: tuple[int, int, int]) -> None:
     if 0 <= x < width and 0 <= y < height:
         idx = (y * width + x) * 3
@@ -1543,9 +1656,13 @@ def write_runtime_normalization_outputs(
 def main() -> None:
     args = parse_args()
     artifact_index_rows = build_artifact_index_rows()
+    benchmark_readiness_rows = build_benchmark_readiness_rows(artifact_index_rows)
     artifact_index_csv = PROJECT_ROOT / "results" / "tables" / "cascade_artifact_index.csv"
     artifact_index_json = PROJECT_ROOT / "results" / "tables" / "cascade_artifact_index.json"
     artifact_index_md = PROJECT_ROOT / "results" / "figures" / "cascade_artifact_index.md"
+    benchmark_readiness_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_readiness.csv"
+    benchmark_readiness_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_readiness.json"
+    benchmark_readiness_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_readiness.md"
     if args.dataset == "synthetic_split":
         cases = load_synthetic_split_cases()
         decisions = load_synthetic_split_decisions()
@@ -1687,6 +1804,12 @@ def main() -> None:
             PROJECT_ROOT / "results" / "figures" / "cascade_frontier_report.md",
         )
         write_artifact_index_outputs(artifact_index_rows, artifact_index_csv, artifact_index_json, artifact_index_md)
+        write_benchmark_readiness_outputs(
+            benchmark_readiness_rows,
+            benchmark_readiness_csv,
+            benchmark_readiness_json,
+            benchmark_readiness_md,
+        )
     else:
         cases = load_gold_cases()
         decisions = load_decisions()
@@ -1737,12 +1860,19 @@ def main() -> None:
         recommendation_rows = build_recommendation_rows(pareto_rows)
         write_recommendation_outputs(recommendation_rows, recommendation_csv, recommendation_json, recommendation_md)
         write_artifact_index_outputs(artifact_index_rows, artifact_index_csv, artifact_index_json, artifact_index_md)
+        write_benchmark_readiness_outputs(
+            benchmark_readiness_rows,
+            benchmark_readiness_csv,
+            benchmark_readiness_json,
+            benchmark_readiness_md,
+        )
 
     print(f"Wrote cascade performance: {table_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade JSON: {table_json.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade figure: {figure_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade summary: {summary_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade artifact index: {artifact_index_csv.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote cascade benchmark readiness: {benchmark_readiness_csv.relative_to(PROJECT_ROOT)}")
 
 
 if __name__ == "__main__":

@@ -6,6 +6,8 @@ from src.compute_aware_cascade import (
     build_decision_matrix_rows,
     build_artifact_index_lines,
     build_artifact_index_rows,
+    build_benchmark_readiness_lines,
+    build_benchmark_readiness_rows,
     build_frontier_report_lines,
     DEFAULT_COST_PROXY,
     build_recommendation_family_stability_rows,
@@ -376,6 +378,61 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertIn("gold_cascade_performance", rendered)
         self.assertIn("synthetic/silver", rendered)
         self.assertIn("python -m src.compute_aware_cascade --dataset synthetic_split", rendered)
+
+    def test_build_benchmark_readiness_rows_prioritizes_runtime_facing_artifacts(self) -> None:
+        artifact_rows = build_artifact_index_rows()
+
+        rows = build_benchmark_readiness_rows(artifact_rows)
+        gold_runtime = next(row for row in rows if row["artifact_id"] == "gold_runtime_normalization")
+        gold_frontier = next(row for row in rows if row["artifact_id"] == "gold_frontier_report")
+        cross_dataset = next(row for row in rows if row["artifact_id"] == "cross_dataset_decision_matrix")
+
+        self.assertEqual(gold_runtime["benchmark_priority"], "high")
+        self.assertEqual(gold_runtime["benchmark_status"], "repo_local_runtime_only")
+        self.assertEqual(gold_runtime["readiness_tier"], "benchmark_foundation")
+        self.assertEqual(gold_frontier["benchmark_priority"], "medium")
+        self.assertEqual(gold_frontier["benchmark_status"], "inherits_repo_local_runtime")
+        self.assertEqual(cross_dataset["benchmark_priority"], "medium")
+        self.assertEqual(cross_dataset["dataset"], "cross_dataset")
+        self.assertTrue(rows == sorted(rows, key=lambda row: (row["benchmark_priority_rank"], row["dataset"], row["artifact_id"])))
+
+    def test_build_benchmark_readiness_lines_render_priority_sections(self) -> None:
+        rows = [
+            {
+                "artifact_id": "gold_runtime_normalization",
+                "dataset": "gold",
+                "label": "experimental/frontier",
+                "artifact_group": "audit",
+                "artifact_path": "results/tables/cascade_runtime_normalization.csv",
+                "benchmark_priority": "high",
+                "benchmark_priority_rank": 0,
+                "benchmark_status": "repo_local_runtime_only",
+                "readiness_tier": "benchmark_foundation",
+                "next_evidence_step": "Run a controlled same-hardware timing sweep for the selected routes.",
+            },
+            {
+                "artifact_id": "cross_dataset_decision_matrix",
+                "dataset": "cross_dataset",
+                "label": "experimental/frontier",
+                "artifact_group": "report",
+                "artifact_path": "results/tables/cascade_decision_matrix.csv",
+                "benchmark_priority": "medium",
+                "benchmark_priority_rank": 1,
+                "benchmark_status": "inherits_repo_local_runtime",
+                "readiness_tier": "downstream_summary",
+                "next_evidence_step": "Refresh after gold and synthetic controlled benchmark evidence lands.",
+            },
+        ]
+
+        lines = build_benchmark_readiness_lines(rows)
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Cascade Benchmark Readiness", rendered)
+        self.assertIn("## high priority", rendered)
+        self.assertIn("## medium priority", rendered)
+        self.assertIn("gold_runtime_normalization", rendered)
+        self.assertIn("repo_local_runtime_only", rendered)
+        self.assertIn("Refresh after gold and synthetic controlled benchmark evidence lands.", rendered)
 
 
 if __name__ == "__main__":
