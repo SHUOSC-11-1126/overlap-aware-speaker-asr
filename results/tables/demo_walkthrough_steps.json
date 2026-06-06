@@ -1,0 +1,32 @@
+[
+  {
+    "step_id": "1",
+    "focus": "Problem framing",
+    "talk_track": "Start with the core question: overlap exists, but separation should be selective rather than automatic.",
+    "artifact_anchor": "README.md"
+  },
+  {
+    "step_id": "2",
+    "focus": "Baseline evidence",
+    "talk_track": "Selective separation beats blind separation in the current gold benchmark.",
+    "artifact_anchor": "REPORT.md"
+  },
+  {
+    "step_id": "3",
+    "focus": "Routing takeaway",
+    "talk_track": "router_v2 matches oracle-best average CER, and the compute-aware frontier turns that into deployment-facing tradeoff guidance.",
+    "artifact_anchor": "results/figures/compute_aware_cascade_summary.md"
+  },
+  {
+    "step_id": "4",
+    "focus": "Frontier breadth",
+    "talk_track": "Breadth-first artifacts now cover compute-aware cascade, MeetEval compatibility, speaker profile risk signaling, qualitative critics, and external prioritization.",
+    "artifact_anchor": "results/figures/project_harness_report.md"
+  },
+  {
+    "step_id": "5",
+    "focus": "Next-step framing",
+    "talk_track": "Close by showing that the next work is structured: benchmark handoff, external prioritization, and qualitative repair paths are already staged.",
+    "artifact_anchor": "docs/roadmap.md"
+  }
+]

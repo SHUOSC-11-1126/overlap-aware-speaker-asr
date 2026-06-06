@@ -24,5 +24,5 @@ Selective separation beats blind separation in the current gold benchmark. route
 
 ## Frontier
 
-Breadth-first artifacts now exist for compute-aware cascade, MeetEval compatibility, speaker profile risk signaling, and qualitative critic notes.
+Breadth-first artifacts now cover compute-aware cascade, MeetEval compatibility, speaker profile risk signaling, qualitative critics, and external prioritization.
 
