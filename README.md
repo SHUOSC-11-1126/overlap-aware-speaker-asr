@@ -310,6 +310,11 @@ Current demo walkthrough result:
 - `results/figures/demo_walkthrough.md` now provides a short ordered talk track for presenting the repository in five steps
 - This walkthrough is still `qualitative/demo` presentation support rather than a new experiment result: it anchors each step to an existing artifact so a future demo or recording can stay consistent with the current evidence
 
+Current demo walkthrough receipt result:
+
+- `results/figures/demo_walkthrough_receipt.md` now materializes the expected evidence slot for that first walkthrough pass
+- This still does not claim a completed live demo or recording: it defines the walkthrough scope, expected inputs, expected outputs, and writeback note so the first presentation pass has a concrete receipt to fill
+
 ## Core Findings
 
 - Speech separation is useful, but not universally beneficial.

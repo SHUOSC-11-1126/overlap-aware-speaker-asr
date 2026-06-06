@@ -199,6 +199,12 @@ Update: a generated demo walkthrough now turns the storyboard into a short prese
 - Summary view: `results/figures/demo_walkthrough.md`
 - This keeps the `demo_excellence` frontier lightweight while making live demo or recording flow more explicit: each step points to an existing artifact rather than claiming new model evidence.
 
+Update: a generated demo walkthrough receipt now creates the first evidence writeback slot.
+
+- Demo walkthrough receipt: `results/tables/demo_walkthrough_receipt.json`
+- Summary view: `results/figures/demo_walkthrough_receipt.md`
+- This stays on the same safe side of the line: it prepares the template-only receipt for a future walkthrough pass without implying that any real demo delivery has already happened.
+
 Update: a generated llm critic review queue now turns the qualitative note into a first-pass triage order.
 
 - LLM critic review queue: `results/tables/llm_critic_review_queue.csv`
