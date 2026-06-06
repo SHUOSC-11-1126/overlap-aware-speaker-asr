@@ -311,6 +311,12 @@ Update: `meeteval_compatibility` now also has a dry-run handoff packet.
 - Handoff view: `results/figures/meeteval_dry_run_handoff.md`
 - This is still a coordination artifact rather than an evaluation result: it translates readiness into a single recommended first slice, blocker, and evidence target so the next contributor can run one narrow diagnostic step without overstating progress.
 
+Update: `meeteval_compatibility` now also has a dry-run receipt template.
+
+- Receipt table: `results/tables/meeteval_dry_run_receipt.json`
+- Receipt view: `results/figures/meeteval_dry_run_receipt.md`
+- This stays on the same safe side of the line: it creates the evidence slot for a future dry run without implying that the run has already happened.
+
 Update: `speaker_profile` now has a first lightweight risk-signal artifact.
 
 - Profile summary: `results/figures/speaker_profile_risk_summary.md`

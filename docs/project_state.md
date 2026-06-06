@@ -456,6 +456,12 @@ MeetEval dry run handoff bridge:
 - `results/tables/meeteval_dry_run_handoff.csv`
 - This bridge now turns the readiness state into a single next-step packet. It still does not claim that MeetEval or cpWER has been executed; it only specifies the first recommended slice, the dominant blocker, and the evidence file that a future dry run should leave behind.
 
+MeetEval dry run receipt bridge:
+
+- `results/figures/meeteval_dry_run_receipt.md`
+- `results/tables/meeteval_dry_run_receipt.json`
+- This bridge now materializes that expected evidence target as a template-only receipt. It still does not claim any executed dry run; it simply defines what the first narrow diagnostic follow-up should write back once it actually happens.
+
 Speaker profile similarity bridge:
 
 - `results/figures/speaker_profile_risk_summary.md`

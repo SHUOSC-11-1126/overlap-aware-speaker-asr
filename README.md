@@ -243,6 +243,11 @@ Current MeetEval dry run handoff result:
 - `results/figures/meeteval_dry_run_handoff.md` now turns that readiness card into a one-row execution handoff packet
 - This remains strictly pre-evaluation coordination: it recommends a single verified-case dry run, records the cleaned-fallback blocker, and names the expected evidence writeback without claiming that MeetEval or cpWER has already been run
 
+Current MeetEval dry run receipt result:
+
+- `results/figures/meeteval_dry_run_receipt.md` now materializes that expected evidence target as a template-only receipt
+- This still does not claim execution: it defines the intended run scope, expected inputs, and post-run writeback note so the first diagnostic dry run has an explicit evidence slot before anyone fills it
+
 Current speaker profile result:
 
 - `results/figures/speaker_profile_risk_summary.md` now provides a lightweight text-profile overlap report that compares direct vs swapped alignment and currently exposes a useful failure mode rather than a speaker-ID success claim
