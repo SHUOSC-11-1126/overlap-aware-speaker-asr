@@ -1,0 +1,72 @@
+[
+  {
+    "strategy": "fixed_separated_whisper_cleaned",
+    "gold_average_cer": 0.181681,
+    "synthetic_average_cer": 0.179021,
+    "cer_gap_vs_gold": -0.00266,
+    "gold_average_compute_cost": 5.9716,
+    "synthetic_average_compute_cost": 1.10836,
+    "cost_gap_vs_gold": -4.86324,
+    "gold_average_rtf": 0.064251,
+    "synthetic_average_rtf": 0.133284,
+    "rtf_gap_vs_gold": 0.069033,
+    "robustness_rank": 1,
+    "notes": "Gap is synthetic_split ALL minus gold ALL for the same strategy."
+  },
+  {
+    "strategy": "fixed_mixed_whisper",
+    "gold_average_cer": 0.302093,
+    "synthetic_average_cer": 0.465715,
+    "cer_gap_vs_gold": 0.163622,
+    "gold_average_compute_cost": 5.2198,
+    "synthetic_average_compute_cost": 0.674,
+    "cost_gap_vs_gold": -4.5458,
+    "gold_average_rtf": 0.109309,
+    "synthetic_average_rtf": 0.163361,
+    "rtf_gap_vs_gold": 0.054052,
+    "robustness_rank": 2,
+    "notes": "Gap is synthetic_split ALL minus gold ALL for the same strategy."
+  },
+  {
+    "strategy": "router_v2",
+    "gold_average_cer": 0.120042,
+    "synthetic_average_cer": 0.285187,
+    "cer_gap_vs_gold": 0.165145,
+    "gold_average_compute_cost": 5.5508,
+    "synthetic_average_compute_cost": 0.78127,
+    "cost_gap_vs_gold": -4.76953,
+    "gold_average_rtf": 0.080646,
+    "synthetic_average_rtf": 0.148342,
+    "rtf_gap_vs_gold": 0.067696,
+    "robustness_rank": 3,
+    "notes": "Gap is synthetic_split ALL minus gold ALL for the same strategy."
+  },
+  {
+    "strategy": "fixed_separated_whisper",
+    "gold_average_cer": 0.191846,
+    "synthetic_average_cer": 0.401869,
+    "cer_gap_vs_gold": 0.210023,
+    "gold_average_compute_cost": 5.9716,
+    "synthetic_average_compute_cost": 1.10836,
+    "cost_gap_vs_gold": -4.86324,
+    "gold_average_rtf": 0.064251,
+    "synthetic_average_rtf": 0.133284,
+    "rtf_gap_vs_gold": 0.069033,
+    "robustness_rank": 4,
+    "notes": "Gap is synthetic_split ALL minus gold ALL for the same strategy."
+  },
+  {
+    "strategy": "budget_cascade",
+    "gold_average_cer": 0.134587,
+    "synthetic_average_cer": 0.367582,
+    "cer_gap_vs_gold": 0.232995,
+    "gold_average_compute_cost": 5.5508,
+    "synthetic_average_compute_cost": 0.94756,
+    "cost_gap_vs_gold": -4.60324,
+    "gold_average_rtf": 0.080646,
+    "synthetic_average_rtf": 0.148228,
+    "rtf_gap_vs_gold": 0.067582,
+    "robustness_rank": 5,
+    "notes": "Gap is synthetic_split ALL minus gold ALL for the same strategy."
+  }
+]

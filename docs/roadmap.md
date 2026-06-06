@@ -73,6 +73,11 @@ Update: recommendation cards now turn the audits into deployment-facing choices.
 - Synthetic split recommendation card: `results/tables/synthetic_split_cascade_recommendations.csv`
 - Current evidence recommends `router_v2_costed` as the gold balanced choice and `router_v2_synthetic_costed` as the synthetic split balanced choice.
 
+Update: robustness gap audit now compares gold and held-out synthetic split directly.
+
+- Cross-dataset gap audit: `results/tables/cascade_robustness_gap.csv`
+- Current evidence suggests `router_v2` is the strongest shared adaptive route, while `budget_cascade` is less robust on held-out synthetic split.
+
 Remaining stretch work:
 
 - replace proxy costs with a controlled hardware/runtime benchmark

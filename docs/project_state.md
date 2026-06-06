@@ -201,6 +201,13 @@ Recommendation card:
 - `results/figures/cascade_recommendations.md`
 - Gold `ALL` recommends `router_v2_costed` for both `accuracy_first` and `balanced`, while `fixed_mixed_whisper` remains the `cost_first` option.
 
+Robustness gap audit:
+
+- `results/tables/cascade_robustness_gap.csv`
+- `results/figures/cascade_robustness_gap.md`
+- Best shared cross-dataset stability currently comes from `fixed_separated_whisper_cleaned` with `cer_gap_vs_gold -0.00266`.
+- Among adaptive shared routes, `router_v2` is more stable than `budget_cascade` on the held-out synthetic split `ALL` view.
+
 ## Synthetic Split Cascade Validation
 
 Label: `synthetic/silver` and `experimental/frontier`

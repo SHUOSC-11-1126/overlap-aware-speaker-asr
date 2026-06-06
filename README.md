@@ -101,6 +101,12 @@ Current recommendation card result:
   - `cost_first`: `fixed_mixed_whisper`
   - `balanced`: `router_v2_synthetic_costed`
 
+Current robustness gap result:
+
+- best shared cross-dataset stability: `fixed_separated_whisper_cleaned` with `cer_gap_vs_gold = -0.00266`
+- strongest adaptive shared route: `router_v2` with `cer_gap_vs_gold = 0.165145`
+- `budget_cascade` degrades more on synthetic split, with `cer_gap_vs_gold = 0.232995`
+
 ## Core Findings
 
 - Speech separation is useful, but not universally beneficial.
@@ -156,6 +162,7 @@ python -m src.project_harness
 - [Cascade runtime normalization audit](results/figures/cascade_runtime_normalization.md)
 - [Cascade Pareto frontier audit](results/figures/cascade_pareto.md)
 - [Cascade recommendation card](results/figures/cascade_recommendations.md)
+- [Cascade robustness gap audit](results/figures/cascade_robustness_gap.md)
 - [Synthetic split cascade summary](results/figures/synthetic_split_cascade_summary.md)
 - [Synthetic split cascade trade-off figure](results/figures/synthetic_split_cer_runtime_tradeoff.png)
 - [Synthetic split cascade runtime audit](results/figures/synthetic_split_cascade_runtime_audit.md)
