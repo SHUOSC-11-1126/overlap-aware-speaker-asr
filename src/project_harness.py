@@ -382,6 +382,41 @@ def build_frontier_parallel_picklist_lines(rows: list[dict[str, str]]) -> list[s
     return lines
 
 
+def build_frontier_receipt_board_rows(queue_rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    board_rows: list[dict[str, str]] = []
+    for row in queue_rows:
+        frontier_id = str(row.get("frontier_id", ""))
+        pickup_artifact, receipt_target = frontier_next_artifact(frontier_id)
+        board_rows.append(
+            {
+                "queue_order": str(row.get("queue_order", "")),
+                "frontier_id": frontier_id,
+                "pickup_artifact": pickup_artifact,
+                "receipt_target": receipt_target,
+                "board_status": str(row.get("status", "")),
+                "board_note": "Use this board as the single breadth-first receipt snapshot before moving to the next queue head.",
+                "board_scope": "Coordination-only board; not a claim of completed frontier execution.",
+            }
+        )
+    return board_rows
+
+
+def build_frontier_receipt_board_lines(rows: list[dict[str, str]]) -> list[str]:
+    lines = [
+        "# Frontier Receipt Board",
+        "",
+        "This generated board consolidates the current frontier queue, pickup artifact, and receipt target into one breadth-first snapshot. It does not claim that any frontier work has already been executed.",
+        "",
+        "| queue_order | frontier_id | pickup_artifact | receipt_target | board_status | board_note | board_scope |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['queue_order']} | {row['frontier_id']} | {row['pickup_artifact']} | {row['receipt_target']} | {row['board_status']} | {row['board_note']} | {row['board_scope']} |"
+        )
+    return lines
+
+
 def build_report() -> dict[str, object]:
     missing_core = [path for path in CORE_FILES if not exists(path)]
     gold_status = inspect_gold_cases()
@@ -550,6 +585,21 @@ def write_frontier_parallel_picklist(frontier_status: list[dict[str, str]]) -> t
     return json_path, md_path
 
 
+def write_frontier_receipt_board(frontier_status: list[dict[str, str]]) -> tuple[Path, Path]:
+    tables_dir = PROJECT_ROOT / "results" / "tables"
+    figures_dir = PROJECT_ROOT / "results" / "figures"
+    tables_dir.mkdir(parents=True, exist_ok=True)
+    figures_dir.mkdir(parents=True, exist_ok=True)
+
+    queue_rows = build_frontier_execution_queue_rows(frontier_status)
+    board_rows = build_frontier_receipt_board_rows(queue_rows)
+    json_path = tables_dir / "frontier_receipt_board.json"
+    md_path = figures_dir / "frontier_receipt_board.md"
+    json_path.write_text(json.dumps(board_rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    md_path.write_text("\n".join(build_frontier_receipt_board_lines(board_rows)) + "\n", encoding="utf-8")
+    return json_path, md_path
+
+
 def main() -> None:
     report = build_report()
     json_path, md_path = write_report(report)
@@ -559,6 +609,7 @@ def main() -> None:
     receipt_json_path, receipt_md_path = write_frontier_receipt_packet(report["frontier_status"])
     receipt_map_json_path, receipt_map_md_path = write_frontier_receipt_map(report["frontier_status"])
     parallel_picklist_json_path, parallel_picklist_md_path = write_frontier_parallel_picklist(report["frontier_status"])
+    receipt_board_json_path, receipt_board_md_path = write_frontier_receipt_board(report["frontier_status"])
     print(f"Wrote harness report: {json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote harness summary: {md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier queue JSON: {queue_json_path.relative_to(PROJECT_ROOT)}")
@@ -573,6 +624,8 @@ def main() -> None:
     print(f"Wrote frontier receipt map note: {receipt_map_md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier parallel picklist JSON: {parallel_picklist_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier parallel picklist note: {parallel_picklist_md_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote frontier receipt board JSON: {receipt_board_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote frontier receipt board note: {receipt_board_md_path.relative_to(PROJECT_ROOT)}")
     print(f"gold_cases_present: {all(report['gold_cases'].values())}")
     print(f"gold_and_synthetic_separated: {report['gold_and_synthetic_separated']}")
 
