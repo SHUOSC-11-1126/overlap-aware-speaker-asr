@@ -71,6 +71,7 @@ This folder is the documentation entry point for the project.
 - [results/figures/cascade_profile_playbook.md](../results/figures/cascade_profile_playbook.md)
 - [results/figures/cascade_benchmark_checklist.md](../results/figures/cascade_benchmark_checklist.md)
 - [results/tables/cascade_benchmark_manifest_template.csv](../results/tables/cascade_benchmark_manifest_template.csv)
+- [results/figures/cascade_benchmark_status.md](../results/figures/cascade_benchmark_status.md)
 - [results/figures/cascade_benchmark_handoff_packet.md](../results/figures/cascade_benchmark_handoff_packet.md)
 - [results/figures/synthetic_split_cascade_summary.md](../results/figures/synthetic_split_cascade_summary.md)
 - [results/figures/synthetic_split_cer_runtime_tradeoff.png](../results/figures/synthetic_split_cer_runtime_tradeoff.png)

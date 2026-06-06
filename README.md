@@ -153,9 +153,13 @@ Current benchmark manifest template result:
 
 - `results/tables/cascade_benchmark_manifest_template.csv` now provides a fill-in template for recording per-phase benchmark session metadata during controlled timing runs
 
+Current benchmark status result:
+
+- `results/figures/cascade_benchmark_status.md` now acts as a phase-by-phase status board that shows which benchmark steps are still template-only and which metadata gaps still block execution
+
 Current benchmark handoff packet result:
 
-- `results/figures/cascade_benchmark_handoff_packet.md` now acts as the single-entry benchmark handoff note across readiness, plan, checklist, and manifest template
+- `results/figures/cascade_benchmark_handoff_packet.md` now acts as the single-entry benchmark handoff note across readiness, plan, checklist, manifest template, and status tracking
 
 ## Core Findings
 
@@ -222,6 +226,7 @@ python -m src.project_harness
 - [Cascade benchmark plan](results/figures/cascade_benchmark_plan.md)
 - [Cascade profile playbook](results/figures/cascade_profile_playbook.md)
 - [Cascade benchmark checklist](results/figures/cascade_benchmark_checklist.md)
+- [Cascade benchmark status](results/figures/cascade_benchmark_status.md)
 - [Cascade benchmark handoff packet](results/figures/cascade_benchmark_handoff_packet.md)
 - [Synthetic split cascade summary](results/figures/synthetic_split_cascade_summary.md)
 - [Synthetic split cascade trade-off figure](results/figures/synthetic_split_cer_runtime_tradeoff.png)

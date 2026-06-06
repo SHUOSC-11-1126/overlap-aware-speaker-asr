@@ -133,10 +133,16 @@ Update: a generated benchmark manifest template now turns the checklist into a f
 - Manifest template: `results/tables/cascade_benchmark_manifest_template.csv`
 - This gives future contributors a concrete table to fill while running controlled timing sweeps instead of collecting benchmark metadata ad hoc.
 
+Update: a generated benchmark status board now turns the manifest template into an execution-progress tracker.
+
+- Benchmark status: `results/tables/cascade_benchmark_status.csv`
+- Summary view: `results/figures/cascade_benchmark_status.md`
+- This shows which benchmark phases are still template-only, which metadata fields are still missing, and which stages can move from planning into controlled execution next.
+
 Update: a generated benchmark handoff packet now turns the execution stack into a single benchmark entrypoint.
 
 - Handoff packet: `results/figures/cascade_benchmark_handoff_packet.md`
-- This lets future contributors start from one note before diving into readiness, plan, checklist, and manifest details.
+- This lets future contributors start from one note before diving into readiness, plan, checklist, manifest, and status details.
 
 Remaining stretch work:
 

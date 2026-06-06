@@ -269,10 +269,16 @@ Benchmark manifest template:
 - `results/tables/cascade_benchmark_manifest_template.csv`
 - This generated fill-in template now turns the checklist metadata requirements into a session log skeleton for real controlled timing runs.
 
+Benchmark status board:
+
+- `results/tables/cascade_benchmark_status.csv`
+- `results/figures/cascade_benchmark_status.md`
+- This generated status board now shows which benchmark phases are still template-only, which fields are still missing, and which refresh step is ready to execute next.
+
 Benchmark handoff packet:
 
 - `results/figures/cascade_benchmark_handoff_packet.md`
-- This generated note now provides one benchmark-entry document that points to the readiness, plan, checklist, and manifest template layers together.
+- This generated note now provides one benchmark-entry document that points to the readiness, plan, checklist, manifest template, and status-board layers together.
 
 ## Synthetic Split Cascade Validation
 
