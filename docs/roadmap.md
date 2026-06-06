@@ -310,6 +310,8 @@ Update: the project harness now also includes a frontier execution queue.
 - Frontier queue: `results/tables/frontier_execution_queue.json`
 - Summary view: `results/figures/frontier_execution_queue.md`
 - This keeps the breadth-first layer actionable without overstating completion: it simply orders the next frontier handoffs that already exist in the repository.
+- Current queue head: `meeteval_compatibility`
+- First move: use the MeetEval readiness path to stage a narrow dry run before the backlog branches out again.
 
 Update: the project harness now also includes a frontier focus card.
 
