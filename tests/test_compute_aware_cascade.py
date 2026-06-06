@@ -28,6 +28,8 @@ from src.compute_aware_cascade import (
     build_benchmark_completion_dashboard_rows,
     build_benchmark_evidence_receipt_lines,
     build_benchmark_evidence_receipt_rows,
+    build_benchmark_receipt_bridge_lines,
+    build_benchmark_receipt_bridge_rows,
     build_benchmark_frontier_bridge_lines,
     build_benchmark_frontier_bridge_rows,
     build_benchmark_operator_brief_lines,
@@ -1488,6 +1490,55 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertIn("collect_controlled_runtime", rendered)
         self.assertIn("Gold runtime foundation artifacts are rebuilt from controlled timing.", rendered)
         self.assertIn("write back the evidence payload", rendered)
+
+    def test_build_benchmark_receipt_bridge_rows_link_packet_to_receipt(self) -> None:
+        runbook_rows = [
+            {
+                "recommended_start_step": "phase1_gold_runtime_foundation",
+                "recommended_action": "collect_controlled_runtime",
+                "session_type": "timing_capture",
+                "required_evidence": "hardware_label;device;repeat_count;warmup_count;batch_shape;timing_notes",
+                "completion_note": "collect_controlled_runtime -> Gold runtime foundation artifacts are rebuilt from controlled timing.",
+                "urgency": "high",
+                "runbook_note": "Start with phase1_gold_runtime_foundation because it is do_now and root.",
+            }
+        ]
+        receipt_rows = [
+            {
+                "receipt_step": "phase1_gold_runtime_foundation",
+                "receipt_action": "collect_controlled_runtime",
+                "receipt_evidence": "hardware_label;device;repeat_count;warmup_count;batch_shape;timing_notes",
+                "receipt_completion_signal": "Gold runtime foundation artifacts are rebuilt from controlled timing.",
+                "receipt_followup": "collect_controlled_runtime -> Gold runtime foundation artifacts are rebuilt from controlled timing.",
+                "receipt_note": "After phase1_gold_runtime_foundation, write back the evidence payload and confirm the foundation completion signal.",
+            }
+        ]
+
+        rows = build_benchmark_receipt_bridge_rows(runbook_rows, receipt_rows)
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["benchmark_step"], "phase1_gold_runtime_foundation")
+        self.assertEqual(rows[0]["prerequisite_artifact"], "results/figures/cascade_benchmark_handoff_packet.md")
+        self.assertEqual(rows[0]["receipt_target"], "results/figures/cascade_benchmark_evidence_receipt.md")
+        self.assertIn("write back", rows[0]["bridge_note"].lower())
+
+    def test_build_benchmark_receipt_bridge_lines_render_bridge(self) -> None:
+        lines = build_benchmark_receipt_bridge_lines(
+            [
+                {
+                    "benchmark_step": "phase1_gold_runtime_foundation",
+                    "prerequisite_artifact": "results/figures/cascade_benchmark_handoff_packet.md",
+                    "receipt_target": "results/figures/cascade_benchmark_evidence_receipt.md",
+                    "bridge_note": "Open the handoff packet first, then write back through the evidence receipt after the current benchmark step.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Cascade Benchmark Receipt Bridge", rendered)
+        self.assertIn("phase1_gold_runtime_foundation", rendered)
+        self.assertIn("cascade_benchmark_handoff_packet.md", rendered)
+        self.assertIn("cascade_benchmark_evidence_receipt.md", rendered)
 
     def test_build_artifact_index_rows_include_benchmark_status_board(self) -> None:
         rows = build_artifact_index_rows()

@@ -374,6 +374,13 @@ BENCHMARK_EVIDENCE_RECEIPT_COLUMNS = [
     "receipt_note",
 ]
 
+BENCHMARK_RECEIPT_BRIDGE_COLUMNS = [
+    "benchmark_step",
+    "prerequisite_artifact",
+    "receipt_target",
+    "bridge_note",
+]
+
 
 def build_benchmark_packet_lines(
     readiness_rows: list[dict[str, Any]],
@@ -1173,6 +1180,40 @@ def build_benchmark_evidence_receipt_lines(rows: list[dict[str, Any]]) -> list[s
     return lines
 
 
+def build_benchmark_receipt_bridge_rows(
+    runbook_rows: list[dict[str, Any]],
+    receipt_rows: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    if not runbook_rows or not receipt_rows:
+        return []
+    runbook = runbook_rows[0]
+    receipt = receipt_rows[0]
+    return [
+        {
+            "benchmark_step": str(runbook.get("recommended_start_step", "")) or str(receipt.get("receipt_step", "")),
+            "prerequisite_artifact": "results/figures/cascade_benchmark_handoff_packet.md",
+            "receipt_target": "results/figures/cascade_benchmark_evidence_receipt.md",
+            "bridge_note": "Open the handoff packet first, then write back through the evidence receipt after the current benchmark step.",
+        }
+    ]
+
+
+def build_benchmark_receipt_bridge_lines(rows: list[dict[str, Any]]) -> list[str]:
+    lines = [
+        "# Cascade Benchmark Receipt Bridge",
+        "",
+        "This generated bridge connects the benchmark handoff packet to the current evidence receipt target. It is a coordination artifact, not a benchmark execution claim.",
+        "",
+        "| benchmark_step | prerequisite_artifact | receipt_target | bridge_note |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['benchmark_step']} | {row['prerequisite_artifact']} | {row['receipt_target']} | {row['bridge_note']} |"
+        )
+    return lines
+
+
 def write_benchmark_evidence_receipt_outputs(
     rows: list[dict[str, Any]],
     csv_path: Path,
@@ -1182,6 +1223,17 @@ def write_benchmark_evidence_receipt_outputs(
     write_csv_json(rows, csv_path, json_path, BENCHMARK_EVIDENCE_RECEIPT_COLUMNS)
     summary_path.parent.mkdir(parents=True, exist_ok=True)
     summary_path.write_text("\n".join(build_benchmark_evidence_receipt_lines(rows)) + "\n", encoding="utf-8")
+
+
+def write_benchmark_receipt_bridge_outputs(
+    rows: list[dict[str, Any]],
+    csv_path: Path,
+    json_path: Path,
+    summary_path: Path,
+) -> None:
+    write_csv_json(rows, csv_path, json_path, BENCHMARK_RECEIPT_BRIDGE_COLUMNS)
+    summary_path.parent.mkdir(parents=True, exist_ok=True)
+    summary_path.write_text("\n".join(build_benchmark_receipt_bridge_lines(rows)) + "\n", encoding="utf-8")
 
 
 def write_benchmark_operator_brief_outputs(
@@ -3258,6 +3310,13 @@ def main() -> None:
     benchmark_evidence_receipt_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_evidence_receipt.csv"
     benchmark_evidence_receipt_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_evidence_receipt.json"
     benchmark_evidence_receipt_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_evidence_receipt.md"
+    benchmark_receipt_bridge_rows = build_benchmark_receipt_bridge_rows(
+        benchmark_runbook_card_rows,
+        benchmark_evidence_receipt_rows,
+    )
+    benchmark_receipt_bridge_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_receipt_bridge.csv"
+    benchmark_receipt_bridge_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_receipt_bridge.json"
+    benchmark_receipt_bridge_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_receipt_bridge.md"
     benchmark_packet_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_handoff_packet.md"
     profile_playbook_csv = PROJECT_ROOT / "results" / "tables" / "cascade_profile_playbook.csv"
     profile_playbook_json = PROJECT_ROOT / "results" / "tables" / "cascade_profile_playbook.json"
@@ -3504,6 +3563,12 @@ def main() -> None:
             benchmark_evidence_receipt_json,
             benchmark_evidence_receipt_md,
         )
+        write_benchmark_receipt_bridge_outputs(
+            benchmark_receipt_bridge_rows,
+            benchmark_receipt_bridge_csv,
+            benchmark_receipt_bridge_json,
+            benchmark_receipt_bridge_md,
+        )
         write_benchmark_packet_output(
             benchmark_readiness_rows,
             benchmark_plan_rows,
@@ -3599,6 +3664,12 @@ def main() -> None:
             benchmark_frontier_bridge_json,
             benchmark_frontier_bridge_md,
         )
+        write_benchmark_receipt_bridge_outputs(
+            benchmark_receipt_bridge_rows,
+            benchmark_receipt_bridge_csv,
+            benchmark_receipt_bridge_json,
+            benchmark_receipt_bridge_md,
+        )
 
     print(f"Wrote cascade performance: {table_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade JSON: {table_json.relative_to(PROJECT_ROOT)}")
@@ -3622,6 +3693,7 @@ def main() -> None:
     print(f"Wrote cascade benchmark operator brief: {benchmark_operator_brief_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark frontier bridge: {benchmark_frontier_bridge_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark evidence receipt: {benchmark_evidence_receipt_csv.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote cascade benchmark receipt bridge: {benchmark_receipt_bridge_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark handoff packet: {benchmark_packet_md.relative_to(PROJECT_ROOT)}")
     if wrote_profile_playbook:
         print(f"Wrote cascade profile playbook: {profile_playbook_csv.relative_to(PROJECT_ROOT)}")
