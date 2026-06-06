@@ -80,8 +80,8 @@ FRONTIER_SKILLS = [
     {
         "frontier_id": "demo_excellence",
         "evidence_path": "docs/skills/skill_06_github_demo_excellence.md",
-        "expected_output": "demo-facing figure or note",
-        "next_step": "Define one demo-facing output so the README and figures point to the same story.",
+        "expected_output": "demo-facing storyboard or walkthrough",
+        "next_step": "Use the demo walkthrough to shape a short demo walk before any heavier app build.",
     },
 ]
 

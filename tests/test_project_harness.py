@@ -26,6 +26,8 @@ class ProjectHarnessTest(unittest.TestCase):
         self.assertIn("output", by_id["llm_critic"]["next_step"])
         self.assertIn("prioritization", by_id["external_validation"]["expected_output"])
         self.assertIn("tiny sanity-check slice", by_id["external_validation"]["next_step"])
+        self.assertIn("walkthrough", by_id["demo_excellence"]["expected_output"])
+        self.assertIn("demo walk", by_id["demo_excellence"]["next_step"].lower())
 
 
 if __name__ == "__main__":
