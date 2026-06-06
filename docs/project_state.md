@@ -240,6 +240,12 @@ Artifact index:
 - `results/figures/cascade_artifact_index.md`
 - This generated registry now maps the cascade evidence stack by dataset label, artifact group, generator command, and intended usage.
 
+Benchmark readiness:
+
+- `results/tables/cascade_benchmark_readiness.csv`
+- `results/figures/cascade_benchmark_readiness.md`
+- This generated scaffold now prioritizes which cascade artifacts should be refreshed first when controlled hardware/runtime benchmark evidence becomes available.
+
 ## Synthetic Split Cascade Validation
 
 Label: `synthetic/silver` and `experimental/frontier`

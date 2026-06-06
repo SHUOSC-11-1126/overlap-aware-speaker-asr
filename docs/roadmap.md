@@ -104,6 +104,12 @@ Update: a generated artifact index now turns the cascade outputs into an explici
 - Summary view: `results/figures/cascade_artifact_index.md`
 - This gives future contributors a label-aware lookup table for which cascade artifact is gold-facing, synthetic-facing, or cross-dataset decision support.
 
+Update: a generated benchmark-readiness scaffold now turns the hardware benchmark next step into a concrete handoff.
+
+- Benchmark readiness: `results/tables/cascade_benchmark_readiness.csv`
+- Summary view: `results/figures/cascade_benchmark_readiness.md`
+- This prioritizes the runtime-facing artifacts that should be refreshed first once controlled same-hardware timing evidence is available.
+
 Remaining stretch work:
 
 - replace proxy costs with a controlled hardware/runtime benchmark

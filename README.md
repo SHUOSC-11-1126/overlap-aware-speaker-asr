@@ -133,6 +133,10 @@ Current artifact index result:
 
 - `results/figures/cascade_artifact_index.md` now acts as the registry for the cascade evidence stack, with per-artifact labels, generator commands, and intended usage notes
 
+Current benchmark readiness result:
+
+- `results/figures/cascade_benchmark_readiness.md` now prioritizes which cascade artifacts should be refreshed first once controlled hardware/runtime evidence replaces the current repo-local timing signals
+
 ## Core Findings
 
 - Speech separation is useful, but not universally beneficial.
@@ -194,6 +198,7 @@ python -m src.project_harness
 - [Cascade decision matrix](results/figures/cascade_decision_matrix.md)
 - [Cascade frontier report](results/figures/cascade_frontier_report.md)
 - [Cascade artifact index](results/figures/cascade_artifact_index.md)
+- [Cascade benchmark readiness](results/figures/cascade_benchmark_readiness.md)
 - [Synthetic split cascade summary](results/figures/synthetic_split_cascade_summary.md)
 - [Synthetic split cascade trade-off figure](results/figures/synthetic_split_cer_runtime_tradeoff.png)
 - [Synthetic split cascade runtime audit](results/figures/synthetic_split_cascade_runtime_audit.md)
