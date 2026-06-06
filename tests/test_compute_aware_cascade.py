@@ -3,6 +3,7 @@ from __future__ import annotations
 import unittest
 
 from src.compute_aware_cascade import (
+    build_decision_matrix_rows,
     DEFAULT_COST_PROXY,
     build_recommendation_family_stability_rows,
     build_recommendation_rows,
@@ -233,6 +234,32 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertEqual(balanced["distinct_strategy_count"], 1)
         self.assertEqual(balanced["most_common_strategy"], "router_v2")
         self.assertEqual(balanced["consensus_ratio"], 1.0)
+
+    def test_build_decision_matrix_rows_combines_recommendation_and_robustness(self) -> None:
+        gold_recommendations = [
+            {"dataset": "gold", "scope": "ALL", "profile": "balanced", "recommended_strategy": "router_v2_costed"},
+            {"dataset": "gold", "scope": "ALL", "profile": "cost_first", "recommended_strategy": "fixed_mixed_whisper"},
+        ]
+        synthetic_recommendations = [
+            {"dataset": "synthetic_split", "scope": "ALL", "profile": "balanced", "recommended_strategy": "router_v2_synthetic_costed", "average_cer": 0.28, "average_compute_cost": 0.78, "average_rtf": 0.15},
+            {"dataset": "synthetic_split", "scope": "ALL", "profile": "cost_first", "recommended_strategy": "fixed_mixed_whisper", "average_cer": 0.46, "average_compute_cost": 0.67, "average_rtf": 0.16},
+        ]
+        family_stability = [
+            {"profile": "balanced", "most_common_strategy": "router_v2", "consensus_ratio": 1.0},
+            {"profile": "cost_first", "most_common_strategy": "fixed_mixed_whisper", "consensus_ratio": 1.0},
+        ]
+        robustness = [
+            {"strategy": "router_v2", "robustness_rank": 3, "cer_gap_vs_gold": 0.165145},
+            {"strategy": "fixed_mixed_whisper", "robustness_rank": 2, "cer_gap_vs_gold": 0.163622},
+        ]
+
+        rows = build_decision_matrix_rows(gold_recommendations, synthetic_recommendations, family_stability, robustness)
+        balanced = next(row for row in rows if row["profile"] == "balanced")
+
+        self.assertEqual(balanced["gold_recommended_strategy"], "router_v2_costed")
+        self.assertEqual(balanced["synthetic_all_recommended_strategy"], "router_v2_synthetic_costed")
+        self.assertEqual(balanced["family_consensus_ratio"], 1.0)
+        self.assertEqual(balanced["robustness_rank"], 3)
 
     def test_build_robustness_gap_rows_compares_gold_to_synthetic_all(self) -> None:
         gold_rows = [

@@ -149,6 +149,20 @@ RECOMMENDATION_FAMILY_STABILITY_COLUMNS = [
     "notes",
 ]
 
+DECISION_MATRIX_COLUMNS = [
+    "profile",
+    "gold_recommended_strategy",
+    "synthetic_all_recommended_strategy",
+    "family_most_common_strategy",
+    "family_consensus_ratio",
+    "synthetic_all_average_cer",
+    "synthetic_all_average_compute_cost",
+    "synthetic_all_average_rtf",
+    "robustness_rank",
+    "shared_cer_gap_vs_gold",
+    "notes",
+]
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Compute-aware cascade evaluation.")
@@ -711,6 +725,43 @@ def build_recommendation_family_stability_rows(recommendation_rows: list[dict[st
     return build_recommendation_stability_rows(normalized_rows)
 
 
+def build_decision_matrix_rows(
+    gold_recommendations: list[dict[str, Any]],
+    synthetic_recommendations: list[dict[str, Any]],
+    family_stability_rows: list[dict[str, Any]],
+    robustness_rows: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    gold_lookup = {str(row.get("profile", "")): row for row in gold_recommendations if str(row.get("scope", "")) == "ALL"}
+    synthetic_lookup = {str(row.get("profile", "")): row for row in synthetic_recommendations if str(row.get("scope", "")) == "ALL"}
+    family_lookup = {str(row.get("profile", "")): row for row in family_stability_rows}
+    robustness_lookup = {str(row.get("strategy", "")): row for row in robustness_rows}
+
+    rows: list[dict[str, Any]] = []
+    for profile in sorted(set(gold_lookup) | set(synthetic_lookup)):
+        gold_row = gold_lookup.get(profile, {})
+        synthetic_row = synthetic_lookup.get(profile, {})
+        family_row = family_lookup.get(profile, {})
+        synthetic_strategy = str(synthetic_row.get("recommended_strategy", ""))
+        family_strategy = canonical_strategy_family(synthetic_strategy)
+        robustness_row = robustness_lookup.get(family_strategy, {})
+        rows.append(
+            {
+                "profile": profile,
+                "gold_recommended_strategy": gold_row.get("recommended_strategy", ""),
+                "synthetic_all_recommended_strategy": synthetic_strategy,
+                "family_most_common_strategy": family_row.get("most_common_strategy", ""),
+                "family_consensus_ratio": family_row.get("consensus_ratio", ""),
+                "synthetic_all_average_cer": synthetic_row.get("average_cer", ""),
+                "synthetic_all_average_compute_cost": synthetic_row.get("average_compute_cost", ""),
+                "synthetic_all_average_rtf": synthetic_row.get("average_rtf", ""),
+                "robustness_rank": robustness_row.get("robustness_rank", ""),
+                "shared_cer_gap_vs_gold": robustness_row.get("cer_gap_vs_gold", ""),
+                "notes": "Decision matrix merges gold recommendation, synthetic ALL recommendation, family-level stability, and shared robustness gap.",
+            }
+        )
+    return rows
+
+
 def load_gold_cases() -> list[dict[str, Any]]:
     config = load_config()
     risk_rows = {str(row["case_id"]): row for row in read_csv_rows(PROJECT_ROOT / "results" / "tables" / "risk_aware_selection.csv")}
@@ -1175,6 +1226,35 @@ def write_recommendation_family_stability_outputs(
     render_recommendation_stability_summary(rows, summary_path)
 
 
+def render_decision_matrix_summary(rows: list[dict[str, Any]], output_path: Path) -> None:
+    lines = [
+        "# Cascade Decision Matrix",
+        "",
+        "This matrix consolidates recommendation, family-level stability, and shared robustness into one deployment-facing table.",
+        "",
+        "| profile | gold_recommended_strategy | synthetic_all_recommended_strategy | family_most_common_strategy | family_consensus_ratio | synthetic_all_average_cer | synthetic_all_average_compute_cost | synthetic_all_average_rtf | robustness_rank | shared_cer_gap_vs_gold |",
+        "| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['profile']} | {row['gold_recommended_strategy']} | {row['synthetic_all_recommended_strategy']} | "
+            f"{row['family_most_common_strategy']} | {row['family_consensus_ratio']} | {row['synthetic_all_average_cer']} | "
+            f"{row['synthetic_all_average_compute_cost']} | {row['synthetic_all_average_rtf']} | {row['robustness_rank']} | {row['shared_cer_gap_vs_gold']} |"
+        )
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def write_decision_matrix_outputs(
+    rows: list[dict[str, Any]],
+    csv_path: Path,
+    json_path: Path,
+    summary_path: Path,
+) -> None:
+    write_csv_json(rows, csv_path, json_path, DECISION_MATRIX_COLUMNS)
+    render_decision_matrix_summary(rows, summary_path)
+
+
 def set_pixel(pixels: bytearray, width: int, height: int, x: int, y: int, color: tuple[int, int, int]) -> None:
     if 0 <= x < width and 0 <= y < height:
         idx = (y * width + x) * 3
@@ -1456,6 +1536,18 @@ def main() -> None:
             PROJECT_ROOT / "results" / "tables" / "cascade_recommendation_family_stability.csv",
             PROJECT_ROOT / "results" / "tables" / "cascade_recommendation_family_stability.json",
             PROJECT_ROOT / "results" / "figures" / "cascade_recommendation_family_stability.md",
+        )
+        decision_matrix_rows = build_decision_matrix_rows(
+            gold_recommendation_rows,
+            recommendation_rows,
+            family_stability_rows,
+            robustness_rows,
+        )
+        write_decision_matrix_outputs(
+            decision_matrix_rows,
+            PROJECT_ROOT / "results" / "tables" / "cascade_decision_matrix.csv",
+            PROJECT_ROOT / "results" / "tables" / "cascade_decision_matrix.json",
+            PROJECT_ROOT / "results" / "figures" / "cascade_decision_matrix.md",
         )
     else:
         cases = load_gold_cases()
