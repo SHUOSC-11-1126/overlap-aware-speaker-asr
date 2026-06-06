@@ -1,0 +1,11 @@
+# Cascade Benchmark Plan
+
+This generated handoff plan turns benchmark readiness priorities into a staged execution order.
+
+| step_order | plan_step_id | phase | dataset_scope | command | prerequisite_artifacts | refreshed_artifacts | success_signal |
+| ---: | --- | --- | --- | --- | --- | --- | --- |
+| 1 | phase1_gold_runtime_foundation | foundation | gold | python -m src.compute_aware_cascade | gold_runtime_audit;gold_runtime_normalization | gold_runtime_audit;gold_runtime_normalization | Gold runtime foundation artifacts are rebuilt from controlled timing. |
+| 2 | phase2_synthetic_runtime_foundation | foundation | synthetic_split | python -m src.compute_aware_cascade --dataset synthetic_split | synthetic_split_runtime_audit;synthetic_split_runtime_normalization | synthetic_split_runtime_audit;synthetic_split_runtime_normalization | Synthetic split runtime foundation artifacts are rebuilt from controlled timing. |
+| 3 | phase3_gold_surface_refresh | surface | gold | python -m src.compute_aware_cascade | gold_cascade_performance;gold_tradeoff_figure;gold_cascade_summary;gold_recommendations;gold_frontier_report | gold_cascade_performance;gold_tradeoff_figure;gold_cascade_summary;gold_recommendations;gold_frontier_report | Gold surface artifacts are rebuilt from controlled timing-backed inputs. |
+| 4 | phase4_synthetic_surface_refresh | surface | synthetic_split | python -m src.compute_aware_cascade --dataset synthetic_split | synthetic_split_cascade_performance;synthetic_split_tradeoff_figure;synthetic_split_cascade_summary;synthetic_split_recommendations | synthetic_split_cascade_performance;synthetic_split_tradeoff_figure;synthetic_split_cascade_summary;synthetic_split_recommendations | Synthetic split surface artifacts are rebuilt from controlled timing-backed inputs. |
+| 5 | phase5_cross_dataset_refresh | cross_dataset | cross_dataset | python -m src.compute_aware_cascade --dataset synthetic_split | cross_dataset_robustness_gap;cross_dataset_recommendation_stability;cross_dataset_family_stability;cross_dataset_decision_matrix | cross_dataset_robustness_gap;cross_dataset_recommendation_stability;cross_dataset_family_stability;cross_dataset_decision_matrix | Cross-dataset decision-support artifacts are rebuilt from controlled timing-backed inputs. |

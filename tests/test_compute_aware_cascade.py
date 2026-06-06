@@ -7,6 +7,8 @@ from src.compute_aware_cascade import (
     build_artifact_index_lines,
     build_artifact_index_rows,
     build_benchmark_readiness_lines,
+    build_benchmark_plan_lines,
+    build_benchmark_plan_rows,
     build_benchmark_readiness_rows,
     build_frontier_report_lines,
     DEFAULT_COST_PROXY,
@@ -433,6 +435,57 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertIn("gold_runtime_normalization", rendered)
         self.assertIn("repo_local_runtime_only", rendered)
         self.assertIn("Refresh after gold and synthetic controlled benchmark evidence lands.", rendered)
+
+    def test_build_benchmark_plan_rows_stages_foundation_surface_and_cross_dataset_refresh(self) -> None:
+        readiness_rows = build_benchmark_readiness_rows(build_artifact_index_rows())
+
+        rows = build_benchmark_plan_rows(readiness_rows)
+        gold_foundation = next(row for row in rows if row["plan_step_id"] == "phase1_gold_runtime_foundation")
+        synthetic_surface = next(row for row in rows if row["plan_step_id"] == "phase4_synthetic_surface_refresh")
+        cross_dataset = next(row for row in rows if row["plan_step_id"] == "phase5_cross_dataset_refresh")
+
+        self.assertEqual(gold_foundation["phase"], "foundation")
+        self.assertEqual(gold_foundation["command"], "python -m src.compute_aware_cascade")
+        self.assertIn("gold_runtime_audit", gold_foundation["refreshed_artifacts"])
+        self.assertEqual(synthetic_surface["phase"], "surface")
+        self.assertEqual(synthetic_surface["command"], "python -m src.compute_aware_cascade --dataset synthetic_split")
+        self.assertIn("synthetic_split_cascade_performance", synthetic_surface["refreshed_artifacts"])
+        self.assertEqual(cross_dataset["phase"], "cross_dataset")
+        self.assertEqual(cross_dataset["success_signal"], "Cross-dataset decision-support artifacts are rebuilt from controlled timing-backed inputs.")
+        self.assertTrue(rows == sorted(rows, key=lambda row: row["step_order"]))
+
+    def test_build_benchmark_plan_lines_render_sequenced_handoff(self) -> None:
+        rows = [
+            {
+                "plan_step_id": "phase1_gold_runtime_foundation",
+                "step_order": 1,
+                "phase": "foundation",
+                "dataset_scope": "gold",
+                "command": "python -m src.compute_aware_cascade",
+                "prerequisite_artifacts": "gold_runtime_audit;gold_runtime_normalization",
+                "refreshed_artifacts": "gold_runtime_audit;gold_runtime_normalization",
+                "success_signal": "Gold runtime foundation artifacts are rebuilt from controlled timing.",
+            },
+            {
+                "plan_step_id": "phase5_cross_dataset_refresh",
+                "step_order": 5,
+                "phase": "cross_dataset",
+                "dataset_scope": "cross_dataset",
+                "command": "python -m src.compute_aware_cascade --dataset synthetic_split",
+                "prerequisite_artifacts": "cross_dataset_robustness_gap;cross_dataset_decision_matrix",
+                "refreshed_artifacts": "cross_dataset_robustness_gap;cross_dataset_decision_matrix",
+                "success_signal": "Cross-dataset decision-support artifacts are rebuilt from controlled timing-backed inputs.",
+            },
+        ]
+
+        lines = build_benchmark_plan_lines(rows)
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Cascade Benchmark Plan", rendered)
+        self.assertIn("phase1_gold_runtime_foundation", rendered)
+        self.assertIn("phase5_cross_dataset_refresh", rendered)
+        self.assertIn("python -m src.compute_aware_cascade --dataset synthetic_split", rendered)
+        self.assertIn("Cross-dataset decision-support artifacts are rebuilt from controlled timing-backed inputs.", rendered)
 
 
 if __name__ == "__main__":

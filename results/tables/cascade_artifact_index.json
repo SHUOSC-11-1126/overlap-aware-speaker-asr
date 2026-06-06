@@ -27,6 +27,24 @@
     "intended_use": "Gold versus synthetic split robustness gap table for shared strategy families."
   },
   {
+    "artifact_id": "cross_dataset_benchmark_plan",
+    "dataset": "cross_dataset",
+    "label": "experimental/frontier",
+    "artifact_group": "report",
+    "artifact_path": "results/figures/cascade_benchmark_plan.md",
+    "generator_command": "python -m src.compute_aware_cascade --dataset synthetic_split",
+    "intended_use": "Staged benchmark handoff plan derived from the readiness scaffold."
+  },
+  {
+    "artifact_id": "cross_dataset_benchmark_readiness",
+    "dataset": "cross_dataset",
+    "label": "experimental/frontier",
+    "artifact_group": "report",
+    "artifact_path": "results/figures/cascade_benchmark_readiness.md",
+    "generator_command": "python -m src.compute_aware_cascade --dataset synthetic_split",
+    "intended_use": "Priority-ordered readiness scaffold for replacing repository-local timing with controlled benchmark evidence."
+  },
+  {
     "artifact_id": "cross_dataset_decision_matrix",
     "dataset": "cross_dataset",
     "label": "experimental/frontier",

@@ -186,6 +186,17 @@ BENCHMARK_READINESS_COLUMNS = [
     "next_evidence_step",
 ]
 
+BENCHMARK_PLAN_COLUMNS = [
+    "plan_step_id",
+    "step_order",
+    "phase",
+    "dataset_scope",
+    "command",
+    "prerequisite_artifacts",
+    "refreshed_artifacts",
+    "success_signal",
+]
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Compute-aware cascade evaluation.")
@@ -1342,6 +1353,8 @@ def build_artifact_index_rows() -> list[dict[str, Any]]:
         ("cross_dataset_recommendation_stability", "cross_dataset", "experimental/frontier", "audit", "results/tables/cascade_recommendation_stability.csv", "python -m src.compute_aware_cascade --dataset synthetic_split", "Raw strategy recommendation stability across gold and synthetic scopes."),
         ("cross_dataset_family_stability", "cross_dataset", "experimental/frontier", "audit", "results/tables/cascade_recommendation_family_stability.csv", "python -m src.compute_aware_cascade --dataset synthetic_split", "Family-level recommendation stability across gold and synthetic scopes."),
         ("cross_dataset_decision_matrix", "cross_dataset", "experimental/frontier", "report", "results/tables/cascade_decision_matrix.csv", "python -m src.compute_aware_cascade --dataset synthetic_split", "Deployment-facing matrix that merges recommendation and robustness evidence."),
+        ("cross_dataset_benchmark_readiness", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_readiness.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Priority-ordered readiness scaffold for replacing repository-local timing with controlled benchmark evidence."),
+        ("cross_dataset_benchmark_plan", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_plan.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Staged benchmark handoff plan derived from the readiness scaffold."),
     ]
     rows = [
         {
@@ -1493,6 +1506,101 @@ def write_benchmark_readiness_outputs(
     write_csv_json(rows, csv_path, json_path, BENCHMARK_READINESS_COLUMNS)
     summary_path.parent.mkdir(parents=True, exist_ok=True)
     summary_path.write_text("\n".join(build_benchmark_readiness_lines(rows)) + "\n", encoding="utf-8")
+
+
+def build_benchmark_plan_rows(readiness_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    rows = [
+        {
+            "plan_step_id": "phase1_gold_runtime_foundation",
+            "step_order": 1,
+            "phase": "foundation",
+            "dataset_scope": "gold",
+            "command": "python -m src.compute_aware_cascade",
+            "prerequisite_artifacts": "gold_runtime_audit;gold_runtime_normalization",
+            "refreshed_artifacts": "gold_runtime_audit;gold_runtime_normalization",
+            "success_signal": "Gold runtime foundation artifacts are rebuilt from controlled timing.",
+        },
+        {
+            "plan_step_id": "phase2_synthetic_runtime_foundation",
+            "step_order": 2,
+            "phase": "foundation",
+            "dataset_scope": "synthetic_split",
+            "command": "python -m src.compute_aware_cascade --dataset synthetic_split",
+            "prerequisite_artifacts": "synthetic_split_runtime_audit;synthetic_split_runtime_normalization",
+            "refreshed_artifacts": "synthetic_split_runtime_audit;synthetic_split_runtime_normalization",
+            "success_signal": "Synthetic split runtime foundation artifacts are rebuilt from controlled timing.",
+        },
+        {
+            "plan_step_id": "phase3_gold_surface_refresh",
+            "step_order": 3,
+            "phase": "surface",
+            "dataset_scope": "gold",
+            "command": "python -m src.compute_aware_cascade",
+            "prerequisite_artifacts": "gold_cascade_performance;gold_tradeoff_figure;gold_cascade_summary;gold_recommendations;gold_frontier_report",
+            "refreshed_artifacts": "gold_cascade_performance;gold_tradeoff_figure;gold_cascade_summary;gold_recommendations;gold_frontier_report",
+            "success_signal": "Gold surface artifacts are rebuilt from controlled timing-backed inputs.",
+        },
+        {
+            "plan_step_id": "phase4_synthetic_surface_refresh",
+            "step_order": 4,
+            "phase": "surface",
+            "dataset_scope": "synthetic_split",
+            "command": "python -m src.compute_aware_cascade --dataset synthetic_split",
+            "prerequisite_artifacts": "synthetic_split_cascade_performance;synthetic_split_tradeoff_figure;synthetic_split_cascade_summary;synthetic_split_recommendations",
+            "refreshed_artifacts": "synthetic_split_cascade_performance;synthetic_split_tradeoff_figure;synthetic_split_cascade_summary;synthetic_split_recommendations",
+            "success_signal": "Synthetic split surface artifacts are rebuilt from controlled timing-backed inputs.",
+        },
+        {
+            "plan_step_id": "phase5_cross_dataset_refresh",
+            "step_order": 5,
+            "phase": "cross_dataset",
+            "dataset_scope": "cross_dataset",
+            "command": "python -m src.compute_aware_cascade --dataset synthetic_split",
+            "prerequisite_artifacts": "cross_dataset_robustness_gap;cross_dataset_recommendation_stability;cross_dataset_family_stability;cross_dataset_decision_matrix",
+            "refreshed_artifacts": "cross_dataset_robustness_gap;cross_dataset_recommendation_stability;cross_dataset_family_stability;cross_dataset_decision_matrix",
+            "success_signal": "Cross-dataset decision-support artifacts are rebuilt from controlled timing-backed inputs.",
+        },
+    ]
+    available = {str(row.get("artifact_id", "")) for row in readiness_rows}
+    filtered_rows: list[dict[str, Any]] = []
+    for row in rows:
+        needed = {
+            artifact
+            for field in ["prerequisite_artifacts", "refreshed_artifacts"]
+            for artifact in str(row.get(field, "")).split(";")
+            if artifact
+        }
+        if needed.issubset(available):
+            filtered_rows.append(row)
+    return sorted(filtered_rows, key=lambda row: to_int(row.get("step_order")))
+
+
+def build_benchmark_plan_lines(rows: list[dict[str, Any]]) -> list[str]:
+    lines = [
+        "# Cascade Benchmark Plan",
+        "",
+        "This generated handoff plan turns benchmark readiness priorities into a staged execution order.",
+        "",
+        "| step_order | plan_step_id | phase | dataset_scope | command | prerequisite_artifacts | refreshed_artifacts | success_signal |",
+        "| ---: | --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['step_order']} | {row['plan_step_id']} | {row['phase']} | {row['dataset_scope']} | {row['command']} | "
+            f"{row['prerequisite_artifacts']} | {row['refreshed_artifacts']} | {row['success_signal']} |"
+        )
+    return lines
+
+
+def write_benchmark_plan_outputs(
+    rows: list[dict[str, Any]],
+    csv_path: Path,
+    json_path: Path,
+    summary_path: Path,
+) -> None:
+    write_csv_json(rows, csv_path, json_path, BENCHMARK_PLAN_COLUMNS)
+    summary_path.parent.mkdir(parents=True, exist_ok=True)
+    summary_path.write_text("\n".join(build_benchmark_plan_lines(rows)) + "\n", encoding="utf-8")
 
 
 def set_pixel(pixels: bytearray, width: int, height: int, x: int, y: int, color: tuple[int, int, int]) -> None:
@@ -1657,12 +1765,16 @@ def main() -> None:
     args = parse_args()
     artifact_index_rows = build_artifact_index_rows()
     benchmark_readiness_rows = build_benchmark_readiness_rows(artifact_index_rows)
+    benchmark_plan_rows = build_benchmark_plan_rows(benchmark_readiness_rows)
     artifact_index_csv = PROJECT_ROOT / "results" / "tables" / "cascade_artifact_index.csv"
     artifact_index_json = PROJECT_ROOT / "results" / "tables" / "cascade_artifact_index.json"
     artifact_index_md = PROJECT_ROOT / "results" / "figures" / "cascade_artifact_index.md"
     benchmark_readiness_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_readiness.csv"
     benchmark_readiness_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_readiness.json"
     benchmark_readiness_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_readiness.md"
+    benchmark_plan_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_plan.csv"
+    benchmark_plan_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_plan.json"
+    benchmark_plan_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_plan.md"
     if args.dataset == "synthetic_split":
         cases = load_synthetic_split_cases()
         decisions = load_synthetic_split_decisions()
@@ -1810,6 +1922,12 @@ def main() -> None:
             benchmark_readiness_json,
             benchmark_readiness_md,
         )
+        write_benchmark_plan_outputs(
+            benchmark_plan_rows,
+            benchmark_plan_csv,
+            benchmark_plan_json,
+            benchmark_plan_md,
+        )
     else:
         cases = load_gold_cases()
         decisions = load_decisions()
@@ -1866,6 +1984,12 @@ def main() -> None:
             benchmark_readiness_json,
             benchmark_readiness_md,
         )
+        write_benchmark_plan_outputs(
+            benchmark_plan_rows,
+            benchmark_plan_csv,
+            benchmark_plan_json,
+            benchmark_plan_md,
+        )
 
     print(f"Wrote cascade performance: {table_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade JSON: {table_json.relative_to(PROJECT_ROOT)}")
@@ -1873,6 +1997,7 @@ def main() -> None:
     print(f"Wrote cascade summary: {summary_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade artifact index: {artifact_index_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark readiness: {benchmark_readiness_csv.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote cascade benchmark plan: {benchmark_plan_csv.relative_to(PROJECT_ROOT)}")
 
 
 if __name__ == "__main__":
