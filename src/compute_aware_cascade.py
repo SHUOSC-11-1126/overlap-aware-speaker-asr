@@ -254,6 +254,18 @@ BENCHMARK_STATUS_COLUMNS = [
     "acceptance_check",
 ]
 
+BENCHMARK_EXECUTION_SUMMARY_COLUMNS = [
+    "phase",
+    "step_count",
+    "filled_step_count",
+    "template_only_step_count",
+    "total_pending_field_count",
+    "readiness_label",
+    "primary_blocking_category",
+    "recommended_next_action",
+    "covered_datasets",
+]
+
 
 def build_benchmark_packet_lines(
     readiness_rows: list[dict[str, Any]],
@@ -261,6 +273,7 @@ def build_benchmark_packet_lines(
     checklist_rows: list[dict[str, Any]],
     manifest_rows: list[dict[str, Any]],
     status_rows: list[dict[str, Any]],
+    execution_summary_rows: list[dict[str, Any]],
 ) -> list[str]:
     lines = [
         "# Cascade Benchmark Handoff Packet",
@@ -285,6 +298,14 @@ def build_benchmark_packet_lines(
     for row in checklist_rows:
         lines.append(
             f"- `{row.get('plan_step_id', '')}`: session `{row.get('session_type', '')}`, metadata `{row.get('required_metadata', '')}`, acceptance `{row.get('acceptance_check', '')}`"
+        )
+    lines.extend(["", "## Execution Summary", ""])
+    for row in execution_summary_rows:
+        lines.append(
+            f"- `{row.get('phase', '')}`: `{row.get('readiness_label', '')}` with "
+            f"`{row.get('template_only_step_count', '')}/{row.get('step_count', '')}` template-only steps, "
+            f"`{row.get('total_pending_field_count', '')}` pending fields, blocker `{row.get('primary_blocking_category', '')}`, "
+            f"next `{row.get('recommended_next_action', '')}`, datasets `{row.get('covered_datasets', '')}`"
         )
     lines.extend(["", "## Execution Status", ""])
     for row in status_rows:
@@ -351,17 +372,99 @@ def build_benchmark_status_rows(manifest_rows: list[dict[str, Any]]) -> list[dic
     return sorted(rows, key=lambda row: to_int(row.get("step_order")))
 
 
+def build_benchmark_execution_summary_rows(status_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    grouped: dict[str, list[dict[str, Any]]] = {}
+    for row in status_rows:
+        grouped.setdefault(str(row.get("phase", "")), []).append(row)
+
+    rows: list[dict[str, Any]] = []
+    for phase in sorted(grouped, key=lambda value: min(to_int(row.get("step_order")) for row in grouped[value])):
+        entries = sorted(grouped[phase], key=lambda row: to_int(row.get("step_order")))
+        step_count = len(entries)
+        filled_step_count = sum(1 for row in entries if str(row.get("execution_status", "")) == "filled")
+        template_only_step_count = sum(1 for row in entries if str(row.get("execution_status", "")) == "template_only")
+        total_pending_field_count = sum(to_int(row.get("pending_field_count")) for row in entries)
+        blocking_counts: dict[str, int] = {}
+        action_counts: dict[str, int] = {}
+        datasets = sorted({str(row.get("dataset_scope", "")) for row in entries if str(row.get("dataset_scope", "")).strip()})
+        blocking_source_rows = [row for row in entries if to_int(row.get("pending_field_count")) > 0] or entries
+        action_source_rows = [row for row in entries if to_int(row.get("pending_field_count")) > 0] or entries
+        for row in blocking_source_rows:
+            blocking = str(row.get("blocking_category", ""))
+            blocking_counts[blocking] = blocking_counts.get(blocking, 0) + 1
+        for row in action_source_rows:
+            action = str(row.get("next_action", ""))
+            action_counts[action] = action_counts.get(action, 0) + 1
+        primary_blocking_category = min(blocking_counts, key=lambda key: (-blocking_counts[key], key))
+        recommended_next_action = min(action_counts, key=lambda key: (-action_counts[key], key))
+        readiness_label = "ready_for_review" if total_pending_field_count == 0 else "pending_execution"
+        rows.append(
+            {
+                "phase": phase,
+                "step_count": step_count,
+                "filled_step_count": filled_step_count,
+                "template_only_step_count": template_only_step_count,
+                "total_pending_field_count": total_pending_field_count,
+                "readiness_label": readiness_label,
+                "primary_blocking_category": primary_blocking_category,
+                "recommended_next_action": recommended_next_action,
+                "covered_datasets": ";".join(datasets),
+            }
+        )
+    return rows
+
+
+def build_benchmark_execution_summary_lines(rows: list[dict[str, Any]]) -> list[str]:
+    lines = [
+        "# Cascade Benchmark Execution Summary",
+        "",
+        "This generated summary condenses the phase-by-phase benchmark board into execution-ready blocker totals and next actions.",
+        "",
+        "| phase | step_count | filled_step_count | template_only_step_count | total_pending_field_count | readiness_label | primary_blocking_category | recommended_next_action | covered_datasets |",
+        "| --- | ---: | ---: | ---: | ---: | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['phase']} | {row['step_count']} | {row['filled_step_count']} | {row['template_only_step_count']} | "
+            f"{row['total_pending_field_count']} | {row['readiness_label']} | {row['primary_blocking_category']} | "
+            f"{row['recommended_next_action']} | {row['covered_datasets']} |"
+        )
+    return lines
+
+
+def write_benchmark_execution_summary_outputs(
+    rows: list[dict[str, Any]],
+    csv_path: Path,
+    json_path: Path,
+    summary_path: Path,
+) -> None:
+    write_csv_json(rows, csv_path, json_path, BENCHMARK_EXECUTION_SUMMARY_COLUMNS)
+    summary_path.parent.mkdir(parents=True, exist_ok=True)
+    summary_path.write_text("\n".join(build_benchmark_execution_summary_lines(rows)) + "\n", encoding="utf-8")
+
+
 def write_benchmark_packet_output(
     readiness_rows: list[dict[str, Any]],
     plan_rows: list[dict[str, Any]],
     checklist_rows: list[dict[str, Any]],
     manifest_rows: list[dict[str, Any]],
     status_rows: list[dict[str, Any]],
+    execution_summary_rows: list[dict[str, Any]],
     output_path: Path,
 ) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(
-        "\n".join(build_benchmark_packet_lines(readiness_rows, plan_rows, checklist_rows, manifest_rows, status_rows)) + "\n",
+        "\n".join(
+            build_benchmark_packet_lines(
+                readiness_rows,
+                plan_rows,
+                checklist_rows,
+                manifest_rows,
+                status_rows,
+                execution_summary_rows,
+            )
+        )
+        + "\n",
         encoding="utf-8",
     )
 
@@ -1527,6 +1630,7 @@ def build_artifact_index_rows() -> list[dict[str, Any]]:
         ("cross_dataset_benchmark_checklist", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_checklist.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Execution checklist for recording benchmark session metadata and acceptance checks."),
         ("cross_dataset_benchmark_manifest_template", "cross_dataset", "experimental/frontier", "report", "results/tables/cascade_benchmark_manifest_template.csv", "python -m src.compute_aware_cascade --dataset synthetic_split", "Fill-in template for benchmark session metadata captured during controlled timing runs."),
         ("cross_dataset_benchmark_status", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_status.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Phase-by-phase benchmark status board showing template completeness and pending execution gaps."),
+        ("cross_dataset_benchmark_execution_summary", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_execution_summary.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Execution-summary rollup showing blocker totals, readiness by phase, and recommended next actions."),
         ("cross_dataset_benchmark_handoff_packet", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_handoff_packet.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Single-entry benchmark handoff packet consolidating readiness, plan, checklist, manifest template, and status board."),
     ]
     rows = [
@@ -2176,6 +2280,10 @@ def main() -> None:
     benchmark_status_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_status.csv"
     benchmark_status_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_status.json"
     benchmark_status_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_status.md"
+    benchmark_execution_summary_rows = build_benchmark_execution_summary_rows(benchmark_status_rows)
+    benchmark_execution_summary_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_execution_summary.csv"
+    benchmark_execution_summary_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_execution_summary.json"
+    benchmark_execution_summary_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_execution_summary.md"
     benchmark_packet_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_handoff_packet.md"
     profile_playbook_csv = PROJECT_ROOT / "results" / "tables" / "cascade_profile_playbook.csv"
     profile_playbook_json = PROJECT_ROOT / "results" / "tables" / "cascade_profile_playbook.json"
@@ -2350,12 +2458,19 @@ def main() -> None:
             benchmark_status_json,
             benchmark_status_md,
         )
+        write_benchmark_execution_summary_outputs(
+            benchmark_execution_summary_rows,
+            benchmark_execution_summary_csv,
+            benchmark_execution_summary_json,
+            benchmark_execution_summary_md,
+        )
         write_benchmark_packet_output(
             benchmark_readiness_rows,
             benchmark_plan_rows,
             benchmark_checklist_rows,
             benchmark_manifest_template_rows,
             benchmark_status_rows,
+            benchmark_execution_summary_rows,
             benchmark_packet_md,
         )
         profile_playbook_rows = build_profile_playbook_rows(decision_matrix_rows)
@@ -2439,6 +2554,7 @@ def main() -> None:
     print(f"Wrote cascade benchmark checklist: {benchmark_checklist_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark manifest template: {benchmark_manifest_template_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark status: {benchmark_status_csv.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote cascade benchmark execution summary: {benchmark_execution_summary_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark handoff packet: {benchmark_packet_md.relative_to(PROJECT_ROOT)}")
     if wrote_profile_playbook:
         print(f"Wrote cascade profile playbook: {profile_playbook_csv.relative_to(PROJECT_ROOT)}")

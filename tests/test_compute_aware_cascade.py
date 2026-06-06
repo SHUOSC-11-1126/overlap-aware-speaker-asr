@@ -10,6 +10,8 @@ from src.compute_aware_cascade import (
     build_benchmark_checklist_rows,
     build_benchmark_manifest_template_rows,
     build_benchmark_packet_lines,
+    build_benchmark_execution_summary_lines,
+    build_benchmark_execution_summary_rows,
     build_benchmark_status_lines,
     build_benchmark_status_rows,
     build_profile_playbook_lines,
@@ -749,6 +751,80 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertIn("collect_controlled_runtime", rendered)
         self.assertIn("hardware_label;device;repeat_count", rendered)
 
+    def test_build_benchmark_execution_summary_rows_aggregate_phase_totals(self) -> None:
+        status_rows = [
+            {
+                "plan_step_id": "phase1_gold_runtime_foundation",
+                "step_order": 1,
+                "phase": "foundation",
+                "dataset_scope": "gold",
+                "execution_status": "template_only",
+                "readiness_signal": "pending_execution",
+                "pending_field_count": 6,
+                "blocking_category": "runtime_capture_missing",
+                "next_action": "collect_controlled_runtime",
+            },
+            {
+                "plan_step_id": "phase2_synthetic_runtime_foundation",
+                "step_order": 2,
+                "phase": "foundation",
+                "dataset_scope": "synthetic_split",
+                "execution_status": "filled",
+                "readiness_signal": "ready_for_review",
+                "pending_field_count": 0,
+                "blocking_category": "ready_for_review",
+                "next_action": "review_completed_manifest",
+            },
+            {
+                "plan_step_id": "phase5_cross_dataset_refresh",
+                "step_order": 5,
+                "phase": "cross_dataset",
+                "dataset_scope": "cross_dataset",
+                "execution_status": "template_only",
+                "readiness_signal": "pending_execution",
+                "pending_field_count": 4,
+                "blocking_category": "derived_refresh_missing",
+                "next_action": "refresh_cross_dataset_stack",
+            },
+        ]
+
+        rows = build_benchmark_execution_summary_rows(status_rows)
+        foundation = next(row for row in rows if row["phase"] == "foundation")
+        cross_dataset = next(row for row in rows if row["phase"] == "cross_dataset")
+
+        self.assertEqual(foundation["step_count"], 2)
+        self.assertEqual(foundation["filled_step_count"], 1)
+        self.assertEqual(foundation["template_only_step_count"], 1)
+        self.assertEqual(foundation["total_pending_field_count"], 6)
+        self.assertEqual(foundation["primary_blocking_category"], "runtime_capture_missing")
+        self.assertEqual(foundation["recommended_next_action"], "collect_controlled_runtime")
+        self.assertEqual(cross_dataset["total_pending_field_count"], 4)
+        self.assertEqual(cross_dataset["readiness_label"], "pending_execution")
+
+    def test_build_benchmark_execution_summary_lines_render_phase_rollup(self) -> None:
+        rows = [
+            {
+                "phase": "foundation",
+                "step_count": 2,
+                "filled_step_count": 1,
+                "template_only_step_count": 1,
+                "total_pending_field_count": 6,
+                "readiness_label": "pending_execution",
+                "primary_blocking_category": "runtime_capture_missing",
+                "recommended_next_action": "collect_controlled_runtime",
+                "covered_datasets": "gold;synthetic_split",
+            }
+        ]
+
+        lines = build_benchmark_execution_summary_lines(rows)
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Cascade Benchmark Execution Summary", rendered)
+        self.assertIn("foundation", rendered)
+        self.assertIn("runtime_capture_missing", rendered)
+        self.assertIn("collect_controlled_runtime", rendered)
+        self.assertIn("gold;synthetic_split", rendered)
+
     def test_build_artifact_index_rows_include_benchmark_status_board(self) -> None:
         rows = build_artifact_index_rows()
         status_row = next(row for row in rows if row["artifact_id"] == "cross_dataset_benchmark_status")
@@ -804,14 +880,36 @@ class ComputeAwareCascadeTest(unittest.TestCase):
                 "acceptance_check": "Gold runtime foundation artifacts are rebuilt from controlled timing.",
             }
         ]
+        execution_summary_rows = [
+            {
+                "phase": "foundation",
+                "step_count": 1,
+                "filled_step_count": 0,
+                "template_only_step_count": 1,
+                "total_pending_field_count": 4,
+                "readiness_label": "pending_execution",
+                "primary_blocking_category": "runtime_capture_missing",
+                "recommended_next_action": "collect_controlled_runtime",
+                "covered_datasets": "gold",
+            }
+        ]
 
-        lines = build_benchmark_packet_lines(readiness_rows, plan_rows, checklist_rows, manifest_rows, status_rows)
+        lines = build_benchmark_packet_lines(
+            readiness_rows,
+            plan_rows,
+            checklist_rows,
+            manifest_rows,
+            status_rows,
+            execution_summary_rows,
+        )
         rendered = "\n".join(lines)
 
         self.assertIn("# Cascade Benchmark Handoff Packet", rendered)
         self.assertIn("## Readiness Snapshot", rendered)
+        self.assertIn("## Execution Summary", rendered)
         self.assertIn("## Execution Status", rendered)
         self.assertIn("phase1_gold_runtime_foundation", rendered)
+        self.assertIn("runtime_capture_missing", rendered)
         self.assertIn("pending_execution", rendered)
         self.assertIn("hardware_label;device;repeat_count;warmup_count", rendered)
         self.assertIn("Manifest template fields: hardware_label, device, repeat_count, warmup_count", rendered)
