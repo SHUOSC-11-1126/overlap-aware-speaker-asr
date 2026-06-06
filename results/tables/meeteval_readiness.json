@@ -1,0 +1,10 @@
+[
+  {
+    "bridge_status": "ready_for_dry_run",
+    "case_count": "5",
+    "raw_source_count": "1",
+    "cleaned_fallback_count": "4",
+    "readiness_note": "The bridge is export-complete, but cleaned fallback is still common, so any next MeetEval step should stay narrow and diagnostic.",
+    "next_action": "Use one narrow dry run before claiming any cpWER-style evaluation."
+  }
+]
