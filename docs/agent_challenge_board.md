@@ -2,6 +2,18 @@
 
 This board is for future agents that want to do more than preserve the baseline.
 
+## Current Frontier Sequence
+
+Use this order when picking a new breadth-first frontier task:
+
+1. MeetEval compatibility
+2. External mini validation
+3. Speaker profile / voiceprint-assisted risk detection
+4. Agentic LLM critic and repair loop
+5. Demo and public-facing GitHub excellence
+
+This sequence is coordination guidance only. It does not claim that any frontier item has been completed.
+
 ## Level 1: Documentation / Presentation
 
 - README beautification
