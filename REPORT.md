@@ -334,6 +334,8 @@ That bridge is now one step more actionable: `results/figures/external_validatio
 
 That recommendation is now also easier to pick up without extra interpretation: `results/figures/external_validation_slice_handoff.md` compresses the next external step into a one-row first-slice packet. This still does not claim any external benchmark execution. Its value is narrower and operational: it names the first slice shape, the license gate, the mapping artifact, and the dry-run goal before any external data is actually staged.
 
+That first-slice packet now also has an explicit evidence slot: `results/figures/external_validation_slice_receipt.md` defines the template-only writeback target for the first narrow external sanity-check. This still does not claim that any external slice has been executed. What it adds is a clearer handoff boundary, because the next contributor no longer has to invent the first receipt format before recording what happened.
+
 It now also includes a first `demo_excellence` bridge: `results/figures/demo_storyboard.md` plus a small JSON card set. This is intentionally light-weight rather than a full demo app, but it already improves onboarding by giving a one-page story that connects the problem, pipeline, main findings, and frontier extensions.
 
 That demo bridge is now also easier to present live: `results/figures/demo_walkthrough.md` adds a short ordered talk track anchored to existing artifacts. This is still presentation support rather than a new benchmark layer, but it makes the demo frontier more executable without forcing a UI build first.

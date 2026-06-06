@@ -187,6 +187,12 @@ Update: a generated external validation slice handoff now turns that recommendat
 - Summary view: `results/figures/external_validation_slice_handoff.md`
 - This keeps the scope narrow and honest: it defines the first slice shape, license gate, mapping artifact, and dry-run goal without implying that any external slice has already been staged or executed.
 
+Update: a generated external validation slice receipt now creates the first evidence writeback slot.
+
+- External validation slice receipt: `results/tables/external_validation_slice_receipt.json`
+- Summary view: `results/figures/external_validation_slice_receipt.md`
+- This stays on the same safe side of the line: it prepares the template-only receipt for a future narrow dry run without implying that any external sanity-check has already happened.
+
 Update: a generated demo walkthrough now turns the storyboard into a short presentation sequence.
 
 - Demo walkthrough: `results/tables/demo_walkthrough_steps.json`

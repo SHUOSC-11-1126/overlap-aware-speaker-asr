@@ -504,6 +504,12 @@ External validation slice handoff bridge:
 - `results/tables/external_validation_slice_handoff.csv`
 - This bridge now turns that prioritized target into a single first-slice packet. It still does not claim any external execution; it only defines the first slice shape, license gate, mapping artifact, and dry-run goal for the narrowest external follow-up.
 
+External validation slice receipt bridge:
+
+- `results/figures/external_validation_slice_receipt.md`
+- `results/tables/external_validation_slice_receipt.json`
+- This bridge now materializes the expected evidence slot for that first slice as a template-only receipt. It still does not claim any executed external sanity-check; it simply defines what the first narrow follow-up should write back once it actually happens.
+
 Demo storyboard bridge:
 
 - `results/figures/demo_storyboard.md`

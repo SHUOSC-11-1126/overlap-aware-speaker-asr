@@ -281,6 +281,11 @@ Current external validation slice handoff result:
 - `results/figures/external_validation_slice_handoff.md` now turns that prioritization into a single first-slice handoff packet
 - This remains strictly pre-execution coordination: it names the first slice shape, license gate, mapping artifact, and dry-run goal without claiming that any external benchmark has already been staged or run
 
+Current external validation slice receipt result:
+
+- `results/figures/external_validation_slice_receipt.md` now materializes the expected evidence target for that first external slice
+- This still does not claim any external execution: it defines the template-only writeback slot, expected inputs, and expected outputs so a future narrow dry run has a concrete receipt to fill
+
 Current demo storyboard result:
 
 - `results/figures/demo_storyboard.md` now provides a one-page demo-facing story that explains the problem, pipeline, findings, and current frontier extensions with a lightweight Mermaid diagram
