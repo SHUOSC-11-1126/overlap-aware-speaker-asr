@@ -93,6 +93,11 @@ Update: decision matrix now consolidates the cascade recommendation evidence int
 - Decision matrix: `results/tables/cascade_decision_matrix.csv`
 - Current evidence suggests `balanced` is the cleanest default operating point, while `accuracy_first` is the strongest robustness-first alternative.
 
+Update: a generated frontier report now consolidates the full cascade audit stack.
+
+- Frontier report: `results/figures/cascade_frontier_report.md`
+- This gives future contributors one entrypoint before diving into the more granular audit tables.
+
 Remaining stretch work:
 
 - replace proxy costs with a controlled hardware/runtime benchmark

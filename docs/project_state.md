@@ -229,6 +229,11 @@ Decision matrix:
 - `accuracy_first` now surfaces as the most robust accuracy-biased profile because its synthetic `ALL` recommendation aligns with the best shared robustness rank.
 - `balanced` is the cleanest default profile because it combines `router_v2` family stability with mid-pack robustness and lower synthetic `ALL` cost than `accuracy_first`.
 
+Frontier report:
+
+- `results/figures/cascade_frontier_report.md`
+- This generated note now acts as the single-entry summary for the current compute-aware cascade frontier evidence.
+
 ## Synthetic Split Cascade Validation
 
 Label: `synthetic/silver` and `experimental/frontier`
