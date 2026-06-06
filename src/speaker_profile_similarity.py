@@ -20,6 +20,16 @@ CSV_COLUMNS = [
     "observation",
 ]
 
+TRIAGE_COLUMNS = [
+    "dominant_pattern",
+    "case_count",
+    "swapped_count",
+    "direct_count",
+    "average_confidence_gap",
+    "cleaned_source_count",
+    "next_action",
+]
+
 
 def text_overlap_ratio(left: str, right: str) -> float:
     left_counter = Counter(str(left).strip())
@@ -102,6 +112,49 @@ def build_speaker_profile_summary_lines(rows: list[dict[str, Any]]) -> list[str]
     return lines
 
 
+def build_speaker_profile_triage_rows(rows: list[dict[str, Any]]) -> list[dict[str, str]]:
+    swapped_count = sum(1 for row in rows if str(row.get("best_profile_alignment", "")) == "swapped")
+    direct_count = sum(1 for row in rows if str(row.get("best_profile_alignment", "")) == "direct")
+    cleaned_source_count = sum(
+        1 for row in rows if str(row.get("hypothesis_source", "")) == "separated_whisper_cleaned"
+    )
+    confidence_gaps = [float(row.get("profile_confidence_gap", 0.0) or 0.0) for row in rows]
+    average_confidence_gap = round(sum(confidence_gaps) / len(confidence_gaps), 6) if confidence_gaps else 0.0
+    dominant_pattern = "swapped_bias" if swapped_count > direct_count else "direct_bias_or_tie"
+    next_action = (
+        "Test a stronger profile method before claiming attribution value."
+        if dominant_pattern == "swapped_bias"
+        else "Check whether the simple profile signal adds stable value beyond the current per-case table."
+    )
+    return [
+        {
+            "dominant_pattern": dominant_pattern,
+            "case_count": str(len(rows)),
+            "swapped_count": str(swapped_count),
+            "direct_count": str(direct_count),
+            "average_confidence_gap": f"{average_confidence_gap:.6f}",
+            "cleaned_source_count": str(cleaned_source_count),
+            "next_action": next_action,
+        }
+    ]
+
+
+def build_speaker_profile_triage_lines(rows: list[dict[str, str]]) -> list[str]:
+    lines = [
+        "# Speaker Profile Triage",
+        "",
+        "This generated card summarizes the current aggregate pattern in the lightweight profile signal. It does not claim voiceprint or speaker-ID success.",
+        "",
+        "| dominant_pattern | case_count | swapped_count | direct_count | average_confidence_gap | cleaned_source_count | next_action |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['dominant_pattern']} | {row['case_count']} | {row['swapped_count']} | {row['direct_count']} | {row['average_confidence_gap']} | {row['cleaned_source_count']} | {row['next_action']} |"
+        )
+    return lines
+
+
 def load_snippet_rows(prefix: str) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for path in sorted((PROJECT_ROOT / "results" / "snippet_transcripts").glob(f"{prefix}_*_whisper.json")):
@@ -136,7 +189,7 @@ def load_hypothesis_text(case_id: str) -> dict[str, Any]:
     }
 
 
-def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path]:
+def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, Path, Path]:
     tables_dir = PROJECT_ROOT / "results" / "tables"
     figures_dir = PROJECT_ROOT / "results" / "figures"
     tables_dir.mkdir(parents=True, exist_ok=True)
@@ -144,13 +197,23 @@ def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path]:
     csv_path = tables_dir / "speaker_profile_similarity.csv"
     json_path = tables_dir / "speaker_profile_similarity.json"
     md_path = figures_dir / "speaker_profile_risk_summary.md"
+    triage_rows = build_speaker_profile_triage_rows(rows)
+    triage_csv_path = tables_dir / "speaker_profile_triage.csv"
+    triage_json_path = tables_dir / "speaker_profile_triage.json"
+    triage_md_path = figures_dir / "speaker_profile_triage.md"
     with csv_path.open("w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=CSV_COLUMNS)
         writer.writeheader()
         writer.writerows(rows)
     json_path.write_text(json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf-8")
     md_path.write_text("\n".join(build_speaker_profile_summary_lines(rows)) + "\n", encoding="utf-8")
-    return csv_path, json_path, md_path
+    with triage_csv_path.open("w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=TRIAGE_COLUMNS)
+        writer.writeheader()
+        writer.writerows(triage_rows)
+    triage_json_path.write_text(json.dumps(triage_rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    triage_md_path.write_text("\n".join(build_speaker_profile_triage_lines(triage_rows)) + "\n", encoding="utf-8")
+    return csv_path, json_path, md_path, triage_csv_path, triage_json_path, triage_md_path
 
 
 def main() -> None:
@@ -162,10 +225,13 @@ def main() -> None:
     references = {case_id: load_reference(case_id) for case_id in case_ids}
     hypothesis_texts = {case_id: load_hypothesis_text(case_id) for case_id in case_ids}
     rows = build_similarity_rows(case_ids, profile_texts, references, hypothesis_texts)
-    csv_path, json_path, md_path = write_outputs(rows)
+    csv_path, json_path, md_path, triage_csv_path, triage_json_path, triage_md_path = write_outputs(rows)
     print(f"Wrote speaker profile similarity: {csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote speaker profile JSON: {json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote speaker profile summary: {md_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote speaker profile triage CSV: {triage_csv_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote speaker profile triage JSON: {triage_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote speaker profile triage note: {triage_md_path.relative_to(PROJECT_ROOT)}")
 
 
 if __name__ == "__main__":

@@ -6,6 +6,8 @@ from src.speaker_profile_similarity import (
     build_profile_text,
     build_similarity_rows,
     build_speaker_profile_summary_lines,
+    build_speaker_profile_triage_lines,
+    build_speaker_profile_triage_rows,
     text_overlap_ratio,
 )
 
@@ -73,6 +75,56 @@ class SpeakerProfileSimilarityTest(unittest.TestCase):
         self.assertIn("DemoCase", rendered)
         self.assertIn("separated_whisper", rendered)
         self.assertIn("lightweight risk signal", rendered)
+
+    def test_build_speaker_profile_triage_rows_summarize_swapped_pattern(self) -> None:
+        rows = build_speaker_profile_triage_rows(
+            [
+                {
+                    "case_id": "CaseA",
+                    "best_profile_alignment": "swapped",
+                    "profile_confidence_gap": 0.4,
+                    "hypothesis_source": "separated_whisper_cleaned",
+                },
+                {
+                    "case_id": "CaseB",
+                    "best_profile_alignment": "swapped",
+                    "profile_confidence_gap": 0.42,
+                    "hypothesis_source": "separated_whisper",
+                },
+                {
+                    "case_id": "CaseC",
+                    "best_profile_alignment": "direct",
+                    "profile_confidence_gap": 0.1,
+                    "hypothesis_source": "separated_whisper",
+                },
+            ]
+        )
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["dominant_pattern"], "swapped_bias")
+        self.assertEqual(rows[0]["swapped_count"], "2")
+        self.assertEqual(rows[0]["direct_count"], "1")
+        self.assertIn("stronger profile method", rows[0]["next_action"].lower())
+
+    def test_build_speaker_profile_triage_lines_render_card(self) -> None:
+        lines = build_speaker_profile_triage_lines(
+            [
+                {
+                    "dominant_pattern": "swapped_bias",
+                    "case_count": "5",
+                    "swapped_count": "5",
+                    "direct_count": "0",
+                    "average_confidence_gap": "0.413131",
+                    "cleaned_source_count": "4",
+                    "next_action": "Test a stronger profile method before claiming attribution value.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Speaker Profile Triage", rendered)
+        self.assertIn("swapped_bias", rendered)
+        self.assertIn("stronger profile method", rendered)
 
 
 if __name__ == "__main__":
