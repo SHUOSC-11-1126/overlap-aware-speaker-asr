@@ -263,6 +263,12 @@ Update: `llm_critic` now has a first qualitative artifact.
 - Table: `results/tables/llm_critic_qualitative_summary.csv`
 - This is intentionally a qualitative/demo bridge only: it converts structured risk cues into critic-style explanations, candidate repairs, and uncertainty notes without claiming that an actual LLM has verified or fixed the transcript.
 
+Update: `demo_excellence` now has a first lightweight onboarding artifact.
+
+- Demo storyboard: `results/figures/demo_storyboard.md`
+- Story cards: `results/tables/demo_storyboard_cards.json`
+- This is a simple demo-facing bridge rather than a full app: it gives a new visitor a one-page explanation of the problem, pipeline, findings, and frontier directions before heavier UI work exists.
+
 ## Healthy Project Principles
 
 - New experiments should be isolated.

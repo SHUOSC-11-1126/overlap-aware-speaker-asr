@@ -221,6 +221,10 @@ Current llm critic result:
 
 - `results/figures/llm_critic_qualitative_note.md` now provides a qualitative/demo critic note that explains likely risk, suggests a repair direction, and preserves uncertainty instead of claiming verified transcript repair
 
+Current demo storyboard result:
+
+- `results/figures/demo_storyboard.md` now provides a one-page demo-facing story that explains the problem, pipeline, findings, and current frontier extensions with a lightweight Mermaid diagram
+
 ## Core Findings
 
 - Speech separation is useful, but not universally beneficial.

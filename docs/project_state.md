@@ -432,6 +432,12 @@ LLM critic qualitative bridge:
 - `results/tables/llm_critic_qualitative_summary.csv`
 - This bridge now turns structured risk cues into a qualitative critic-style note. It is intentionally labeled `qualitative/demo` and helps explain what might be repaired first without claiming that any transcript has been verified or improved.
 
+Demo storyboard bridge:
+
+- `results/figures/demo_storyboard.md`
+- `results/tables/demo_storyboard_cards.json`
+- This bridge now turns the repository into a one-page demo-facing story so a new visitor can understand the problem, pipeline, findings, and frontier directions quickly without opening the full report first.
+
 ## How to Resume Work
 
 Common commands:
