@@ -1,0 +1,32 @@
+[
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "profile": "accuracy_first",
+    "recommended_strategy": "router_v2_costed",
+    "average_cer": 0.120042,
+    "average_compute_cost": 5.5508,
+    "average_rtf": 0.080646,
+    "reason": "Lowest average CER; ties break toward lower compute cost."
+  },
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "profile": "cost_first",
+    "recommended_strategy": "fixed_mixed_whisper",
+    "average_cer": 0.302093,
+    "average_compute_cost": 5.2198,
+    "average_rtf": 0.109309,
+    "reason": "Lowest average compute cost; ties break toward lower CER."
+  },
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "profile": "balanced",
+    "recommended_strategy": "router_v2_costed",
+    "average_cer": 0.120042,
+    "average_compute_cost": 5.5508,
+    "average_rtf": 0.080646,
+    "reason": "Chosen from the Pareto frontier by the smallest normalized CER+compute distance to the ideal point."
+  }
+]

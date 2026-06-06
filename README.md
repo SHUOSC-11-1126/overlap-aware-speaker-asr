@@ -90,6 +90,17 @@ Current Pareto frontier audit result:
 - synthetic split `ALL` frontier: `fixed_mixed_whisper`, `fixed_separated_whisper_cleaned`, `router_v2_synthetic_costed`, `cleaned_preferred_cascade`
 - synthetic split `budget_cascade` is dominated by `router_v2_synthetic_costed`
 
+Current recommendation card result:
+
+- gold `ALL`
+  - `accuracy_first`: `router_v2_costed`
+  - `cost_first`: `fixed_mixed_whisper`
+  - `balanced`: `router_v2_costed`
+- synthetic split `ALL`
+  - `accuracy_first`: `fixed_separated_whisper_cleaned`
+  - `cost_first`: `fixed_mixed_whisper`
+  - `balanced`: `router_v2_synthetic_costed`
+
 ## Core Findings
 
 - Speech separation is useful, but not universally beneficial.
@@ -144,11 +155,13 @@ python -m src.project_harness
 - [Cascade runtime provenance audit](results/figures/cascade_runtime_audit.md)
 - [Cascade runtime normalization audit](results/figures/cascade_runtime_normalization.md)
 - [Cascade Pareto frontier audit](results/figures/cascade_pareto.md)
+- [Cascade recommendation card](results/figures/cascade_recommendations.md)
 - [Synthetic split cascade summary](results/figures/synthetic_split_cascade_summary.md)
 - [Synthetic split cascade trade-off figure](results/figures/synthetic_split_cer_runtime_tradeoff.png)
 - [Synthetic split cascade runtime audit](results/figures/synthetic_split_cascade_runtime_audit.md)
 - [Synthetic split cascade runtime normalization](results/figures/synthetic_split_cascade_runtime_normalization.md)
 - [Synthetic split cascade Pareto audit](results/figures/synthetic_split_cascade_pareto.md)
+- [Synthetic split cascade recommendation card](results/figures/synthetic_split_cascade_recommendations.md)
 - [Router ablation summary](results/figures/router_ablation_summary.md)
 - [Synthetic routing summary](results/figures/synthetic_routing_summary.md)
 - [Synthetic split summary](results/figures/synthetic_split_routing_summary.md)

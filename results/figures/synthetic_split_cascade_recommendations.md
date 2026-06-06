@@ -1,0 +1,28 @@
+# Cascade Recommendation Card
+
+This card recommends strategies for different deployment preferences using the current cascade audits.
+
+## synthetic_split / ALL
+
+| profile | recommended_strategy | average_cer | average_compute_cost | average_rtf | reason |
+| --- | --- | ---: | ---: | ---: | --- |
+| accuracy_first | fixed_separated_whisper_cleaned | 0.179021 | 1.10836 | 0.133284 | Lowest average CER; ties break toward lower compute cost. |
+| cost_first | fixed_mixed_whisper | 0.465715 | 0.674 | 0.163361 | Lowest average compute cost; ties break toward lower CER. |
+| balanced | router_v2_synthetic_costed | 0.285187 | 0.78127 | 0.148342 | Chosen from the Pareto frontier by the smallest normalized CER+compute distance to the ideal point. |
+
+## synthetic_split / DEV
+
+| profile | recommended_strategy | average_cer | average_compute_cost | average_rtf | reason |
+| --- | --- | ---: | ---: | ---: | --- |
+| accuracy_first | fixed_separated_whisper_cleaned | 0.172804 | 1.01176 | 0.122603 | Lowest average CER; ties break toward lower compute cost. |
+| cost_first | fixed_mixed_whisper | 0.4867 | 0.74366 | 0.17536 | Lowest average compute cost; ties break toward lower CER. |
+| balanced | router_v2_synthetic_costed | 0.235049 | 0.76668 | 0.148484 | Chosen from the Pareto frontier by the smallest normalized CER+compute distance to the ideal point. |
+
+## synthetic_split / TEST
+
+| profile | recommended_strategy | average_cer | average_compute_cost | average_rtf | reason |
+| --- | --- | ---: | ---: | ---: | --- |
+| accuracy_first | fixed_separated_whisper_cleaned | 0.185238 | 1.20496 | 0.143966 | Lowest average CER; ties break toward lower compute cost. |
+| cost_first | fixed_mixed_whisper | 0.44473 | 0.60434 | 0.151362 | Lowest average compute cost; ties break toward lower CER. |
+| balanced | router_v2_synthetic_costed | 0.335326 | 0.79586 | 0.148201 | Chosen from the Pareto frontier by the smallest normalized CER+compute distance to the ideal point. |
+

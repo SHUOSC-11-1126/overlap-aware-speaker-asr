@@ -1,0 +1,92 @@
+[
+  {
+    "dataset": "synthetic_split",
+    "scope": "ALL",
+    "profile": "accuracy_first",
+    "recommended_strategy": "fixed_separated_whisper_cleaned",
+    "average_cer": 0.179021,
+    "average_compute_cost": 1.10836,
+    "average_rtf": 0.133284,
+    "reason": "Lowest average CER; ties break toward lower compute cost."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "ALL",
+    "profile": "cost_first",
+    "recommended_strategy": "fixed_mixed_whisper",
+    "average_cer": 0.465715,
+    "average_compute_cost": 0.674,
+    "average_rtf": 0.163361,
+    "reason": "Lowest average compute cost; ties break toward lower CER."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "ALL",
+    "profile": "balanced",
+    "recommended_strategy": "router_v2_synthetic_costed",
+    "average_cer": 0.285187,
+    "average_compute_cost": 0.78127,
+    "average_rtf": 0.148342,
+    "reason": "Chosen from the Pareto frontier by the smallest normalized CER+compute distance to the ideal point."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "DEV",
+    "profile": "accuracy_first",
+    "recommended_strategy": "fixed_separated_whisper_cleaned",
+    "average_cer": 0.172804,
+    "average_compute_cost": 1.01176,
+    "average_rtf": 0.122603,
+    "reason": "Lowest average CER; ties break toward lower compute cost."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "DEV",
+    "profile": "cost_first",
+    "recommended_strategy": "fixed_mixed_whisper",
+    "average_cer": 0.4867,
+    "average_compute_cost": 0.74366,
+    "average_rtf": 0.17536,
+    "reason": "Lowest average compute cost; ties break toward lower CER."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "DEV",
+    "profile": "balanced",
+    "recommended_strategy": "router_v2_synthetic_costed",
+    "average_cer": 0.235049,
+    "average_compute_cost": 0.76668,
+    "average_rtf": 0.148484,
+    "reason": "Chosen from the Pareto frontier by the smallest normalized CER+compute distance to the ideal point."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "TEST",
+    "profile": "accuracy_first",
+    "recommended_strategy": "fixed_separated_whisper_cleaned",
+    "average_cer": 0.185238,
+    "average_compute_cost": 1.20496,
+    "average_rtf": 0.143966,
+    "reason": "Lowest average CER; ties break toward lower compute cost."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "TEST",
+    "profile": "cost_first",
+    "recommended_strategy": "fixed_mixed_whisper",
+    "average_cer": 0.44473,
+    "average_compute_cost": 0.60434,
+    "average_rtf": 0.151362,
+    "reason": "Lowest average compute cost; ties break toward lower CER."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "TEST",
+    "profile": "balanced",
+    "recommended_strategy": "router_v2_synthetic_costed",
+    "average_cer": 0.335326,
+    "average_compute_cost": 0.79586,
+    "average_rtf": 0.148201,
+    "reason": "Chosen from the Pareto frontier by the smallest normalized CER+compute distance to the ideal point."
+  }
+]

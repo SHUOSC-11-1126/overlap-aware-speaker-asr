@@ -195,6 +195,12 @@ Pareto frontier audit:
 - Gold `ALL` frontier strategies are `fixed_mixed_whisper` and `router_v2_costed`.
 - `risk_aware_costed` and `budget_cascade` are dominated by `router_v2_costed`; `fixed_separated_whisper_cleaned` is also dominated once CER and average compute cost are considered jointly.
 
+Recommendation card:
+
+- `results/tables/cascade_recommendations.csv`
+- `results/figures/cascade_recommendations.md`
+- Gold `ALL` recommends `router_v2_costed` for both `accuracy_first` and `balanced`, while `fixed_mixed_whisper` remains the `cost_first` option.
+
 ## Synthetic Split Cascade Validation
 
 Label: `synthetic/silver` and `experimental/frontier`
@@ -238,6 +244,12 @@ Pareto frontier audit:
 - `results/figures/synthetic_split_cascade_pareto.md`
 - Synthetic split `ALL` frontier strategies are `fixed_mixed_whisper`, `fixed_separated_whisper_cleaned`, `router_v2_synthetic_costed`, and `cleaned_preferred_cascade`.
 - `budget_cascade` is dominated by `router_v2_synthetic_costed` on the held-out synthetic split `ALL` scope.
+
+Recommendation card:
+
+- `results/tables/synthetic_split_cascade_recommendations.csv`
+- `results/figures/synthetic_split_cascade_recommendations.md`
+- Synthetic split `ALL` recommends `fixed_separated_whisper_cleaned` for `accuracy_first`, `fixed_mixed_whisper` for `cost_first`, and `router_v2_synthetic_costed` for `balanced`.
 
 ## What Should Happen Next
 

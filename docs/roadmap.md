@@ -67,6 +67,12 @@ Update: Pareto frontier audit now makes dominated strategies explicit.
 - Synthetic split Pareto audit: `results/tables/synthetic_split_cascade_pareto.csv`
 - Current evidence suggests `router_v2_costed` dominates the other adaptive gold cascades, while synthetic split still leaves multiple meaningful frontier options.
 
+Update: recommendation cards now turn the audits into deployment-facing choices.
+
+- Gold recommendation card: `results/tables/cascade_recommendations.csv`
+- Synthetic split recommendation card: `results/tables/synthetic_split_cascade_recommendations.csv`
+- Current evidence recommends `router_v2_costed` as the gold balanced choice and `router_v2_synthetic_costed` as the synthetic split balanced choice.
+
 Remaining stretch work:
 
 - replace proxy costs with a controlled hardware/runtime benchmark
