@@ -4,6 +4,8 @@ import unittest
 
 from src.llm_correct import (
     build_critic_note_lines,
+    build_critic_review_queue_lines,
+    build_critic_review_queue_rows,
     build_critic_rows,
 )
 
@@ -55,6 +57,52 @@ class LlmCriticQualitativeTest(unittest.TestCase):
         self.assertIn("HeavyOverlap", rendered)
         self.assertIn("cleaned transcript", rendered)
         self.assertIn("attribution remains uncertain", rendered)
+
+    def test_build_critic_review_queue_rows_prioritize_highest_uncertainty(self) -> None:
+        rows = build_critic_review_queue_rows(
+            [
+                {
+                    "case_id": "HeavyOverlap",
+                    "label": "qualitative/demo",
+                    "risk_explanation": "length_inflation_risk suggests unstable output.",
+                    "candidate_repair": "Try cleaned transcript first.",
+                    "uncertainty_note": "Profile alignment still prefers swapped, so attribution remains uncertain.",
+                },
+                {
+                    "case_id": "LightOverlap",
+                    "label": "qualitative/demo",
+                    "risk_explanation": "The selector reports a medium risk state even without explicit flags.",
+                    "candidate_repair": "Try mixed transcript first.",
+                    "uncertainty_note": "No profile alignment signal is available, so attribution remains uncertain.",
+                },
+            ]
+        )
+
+        self.assertEqual(rows[0]["queue_order"], "1")
+        self.assertEqual(rows[0]["case_id"], "HeavyOverlap")
+        self.assertEqual(rows[0]["review_priority"], "high")
+        self.assertIn("swapped", rows[0]["why_now"])
+        self.assertEqual(rows[1]["review_priority"], "medium")
+
+    def test_build_critic_review_queue_lines_render_ordered_table(self) -> None:
+        lines = build_critic_review_queue_lines(
+            [
+                {
+                    "queue_order": "1",
+                    "case_id": "HeavyOverlap",
+                    "label": "qualitative/demo",
+                    "review_priority": "high",
+                    "why_now": "Risk flags plus swapped-profile uncertainty make this the strongest first review target.",
+                    "candidate_repair": "Try cleaned transcript first.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# LLM Critic Review Queue", rendered)
+        self.assertIn("HeavyOverlap", rendered)
+        self.assertIn("review_priority", rendered)
+        self.assertIn("first review target", rendered)
 
 
 if __name__ == "__main__":

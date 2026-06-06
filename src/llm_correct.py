@@ -16,6 +16,15 @@ CSV_COLUMNS = [
     "uncertainty_note",
 ]
 
+QUEUE_COLUMNS = [
+    "queue_order",
+    "case_id",
+    "label",
+    "review_priority",
+    "why_now",
+    "candidate_repair",
+]
+
 
 def read_csv_rows(path: Path) -> list[dict[str, Any]]:
     if not path.exists():
@@ -83,7 +92,68 @@ def build_critic_note_lines(rows: list[dict[str, Any]]) -> list[str]:
     return lines
 
 
-def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path]:
+def build_critic_review_queue_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    prioritized: list[dict[str, Any]] = []
+    for row in rows:
+        risk_explanation = str(row.get("risk_explanation", ""))
+        uncertainty_note = str(row.get("uncertainty_note", ""))
+        has_swapped_signal = "swapped" in uncertainty_note.lower()
+        has_explicit_flags = "risk" in risk_explanation.lower()
+        if has_swapped_signal and has_explicit_flags:
+            review_priority = "high"
+            priority_rank = 0
+            why_now = "Risk flags plus swapped-profile uncertainty make this the strongest first review target."
+        elif has_explicit_flags:
+            review_priority = "medium"
+            priority_rank = 1
+            why_now = "Explicit risk flags suggest the critic should review this soon even without a strong swap signal."
+        else:
+            review_priority = "medium"
+            priority_rank = 2
+            why_now = "The selector still reports review-worthy uncertainty, so this stays in the queue after the strongest flagged case."
+        prioritized.append(
+            {
+                "case_id": str(row.get("case_id", "")),
+                "label": str(row.get("label", "qualitative/demo")),
+                "review_priority": review_priority,
+                "why_now": why_now,
+                "candidate_repair": str(row.get("candidate_repair", "")),
+                "_priority_rank": priority_rank,
+            }
+        )
+    prioritized.sort(key=lambda row: (int(row["_priority_rank"]), str(row["case_id"])))
+    queue_rows: list[dict[str, Any]] = []
+    for index, row in enumerate(prioritized, start=1):
+        queue_rows.append(
+            {
+                "queue_order": str(index),
+                "case_id": str(row["case_id"]),
+                "label": str(row["label"]),
+                "review_priority": str(row["review_priority"]),
+                "why_now": str(row["why_now"]),
+                "candidate_repair": str(row["candidate_repair"]),
+            }
+        )
+    return queue_rows
+
+
+def build_critic_review_queue_lines(rows: list[dict[str, Any]]) -> list[str]:
+    lines = [
+        "# LLM Critic Review Queue",
+        "",
+        "This generated queue is qualitative only. It suggests which cases should receive the next critic-style review pass first.",
+        "",
+        "| queue_order | case_id | label | review_priority | why_now | candidate_repair |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['queue_order']} | {row['case_id']} | {row['label']} | {row['review_priority']} | {row['why_now']} | {row['candidate_repair']} |"
+        )
+    return lines
+
+
+def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, Path, Path]:
     tables_dir = PROJECT_ROOT / "results" / "tables"
     figures_dir = PROJECT_ROOT / "results" / "figures"
     tables_dir.mkdir(parents=True, exist_ok=True)
@@ -91,6 +161,10 @@ def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path]:
     csv_path = tables_dir / "llm_critic_qualitative_summary.csv"
     json_path = tables_dir / "llm_critic_qualitative_summary.json"
     md_path = figures_dir / "llm_critic_qualitative_note.md"
+    queue_rows = build_critic_review_queue_rows(rows)
+    queue_csv_path = tables_dir / "llm_critic_review_queue.csv"
+    queue_json_path = tables_dir / "llm_critic_review_queue.json"
+    queue_md_path = figures_dir / "llm_critic_review_queue.md"
 
     with csv_path.open("w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=CSV_COLUMNS)
@@ -98,17 +172,26 @@ def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path]:
         writer.writerows(rows)
     json_path.write_text(json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf-8")
     md_path.write_text("\n".join(build_critic_note_lines(rows)) + "\n", encoding="utf-8")
-    return csv_path, json_path, md_path
+    with queue_csv_path.open("w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=QUEUE_COLUMNS)
+        writer.writeheader()
+        writer.writerows(queue_rows)
+    queue_json_path.write_text(json.dumps(queue_rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    queue_md_path.write_text("\n".join(build_critic_review_queue_lines(queue_rows)) + "\n", encoding="utf-8")
+    return csv_path, json_path, md_path, queue_csv_path, queue_json_path, queue_md_path
 
 
 def main() -> None:
     risk_rows = read_csv_rows(PROJECT_ROOT / "results" / "tables" / "risk_aware_selection.csv")
     profile_rows = read_csv_rows(PROJECT_ROOT / "results" / "tables" / "speaker_profile_similarity.csv")
     rows = build_critic_rows(risk_rows, profile_rows)
-    csv_path, json_path, md_path = write_outputs(rows)
+    csv_path, json_path, md_path, queue_csv_path, queue_json_path, queue_md_path = write_outputs(rows)
     print(f"Wrote LLM critic summary: {csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote LLM critic JSON: {json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote LLM critic note: {md_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote LLM critic queue: {queue_csv_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote LLM critic queue JSON: {queue_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote LLM critic queue note: {queue_md_path.relative_to(PROJECT_ROOT)}")
 
 
 if __name__ == "__main__":
