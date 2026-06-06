@@ -27,6 +27,16 @@ PRIORITIZATION_COLUMNS = [
     "next_action",
 ]
 
+SLICE_HANDOFF_COLUMNS = [
+    "dataset_name",
+    "label",
+    "first_slice_shape",
+    "license_gate",
+    "mapping_artifact",
+    "dry_run_goal",
+    "handoff_note",
+]
+
 
 def build_external_validation_candidate_rows() -> list[dict[str, str]]:
     return [
@@ -156,7 +166,46 @@ def build_external_validation_prioritization_lines(
     return lines
 
 
-def write_outputs(rows: list[dict[str, str]]) -> tuple[Path, Path, Path, Path, Path, Path]:
+def build_external_validation_slice_handoff_rows(
+    rows: list[dict[str, str]],
+) -> list[dict[str, str]]:
+    if not rows:
+        return []
+
+    head = rows[0]
+    dataset_name = str(head.get("dataset_name", ""))
+    return [
+        {
+            "dataset_name": dataset_name,
+            "label": str(head.get("label", "")),
+            "first_slice_shape": "single_short_meeting_excerpt",
+            "license_gate": "Confirm official license terms before any local slice staging.",
+            "mapping_artifact": "Create one repo mapping stub for the first external slice.",
+            "dry_run_goal": f"Run one narrow external sanity-check dry run for {dataset_name} without claiming a benchmark result.",
+            "handoff_note": "No external benchmark has been run yet; this card only frames the first slice.",
+        }
+    ]
+
+
+def build_external_validation_slice_handoff_lines(
+    rows: list[dict[str, str]],
+) -> list[str]:
+    lines = [
+        "# External Validation Slice Handoff",
+        "",
+        "This generated handoff packet narrows the top-ranked external candidate into a single first slice. It does not claim that any external benchmark has been run.",
+        "",
+        "| dataset_name | label | first_slice_shape | license_gate | mapping_artifact | dry_run_goal | handoff_note |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['dataset_name']} | {row['label']} | {row['first_slice_shape']} | {row['license_gate']} | {row['mapping_artifact']} | {row['dry_run_goal']} | {row['handoff_note']} |"
+        )
+    return lines
+
+
+def write_outputs(rows: list[dict[str, str]]) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path, Path]:
     tables_dir = PROJECT_ROOT / "results" / "tables"
     figures_dir = PROJECT_ROOT / "results" / "figures"
     tables_dir.mkdir(parents=True, exist_ok=True)
@@ -168,6 +217,10 @@ def write_outputs(rows: list[dict[str, str]]) -> tuple[Path, Path, Path, Path, P
     prioritization_csv_path = tables_dir / "external_validation_prioritization.csv"
     prioritization_json_path = tables_dir / "external_validation_prioritization.json"
     prioritization_md_path = figures_dir / "external_validation_prioritization.md"
+    slice_handoff_rows = build_external_validation_slice_handoff_rows(prioritization_rows)
+    slice_handoff_csv_path = tables_dir / "external_validation_slice_handoff.csv"
+    slice_handoff_json_path = tables_dir / "external_validation_slice_handoff.json"
+    slice_handoff_md_path = figures_dir / "external_validation_slice_handoff.md"
     with csv_path.open("w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=CSV_COLUMNS)
         writer.writeheader()
@@ -183,18 +236,50 @@ def write_outputs(rows: list[dict[str, str]]) -> tuple[Path, Path, Path, Path, P
         "\n".join(build_external_validation_prioritization_lines(prioritization_rows)) + "\n",
         encoding="utf-8",
     )
-    return csv_path, json_path, md_path, prioritization_csv_path, prioritization_json_path, prioritization_md_path
+    with slice_handoff_csv_path.open("w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=SLICE_HANDOFF_COLUMNS)
+        writer.writeheader()
+        writer.writerows(slice_handoff_rows)
+    slice_handoff_json_path.write_text(json.dumps(slice_handoff_rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    slice_handoff_md_path.write_text(
+        "\n".join(build_external_validation_slice_handoff_lines(slice_handoff_rows)) + "\n",
+        encoding="utf-8",
+    )
+    return (
+        csv_path,
+        json_path,
+        md_path,
+        prioritization_csv_path,
+        prioritization_json_path,
+        prioritization_md_path,
+        slice_handoff_csv_path,
+        slice_handoff_json_path,
+        slice_handoff_md_path,
+    )
 
 
 def main() -> None:
     rows = build_external_validation_candidate_rows()
-    csv_path, json_path, md_path, prioritization_csv_path, prioritization_json_path, prioritization_md_path = write_outputs(rows)
+    (
+        csv_path,
+        json_path,
+        md_path,
+        prioritization_csv_path,
+        prioritization_json_path,
+        prioritization_md_path,
+        slice_handoff_csv_path,
+        slice_handoff_json_path,
+        slice_handoff_md_path,
+    ) = write_outputs(rows)
     print(f"Wrote external validation candidates: {csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote external validation JSON: {json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote external validation note: {md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote external validation prioritization: {prioritization_csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote external validation prioritization JSON: {prioritization_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote external validation prioritization note: {prioritization_md_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote external validation slice handoff: {slice_handoff_csv_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote external validation slice handoff JSON: {slice_handoff_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote external validation slice handoff note: {slice_handoff_md_path.relative_to(PROJECT_ROOT)}")
 
 
 if __name__ == "__main__":

@@ -5,6 +5,8 @@ import unittest
 from src.external_validation_candidates import (
     build_external_validation_candidate_lines,
     build_external_validation_candidate_rows,
+    build_external_validation_slice_handoff_lines,
+    build_external_validation_slice_handoff_rows,
     build_external_validation_prioritization_lines,
     build_external_validation_prioritization_rows,
 )
@@ -76,6 +78,50 @@ class ExternalValidationCandidatesTest(unittest.TestCase):
         self.assertIn("start_here", rendered)
         self.assertIn("closest first sanity-check target", rendered)
         self.assertIn("recommended_order", rendered)
+
+    def test_build_external_validation_slice_handoff_rows_turn_priority_head_into_first_slice(self) -> None:
+        rows = build_external_validation_slice_handoff_rows(
+            [
+                {
+                    "dataset_name": "AISHELL-4",
+                    "label": "external/sanity-check",
+                    "priority_tier": "start_here",
+                    "recommended_order": "1",
+                    "readiness_note": "License check plus a tiny repo-format mapping are still required before use.",
+                    "why_now": "Chinese meeting overlap and domain fit make this the closest first sanity-check target.",
+                    "next_action": "Confirm license and choose a tiny sanity-check slice.",
+                }
+            ]
+        )
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["dataset_name"], "AISHELL-4")
+        self.assertEqual(rows[0]["label"], "external/sanity-check")
+        self.assertEqual(rows[0]["first_slice_shape"], "single_short_meeting_excerpt")
+        self.assertIn("license", rows[0]["license_gate"].lower())
+        self.assertIn("repo mapping", rows[0]["mapping_artifact"].lower())
+        self.assertIn("dry run", rows[0]["dry_run_goal"].lower())
+
+    def test_build_external_validation_slice_handoff_lines_render_packet(self) -> None:
+        lines = build_external_validation_slice_handoff_lines(
+            [
+                {
+                    "dataset_name": "AISHELL-4",
+                    "label": "external/sanity-check",
+                    "first_slice_shape": "single_short_meeting_excerpt",
+                    "license_gate": "Confirm official license terms before any local slice staging.",
+                    "mapping_artifact": "Create one repo mapping stub for the first external slice.",
+                    "dry_run_goal": "Run one narrow external sanity-check dry run without claiming a benchmark result.",
+                    "handoff_note": "No external benchmark has been run yet; this card only frames the first slice.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# External Validation Slice Handoff", rendered)
+        self.assertIn("AISHELL-4", rendered)
+        self.assertIn("single_short_meeting_excerpt", rendered)
+        self.assertIn("No external benchmark has been run yet", rendered)
 
 
 if __name__ == "__main__":
