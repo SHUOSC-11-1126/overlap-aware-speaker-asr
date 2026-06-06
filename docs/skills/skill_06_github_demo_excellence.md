@@ -8,6 +8,10 @@ How can the project be presented so that the repository is visually clear, memor
 
 The technical baseline is done, so the repository should now communicate its story well to humans who are skimming the project quickly.
 
+## Current queue position
+
+Fifth in the current frontier queue. Treat this as the presentation layer that comes after the earlier frontier handoffs have been made clearer.
+
 ## Challenge level
 
 Level 2: Engineering Demo
