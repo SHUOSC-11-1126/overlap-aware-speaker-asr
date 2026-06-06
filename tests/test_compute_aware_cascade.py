@@ -9,6 +9,7 @@ from src.compute_aware_cascade import (
     choose_cleaned_preferred_method,
     compute_method_cost,
     choose_budget_cascade_method,
+    classify_pareto_rows,
     summarize_runtime_normalization,
     summarize_runtime_sources,
 )
@@ -161,6 +162,23 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertEqual(fixed_row["average_rtf"], 0.2)
         self.assertEqual(router_row["average_rtf"], 0.2)
         self.assertEqual(router_row["duration_source"], "selected_audio")
+
+    def test_classify_pareto_rows_marks_dominated_and_frontier(self) -> None:
+        rows = [
+            {"strategy": "cheap_bad", "average_cer": 0.4, "average_compute_cost": 1.0},
+            {"strategy": "mid_good", "average_cer": 0.2, "average_compute_cost": 1.2},
+            {"strategy": "expensive_same", "average_cer": 0.2, "average_compute_cost": 1.5},
+            {"strategy": "cheap_best", "average_cer": 0.15, "average_compute_cost": 0.9},
+        ]
+
+        classified = classify_pareto_rows(rows)
+        by_strategy = {row["strategy"]: row for row in classified}
+
+        self.assertEqual(by_strategy["cheap_best"]["pareto_status"], "frontier")
+        self.assertEqual(by_strategy["mid_good"]["pareto_status"], "dominated")
+        self.assertEqual(by_strategy["mid_good"]["dominated_by"], "cheap_best")
+        self.assertEqual(by_strategy["expensive_same"]["pareto_status"], "dominated")
+        self.assertEqual(by_strategy["expensive_same"]["dominated_by"], "mid_good")
 
 
 if __name__ == "__main__":

@@ -91,6 +91,18 @@ RUNTIME_NORMALIZATION_COLUMNS = [
     "notes",
 ]
 
+PARETO_COLUMNS = [
+    "dataset",
+    "scope",
+    "strategy",
+    "average_cer",
+    "average_compute_cost",
+    "average_rtf",
+    "pareto_status",
+    "dominated_by",
+    "notes",
+]
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Compute-aware cascade evaluation.")
@@ -458,6 +470,34 @@ def summarize_runtime_normalization(
     return rows
 
 
+def classify_pareto_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    classified: list[dict[str, Any]] = []
+    for row in rows:
+        current_cer = to_float(row.get("average_cer"))
+        current_cost = to_float(row.get("average_compute_cost"))
+        dominated_by = ""
+        for other in rows:
+            if other is row:
+                continue
+            other_cer = to_float(other.get("average_cer"))
+            other_cost = to_float(other.get("average_compute_cost"))
+            not_worse = other_cer <= current_cer and other_cost <= current_cost
+            strictly_better = other_cer < current_cer or other_cost < current_cost
+            if not_worse and strictly_better:
+                dominated_by = str(other.get("strategy", ""))
+                break
+        enriched = dict(row)
+        enriched["pareto_status"] = "dominated" if dominated_by else "frontier"
+        enriched["dominated_by"] = dominated_by
+        enriched["notes"] = (
+            "Pareto frontier minimizes average CER and average compute cost jointly."
+            if not dominated_by
+            else "Dominated by a strategy with no worse CER and no worse compute cost."
+        )
+        classified.append(enriched)
+    return classified
+
+
 def load_gold_cases() -> list[dict[str, Any]]:
     config = load_config()
     risk_rows = {str(row["case_id"]): row for row in read_csv_rows(PROJECT_ROOT / "results" / "tables" / "risk_aware_selection.csv")}
@@ -754,6 +794,72 @@ def render_runtime_normalization_summary(rows: list[dict[str, Any]], output_path
     output_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def build_pareto_rows(
+    performance_rows: list[dict[str, Any]],
+    runtime_normalization_rows: list[dict[str, Any]],
+    dataset_label: str,
+) -> list[dict[str, Any]]:
+    rtf_lookup = {
+        (str(row.get("scope", "ALL")), str(row.get("strategy", ""))): row
+        for row in runtime_normalization_rows
+    }
+    grouped: dict[str, list[dict[str, Any]]] = {}
+    for row in performance_rows:
+        scope = str(row.get("scope", "ALL"))
+        runtime_row = rtf_lookup.get((scope, str(row.get("strategy", ""))), {})
+        grouped.setdefault(scope, []).append(
+            {
+                "dataset": dataset_label,
+                "scope": scope,
+                "strategy": str(row.get("strategy", "")),
+                "average_cer": row.get("average_cer", ""),
+                "average_compute_cost": row.get("average_compute_cost", ""),
+                "average_rtf": runtime_row.get("average_rtf", ""),
+            }
+        )
+
+    pareto_rows: list[dict[str, Any]] = []
+    for scope in sorted(grouped):
+        pareto_rows.extend(classify_pareto_rows(grouped[scope]))
+    return pareto_rows
+
+
+def render_pareto_summary(rows: list[dict[str, Any]], output_path: Path) -> None:
+    lines = [
+        "# Cascade Pareto Frontier Audit",
+        "",
+        "This audit marks which strategies are on the CER/compute Pareto frontier and which are dominated.",
+        "",
+    ]
+    grouped_scopes = []
+    seen: set[tuple[str, str]] = set()
+    for row in rows:
+        key = (str(row["dataset"]), str(row["scope"]))
+        if key not in seen:
+            seen.add(key)
+            grouped_scopes.append(key)
+    for dataset, scope in grouped_scopes:
+        lines.extend([f"## {dataset} / {scope}", "", "| strategy | average_cer | average_compute_cost | average_rtf | pareto_status | dominated_by |", "| --- | ---: | ---: | ---: | --- | --- |"])
+        for row in rows:
+            if str(row["dataset"]) == dataset and str(row["scope"]) == scope:
+                lines.append(
+                    f"| {row['strategy']} | {row['average_cer']} | {row['average_compute_cost']} | {row['average_rtf']} | {row['pareto_status']} | {row['dominated_by']} |"
+                )
+        lines.append("")
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def write_pareto_outputs(
+    rows: list[dict[str, Any]],
+    csv_path: Path,
+    json_path: Path,
+    summary_path: Path,
+) -> None:
+    write_csv_json(rows, csv_path, json_path, PARETO_COLUMNS)
+    render_pareto_summary(rows, summary_path)
+
+
 def set_pixel(pixels: bytearray, width: int, height: int, x: int, y: int, color: tuple[int, int, int]) -> None:
     if 0 <= x < width and 0 <= y < height:
         idx = (y * width + x) * 3
@@ -934,6 +1040,9 @@ def main() -> None:
         runtime_norm_csv = PROJECT_ROOT / "results" / "tables" / "synthetic_split_cascade_runtime_normalization.csv"
         runtime_norm_json = PROJECT_ROOT / "results" / "tables" / "synthetic_split_cascade_runtime_normalization.json"
         runtime_norm_md = PROJECT_ROOT / "results" / "figures" / "synthetic_split_cascade_runtime_normalization.md"
+        pareto_csv = PROJECT_ROOT / "results" / "tables" / "synthetic_split_cascade_pareto.csv"
+        pareto_json = PROJECT_ROOT / "results" / "tables" / "synthetic_split_cascade_pareto.json"
+        pareto_md = PROJECT_ROOT / "results" / "figures" / "synthetic_split_cascade_pareto.md"
 
         write_csv_json(rows, table_csv, table_json, SYNTHETIC_PERFORMANCE_COLUMNS)
         render_tradeoff_figure([row for row in rows if str(row["scope"]) == "ALL"], figure_path)
@@ -987,6 +1096,12 @@ def main() -> None:
                 )
             )
         write_runtime_normalization_outputs(runtime_norm_rows, runtime_norm_csv, runtime_norm_json, runtime_norm_md)
+        pareto_rows = build_pareto_rows(
+            [row for row in rows if str(row.get("scope", "")) in {"ALL", "DEV", "TEST"}],
+            runtime_norm_rows,
+            dataset_label="synthetic_split",
+        )
+        write_pareto_outputs(pareto_rows, pareto_csv, pareto_json, pareto_md)
     else:
         cases = load_gold_cases()
         decisions = load_decisions()
@@ -1002,6 +1117,9 @@ def main() -> None:
         runtime_norm_csv = PROJECT_ROOT / "results" / "tables" / "cascade_runtime_normalization.csv"
         runtime_norm_json = PROJECT_ROOT / "results" / "tables" / "cascade_runtime_normalization.json"
         runtime_norm_md = PROJECT_ROOT / "results" / "figures" / "cascade_runtime_normalization.md"
+        pareto_csv = PROJECT_ROOT / "results" / "tables" / "cascade_pareto.csv"
+        pareto_json = PROJECT_ROOT / "results" / "tables" / "cascade_pareto.json"
+        pareto_md = PROJECT_ROOT / "results" / "figures" / "cascade_pareto.md"
 
         write_csv_json(rows, table_csv, table_json, PERFORMANCE_COLUMNS)
         render_tradeoff_figure(rows, figure_path)
@@ -1025,6 +1143,9 @@ def main() -> None:
             dataset_label="gold",
         )
         write_runtime_normalization_outputs(runtime_norm_rows, runtime_norm_csv, runtime_norm_json, runtime_norm_md)
+        gold_performance_rows = [dict(row, scope="ALL") for row in rows]
+        pareto_rows = build_pareto_rows(gold_performance_rows, runtime_norm_rows, dataset_label="gold")
+        write_pareto_outputs(pareto_rows, pareto_csv, pareto_json, pareto_md)
 
     print(f"Wrote cascade performance: {table_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade JSON: {table_json.relative_to(PROJECT_ROOT)}")
