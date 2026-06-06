@@ -332,6 +332,8 @@ The breadth-first push now also includes a first `llm_critic` bridge: `results/f
 
 That critic bridge is now slightly more executable: `results/figures/llm_critic_review_queue.md` adds a lightweight review order for the next critic-style pass. This still does not claim repaired output. In fact, its current value is partly diagnostic: the queue makes it obvious that swapped-profile uncertainty still appears broadly, so the frontier remains more about exposing a failure mode than demonstrating a solved agent loop.
 
+That first-pass queue now also has an explicit evidence slot: `results/figures/llm_critic_review_receipt.md` defines the template-only writeback target for the first critic-style review pass. This still does not claim that any qualitative repair loop has worked. What it adds is a cleaner handoff boundary, because the next contributor no longer has to invent the first receipt format before recording what the review actually found.
+
 It now also includes a first `external_validation` bridge: `results/figures/external_validation_candidates.md` plus a small candidate table covering AISHELL-4, AliMeeting, AMI, and LibriCSS. This is explicitly labeled `external/sanity-check`: it records source, license, fit, preprocessing, and next-action notes so future agents can move toward a narrow external mini validation without overstating the current evidence.
 
 That bridge is now one step more actionable: `results/figures/external_validation_prioritization.md` adds a lightweight execution order across the same candidates and currently recommends AISHELL-4 as the first tiny sanity-check target. This still does not claim that any external benchmark has been run; it simply reduces the next contributor's decision surface before data staging begins.

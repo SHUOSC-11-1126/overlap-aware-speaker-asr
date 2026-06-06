@@ -205,6 +205,12 @@ Update: a generated llm critic review queue now turns the qualitative note into 
 - Summary view: `results/figures/llm_critic_review_queue.md`
 - This remains a `qualitative/demo` artifact. It does not claim repaired transcripts; it simply orders which case should receive the next critic-style review pass and exposes that swapped-profile uncertainty is still common.
 
+Update: a generated llm critic review receipt now creates the first evidence writeback slot.
+
+- LLM critic review receipt: `results/tables/llm_critic_review_receipt.json`
+- Summary view: `results/figures/llm_critic_review_receipt.md`
+- This stays on the same safe side of the line: it prepares the template-only receipt for a future critic-style pass without implying that any repair loop has already succeeded.
+
 Update: a generated benchmark runbook card now turns the triage panel into a one-page execution brief.
 
 - Benchmark runbook card: `results/tables/cascade_benchmark_runbook_card.csv`

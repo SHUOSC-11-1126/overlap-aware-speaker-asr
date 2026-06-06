@@ -276,6 +276,11 @@ Current llm critic review queue result:
 - `results/figures/llm_critic_review_queue.md` now turns that qualitative critic bridge into a lightweight review order
 - This queue is still `qualitative/demo` rather than a verified repair loop: it recommends which case to read first and currently surfaces the widespread swapped-profile uncertainty as a failure-mode signal rather than a solved correction pipeline
 
+Current llm critic review receipt result:
+
+- `results/figures/llm_critic_review_receipt.md` now materializes the expected evidence slot for that first review pass
+- This still does not claim any successful repair: it defines the review scope, expected inputs, expected outputs, and writeback note so the first critic-style pass has a concrete receipt to fill
+
 Current external validation candidate result:
 
 - `results/figures/external_validation_candidates.md` now provides an `external/sanity-check` candidate card across AISHELL-4, AliMeeting, AMI, and LibriCSS with source note, license note, fit note, first preprocessing step, and next action

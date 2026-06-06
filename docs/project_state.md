@@ -498,6 +498,12 @@ LLM critic review queue bridge:
 - `results/tables/llm_critic_review_queue.csv`
 - This bridge now turns the critic note into a lightweight triage order. It stays explicitly qualitative, recommends which case to inspect first, and currently highlights that swapped-profile uncertainty remains widespread across the gold cases.
 
+LLM critic review receipt bridge:
+
+- `results/figures/llm_critic_review_receipt.md`
+- `results/tables/llm_critic_review_receipt.json`
+- This bridge now materializes the expected evidence slot for that first critic-style pass as a template-only receipt. It still does not claim any executed repair; it simply defines what the first qualitative review follow-up should write back once it actually happens.
+
 External validation candidate bridge:
 
 - `results/figures/external_validation_candidates.md`
