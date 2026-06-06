@@ -1,0 +1,9 @@
+[
+  {
+    "execution_status": "template_only",
+    "method_scope": "embedding_or_voiceprint_baseline",
+    "expected_inputs": "Speaker profile triage plus one stronger-method baseline stub.",
+    "expected_outputs": "Diagnostic stronger-method comparison note and a narrow evidence writeback.",
+    "writeback_note": "No stronger speaker-profile method has been executed yet; fill this receipt only after the first trial."
+  }
+]
