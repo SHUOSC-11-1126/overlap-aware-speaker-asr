@@ -181,6 +181,13 @@ Runtime provenance audit:
 - Current committed gold cascade outputs use observed runtime for all `5/5` selections in every reported strategy.
 - The proxy cost model remains a guardrail for missing-runtime edge cases rather than an active source in the current gold result tables.
 
+Runtime normalization audit:
+
+- `results/tables/cascade_runtime_normalization.csv`
+- `results/figures/cascade_runtime_normalization.md`
+- Gold `router_v2_costed`, `risk_aware_costed`, and `budget_cascade` all show `average_rtf 0.080646` when normalized by selected-route processed audio duration.
+- This RTF is not a wall-clock latency claim; separated routes divide by two-stream processed duration.
+
 ## Synthetic Split Cascade Validation
 
 Label: `synthetic/silver` and `experimental/frontier`
@@ -208,6 +215,15 @@ Runtime provenance audit:
 - `results/figures/synthetic_split_cascade_runtime_audit.md`
 - Current committed synthetic split cascade outputs use observed runtime for all `100/100` `ALL` selections and all `50/50` selections in both `DEV` and `TEST`.
 - The proxy cost model remains available for missing-runtime future experiments, but it is not active in the current synthetic split tables.
+
+Runtime normalization audit:
+
+- `results/tables/synthetic_split_cascade_runtime_normalization.csv`
+- `results/figures/synthetic_split_cascade_runtime_normalization.md`
+- `router_v2_synthetic_costed: average_rtf 0.148342`
+- `budget_cascade: average_rtf 0.148228`
+- `cleaned_preferred_cascade: average_rtf 0.156245`
+- These values are normalized by selected-route processed audio duration, not by a single mixed-stream wall-clock target.
 
 ## What Should Happen Next
 

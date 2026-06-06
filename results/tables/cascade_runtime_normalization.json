@@ -1,0 +1,68 @@
+[
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "strategy": "fixed_mixed_whisper",
+    "average_runtime_sec": 5.2198,
+    "average_selected_audio_duration_sec": 46.8754,
+    "average_rtf": 0.109309,
+    "sample_count": 5,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "strategy": "fixed_separated_whisper",
+    "average_runtime_sec": 5.9716,
+    "average_selected_audio_duration_sec": 93.7508,
+    "average_rtf": 0.064251,
+    "sample_count": 5,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "strategy": "fixed_separated_whisper_cleaned",
+    "average_runtime_sec": 5.9716,
+    "average_selected_audio_duration_sec": 93.7508,
+    "average_rtf": 0.064251,
+    "sample_count": 5,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "strategy": "router_v2_costed",
+    "average_runtime_sec": 5.5508,
+    "average_selected_audio_duration_sec": 73.6904,
+    "average_rtf": 0.080646,
+    "sample_count": 5,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "strategy": "risk_aware_costed",
+    "average_runtime_sec": 5.5508,
+    "average_selected_audio_duration_sec": 73.6904,
+    "average_rtf": 0.080646,
+    "sample_count": 5,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "strategy": "budget_cascade",
+    "average_runtime_sec": 5.5508,
+    "average_selected_audio_duration_sec": 73.6904,
+    "average_rtf": 0.080646,
+    "sample_count": 5,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  }
+]

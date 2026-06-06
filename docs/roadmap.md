@@ -55,6 +55,12 @@ Update: runtime provenance audit now makes the cost source explicit.
 - Synthetic split audit: `results/tables/synthetic_split_cascade_runtime_audit.csv`
 - Current committed cascade outputs are fully backed by observed runtime fields; proxy cost remains a fallback for future incomplete-runtime experiments.
 
+Update: runtime normalization audit now makes route-specific RTF explicit.
+
+- Gold normalization: `results/tables/cascade_runtime_normalization.csv`
+- Synthetic split normalization: `results/tables/synthetic_split_cascade_runtime_normalization.csv`
+- The current audit uses selected-route processed audio duration, which is a stronger compute-normalized signal than raw runtime alone but still not a hardware-controlled benchmark.
+
 Remaining stretch work:
 
 - replace proxy costs with a controlled hardware/runtime benchmark

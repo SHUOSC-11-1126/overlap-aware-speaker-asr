@@ -1,0 +1,200 @@
+[
+  {
+    "dataset": "synthetic_split",
+    "scope": "ALL",
+    "strategy": "fixed_mixed_whisper",
+    "average_runtime_sec": 0.674,
+    "average_selected_audio_duration_sec": 4.082594,
+    "average_rtf": 0.163361,
+    "sample_count": 100,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "ALL",
+    "strategy": "fixed_separated_whisper",
+    "average_runtime_sec": 1.10836,
+    "average_selected_audio_duration_sec": 8.165188,
+    "average_rtf": 0.133284,
+    "sample_count": 100,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "ALL",
+    "strategy": "fixed_separated_whisper_cleaned",
+    "average_runtime_sec": 1.10836,
+    "average_selected_audio_duration_sec": 8.165188,
+    "average_rtf": 0.133284,
+    "sample_count": 100,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "ALL",
+    "strategy": "router_v2_synthetic_costed",
+    "average_runtime_sec": 0.78127,
+    "average_selected_audio_duration_sec": 5.415958,
+    "average_rtf": 0.148342,
+    "sample_count": 100,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "ALL",
+    "strategy": "budget_cascade",
+    "average_runtime_sec": 0.94756,
+    "average_selected_audio_duration_sec": 6.455422,
+    "average_rtf": 0.148228,
+    "sample_count": 100,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "ALL",
+    "strategy": "cleaned_preferred_cascade",
+    "average_runtime_sec": 1.04816,
+    "average_selected_audio_duration_sec": 6.55787,
+    "average_rtf": 0.156245,
+    "sample_count": 100,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "DEV",
+    "strategy": "fixed_mixed_whisper",
+    "average_runtime_sec": 0.74366,
+    "average_selected_audio_duration_sec": 4.088964,
+    "average_rtf": 0.17536,
+    "sample_count": 50,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "DEV",
+    "strategy": "fixed_separated_whisper",
+    "average_runtime_sec": 1.01176,
+    "average_selected_audio_duration_sec": 8.177928,
+    "average_rtf": 0.122603,
+    "sample_count": 50,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "DEV",
+    "strategy": "fixed_separated_whisper_cleaned",
+    "average_runtime_sec": 1.01176,
+    "average_selected_audio_duration_sec": 8.177928,
+    "average_rtf": 0.122603,
+    "sample_count": 50,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "DEV",
+    "strategy": "router_v2_synthetic_costed",
+    "average_runtime_sec": 0.76668,
+    "average_selected_audio_duration_sec": 5.441964,
+    "average_rtf": 0.148484,
+    "sample_count": 50,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "DEV",
+    "strategy": "budget_cascade",
+    "average_runtime_sec": 0.97074,
+    "average_selected_audio_duration_sec": 6.454404,
+    "average_rtf": 0.151484,
+    "sample_count": 50,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "DEV",
+    "strategy": "cleaned_preferred_cascade",
+    "average_runtime_sec": 0.97074,
+    "average_selected_audio_duration_sec": 6.454404,
+    "average_rtf": 0.151484,
+    "sample_count": 50,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "TEST",
+    "strategy": "fixed_mixed_whisper",
+    "average_runtime_sec": 0.60434,
+    "average_selected_audio_duration_sec": 4.076224,
+    "average_rtf": 0.151362,
+    "sample_count": 50,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "TEST",
+    "strategy": "fixed_separated_whisper",
+    "average_runtime_sec": 1.20496,
+    "average_selected_audio_duration_sec": 8.152448,
+    "average_rtf": 0.143966,
+    "sample_count": 50,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "TEST",
+    "strategy": "fixed_separated_whisper_cleaned",
+    "average_runtime_sec": 1.20496,
+    "average_selected_audio_duration_sec": 8.152448,
+    "average_rtf": 0.143966,
+    "sample_count": 50,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "TEST",
+    "strategy": "router_v2_synthetic_costed",
+    "average_runtime_sec": 0.79586,
+    "average_selected_audio_duration_sec": 5.389952,
+    "average_rtf": 0.148201,
+    "sample_count": 50,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "TEST",
+    "strategy": "budget_cascade",
+    "average_runtime_sec": 0.92438,
+    "average_selected_audio_duration_sec": 6.45644,
+    "average_rtf": 0.144971,
+    "sample_count": 50,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "TEST",
+    "strategy": "cleaned_preferred_cascade",
+    "average_runtime_sec": 1.12558,
+    "average_selected_audio_duration_sec": 6.661336,
+    "average_rtf": 0.161006,
+    "sample_count": 50,
+    "duration_source": "selected_audio",
+    "notes": "RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+  }
+]

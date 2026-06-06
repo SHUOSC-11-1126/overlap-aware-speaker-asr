@@ -76,6 +76,13 @@ Current runtime provenance audit result:
 - synthetic split cascade strategies: `100/100` observed runtime selections on `ALL`, and `50/50` on both `DEV` and `TEST`
 - proxy cost remains available for missing-runtime edge cases, but it is not currently driving the committed synthetic split cascade outputs
 
+Current runtime normalization audit result:
+
+- gold `router_v2_costed / risk_aware_costed / budget_cascade`: average selected-route `RTF = 0.080646`
+- synthetic split `router_v2_synthetic_costed`: average selected-route `RTF = 0.148342`
+- synthetic split `budget_cascade`: average selected-route `RTF = 0.148228`
+- this `RTF` is normalized by the selected route's processed audio duration, so separated routes divide by two-stream duration rather than one mixed-stream duration
+
 ## Core Findings
 
 - Speech separation is useful, but not universally beneficial.
@@ -128,9 +135,11 @@ python -m src.project_harness
 - [Compute-aware cascade summary](results/figures/compute_aware_cascade_summary.md)
 - [CER/runtime trade-off figure](results/figures/cer_runtime_tradeoff.png)
 - [Cascade runtime provenance audit](results/figures/cascade_runtime_audit.md)
+- [Cascade runtime normalization audit](results/figures/cascade_runtime_normalization.md)
 - [Synthetic split cascade summary](results/figures/synthetic_split_cascade_summary.md)
 - [Synthetic split cascade trade-off figure](results/figures/synthetic_split_cer_runtime_tradeoff.png)
 - [Synthetic split cascade runtime audit](results/figures/synthetic_split_cascade_runtime_audit.md)
+- [Synthetic split cascade runtime normalization](results/figures/synthetic_split_cascade_runtime_normalization.md)
 - [Router ablation summary](results/figures/router_ablation_summary.md)
 - [Synthetic routing summary](results/figures/synthetic_routing_summary.md)
 - [Synthetic split summary](results/figures/synthetic_split_routing_summary.md)

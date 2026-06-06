@@ -1,0 +1,7 @@
+﻿dataset,scope,strategy,average_runtime_sec,average_selected_audio_duration_sec,average_rtf,sample_count,duration_source,notes
+gold,ALL,fixed_mixed_whisper,5.2198,46.8754,0.109309,5,selected_audio,"RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+gold,ALL,fixed_separated_whisper,5.9716,93.7508,0.064251,5,selected_audio,"RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+gold,ALL,fixed_separated_whisper_cleaned,5.9716,93.7508,0.064251,5,selected_audio,"RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+gold,ALL,router_v2_costed,5.5508,73.6904,0.080646,5,selected_audio,"RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+gold,ALL,risk_aware_costed,5.5508,73.6904,0.080646,5,selected_audio,"RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
+gold,ALL,budget_cascade,5.5508,73.6904,0.080646,5,selected_audio,"RTF uses the selected route's processed audio duration: mixed uses one stream, separated/cleaned use the combined two-stream duration."
