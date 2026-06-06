@@ -258,6 +258,12 @@ Profile playbook:
 - `results/figures/cascade_profile_playbook.md`
 - This generated guide now explains when each deployment profile is the cleanest default, the strongest robustness-biased choice, or the cheapest stable floor.
 
+Benchmark checklist:
+
+- `results/tables/cascade_benchmark_checklist.csv`
+- `results/figures/cascade_benchmark_checklist.md`
+- This generated checklist now records the run metadata and acceptance checks required for each controlled benchmark phase.
+
 ## Synthetic Split Cascade Validation
 
 Label: `synthetic/silver` and `experimental/frontier`

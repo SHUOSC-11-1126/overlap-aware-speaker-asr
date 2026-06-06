@@ -145,6 +145,10 @@ Current profile playbook result:
 
 - `results/figures/cascade_profile_playbook.md` now translates `accuracy_first / balanced / cost_first` into a concise deployment-facing guide for when to use each profile
 
+Current benchmark checklist result:
+
+- `results/figures/cascade_benchmark_checklist.md` now records which hardware/runtime metadata and acceptance checks should be captured for each benchmark phase
+
 ## Core Findings
 
 - Speech separation is useful, but not universally beneficial.
@@ -209,6 +213,7 @@ python -m src.project_harness
 - [Cascade benchmark readiness](results/figures/cascade_benchmark_readiness.md)
 - [Cascade benchmark plan](results/figures/cascade_benchmark_plan.md)
 - [Cascade profile playbook](results/figures/cascade_profile_playbook.md)
+- [Cascade benchmark checklist](results/figures/cascade_benchmark_checklist.md)
 - [Synthetic split cascade summary](results/figures/synthetic_split_cascade_summary.md)
 - [Synthetic split cascade trade-off figure](results/figures/synthetic_split_cer_runtime_tradeoff.png)
 - [Synthetic split cascade runtime audit](results/figures/synthetic_split_cascade_runtime_audit.md)

@@ -122,6 +122,12 @@ Update: a generated profile playbook now turns the recommendation tables into pl
 - Summary view: `results/figures/cascade_profile_playbook.md`
 - This explains when `balanced`, `accuracy_first`, and `cost_first` should be the default, the robustness-biased alternative, or the compute floor.
 
+Update: a generated benchmark checklist now turns the plan into a per-run execution record.
+
+- Benchmark checklist: `results/tables/cascade_benchmark_checklist.csv`
+- Summary view: `results/figures/cascade_benchmark_checklist.md`
+- This captures which metadata should be logged and what acceptance signal each benchmark phase must satisfy.
+
 Remaining stretch work:
 
 - replace proxy costs with a controlled hardware/runtime benchmark
