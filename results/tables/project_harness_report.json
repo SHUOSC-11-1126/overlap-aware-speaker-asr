@@ -12,5 +12,42 @@
   "synthetic_status": {
     "status": "synthetic_overlap"
   },
-  "gold_and_synthetic_separated": true
+  "gold_and_synthetic_separated": true,
+  "frontier_status": [
+    {
+      "frontier_id": "speaker_profile",
+      "status": "documented_skill",
+      "evidence_path": "docs/skills/skill_03_speaker_profile_voiceprint.md",
+      "expected_output": "results/tables/speaker_profile_similarity.csv",
+      "next_step": "Document the first output artifact and keep the signal scoped to risk detection."
+    },
+    {
+      "frontier_id": "meeteval_compatibility",
+      "status": "documented_skill",
+      "evidence_path": "docs/skills/skill_04_meeteval_compatibility.md",
+      "expected_output": "MeetEval-compatible export",
+      "next_step": "Document the export path before claiming any benchmark bridge."
+    },
+    {
+      "frontier_id": "llm_critic",
+      "status": "documented_skill",
+      "evidence_path": "docs/skills/skill_05_agentic_llm_critic.md",
+      "expected_output": "qualitative critic output",
+      "next_step": "Label the output as qualitative and define a minimal critic output artifact."
+    },
+    {
+      "frontier_id": "external_validation",
+      "status": "documented_skill",
+      "evidence_path": "docs/ambitious_research_agenda.md",
+      "expected_output": "external sanity-check note",
+      "next_step": "Pick one external dataset, document license/source, and define the first output artifact."
+    },
+    {
+      "frontier_id": "demo_excellence",
+      "status": "documented_skill",
+      "evidence_path": "docs/skills/skill_06_github_demo_excellence.md",
+      "expected_output": "demo-facing figure or note",
+      "next_step": "Define one demo-facing output so the README and figures point to the same story."
+    }
+  ]
 }
