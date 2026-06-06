@@ -197,9 +197,13 @@ Current benchmark operator brief result:
 
 - `results/figures/cascade_benchmark_operator_brief.md` now gives the current benchmark operator a plain-language next step, evidence target, and urgency note
 
+Current benchmark evidence receipt result:
+
+- `results/figures/cascade_benchmark_evidence_receipt.md` now shows what the current benchmark run must write back, which completion signal closes it, and what follow-up note should remain
+
 Current benchmark handoff packet result:
 
-- `results/figures/cascade_benchmark_handoff_packet.md` now acts as the single-entry benchmark handoff note across readiness, plan, checklist, manifest template, execution summary, execution queue, session ledger, dependency graph, blocker matrix, runbook card, milestone card, phase checkpoint card, completion dashboard, operator brief, and status tracking
+- `results/figures/cascade_benchmark_handoff_packet.md` now acts as the single-entry benchmark handoff note across readiness, plan, checklist, manifest template, execution summary, execution queue, session ledger, dependency graph, blocker matrix, runbook card, milestone card, phase checkpoint card, completion dashboard, operator brief, evidence receipt, and status tracking
 
 ## Core Findings
 
@@ -277,6 +281,7 @@ python -m src.project_harness
 - [Cascade benchmark phase checkpoint card](results/figures/cascade_benchmark_phase_checkpoint_card.md)
 - [Cascade benchmark completion dashboard](results/figures/cascade_benchmark_completion_dashboard.md)
 - [Cascade benchmark operator brief](results/figures/cascade_benchmark_operator_brief.md)
+- [Cascade benchmark evidence receipt](results/figures/cascade_benchmark_evidence_receipt.md)
 - [Cascade benchmark handoff packet](results/figures/cascade_benchmark_handoff_packet.md)
 - [Synthetic split cascade summary](results/figures/synthetic_split_cascade_summary.md)
 - [Synthetic split cascade trade-off figure](results/figures/synthetic_split_cer_runtime_tradeoff.png)

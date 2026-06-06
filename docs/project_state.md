@@ -335,10 +335,16 @@ Benchmark operator brief:
 - `results/figures/cascade_benchmark_operator_brief.md`
 - This generated operator brief now gives the current benchmark operator one plain-language note covering the next step, required evidence, and urgency.
 
+Benchmark evidence receipt:
+
+- `results/tables/cascade_benchmark_evidence_receipt.csv`
+- `results/figures/cascade_benchmark_evidence_receipt.md`
+- This generated evidence receipt now shows what the current benchmark run must write back, which completion signal closes it, and what follow-up note should remain for the next contributor.
+
 Benchmark handoff packet:
 
 - `results/figures/cascade_benchmark_handoff_packet.md`
-- This generated note now provides one benchmark-entry document that points to the readiness, plan, checklist, manifest template, execution-summary, execution-queue, session-ledger, dependency-graph, blocker-matrix, runbook-card, milestone-card, phase-checkpoint-card, completion-dashboard, operator-brief, and status-board layers together.
+- This generated note now provides one benchmark-entry document that points to the readiness, plan, checklist, manifest template, execution-summary, execution-queue, session-ledger, dependency-graph, blocker-matrix, runbook-card, milestone-card, phase-checkpoint-card, completion-dashboard, operator-brief, evidence-receipt, and status-board layers together.
 
 ## Synthetic Split Cascade Validation
 

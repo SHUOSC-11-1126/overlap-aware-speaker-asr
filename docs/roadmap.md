@@ -199,10 +199,16 @@ Update: a generated benchmark operator brief now turns the pending-state overvie
 - Summary view: `results/figures/cascade_benchmark_operator_brief.md`
 - This shows the single benchmark step to run now, the evidence to collect, and the urgency note without opening the wider stack first.
 
+Update: a generated benchmark evidence receipt now turns the operator note into a writeback closeout card.
+
+- Benchmark evidence receipt: `results/tables/cascade_benchmark_evidence_receipt.csv`
+- Summary view: `results/figures/cascade_benchmark_evidence_receipt.md`
+- This shows what the current benchmark run must write back, which completion signal closes it, and what follow-up note should remain after the run.
+
 Update: a generated benchmark handoff packet now turns the execution stack into a single benchmark entrypoint.
 
 - Handoff packet: `results/figures/cascade_benchmark_handoff_packet.md`
-- This lets future contributors start from one note before diving into readiness, plan, checklist, manifest, execution-summary, execution-queue, session-ledger, dependency-graph, blocker-matrix, runbook-card, milestone-card, phase-checkpoint-card, completion-dashboard, operator-brief, and status details.
+- This lets future contributors start from one note before diving into readiness, plan, checklist, manifest, execution-summary, execution-queue, session-ledger, dependency-graph, blocker-matrix, runbook-card, milestone-card, phase-checkpoint-card, completion-dashboard, operator-brief, evidence-receipt, and status details.
 
 Remaining stretch work:
 
