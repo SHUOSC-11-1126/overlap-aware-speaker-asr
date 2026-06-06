@@ -1,0 +1,10 @@
+[
+  {
+    "queue_order": "1",
+    "current_frontier": "meeteval_compatibility",
+    "next_artifact": "results/figures/meeteval_dry_run_handoff.md",
+    "execution_intent": "Run a single narrow dry run handoff step for meeteval_compatibility before any broader claim.",
+    "expected_evidence": "results/tables/meeteval_dry_run_receipt.json",
+    "handoff_scope": "Coordination-only packet; not a claim of completed frontier execution."
+  }
+]
