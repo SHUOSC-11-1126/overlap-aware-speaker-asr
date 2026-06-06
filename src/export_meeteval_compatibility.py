@@ -20,6 +20,15 @@ SUMMARY_COLUMNS = [
     "observation",
 ]
 
+READINESS_COLUMNS = [
+    "bridge_status",
+    "case_count",
+    "raw_source_count",
+    "cleaned_fallback_count",
+    "readiness_note",
+    "next_action",
+]
+
 
 def load_reference_payload(case_id: str) -> dict[str, Any]:
     payload = load_reference(case_id)
@@ -110,11 +119,51 @@ def build_meeteval_compatibility_lines(rows: list[dict[str, Any]]) -> list[str]:
     return lines
 
 
+def build_meeteval_readiness_rows(rows: list[dict[str, Any]]) -> list[dict[str, str]]:
+    raw_source_count = sum(1 for row in rows if str(row.get("hypothesis_source", "")) == "separated_whisper")
+    cleaned_fallback_count = sum(
+        1 for row in rows if str(row.get("hypothesis_source", "")) == "separated_whisper_cleaned"
+    )
+    bridge_status = "ready_for_dry_run" if rows else "missing_export"
+    readiness_note = (
+        "The bridge is export-complete, but cleaned fallback is still common, so any next MeetEval step should stay narrow and diagnostic."
+        if cleaned_fallback_count
+        else "The bridge is export-complete with raw separated sources only, so a narrow diagnostic dry run is the next reasonable step."
+    )
+    next_action = "Use one narrow dry run before claiming any cpWER-style evaluation."
+    return [
+        {
+            "bridge_status": bridge_status,
+            "case_count": str(len(rows)),
+            "raw_source_count": str(raw_source_count),
+            "cleaned_fallback_count": str(cleaned_fallback_count),
+            "readiness_note": readiness_note,
+            "next_action": next_action,
+        }
+    ]
+
+
+def build_meeteval_readiness_lines(rows: list[dict[str, str]]) -> list[str]:
+    lines = [
+        "# MeetEval Readiness",
+        "",
+        "This generated card summarizes whether the current compatibility bridge is ready for a narrow diagnostic follow-up. It does not claim that MeetEval or cpWER has already been run.",
+        "",
+        "| bridge_status | case_count | raw_source_count | cleaned_fallback_count | readiness_note | next_action |",
+        "| --- | ---: | ---: | ---: | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['bridge_status']} | {row['case_count']} | {row['raw_source_count']} | {row['cleaned_fallback_count']} | {row['readiness_note']} | {row['next_action']} |"
+        )
+    return lines
+
+
 def write_outputs(
     rows: list[dict[str, Any]],
     reference_lines: list[str],
     hypothesis_lines: list[str],
-) -> tuple[Path, Path, Path, Path, Path]:
+) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path]:
     tables_dir = PROJECT_ROOT / "results" / "tables"
     figures_dir = PROJECT_ROOT / "results" / "figures"
     tables_dir.mkdir(parents=True, exist_ok=True)
@@ -125,6 +174,10 @@ def write_outputs(
     reference_path = tables_dir / "meeteval_reference_segments.jsonl"
     hypothesis_path = tables_dir / "meeteval_hypothesis_segments.jsonl"
     note_path = figures_dir / "meeteval_compatibility_note.md"
+    readiness_rows = build_meeteval_readiness_rows(rows)
+    readiness_csv_path = tables_dir / "meeteval_readiness.csv"
+    readiness_json_path = tables_dir / "meeteval_readiness.json"
+    readiness_note_path = figures_dir / "meeteval_readiness.md"
 
     with csv_path.open("w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=SUMMARY_COLUMNS)
@@ -134,7 +187,22 @@ def write_outputs(
     reference_path.write_text("\n".join(reference_lines) + ("\n" if reference_lines else ""), encoding="utf-8")
     hypothesis_path.write_text("\n".join(hypothesis_lines) + ("\n" if hypothesis_lines else ""), encoding="utf-8")
     note_path.write_text("\n".join(build_meeteval_compatibility_lines(rows)) + "\n", encoding="utf-8")
-    return csv_path, json_path, reference_path, hypothesis_path, note_path
+    with readiness_csv_path.open("w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=READINESS_COLUMNS)
+        writer.writeheader()
+        writer.writerows(readiness_rows)
+    readiness_json_path.write_text(json.dumps(readiness_rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    readiness_note_path.write_text("\n".join(build_meeteval_readiness_lines(readiness_rows)) + "\n", encoding="utf-8")
+    return (
+        csv_path,
+        json_path,
+        reference_path,
+        hypothesis_path,
+        note_path,
+        readiness_csv_path,
+        readiness_json_path,
+        readiness_note_path,
+    )
 
 
 def main() -> None:
@@ -151,12 +219,24 @@ def main() -> None:
         hypothesis_lines.extend(
             build_meeteval_segment_lines(case_id, "hypothesis", list(hypothesis_payloads[case_id].get("segments", [])))
         )
-    csv_path, json_path, reference_path, hypothesis_path, note_path = write_outputs(rows, reference_lines, hypothesis_lines)
+    (
+        csv_path,
+        json_path,
+        reference_path,
+        hypothesis_path,
+        note_path,
+        readiness_csv_path,
+        readiness_json_path,
+        readiness_note_path,
+    ) = write_outputs(rows, reference_lines, hypothesis_lines)
     print(f"Wrote MeetEval summary: {csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote MeetEval JSON: {json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote MeetEval reference export: {reference_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote MeetEval hypothesis export: {hypothesis_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote MeetEval note: {note_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote MeetEval readiness CSV: {readiness_csv_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote MeetEval readiness JSON: {readiness_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote MeetEval readiness note: {readiness_note_path.relative_to(PROJECT_ROOT)}")
 
 
 if __name__ == "__main__":

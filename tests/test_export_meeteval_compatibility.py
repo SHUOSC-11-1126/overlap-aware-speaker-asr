@@ -6,6 +6,8 @@ import unittest
 from src.export_meeteval_compatibility import (
     build_meeteval_compatibility_lines,
     build_meeteval_compatibility_rows,
+    build_meeteval_readiness_lines,
+    build_meeteval_readiness_rows,
     build_meeteval_segment_lines,
 )
 
@@ -78,6 +80,58 @@ class MeetEvalCompatibilityTest(unittest.TestCase):
         self.assertIn("NoOverlap", rendered)
         self.assertIn("meeteval_reference_segments.jsonl", rendered)
         self.assertIn("no cpWER claim yet", rendered)
+
+    def test_build_meeteval_readiness_rows_summarize_fallback_and_next_step(self) -> None:
+        rows = build_meeteval_readiness_rows(
+            [
+                {
+                    "case_id": "NoOverlap",
+                    "reference_segment_count": 25,
+                    "hypothesis_segment_count": 25,
+                    "speaker_count": 2,
+                    "hypothesis_source": "separated_whisper",
+                    "reference_export": "results/tables/meeteval_reference_segments.jsonl",
+                    "hypothesis_export": "results/tables/meeteval_hypothesis_segments.jsonl",
+                    "observation": "compatibility bridge only; this export does not claim cpWER evaluation yet.",
+                },
+                {
+                    "case_id": "LightOverlap",
+                    "reference_segment_count": 25,
+                    "hypothesis_segment_count": 26,
+                    "speaker_count": 2,
+                    "hypothesis_source": "separated_whisper_cleaned",
+                    "reference_export": "results/tables/meeteval_reference_segments.jsonl",
+                    "hypothesis_export": "results/tables/meeteval_hypothesis_segments.jsonl",
+                    "observation": "compatibility bridge only; this export does not claim cpWER evaluation yet.",
+                },
+            ]
+        )
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["bridge_status"], "ready_for_dry_run")
+        self.assertEqual(rows[0]["raw_source_count"], "1")
+        self.assertEqual(rows[0]["cleaned_fallback_count"], "1")
+        self.assertIn("cleaned fallback", rows[0]["readiness_note"].lower())
+        self.assertIn("dry run", rows[0]["next_action"].lower())
+
+    def test_build_meeteval_readiness_lines_render_summary_card(self) -> None:
+        lines = build_meeteval_readiness_lines(
+            [
+                {
+                    "bridge_status": "ready_for_dry_run",
+                    "case_count": "5",
+                    "raw_source_count": "1",
+                    "cleaned_fallback_count": "4",
+                    "readiness_note": "The bridge is export-complete, but cleaned fallback is still common.",
+                    "next_action": "Use one narrow dry run before claiming any cpWER-style evaluation.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# MeetEval Readiness", rendered)
+        self.assertIn("ready_for_dry_run", rendered)
+        self.assertIn("cleaned fallback is still common", rendered)
 
 
 if __name__ == "__main__":
