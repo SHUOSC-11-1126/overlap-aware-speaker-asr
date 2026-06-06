@@ -1,0 +1,11 @@
+[
+  {
+    "dominant_pattern": "swapped_bias",
+    "case_count": "5",
+    "swapped_count": "5",
+    "direct_count": "0",
+    "average_confidence_gap": "0.413131",
+    "cleaned_source_count": "4",
+    "next_action": "Test a stronger profile method before claiming attribution value."
+  }
+]

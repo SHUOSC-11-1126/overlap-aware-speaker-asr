@@ -18,8 +18,8 @@
       "frontier_id": "speaker_profile",
       "status": "documented_skill",
       "evidence_path": "docs/skills/skill_03_speaker_profile_voiceprint.md",
-      "expected_output": "results/tables/speaker_profile_similarity.csv",
-      "next_step": "Document the first output artifact and keep the signal scoped to risk detection."
+      "expected_output": "speaker profile triage card",
+      "next_step": "Use the triage card to justify a stronger profile method while keeping the signal scoped to risk detection."
     },
     {
       "frontier_id": "meeteval_compatibility",
