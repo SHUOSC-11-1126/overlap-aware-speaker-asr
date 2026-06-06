@@ -358,6 +358,15 @@ BENCHMARK_OPERATOR_BRIEF_COLUMNS = [
     "operator_note",
 ]
 
+BENCHMARK_EVIDENCE_RECEIPT_COLUMNS = [
+    "receipt_step",
+    "receipt_action",
+    "receipt_evidence",
+    "receipt_completion_signal",
+    "receipt_followup",
+    "receipt_note",
+]
+
 
 def build_benchmark_packet_lines(
     readiness_rows: list[dict[str, Any]],
@@ -375,6 +384,7 @@ def build_benchmark_packet_lines(
     phase_checkpoint_card_rows: list[dict[str, Any]],
     completion_dashboard_rows: list[dict[str, Any]],
     operator_brief_rows: list[dict[str, Any]],
+    evidence_receipt_rows: list[dict[str, Any]],
 ) -> list[str]:
     lines = [
         "# Cascade Benchmark Handoff Packet",
@@ -461,6 +471,13 @@ def build_benchmark_packet_lines(
         lines.append(
             f"- step `{row.get('operator_step', '')}` / action `{row.get('operator_action', '')}` / session `{row.get('operator_session_type', '')}` / "
             f"evidence `{row.get('operator_evidence', '')}` / note `{row.get('operator_note', '')}`"
+        )
+    lines.extend(["", "## Evidence Receipt", ""])
+    for row in evidence_receipt_rows:
+        lines.append(
+            f"- step `{row.get('receipt_step', '')}` / action `{row.get('receipt_action', '')}` / "
+            f"evidence `{row.get('receipt_evidence', '')}` / completion `{row.get('receipt_completion_signal', '')}` / "
+            f"follow-up `{row.get('receipt_followup', '')}` / note `{row.get('receipt_note', '')}`"
         )
     lines.extend(["", "## Execution Status", ""])
     for row in status_rows:
@@ -1054,6 +1071,67 @@ def build_benchmark_operator_brief_lines(rows: list[dict[str, Any]]) -> list[str
     return lines
 
 
+def build_benchmark_evidence_receipt_rows(
+    dashboard_rows: list[dict[str, Any]],
+    operator_brief_rows: list[dict[str, Any]],
+    ledger_rows: list[dict[str, Any]],
+    phase_checkpoint_rows: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    if not dashboard_rows or not operator_brief_rows:
+        return []
+    dashboard = dashboard_rows[0]
+    operator_brief = operator_brief_rows[0]
+    receipt_step = str(operator_brief.get("operator_step", "")) or str(dashboard.get("current_start_step", ""))
+    receipt_action = str(operator_brief.get("operator_action", ""))
+    receipt_evidence = str(operator_brief.get("operator_evidence", ""))
+    ledger_row = next((row for row in ledger_rows if str(row.get("plan_step_id", "")) == receipt_step), {})
+    checkpoint_row = next((row for row in phase_checkpoint_rows if str(row.get("checkpoint_action", "")) == receipt_action), {})
+    completion_signal = str(checkpoint_row.get("completion_signal", ""))
+    followup = str(ledger_row.get("completion_note", ""))
+    return [
+        {
+            "receipt_step": receipt_step,
+            "receipt_action": receipt_action,
+            "receipt_evidence": receipt_evidence,
+            "receipt_completion_signal": completion_signal,
+            "receipt_followup": followup,
+            "receipt_note": f"After {receipt_step}, write back the evidence payload and confirm the foundation completion signal.",
+        }
+    ]
+
+
+def build_benchmark_evidence_receipt_lines(rows: list[dict[str, Any]]) -> list[str]:
+    lines = [
+        "# Cascade Benchmark Evidence Receipt",
+        "",
+        "This generated receipt shows what the current benchmark run must write back before the next contributor advances the stack.",
+        "",
+    ]
+    for row in rows:
+        lines.extend(
+            [
+                f"- Receipt step: `{row['receipt_step']}`",
+                f"- Receipt action: `{row['receipt_action']}`",
+                f"- Receipt evidence: `{row['receipt_evidence']}`",
+                f"- Completion signal: `{row['receipt_completion_signal']}`",
+                f"- Follow-up: `{row['receipt_followup']}`",
+                f"- Receipt note: {row['receipt_note']}",
+            ]
+        )
+    return lines
+
+
+def write_benchmark_evidence_receipt_outputs(
+    rows: list[dict[str, Any]],
+    csv_path: Path,
+    json_path: Path,
+    summary_path: Path,
+) -> None:
+    write_csv_json(rows, csv_path, json_path, BENCHMARK_EVIDENCE_RECEIPT_COLUMNS)
+    summary_path.parent.mkdir(parents=True, exist_ok=True)
+    summary_path.write_text("\n".join(build_benchmark_evidence_receipt_lines(rows)) + "\n", encoding="utf-8")
+
+
 def write_benchmark_operator_brief_outputs(
     rows: list[dict[str, Any]],
     csv_path: Path,
@@ -1180,6 +1258,7 @@ def write_benchmark_packet_output(
     phase_checkpoint_card_rows: list[dict[str, Any]],
     completion_dashboard_rows: list[dict[str, Any]],
     operator_brief_rows: list[dict[str, Any]],
+    evidence_receipt_rows: list[dict[str, Any]],
     output_path: Path,
 ) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -1201,6 +1280,7 @@ def write_benchmark_packet_output(
                 phase_checkpoint_card_rows,
                 completion_dashboard_rows,
                 operator_brief_rows,
+                evidence_receipt_rows,
             )
         )
         + "\n",
@@ -2379,6 +2459,7 @@ def build_artifact_index_rows() -> list[dict[str, Any]]:
         ("cross_dataset_benchmark_phase_checkpoint_card", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_phase_checkpoint_card.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Per-phase checkpoint card summarizing blocker, next action, and completion signal."),
         ("cross_dataset_benchmark_completion_dashboard", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_completion_dashboard.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Completion dashboard summarizing current start, dominant blocker family, and pending phase count."),
         ("cross_dataset_benchmark_operator_brief", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_operator_brief.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Plain-language brief for the current benchmark operator covering step, evidence, and urgency."),
+        ("cross_dataset_benchmark_evidence_receipt", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_evidence_receipt.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Receipt-style writeback guide for the current benchmark step covering evidence, completion signal, and follow-up."),
         ("cross_dataset_benchmark_handoff_packet", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_handoff_packet.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Single-entry benchmark handoff packet consolidating readiness, plan, checklist, manifest template, and status board."),
     ]
     rows = [
@@ -3097,6 +3178,15 @@ def main() -> None:
     benchmark_operator_brief_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_operator_brief.csv"
     benchmark_operator_brief_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_operator_brief.json"
     benchmark_operator_brief_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_operator_brief.md"
+    benchmark_evidence_receipt_rows = build_benchmark_evidence_receipt_rows(
+        benchmark_completion_dashboard_rows,
+        benchmark_operator_brief_rows,
+        benchmark_session_ledger_rows,
+        benchmark_phase_checkpoint_card_rows,
+    )
+    benchmark_evidence_receipt_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_evidence_receipt.csv"
+    benchmark_evidence_receipt_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_evidence_receipt.json"
+    benchmark_evidence_receipt_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_evidence_receipt.md"
     benchmark_packet_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_handoff_packet.md"
     profile_playbook_csv = PROJECT_ROOT / "results" / "tables" / "cascade_profile_playbook.csv"
     profile_playbook_json = PROJECT_ROOT / "results" / "tables" / "cascade_profile_playbook.json"
@@ -3331,6 +3421,12 @@ def main() -> None:
             benchmark_operator_brief_json,
             benchmark_operator_brief_md,
         )
+        write_benchmark_evidence_receipt_outputs(
+            benchmark_evidence_receipt_rows,
+            benchmark_evidence_receipt_csv,
+            benchmark_evidence_receipt_json,
+            benchmark_evidence_receipt_md,
+        )
         write_benchmark_packet_output(
             benchmark_readiness_rows,
             benchmark_plan_rows,
@@ -3347,6 +3443,7 @@ def main() -> None:
             benchmark_phase_checkpoint_card_rows,
             benchmark_completion_dashboard_rows,
             benchmark_operator_brief_rows,
+            benchmark_evidence_receipt_rows,
             benchmark_packet_md,
         )
         profile_playbook_rows = build_profile_playbook_rows(decision_matrix_rows)
@@ -3440,6 +3537,7 @@ def main() -> None:
     print(f"Wrote cascade benchmark phase checkpoint card: {benchmark_phase_checkpoint_card_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark completion dashboard: {benchmark_completion_dashboard_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark operator brief: {benchmark_operator_brief_csv.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote cascade benchmark evidence receipt: {benchmark_evidence_receipt_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark handoff packet: {benchmark_packet_md.relative_to(PROJECT_ROOT)}")
     if wrote_profile_playbook:
         print(f"Wrote cascade profile playbook: {profile_playbook_csv.relative_to(PROJECT_ROOT)}")

@@ -26,6 +26,8 @@ from src.compute_aware_cascade import (
     build_benchmark_phase_checkpoint_card_rows,
     build_benchmark_completion_dashboard_lines,
     build_benchmark_completion_dashboard_rows,
+    build_benchmark_evidence_receipt_lines,
+    build_benchmark_evidence_receipt_rows,
     build_benchmark_operator_brief_lines,
     build_benchmark_operator_brief_rows,
     build_benchmark_session_ledger_lines,
@@ -1379,6 +1381,68 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertIn("timing_capture", rendered)
         self.assertIn("blocked by runtime_capture_missing", rendered)
 
+    def test_build_benchmark_evidence_receipt_rows_capture_writeback_expectations(self) -> None:
+        dashboard_rows = [
+            {
+                "current_start_step": "phase1_gold_runtime_foundation",
+            }
+        ]
+        operator_brief_rows = [
+            {
+                "operator_step": "phase1_gold_runtime_foundation",
+                "operator_action": "collect_controlled_runtime",
+                "operator_evidence": "hardware_label;device;repeat_count;warmup_count;batch_shape;timing_notes",
+            }
+        ]
+        ledger_rows = [
+            {
+                "plan_step_id": "phase1_gold_runtime_foundation",
+                "completion_note": "collect_controlled_runtime -> Gold runtime foundation artifacts are rebuilt from controlled timing.",
+            }
+        ]
+        phase_checkpoint_rows = [
+            {
+                "phase": "foundation",
+                "checkpoint_action": "collect_controlled_runtime",
+                "completion_signal": "Gold runtime foundation artifacts are rebuilt from controlled timing.",
+            }
+        ]
+
+        rows = build_benchmark_evidence_receipt_rows(
+            dashboard_rows,
+            operator_brief_rows,
+            ledger_rows,
+            phase_checkpoint_rows,
+        )
+
+        self.assertEqual(rows[0]["receipt_step"], "phase1_gold_runtime_foundation")
+        self.assertEqual(rows[0]["receipt_action"], "collect_controlled_runtime")
+        self.assertEqual(rows[0]["receipt_evidence"], "hardware_label;device;repeat_count;warmup_count;batch_shape;timing_notes")
+        self.assertEqual(rows[0]["receipt_completion_signal"], "Gold runtime foundation artifacts are rebuilt from controlled timing.")
+        self.assertEqual(rows[0]["receipt_followup"], "collect_controlled_runtime -> Gold runtime foundation artifacts are rebuilt from controlled timing.")
+        self.assertIn("phase1_gold_runtime_foundation", rows[0]["receipt_note"])
+
+    def test_build_benchmark_evidence_receipt_lines_render_closeout_card(self) -> None:
+        rows = [
+            {
+                "receipt_step": "phase1_gold_runtime_foundation",
+                "receipt_action": "collect_controlled_runtime",
+                "receipt_evidence": "hardware_label;device;repeat_count;warmup_count;batch_shape;timing_notes",
+                "receipt_completion_signal": "Gold runtime foundation artifacts are rebuilt from controlled timing.",
+                "receipt_followup": "collect_controlled_runtime -> Gold runtime foundation artifacts are rebuilt from controlled timing.",
+                "receipt_note": "After phase1_gold_runtime_foundation, write back the evidence payload and confirm the foundation completion signal.",
+            }
+        ]
+
+        lines = build_benchmark_evidence_receipt_lines(rows)
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Cascade Benchmark Evidence Receipt", rendered)
+        self.assertIn("phase1_gold_runtime_foundation", rendered)
+        self.assertIn("collect_controlled_runtime", rendered)
+        self.assertIn("Gold runtime foundation artifacts are rebuilt from controlled timing.", rendered)
+        self.assertIn("write back the evidence payload", rendered)
+
     def test_build_artifact_index_rows_include_benchmark_status_board(self) -> None:
         rows = build_artifact_index_rows()
         status_row = next(row for row in rows if row["artifact_id"] == "cross_dataset_benchmark_status")
@@ -1549,6 +1613,16 @@ class ComputeAwareCascadeTest(unittest.TestCase):
                 "operator_note": "Run phase1_gold_runtime_foundation now; it is blocked by runtime_capture_missing and carries high urgency.",
             }
         ]
+        evidence_receipt_rows = [
+            {
+                "receipt_step": "phase1_gold_runtime_foundation",
+                "receipt_action": "collect_controlled_runtime",
+                "receipt_evidence": "hardware_label;device;repeat_count;warmup_count",
+                "receipt_completion_signal": "Gold runtime foundation artifacts are rebuilt from controlled timing.",
+                "receipt_followup": "collect_controlled_runtime -> Gold runtime foundation artifacts are rebuilt from controlled timing.",
+                "receipt_note": "After phase1_gold_runtime_foundation, write back the evidence payload and confirm the foundation completion signal.",
+            }
+        ]
 
         lines = build_benchmark_packet_lines(
             readiness_rows,
@@ -1566,6 +1640,7 @@ class ComputeAwareCascadeTest(unittest.TestCase):
             phase_checkpoint_card_rows,
             completion_dashboard_rows,
             operator_brief_rows,
+            evidence_receipt_rows,
         )
         rendered = "\n".join(lines)
 
@@ -1581,6 +1656,7 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertIn("## Phase Checkpoint Card", rendered)
         self.assertIn("## Completion Dashboard", rendered)
         self.assertIn("## Operator Brief", rendered)
+        self.assertIn("## Evidence Receipt", rendered)
         self.assertIn("## Execution Status", rendered)
         self.assertIn("phase1_gold_runtime_foundation", rendered)
         self.assertIn("runtime_capture_missing", rendered)
@@ -1594,6 +1670,7 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertIn("Gold runtime foundation artifacts are rebuilt from controlled timing.", rendered)
         self.assertIn("phase1_gold_runtime_foundation leads a 3-phase pending stack with dominant blocker runtime_capture_missing.", rendered)
         self.assertIn("Run phase1_gold_runtime_foundation now; it is blocked by runtime_capture_missing and carries high urgency.", rendered)
+        self.assertIn("After phase1_gold_runtime_foundation, write back the evidence payload and confirm the foundation completion signal.", rendered)
         self.assertIn("hardware_label;device;repeat_count;warmup_count", rendered)
         self.assertIn("Manifest template fields: hardware_label, device, repeat_count, warmup_count", rendered)
 
