@@ -8,6 +8,10 @@ Can an LLM or local agent critique transcripts, explain risk, and suggest repair
 
 The baseline already shows content-level hallucination and boundary-dependent failure modes. A critic agent could help classify those errors, but only if its outputs remain clearly labeled.
 
+## Current queue position
+
+Fourth in the current frontier queue. Use this after the MeetEval bridge, external validation, and speaker profile cards are already clearer, so the critic stays framed as a diagnostic layer rather than a truth source.
+
 ## Challenge level
 
 Level 4: Agentic Frontier
