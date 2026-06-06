@@ -4,6 +4,7 @@ import unittest
 
 from src.compute_aware_cascade import (
     DEFAULT_COST_PROXY,
+    build_recommendation_family_stability_rows,
     build_recommendation_rows,
     build_recommendation_stability_rows,
     build_robustness_gap_rows,
@@ -217,6 +218,21 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertEqual(balanced["consensus_ratio"], 0.75)
         self.assertEqual(cost_first["distinct_strategy_count"], 1)
         self.assertEqual(cost_first["consensus_ratio"], 1.0)
+
+    def test_build_recommendation_family_stability_rows_merges_router_variants(self) -> None:
+        rows = [
+            {"dataset": "gold", "scope": "ALL", "profile": "balanced", "recommended_strategy": "router_v2_costed"},
+            {"dataset": "synthetic_split", "scope": "ALL", "profile": "balanced", "recommended_strategy": "router_v2_synthetic_costed"},
+            {"dataset": "synthetic_split", "scope": "DEV", "profile": "balanced", "recommended_strategy": "router_v2_synthetic_costed"},
+            {"dataset": "synthetic_split", "scope": "TEST", "profile": "balanced", "recommended_strategy": "router_v2_synthetic_costed"},
+        ]
+
+        stability = build_recommendation_family_stability_rows(rows)
+        balanced = next(row for row in stability if row["profile"] == "balanced")
+
+        self.assertEqual(balanced["distinct_strategy_count"], 1)
+        self.assertEqual(balanced["most_common_strategy"], "router_v2")
+        self.assertEqual(balanced["consensus_ratio"], 1.0)
 
     def test_build_robustness_gap_rows_compares_gold_to_synthetic_all(self) -> None:
         gold_rows = [

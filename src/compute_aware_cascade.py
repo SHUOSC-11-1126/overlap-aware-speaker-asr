@@ -139,6 +139,16 @@ RECOMMENDATION_STABILITY_COLUMNS = [
     "notes",
 ]
 
+RECOMMENDATION_FAMILY_STABILITY_COLUMNS = [
+    "profile",
+    "distinct_strategy_count",
+    "most_common_strategy",
+    "consensus_ratio",
+    "scope_count",
+    "strategy_set",
+    "notes",
+]
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Compute-aware cascade evaluation.")
@@ -687,6 +697,20 @@ def build_recommendation_stability_rows(recommendation_rows: list[dict[str, Any]
     return rows
 
 
+def canonical_strategy_family(strategy: str) -> str:
+    if strategy in {"router_v2_costed", "router_v2_synthetic_costed"}:
+        return "router_v2"
+    return strategy
+
+
+def build_recommendation_family_stability_rows(recommendation_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    normalized_rows = [
+        dict(row, recommended_strategy=canonical_strategy_family(str(row.get("recommended_strategy", ""))))
+        for row in recommendation_rows
+    ]
+    return build_recommendation_stability_rows(normalized_rows)
+
+
 def load_gold_cases() -> list[dict[str, Any]]:
     config = load_config()
     risk_rows = {str(row["case_id"]): row for row in read_csv_rows(PROJECT_ROOT / "results" / "tables" / "risk_aware_selection.csv")}
@@ -1141,6 +1165,16 @@ def write_recommendation_stability_outputs(
     render_recommendation_stability_summary(rows, summary_path)
 
 
+def write_recommendation_family_stability_outputs(
+    rows: list[dict[str, Any]],
+    csv_path: Path,
+    json_path: Path,
+    summary_path: Path,
+) -> None:
+    write_csv_json(rows, csv_path, json_path, RECOMMENDATION_FAMILY_STABILITY_COLUMNS)
+    render_recommendation_stability_summary(rows, summary_path)
+
+
 def set_pixel(pixels: bytearray, width: int, height: int, x: int, y: int, color: tuple[int, int, int]) -> None:
     if 0 <= x < width and 0 <= y < height:
         idx = (y * width + x) * 3
@@ -1415,6 +1449,13 @@ def main() -> None:
             PROJECT_ROOT / "results" / "tables" / "cascade_recommendation_stability.csv",
             PROJECT_ROOT / "results" / "tables" / "cascade_recommendation_stability.json",
             PROJECT_ROOT / "results" / "figures" / "cascade_recommendation_stability.md",
+        )
+        family_stability_rows = build_recommendation_family_stability_rows(gold_recommendation_rows + recommendation_rows)
+        write_recommendation_family_stability_outputs(
+            family_stability_rows,
+            PROJECT_ROOT / "results" / "tables" / "cascade_recommendation_family_stability.csv",
+            PROJECT_ROOT / "results" / "tables" / "cascade_recommendation_family_stability.json",
+            PROJECT_ROOT / "results" / "figures" / "cascade_recommendation_family_stability.md",
         )
     else:
         cases = load_gold_cases()
