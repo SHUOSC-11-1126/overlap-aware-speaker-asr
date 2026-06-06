@@ -110,6 +110,12 @@ Update: a generated benchmark-readiness scaffold now turns the hardware benchmar
 - Summary view: `results/figures/cascade_benchmark_readiness.md`
 - This prioritizes the runtime-facing artifacts that should be refreshed first once controlled same-hardware timing evidence is available.
 
+Update: a generated benchmark plan now turns the readiness scaffold into an execution order.
+
+- Benchmark plan: `results/tables/cascade_benchmark_plan.csv`
+- Summary view: `results/figures/cascade_benchmark_plan.md`
+- This sequences the controlled benchmark work into gold foundation, synthetic foundation, surface refresh, and cross-dataset refresh phases.
+
 Remaining stretch work:
 
 - replace proxy costs with a controlled hardware/runtime benchmark

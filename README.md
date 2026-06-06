@@ -137,6 +137,10 @@ Current benchmark readiness result:
 
 - `results/figures/cascade_benchmark_readiness.md` now prioritizes which cascade artifacts should be refreshed first once controlled hardware/runtime evidence replaces the current repo-local timing signals
 
+Current benchmark plan result:
+
+- `results/figures/cascade_benchmark_plan.md` now turns that readiness ordering into a staged handoff plan with dataset scope, command, and refresh targets
+
 ## Core Findings
 
 - Speech separation is useful, but not universally beneficial.
@@ -199,6 +203,7 @@ python -m src.project_harness
 - [Cascade frontier report](results/figures/cascade_frontier_report.md)
 - [Cascade artifact index](results/figures/cascade_artifact_index.md)
 - [Cascade benchmark readiness](results/figures/cascade_benchmark_readiness.md)
+- [Cascade benchmark plan](results/figures/cascade_benchmark_plan.md)
 - [Synthetic split cascade summary](results/figures/synthetic_split_cascade_summary.md)
 - [Synthetic split cascade trade-off figure](results/figures/synthetic_split_cer_runtime_tradeoff.png)
 - [Synthetic split cascade runtime audit](results/figures/synthetic_split_cascade_runtime_audit.md)

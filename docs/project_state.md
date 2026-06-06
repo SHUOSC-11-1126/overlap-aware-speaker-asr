@@ -246,6 +246,12 @@ Benchmark readiness:
 - `results/figures/cascade_benchmark_readiness.md`
 - This generated scaffold now prioritizes which cascade artifacts should be refreshed first when controlled hardware/runtime benchmark evidence becomes available.
 
+Benchmark plan:
+
+- `results/tables/cascade_benchmark_plan.csv`
+- `results/figures/cascade_benchmark_plan.md`
+- This generated handoff plan now sequences the controlled benchmark refresh into foundation, surface, and cross-dataset stages.
+
 ## Synthetic Split Cascade Validation
 
 Label: `synthetic/silver` and `experimental/frontier`
