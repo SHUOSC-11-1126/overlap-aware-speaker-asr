@@ -24,6 +24,8 @@ class ProjectHarnessTest(unittest.TestCase):
         self.assertEqual(by_id["speaker_profile"]["status"], "documented_skill")
         self.assertEqual(by_id["meeteval_compatibility"]["evidence_path"], "docs/skills/skill_04_meeteval_compatibility.md")
         self.assertIn("output", by_id["llm_critic"]["next_step"])
+        self.assertIn("prioritization", by_id["external_validation"]["expected_output"])
+        self.assertIn("tiny sanity-check slice", by_id["external_validation"]["next_step"])
 
 
 if __name__ == "__main__":
