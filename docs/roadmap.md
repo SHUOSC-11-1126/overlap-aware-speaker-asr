@@ -341,6 +341,12 @@ Update: the project harness now also includes a frontier parallel picklist.
 - Summary view: `results/figures/frontier_parallel_picklist.md`
 - This keeps the same breadth-first set visible while making parallel pickup easier: it lets contributors scan queue order, pickup artifact, and receipt target without changing priority or implying execution.
 
+Update: the project harness now also includes a frontier receipt board.
+
+- Frontier receipt board: `results/tables/frontier_receipt_board.json`
+- Summary view: `results/figures/frontier_receipt_board.md`
+- This consolidates the same breadth-first set into a single receipt snapshot: it keeps queue order, pickup artifact, and receipt target visible together while remaining coordination-only.
+
 Update: `meeteval_compatibility` now has a first concrete bridge artifact.
 
 - Compatibility note: `results/figures/meeteval_compatibility_note.md`
