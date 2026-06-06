@@ -418,6 +418,8 @@ Frontier execution queue:
 - `results/figures/frontier_execution_queue.md`
 - `results/tables/frontier_execution_queue.json`
 - This queue now turns the status table into a coordination layer. It does not claim new experimental evidence; it simply orders which frontier handoff looks most actionable next.
+- Current queue head: `meeteval_compatibility`
+- Next breadth-first move: use the MeetEval readiness path to stage a narrow dry run before touching the remaining frontier backlog.
 
 Frontier focus card:
 
