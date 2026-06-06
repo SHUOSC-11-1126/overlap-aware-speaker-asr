@@ -9,6 +9,7 @@ from src.compute_aware_cascade import (
     build_benchmark_checklist_lines,
     build_benchmark_checklist_rows,
     build_benchmark_manifest_template_rows,
+    build_benchmark_packet_lines,
     build_profile_playbook_lines,
     build_profile_playbook_rows,
     build_benchmark_readiness_lines,
@@ -658,6 +659,51 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertEqual(cross_dataset["source_timing_manifest"], "TODO")
         self.assertEqual(cross_dataset["cross_dataset_scope"], "TODO")
         self.assertTrue(rows == sorted(rows, key=lambda row: row["step_order"]))
+
+    def test_build_benchmark_packet_lines_consolidate_execution_artifacts(self) -> None:
+        readiness_rows = [
+            {
+                "artifact_id": "gold_runtime_normalization",
+                "benchmark_priority": "high",
+                "benchmark_status": "repo_local_runtime_only",
+                "next_evidence_step": "Run a controlled same-hardware timing sweep for the selected routes.",
+            }
+        ]
+        plan_rows = [
+            {
+                "step_order": 1,
+                "plan_step_id": "phase1_gold_runtime_foundation",
+                "phase": "foundation",
+                "dataset_scope": "gold",
+                "command": "python -m src.compute_aware_cascade",
+            }
+        ]
+        checklist_rows = [
+            {
+                "plan_step_id": "phase1_gold_runtime_foundation",
+                "session_type": "timing_capture",
+                "required_metadata": "hardware_label;device;repeat_count;warmup_count",
+                "acceptance_check": "Gold runtime foundation artifacts are rebuilt from controlled timing.",
+            }
+        ]
+        manifest_rows = [
+            {
+                "plan_step_id": "phase1_gold_runtime_foundation",
+                "hardware_label": "TODO",
+                "device": "TODO",
+                "repeat_count": "TODO",
+                "warmup_count": "TODO",
+            }
+        ]
+
+        lines = build_benchmark_packet_lines(readiness_rows, plan_rows, checklist_rows, manifest_rows)
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Cascade Benchmark Handoff Packet", rendered)
+        self.assertIn("## Readiness Snapshot", rendered)
+        self.assertIn("phase1_gold_runtime_foundation", rendered)
+        self.assertIn("hardware_label;device;repeat_count;warmup_count", rendered)
+        self.assertIn("Manifest template fields: hardware_label, device, repeat_count, warmup_count", rendered)
 
 
 if __name__ == "__main__":
