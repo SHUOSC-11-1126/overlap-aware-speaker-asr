@@ -39,8 +39,8 @@
       "frontier_id": "external_validation",
       "status": "documented_skill",
       "evidence_path": "docs/ambitious_research_agenda.md",
-      "expected_output": "external sanity-check note",
-      "next_step": "Pick one external dataset, document license/source, and define the first output artifact."
+      "expected_output": "external sanity-check prioritization card",
+      "next_step": "Use the prioritization card to map one tiny sanity-check slice without claiming a completed benchmark."
     },
     {
       "frontier_id": "demo_excellence",

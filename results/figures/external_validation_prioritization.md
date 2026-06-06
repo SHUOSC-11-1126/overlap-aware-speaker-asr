@@ -1,0 +1,10 @@
+# External Validation Prioritization
+
+This generated note recommends which external sanity-check candidate should be tried first. It does not claim that any external benchmark has already been run.
+
+| dataset_name | label | priority_tier | recommended_order | readiness_note | why_now | next_action |
+| --- | --- | --- | --- | --- | --- | --- |
+| AISHELL-4 | external/sanity-check | start_here | 1 | License check plus a tiny repo-format mapping are still required before use. | Chinese meeting overlap and domain fit make this the closest first sanity-check target. | Confirm license and choose a tiny sanity-check slice. |
+| AliMeeting | external/sanity-check | near_term_backup | 2 | License confirmation and timestamp normalization are still required before use. | Meeting-style structure stays close to the current framing if AISHELL-4 access is inconvenient. | Confirm license and choose one compact overlap-heavy excerpt. |
+| AMI | external/sanity-check | cross_domain_reference | 3 | AMI license and redistribution rules should be checked before any local slice is staged. | Classic benchmark value is high, but the domain is a looser fit than the Chinese meeting candidates. | Confirm license and compare one clip against current meeting-style exports. |
+| LibriCSS | external/sanity-check | specialized_followup | 4 | License check and overlap-condition selection are still required before use. | This is strongest for overlap stress-testing after one meeting-style sanity-check path is in place. | Confirm license and choose one overlap condition for a narrow sanity-check. |

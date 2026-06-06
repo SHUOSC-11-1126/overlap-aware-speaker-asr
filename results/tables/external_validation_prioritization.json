@@ -1,0 +1,38 @@
+[
+  {
+    "dataset_name": "AISHELL-4",
+    "label": "external/sanity-check",
+    "priority_tier": "start_here",
+    "recommended_order": "1",
+    "readiness_note": "License check plus a tiny repo-format mapping are still required before use.",
+    "why_now": "Chinese meeting overlap and domain fit make this the closest first sanity-check target.",
+    "next_action": "Confirm license and choose a tiny sanity-check slice."
+  },
+  {
+    "dataset_name": "AliMeeting",
+    "label": "external/sanity-check",
+    "priority_tier": "near_term_backup",
+    "recommended_order": "2",
+    "readiness_note": "License confirmation and timestamp normalization are still required before use.",
+    "why_now": "Meeting-style structure stays close to the current framing if AISHELL-4 access is inconvenient.",
+    "next_action": "Confirm license and choose one compact overlap-heavy excerpt."
+  },
+  {
+    "dataset_name": "AMI",
+    "label": "external/sanity-check",
+    "priority_tier": "cross_domain_reference",
+    "recommended_order": "3",
+    "readiness_note": "AMI license and redistribution rules should be checked before any local slice is staged.",
+    "why_now": "Classic benchmark value is high, but the domain is a looser fit than the Chinese meeting candidates.",
+    "next_action": "Confirm license and compare one clip against current meeting-style exports."
+  },
+  {
+    "dataset_name": "LibriCSS",
+    "label": "external/sanity-check",
+    "priority_tier": "specialized_followup",
+    "recommended_order": "4",
+    "readiness_note": "License check and overlap-condition selection are still required before use.",
+    "why_now": "This is strongest for overlap stress-testing after one meeting-style sanity-check path is in place.",
+    "next_action": "Confirm license and choose one overlap condition for a narrow sanity-check."
+  }
+]
