@@ -450,6 +450,12 @@ Demo storyboard bridge:
 - `results/tables/demo_storyboard_cards.json`
 - This bridge now turns the repository into a one-page demo-facing story so a new visitor can understand the problem, pipeline, findings, and frontier directions quickly without opening the full report first.
 
+Demo walkthrough bridge:
+
+- `results/figures/demo_walkthrough.md`
+- `results/tables/demo_walkthrough_steps.json`
+- This bridge now turns the storyboard into a short ordered talk track. It does not claim new evaluation results; it simply maps problem framing, baseline evidence, routing takeaway, frontier breadth, and next-step framing onto the existing artifact set.
+
 ## How to Resume Work
 
 Common commands:

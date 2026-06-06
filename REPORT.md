@@ -316,6 +316,8 @@ That bridge is now one step more actionable: `results/figures/external_validatio
 
 It now also includes a first `demo_excellence` bridge: `results/figures/demo_storyboard.md` plus a small JSON card set. This is intentionally light-weight rather than a full demo app, but it already improves onboarding by giving a one-page story that connects the problem, pipeline, main findings, and frontier extensions.
 
+That demo bridge is now also easier to present live: `results/figures/demo_walkthrough.md` adds a short ordered talk track anchored to existing artifacts. This is still presentation support rather than a new benchmark layer, but it makes the demo frontier more executable without forcing a UI build first.
+
 ## 9. Conclusion
 
 This project establishes a stable experimental baseline and opens a path toward more ambitious agentic ASR systems. Mixed ASR is safer under light overlap, separated ASR is stronger under heavier overlap, and duplicate suppression can reduce repetition without fully solving separated hallucinations. Router_v2 matches the oracle-best average CER on the gold benchmark, while synthetic validation and risk-aware selection help explain where the system remains fragile and where further exploration may be most valuable. The newer compute-aware frontier work adds a practical decision layer on top: it shows that `router_v2` is the cleanest balanced default, `fixed_mixed_whisper` is the most stable cost-first option, and `fixed_separated_whisper_cleaned` remains a strong robustness-oriented accuracy choice when cross-dataset stability matters.

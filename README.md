@@ -235,6 +235,11 @@ Current demo storyboard result:
 
 - `results/figures/demo_storyboard.md` now provides a one-page demo-facing story that explains the problem, pipeline, findings, and current frontier extensions with a lightweight Mermaid diagram
 
+Current demo walkthrough result:
+
+- `results/figures/demo_walkthrough.md` now provides a short ordered talk track for presenting the repository in five steps
+- This walkthrough is still `qualitative/demo` presentation support rather than a new experiment result: it anchors each step to an existing artifact so a future demo or recording can stay consistent with the current evidence
+
 ## Core Findings
 
 - Speech separation is useful, but not universally beneficial.
