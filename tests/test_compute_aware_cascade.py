@@ -4,6 +4,7 @@ import unittest
 
 from src.compute_aware_cascade import (
     build_decision_matrix_rows,
+    build_frontier_report_lines,
     DEFAULT_COST_PROXY,
     build_recommendation_family_stability_rows,
     build_recommendation_rows,
@@ -260,6 +261,37 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertEqual(balanced["synthetic_all_recommended_strategy"], "router_v2_synthetic_costed")
         self.assertEqual(balanced["family_consensus_ratio"], 1.0)
         self.assertEqual(balanced["robustness_rank"], 3)
+
+    def test_build_frontier_report_lines_mentions_key_sections(self) -> None:
+        decision_matrix_rows = [
+            {
+                "profile": "balanced",
+                "gold_recommended_strategy": "router_v2_costed",
+                "synthetic_all_recommended_strategy": "router_v2_synthetic_costed",
+                "family_most_common_strategy": "router_v2",
+                "family_consensus_ratio": 1.0,
+                "synthetic_all_average_cer": 0.285187,
+                "synthetic_all_average_compute_cost": 0.78127,
+                "synthetic_all_average_rtf": 0.148342,
+                "robustness_rank": 3,
+                "shared_cer_gap_vs_gold": 0.165145,
+            }
+        ]
+        family_stability_rows = [
+            {"profile": "balanced", "most_common_strategy": "router_v2", "consensus_ratio": 1.0}
+        ]
+        robustness_rows = [
+            {"strategy": "router_v2", "robustness_rank": 3, "cer_gap_vs_gold": 0.165145}
+        ]
+
+        lines = build_frontier_report_lines(decision_matrix_rows, family_stability_rows, robustness_rows)
+        text = "\n".join(lines)
+
+        self.assertIn("# Compute-aware Cascade Frontier Report", text)
+        self.assertIn("## Decision Matrix", text)
+        self.assertIn("router_v2_costed", text)
+        self.assertIn("## Stability Highlights", text)
+        self.assertIn("## Robustness Highlights", text)
 
     def test_build_robustness_gap_rows_compares_gold_to_synthetic_all(self) -> None:
         gold_rows = [

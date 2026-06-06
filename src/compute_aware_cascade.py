@@ -1255,6 +1255,49 @@ def write_decision_matrix_outputs(
     render_decision_matrix_summary(rows, summary_path)
 
 
+def build_frontier_report_lines(
+    decision_matrix_rows: list[dict[str, Any]],
+    family_stability_rows: list[dict[str, Any]],
+    robustness_rows: list[dict[str, Any]],
+) -> list[str]:
+    lines = [
+        "# Compute-aware Cascade Frontier Report",
+        "",
+        "This report consolidates the current compute-aware cascade decision evidence into one generated note.",
+        "",
+        "## Decision Matrix",
+        "",
+        "| profile | gold_recommended_strategy | synthetic_all_recommended_strategy | family_most_common_strategy | family_consensus_ratio | synthetic_all_average_cer | robustness_rank |",
+        "| --- | --- | --- | --- | ---: | ---: | ---: |",
+    ]
+    for row in decision_matrix_rows:
+        lines.append(
+            f"| {row['profile']} | {row['gold_recommended_strategy']} | {row['synthetic_all_recommended_strategy']} | "
+            f"{row['family_most_common_strategy']} | {row['family_consensus_ratio']} | {row['synthetic_all_average_cer']} | {row['robustness_rank']} |"
+        )
+    lines.extend(["", "## Stability Highlights", ""])
+    for row in family_stability_rows:
+        lines.append(
+            f"- `{row['profile']}`: most common family `{row['most_common_strategy']}`, consensus `{row['consensus_ratio']}`"
+        )
+    lines.extend(["", "## Robustness Highlights", ""])
+    for row in robustness_rows[:3]:
+        lines.append(
+            f"- rank {row['robustness_rank']}: `{row['strategy']}` with `cer_gap_vs_gold {row['cer_gap_vs_gold']}`"
+        )
+    return lines
+
+
+def write_frontier_report(
+    decision_matrix_rows: list[dict[str, Any]],
+    family_stability_rows: list[dict[str, Any]],
+    robustness_rows: list[dict[str, Any]],
+    output_path: Path,
+) -> None:
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text("\n".join(build_frontier_report_lines(decision_matrix_rows, family_stability_rows, robustness_rows)) + "\n", encoding="utf-8")
+
+
 def set_pixel(pixels: bytearray, width: int, height: int, x: int, y: int, color: tuple[int, int, int]) -> None:
     if 0 <= x < width and 0 <= y < height:
         idx = (y * width + x) * 3
@@ -1548,6 +1591,12 @@ def main() -> None:
             PROJECT_ROOT / "results" / "tables" / "cascade_decision_matrix.csv",
             PROJECT_ROOT / "results" / "tables" / "cascade_decision_matrix.json",
             PROJECT_ROOT / "results" / "figures" / "cascade_decision_matrix.md",
+        )
+        write_frontier_report(
+            decision_matrix_rows,
+            family_stability_rows,
+            robustness_rows,
+            PROJECT_ROOT / "results" / "figures" / "cascade_frontier_report.md",
         )
     else:
         cases = load_gold_cases()
