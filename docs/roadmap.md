@@ -42,10 +42,16 @@ Status: an initial `experimental/frontier` offline cascade analysis now exists.
 - Summary: `results/figures/compute_aware_cascade_summary.md`
 - Figure: `results/figures/cer_runtime_tradeoff.png`
 
+Update: synthetic split cascade validation now exists as `synthetic/silver` frontier evidence.
+
+- Script: `python -m src.compute_aware_cascade --dataset synthetic_split`
+- Table: `results/tables/synthetic_split_cascade_performance.csv`
+- Summary: `results/figures/synthetic_split_cascade_summary.md`
+- Figure: `results/figures/synthetic_split_cer_runtime_tradeoff.png`
+
 Remaining stretch work:
 
 - replace proxy costs with a controlled hardware/runtime benchmark
-- add synthetic split cascade validation
 - evaluate a true stronger-model fallback when compute budget allows
 
 ## Phase 4: Speaker Profile / Voiceprint

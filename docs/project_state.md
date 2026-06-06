@@ -174,6 +174,27 @@ Interpretation:
 - It uses observed runtime fields when available and deterministic proxy costs otherwise.
 - CER is reserved for post-decision evaluation only.
 
+## Synthetic Split Cascade Validation
+
+Label: `synthetic/silver` and `experimental/frontier`
+
+- `router_v2_synthetic_costed: average_cer 0.285187, relative_cost_vs_fixed_separated 0.704888`
+- `budget_cascade: average_cer 0.367582, relative_cost_vs_fixed_separated 0.854921`
+- `cleaned_preferred_cascade: average_cer 0.249877, relative_cost_vs_fixed_separated 0.945686`
+
+Outputs:
+
+- `results/tables/synthetic_split_cascade_performance.csv`
+- `results/figures/synthetic_split_cascade_summary.md`
+- `results/figures/synthetic_split_cer_runtime_tradeoff.png`
+
+Interpretation:
+
+- This is a held-out silver validation layer on top of the existing synthetic split benchmark.
+- `cleaned_preferred_cascade` improves CER over `router_v2_synthetic_costed`, but spends more compute.
+- `budget_cascade` is cheaper than always separated, but loses too much CER on the synthetic split benchmark.
+- Silver validation remains separate from gold benchmark claims.
+
 ## What Should Happen Next
 
 The next stage is not another maintenance loop. It should focus on:
@@ -197,6 +218,7 @@ python -m src.evaluate_speaker_cer --case all
 python -m src.evaluate_cpcer_lite --case all
 python -m src.risk_aware_selector --case all
 python -m src.compute_aware_cascade
+python -m src.compute_aware_cascade --dataset synthetic_split
 python -m src.router_ablation
 python -m src.router_ablation_split
 python -m src.project_harness

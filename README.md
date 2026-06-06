@@ -56,6 +56,16 @@ We study when speech separation helps or hurts multi-speaker ASR, and we build a
 
 This result is labeled `experimental/frontier`. It uses observed runtime fields when available and proxy costs otherwise; CER is used only after each route is fixed.
 
+### Synthetic Split Cascade Validation
+
+| strategy | average CER | relative cost vs fixed separated |
+| --- | ---: | ---: |
+| router_v2_synthetic_costed | 0.285187 | 0.704888 |
+| budget_cascade | 0.367582 | 0.854921 |
+| cleaned_preferred_cascade | 0.249877 | 0.945686 |
+
+This result is labeled `synthetic/silver` plus `experimental/frontier`. It extends the cascade analysis onto the held-out synthetic split benchmark without promoting silver evidence into gold claims.
+
 ## Core Findings
 
 - Speech separation is useful, but not universally beneficial.
@@ -89,6 +99,7 @@ python -m src.evaluate_speaker_cer --case all
 python -m src.evaluate_cpcer_lite --case all
 python -m src.risk_aware_selector --case all
 python -m src.compute_aware_cascade
+python -m src.compute_aware_cascade --dataset synthetic_split
 python -m src.router_ablation
 python -m src.router_ablation_split
 python -m src.project_harness
@@ -106,6 +117,8 @@ python -m src.project_harness
 - [Risk-aware summary](results/figures/risk_aware_selection_summary.md)
 - [Compute-aware cascade summary](results/figures/compute_aware_cascade_summary.md)
 - [CER/runtime trade-off figure](results/figures/cer_runtime_tradeoff.png)
+- [Synthetic split cascade summary](results/figures/synthetic_split_cascade_summary.md)
+- [Synthetic split cascade trade-off figure](results/figures/synthetic_split_cer_runtime_tradeoff.png)
 - [Router ablation summary](results/figures/router_ablation_summary.md)
 - [Synthetic routing summary](results/figures/synthetic_routing_summary.md)
 - [Synthetic split summary](results/figures/synthetic_split_routing_summary.md)
