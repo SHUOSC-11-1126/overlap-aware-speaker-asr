@@ -1,0 +1,42 @@
+[
+  {
+    "queue_order": "1",
+    "case_id": "HeavyOverlap",
+    "label": "qualitative/demo",
+    "review_priority": "high",
+    "why_now": "Risk flags plus swapped-profile uncertainty make this the strongest first review target.",
+    "candidate_repair": "Try repair separated output with cleaned transcript before treating the current transcript as final."
+  },
+  {
+    "queue_order": "2",
+    "case_id": "LightOverlap",
+    "label": "qualitative/demo",
+    "review_priority": "high",
+    "why_now": "Risk flags plus swapped-profile uncertainty make this the strongest first review target.",
+    "candidate_repair": "Try keep mixed output because separated looks risky before treating the current transcript as final."
+  },
+  {
+    "queue_order": "3",
+    "case_id": "MidOverlap",
+    "label": "qualitative/demo",
+    "review_priority": "high",
+    "why_now": "Risk flags plus swapped-profile uncertainty make this the strongest first review target.",
+    "candidate_repair": "Try keep mixed output because separated looks risky before treating the current transcript as final."
+  },
+  {
+    "queue_order": "4",
+    "case_id": "NoOverlap",
+    "label": "qualitative/demo",
+    "review_priority": "high",
+    "why_now": "Risk flags plus swapped-profile uncertainty make this the strongest first review target.",
+    "candidate_repair": "Try base separated output is stable enough before treating the current transcript as final."
+  },
+  {
+    "queue_order": "5",
+    "case_id": "OppositeOverlap",
+    "label": "qualitative/demo",
+    "review_priority": "high",
+    "why_now": "Risk flags plus swapped-profile uncertainty make this the strongest first review target.",
+    "candidate_repair": "Try repair separated output with cleaned transcript before treating the current transcript as final."
+  }
+]

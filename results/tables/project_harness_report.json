@@ -32,8 +32,8 @@
       "frontier_id": "llm_critic",
       "status": "documented_skill",
       "evidence_path": "docs/skills/skill_05_agentic_llm_critic.md",
-      "expected_output": "qualitative critic output",
-      "next_step": "Label the output as qualitative and define a minimal critic output artifact."
+      "expected_output": "qualitative critic queue",
+      "next_step": "Use the review queue to decide which critic-style review queue item should be read first."
     },
     {
       "frontier_id": "external_validation",
