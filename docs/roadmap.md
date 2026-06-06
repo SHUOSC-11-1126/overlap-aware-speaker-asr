@@ -245,6 +245,12 @@ Update: the project harness now includes a breadth-first frontier status view.
 - Harness report: `results/figures/project_harness_report.md`
 - This table makes the current status, evidence path, expected output, and next step visible for `speaker_profile`, `meeteval_compatibility`, `llm_critic`, `external_validation`, and `demo_excellence`.
 
+Update: `meeteval_compatibility` now has a first concrete bridge artifact.
+
+- Compatibility note: `results/figures/meeteval_compatibility_note.md`
+- Segment exports: `results/tables/meeteval_reference_segments.jsonl`, `results/tables/meeteval_hypothesis_segments.jsonl`
+- This is a compatibility bridge only: it exports segment-level reference and hypothesis candidates for future MeetEval / cpWER work without claiming that standard meeting metrics have already been run.
+
 ## Healthy Project Principles
 
 - New experiments should be isolated.

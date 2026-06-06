@@ -413,6 +413,13 @@ Frontier harness breadth status:
 - `results/figures/project_harness_report.md`
 - The harness report now includes a generated `frontier_status` table covering `speaker_profile`, `meeteval_compatibility`, `llm_critic`, `external_validation`, and `demo_excellence` so breadth-first work can be spread across multiple frontiers.
 
+MeetEval compatibility bridge:
+
+- `results/figures/meeteval_compatibility_note.md`
+- `results/tables/meeteval_reference_segments.jsonl`
+- `results/tables/meeteval_hypothesis_segments.jsonl`
+- This bridge now exports verified gold reference segments and speaker-attributed hypothesis segments in a simple JSONL form so future agents can continue toward MeetEval / cpWER compatibility without overstating the current evaluation scope.
+
 ## How to Resume Work
 
 Common commands:

@@ -209,6 +209,10 @@ Current frontier harness breadth result:
 
 - `results/figures/project_harness_report.md` now includes a `frontier_status` table so contributors can see the current breadth-first status of `speaker_profile`, `meeteval_compatibility`, `llm_critic`, `external_validation`, and `demo_excellence`
 
+Current MeetEval compatibility result:
+
+- `results/figures/meeteval_compatibility_note.md` now provides a segment-level compatibility bridge across verified gold references and speaker-attributed hypotheses without claiming a finished cpWER evaluation
+
 ## Core Findings
 
 - Speech separation is useful, but not universally beneficial.
