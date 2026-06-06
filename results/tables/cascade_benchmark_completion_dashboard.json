@@ -1,0 +1,9 @@
+[
+  {
+    "current_start_step": "phase1_gold_runtime_foundation",
+    "pending_phase_count": 3,
+    "dominant_blocker_family": "runtime_capture_missing",
+    "current_urgency": "high",
+    "dashboard_note": "phase1_gold_runtime_foundation leads a 3-phase pending stack with dominant blocker runtime_capture_missing."
+  }
+]

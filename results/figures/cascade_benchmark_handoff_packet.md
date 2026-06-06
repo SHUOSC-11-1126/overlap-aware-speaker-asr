@@ -80,6 +80,10 @@ This generated packet consolidates the benchmark readiness scaffold, staged plan
 - phase `surface` / readiness `pending_execution` / blocker `artifact_refresh_missing` / action `refresh_timing_backed_artifacts` / completion `Gold surface artifacts are rebuilt from controlled timing-backed inputs.`
 - phase `cross_dataset` / readiness `pending_execution` / blocker `derived_refresh_missing` / action `refresh_cross_dataset_stack` / completion `Cross-dataset decision-support artifacts are rebuilt from controlled timing-backed inputs.`
 
+## Completion Dashboard
+
+- start `phase1_gold_runtime_foundation` / pending phases `3` / dominant blocker `runtime_capture_missing` / urgency `high` / note `phase1_gold_runtime_foundation leads a 3-phase pending stack with dominant blocker runtime_capture_missing.`
+
 ## Execution Status
 
 - step 1: `phase1_gold_runtime_foundation` is `template_only` / `pending_execution` with missing `hardware_label;device;repeat_count;warmup_count;batch_shape;timing_notes`

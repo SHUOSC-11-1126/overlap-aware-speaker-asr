@@ -21,6 +21,7 @@ This generated note identifies which cascade artifacts most need controlled hard
 | --- | --- | --- | --- | --- | --- |
 | cross_dataset_benchmark_blocker_matrix | cross_dataset | inherits_repo_local_runtime | downstream_summary | results/figures/cascade_benchmark_blocker_matrix.md | Refresh after gold and synthetic controlled benchmark evidence lands. |
 | cross_dataset_benchmark_checklist | cross_dataset | inherits_repo_local_runtime | downstream_summary | results/figures/cascade_benchmark_checklist.md | Refresh after gold and synthetic controlled benchmark evidence lands. |
+| cross_dataset_benchmark_completion_dashboard | cross_dataset | inherits_repo_local_runtime | downstream_summary | results/figures/cascade_benchmark_completion_dashboard.md | Refresh after gold and synthetic controlled benchmark evidence lands. |
 | cross_dataset_benchmark_dependency_graph | cross_dataset | inherits_repo_local_runtime | downstream_summary | results/figures/cascade_benchmark_dependency_graph.md | Refresh after gold and synthetic controlled benchmark evidence lands. |
 | cross_dataset_benchmark_execution_queue | cross_dataset | inherits_repo_local_runtime | downstream_summary | results/figures/cascade_benchmark_execution_queue.md | Refresh after gold and synthetic controlled benchmark evidence lands. |
 | cross_dataset_benchmark_execution_summary | cross_dataset | inherits_repo_local_runtime | downstream_summary | results/figures/cascade_benchmark_execution_summary.md | Refresh after gold and synthetic controlled benchmark evidence lands. |
