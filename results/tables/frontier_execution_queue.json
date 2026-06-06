@@ -1,0 +1,37 @@
+[
+  {
+    "queue_order": "1",
+    "frontier_id": "meeteval_compatibility",
+    "status": "documented_skill",
+    "entry_artifact": "MeetEval readiness card",
+    "why_now": "Use the readiness card to stage one narrow dry run before claiming any benchmark bridge."
+  },
+  {
+    "queue_order": "2",
+    "frontier_id": "external_validation",
+    "status": "documented_skill",
+    "entry_artifact": "external sanity-check prioritization card",
+    "why_now": "Use the prioritization card to map one tiny sanity-check slice without claiming a completed benchmark."
+  },
+  {
+    "queue_order": "3",
+    "frontier_id": "speaker_profile",
+    "status": "documented_skill",
+    "entry_artifact": "speaker profile triage card",
+    "why_now": "Use the triage card to justify a stronger profile method while keeping the signal scoped to risk detection."
+  },
+  {
+    "queue_order": "4",
+    "frontier_id": "llm_critic",
+    "status": "documented_skill",
+    "entry_artifact": "qualitative critic queue",
+    "why_now": "Use the review queue to decide which critic-style review queue item should be read first."
+  },
+  {
+    "queue_order": "5",
+    "frontier_id": "demo_excellence",
+    "status": "documented_skill",
+    "entry_artifact": "demo-facing storyboard or walkthrough",
+    "why_now": "Use the demo walkthrough to shape a short demo walk before any heavier app build."
+  }
+]
