@@ -1,0 +1,8 @@
+[
+  {
+    "benchmark_step": "phase1_gold_runtime_foundation",
+    "prerequisite_artifact": "results/figures/cascade_benchmark_handoff_packet.md",
+    "receipt_target": "results/figures/cascade_benchmark_evidence_receipt.md",
+    "bridge_note": "Open the handoff packet first, then write back through the evidence receipt after the current benchmark step."
+  }
+]
