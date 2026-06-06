@@ -417,6 +417,42 @@ def build_frontier_receipt_board_lines(rows: list[dict[str, str]]) -> list[str]:
     return lines
 
 
+def build_frontier_coordination_matrix_rows(queue_rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    matrix_rows: list[dict[str, str]] = []
+    for row in queue_rows:
+        frontier_id = str(row.get("frontier_id", ""))
+        pickup_artifact, receipt_target = frontier_next_artifact(frontier_id)
+        matrix_rows.append(
+            {
+                "queue_order": str(row.get("queue_order", "")),
+                "frontier_id": frontier_id,
+                "status": str(row.get("status", "")),
+                "entry_artifact": str(row.get("entry_artifact", "")),
+                "pickup_artifact": pickup_artifact,
+                "receipt_target": receipt_target,
+                "coordination_note": "Coordinate this frontier by opening the pickup artifact first and writing back to the receipt target after the narrow next step.",
+                "coordination_scope": "Coordination-only matrix; not a claim of completed frontier execution.",
+            }
+        )
+    return matrix_rows
+
+
+def build_frontier_coordination_matrix_lines(rows: list[dict[str, str]]) -> list[str]:
+    lines = [
+        "# Frontier Coordination Matrix",
+        "",
+        "This generated matrix combines queue order, entry artifact, pickup artifact, and receipt target for every current frontier. It does not claim that any frontier work has already been executed.",
+        "",
+        "| queue_order | frontier_id | status | entry_artifact | pickup_artifact | receipt_target | coordination_note | coordination_scope |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['queue_order']} | {row['frontier_id']} | {row['status']} | {row['entry_artifact']} | {row['pickup_artifact']} | {row['receipt_target']} | {row['coordination_note']} | {row['coordination_scope']} |"
+        )
+    return lines
+
+
 def build_report() -> dict[str, object]:
     missing_core = [path for path in CORE_FILES if not exists(path)]
     gold_status = inspect_gold_cases()
@@ -600,6 +636,21 @@ def write_frontier_receipt_board(frontier_status: list[dict[str, str]]) -> tuple
     return json_path, md_path
 
 
+def write_frontier_coordination_matrix(frontier_status: list[dict[str, str]]) -> tuple[Path, Path]:
+    tables_dir = PROJECT_ROOT / "results" / "tables"
+    figures_dir = PROJECT_ROOT / "results" / "figures"
+    tables_dir.mkdir(parents=True, exist_ok=True)
+    figures_dir.mkdir(parents=True, exist_ok=True)
+
+    queue_rows = build_frontier_execution_queue_rows(frontier_status)
+    matrix_rows = build_frontier_coordination_matrix_rows(queue_rows)
+    json_path = tables_dir / "frontier_coordination_matrix.json"
+    md_path = figures_dir / "frontier_coordination_matrix.md"
+    json_path.write_text(json.dumps(matrix_rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    md_path.write_text("\n".join(build_frontier_coordination_matrix_lines(matrix_rows)) + "\n", encoding="utf-8")
+    return json_path, md_path
+
+
 def main() -> None:
     report = build_report()
     json_path, md_path = write_report(report)
@@ -610,6 +661,7 @@ def main() -> None:
     receipt_map_json_path, receipt_map_md_path = write_frontier_receipt_map(report["frontier_status"])
     parallel_picklist_json_path, parallel_picklist_md_path = write_frontier_parallel_picklist(report["frontier_status"])
     receipt_board_json_path, receipt_board_md_path = write_frontier_receipt_board(report["frontier_status"])
+    coordination_matrix_json_path, coordination_matrix_md_path = write_frontier_coordination_matrix(report["frontier_status"])
     print(f"Wrote harness report: {json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote harness summary: {md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier queue JSON: {queue_json_path.relative_to(PROJECT_ROOT)}")
@@ -626,6 +678,8 @@ def main() -> None:
     print(f"Wrote frontier parallel picklist note: {parallel_picklist_md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier receipt board JSON: {receipt_board_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier receipt board note: {receipt_board_md_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote frontier coordination matrix JSON: {coordination_matrix_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote frontier coordination matrix note: {coordination_matrix_md_path.relative_to(PROJECT_ROOT)}")
     print(f"gold_cases_present: {all(report['gold_cases'].values())}")
     print(f"gold_and_synthetic_separated: {report['gold_and_synthetic_separated']}")
 
