@@ -341,6 +341,12 @@ Update: `speaker_profile` now also has a triage handoff card.
 - Summary view: `results/figures/speaker_profile_triage.md`
 - This keeps the scope deliberately modest: it aggregates the current failure pattern, records that the gold cases currently collapse into `swapped_bias`, and uses that evidence to justify a stronger next profile method rather than any speaker-ID claim.
 
+Update: `speaker_profile` now also has a method handoff packet.
+
+- Method handoff: `results/tables/speaker_profile_method_handoff.csv`
+- Summary view: `results/figures/speaker_profile_method_handoff.md`
+- This keeps the frontier executable without overstating progress: it translates the current `swapped_bias` finding into a first stronger-method direction and expected evidence target while remaining diagnostic-only.
+
 Update: `llm_critic` now has a first qualitative artifact.
 
 - Critic note: `results/figures/llm_critic_qualitative_note.md`

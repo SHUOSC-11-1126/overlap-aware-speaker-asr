@@ -474,6 +474,12 @@ Speaker profile triage bridge:
 - `results/tables/speaker_profile_triage.csv`
 - This bridge now turns the per-case table into an aggregate handoff card. It stays explicitly in the risk-signal lane, records that the current gold set is entirely dominated by `swapped_bias`, and points the next contributor toward trying a stronger profile method rather than overstating attribution quality.
 
+Speaker profile method handoff bridge:
+
+- `results/figures/speaker_profile_method_handoff.md`
+- `results/tables/speaker_profile_method_handoff.csv`
+- This bridge now turns that aggregate finding into a single stronger-method packet. It still does not claim voiceprint success; it only records the first method direction, the expected evidence target, and a handoff note that keeps the current signal firmly in the diagnostic lane.
+
 LLM critic qualitative bridge:
 
 - `results/figures/llm_critic_qualitative_note.md`

@@ -257,6 +257,11 @@ Current speaker profile triage result:
 - `results/figures/speaker_profile_triage.md` now compresses that per-case signal into one aggregate failure-summary card
 - This triage view still does not claim voiceprint success: it currently records `5/5` `swapped_bias` across the gold cases and recommends trying a stronger profile method before treating attribution as useful
 
+Current speaker profile method handoff result:
+
+- `results/figures/speaker_profile_method_handoff.md` now turns that triage card into a one-row stronger-method handoff packet
+- This remains diagnostic rather than celebratory: it recommends an `embedding_or_voiceprint_baseline` direction and names the expected evidence target without claiming that any stronger profile method has already worked
+
 Current llm critic result:
 
 - `results/figures/llm_critic_qualitative_note.md` now provides a qualitative/demo critic bridge that turns structured risk cues into critique, repair direction, and uncertainty notes without claiming verified transcript correction
