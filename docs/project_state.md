@@ -222,6 +222,13 @@ Recommendation family stability audit:
 - After merging `router_v2_costed` and `router_v2_synthetic_costed` into the same family, `balanced` becomes fully stable with `consensus_ratio 1.0`.
 - `accuracy_first` remains the only profile with meaningful family-level disagreement across scopes.
 
+Decision matrix:
+
+- `results/tables/cascade_decision_matrix.csv`
+- `results/figures/cascade_decision_matrix.md`
+- `accuracy_first` now surfaces as the most robust accuracy-biased profile because its synthetic `ALL` recommendation aligns with the best shared robustness rank.
+- `balanced` is the cleanest default profile because it combines `router_v2` family stability with mid-pack robustness and lower synthetic `ALL` cost than `accuracy_first`.
+
 ## Synthetic Split Cascade Validation
 
 Label: `synthetic/silver` and `experimental/frontier`

@@ -1,0 +1,41 @@
+[
+  {
+    "profile": "accuracy_first",
+    "gold_recommended_strategy": "router_v2_costed",
+    "synthetic_all_recommended_strategy": "fixed_separated_whisper_cleaned",
+    "family_most_common_strategy": "fixed_separated_whisper_cleaned",
+    "family_consensus_ratio": 0.75,
+    "synthetic_all_average_cer": 0.179021,
+    "synthetic_all_average_compute_cost": 1.10836,
+    "synthetic_all_average_rtf": 0.133284,
+    "robustness_rank": 1,
+    "shared_cer_gap_vs_gold": -0.00266,
+    "notes": "Decision matrix merges gold recommendation, synthetic ALL recommendation, family-level stability, and shared robustness gap."
+  },
+  {
+    "profile": "balanced",
+    "gold_recommended_strategy": "router_v2_costed",
+    "synthetic_all_recommended_strategy": "router_v2_synthetic_costed",
+    "family_most_common_strategy": "router_v2",
+    "family_consensus_ratio": 1.0,
+    "synthetic_all_average_cer": 0.285187,
+    "synthetic_all_average_compute_cost": 0.78127,
+    "synthetic_all_average_rtf": 0.148342,
+    "robustness_rank": 3,
+    "shared_cer_gap_vs_gold": 0.165145,
+    "notes": "Decision matrix merges gold recommendation, synthetic ALL recommendation, family-level stability, and shared robustness gap."
+  },
+  {
+    "profile": "cost_first",
+    "gold_recommended_strategy": "fixed_mixed_whisper",
+    "synthetic_all_recommended_strategy": "fixed_mixed_whisper",
+    "family_most_common_strategy": "fixed_mixed_whisper",
+    "family_consensus_ratio": 1.0,
+    "synthetic_all_average_cer": 0.465715,
+    "synthetic_all_average_compute_cost": 0.674,
+    "synthetic_all_average_rtf": 0.163361,
+    "robustness_rank": 2,
+    "shared_cer_gap_vs_gold": 0.163622,
+    "notes": "Decision matrix merges gold recommendation, synthetic ALL recommendation, family-level stability, and shared robustness gap."
+  }
+]

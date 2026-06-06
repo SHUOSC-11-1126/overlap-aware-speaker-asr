@@ -88,6 +88,11 @@ Update: family-level stability audit separates naming drift from true recommenda
 - Family stability audit: `results/tables/cascade_recommendation_family_stability.csv`
 - Current evidence shows `balanced` is actually stable at the strategy-family level; the remaining cross-scope disagreement is concentrated in `accuracy_first`.
 
+Update: decision matrix now consolidates the cascade recommendation evidence into one deployment-facing table.
+
+- Decision matrix: `results/tables/cascade_decision_matrix.csv`
+- Current evidence suggests `balanced` is the cleanest default operating point, while `accuracy_first` is the strongest robustness-first alternative.
+
 Remaining stretch work:
 
 - replace proxy costs with a controlled hardware/runtime benchmark

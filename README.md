@@ -119,6 +119,12 @@ Current family-level recommendation stability result:
 - `cost_first` remains fully stable at `consensus_ratio = 1.0`
 - `accuracy_first` still splits between `router_v2` and `fixed_separated_whisper_cleaned`
 
+Current decision matrix result:
+
+- `accuracy_first`: gold points to `router_v2_costed`, synthetic `ALL` points to `fixed_separated_whisper_cleaned`, and the shared robustness rank is `1`
+- `balanced`: points to the `router_v2` family with `family_consensus_ratio = 1.0`
+- `cost_first`: stays on `fixed_mixed_whisper` with `family_consensus_ratio = 1.0`, but carries the weakest synthetic `ALL` CER among the three profiles
+
 ## Core Findings
 
 - Speech separation is useful, but not universally beneficial.
@@ -177,6 +183,7 @@ python -m src.project_harness
 - [Cascade robustness gap audit](results/figures/cascade_robustness_gap.md)
 - [Cascade recommendation stability audit](results/figures/cascade_recommendation_stability.md)
 - [Cascade recommendation family stability audit](results/figures/cascade_recommendation_family_stability.md)
+- [Cascade decision matrix](results/figures/cascade_decision_matrix.md)
 - [Synthetic split cascade summary](results/figures/synthetic_split_cascade_summary.md)
 - [Synthetic split cascade trade-off figure](results/figures/synthetic_split_cer_runtime_tradeoff.png)
 - [Synthetic split cascade runtime audit](results/figures/synthetic_split_cascade_runtime_audit.md)
