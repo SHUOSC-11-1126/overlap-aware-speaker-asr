@@ -572,6 +572,11 @@ External validation slice receipt bridge:
 - `results/tables/external_validation_slice_receipt.json`
 - This bridge now materializes the expected evidence slot for that first slice as a template-only receipt. It still does not claim any executed external sanity-check; it simply defines what the first narrow follow-up should write back once it actually happens.
 
+External validation skill card:
+
+- `docs/skills/skill_07_external_validation.md`
+- This repository now has a dedicated skill card for the external mini-validation frontier, so the queue-head task can be picked up directly from the skills index instead of only from the roadmap and project-state layers.
+
 Demo storyboard bridge:
 
 - `results/figures/demo_storyboard.md`
