@@ -226,6 +226,11 @@ Current external validation candidate result:
 - `results/figures/external_validation_candidates.md` now provides an `external/sanity-check` candidate card across AISHELL-4, AliMeeting, AMI, and LibriCSS with source note, license note, fit note, first preprocessing step, and next action
 - This note does not claim that an external benchmark has already been run; it only makes the first dataset triage step explicit
 
+Current external validation prioritization result:
+
+- `results/figures/external_validation_prioritization.md` now adds a lightweight prioritization card that recommends `AISHELL-4` as the first tiny external sanity-check target
+- This note stays scoped to `external/sanity-check` planning: it records priority tier, recommended order, readiness note, and why-now context without claiming that any external dataset has already been evaluated
+
 Current demo storyboard result:
 
 - `results/figures/demo_storyboard.md` now provides a one-page demo-facing story that explains the problem, pipeline, findings, and current frontier extensions with a lightweight Mermaid diagram

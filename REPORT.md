@@ -312,6 +312,8 @@ The breadth-first push now also includes a first `llm_critic` bridge: `results/f
 
 It now also includes a first `external_validation` bridge: `results/figures/external_validation_candidates.md` plus a small candidate table covering AISHELL-4, AliMeeting, AMI, and LibriCSS. This is explicitly labeled `external/sanity-check`: it records source, license, fit, preprocessing, and next-action notes so future agents can move toward a narrow external mini validation without overstating the current evidence.
 
+That bridge is now one step more actionable: `results/figures/external_validation_prioritization.md` adds a lightweight execution order across the same candidates and currently recommends AISHELL-4 as the first tiny sanity-check target. This still does not claim that any external benchmark has been run; it simply reduces the next contributor's decision surface before data staging begins.
+
 It now also includes a first `demo_excellence` bridge: `results/figures/demo_storyboard.md` plus a small JSON card set. This is intentionally light-weight rather than a full demo app, but it already improves onboarding by giving a one-page story that connects the problem, pipeline, main findings, and frontier extensions.
 
 ## 9. Conclusion

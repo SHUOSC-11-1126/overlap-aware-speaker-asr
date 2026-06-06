@@ -175,6 +175,12 @@ Update: a generated external validation candidate card now turns the external mi
 - Summary view: `results/figures/external_validation_candidates.md`
 - This records source, license, fit, first preprocessing step, and next action for AISHELL-4, AliMeeting, AMI, and LibriCSS, while staying explicitly scoped to `external/sanity-check` planning rather than claiming a completed benchmark.
 
+Update: a generated external validation prioritization card now turns that triage step into a first-action recommendation.
+
+- External validation prioritization: `results/tables/external_validation_prioritization.csv`
+- Summary view: `results/figures/external_validation_prioritization.md`
+- This recommends `AISHELL-4` as the first tiny sanity-check target and records priority tier, recommended order, readiness note, and why-now context without claiming a completed external evaluation.
+
 Update: a generated benchmark runbook card now turns the triage panel into a one-page execution brief.
 
 - Benchmark runbook card: `results/tables/cascade_benchmark_runbook_card.csv`

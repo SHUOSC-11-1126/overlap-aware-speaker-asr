@@ -438,6 +438,12 @@ External validation candidate bridge:
 - `results/tables/external_validation_candidates.csv`
 - This bridge now turns the external-mini-validation frontier into an explicit `external/sanity-check` candidate card. It records source, license, fit, preprocessing, and next-action notes for AISHELL-4, AliMeeting, AMI, and LibriCSS without claiming that any external benchmark has already been executed.
 
+External validation prioritization bridge:
+
+- `results/figures/external_validation_prioritization.md`
+- `results/tables/external_validation_prioritization.csv`
+- This bridge now turns the candidate card into a lightweight execution order. It recommends `AISHELL-4` as the first tiny sanity-check target and records priority tier, readiness note, why-now context, and next action while preserving the `external/sanity-check` label.
+
 Demo storyboard bridge:
 
 - `results/figures/demo_storyboard.md`
