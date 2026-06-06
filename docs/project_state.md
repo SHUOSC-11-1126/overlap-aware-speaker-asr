@@ -305,10 +305,16 @@ Benchmark blocker matrix:
 - `results/figures/cascade_benchmark_blocker_matrix.md`
 - This generated blocker matrix now consolidates blocker type, queue priority, dependency state, and pending-field scale so the next contributor can judge urgency from one table.
 
+Benchmark runbook card:
+
+- `results/tables/cascade_benchmark_runbook_card.csv`
+- `results/figures/cascade_benchmark_runbook_card.md`
+- This generated runbook card now condenses the first benchmark action, the required evidence, and the completion target into one short execution entrypoint.
+
 Benchmark handoff packet:
 
 - `results/figures/cascade_benchmark_handoff_packet.md`
-- This generated note now provides one benchmark-entry document that points to the readiness, plan, checklist, manifest template, execution-summary, execution-queue, session-ledger, dependency-graph, blocker-matrix, and status-board layers together.
+- This generated note now provides one benchmark-entry document that points to the readiness, plan, checklist, manifest template, execution-summary, execution-queue, session-ledger, dependency-graph, blocker-matrix, runbook-card, and status-board layers together.
 
 ## Synthetic Split Cascade Validation
 
