@@ -19,6 +19,18 @@ Each skill card should answer:
 
 The point is not to block ideas, but to make the ideas researchable, reproducible, and clearly labeled.
 
+## Current Frontier Order
+
+If you are picking up a new frontier task, start with the queue head and then move down the list:
+
+1. `meeteval_compatibility`
+2. `external_validation`
+3. `speaker_profile`
+4. `llm_critic`
+5. `demo_excellence`
+
+The current queue is coordination-only. It does not imply that any frontier step has already been completed.
+
 ## Skill Cards
 
 - [Skill 01: Separation Phase Diagram](skill_01_separation_phase_diagram.md)
