@@ -347,6 +347,12 @@ Update: `speaker_profile` now also has a method handoff packet.
 - Summary view: `results/figures/speaker_profile_method_handoff.md`
 - This keeps the frontier executable without overstating progress: it translates the current `swapped_bias` finding into a first stronger-method direction and expected evidence target while remaining diagnostic-only.
 
+Update: `speaker_profile` now also has a method receipt template.
+
+- Method receipt: `results/tables/speaker_profile_method_receipt.json`
+- Summary view: `results/figures/speaker_profile_method_receipt.md`
+- This stays on the same safe side of the line: it creates the evidence slot for a future stronger-method trial without implying that any improved profile baseline has already succeeded.
+
 Update: `llm_critic` now has a first qualitative artifact.
 
 - Critic note: `results/figures/llm_critic_qualitative_note.md`

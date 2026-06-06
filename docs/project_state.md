@@ -480,6 +480,12 @@ Speaker profile method handoff bridge:
 - `results/tables/speaker_profile_method_handoff.csv`
 - This bridge now turns that aggregate finding into a single stronger-method packet. It still does not claim voiceprint success; it only records the first method direction, the expected evidence target, and a handoff note that keeps the current signal firmly in the diagnostic lane.
 
+Speaker profile method receipt bridge:
+
+- `results/figures/speaker_profile_method_receipt.md`
+- `results/tables/speaker_profile_method_receipt.json`
+- This bridge now materializes the expected evidence slot for that stronger-method trial as a template-only receipt. It still does not claim any executed profile improvement; it simply defines what the first stronger-method follow-up should write back once it actually happens.
+
 LLM critic qualitative bridge:
 
 - `results/figures/llm_critic_qualitative_note.md`
