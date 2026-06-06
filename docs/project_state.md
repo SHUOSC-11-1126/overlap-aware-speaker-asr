@@ -174,6 +174,13 @@ Interpretation:
 - It uses observed runtime fields when available and deterministic proxy costs otherwise.
 - CER is reserved for post-decision evaluation only.
 
+Runtime provenance audit:
+
+- `results/tables/cascade_runtime_audit.csv`
+- `results/figures/cascade_runtime_audit.md`
+- Current committed gold cascade outputs use observed runtime for all `5/5` selections in every reported strategy.
+- The proxy cost model remains a guardrail for missing-runtime edge cases rather than an active source in the current gold result tables.
+
 ## Synthetic Split Cascade Validation
 
 Label: `synthetic/silver` and `experimental/frontier`
@@ -194,6 +201,13 @@ Interpretation:
 - `cleaned_preferred_cascade` improves CER over `router_v2_synthetic_costed`, but spends more compute.
 - `budget_cascade` is cheaper than always separated, but loses too much CER on the synthetic split benchmark.
 - Silver validation remains separate from gold benchmark claims.
+
+Runtime provenance audit:
+
+- `results/tables/synthetic_split_cascade_runtime_audit.csv`
+- `results/figures/synthetic_split_cascade_runtime_audit.md`
+- Current committed synthetic split cascade outputs use observed runtime for all `100/100` `ALL` selections and all `50/50` selections in both `DEV` and `TEST`.
+- The proxy cost model remains available for missing-runtime future experiments, but it is not active in the current synthetic split tables.
 
 ## What Should Happen Next
 

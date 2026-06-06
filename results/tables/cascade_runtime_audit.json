@@ -1,0 +1,68 @@
+[
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "strategy": "fixed_mixed_whisper",
+    "observed_runtime_count": 5,
+    "proxy_runtime_count": 0,
+    "manual_review_count": 0,
+    "case_count": 5,
+    "observed_runtime_ratio": 1.0,
+    "notes": "Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost."
+  },
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "strategy": "fixed_separated_whisper",
+    "observed_runtime_count": 5,
+    "proxy_runtime_count": 0,
+    "manual_review_count": 0,
+    "case_count": 5,
+    "observed_runtime_ratio": 1.0,
+    "notes": "Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost."
+  },
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "strategy": "fixed_separated_whisper_cleaned",
+    "observed_runtime_count": 5,
+    "proxy_runtime_count": 0,
+    "manual_review_count": 0,
+    "case_count": 5,
+    "observed_runtime_ratio": 1.0,
+    "notes": "Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost."
+  },
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "strategy": "router_v2_costed",
+    "observed_runtime_count": 5,
+    "proxy_runtime_count": 0,
+    "manual_review_count": 0,
+    "case_count": 5,
+    "observed_runtime_ratio": 1.0,
+    "notes": "Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost."
+  },
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "strategy": "risk_aware_costed",
+    "observed_runtime_count": 5,
+    "proxy_runtime_count": 0,
+    "manual_review_count": 0,
+    "case_count": 5,
+    "observed_runtime_ratio": 1.0,
+    "notes": "Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost."
+  },
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "strategy": "budget_cascade",
+    "observed_runtime_count": 5,
+    "proxy_runtime_count": 0,
+    "manual_review_count": 0,
+    "case_count": 5,
+    "observed_runtime_ratio": 1.0,
+    "notes": "Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost."
+  }
+]

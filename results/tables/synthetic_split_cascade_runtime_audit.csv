@@ -1,0 +1,19 @@
+﻿dataset,scope,strategy,observed_runtime_count,proxy_runtime_count,manual_review_count,case_count,observed_runtime_ratio,notes
+synthetic_split,ALL,fixed_mixed_whisper,100,0,0,100,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+synthetic_split,ALL,fixed_separated_whisper,100,0,0,100,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+synthetic_split,ALL,fixed_separated_whisper_cleaned,100,0,0,100,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+synthetic_split,ALL,router_v2_synthetic_costed,100,0,0,100,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+synthetic_split,ALL,budget_cascade,100,0,0,100,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+synthetic_split,ALL,cleaned_preferred_cascade,100,0,0,100,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+synthetic_split,DEV,fixed_mixed_whisper,50,0,0,50,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+synthetic_split,DEV,fixed_separated_whisper,50,0,0,50,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+synthetic_split,DEV,fixed_separated_whisper_cleaned,50,0,0,50,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+synthetic_split,DEV,router_v2_synthetic_costed,50,0,0,50,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+synthetic_split,DEV,budget_cascade,50,0,0,50,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+synthetic_split,DEV,cleaned_preferred_cascade,50,0,0,50,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+synthetic_split,TEST,fixed_mixed_whisper,50,0,0,50,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+synthetic_split,TEST,fixed_separated_whisper,50,0,0,50,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+synthetic_split,TEST,fixed_separated_whisper_cleaned,50,0,0,50,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+synthetic_split,TEST,router_v2_synthetic_costed,50,0,0,50,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+synthetic_split,TEST,budget_cascade,50,0,0,50,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+synthetic_split,TEST,cleaned_preferred_cascade,50,0,0,50,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.

@@ -49,6 +49,12 @@ Update: synthetic split cascade validation now exists as `synthetic/silver` fron
 - Summary: `results/figures/synthetic_split_cascade_summary.md`
 - Figure: `results/figures/synthetic_split_cer_runtime_tradeoff.png`
 
+Update: runtime provenance audit now makes the cost source explicit.
+
+- Gold audit: `results/tables/cascade_runtime_audit.csv`
+- Synthetic split audit: `results/tables/synthetic_split_cascade_runtime_audit.csv`
+- Current committed cascade outputs are fully backed by observed runtime fields; proxy cost remains a fallback for future incomplete-runtime experiments.
+
 Remaining stretch work:
 
 - replace proxy costs with a controlled hardware/runtime benchmark

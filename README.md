@@ -56,6 +56,11 @@ We study when speech separation helps or hurts multi-speaker ASR, and we build a
 
 This result is labeled `experimental/frontier`. It uses observed runtime fields when available and proxy costs otherwise; CER is used only after each route is fixed.
 
+Current runtime provenance audit result:
+
+- gold cascade strategies: `5/5` observed runtime selections for every reported strategy
+- proxy cost is currently a safety fallback, not an active source for the committed gold cascade tables
+
 ### Synthetic Split Cascade Validation
 
 | strategy | average CER | relative cost vs fixed separated |
@@ -65,6 +70,11 @@ This result is labeled `experimental/frontier`. It uses observed runtime fields 
 | cleaned_preferred_cascade | 0.249877 | 0.945686 |
 
 This result is labeled `synthetic/silver` plus `experimental/frontier`. It extends the cascade analysis onto the held-out synthetic split benchmark without promoting silver evidence into gold claims.
+
+Current runtime provenance audit result:
+
+- synthetic split cascade strategies: `100/100` observed runtime selections on `ALL`, and `50/50` on both `DEV` and `TEST`
+- proxy cost remains available for missing-runtime edge cases, but it is not currently driving the committed synthetic split cascade outputs
 
 ## Core Findings
 
@@ -117,8 +127,10 @@ python -m src.project_harness
 - [Risk-aware summary](results/figures/risk_aware_selection_summary.md)
 - [Compute-aware cascade summary](results/figures/compute_aware_cascade_summary.md)
 - [CER/runtime trade-off figure](results/figures/cer_runtime_tradeoff.png)
+- [Cascade runtime provenance audit](results/figures/cascade_runtime_audit.md)
 - [Synthetic split cascade summary](results/figures/synthetic_split_cascade_summary.md)
 - [Synthetic split cascade trade-off figure](results/figures/synthetic_split_cer_runtime_tradeoff.png)
+- [Synthetic split cascade runtime audit](results/figures/synthetic_split_cascade_runtime_audit.md)
 - [Router ablation summary](results/figures/router_ablation_summary.md)
 - [Synthetic routing summary](results/figures/synthetic_routing_summary.md)
 - [Synthetic split summary](results/figures/synthetic_split_routing_summary.md)

@@ -1,0 +1,7 @@
+﻿dataset,scope,strategy,observed_runtime_count,proxy_runtime_count,manual_review_count,case_count,observed_runtime_ratio,notes
+gold,ALL,fixed_mixed_whisper,5,0,0,5,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+gold,ALL,fixed_separated_whisper,5,0,0,5,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+gold,ALL,fixed_separated_whisper_cleaned,5,0,0,5,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+gold,ALL,router_v2_costed,5,0,0,5,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+gold,ALL,risk_aware_costed,5,0,0,5,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.
+gold,ALL,budget_cascade,5,0,0,5,1.0,Observed runtime count reflects selected methods with dataset runtime fields available; all other selected methods fall back to proxy cost.

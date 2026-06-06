@@ -56,8 +56,10 @@ This folder is the documentation entry point for the project.
 - [results/figures/risk_aware_selection_summary.md](../results/figures/risk_aware_selection_summary.md)
 - [results/figures/compute_aware_cascade_summary.md](../results/figures/compute_aware_cascade_summary.md)
 - [results/figures/cer_runtime_tradeoff.png](../results/figures/cer_runtime_tradeoff.png)
+- [results/figures/cascade_runtime_audit.md](../results/figures/cascade_runtime_audit.md)
 - [results/figures/synthetic_split_cascade_summary.md](../results/figures/synthetic_split_cascade_summary.md)
 - [results/figures/synthetic_split_cer_runtime_tradeoff.png](../results/figures/synthetic_split_cer_runtime_tradeoff.png)
+- [results/figures/synthetic_split_cascade_runtime_audit.md](../results/figures/synthetic_split_cascade_runtime_audit.md)
 - [results/figures/cpcer_lite_summary.md](../results/figures/cpcer_lite_summary.md)
 
 ## New Contributor Rule
