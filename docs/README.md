@@ -27,6 +27,7 @@ This folder is the documentation entry point for the project.
 ## Skills
 
 - [docs/skills/README.md](skills/README.md)
+- [docs/skills/skill_07_external_validation.md](skills/skill_07_external_validation.md)
 
 ## Ambitious Exploration Docs
 
