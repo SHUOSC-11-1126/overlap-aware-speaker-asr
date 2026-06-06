@@ -129,6 +129,10 @@ Current frontier report result:
 
 - `results/figures/cascade_frontier_report.md` now consolidates the decision matrix, family stability, and robustness highlights in one generated note
 
+Current artifact index result:
+
+- `results/figures/cascade_artifact_index.md` now acts as the registry for the cascade evidence stack, with per-artifact labels, generator commands, and intended usage notes
+
 ## Core Findings
 
 - Speech separation is useful, but not universally beneficial.
@@ -189,6 +193,7 @@ python -m src.project_harness
 - [Cascade recommendation family stability audit](results/figures/cascade_recommendation_family_stability.md)
 - [Cascade decision matrix](results/figures/cascade_decision_matrix.md)
 - [Cascade frontier report](results/figures/cascade_frontier_report.md)
+- [Cascade artifact index](results/figures/cascade_artifact_index.md)
 - [Synthetic split cascade summary](results/figures/synthetic_split_cascade_summary.md)
 - [Synthetic split cascade trade-off figure](results/figures/synthetic_split_cer_runtime_tradeoff.png)
 - [Synthetic split cascade runtime audit](results/figures/synthetic_split_cascade_runtime_audit.md)

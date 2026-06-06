@@ -236,6 +236,7 @@ The frontier work now includes:
 - cross-dataset robustness gap comparisons
 - family-level recommendation stability
 - a consolidated decision matrix
+- a generated artifact index
 
 This turns the cascade from a single offline plot into a small decision-support stack. The current evidence suggests:
 

@@ -234,6 +234,12 @@ Frontier report:
 - `results/figures/cascade_frontier_report.md`
 - This generated note now acts as the single-entry summary for the current compute-aware cascade frontier evidence.
 
+Artifact index:
+
+- `results/tables/cascade_artifact_index.csv`
+- `results/figures/cascade_artifact_index.md`
+- This generated registry now maps the cascade evidence stack by dataset label, artifact group, generator command, and intended usage.
+
 ## Synthetic Split Cascade Validation
 
 Label: `synthetic/silver` and `experimental/frontier`

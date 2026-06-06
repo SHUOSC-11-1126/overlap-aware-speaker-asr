@@ -98,6 +98,12 @@ Update: a generated frontier report now consolidates the full cascade audit stac
 - Frontier report: `results/figures/cascade_frontier_report.md`
 - This gives future contributors one entrypoint before diving into the more granular audit tables.
 
+Update: a generated artifact index now turns the cascade outputs into an explicit registry.
+
+- Artifact index: `results/tables/cascade_artifact_index.csv`
+- Summary view: `results/figures/cascade_artifact_index.md`
+- This gives future contributors a label-aware lookup table for which cascade artifact is gold-facing, synthetic-facing, or cross-dataset decision support.
+
 Remaining stretch work:
 
 - replace proxy costs with a controlled hardware/runtime benchmark
