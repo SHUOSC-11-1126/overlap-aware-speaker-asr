@@ -461,6 +461,12 @@ Frontier coordination matrix:
 - `results/tables/frontier_coordination_matrix.json`
 - This matrix now gives the same breadth-first set a denser scan view. It still does not claim any executed frontier work; it simply keeps queue order, entry artifact, pickup artifact, and receipt target visible together for the next pass.
 
+Frontier writeback index:
+
+- `results/figures/frontier_writeback_index.md`
+- `results/tables/frontier_writeback_index.json`
+- This index now separates the receipt target from the rest of the scan view. It still does not claim any executed frontier work; it simply keeps queue order, entry artifact, and receipt target visible together for a tighter writeback pass.
+
 Benchmark frontier bridge:
 
 - `results/figures/cascade_benchmark_frontier_bridge.md`

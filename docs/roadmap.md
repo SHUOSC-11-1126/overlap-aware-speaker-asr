@@ -353,6 +353,12 @@ Update: the project harness now also includes a frontier coordination matrix.
 - Summary view: `results/figures/frontier_coordination_matrix.md`
 - This combines the same breadth-first set into a richer scan table: it keeps queue order, entry artifact, pickup artifact, and receipt target visible together while staying coordination-only.
 
+Update: the project harness now also includes a frontier writeback index.
+
+- Frontier writeback index: `results/tables/frontier_writeback_index.json`
+- Summary view: `results/figures/frontier_writeback_index.md`
+- This isolates the writeback target for each current frontier: it keeps queue order, entry artifact, and receipt target visible together without changing priority or implying execution.
+
 Update: `meeteval_compatibility` now has a first concrete bridge artifact.
 
 - Compatibility note: `results/figures/meeteval_compatibility_note.md`
