@@ -54,6 +54,15 @@
     "intended_use": "Deployment-facing matrix that merges recommendation and robustness evidence."
   },
   {
+    "artifact_id": "cross_dataset_profile_playbook",
+    "dataset": "cross_dataset",
+    "label": "experimental/frontier",
+    "artifact_group": "report",
+    "artifact_path": "results/figures/cascade_profile_playbook.md",
+    "generator_command": "python -m src.compute_aware_cascade --dataset synthetic_split",
+    "intended_use": "Profile-by-profile deployment playbook derived from the cascade decision matrix."
+  },
+  {
     "artifact_id": "gold_pareto",
     "dataset": "gold",
     "label": "experimental/frontier",

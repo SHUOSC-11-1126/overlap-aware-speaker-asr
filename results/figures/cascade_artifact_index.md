@@ -12,6 +12,7 @@ This generated index lists the current compute-aware cascade artifacts, labels, 
 | cross_dataset_benchmark_plan | experimental/frontier | report | results/figures/cascade_benchmark_plan.md | python -m src.compute_aware_cascade --dataset synthetic_split | Staged benchmark handoff plan derived from the readiness scaffold. |
 | cross_dataset_benchmark_readiness | experimental/frontier | report | results/figures/cascade_benchmark_readiness.md | python -m src.compute_aware_cascade --dataset synthetic_split | Priority-ordered readiness scaffold for replacing repository-local timing with controlled benchmark evidence. |
 | cross_dataset_decision_matrix | experimental/frontier | report | results/tables/cascade_decision_matrix.csv | python -m src.compute_aware_cascade --dataset synthetic_split | Deployment-facing matrix that merges recommendation and robustness evidence. |
+| cross_dataset_profile_playbook | experimental/frontier | report | results/figures/cascade_profile_playbook.md | python -m src.compute_aware_cascade --dataset synthetic_split | Profile-by-profile deployment playbook derived from the cascade decision matrix. |
 
 ## gold
 

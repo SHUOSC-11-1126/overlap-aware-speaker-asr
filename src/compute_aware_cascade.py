@@ -197,6 +197,17 @@ BENCHMARK_PLAN_COLUMNS = [
     "success_signal",
 ]
 
+PROFILE_PLAYBOOK_COLUMNS = [
+    "profile",
+    "default_role",
+    "family_strategy",
+    "gold_strategy",
+    "synthetic_strategy",
+    "when_to_use",
+    "avoid_when",
+    "tradeoff_summary",
+]
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Compute-aware cascade evaluation.")
@@ -1353,6 +1364,7 @@ def build_artifact_index_rows() -> list[dict[str, Any]]:
         ("cross_dataset_recommendation_stability", "cross_dataset", "experimental/frontier", "audit", "results/tables/cascade_recommendation_stability.csv", "python -m src.compute_aware_cascade --dataset synthetic_split", "Raw strategy recommendation stability across gold and synthetic scopes."),
         ("cross_dataset_family_stability", "cross_dataset", "experimental/frontier", "audit", "results/tables/cascade_recommendation_family_stability.csv", "python -m src.compute_aware_cascade --dataset synthetic_split", "Family-level recommendation stability across gold and synthetic scopes."),
         ("cross_dataset_decision_matrix", "cross_dataset", "experimental/frontier", "report", "results/tables/cascade_decision_matrix.csv", "python -m src.compute_aware_cascade --dataset synthetic_split", "Deployment-facing matrix that merges recommendation and robustness evidence."),
+        ("cross_dataset_profile_playbook", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_profile_playbook.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Profile-by-profile deployment playbook derived from the cascade decision matrix."),
         ("cross_dataset_benchmark_readiness", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_readiness.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Priority-ordered readiness scaffold for replacing repository-local timing with controlled benchmark evidence."),
         ("cross_dataset_benchmark_plan", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_plan.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Staged benchmark handoff plan derived from the readiness scaffold."),
     ]
@@ -1603,6 +1615,92 @@ def write_benchmark_plan_outputs(
     summary_path.write_text("\n".join(build_benchmark_plan_lines(rows)) + "\n", encoding="utf-8")
 
 
+def build_profile_playbook_rows(decision_matrix_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for row in decision_matrix_rows:
+        profile = str(row.get("profile", ""))
+        family_strategy = str(row.get("family_most_common_strategy", ""))
+        gold_strategy = str(row.get("gold_recommended_strategy", ""))
+        synthetic_strategy = str(row.get("synthetic_all_recommended_strategy", ""))
+        robustness_rank = to_int(row.get("robustness_rank"))
+        consensus_ratio = to_float(row.get("family_consensus_ratio"))
+        synthetic_cost = to_float(row.get("synthetic_all_average_compute_cost"))
+
+        if profile == "balanced":
+            default_role = "default"
+            when_to_use = "Use when you want the cleanest default operating point across scopes and a stable router-family recommendation around router_v2."
+            avoid_when = "Avoid when your main requirement is either the absolute lowest held-out CER or the lowest compute floor."
+            tradeoff_summary = (
+                f"Stable family-level default around `{family_strategy}` with consensus {consensus_ratio} and lower synthetic cost "
+                "than accuracy_first."
+            )
+        elif profile == "accuracy_first":
+            default_role = "robust_accuracy"
+            when_to_use = "Use when held-out robustness and stronger accuracy-biased recovery matter more than compute simplicity."
+            avoid_when = "Avoid when you need the cheapest operating mode or a perfectly stable family recommendation across scopes."
+            tradeoff_summary = (
+                f"Best accuracy-biased option with lowest shared robustness rank {robustness_rank}, but it shifts from `{gold_strategy}` "
+                f"on gold to `{synthetic_strategy}` on held-out synthetic split."
+            )
+        else:
+            default_role = "budget_floor"
+            when_to_use = "Use when compute cost is the primary constraint and you want the most stable cost-first recommendation."
+            avoid_when = "Avoid when moderate or heavy overlap accuracy matters more than cost floor."
+            tradeoff_summary = (
+                f"Cheapest stable profile built around `{family_strategy}` with synthetic compute cost {synthetic_cost}, but it carries the weakest CER."
+            )
+
+        rows.append(
+            {
+                "profile": profile,
+                "default_role": default_role,
+                "family_strategy": family_strategy,
+                "gold_strategy": gold_strategy,
+                "synthetic_strategy": synthetic_strategy,
+                "when_to_use": when_to_use,
+                "avoid_when": avoid_when,
+                "tradeoff_summary": tradeoff_summary,
+            }
+        )
+    return sorted(rows, key=lambda row: str(row.get("profile", "")))
+
+
+def build_profile_playbook_lines(rows: list[dict[str, Any]]) -> list[str]:
+    lines = [
+        "# Cascade Profile Playbook",
+        "",
+        "This generated playbook turns the cascade profile recommendations into deployment-facing guidance.",
+        "",
+    ]
+    for row in rows:
+        lines.extend(
+            [
+                f"## {row['profile']}",
+                "",
+                f"- role: `{row['default_role']}`",
+                f"- family_strategy: `{row['family_strategy']}`",
+                f"- gold_strategy: `{row['gold_strategy']}`",
+                f"- synthetic_strategy: `{row['synthetic_strategy']}`",
+                f"- when_to_use: {row['when_to_use']}",
+                f"- avoid_when: {row['avoid_when']}",
+                f"- tradeoff_summary: {row['tradeoff_summary']}",
+                "",
+            ]
+        )
+    return lines
+
+
+def write_profile_playbook_outputs(
+    rows: list[dict[str, Any]],
+    csv_path: Path,
+    json_path: Path,
+    summary_path: Path,
+) -> None:
+    write_csv_json(rows, csv_path, json_path, PROFILE_PLAYBOOK_COLUMNS)
+    summary_path.parent.mkdir(parents=True, exist_ok=True)
+    summary_path.write_text("\n".join(build_profile_playbook_lines(rows)) + "\n", encoding="utf-8")
+
+
 def set_pixel(pixels: bytearray, width: int, height: int, x: int, y: int, color: tuple[int, int, int]) -> None:
     if 0 <= x < width and 0 <= y < height:
         idx = (y * width + x) * 3
@@ -1763,6 +1861,7 @@ def write_runtime_normalization_outputs(
 
 def main() -> None:
     args = parse_args()
+    wrote_profile_playbook = False
     artifact_index_rows = build_artifact_index_rows()
     benchmark_readiness_rows = build_benchmark_readiness_rows(artifact_index_rows)
     benchmark_plan_rows = build_benchmark_plan_rows(benchmark_readiness_rows)
@@ -1775,6 +1874,9 @@ def main() -> None:
     benchmark_plan_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_plan.csv"
     benchmark_plan_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_plan.json"
     benchmark_plan_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_plan.md"
+    profile_playbook_csv = PROJECT_ROOT / "results" / "tables" / "cascade_profile_playbook.csv"
+    profile_playbook_json = PROJECT_ROOT / "results" / "tables" / "cascade_profile_playbook.json"
+    profile_playbook_md = PROJECT_ROOT / "results" / "figures" / "cascade_profile_playbook.md"
     if args.dataset == "synthetic_split":
         cases = load_synthetic_split_cases()
         decisions = load_synthetic_split_decisions()
@@ -1928,6 +2030,14 @@ def main() -> None:
             benchmark_plan_json,
             benchmark_plan_md,
         )
+        profile_playbook_rows = build_profile_playbook_rows(decision_matrix_rows)
+        write_profile_playbook_outputs(
+            profile_playbook_rows,
+            profile_playbook_csv,
+            profile_playbook_json,
+            profile_playbook_md,
+        )
+        wrote_profile_playbook = True
     else:
         cases = load_gold_cases()
         decisions = load_decisions()
@@ -1998,6 +2108,8 @@ def main() -> None:
     print(f"Wrote cascade artifact index: {artifact_index_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark readiness: {benchmark_readiness_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark plan: {benchmark_plan_csv.relative_to(PROJECT_ROOT)}")
+    if wrote_profile_playbook:
+        print(f"Wrote cascade profile playbook: {profile_playbook_csv.relative_to(PROJECT_ROOT)}")
 
 
 if __name__ == "__main__":

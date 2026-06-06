@@ -6,6 +6,8 @@ from src.compute_aware_cascade import (
     build_decision_matrix_rows,
     build_artifact_index_lines,
     build_artifact_index_rows,
+    build_profile_playbook_lines,
+    build_profile_playbook_rows,
     build_benchmark_readiness_lines,
     build_benchmark_plan_lines,
     build_benchmark_plan_rows,
@@ -486,6 +488,80 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertIn("phase5_cross_dataset_refresh", rendered)
         self.assertIn("python -m src.compute_aware_cascade --dataset synthetic_split", rendered)
         self.assertIn("Cross-dataset decision-support artifacts are rebuilt from controlled timing-backed inputs.", rendered)
+
+    def test_build_profile_playbook_rows_turns_decision_matrix_into_deployment_guidance(self) -> None:
+        decision_matrix_rows = [
+            {
+                "profile": "accuracy_first",
+                "gold_recommended_strategy": "router_v2_costed",
+                "synthetic_all_recommended_strategy": "fixed_separated_whisper_cleaned",
+                "family_most_common_strategy": "fixed_separated_whisper_cleaned",
+                "family_consensus_ratio": 0.75,
+                "synthetic_all_average_cer": 0.179021,
+                "synthetic_all_average_compute_cost": 1.10836,
+                "synthetic_all_average_rtf": 0.133284,
+                "robustness_rank": 1,
+                "shared_cer_gap_vs_gold": -0.00266,
+            },
+            {
+                "profile": "balanced",
+                "gold_recommended_strategy": "router_v2_costed",
+                "synthetic_all_recommended_strategy": "router_v2_synthetic_costed",
+                "family_most_common_strategy": "router_v2",
+                "family_consensus_ratio": 1.0,
+                "synthetic_all_average_cer": 0.285187,
+                "synthetic_all_average_compute_cost": 0.78127,
+                "synthetic_all_average_rtf": 0.148342,
+                "robustness_rank": 3,
+                "shared_cer_gap_vs_gold": 0.165145,
+            },
+            {
+                "profile": "cost_first",
+                "gold_recommended_strategy": "fixed_mixed_whisper",
+                "synthetic_all_recommended_strategy": "fixed_mixed_whisper",
+                "family_most_common_strategy": "fixed_mixed_whisper",
+                "family_consensus_ratio": 1.0,
+                "synthetic_all_average_cer": 0.465715,
+                "synthetic_all_average_compute_cost": 0.674,
+                "synthetic_all_average_rtf": 0.163361,
+                "robustness_rank": 2,
+                "shared_cer_gap_vs_gold": 0.163622,
+            },
+        ]
+
+        rows = build_profile_playbook_rows(decision_matrix_rows)
+        balanced = next(row for row in rows if row["profile"] == "balanced")
+        accuracy = next(row for row in rows if row["profile"] == "accuracy_first")
+        cost = next(row for row in rows if row["profile"] == "cost_first")
+
+        self.assertEqual(balanced["default_role"], "default")
+        self.assertIn("router_v2", balanced["when_to_use"])
+        self.assertEqual(accuracy["default_role"], "robust_accuracy")
+        self.assertIn("lowest shared robustness rank", accuracy["tradeoff_summary"])
+        self.assertEqual(cost["default_role"], "budget_floor")
+        self.assertTrue(rows == sorted(rows, key=lambda row: row["profile"]))
+
+    def test_build_profile_playbook_lines_render_profile_sections(self) -> None:
+        rows = [
+            {
+                "profile": "balanced",
+                "default_role": "default",
+                "family_strategy": "router_v2",
+                "gold_strategy": "router_v2_costed",
+                "synthetic_strategy": "router_v2_synthetic_costed",
+                "when_to_use": "Use when you want the cleanest default operating point across scopes.",
+                "avoid_when": "Avoid when the absolute best held-out accuracy matters more than consistency.",
+                "tradeoff_summary": "Stable family-level default with moderate robustness and lower synthetic cost than accuracy_first.",
+            },
+        ]
+
+        lines = build_profile_playbook_lines(rows)
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Cascade Profile Playbook", rendered)
+        self.assertIn("## balanced", rendered)
+        self.assertIn("router_v2", rendered)
+        self.assertIn("Use when you want the cleanest default operating point across scopes.", rendered)
 
 
 if __name__ == "__main__":

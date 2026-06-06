@@ -1,0 +1,32 @@
+[
+  {
+    "profile": "accuracy_first",
+    "default_role": "robust_accuracy",
+    "family_strategy": "fixed_separated_whisper_cleaned",
+    "gold_strategy": "router_v2_costed",
+    "synthetic_strategy": "fixed_separated_whisper_cleaned",
+    "when_to_use": "Use when held-out robustness and stronger accuracy-biased recovery matter more than compute simplicity.",
+    "avoid_when": "Avoid when you need the cheapest operating mode or a perfectly stable family recommendation across scopes.",
+    "tradeoff_summary": "Best accuracy-biased option with lowest shared robustness rank 1, but it shifts from `router_v2_costed` on gold to `fixed_separated_whisper_cleaned` on held-out synthetic split."
+  },
+  {
+    "profile": "balanced",
+    "default_role": "default",
+    "family_strategy": "router_v2",
+    "gold_strategy": "router_v2_costed",
+    "synthetic_strategy": "router_v2_synthetic_costed",
+    "when_to_use": "Use when you want the cleanest default operating point across scopes and a stable router-family recommendation around router_v2.",
+    "avoid_when": "Avoid when your main requirement is either the absolute lowest held-out CER or the lowest compute floor.",
+    "tradeoff_summary": "Stable family-level default around `router_v2` with consensus 1.0 and lower synthetic cost than accuracy_first."
+  },
+  {
+    "profile": "cost_first",
+    "default_role": "budget_floor",
+    "family_strategy": "fixed_mixed_whisper",
+    "gold_strategy": "fixed_mixed_whisper",
+    "synthetic_strategy": "fixed_mixed_whisper",
+    "when_to_use": "Use when compute cost is the primary constraint and you want the most stable cost-first recommendation.",
+    "avoid_when": "Avoid when moderate or heavy overlap accuracy matters more than cost floor.",
+    "tradeoff_summary": "Cheapest stable profile built around `fixed_mixed_whisper` with synthetic compute cost 0.674, but it carries the weakest CER."
+  }
+]
