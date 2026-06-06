@@ -30,7 +30,6 @@ If you are picking up a new frontier task, start with the queue head and then mo
 5. `demo_excellence`
 
 The current queue is coordination-only. It does not imply that any frontier step has already been completed.
-Not every frontier item has a dedicated skill card yet; `external_validation` is still tracked from the roadmap and project-state layer.
 
 ## Skill Cards
 
@@ -40,3 +39,4 @@ Not every frontier item has a dedicated skill card yet; `external_validation` is
 - [Skill 04: MeetEval / cpWER Compatibility Plan](skill_04_meeteval_compatibility.md)
 - [Skill 05: Agentic LLM Transcript Critic](skill_05_agentic_llm_critic.md)
 - [Skill 06: GitHub Demo Excellence](skill_06_github_demo_excellence.md)
+- [Skill 07: External Mini Validation](skill_07_external_validation.md)
