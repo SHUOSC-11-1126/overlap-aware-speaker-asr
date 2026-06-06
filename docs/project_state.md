@@ -420,6 +420,12 @@ MeetEval compatibility bridge:
 - `results/tables/meeteval_hypothesis_segments.jsonl`
 - This bridge now exports verified gold reference segments and speaker-attributed hypothesis segments in a simple JSONL form so future agents can continue toward MeetEval / cpWER compatibility without overstating the current evaluation scope.
 
+Speaker profile similarity bridge:
+
+- `results/figures/speaker_profile_risk_summary.md`
+- `results/tables/speaker_profile_similarity.csv`
+- This bridge now turns `con/pro` snippet transcripts into a lightweight text-profile overlap signal. The current result is useful mainly because it exposes a failure mode: the simple profile signal prefers swapped alignment across the verified gold cases, which argues for caution rather than confidence.
+
 ## How to Resume Work
 
 Common commands:

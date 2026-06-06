@@ -251,6 +251,12 @@ Update: `meeteval_compatibility` now has a first concrete bridge artifact.
 - Segment exports: `results/tables/meeteval_reference_segments.jsonl`, `results/tables/meeteval_hypothesis_segments.jsonl`
 - This is a compatibility bridge only: it exports segment-level reference and hypothesis candidates for future MeetEval / cpWER work without claiming that standard meeting metrics have already been run.
 
+Update: `speaker_profile` now has a first lightweight risk-signal artifact.
+
+- Profile summary: `results/figures/speaker_profile_risk_summary.md`
+- Table: `results/tables/speaker_profile_similarity.csv`
+- This remains a narrow text-profile bridge rather than a voiceprint result, and its current value is diagnostic: the simple profile signal prefers swapped alignment across the verified gold cases, so it is useful as a warning sign rather than a deployment-ready attribution tool.
+
 ## Healthy Project Principles
 
 - New experiments should be isolated.
