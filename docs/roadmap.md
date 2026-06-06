@@ -223,6 +223,12 @@ Update: a generated benchmark operator brief now turns the pending-state overvie
 - Summary view: `results/figures/cascade_benchmark_operator_brief.md`
 - This shows the single benchmark step to run now, the evidence to collect, and the urgency note without opening the wider stack first.
 
+Update: a generated benchmark frontier bridge now connects that operator note back to the breadth-first frontier queue.
+
+- Benchmark frontier bridge: `results/tables/cascade_benchmark_frontier_bridge.csv`
+- Summary view: `results/figures/cascade_benchmark_frontier_bridge.md`
+- This stays strictly at the coordination layer: it explains why the benchmark runtime foundation still belongs at the front of the broader work stream without claiming any new timing evidence.
+
 Update: a generated benchmark evidence receipt now turns the operator note into a writeback closeout card.
 
 - Benchmark evidence receipt: `results/tables/cascade_benchmark_evidence_receipt.csv`

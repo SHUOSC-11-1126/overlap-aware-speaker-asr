@@ -419,6 +419,12 @@ Frontier execution queue:
 - `results/tables/frontier_execution_queue.json`
 - This queue now turns the status table into a coordination layer. It does not claim new experimental evidence; it simply orders which frontier handoff looks most actionable next.
 
+Benchmark frontier bridge:
+
+- `results/figures/cascade_benchmark_frontier_bridge.md`
+- `results/tables/cascade_benchmark_frontier_bridge.csv`
+- This bridge now links the benchmark operator brief back to the broader frontier queue so the runtime-foundation work remains visible inside the breadth-first coordination layer.
+
 MeetEval compatibility bridge:
 
 - `results/figures/meeteval_compatibility_note.md`

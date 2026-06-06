@@ -197,6 +197,11 @@ Current benchmark operator brief result:
 
 - `results/figures/cascade_benchmark_operator_brief.md` now gives the current benchmark operator a plain-language next step, evidence target, and urgency note
 
+Current benchmark frontier bridge result:
+
+- `results/figures/cascade_benchmark_frontier_bridge.md` now links the current benchmark operator step to the broader breadth-first frontier queue
+- This bridge is a coordination artifact rather than a new benchmark result: it explains why the runtime foundation step still matters even while narrower frontier handoffs are queued
+
 Current benchmark evidence receipt result:
 
 - `results/figures/cascade_benchmark_evidence_receipt.md` now shows what the current benchmark run must write back, which completion signal closes it, and what follow-up note should remain
