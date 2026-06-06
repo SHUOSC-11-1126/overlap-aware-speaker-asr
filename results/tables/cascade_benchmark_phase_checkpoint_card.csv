@@ -1,0 +1,4 @@
+﻿phase,readiness_label,primary_blocking_category,checkpoint_action,completion_signal
+foundation,pending_execution,runtime_capture_missing,collect_controlled_runtime,Gold runtime foundation artifacts are rebuilt from controlled timing.
+surface,pending_execution,artifact_refresh_missing,refresh_timing_backed_artifacts,Gold surface artifacts are rebuilt from controlled timing-backed inputs.
+cross_dataset,pending_execution,derived_refresh_missing,refresh_cross_dataset_stack,Cross-dataset decision-support artifacts are rebuilt from controlled timing-backed inputs.

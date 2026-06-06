@@ -99,6 +99,15 @@
     "intended_use": "Milestone card summarizing the next unlock, current urgency, and remaining benchmark phases."
   },
   {
+    "artifact_id": "cross_dataset_benchmark_phase_checkpoint_card",
+    "dataset": "cross_dataset",
+    "label": "experimental/frontier",
+    "artifact_group": "report",
+    "artifact_path": "results/figures/cascade_benchmark_phase_checkpoint_card.md",
+    "generator_command": "python -m src.compute_aware_cascade --dataset synthetic_split",
+    "intended_use": "Per-phase checkpoint card summarizing blocker, next action, and completion signal."
+  },
+  {
     "artifact_id": "cross_dataset_benchmark_plan",
     "dataset": "cross_dataset",
     "label": "experimental/frontier",
