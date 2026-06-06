@@ -37,6 +37,14 @@ SLICE_HANDOFF_COLUMNS = [
     "handoff_note",
 ]
 
+SLICE_RECEIPT_COLUMNS = [
+    "execution_status",
+    "slice_scope",
+    "expected_inputs",
+    "expected_outputs",
+    "writeback_note",
+]
+
 
 def build_external_validation_candidate_rows() -> list[dict[str, str]]:
     return [
@@ -205,7 +213,45 @@ def build_external_validation_slice_handoff_lines(
     return lines
 
 
-def write_outputs(rows: list[dict[str, str]]) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path, Path]:
+def build_external_validation_slice_receipt_rows(
+    rows: list[dict[str, str]],
+) -> list[dict[str, str]]:
+    if not rows:
+        return []
+
+    handoff = rows[0]
+    dataset_name = str(handoff.get("dataset_name", ""))
+    slice_scope = str(handoff.get("first_slice_shape", ""))
+    return [
+        {
+            "execution_status": "template_only",
+            "slice_scope": slice_scope,
+            "expected_inputs": f"License confirmation plus one repo mapping stub for {dataset_name}.",
+            "expected_outputs": "Diagnostic external-slice staging confirmation and a narrow run note.",
+            "writeback_note": "No external validation slice has been executed yet; fill this receipt only after the first dry run.",
+        }
+    ]
+
+
+def build_external_validation_slice_receipt_lines(
+    rows: list[dict[str, str]],
+) -> list[str]:
+    lines = [
+        "# External Validation Slice Receipt",
+        "",
+        "This generated receipt is a template-only writeback target for the first external sanity-check slice. It does not claim that any external benchmark has been executed.",
+        "",
+        "| execution_status | slice_scope | expected_inputs | expected_outputs | writeback_note |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['execution_status']} | {row['slice_scope']} | {row['expected_inputs']} | {row['expected_outputs']} | {row['writeback_note']} |"
+        )
+    return lines
+
+
+def write_outputs(rows: list[dict[str, str]]) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path]:
     tables_dir = PROJECT_ROOT / "results" / "tables"
     figures_dir = PROJECT_ROOT / "results" / "figures"
     tables_dir.mkdir(parents=True, exist_ok=True)
@@ -221,6 +267,9 @@ def write_outputs(rows: list[dict[str, str]]) -> tuple[Path, Path, Path, Path, P
     slice_handoff_csv_path = tables_dir / "external_validation_slice_handoff.csv"
     slice_handoff_json_path = tables_dir / "external_validation_slice_handoff.json"
     slice_handoff_md_path = figures_dir / "external_validation_slice_handoff.md"
+    slice_receipt_rows = build_external_validation_slice_receipt_rows(slice_handoff_rows)
+    slice_receipt_json_path = tables_dir / "external_validation_slice_receipt.json"
+    slice_receipt_md_path = figures_dir / "external_validation_slice_receipt.md"
     with csv_path.open("w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=CSV_COLUMNS)
         writer.writeheader()
@@ -245,6 +294,11 @@ def write_outputs(rows: list[dict[str, str]]) -> tuple[Path, Path, Path, Path, P
         "\n".join(build_external_validation_slice_handoff_lines(slice_handoff_rows)) + "\n",
         encoding="utf-8",
     )
+    slice_receipt_json_path.write_text(json.dumps(slice_receipt_rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    slice_receipt_md_path.write_text(
+        "\n".join(build_external_validation_slice_receipt_lines(slice_receipt_rows)) + "\n",
+        encoding="utf-8",
+    )
     return (
         csv_path,
         json_path,
@@ -255,6 +309,8 @@ def write_outputs(rows: list[dict[str, str]]) -> tuple[Path, Path, Path, Path, P
         slice_handoff_csv_path,
         slice_handoff_json_path,
         slice_handoff_md_path,
+        slice_receipt_json_path,
+        slice_receipt_md_path,
     )
 
 
@@ -270,6 +326,8 @@ def main() -> None:
         slice_handoff_csv_path,
         slice_handoff_json_path,
         slice_handoff_md_path,
+        slice_receipt_json_path,
+        slice_receipt_md_path,
     ) = write_outputs(rows)
     print(f"Wrote external validation candidates: {csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote external validation JSON: {json_path.relative_to(PROJECT_ROOT)}")
@@ -280,6 +338,8 @@ def main() -> None:
     print(f"Wrote external validation slice handoff: {slice_handoff_csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote external validation slice handoff JSON: {slice_handoff_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote external validation slice handoff note: {slice_handoff_md_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote external validation slice receipt JSON: {slice_receipt_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote external validation slice receipt note: {slice_receipt_md_path.relative_to(PROJECT_ROOT)}")
 
 
 if __name__ == "__main__":
