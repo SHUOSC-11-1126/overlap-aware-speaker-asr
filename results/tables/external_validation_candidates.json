@@ -1,0 +1,38 @@
+[
+  {
+    "dataset_name": "AISHELL-4",
+    "label": "external/sanity-check",
+    "source_note": "Official AISHELL-4 release page and paper.",
+    "license_note": "Check the official license terms before local reuse.",
+    "fit_note": "Chinese multi-speaker meeting data with realistic overlap and strong domain relevance.",
+    "first_preprocessing_step": "Map a tiny subset into the repository speaker-reference format.",
+    "next_action": "Confirm license and choose a tiny sanity-check slice."
+  },
+  {
+    "dataset_name": "AliMeeting",
+    "label": "external/sanity-check",
+    "source_note": "Official AliMeeting dataset release and paper.",
+    "license_note": "Check the official license terms before local reuse.",
+    "fit_note": "Meeting-style overlap and diarization structure are close to the current ASR framing.",
+    "first_preprocessing_step": "Select one short meeting excerpt and normalize segment timestamps.",
+    "next_action": "Confirm license and choose one compact overlap-heavy excerpt."
+  },
+  {
+    "dataset_name": "AMI",
+    "label": "external/sanity-check",
+    "source_note": "AMI Meeting Corpus distribution page.",
+    "license_note": "Check the AMI corpus license and redistribution rules before use.",
+    "fit_note": "Classic meeting benchmark with overlap and established evaluation conventions.",
+    "first_preprocessing_step": "Extract one short meeting clip and align speaker annotations to repo schema.",
+    "next_action": "Confirm license and compare one clip against current meeting-style exports."
+  },
+  {
+    "dataset_name": "LibriCSS",
+    "label": "external/sanity-check",
+    "source_note": "LibriCSS release page and benchmark paper.",
+    "license_note": "Check the official license terms before local reuse.",
+    "fit_note": "Overlap-heavy conversational speech is useful for a focused external overlap sanity-check.",
+    "first_preprocessing_step": "Map one overlap condition into the repository transcript/reference format.",
+    "next_action": "Confirm license and choose one overlap condition for a narrow sanity-check."
+  }
+]
