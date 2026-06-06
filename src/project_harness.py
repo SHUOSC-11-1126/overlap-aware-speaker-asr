@@ -96,7 +96,7 @@ def build_report() -> dict[str, object]:
     gold_status = inspect_gold_cases()
     synthetic_status = inspect_synthetic_separation()
     report = {
-        "project_root": str(PROJECT_ROOT),
+        "project_root": ".",
         "core_files_present": len(missing_core) == 0,
         "missing_core_files": missing_core,
         "gold_cases": gold_status,
