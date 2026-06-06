@@ -243,6 +243,7 @@ The frontier work now includes:
 - a generated benchmark checklist
 - a generated benchmark manifest template
 - a generated benchmark status board
+- a generated benchmark execution summary
 - a generated benchmark handoff packet
 
 This turns the cascade from a single offline plot into a small decision-support stack. The current evidence suggests:
@@ -291,7 +292,7 @@ The stable baseline opens a path toward more ambitious agentic ASR systems:
 6. Learned router from synthetic split
 7. Demo-oriented ASR intelligence system
 
-The compute-aware line is now beyond a placeholder idea: the immediate next step is a controlled hardware/runtime benchmark that can replace repository-local runtime comparisons with stronger deployment evidence. The repository now includes a generated benchmark-readiness scaffold, a staged benchmark handoff plan, a profile playbook, a benchmark checklist, a benchmark manifest template, a benchmark status board, and a benchmark handoff packet, so the next contributor can see which artifacts matter first, what order to refresh them in, how the resulting profile choices should be interpreted, which run metadata must be captured during execution, where to record that metadata, which phases are still template-only, which blocker category each pending phase belongs to, and which single note to start from before touching the lower-level files. After that, the most interesting future work will still be the work that clarifies a boundary, exposes a failure mode, or tests an idea that is intentionally a little risky.
+The compute-aware line is now beyond a placeholder idea: the immediate next step is a controlled hardware/runtime benchmark that can replace repository-local runtime comparisons with stronger deployment evidence. The repository now includes a generated benchmark-readiness scaffold, a staged benchmark handoff plan, a profile playbook, a benchmark checklist, a benchmark manifest template, a benchmark status board, a benchmark execution summary, and a benchmark handoff packet, so the next contributor can see which artifacts matter first, what order to refresh them in, how the resulting profile choices should be interpreted, which run metadata must be captured during execution, where to record that metadata, which phases are still template-only, which blocker category each pending phase belongs to, which phase should move next, and which single note to start from before touching the lower-level files. After that, the most interesting future work will still be the work that clarifies a boundary, exposes a failure mode, or tests an idea that is intentionally a little risky.
 
 ## 9. Conclusion
 

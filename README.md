@@ -157,9 +157,13 @@ Current benchmark status result:
 
 - `results/figures/cascade_benchmark_status.md` now acts as a phase-by-phase status board that shows which benchmark steps are still template-only, how many fields remain open, which blocker category each phase is in, and what next action should happen first
 
+Current benchmark execution summary result:
+
+- `results/figures/cascade_benchmark_execution_summary.md` now provides the phase-level blocker totals, readiness rollup, and top next action before reading the per-step status board
+
 Current benchmark handoff packet result:
 
-- `results/figures/cascade_benchmark_handoff_packet.md` now acts as the single-entry benchmark handoff note across readiness, plan, checklist, manifest template, and status tracking
+- `results/figures/cascade_benchmark_handoff_packet.md` now acts as the single-entry benchmark handoff note across readiness, plan, checklist, manifest template, execution summary, and status tracking
 
 ## Core Findings
 
@@ -227,6 +231,7 @@ python -m src.project_harness
 - [Cascade profile playbook](results/figures/cascade_profile_playbook.md)
 - [Cascade benchmark checklist](results/figures/cascade_benchmark_checklist.md)
 - [Cascade benchmark status](results/figures/cascade_benchmark_status.md)
+- [Cascade benchmark execution summary](results/figures/cascade_benchmark_execution_summary.md)
 - [Cascade benchmark handoff packet](results/figures/cascade_benchmark_handoff_packet.md)
 - [Synthetic split cascade summary](results/figures/synthetic_split_cascade_summary.md)
 - [Synthetic split cascade trade-off figure](results/figures/synthetic_split_cer_runtime_tradeoff.png)

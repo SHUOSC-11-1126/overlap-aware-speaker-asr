@@ -275,10 +275,16 @@ Benchmark status board:
 - `results/figures/cascade_benchmark_status.md`
 - This generated status board now shows which benchmark phases are still template-only, how many fields remain open, which blocker category each phase falls into, and which next action should happen before execution can move forward.
 
+Benchmark execution summary:
+
+- `results/tables/cascade_benchmark_execution_summary.csv`
+- `results/figures/cascade_benchmark_execution_summary.md`
+- This generated summary now rolls the status board up by phase so the next contributor can see blocker totals, readiness, and the top recommended next action before drilling into individual steps.
+
 Benchmark handoff packet:
 
 - `results/figures/cascade_benchmark_handoff_packet.md`
-- This generated note now provides one benchmark-entry document that points to the readiness, plan, checklist, manifest template, and status-board layers together.
+- This generated note now provides one benchmark-entry document that points to the readiness, plan, checklist, manifest template, execution-summary, and status-board layers together.
 
 ## Synthetic Split Cascade Validation
 

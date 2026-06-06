@@ -139,10 +139,16 @@ Update: a generated benchmark status board now turns the manifest template into 
 - Summary view: `results/figures/cascade_benchmark_status.md`
 - This shows which benchmark phases are still template-only, how many metadata fields remain open, which blocker category each phase belongs to, and which stages can move from planning into controlled execution next.
 
+Update: a generated benchmark execution summary now turns the status board into a phase-level triage rollup.
+
+- Benchmark execution summary: `results/tables/cascade_benchmark_execution_summary.csv`
+- Summary view: `results/figures/cascade_benchmark_execution_summary.md`
+- This shows blocker totals, readiness by phase, and the top next action before contributors dive into the lower-level status board.
+
 Update: a generated benchmark handoff packet now turns the execution stack into a single benchmark entrypoint.
 
 - Handoff packet: `results/figures/cascade_benchmark_handoff_packet.md`
-- This lets future contributors start from one note before diving into readiness, plan, checklist, manifest, and status details.
+- This lets future contributors start from one note before diving into readiness, plan, checklist, manifest, execution-summary, and status details.
 
 Remaining stretch work:
 
