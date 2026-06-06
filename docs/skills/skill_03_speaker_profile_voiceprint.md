@@ -8,6 +8,10 @@ Under known-speaker enrollment, can speaker profiles help detect speaker attribu
 
 The repository already has speaker snippets and speaker-aware evaluation. This skill explores whether light enrollment can improve attribution confidence without becoming full speaker ID.
 
+## Current queue position
+
+Third in the current frontier queue. Use it after the MeetEval and external validation handoffs are clearer, so the risk-signal work stays scoped and easy to compare.
+
 ## Challenge level
 
 Level 3: Research Extension
