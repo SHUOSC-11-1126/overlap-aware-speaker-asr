@@ -311,10 +311,16 @@ Benchmark runbook card:
 - `results/figures/cascade_benchmark_runbook_card.md`
 - This generated runbook card now condenses the first benchmark action, the required evidence, and the completion target into one short execution entrypoint.
 
+Benchmark milestone card:
+
+- `results/tables/cascade_benchmark_milestone_card.csv`
+- `results/figures/cascade_benchmark_milestone_card.md`
+- This generated milestone card now shows the next milestone boundary, what the current start step unlocks, and how many phases remain in the benchmark path.
+
 Benchmark handoff packet:
 
 - `results/figures/cascade_benchmark_handoff_packet.md`
-- This generated note now provides one benchmark-entry document that points to the readiness, plan, checklist, manifest template, execution-summary, execution-queue, session-ledger, dependency-graph, blocker-matrix, runbook-card, and status-board layers together.
+- This generated note now provides one benchmark-entry document that points to the readiness, plan, checklist, manifest template, execution-summary, execution-queue, session-ledger, dependency-graph, blocker-matrix, runbook-card, milestone-card, and status-board layers together.
 
 ## Synthetic Split Cascade Validation
 

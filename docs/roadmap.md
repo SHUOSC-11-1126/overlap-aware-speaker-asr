@@ -175,10 +175,16 @@ Update: a generated benchmark runbook card now turns the triage panel into a one
 - Summary view: `results/figures/cascade_benchmark_runbook_card.md`
 - This shows the first benchmark action, the required evidence payload, and the completion target without needing to open the wider handoff stack.
 
+Update: a generated benchmark milestone card now turns the execution brief into a progress boundary.
+
+- Benchmark milestone card: `results/tables/cascade_benchmark_milestone_card.csv`
+- Summary view: `results/figures/cascade_benchmark_milestone_card.md`
+- This shows the next milestone, what the current first step unlocks, and how many benchmark phases remain before the controlled stack is fully refreshed.
+
 Update: a generated benchmark handoff packet now turns the execution stack into a single benchmark entrypoint.
 
 - Handoff packet: `results/figures/cascade_benchmark_handoff_packet.md`
-- This lets future contributors start from one note before diving into readiness, plan, checklist, manifest, execution-summary, execution-queue, session-ledger, dependency-graph, blocker-matrix, runbook-card, and status details.
+- This lets future contributors start from one note before diving into readiness, plan, checklist, manifest, execution-summary, execution-queue, session-ledger, dependency-graph, blocker-matrix, runbook-card, milestone-card, and status details.
 
 Remaining stretch work:
 
