@@ -61,6 +61,12 @@ Update: runtime normalization audit now makes route-specific RTF explicit.
 - Synthetic split normalization: `results/tables/synthetic_split_cascade_runtime_normalization.csv`
 - The current audit uses selected-route processed audio duration, which is a stronger compute-normalized signal than raw runtime alone but still not a hardware-controlled benchmark.
 
+Update: Pareto frontier audit now makes dominated strategies explicit.
+
+- Gold Pareto audit: `results/tables/cascade_pareto.csv`
+- Synthetic split Pareto audit: `results/tables/synthetic_split_cascade_pareto.csv`
+- Current evidence suggests `router_v2_costed` dominates the other adaptive gold cascades, while synthetic split still leaves multiple meaningful frontier options.
+
 Remaining stretch work:
 
 - replace proxy costs with a controlled hardware/runtime benchmark

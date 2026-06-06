@@ -1,0 +1,7 @@
+﻿dataset,scope,strategy,average_cer,average_compute_cost,average_rtf,pareto_status,dominated_by,notes
+gold,ALL,fixed_mixed_whisper,0.302093,5.2198,0.109309,frontier,,Pareto frontier minimizes average CER and average compute cost jointly.
+gold,ALL,fixed_separated_whisper,0.191846,5.9716,0.064251,dominated,fixed_separated_whisper_cleaned,Dominated by a strategy with no worse CER and no worse compute cost.
+gold,ALL,fixed_separated_whisper_cleaned,0.181681,5.9716,0.064251,dominated,router_v2_costed,Dominated by a strategy with no worse CER and no worse compute cost.
+gold,ALL,router_v2_costed,0.120042,5.5508,0.080646,frontier,,Pareto frontier minimizes average CER and average compute cost jointly.
+gold,ALL,risk_aware_costed,0.134587,5.5508,0.080646,dominated,router_v2_costed,Dominated by a strategy with no worse CER and no worse compute cost.
+gold,ALL,budget_cascade,0.134587,5.5508,0.080646,dominated,router_v2_costed,Dominated by a strategy with no worse CER and no worse compute cost.

@@ -188,6 +188,13 @@ Runtime normalization audit:
 - Gold `router_v2_costed`, `risk_aware_costed`, and `budget_cascade` all show `average_rtf 0.080646` when normalized by selected-route processed audio duration.
 - This RTF is not a wall-clock latency claim; separated routes divide by two-stream processed duration.
 
+Pareto frontier audit:
+
+- `results/tables/cascade_pareto.csv`
+- `results/figures/cascade_pareto.md`
+- Gold `ALL` frontier strategies are `fixed_mixed_whisper` and `router_v2_costed`.
+- `risk_aware_costed` and `budget_cascade` are dominated by `router_v2_costed`; `fixed_separated_whisper_cleaned` is also dominated once CER and average compute cost are considered jointly.
+
 ## Synthetic Split Cascade Validation
 
 Label: `synthetic/silver` and `experimental/frontier`
@@ -224,6 +231,13 @@ Runtime normalization audit:
 - `budget_cascade: average_rtf 0.148228`
 - `cleaned_preferred_cascade: average_rtf 0.156245`
 - These values are normalized by selected-route processed audio duration, not by a single mixed-stream wall-clock target.
+
+Pareto frontier audit:
+
+- `results/tables/synthetic_split_cascade_pareto.csv`
+- `results/figures/synthetic_split_cascade_pareto.md`
+- Synthetic split `ALL` frontier strategies are `fixed_mixed_whisper`, `fixed_separated_whisper_cleaned`, `router_v2_synthetic_costed`, and `cleaned_preferred_cascade`.
+- `budget_cascade` is dominated by `router_v2_synthetic_costed` on the held-out synthetic split `ALL` scope.
 
 ## What Should Happen Next
 

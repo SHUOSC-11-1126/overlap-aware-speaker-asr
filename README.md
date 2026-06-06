@@ -83,6 +83,13 @@ Current runtime normalization audit result:
 - synthetic split `budget_cascade`: average selected-route `RTF = 0.148228`
 - this `RTF` is normalized by the selected route's processed audio duration, so separated routes divide by two-stream duration rather than one mixed-stream duration
 
+Current Pareto frontier audit result:
+
+- gold `ALL` frontier: `fixed_mixed_whisper`, `router_v2_costed`
+- gold `risk_aware_costed` and `budget_cascade` are dominated by `router_v2_costed`
+- synthetic split `ALL` frontier: `fixed_mixed_whisper`, `fixed_separated_whisper_cleaned`, `router_v2_synthetic_costed`, `cleaned_preferred_cascade`
+- synthetic split `budget_cascade` is dominated by `router_v2_synthetic_costed`
+
 ## Core Findings
 
 - Speech separation is useful, but not universally beneficial.
@@ -136,10 +143,12 @@ python -m src.project_harness
 - [CER/runtime trade-off figure](results/figures/cer_runtime_tradeoff.png)
 - [Cascade runtime provenance audit](results/figures/cascade_runtime_audit.md)
 - [Cascade runtime normalization audit](results/figures/cascade_runtime_normalization.md)
+- [Cascade Pareto frontier audit](results/figures/cascade_pareto.md)
 - [Synthetic split cascade summary](results/figures/synthetic_split_cascade_summary.md)
 - [Synthetic split cascade trade-off figure](results/figures/synthetic_split_cer_runtime_tradeoff.png)
 - [Synthetic split cascade runtime audit](results/figures/synthetic_split_cascade_runtime_audit.md)
 - [Synthetic split cascade runtime normalization](results/figures/synthetic_split_cascade_runtime_normalization.md)
+- [Synthetic split cascade Pareto audit](results/figures/synthetic_split_cascade_pareto.md)
 - [Router ablation summary](results/figures/router_ablation_summary.md)
 - [Synthetic routing summary](results/figures/synthetic_routing_summary.md)
 - [Synthetic split summary](results/figures/synthetic_split_routing_summary.md)

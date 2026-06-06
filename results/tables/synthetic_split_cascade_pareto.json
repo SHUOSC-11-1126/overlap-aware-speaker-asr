@@ -1,0 +1,200 @@
+[
+  {
+    "dataset": "synthetic_split",
+    "scope": "ALL",
+    "strategy": "fixed_mixed_whisper",
+    "average_cer": 0.465715,
+    "average_compute_cost": 0.674,
+    "average_rtf": 0.163361,
+    "pareto_status": "frontier",
+    "dominated_by": "",
+    "notes": "Pareto frontier minimizes average CER and average compute cost jointly."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "ALL",
+    "strategy": "fixed_separated_whisper",
+    "average_cer": 0.401869,
+    "average_compute_cost": 1.10836,
+    "average_rtf": 0.133284,
+    "pareto_status": "dominated",
+    "dominated_by": "fixed_separated_whisper_cleaned",
+    "notes": "Dominated by a strategy with no worse CER and no worse compute cost."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "ALL",
+    "strategy": "fixed_separated_whisper_cleaned",
+    "average_cer": 0.179021,
+    "average_compute_cost": 1.10836,
+    "average_rtf": 0.133284,
+    "pareto_status": "frontier",
+    "dominated_by": "",
+    "notes": "Pareto frontier minimizes average CER and average compute cost jointly."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "ALL",
+    "strategy": "router_v2_synthetic_costed",
+    "average_cer": 0.285187,
+    "average_compute_cost": 0.78127,
+    "average_rtf": 0.148342,
+    "pareto_status": "frontier",
+    "dominated_by": "",
+    "notes": "Pareto frontier minimizes average CER and average compute cost jointly."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "ALL",
+    "strategy": "budget_cascade",
+    "average_cer": 0.367582,
+    "average_compute_cost": 0.94756,
+    "average_rtf": 0.148228,
+    "pareto_status": "dominated",
+    "dominated_by": "router_v2_synthetic_costed",
+    "notes": "Dominated by a strategy with no worse CER and no worse compute cost."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "ALL",
+    "strategy": "cleaned_preferred_cascade",
+    "average_cer": 0.249877,
+    "average_compute_cost": 1.04816,
+    "average_rtf": 0.156245,
+    "pareto_status": "frontier",
+    "dominated_by": "",
+    "notes": "Pareto frontier minimizes average CER and average compute cost jointly."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "DEV",
+    "strategy": "fixed_mixed_whisper",
+    "average_cer": 0.4867,
+    "average_compute_cost": 0.74366,
+    "average_rtf": 0.17536,
+    "pareto_status": "frontier",
+    "dominated_by": "",
+    "notes": "Pareto frontier minimizes average CER and average compute cost jointly."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "DEV",
+    "strategy": "fixed_separated_whisper",
+    "average_cer": 0.367072,
+    "average_compute_cost": 1.01176,
+    "average_rtf": 0.122603,
+    "pareto_status": "dominated",
+    "dominated_by": "fixed_separated_whisper_cleaned",
+    "notes": "Dominated by a strategy with no worse CER and no worse compute cost."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "DEV",
+    "strategy": "fixed_separated_whisper_cleaned",
+    "average_cer": 0.172804,
+    "average_compute_cost": 1.01176,
+    "average_rtf": 0.122603,
+    "pareto_status": "frontier",
+    "dominated_by": "",
+    "notes": "Pareto frontier minimizes average CER and average compute cost jointly."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "DEV",
+    "strategy": "router_v2_synthetic_costed",
+    "average_cer": 0.235049,
+    "average_compute_cost": 0.76668,
+    "average_rtf": 0.148484,
+    "pareto_status": "frontier",
+    "dominated_by": "",
+    "notes": "Pareto frontier minimizes average CER and average compute cost jointly."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "DEV",
+    "strategy": "budget_cascade",
+    "average_cer": 0.4201,
+    "average_compute_cost": 0.97074,
+    "average_rtf": 0.151484,
+    "pareto_status": "dominated",
+    "dominated_by": "router_v2_synthetic_costed",
+    "notes": "Dominated by a strategy with no worse CER and no worse compute cost."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "DEV",
+    "strategy": "cleaned_preferred_cascade",
+    "average_cer": 0.225832,
+    "average_compute_cost": 0.97074,
+    "average_rtf": 0.151484,
+    "pareto_status": "frontier",
+    "dominated_by": "",
+    "notes": "Pareto frontier minimizes average CER and average compute cost jointly."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "TEST",
+    "strategy": "fixed_mixed_whisper",
+    "average_cer": 0.44473,
+    "average_compute_cost": 0.60434,
+    "average_rtf": 0.151362,
+    "pareto_status": "frontier",
+    "dominated_by": "",
+    "notes": "Pareto frontier minimizes average CER and average compute cost jointly."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "TEST",
+    "strategy": "fixed_separated_whisper",
+    "average_cer": 0.436666,
+    "average_compute_cost": 1.20496,
+    "average_rtf": 0.143966,
+    "pareto_status": "dominated",
+    "dominated_by": "fixed_separated_whisper_cleaned",
+    "notes": "Dominated by a strategy with no worse CER and no worse compute cost."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "TEST",
+    "strategy": "fixed_separated_whisper_cleaned",
+    "average_cer": 0.185238,
+    "average_compute_cost": 1.20496,
+    "average_rtf": 0.143966,
+    "pareto_status": "frontier",
+    "dominated_by": "",
+    "notes": "Pareto frontier minimizes average CER and average compute cost jointly."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "TEST",
+    "strategy": "router_v2_synthetic_costed",
+    "average_cer": 0.335326,
+    "average_compute_cost": 0.79586,
+    "average_rtf": 0.148201,
+    "pareto_status": "frontier",
+    "dominated_by": "",
+    "notes": "Pareto frontier minimizes average CER and average compute cost jointly."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "TEST",
+    "strategy": "budget_cascade",
+    "average_cer": 0.315064,
+    "average_compute_cost": 0.92438,
+    "average_rtf": 0.144971,
+    "pareto_status": "frontier",
+    "dominated_by": "",
+    "notes": "Pareto frontier minimizes average CER and average compute cost jointly."
+  },
+  {
+    "dataset": "synthetic_split",
+    "scope": "TEST",
+    "strategy": "cleaned_preferred_cascade",
+    "average_cer": 0.273921,
+    "average_compute_cost": 1.12558,
+    "average_rtf": 0.161006,
+    "pareto_status": "frontier",
+    "dominated_by": "",
+    "notes": "Pareto frontier minimizes average CER and average compute cost jointly."
+  }
+]

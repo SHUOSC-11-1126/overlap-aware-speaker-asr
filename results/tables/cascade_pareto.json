@@ -1,0 +1,68 @@
+[
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "strategy": "fixed_mixed_whisper",
+    "average_cer": 0.302093,
+    "average_compute_cost": 5.2198,
+    "average_rtf": 0.109309,
+    "pareto_status": "frontier",
+    "dominated_by": "",
+    "notes": "Pareto frontier minimizes average CER and average compute cost jointly."
+  },
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "strategy": "fixed_separated_whisper",
+    "average_cer": 0.191846,
+    "average_compute_cost": 5.9716,
+    "average_rtf": 0.064251,
+    "pareto_status": "dominated",
+    "dominated_by": "fixed_separated_whisper_cleaned",
+    "notes": "Dominated by a strategy with no worse CER and no worse compute cost."
+  },
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "strategy": "fixed_separated_whisper_cleaned",
+    "average_cer": 0.181681,
+    "average_compute_cost": 5.9716,
+    "average_rtf": 0.064251,
+    "pareto_status": "dominated",
+    "dominated_by": "router_v2_costed",
+    "notes": "Dominated by a strategy with no worse CER and no worse compute cost."
+  },
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "strategy": "router_v2_costed",
+    "average_cer": 0.120042,
+    "average_compute_cost": 5.5508,
+    "average_rtf": 0.080646,
+    "pareto_status": "frontier",
+    "dominated_by": "",
+    "notes": "Pareto frontier minimizes average CER and average compute cost jointly."
+  },
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "strategy": "risk_aware_costed",
+    "average_cer": 0.134587,
+    "average_compute_cost": 5.5508,
+    "average_rtf": 0.080646,
+    "pareto_status": "dominated",
+    "dominated_by": "router_v2_costed",
+    "notes": "Dominated by a strategy with no worse CER and no worse compute cost."
+  },
+  {
+    "dataset": "gold",
+    "scope": "ALL",
+    "strategy": "budget_cascade",
+    "average_cer": 0.134587,
+    "average_compute_cost": 5.5508,
+    "average_rtf": 0.080646,
+    "pareto_status": "dominated",
+    "dominated_by": "router_v2_costed",
+    "notes": "Dominated by a strategy with no worse CER and no worse compute cost."
+  }
+]
