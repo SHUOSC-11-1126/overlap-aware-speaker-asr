@@ -42,6 +42,14 @@ This generated packet consolidates the benchmark readiness scaffold, staged plan
 - rank 4: `phase4_synthetic_surface_refresh` / `next_after_runtime` / blocker `artifact_refresh_missing` / next `refresh_timing_backed_artifacts` / reason `artifact_refresh_missing with 3 pending fields`
 - rank 5: `phase5_cross_dataset_refresh` / `next_after_runtime` / blocker `derived_refresh_missing` / next `refresh_cross_dataset_stack` / reason `derived_refresh_missing with 4 pending fields`
 
+## Session Ledger
+
+- rank 1: `phase1_gold_runtime_foundation` / session `timing_capture` / evidence `hardware_label;device;repeat_count;warmup_count;batch_shape;timing_notes` / completion `collect_controlled_runtime -> Gold runtime foundation artifacts are rebuilt from controlled timing.`
+- rank 2: `phase2_synthetic_runtime_foundation` / session `timing_capture` / evidence `hardware_label;device;repeat_count;warmup_count;batch_shape;timing_notes` / completion `collect_controlled_runtime -> Synthetic split runtime foundation artifacts are rebuilt from controlled timing.`
+- rank 3: `phase3_gold_surface_refresh` / session `artifact_refresh` / evidence `source_timing_manifest;refresh_command;diff_review_notes` / completion `refresh_timing_backed_artifacts -> Gold surface artifacts are rebuilt from controlled timing-backed inputs.`
+- rank 4: `phase4_synthetic_surface_refresh` / session `artifact_refresh` / evidence `source_timing_manifest;refresh_command;diff_review_notes` / completion `refresh_timing_backed_artifacts -> Synthetic split surface artifacts are rebuilt from controlled timing-backed inputs.`
+- rank 5: `phase5_cross_dataset_refresh` / session `derived_refresh` / evidence `source_timing_manifest;refresh_command;cross_dataset_scope;consistency_notes` / completion `refresh_cross_dataset_stack -> Cross-dataset decision-support artifacts are rebuilt from controlled timing-backed inputs.`
+
 ## Execution Status
 
 - step 1: `phase1_gold_runtime_foundation` is `template_only` / `pending_execution` with missing `hardware_label;device;repeat_count;warmup_count;batch_shape;timing_notes`

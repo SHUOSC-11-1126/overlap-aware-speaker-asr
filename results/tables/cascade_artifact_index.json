@@ -90,6 +90,15 @@
     "intended_use": "Priority-ordered readiness scaffold for replacing repository-local timing with controlled benchmark evidence."
   },
   {
+    "artifact_id": "cross_dataset_benchmark_session_ledger",
+    "dataset": "cross_dataset",
+    "label": "experimental/frontier",
+    "artifact_group": "report",
+    "artifact_path": "results/figures/cascade_benchmark_session_ledger.md",
+    "generator_command": "python -m src.compute_aware_cascade --dataset synthetic_split",
+    "intended_use": "Session ledger linking each queued benchmark step to its required evidence anchor and completion note."
+  },
+  {
     "artifact_id": "cross_dataset_benchmark_status",
     "dataset": "cross_dataset",
     "label": "experimental/frontier",

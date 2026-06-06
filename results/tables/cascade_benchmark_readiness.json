@@ -180,6 +180,18 @@
     "next_evidence_step": "Refresh after gold and synthetic controlled benchmark evidence lands."
   },
   {
+    "artifact_id": "cross_dataset_benchmark_session_ledger",
+    "dataset": "cross_dataset",
+    "label": "experimental/frontier",
+    "artifact_group": "report",
+    "artifact_path": "results/figures/cascade_benchmark_session_ledger.md",
+    "benchmark_priority": "medium",
+    "benchmark_priority_rank": 1,
+    "benchmark_status": "inherits_repo_local_runtime",
+    "readiness_tier": "downstream_summary",
+    "next_evidence_step": "Refresh after gold and synthetic controlled benchmark evidence lands."
+  },
+  {
     "artifact_id": "cross_dataset_benchmark_status",
     "dataset": "cross_dataset",
     "label": "experimental/frontier",
