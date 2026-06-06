@@ -25,6 +25,14 @@ QUEUE_COLUMNS = [
     "candidate_repair",
 ]
 
+RECEIPT_COLUMNS = [
+    "execution_status",
+    "review_scope",
+    "expected_inputs",
+    "expected_outputs",
+    "writeback_note",
+]
+
 
 def read_csv_rows(path: Path) -> list[dict[str, Any]]:
     if not path.exists():
@@ -153,7 +161,39 @@ def build_critic_review_queue_lines(rows: list[dict[str, Any]]) -> list[str]:
     return lines
 
 
-def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, Path, Path]:
+def build_critic_review_receipt_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    if not rows:
+        return []
+
+    head = rows[0]
+    return [
+        {
+            "execution_status": "template_only",
+            "review_scope": str(head.get("case_id", "")),
+            "expected_inputs": "Critic review queue head plus one qualitative review note stub.",
+            "expected_outputs": "Diagnostic critic-pass note and a narrow review writeback.",
+            "writeback_note": "No critic-style review pass has been executed yet; fill this receipt only after the first review.",
+        }
+    ]
+
+
+def build_critic_review_receipt_lines(rows: list[dict[str, Any]]) -> list[str]:
+    lines = [
+        "# LLM Critic Review Receipt",
+        "",
+        "This generated receipt is a template-only writeback target for the first critic-style review pass. It does not claim verified transcript repair.",
+        "",
+        "| execution_status | review_scope | expected_inputs | expected_outputs | writeback_note |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['execution_status']} | {row['review_scope']} | {row['expected_inputs']} | {row['expected_outputs']} | {row['writeback_note']} |"
+        )
+    return lines
+
+
+def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path]:
     tables_dir = PROJECT_ROOT / "results" / "tables"
     figures_dir = PROJECT_ROOT / "results" / "figures"
     tables_dir.mkdir(parents=True, exist_ok=True)
@@ -165,6 +205,9 @@ def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, P
     queue_csv_path = tables_dir / "llm_critic_review_queue.csv"
     queue_json_path = tables_dir / "llm_critic_review_queue.json"
     queue_md_path = figures_dir / "llm_critic_review_queue.md"
+    receipt_rows = build_critic_review_receipt_rows(queue_rows)
+    receipt_json_path = tables_dir / "llm_critic_review_receipt.json"
+    receipt_md_path = figures_dir / "llm_critic_review_receipt.md"
 
     with csv_path.open("w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=CSV_COLUMNS)
@@ -178,20 +221,33 @@ def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, P
         writer.writerows(queue_rows)
     queue_json_path.write_text(json.dumps(queue_rows, ensure_ascii=False, indent=2), encoding="utf-8")
     queue_md_path.write_text("\n".join(build_critic_review_queue_lines(queue_rows)) + "\n", encoding="utf-8")
-    return csv_path, json_path, md_path, queue_csv_path, queue_json_path, queue_md_path
+    receipt_json_path.write_text(json.dumps(receipt_rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    receipt_md_path.write_text("\n".join(build_critic_review_receipt_lines(receipt_rows)) + "\n", encoding="utf-8")
+    return csv_path, json_path, md_path, queue_csv_path, queue_json_path, queue_md_path, receipt_json_path, receipt_md_path
 
 
 def main() -> None:
     risk_rows = read_csv_rows(PROJECT_ROOT / "results" / "tables" / "risk_aware_selection.csv")
     profile_rows = read_csv_rows(PROJECT_ROOT / "results" / "tables" / "speaker_profile_similarity.csv")
     rows = build_critic_rows(risk_rows, profile_rows)
-    csv_path, json_path, md_path, queue_csv_path, queue_json_path, queue_md_path = write_outputs(rows)
+    (
+        csv_path,
+        json_path,
+        md_path,
+        queue_csv_path,
+        queue_json_path,
+        queue_md_path,
+        receipt_json_path,
+        receipt_md_path,
+    ) = write_outputs(rows)
     print(f"Wrote LLM critic summary: {csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote LLM critic JSON: {json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote LLM critic note: {md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote LLM critic queue: {queue_csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote LLM critic queue JSON: {queue_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote LLM critic queue note: {queue_md_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote LLM critic receipt JSON: {receipt_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote LLM critic receipt note: {receipt_md_path.relative_to(PROJECT_ROOT)}")
 
 
 if __name__ == "__main__":

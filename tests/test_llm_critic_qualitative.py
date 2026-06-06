@@ -6,6 +6,8 @@ from src.llm_correct import (
     build_critic_note_lines,
     build_critic_review_queue_lines,
     build_critic_review_queue_rows,
+    build_critic_review_receipt_lines,
+    build_critic_review_receipt_rows,
     build_critic_rows,
 )
 
@@ -103,6 +105,46 @@ class LlmCriticQualitativeTest(unittest.TestCase):
         self.assertIn("HeavyOverlap", rendered)
         self.assertIn("review_priority", rendered)
         self.assertIn("first review target", rendered)
+
+    def test_build_critic_review_receipt_rows_create_template_evidence_target(self) -> None:
+        rows = build_critic_review_receipt_rows(
+            [
+                {
+                    "queue_order": "1",
+                    "case_id": "HeavyOverlap",
+                    "label": "qualitative/demo",
+                    "review_priority": "high",
+                    "why_now": "Risk flags plus swapped-profile uncertainty make this the strongest first review target.",
+                    "candidate_repair": "Try cleaned transcript first.",
+                }
+            ]
+        )
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["execution_status"], "template_only")
+        self.assertEqual(rows[0]["review_scope"], "HeavyOverlap")
+        self.assertIn("review queue", rows[0]["expected_inputs"].lower())
+        self.assertIn("diagnostic", rows[0]["expected_outputs"].lower())
+        self.assertIn("has been executed", rows[0]["writeback_note"].lower())
+
+    def test_build_critic_review_receipt_lines_render_template(self) -> None:
+        lines = build_critic_review_receipt_lines(
+            [
+                {
+                    "execution_status": "template_only",
+                    "review_scope": "HeavyOverlap",
+                    "expected_inputs": "Critic review queue head plus one qualitative review note stub.",
+                    "expected_outputs": "Diagnostic critic-pass note and a narrow review writeback.",
+                    "writeback_note": "No critic-style review pass has been executed yet; fill this receipt only after the first review.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# LLM Critic Review Receipt", rendered)
+        self.assertIn("template_only", rendered)
+        self.assertIn("HeavyOverlap", rendered)
+        self.assertIn("has been executed yet", rendered)
 
 
 if __name__ == "__main__":
