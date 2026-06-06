@@ -308,6 +308,8 @@ To support a broader next phase, the harness now also exposes a generated breadt
 
 That coordination layer is now also more executable: `results/figures/frontier_execution_queue.md` adds a lightweight breadth-first queue across the same frontiers. This is not new model evidence. Its value is organizational: it turns the growing set of frontier handoff cards into one short ordered list so the next contributor can choose the first breadth-first move with less friction.
 
+That queue is now also easier to scan at a glance: `results/figures/frontier_focus_card.md` compresses the current queue head into a one-card starting point. This is still purely coordination support, but it reduces the time from opening the repository to seeing the current breadth-first priority.
+
 That breadth-first push now also includes a first concrete `meeteval_compatibility` bridge: `results/figures/meeteval_compatibility_note.md` plus JSONL exports for verified reference segments and speaker-attributed hypothesis segments. This is intentionally framed as a compatibility scaffold rather than a completed MeetEval / cpWER result, but it turns that frontier from a pure idea into a reusable artifact.
 
 That bridge is now also easier to hand off: `results/figures/meeteval_readiness.md` adds a narrow dry-run readiness card. It still does not claim that MeetEval has been executed. Instead, it makes the current state more honest and more usable at the same time by showing that the export is ready for a diagnostic next step while also exposing that cleaned fallback still dominates the current hypothesis mix.

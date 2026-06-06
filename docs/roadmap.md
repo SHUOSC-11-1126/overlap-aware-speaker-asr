@@ -281,6 +281,12 @@ Update: the project harness now also includes a frontier execution queue.
 - Summary view: `results/figures/frontier_execution_queue.md`
 - This keeps the breadth-first layer actionable without overstating completion: it simply orders the next frontier handoffs that already exist in the repository.
 
+Update: the project harness now also includes a frontier focus card.
+
+- Frontier focus card: `results/tables/frontier_focus_card.json`
+- Summary view: `results/figures/frontier_focus_card.md`
+- This is the shortest coordination layer in the stack: it shows the current queue head without adding any new experimental claim.
+
 Update: `meeteval_compatibility` now has a first concrete bridge artifact.
 
 - Compatibility note: `results/figures/meeteval_compatibility_note.md`

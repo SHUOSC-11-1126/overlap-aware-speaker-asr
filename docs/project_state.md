@@ -419,6 +419,12 @@ Frontier execution queue:
 - `results/tables/frontier_execution_queue.json`
 - This queue now turns the status table into a coordination layer. It does not claim new experimental evidence; it simply orders which frontier handoff looks most actionable next.
 
+Frontier focus card:
+
+- `results/figures/frontier_focus_card.md`
+- `results/tables/frontier_focus_card.json`
+- This card now turns the queue head into a one-glance starting point. It remains a coordination artifact rather than a new frontier result.
+
 Benchmark frontier bridge:
 
 - `results/figures/cascade_benchmark_frontier_bridge.md`

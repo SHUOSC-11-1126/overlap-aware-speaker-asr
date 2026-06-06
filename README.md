@@ -219,6 +219,11 @@ Current frontier execution queue result:
 - `results/figures/frontier_execution_queue.md` now turns that breadth-first status view into an ordered next-step queue
 - This queue is a coordination artifact rather than a new experiment result: it simply ranks which frontier handoff should be picked up first based on the current generated cards
 
+Current frontier focus card result:
+
+- `results/figures/frontier_focus_card.md` now compresses that queue into a one-glance current priority card
+- This card is still only a coordination artifact: it highlights the current queue head so the next contributor can start faster without reading the full queue first
+
 Current MeetEval compatibility result:
 
 - `results/figures/meeteval_compatibility_note.md` now provides a segment-level compatibility bridge across verified gold references and speaker-attributed hypotheses without claiming a finished cpWER evaluation
