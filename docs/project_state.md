@@ -437,6 +437,12 @@ Frontier receipt packet:
 - `results/tables/frontier_receipt_packet.json`
 - This packet now pushes the same coordination layer one step further down to the receipt level. It still does not claim any executed frontier work; it only shows which prerequisite artifact should be opened first and which receipt target should eventually receive the writeback.
 
+Frontier receipt map:
+
+- `results/figures/frontier_receipt_map.md`
+- `results/tables/frontier_receipt_map.json`
+- This map now broadens that receipt-aware layer across every current frontier. It still does not claim any executed frontier work; it simply lets the next contributor scan queue order, prerequisite artifacts, and receipt targets for the whole breadth-first set in one place.
+
 Benchmark frontier bridge:
 
 - `results/figures/cascade_benchmark_frontier_bridge.md`

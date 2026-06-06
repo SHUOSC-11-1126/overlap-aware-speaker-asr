@@ -239,6 +239,11 @@ Current frontier receipt packet result:
 - `results/figures/frontier_receipt_packet.md` now points that same queue head directly at its receipt-level writeback target
 - This remains coordination-only as well: it links the current frontier, prerequisite artifact, and receipt target without claiming that the queued frontier work has already been executed
 
+Current frontier receipt map result:
+
+- `results/figures/frontier_receipt_map.md` now lays out the receipt path for all current frontiers, not just the queue head
+- This also remains coordination-only: it shows queue order, prerequisite artifact, and receipt target across the breadth-first frontier set without claiming that any of those frontier steps have already been executed
+
 Current MeetEval compatibility result:
 
 - `results/figures/meeteval_compatibility_note.md` now provides a segment-level compatibility bridge across verified gold references and speaker-attributed hypotheses without claiming a finished cpWER evaluation

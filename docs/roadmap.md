@@ -329,6 +329,12 @@ Update: the project harness now also includes a frontier receipt packet.
 - Summary view: `results/figures/frontier_receipt_packet.md`
 - This keeps the same coordination thread intact while making the writeback target more explicit: it points the current queue head at the prerequisite artifact and receipt slot without implying that the frontier step has already happened.
 
+Update: the project harness now also includes a frontier receipt map.
+
+- Frontier receipt map: `results/tables/frontier_receipt_map.json`
+- Summary view: `results/figures/frontier_receipt_map.md`
+- This broadens the same idea across every current frontier: it lets contributors scan queue order, prerequisite artifact, and receipt target in one table without changing priority or implying execution.
+
 Update: `meeteval_compatibility` now has a first concrete bridge artifact.
 
 - Compatibility note: `results/figures/meeteval_compatibility_note.md`
