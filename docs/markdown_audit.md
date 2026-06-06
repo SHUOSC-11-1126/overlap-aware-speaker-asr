@@ -46,6 +46,37 @@ This audit classifies the repository's Markdown files so future agents can tell 
 | `results/error_analysis/LightOverlap_mixed_whisper_error_analysis.md` | current | keep as analysis artifact |
 | `results/error_analysis/LightOverlap_separated_whisper_error_analysis.md` | current | keep as analysis artifact |
 
+### Frontier coordination files
+
+| file | category | recommended action |
+| --- | --- | --- |
+| `results/figures/frontier_execution_queue.md` | current | keep as the breadth-first frontier queue |
+| `results/figures/frontier_focus_card.md` | current | keep as the one-card queue head view |
+| `results/figures/frontier_handoff_packet.md` | current | keep as the queue-head handoff note |
+| `results/figures/frontier_receipt_packet.md` | current | keep as the queue-head receipt note |
+| `results/figures/frontier_receipt_map.md` | current | keep as the multi-frontier receipt map |
+| `results/figures/frontier_parallel_picklist.md` | current | keep as the parallel pickup view |
+| `results/figures/frontier_receipt_board.md` | current | keep as the breadth-first receipt board |
+| `results/figures/frontier_coordination_matrix.md` | current | keep as the denser coordination matrix |
+| `results/figures/frontier_writeback_index.md` | current | keep as the writeback index |
+| `results/figures/meeteval_readiness.md` | current | keep as the MeetEval readiness handoff |
+| `results/figures/meeteval_dry_run_handoff.md` | current | keep as the dry-run handoff packet |
+| `results/figures/meeteval_dry_run_receipt.md` | current | keep as the dry-run receipt template |
+| `results/figures/speaker_profile_risk_summary.md` | current | keep as the speaker-profile risk bridge |
+| `results/figures/speaker_profile_triage.md` | current | keep as the speaker-profile triage card |
+| `results/figures/speaker_profile_method_handoff.md` | current | keep as the stronger-method handoff card |
+| `results/figures/speaker_profile_method_receipt.md` | current | keep as the speaker-profile receipt template |
+| `results/figures/llm_critic_qualitative_note.md` | current | keep as the qualitative critic bridge |
+| `results/figures/llm_critic_review_queue.md` | current | keep as the critic review queue |
+| `results/figures/llm_critic_review_receipt.md` | current | keep as the critic receipt template |
+| `results/figures/external_validation_candidates.md` | current | keep as the external candidate card |
+| `results/figures/external_validation_prioritization.md` | current | keep as the external prioritization card |
+| `results/figures/external_validation_slice_handoff.md` | current | keep as the external slice handoff |
+| `results/figures/external_validation_slice_receipt.md` | current | keep as the external slice receipt |
+| `results/figures/demo_storyboard.md` | current | keep as the demo storyboard |
+| `results/figures/demo_walkthrough.md` | current | keep as the demo walkthrough |
+| `results/figures/demo_walkthrough_receipt.md` | current | keep as the demo receipt template |
+
 ## Historical Files
 
 | file | category | recommended action |
