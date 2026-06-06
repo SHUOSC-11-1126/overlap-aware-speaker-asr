@@ -28,6 +28,8 @@ from src.compute_aware_cascade import (
     build_benchmark_completion_dashboard_rows,
     build_benchmark_evidence_receipt_lines,
     build_benchmark_evidence_receipt_rows,
+    build_benchmark_frontier_bridge_lines,
+    build_benchmark_frontier_bridge_rows,
     build_benchmark_operator_brief_lines,
     build_benchmark_operator_brief_rows,
     build_benchmark_session_ledger_lines,
@@ -1380,6 +1382,50 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertIn("collect_controlled_runtime", rendered)
         self.assertIn("timing_capture", rendered)
         self.assertIn("blocked by runtime_capture_missing", rendered)
+
+    def test_build_benchmark_frontier_bridge_rows_connect_operator_and_frontier_queue(self) -> None:
+        rows = build_benchmark_frontier_bridge_rows(
+            operator_rows=[
+                {
+                    "operator_step": "phase1_gold_runtime_foundation",
+                    "operator_action": "collect_controlled_runtime",
+                    "operator_session_type": "timing_capture",
+                    "operator_evidence": "hardware_label;device",
+                    "operator_note": "Run phase1_gold_runtime_foundation now; it is blocked by runtime_capture_missing and carries high urgency.",
+                }
+            ],
+            frontier_queue_rows=[
+                {
+                    "queue_order": "1",
+                    "frontier_id": "meeteval_compatibility",
+                    "status": "documented_skill",
+                    "entry_artifact": "MeetEval readiness card",
+                    "why_now": "Use the readiness card to stage one narrow dry run before claiming any benchmark bridge.",
+                }
+            ],
+        )
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["benchmark_operator_step"], "phase1_gold_runtime_foundation")
+        self.assertEqual(rows[0]["frontier_queue_head"], "meeteval_compatibility")
+        self.assertIn("runtime", rows[0]["bridge_reason"].lower())
+
+    def test_build_benchmark_frontier_bridge_lines_render_summary_card(self) -> None:
+        lines = build_benchmark_frontier_bridge_lines(
+            [
+                {
+                    "benchmark_operator_step": "phase1_gold_runtime_foundation",
+                    "benchmark_operator_action": "collect_controlled_runtime",
+                    "frontier_queue_head": "meeteval_compatibility",
+                    "bridge_reason": "The benchmark runtime foundation still matters because it is the strongest shared evidence layer before narrower frontier follow-ups.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Cascade Benchmark Frontier Bridge", rendered)
+        self.assertIn("phase1_gold_runtime_foundation", rendered)
+        self.assertIn("meeteval_compatibility", rendered)
 
     def test_build_benchmark_evidence_receipt_rows_capture_writeback_expectations(self) -> None:
         dashboard_rows = [

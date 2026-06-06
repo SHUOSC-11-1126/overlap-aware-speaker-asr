@@ -358,6 +358,13 @@ BENCHMARK_OPERATOR_BRIEF_COLUMNS = [
     "operator_note",
 ]
 
+BENCHMARK_FRONTIER_BRIDGE_COLUMNS = [
+    "benchmark_operator_step",
+    "benchmark_operator_action",
+    "frontier_queue_head",
+    "bridge_reason",
+]
+
 BENCHMARK_EVIDENCE_RECEIPT_COLUMNS = [
     "receipt_step",
     "receipt_action",
@@ -1071,6 +1078,51 @@ def build_benchmark_operator_brief_lines(rows: list[dict[str, Any]]) -> list[str
     return lines
 
 
+def build_benchmark_frontier_bridge_rows(
+    operator_rows: list[dict[str, Any]],
+    frontier_queue_rows: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    if not operator_rows or not frontier_queue_rows:
+        return []
+    operator = operator_rows[0]
+    frontier_head = frontier_queue_rows[0]
+    return [
+        {
+            "benchmark_operator_step": str(operator.get("operator_step", "")),
+            "benchmark_operator_action": str(operator.get("operator_action", "")),
+            "frontier_queue_head": str(frontier_head.get("frontier_id", "")),
+            "bridge_reason": "The benchmark runtime foundation still matters because it is the strongest shared evidence layer before narrower frontier follow-ups.",
+        }
+    ]
+
+
+def build_benchmark_frontier_bridge_lines(rows: list[dict[str, Any]]) -> list[str]:
+    lines = [
+        "# Cascade Benchmark Frontier Bridge",
+        "",
+        "This generated bridge connects the current benchmark operator step to the broader breadth-first frontier queue. It is a coordination artifact, not a new benchmark result.",
+        "",
+        "| benchmark_operator_step | benchmark_operator_action | frontier_queue_head | bridge_reason |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['benchmark_operator_step']} | {row['benchmark_operator_action']} | {row['frontier_queue_head']} | {row['bridge_reason']} |"
+        )
+    return lines
+
+
+def load_frontier_execution_queue_rows() -> list[dict[str, Any]]:
+    path = PROJECT_ROOT / "results" / "tables" / "frontier_execution_queue.json"
+    if not path.exists():
+        return []
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    return [row for row in data if isinstance(row, dict)]
+
+
 def build_benchmark_evidence_receipt_rows(
     dashboard_rows: list[dict[str, Any]],
     operator_brief_rows: list[dict[str, Any]],
@@ -1141,6 +1193,17 @@ def write_benchmark_operator_brief_outputs(
     write_csv_json(rows, csv_path, json_path, BENCHMARK_OPERATOR_BRIEF_COLUMNS)
     summary_path.parent.mkdir(parents=True, exist_ok=True)
     summary_path.write_text("\n".join(build_benchmark_operator_brief_lines(rows)) + "\n", encoding="utf-8")
+
+
+def write_benchmark_frontier_bridge_outputs(
+    rows: list[dict[str, Any]],
+    csv_path: Path,
+    json_path: Path,
+    summary_path: Path,
+) -> None:
+    write_csv_json(rows, csv_path, json_path, BENCHMARK_FRONTIER_BRIDGE_COLUMNS)
+    summary_path.parent.mkdir(parents=True, exist_ok=True)
+    summary_path.write_text("\n".join(build_benchmark_frontier_bridge_lines(rows)) + "\n", encoding="utf-8")
 
 
 def write_benchmark_completion_dashboard_outputs(
@@ -2459,6 +2522,7 @@ def build_artifact_index_rows() -> list[dict[str, Any]]:
         ("cross_dataset_benchmark_phase_checkpoint_card", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_phase_checkpoint_card.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Per-phase checkpoint card summarizing blocker, next action, and completion signal."),
         ("cross_dataset_benchmark_completion_dashboard", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_completion_dashboard.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Completion dashboard summarizing current start, dominant blocker family, and pending phase count."),
         ("cross_dataset_benchmark_operator_brief", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_operator_brief.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Plain-language brief for the current benchmark operator covering step, evidence, and urgency."),
+        ("cross_dataset_benchmark_frontier_bridge", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_frontier_bridge.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Bridge card linking the current benchmark operator step to the broader frontier execution queue."),
         ("cross_dataset_benchmark_evidence_receipt", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_evidence_receipt.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Receipt-style writeback guide for the current benchmark step covering evidence, completion signal, and follow-up."),
         ("cross_dataset_benchmark_handoff_packet", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_handoff_packet.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Single-entry benchmark handoff packet consolidating readiness, plan, checklist, manifest template, and status board."),
     ]
@@ -3178,6 +3242,13 @@ def main() -> None:
     benchmark_operator_brief_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_operator_brief.csv"
     benchmark_operator_brief_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_operator_brief.json"
     benchmark_operator_brief_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_operator_brief.md"
+    benchmark_frontier_bridge_rows = build_benchmark_frontier_bridge_rows(
+        benchmark_operator_brief_rows,
+        load_frontier_execution_queue_rows(),
+    )
+    benchmark_frontier_bridge_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_frontier_bridge.csv"
+    benchmark_frontier_bridge_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_frontier_bridge.json"
+    benchmark_frontier_bridge_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_frontier_bridge.md"
     benchmark_evidence_receipt_rows = build_benchmark_evidence_receipt_rows(
         benchmark_completion_dashboard_rows,
         benchmark_operator_brief_rows,
@@ -3421,6 +3492,12 @@ def main() -> None:
             benchmark_operator_brief_json,
             benchmark_operator_brief_md,
         )
+        write_benchmark_frontier_bridge_outputs(
+            benchmark_frontier_bridge_rows,
+            benchmark_frontier_bridge_csv,
+            benchmark_frontier_bridge_json,
+            benchmark_frontier_bridge_md,
+        )
         write_benchmark_evidence_receipt_outputs(
             benchmark_evidence_receipt_rows,
             benchmark_evidence_receipt_csv,
@@ -3537,6 +3614,7 @@ def main() -> None:
     print(f"Wrote cascade benchmark phase checkpoint card: {benchmark_phase_checkpoint_card_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark completion dashboard: {benchmark_completion_dashboard_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark operator brief: {benchmark_operator_brief_csv.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote cascade benchmark frontier bridge: {benchmark_frontier_bridge_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark evidence receipt: {benchmark_evidence_receipt_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark handoff packet: {benchmark_packet_md.relative_to(PROJECT_ROOT)}")
     if wrote_profile_playbook:
