@@ -302,6 +302,11 @@ Current MeetEval dry run receipt result:
 - `results/figures/meeteval_dry_run_receipt.md` now materializes that expected evidence target as a template-only receipt
 - This still does not claim execution: it defines the intended run scope, expected inputs, and post-run writeback note so the first diagnostic dry run has an explicit evidence slot before anyone fills it
 
+Current MeetEval dry run checklist result:
+
+- `results/figures/meeteval_dry_run_checklist.md` now turns the verified cases into an ordered dry-run checklist so the next contributor can pick a concrete case before touching the receipt slot
+- This remains pre-evaluation coordination: it ranks the raw separated case ahead of the cleaned-fallback cases and still does not claim that MeetEval or cpWER has been run
+
 Current speaker profile result:
 
 - `results/figures/speaker_profile_risk_summary.md` now provides a lightweight text-profile overlap report that compares direct vs swapped alignment and currently exposes a useful failure mode rather than a speaker-ID success claim

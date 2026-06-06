@@ -506,6 +506,12 @@ MeetEval dry run receipt bridge:
 - `results/tables/meeteval_dry_run_receipt.json`
 - This bridge now materializes that expected evidence target as a template-only receipt. It still does not claim any executed dry run; it simply defines what the first narrow diagnostic follow-up should write back once it actually happens.
 
+MeetEval dry run checklist bridge:
+
+- `results/figures/meeteval_dry_run_checklist.md`
+- `results/tables/meeteval_dry_run_checklist.csv`
+- This bridge now orders the verified cases into a checklist for the first diagnostic dry run. It still does not claim any MeetEval or cpWER execution; it simply helps the next contributor pick the cleanest exported case first.
+
 Speaker profile similarity bridge:
 
 - `results/figures/speaker_profile_risk_summary.md`

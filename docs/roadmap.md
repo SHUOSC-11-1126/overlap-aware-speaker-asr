@@ -205,6 +205,12 @@ Update: a generated demo walkthrough receipt now creates the first evidence writ
 - Summary view: `results/figures/demo_walkthrough_receipt.md`
 - This stays on the same safe side of the line: it prepares the template-only receipt for a future walkthrough pass without implying that any real demo delivery has already happened.
 
+Update: a generated MeetEval dry-run checklist now turns the first diagnostic handoff into an ordered case queue.
+
+- MeetEval dry-run checklist: `results/tables/meeteval_dry_run_checklist.csv`
+- Summary view: `results/figures/meeteval_dry_run_checklist.md`
+- This keeps the compatibility bridge in the coordination lane: it ranks the verified cases for the first diagnostic dry run without claiming that MeetEval or cpWER has already been executed.
+
 Update: a generated llm critic review queue now turns the qualitative note into a first-pass triage order.
 
 - LLM critic review queue: `results/tables/llm_critic_review_queue.csv`

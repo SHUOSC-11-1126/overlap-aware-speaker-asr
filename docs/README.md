@@ -82,6 +82,11 @@ This folder is the documentation entry point for the project.
 - [results/figures/synthetic_split_cascade_runtime_normalization.md](../results/figures/synthetic_split_cascade_runtime_normalization.md)
 - [results/figures/synthetic_split_cascade_pareto.md](../results/figures/synthetic_split_cascade_pareto.md)
 - [results/figures/synthetic_split_cascade_recommendations.md](../results/figures/synthetic_split_cascade_recommendations.md)
+- [results/figures/meeteval_compatibility_note.md](../results/figures/meeteval_compatibility_note.md)
+- [results/figures/meeteval_readiness.md](../results/figures/meeteval_readiness.md)
+- [results/figures/meeteval_dry_run_handoff.md](../results/figures/meeteval_dry_run_handoff.md)
+- [results/figures/meeteval_dry_run_receipt.md](../results/figures/meeteval_dry_run_receipt.md)
+- [results/figures/meeteval_dry_run_checklist.md](../results/figures/meeteval_dry_run_checklist.md)
 - [results/figures/cpcer_lite_summary.md](../results/figures/cpcer_lite_summary.md)
 
 ## Frontier Coordination
