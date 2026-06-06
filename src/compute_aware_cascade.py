@@ -103,6 +103,17 @@ PARETO_COLUMNS = [
     "notes",
 ]
 
+RECOMMENDATION_COLUMNS = [
+    "dataset",
+    "scope",
+    "profile",
+    "recommended_strategy",
+    "average_cer",
+    "average_compute_cost",
+    "average_rtf",
+    "reason",
+]
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Compute-aware cascade evaluation.")
@@ -498,6 +509,79 @@ def classify_pareto_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return classified
 
 
+def build_recommendation_rows(pareto_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    recommendations: list[dict[str, Any]] = []
+    grouped: dict[tuple[str, str], list[dict[str, Any]]] = {}
+    for row in pareto_rows:
+        key = (str(row.get("dataset", "")), str(row.get("scope", "")))
+        grouped.setdefault(key, []).append(row)
+
+    for (dataset, scope), rows in grouped.items():
+        frontier_rows = [row for row in rows if str(row.get("pareto_status")) == "frontier"] or rows
+
+        accuracy_pick = min(
+            rows,
+            key=lambda row: (to_float(row.get("average_cer")), to_float(row.get("average_compute_cost"))),
+        )
+        recommendations.append(
+            {
+                "dataset": dataset,
+                "scope": scope,
+                "profile": "accuracy_first",
+                "recommended_strategy": str(accuracy_pick.get("strategy", "")),
+                "average_cer": accuracy_pick.get("average_cer", ""),
+                "average_compute_cost": accuracy_pick.get("average_compute_cost", ""),
+                "average_rtf": accuracy_pick.get("average_rtf", ""),
+                "reason": "Lowest average CER; ties break toward lower compute cost.",
+            }
+        )
+
+        cost_pick = min(
+            rows,
+            key=lambda row: (to_float(row.get("average_compute_cost")), to_float(row.get("average_cer"))),
+        )
+        recommendations.append(
+            {
+                "dataset": dataset,
+                "scope": scope,
+                "profile": "cost_first",
+                "recommended_strategy": str(cost_pick.get("strategy", "")),
+                "average_cer": cost_pick.get("average_cer", ""),
+                "average_compute_cost": cost_pick.get("average_compute_cost", ""),
+                "average_rtf": cost_pick.get("average_rtf", ""),
+                "reason": "Lowest average compute cost; ties break toward lower CER.",
+            }
+        )
+
+        cer_values = [to_float(row.get("average_cer")) for row in frontier_rows]
+        cost_values = [to_float(row.get("average_compute_cost")) for row in frontier_rows]
+        cer_min, cer_max = min(cer_values or [0.0]), max(cer_values or [0.0])
+        cost_min, cost_max = min(cost_values or [0.0]), max(cost_values or [0.0])
+
+        def normalized_score(row: dict[str, Any]) -> tuple[float, float, float]:
+            cer = to_float(row.get("average_cer"))
+            cost = to_float(row.get("average_compute_cost"))
+            cer_norm = 0.0 if cer_max == cer_min else (cer - cer_min) / (cer_max - cer_min)
+            cost_norm = 0.0 if cost_max == cost_min else (cost - cost_min) / (cost_max - cost_min)
+            return (cer_norm + cost_norm, cer_norm, cost_norm)
+
+        balanced_pick = min(frontier_rows, key=normalized_score)
+        recommendations.append(
+            {
+                "dataset": dataset,
+                "scope": scope,
+                "profile": "balanced",
+                "recommended_strategy": str(balanced_pick.get("strategy", "")),
+                "average_cer": balanced_pick.get("average_cer", ""),
+                "average_compute_cost": balanced_pick.get("average_compute_cost", ""),
+                "average_rtf": balanced_pick.get("average_rtf", ""),
+                "reason": "Chosen from the Pareto frontier by the smallest normalized CER+compute distance to the ideal point.",
+            }
+        )
+
+    return recommendations
+
+
 def load_gold_cases() -> list[dict[str, Any]]:
     config = load_config()
     risk_rows = {str(row["case_id"]): row for row in read_csv_rows(PROJECT_ROOT / "results" / "tables" / "risk_aware_selection.csv")}
@@ -860,6 +944,42 @@ def write_pareto_outputs(
     render_pareto_summary(rows, summary_path)
 
 
+def render_recommendation_summary(rows: list[dict[str, Any]], output_path: Path) -> None:
+    lines = [
+        "# Cascade Recommendation Card",
+        "",
+        "This card recommends strategies for different deployment preferences using the current cascade audits.",
+        "",
+    ]
+    grouped = []
+    seen: set[tuple[str, str]] = set()
+    for row in rows:
+        key = (str(row["dataset"]), str(row["scope"]))
+        if key not in seen:
+            seen.add(key)
+            grouped.append(key)
+    for dataset, scope in grouped:
+        lines.extend([f"## {dataset} / {scope}", "", "| profile | recommended_strategy | average_cer | average_compute_cost | average_rtf | reason |", "| --- | --- | ---: | ---: | ---: | --- |"])
+        for row in rows:
+            if str(row["dataset"]) == dataset and str(row["scope"]) == scope:
+                lines.append(
+                    f"| {row['profile']} | {row['recommended_strategy']} | {row['average_cer']} | {row['average_compute_cost']} | {row['average_rtf']} | {row['reason']} |"
+                )
+        lines.append("")
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def write_recommendation_outputs(
+    rows: list[dict[str, Any]],
+    csv_path: Path,
+    json_path: Path,
+    summary_path: Path,
+) -> None:
+    write_csv_json(rows, csv_path, json_path, RECOMMENDATION_COLUMNS)
+    render_recommendation_summary(rows, summary_path)
+
+
 def set_pixel(pixels: bytearray, width: int, height: int, x: int, y: int, color: tuple[int, int, int]) -> None:
     if 0 <= x < width and 0 <= y < height:
         idx = (y * width + x) * 3
@@ -1043,6 +1163,9 @@ def main() -> None:
         pareto_csv = PROJECT_ROOT / "results" / "tables" / "synthetic_split_cascade_pareto.csv"
         pareto_json = PROJECT_ROOT / "results" / "tables" / "synthetic_split_cascade_pareto.json"
         pareto_md = PROJECT_ROOT / "results" / "figures" / "synthetic_split_cascade_pareto.md"
+        recommendation_csv = PROJECT_ROOT / "results" / "tables" / "synthetic_split_cascade_recommendations.csv"
+        recommendation_json = PROJECT_ROOT / "results" / "tables" / "synthetic_split_cascade_recommendations.json"
+        recommendation_md = PROJECT_ROOT / "results" / "figures" / "synthetic_split_cascade_recommendations.md"
 
         write_csv_json(rows, table_csv, table_json, SYNTHETIC_PERFORMANCE_COLUMNS)
         render_tradeoff_figure([row for row in rows if str(row["scope"]) == "ALL"], figure_path)
@@ -1102,6 +1225,8 @@ def main() -> None:
             dataset_label="synthetic_split",
         )
         write_pareto_outputs(pareto_rows, pareto_csv, pareto_json, pareto_md)
+        recommendation_rows = build_recommendation_rows(pareto_rows)
+        write_recommendation_outputs(recommendation_rows, recommendation_csv, recommendation_json, recommendation_md)
     else:
         cases = load_gold_cases()
         decisions = load_decisions()
@@ -1120,6 +1245,9 @@ def main() -> None:
         pareto_csv = PROJECT_ROOT / "results" / "tables" / "cascade_pareto.csv"
         pareto_json = PROJECT_ROOT / "results" / "tables" / "cascade_pareto.json"
         pareto_md = PROJECT_ROOT / "results" / "figures" / "cascade_pareto.md"
+        recommendation_csv = PROJECT_ROOT / "results" / "tables" / "cascade_recommendations.csv"
+        recommendation_json = PROJECT_ROOT / "results" / "tables" / "cascade_recommendations.json"
+        recommendation_md = PROJECT_ROOT / "results" / "figures" / "cascade_recommendations.md"
 
         write_csv_json(rows, table_csv, table_json, PERFORMANCE_COLUMNS)
         render_tradeoff_figure(rows, figure_path)
@@ -1146,6 +1274,8 @@ def main() -> None:
         gold_performance_rows = [dict(row, scope="ALL") for row in rows]
         pareto_rows = build_pareto_rows(gold_performance_rows, runtime_norm_rows, dataset_label="gold")
         write_pareto_outputs(pareto_rows, pareto_csv, pareto_json, pareto_md)
+        recommendation_rows = build_recommendation_rows(pareto_rows)
+        write_recommendation_outputs(recommendation_rows, recommendation_csv, recommendation_json, recommendation_md)
 
     print(f"Wrote cascade performance: {table_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade JSON: {table_json.relative_to(PROJECT_ROOT)}")

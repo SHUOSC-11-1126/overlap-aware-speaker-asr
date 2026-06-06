@@ -4,6 +4,7 @@ import unittest
 
 from src.compute_aware_cascade import (
     DEFAULT_COST_PROXY,
+    build_recommendation_rows,
     build_strategy_rows,
     build_synthetic_scope_rows,
     choose_cleaned_preferred_method,
@@ -179,6 +180,21 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertEqual(by_strategy["mid_good"]["dominated_by"], "cheap_best")
         self.assertEqual(by_strategy["expensive_same"]["pareto_status"], "dominated")
         self.assertEqual(by_strategy["expensive_same"]["dominated_by"], "mid_good")
+
+    def test_build_recommendation_rows_picks_profile_winners(self) -> None:
+        pareto_rows = [
+            {"dataset": "gold", "scope": "ALL", "strategy": "cheap", "average_cer": 0.35, "average_compute_cost": 0.6, "average_rtf": 0.16, "pareto_status": "frontier"},
+            {"dataset": "gold", "scope": "ALL", "strategy": "accurate", "average_cer": 0.10, "average_compute_cost": 1.2, "average_rtf": 0.12, "pareto_status": "frontier"},
+            {"dataset": "gold", "scope": "ALL", "strategy": "balanced", "average_cer": 0.18, "average_compute_cost": 0.8, "average_rtf": 0.13, "pareto_status": "frontier"},
+            {"dataset": "gold", "scope": "ALL", "strategy": "dominated", "average_cer": 0.20, "average_compute_cost": 1.0, "average_rtf": 0.14, "pareto_status": "dominated"},
+        ]
+
+        rows = build_recommendation_rows(pareto_rows)
+        by_profile = {row["profile"]: row for row in rows}
+
+        self.assertEqual(by_profile["accuracy_first"]["recommended_strategy"], "accurate")
+        self.assertEqual(by_profile["cost_first"]["recommended_strategy"], "cheap")
+        self.assertEqual(by_profile["balanced"]["recommended_strategy"], "balanced")
 
 
 if __name__ == "__main__":
