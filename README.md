@@ -219,7 +219,12 @@ Current speaker profile result:
 
 Current llm critic result:
 
-- `results/figures/llm_critic_qualitative_note.md` now provides a qualitative/demo critic note that explains likely risk, suggests a repair direction, and preserves uncertainty instead of claiming verified transcript repair
+- `results/figures/llm_critic_qualitative_note.md` now provides a qualitative/demo critic bridge that turns structured risk cues into critique, repair direction, and uncertainty notes without claiming verified transcript correction
+
+Current external validation candidate result:
+
+- `results/figures/external_validation_candidates.md` now provides an `external/sanity-check` candidate card across AISHELL-4, AliMeeting, AMI, and LibriCSS with source note, license note, fit note, first preprocessing step, and next action
+- This note does not claim that an external benchmark has already been run; it only makes the first dataset triage step explicit
 
 Current demo storyboard result:
 

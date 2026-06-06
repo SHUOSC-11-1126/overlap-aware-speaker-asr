@@ -432,6 +432,12 @@ LLM critic qualitative bridge:
 - `results/tables/llm_critic_qualitative_summary.csv`
 - This bridge now turns structured risk cues into a qualitative critic-style note. It is intentionally labeled `qualitative/demo` and helps explain what might be repaired first without claiming that any transcript has been verified or improved.
 
+External validation candidate bridge:
+
+- `results/figures/external_validation_candidates.md`
+- `results/tables/external_validation_candidates.csv`
+- This bridge now turns the external-mini-validation frontier into an explicit `external/sanity-check` candidate card. It records source, license, fit, preprocessing, and next-action notes for AISHELL-4, AliMeeting, AMI, and LibriCSS without claiming that any external benchmark has already been executed.
+
 Demo storyboard bridge:
 
 - `results/figures/demo_storyboard.md`

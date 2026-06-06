@@ -169,6 +169,12 @@ Update: a generated benchmark blocker matrix now turns the unlock chain into a t
 - Summary view: `results/figures/cascade_benchmark_blocker_matrix.md`
 - This shows blocker type, queue priority, dependency state, and pending-field scale in one place for faster execution triage.
 
+Update: a generated external validation candidate card now turns the external mini-validation frontier into a concrete dataset triage step.
+
+- External validation candidates: `results/tables/external_validation_candidates.csv`
+- Summary view: `results/figures/external_validation_candidates.md`
+- This records source, license, fit, first preprocessing step, and next action for AISHELL-4, AliMeeting, AMI, and LibriCSS, while staying explicitly scoped to `external/sanity-check` planning rather than claiming a completed benchmark.
+
 Update: a generated benchmark runbook card now turns the triage panel into a one-page execution brief.
 
 - Benchmark runbook card: `results/tables/cascade_benchmark_runbook_card.csv`

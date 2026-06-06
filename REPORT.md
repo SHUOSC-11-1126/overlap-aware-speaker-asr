@@ -310,6 +310,8 @@ It now also includes a first concrete `speaker_profile` bridge: `results/figures
 
 The breadth-first push now also includes a first `llm_critic` bridge: `results/figures/llm_critic_qualitative_note.md` plus a qualitative summary table derived from structured risk cues. This is not a true repair loop yet, and it is not presented as verified correction. Its value is that it turns existing risk signals into an explicit critique, candidate repair direction, and uncertainty statement, which makes the next agentic step more concrete.
 
+It now also includes a first `external_validation` bridge: `results/figures/external_validation_candidates.md` plus a small candidate table covering AISHELL-4, AliMeeting, AMI, and LibriCSS. This is explicitly labeled `external/sanity-check`: it records source, license, fit, preprocessing, and next-action notes so future agents can move toward a narrow external mini validation without overstating the current evidence.
+
 It now also includes a first `demo_excellence` bridge: `results/figures/demo_storyboard.md` plus a small JSON card set. This is intentionally light-weight rather than a full demo app, but it already improves onboarding by giving a one-page story that connects the problem, pipeline, main findings, and frontier extensions.
 
 ## 9. Conclusion
