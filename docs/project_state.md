@@ -299,10 +299,16 @@ Benchmark dependency graph:
 - `results/figures/cascade_benchmark_dependency_graph.md`
 - This generated dependency graph now shows which benchmark step unlocks or blocks the next downstream step in the controlled-benchmark sequence.
 
+Benchmark blocker matrix:
+
+- `results/tables/cascade_benchmark_blocker_matrix.csv`
+- `results/figures/cascade_benchmark_blocker_matrix.md`
+- This generated blocker matrix now consolidates blocker type, queue priority, dependency state, and pending-field scale so the next contributor can judge urgency from one table.
+
 Benchmark handoff packet:
 
 - `results/figures/cascade_benchmark_handoff_packet.md`
-- This generated note now provides one benchmark-entry document that points to the readiness, plan, checklist, manifest template, execution-summary, execution-queue, session-ledger, dependency-graph, and status-board layers together.
+- This generated note now provides one benchmark-entry document that points to the readiness, plan, checklist, manifest template, execution-summary, execution-queue, session-ledger, dependency-graph, blocker-matrix, and status-board layers together.
 
 ## Synthetic Split Cascade Validation
 

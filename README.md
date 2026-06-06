@@ -173,9 +173,13 @@ Current benchmark dependency graph result:
 
 - `results/figures/cascade_benchmark_dependency_graph.md` now shows which benchmark step unlocks each downstream benchmark refresh
 
+Current benchmark blocker matrix result:
+
+- `results/figures/cascade_benchmark_blocker_matrix.md` now shows blocker type, queue priority, dependency state, and pending-field scale in one place
+
 Current benchmark handoff packet result:
 
-- `results/figures/cascade_benchmark_handoff_packet.md` now acts as the single-entry benchmark handoff note across readiness, plan, checklist, manifest template, execution summary, execution queue, session ledger, dependency graph, and status tracking
+- `results/figures/cascade_benchmark_handoff_packet.md` now acts as the single-entry benchmark handoff note across readiness, plan, checklist, manifest template, execution summary, execution queue, session ledger, dependency graph, blocker matrix, and status tracking
 
 ## Core Findings
 
@@ -247,6 +251,7 @@ python -m src.project_harness
 - [Cascade benchmark execution queue](results/figures/cascade_benchmark_execution_queue.md)
 - [Cascade benchmark session ledger](results/figures/cascade_benchmark_session_ledger.md)
 - [Cascade benchmark dependency graph](results/figures/cascade_benchmark_dependency_graph.md)
+- [Cascade benchmark blocker matrix](results/figures/cascade_benchmark_blocker_matrix.md)
 - [Cascade benchmark handoff packet](results/figures/cascade_benchmark_handoff_packet.md)
 - [Synthetic split cascade summary](results/figures/synthetic_split_cascade_summary.md)
 - [Synthetic split cascade trade-off figure](results/figures/synthetic_split_cer_runtime_tradeoff.png)
