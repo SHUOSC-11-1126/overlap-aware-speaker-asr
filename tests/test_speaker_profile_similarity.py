@@ -7,6 +7,8 @@ from src.speaker_profile_similarity import (
     build_similarity_rows,
     build_speaker_profile_method_handoff_lines,
     build_speaker_profile_method_handoff_rows,
+    build_speaker_profile_method_receipt_lines,
+    build_speaker_profile_method_receipt_rows,
     build_speaker_profile_summary_lines,
     build_speaker_profile_triage_lines,
     build_speaker_profile_triage_rows,
@@ -167,6 +169,45 @@ class SpeakerProfileSimilarityTest(unittest.TestCase):
         self.assertIn("embedding_or_voiceprint_baseline", rendered)
         self.assertIn("speaker_profile_method_receipt.json", rendered)
         self.assertIn("diagnostic only", rendered)
+
+    def test_build_speaker_profile_method_receipt_rows_create_template_evidence_target(self) -> None:
+        rows = build_speaker_profile_method_receipt_rows(
+            [
+                {
+                    "dominant_pattern": "swapped_bias",
+                    "first_method_direction": "embedding_or_voiceprint_baseline",
+                    "method_goal": "Test a stronger profile method before any attribution claim.",
+                    "expected_evidence": "results/tables/speaker_profile_method_receipt.json",
+                    "handoff_note": "Current signal is diagnostic only, not speaker-ID success.",
+                }
+            ]
+        )
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["execution_status"], "template_only")
+        self.assertEqual(rows[0]["method_scope"], "embedding_or_voiceprint_baseline")
+        self.assertIn("triage", rows[0]["expected_inputs"].lower())
+        self.assertIn("diagnostic", rows[0]["expected_outputs"].lower())
+        self.assertIn("has been executed", rows[0]["writeback_note"].lower())
+
+    def test_build_speaker_profile_method_receipt_lines_render_template(self) -> None:
+        lines = build_speaker_profile_method_receipt_lines(
+            [
+                {
+                    "execution_status": "template_only",
+                    "method_scope": "embedding_or_voiceprint_baseline",
+                    "expected_inputs": "Speaker profile triage plus one stronger-method baseline stub.",
+                    "expected_outputs": "Diagnostic stronger-method comparison note and a narrow evidence writeback.",
+                    "writeback_note": "No stronger speaker-profile method has been executed yet; fill this receipt only after the first trial.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Speaker Profile Method Receipt", rendered)
+        self.assertIn("template_only", rendered)
+        self.assertIn("embedding_or_voiceprint_baseline", rendered)
+        self.assertIn("has been executed yet", rendered)
 
 
 if __name__ == "__main__":

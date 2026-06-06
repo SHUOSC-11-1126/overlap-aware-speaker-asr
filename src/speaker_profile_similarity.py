@@ -38,6 +38,14 @@ METHOD_HANDOFF_COLUMNS = [
     "handoff_note",
 ]
 
+METHOD_RECEIPT_COLUMNS = [
+    "execution_status",
+    "method_scope",
+    "expected_inputs",
+    "expected_outputs",
+    "writeback_note",
+]
+
 
 def text_overlap_ratio(left: str, right: str) -> float:
     left_counter = Counter(str(left).strip())
@@ -201,6 +209,39 @@ def build_speaker_profile_method_handoff_lines(rows: list[dict[str, str]]) -> li
     return lines
 
 
+def build_speaker_profile_method_receipt_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    if not rows:
+        return []
+
+    handoff = rows[0]
+    method_scope = str(handoff.get("first_method_direction", ""))
+    return [
+        {
+            "execution_status": "template_only",
+            "method_scope": method_scope,
+            "expected_inputs": "Speaker profile triage plus one stronger-method baseline stub.",
+            "expected_outputs": "Diagnostic stronger-method comparison note and a narrow evidence writeback.",
+            "writeback_note": "No stronger speaker-profile method has been executed yet; fill this receipt only after the first trial.",
+        }
+    ]
+
+
+def build_speaker_profile_method_receipt_lines(rows: list[dict[str, str]]) -> list[str]:
+    lines = [
+        "# Speaker Profile Method Receipt",
+        "",
+        "This generated receipt is a template-only writeback target for the first stronger speaker-profile method trial. It does not claim speaker-ID success.",
+        "",
+        "| execution_status | method_scope | expected_inputs | expected_outputs | writeback_note |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['execution_status']} | {row['method_scope']} | {row['expected_inputs']} | {row['expected_outputs']} | {row['writeback_note']} |"
+        )
+    return lines
+
+
 def load_snippet_rows(prefix: str) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for path in sorted((PROJECT_ROOT / "results" / "snippet_transcripts").glob(f"{prefix}_*_whisper.json")):
@@ -235,7 +276,7 @@ def load_hypothesis_text(case_id: str) -> dict[str, Any]:
     }
 
 
-def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path, Path]:
+def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path]:
     tables_dir = PROJECT_ROOT / "results" / "tables"
     figures_dir = PROJECT_ROOT / "results" / "figures"
     tables_dir.mkdir(parents=True, exist_ok=True)
@@ -251,6 +292,9 @@ def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, P
     method_handoff_csv_path = tables_dir / "speaker_profile_method_handoff.csv"
     method_handoff_json_path = tables_dir / "speaker_profile_method_handoff.json"
     method_handoff_md_path = figures_dir / "speaker_profile_method_handoff.md"
+    method_receipt_rows = build_speaker_profile_method_receipt_rows(method_handoff_rows)
+    method_receipt_json_path = tables_dir / "speaker_profile_method_receipt.json"
+    method_receipt_md_path = figures_dir / "speaker_profile_method_receipt.md"
     with csv_path.open("w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=CSV_COLUMNS)
         writer.writeheader()
@@ -272,6 +316,11 @@ def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, P
         "\n".join(build_speaker_profile_method_handoff_lines(method_handoff_rows)) + "\n",
         encoding="utf-8",
     )
+    method_receipt_json_path.write_text(json.dumps(method_receipt_rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    method_receipt_md_path.write_text(
+        "\n".join(build_speaker_profile_method_receipt_lines(method_receipt_rows)) + "\n",
+        encoding="utf-8",
+    )
     return (
         csv_path,
         json_path,
@@ -282,6 +331,8 @@ def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, P
         method_handoff_csv_path,
         method_handoff_json_path,
         method_handoff_md_path,
+        method_receipt_json_path,
+        method_receipt_md_path,
     )
 
 
@@ -304,6 +355,8 @@ def main() -> None:
         method_handoff_csv_path,
         method_handoff_json_path,
         method_handoff_md_path,
+        method_receipt_json_path,
+        method_receipt_md_path,
     ) = write_outputs(rows)
     print(f"Wrote speaker profile similarity: {csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote speaker profile JSON: {json_path.relative_to(PROJECT_ROOT)}")
@@ -314,6 +367,8 @@ def main() -> None:
     print(f"Wrote speaker profile method handoff CSV: {method_handoff_csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote speaker profile method handoff JSON: {method_handoff_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote speaker profile method handoff note: {method_handoff_md_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote speaker profile method receipt JSON: {method_receipt_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote speaker profile method receipt note: {method_receipt_md_path.relative_to(PROJECT_ROOT)}")
 
 
 if __name__ == "__main__":
