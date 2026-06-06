@@ -781,13 +781,27 @@ class ComputeAwareCascadeTest(unittest.TestCase):
                 "warmup_count": "TODO",
             }
         ]
+        status_rows = [
+            {
+                "plan_step_id": "phase1_gold_runtime_foundation",
+                "step_order": 1,
+                "phase": "foundation",
+                "dataset_scope": "gold",
+                "execution_status": "template_only",
+                "readiness_signal": "pending_execution",
+                "missing_fields": "hardware_label;device;repeat_count;warmup_count",
+                "acceptance_check": "Gold runtime foundation artifacts are rebuilt from controlled timing.",
+            }
+        ]
 
-        lines = build_benchmark_packet_lines(readiness_rows, plan_rows, checklist_rows, manifest_rows)
+        lines = build_benchmark_packet_lines(readiness_rows, plan_rows, checklist_rows, manifest_rows, status_rows)
         rendered = "\n".join(lines)
 
         self.assertIn("# Cascade Benchmark Handoff Packet", rendered)
         self.assertIn("## Readiness Snapshot", rendered)
+        self.assertIn("## Execution Status", rendered)
         self.assertIn("phase1_gold_runtime_foundation", rendered)
+        self.assertIn("pending_execution", rendered)
         self.assertIn("hardware_label;device;repeat_count;warmup_count", rendered)
         self.assertIn("Manifest template fields: hardware_label, device, repeat_count, warmup_count", rendered)
 

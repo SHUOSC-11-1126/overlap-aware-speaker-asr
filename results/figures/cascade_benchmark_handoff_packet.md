@@ -1,6 +1,6 @@
 # Cascade Benchmark Handoff Packet
 
-This generated packet consolidates the benchmark readiness scaffold, staged plan, execution checklist, and session manifest template.
+This generated packet consolidates the benchmark readiness scaffold, staged plan, execution checklist, session manifest template, and execution-status board.
 
 ## Readiness Snapshot
 
@@ -27,6 +27,14 @@ This generated packet consolidates the benchmark readiness scaffold, staged plan
 - `phase3_gold_surface_refresh`: session `artifact_refresh`, metadata `source_timing_manifest;refresh_command;diff_review_notes`, acceptance `Gold surface artifacts are rebuilt from controlled timing-backed inputs.`
 - `phase4_synthetic_surface_refresh`: session `artifact_refresh`, metadata `source_timing_manifest;refresh_command;diff_review_notes`, acceptance `Synthetic split surface artifacts are rebuilt from controlled timing-backed inputs.`
 - `phase5_cross_dataset_refresh`: session `derived_refresh`, metadata `source_timing_manifest;cross_dataset_scope;refresh_command;consistency_notes`, acceptance `Cross-dataset decision-support artifacts are rebuilt from controlled timing-backed inputs.`
+
+## Execution Status
+
+- step 1: `phase1_gold_runtime_foundation` is `template_only` / `pending_execution` with missing `hardware_label;device;repeat_count;warmup_count;batch_shape;timing_notes`
+- step 2: `phase2_synthetic_runtime_foundation` is `template_only` / `pending_execution` with missing `hardware_label;device;repeat_count;warmup_count;batch_shape;timing_notes`
+- step 3: `phase3_gold_surface_refresh` is `template_only` / `pending_execution` with missing `source_timing_manifest;refresh_command;diff_review_notes`
+- step 4: `phase4_synthetic_surface_refresh` is `template_only` / `pending_execution` with missing `source_timing_manifest;refresh_command;diff_review_notes`
+- step 5: `phase5_cross_dataset_refresh` is `template_only` / `pending_execution` with missing `source_timing_manifest;refresh_command;cross_dataset_scope;consistency_notes`
 
 ## Manifest Template
 

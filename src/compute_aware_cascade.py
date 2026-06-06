@@ -257,11 +257,12 @@ def build_benchmark_packet_lines(
     plan_rows: list[dict[str, Any]],
     checklist_rows: list[dict[str, Any]],
     manifest_rows: list[dict[str, Any]],
+    status_rows: list[dict[str, Any]],
 ) -> list[str]:
     lines = [
         "# Cascade Benchmark Handoff Packet",
         "",
-        "This generated packet consolidates the benchmark readiness scaffold, staged plan, execution checklist, and session manifest template.",
+        "This generated packet consolidates the benchmark readiness scaffold, staged plan, execution checklist, session manifest template, and execution-status board.",
         "",
         "## Readiness Snapshot",
         "",
@@ -281,6 +282,12 @@ def build_benchmark_packet_lines(
     for row in checklist_rows:
         lines.append(
             f"- `{row.get('plan_step_id', '')}`: session `{row.get('session_type', '')}`, metadata `{row.get('required_metadata', '')}`, acceptance `{row.get('acceptance_check', '')}`"
+        )
+    lines.extend(["", "## Execution Status", ""])
+    for row in status_rows:
+        lines.append(
+            f"- step {row.get('step_order', '')}: `{row.get('plan_step_id', '')}` is `{row.get('execution_status', '')}` / "
+            f"`{row.get('readiness_signal', '')}` with missing `{row.get('missing_fields', '')}`"
         )
     lines.extend(["", "## Manifest Template", ""])
     if manifest_rows:
@@ -329,11 +336,12 @@ def write_benchmark_packet_output(
     plan_rows: list[dict[str, Any]],
     checklist_rows: list[dict[str, Any]],
     manifest_rows: list[dict[str, Any]],
+    status_rows: list[dict[str, Any]],
     output_path: Path,
 ) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(
-        "\n".join(build_benchmark_packet_lines(readiness_rows, plan_rows, checklist_rows, manifest_rows)) + "\n",
+        "\n".join(build_benchmark_packet_lines(readiness_rows, plan_rows, checklist_rows, manifest_rows, status_rows)) + "\n",
         encoding="utf-8",
     )
 
@@ -1499,7 +1507,7 @@ def build_artifact_index_rows() -> list[dict[str, Any]]:
         ("cross_dataset_benchmark_checklist", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_checklist.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Execution checklist for recording benchmark session metadata and acceptance checks."),
         ("cross_dataset_benchmark_manifest_template", "cross_dataset", "experimental/frontier", "report", "results/tables/cascade_benchmark_manifest_template.csv", "python -m src.compute_aware_cascade --dataset synthetic_split", "Fill-in template for benchmark session metadata captured during controlled timing runs."),
         ("cross_dataset_benchmark_status", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_status.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Phase-by-phase benchmark status board showing template completeness and pending execution gaps."),
-        ("cross_dataset_benchmark_handoff_packet", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_handoff_packet.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Single-entry benchmark handoff packet consolidating readiness, plan, checklist, and manifest template."),
+        ("cross_dataset_benchmark_handoff_packet", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_handoff_packet.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Single-entry benchmark handoff packet consolidating readiness, plan, checklist, manifest template, and status board."),
     ]
     rows = [
         {
@@ -2326,6 +2334,7 @@ def main() -> None:
             benchmark_plan_rows,
             benchmark_checklist_rows,
             benchmark_manifest_template_rows,
+            benchmark_status_rows,
             benchmark_packet_md,
         )
         profile_playbook_rows = build_profile_playbook_rows(decision_matrix_rows)

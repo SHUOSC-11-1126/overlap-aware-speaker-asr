@@ -42,7 +42,7 @@
     "artifact_group": "report",
     "artifact_path": "results/figures/cascade_benchmark_handoff_packet.md",
     "generator_command": "python -m src.compute_aware_cascade --dataset synthetic_split",
-    "intended_use": "Single-entry benchmark handoff packet consolidating readiness, plan, checklist, and manifest template."
+    "intended_use": "Single-entry benchmark handoff packet consolidating readiness, plan, checklist, manifest template, and status board."
   },
   {
     "artifact_id": "cross_dataset_benchmark_manifest_template",
