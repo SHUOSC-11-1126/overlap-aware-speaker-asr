@@ -3593,6 +3593,12 @@ def main() -> None:
             benchmark_plan_json,
             benchmark_plan_md,
         )
+        write_benchmark_frontier_bridge_outputs(
+            benchmark_frontier_bridge_rows,
+            benchmark_frontier_bridge_csv,
+            benchmark_frontier_bridge_json,
+            benchmark_frontier_bridge_md,
+        )
 
     print(f"Wrote cascade performance: {table_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade JSON: {table_json.relative_to(PROJECT_ROOT)}")
