@@ -413,6 +413,12 @@ Frontier harness breadth status:
 - `results/figures/project_harness_report.md`
 - The harness report now includes a generated `frontier_status` table covering `speaker_profile`, `meeteval_compatibility`, `llm_critic`, `external_validation`, and `demo_excellence` so breadth-first work can be spread across multiple frontiers.
 
+Frontier execution queue:
+
+- `results/figures/frontier_execution_queue.md`
+- `results/tables/frontier_execution_queue.json`
+- This queue now turns the status table into a coordination layer. It does not claim new experimental evidence; it simply orders which frontier handoff looks most actionable next.
+
 MeetEval compatibility bridge:
 
 - `results/figures/meeteval_compatibility_note.md`

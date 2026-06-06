@@ -269,6 +269,12 @@ Update: the project harness now includes a breadth-first frontier status view.
 - Harness report: `results/figures/project_harness_report.md`
 - This table makes the current status, evidence path, expected output, and next step visible for `speaker_profile`, `meeteval_compatibility`, `llm_critic`, `external_validation`, and `demo_excellence`.
 
+Update: the project harness now also includes a frontier execution queue.
+
+- Frontier queue: `results/tables/frontier_execution_queue.json`
+- Summary view: `results/figures/frontier_execution_queue.md`
+- This keeps the breadth-first layer actionable without overstating completion: it simply orders the next frontier handoffs that already exist in the repository.
+
 Update: `meeteval_compatibility` now has a first concrete bridge artifact.
 
 - Compatibility note: `results/figures/meeteval_compatibility_note.md`
