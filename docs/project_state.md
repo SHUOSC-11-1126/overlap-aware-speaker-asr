@@ -287,10 +287,16 @@ Benchmark execution queue:
 - `results/figures/cascade_benchmark_execution_queue.md`
 - This generated queue now converts the status stack into an ordered run list so the next contributor can tell which benchmark step should execute or be reviewed first.
 
+Benchmark session ledger:
+
+- `results/tables/cascade_benchmark_session_ledger.csv`
+- `results/figures/cascade_benchmark_session_ledger.md`
+- This generated ledger now bridges the queue and manifest layers so the next contributor can see which evidence anchor and completion note each queued step must leave behind.
+
 Benchmark handoff packet:
 
 - `results/figures/cascade_benchmark_handoff_packet.md`
-- This generated note now provides one benchmark-entry document that points to the readiness, plan, checklist, manifest template, execution-summary, execution-queue, and status-board layers together.
+- This generated note now provides one benchmark-entry document that points to the readiness, plan, checklist, manifest template, execution-summary, execution-queue, session-ledger, and status-board layers together.
 
 ## Synthetic Split Cascade Validation
 

@@ -151,10 +151,16 @@ Update: a generated benchmark execution queue now turns the rollup into an order
 - Summary view: `results/figures/cascade_benchmark_execution_queue.md`
 - This shows which benchmark step should execute or be reviewed first once contributors move from planning into action.
 
+Update: a generated benchmark session ledger now turns the queue into an evidence-tracking bridge.
+
+- Benchmark session ledger: `results/tables/cascade_benchmark_session_ledger.csv`
+- Summary view: `results/figures/cascade_benchmark_session_ledger.md`
+- This shows which evidence anchor and completion note each queued benchmark step must satisfy once the run actually happens.
+
 Update: a generated benchmark handoff packet now turns the execution stack into a single benchmark entrypoint.
 
 - Handoff packet: `results/figures/cascade_benchmark_handoff_packet.md`
-- This lets future contributors start from one note before diving into readiness, plan, checklist, manifest, execution-summary, execution-queue, and status details.
+- This lets future contributors start from one note before diving into readiness, plan, checklist, manifest, execution-summary, execution-queue, session-ledger, and status details.
 
 Remaining stretch work:
 
