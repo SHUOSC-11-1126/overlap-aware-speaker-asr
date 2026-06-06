@@ -342,6 +342,14 @@ BENCHMARK_PHASE_CHECKPOINT_CARD_COLUMNS = [
     "completion_signal",
 ]
 
+BENCHMARK_COMPLETION_DASHBOARD_COLUMNS = [
+    "current_start_step",
+    "pending_phase_count",
+    "dominant_blocker_family",
+    "current_urgency",
+    "dashboard_note",
+]
+
 
 def build_benchmark_packet_lines(
     readiness_rows: list[dict[str, Any]],
@@ -357,6 +365,7 @@ def build_benchmark_packet_lines(
     runbook_card_rows: list[dict[str, Any]],
     milestone_card_rows: list[dict[str, Any]],
     phase_checkpoint_card_rows: list[dict[str, Any]],
+    completion_dashboard_rows: list[dict[str, Any]],
 ) -> list[str]:
     lines = [
         "# Cascade Benchmark Handoff Packet",
@@ -431,6 +440,12 @@ def build_benchmark_packet_lines(
         lines.append(
             f"- phase `{row.get('phase', '')}` / readiness `{row.get('readiness_label', '')}` / blocker `{row.get('primary_blocking_category', '')}` / "
             f"action `{row.get('checkpoint_action', '')}` / completion `{row.get('completion_signal', '')}`"
+        )
+    lines.extend(["", "## Completion Dashboard", ""])
+    for row in completion_dashboard_rows:
+        lines.append(
+            f"- start `{row.get('current_start_step', '')}` / pending phases `{row.get('pending_phase_count', '')}` / "
+            f"dominant blocker `{row.get('dominant_blocker_family', '')}` / urgency `{row.get('current_urgency', '')}` / note `{row.get('dashboard_note', '')}`"
         )
     lines.extend(["", "## Execution Status", ""])
     for row in status_rows:
@@ -938,6 +953,59 @@ def build_benchmark_phase_checkpoint_card_lines(rows: list[dict[str, Any]]) -> l
     return lines
 
 
+def build_benchmark_completion_dashboard_rows(
+    summary_rows: list[dict[str, Any]],
+    runbook_rows: list[dict[str, Any]],
+    milestone_rows: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    if not runbook_rows:
+        return []
+    current_start_step = str(runbook_rows[0].get("recommended_start_step", ""))
+    pending_phase_count = to_int(milestone_rows[0].get("remaining_phase_count")) if milestone_rows else 0
+    dominant_blocker_family = str(summary_rows[0].get("primary_blocking_category", "")) if summary_rows else ""
+    current_urgency = str(runbook_rows[0].get("urgency", ""))
+    return [
+        {
+            "current_start_step": current_start_step,
+            "pending_phase_count": pending_phase_count,
+            "dominant_blocker_family": dominant_blocker_family,
+            "current_urgency": current_urgency,
+            "dashboard_note": f"{current_start_step} leads a {pending_phase_count}-phase pending stack with dominant blocker {dominant_blocker_family}.",
+        }
+    ]
+
+
+def build_benchmark_completion_dashboard_lines(rows: list[dict[str, Any]]) -> list[str]:
+    lines = [
+        "# Cascade Benchmark Completion Dashboard",
+        "",
+        "This generated dashboard summarizes the current start step and overall pending benchmark state.",
+        "",
+    ]
+    for row in rows:
+        lines.extend(
+            [
+                f"- Current start step: `{row['current_start_step']}`",
+                f"- Pending phase count: `{row['pending_phase_count']}`",
+                f"- Dominant blocker family: `{row['dominant_blocker_family']}`",
+                f"- Current urgency: `{row['current_urgency']}`",
+                f"- Dashboard note: {row['dashboard_note']}",
+            ]
+        )
+    return lines
+
+
+def write_benchmark_completion_dashboard_outputs(
+    rows: list[dict[str, Any]],
+    csv_path: Path,
+    json_path: Path,
+    summary_path: Path,
+) -> None:
+    write_csv_json(rows, csv_path, json_path, BENCHMARK_COMPLETION_DASHBOARD_COLUMNS)
+    summary_path.parent.mkdir(parents=True, exist_ok=True)
+    summary_path.write_text("\n".join(build_benchmark_completion_dashboard_lines(rows)) + "\n", encoding="utf-8")
+
+
 def write_benchmark_phase_checkpoint_card_outputs(
     rows: list[dict[str, Any]],
     csv_path: Path,
@@ -1040,6 +1108,7 @@ def write_benchmark_packet_output(
     runbook_card_rows: list[dict[str, Any]],
     milestone_card_rows: list[dict[str, Any]],
     phase_checkpoint_card_rows: list[dict[str, Any]],
+    completion_dashboard_rows: list[dict[str, Any]],
     output_path: Path,
 ) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -1059,6 +1128,7 @@ def write_benchmark_packet_output(
                 runbook_card_rows,
                 milestone_card_rows,
                 phase_checkpoint_card_rows,
+                completion_dashboard_rows,
             )
         )
         + "\n",
@@ -2235,6 +2305,7 @@ def build_artifact_index_rows() -> list[dict[str, Any]]:
         ("cross_dataset_benchmark_runbook_card", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_runbook_card.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "One-page runbook card summarizing the first benchmark action, evidence needs, and completion target."),
         ("cross_dataset_benchmark_milestone_card", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_milestone_card.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Milestone card summarizing the next unlock, current urgency, and remaining benchmark phases."),
         ("cross_dataset_benchmark_phase_checkpoint_card", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_phase_checkpoint_card.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Per-phase checkpoint card summarizing blocker, next action, and completion signal."),
+        ("cross_dataset_benchmark_completion_dashboard", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_completion_dashboard.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Completion dashboard summarizing current start, dominant blocker family, and pending phase count."),
         ("cross_dataset_benchmark_handoff_packet", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_handoff_packet.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Single-entry benchmark handoff packet consolidating readiness, plan, checklist, manifest template, and status board."),
     ]
     rows = [
@@ -2937,6 +3008,14 @@ def main() -> None:
     benchmark_phase_checkpoint_card_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_phase_checkpoint_card.csv"
     benchmark_phase_checkpoint_card_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_phase_checkpoint_card.json"
     benchmark_phase_checkpoint_card_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_phase_checkpoint_card.md"
+    benchmark_completion_dashboard_rows = build_benchmark_completion_dashboard_rows(
+        benchmark_execution_summary_rows,
+        benchmark_runbook_card_rows,
+        benchmark_milestone_card_rows,
+    )
+    benchmark_completion_dashboard_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_completion_dashboard.csv"
+    benchmark_completion_dashboard_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_completion_dashboard.json"
+    benchmark_completion_dashboard_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_completion_dashboard.md"
     benchmark_packet_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_handoff_packet.md"
     profile_playbook_csv = PROJECT_ROOT / "results" / "tables" / "cascade_profile_playbook.csv"
     profile_playbook_json = PROJECT_ROOT / "results" / "tables" / "cascade_profile_playbook.json"
@@ -3159,6 +3238,12 @@ def main() -> None:
             benchmark_phase_checkpoint_card_json,
             benchmark_phase_checkpoint_card_md,
         )
+        write_benchmark_completion_dashboard_outputs(
+            benchmark_completion_dashboard_rows,
+            benchmark_completion_dashboard_csv,
+            benchmark_completion_dashboard_json,
+            benchmark_completion_dashboard_md,
+        )
         write_benchmark_packet_output(
             benchmark_readiness_rows,
             benchmark_plan_rows,
@@ -3173,6 +3258,7 @@ def main() -> None:
             benchmark_runbook_card_rows,
             benchmark_milestone_card_rows,
             benchmark_phase_checkpoint_card_rows,
+            benchmark_completion_dashboard_rows,
             benchmark_packet_md,
         )
         profile_playbook_rows = build_profile_playbook_rows(decision_matrix_rows)
@@ -3264,6 +3350,7 @@ def main() -> None:
     print(f"Wrote cascade benchmark runbook card: {benchmark_runbook_card_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark milestone card: {benchmark_milestone_card_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark phase checkpoint card: {benchmark_phase_checkpoint_card_csv.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote cascade benchmark completion dashboard: {benchmark_completion_dashboard_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark handoff packet: {benchmark_packet_md.relative_to(PROJECT_ROOT)}")
     if wrote_profile_playbook:
         print(f"Wrote cascade profile playbook: {profile_playbook_csv.relative_to(PROJECT_ROOT)}")
