@@ -8,6 +8,10 @@ How can the current evaluation stack be aligned with meeting-transcription conve
 
 The project already has speaker-aware CER and cpCER-lite. This skill defines a path toward compatibility with more standard multi-speaker meeting benchmarks.
 
+## Current queue position
+
+Queue head. If you are picking up a frontier task now, start here and use the readiness handoff before moving to any other frontier card.
+
 ## Challenge level
 
 Level 3: Research Extension
