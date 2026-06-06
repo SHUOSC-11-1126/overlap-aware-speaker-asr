@@ -1,0 +1,47 @@
+[
+  {
+    "case_id": "NoOverlap",
+    "best_profile_alignment": "swapped",
+    "direct_profile_score": 0.390132,
+    "swapped_profile_score": 0.81225,
+    "profile_confidence_gap": 0.422118,
+    "hypothesis_source": "separated_whisper",
+    "observation": "This is a lightweight risk signal, not speaker identification."
+  },
+  {
+    "case_id": "LightOverlap",
+    "best_profile_alignment": "swapped",
+    "direct_profile_score": 0.382379,
+    "swapped_profile_score": 0.801261,
+    "profile_confidence_gap": 0.418882,
+    "hypothesis_source": "separated_whisper_cleaned",
+    "observation": "This is a lightweight risk signal, not speaker identification."
+  },
+  {
+    "case_id": "MidOverlap",
+    "best_profile_alignment": "swapped",
+    "direct_profile_score": 0.385127,
+    "swapped_profile_score": 0.791891,
+    "profile_confidence_gap": 0.406764,
+    "hypothesis_source": "separated_whisper_cleaned",
+    "observation": "This is a lightweight risk signal, not speaker identification."
+  },
+  {
+    "case_id": "HeavyOverlap",
+    "best_profile_alignment": "swapped",
+    "direct_profile_score": 0.370262,
+    "swapped_profile_score": 0.781391,
+    "profile_confidence_gap": 0.411129,
+    "hypothesis_source": "separated_whisper_cleaned",
+    "observation": "This is a lightweight risk signal, not speaker identification."
+  },
+  {
+    "case_id": "OppositeOverlap",
+    "best_profile_alignment": "swapped",
+    "direct_profile_score": 0.383508,
+    "swapped_profile_score": 0.790272,
+    "profile_confidence_gap": 0.406764,
+    "hypothesis_source": "separated_whisper_cleaned",
+    "observation": "This is a lightweight risk signal, not speaker identification."
+  }
+]
