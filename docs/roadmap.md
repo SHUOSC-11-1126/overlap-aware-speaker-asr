@@ -421,6 +421,11 @@ Update: `demo_excellence` now has a first lightweight onboarding artifact.
 - Story cards: `results/tables/demo_storyboard_cards.json`
 - This is a simple demo-facing bridge rather than a full app: it gives a new visitor a one-page explanation of the problem, pipeline, findings, and frontier directions before heavier UI work exists.
 
+Update: `external_validation` now has a dedicated skill card.
+
+- Skill card: `docs/skills/skill_07_external_validation.md`
+- This makes the external mini-validation frontier directly pickable from the skills index, so the queue head is no longer only discoverable from the roadmap or project-state layers.
+
 ## Healthy Project Principles
 
 - New experiments should be isolated.
