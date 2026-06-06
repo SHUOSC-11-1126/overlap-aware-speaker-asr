@@ -9,6 +9,8 @@ from src.project_harness import (
     build_frontier_focus_card_rows,
     build_frontier_handoff_packet_lines,
     build_frontier_handoff_packet_rows,
+    build_frontier_receipt_map_lines,
+    build_frontier_receipt_map_rows,
     build_frontier_receipt_packet_lines,
     build_frontier_receipt_packet_rows,
     build_report,
@@ -205,6 +207,53 @@ class ProjectHarnessTest(unittest.TestCase):
         rendered = "\n".join(lines)
 
         self.assertIn("# Frontier Receipt Packet", rendered)
+        self.assertIn("meeteval_compatibility", rendered)
+        self.assertIn("meeteval_dry_run_handoff.md", rendered)
+        self.assertIn("meeteval_dry_run_receipt.json", rendered)
+
+    def test_build_frontier_receipt_map_rows_cover_all_current_frontiers(self) -> None:
+        rows = build_frontier_receipt_map_rows(
+            [
+                {
+                    "queue_order": "1",
+                    "frontier_id": "meeteval_compatibility",
+                    "status": "documented_skill",
+                    "entry_artifact": "MeetEval readiness card",
+                    "why_now": "Use the readiness card to stage one narrow dry run before claiming any benchmark bridge.",
+                },
+                {
+                    "queue_order": "2",
+                    "frontier_id": "external_validation",
+                    "status": "documented_skill",
+                    "entry_artifact": "external sanity-check prioritization card",
+                    "why_now": "Use the prioritization card to map one tiny sanity-check slice without claiming a completed benchmark.",
+                },
+            ]
+        )
+
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(rows[0]["current_frontier"], "meeteval_compatibility")
+        self.assertEqual(rows[0]["receipt_target"], "results/tables/meeteval_dry_run_receipt.json")
+        self.assertEqual(rows[1]["current_frontier"], "external_validation")
+        self.assertEqual(rows[1]["receipt_target"], "results/tables/external_validation_slice_receipt.json")
+        self.assertIn("coordination-only", rows[1]["map_scope"].lower())
+
+    def test_build_frontier_receipt_map_lines_render_table(self) -> None:
+        lines = build_frontier_receipt_map_lines(
+            [
+                {
+                    "queue_order": "1",
+                    "current_frontier": "meeteval_compatibility",
+                    "prerequisite_artifact": "results/figures/meeteval_dry_run_handoff.md",
+                    "receipt_target": "results/tables/meeteval_dry_run_receipt.json",
+                    "map_note": "Open the handoff first, then use the receipt target for writeback.",
+                    "map_scope": "Coordination-only map; not a claim of completed frontier execution.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Frontier Receipt Map", rendered)
         self.assertIn("meeteval_compatibility", rendered)
         self.assertIn("meeteval_dry_run_handoff.md", rendered)
         self.assertIn("meeteval_dry_run_receipt.json", rendered)
