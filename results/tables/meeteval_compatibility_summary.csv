@@ -1,0 +1,6 @@
+﻿case_id,reference_segment_count,hypothesis_segment_count,speaker_count,hypothesis_source,reference_export,hypothesis_export,observation
+NoOverlap,25,25,2,separated_whisper,results/tables/meeteval_reference_segments.jsonl,results/tables/meeteval_hypothesis_segments.jsonl,compatibility bridge only; this export does not claim cpWER evaluation yet.
+LightOverlap,25,26,2,separated_whisper_cleaned,results/tables/meeteval_reference_segments.jsonl,results/tables/meeteval_hypothesis_segments.jsonl,compatibility bridge only; this export does not claim cpWER evaluation yet.
+MidOverlap,25,27,2,separated_whisper_cleaned,results/tables/meeteval_reference_segments.jsonl,results/tables/meeteval_hypothesis_segments.jsonl,compatibility bridge only; this export does not claim cpWER evaluation yet.
+HeavyOverlap,25,25,2,separated_whisper_cleaned,results/tables/meeteval_reference_segments.jsonl,results/tables/meeteval_hypothesis_segments.jsonl,compatibility bridge only; this export does not claim cpWER evaluation yet.
+OppositeOverlap,24,25,2,separated_whisper_cleaned,results/tables/meeteval_reference_segments.jsonl,results/tables/meeteval_hypothesis_segments.jsonl,compatibility bridge only; this export does not claim cpWER evaluation yet.

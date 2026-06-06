@@ -1,0 +1,52 @@
+[
+  {
+    "case_id": "NoOverlap",
+    "reference_segment_count": 25,
+    "hypothesis_segment_count": 25,
+    "speaker_count": 2,
+    "hypothesis_source": "separated_whisper",
+    "reference_export": "results/tables/meeteval_reference_segments.jsonl",
+    "hypothesis_export": "results/tables/meeteval_hypothesis_segments.jsonl",
+    "observation": "compatibility bridge only; this export does not claim cpWER evaluation yet."
+  },
+  {
+    "case_id": "LightOverlap",
+    "reference_segment_count": 25,
+    "hypothesis_segment_count": 26,
+    "speaker_count": 2,
+    "hypothesis_source": "separated_whisper_cleaned",
+    "reference_export": "results/tables/meeteval_reference_segments.jsonl",
+    "hypothesis_export": "results/tables/meeteval_hypothesis_segments.jsonl",
+    "observation": "compatibility bridge only; this export does not claim cpWER evaluation yet."
+  },
+  {
+    "case_id": "MidOverlap",
+    "reference_segment_count": 25,
+    "hypothesis_segment_count": 27,
+    "speaker_count": 2,
+    "hypothesis_source": "separated_whisper_cleaned",
+    "reference_export": "results/tables/meeteval_reference_segments.jsonl",
+    "hypothesis_export": "results/tables/meeteval_hypothesis_segments.jsonl",
+    "observation": "compatibility bridge only; this export does not claim cpWER evaluation yet."
+  },
+  {
+    "case_id": "HeavyOverlap",
+    "reference_segment_count": 25,
+    "hypothesis_segment_count": 25,
+    "speaker_count": 2,
+    "hypothesis_source": "separated_whisper_cleaned",
+    "reference_export": "results/tables/meeteval_reference_segments.jsonl",
+    "hypothesis_export": "results/tables/meeteval_hypothesis_segments.jsonl",
+    "observation": "compatibility bridge only; this export does not claim cpWER evaluation yet."
+  },
+  {
+    "case_id": "OppositeOverlap",
+    "reference_segment_count": 24,
+    "hypothesis_segment_count": 25,
+    "speaker_count": 2,
+    "hypothesis_source": "separated_whisper_cleaned",
+    "reference_export": "results/tables/meeteval_reference_segments.jsonl",
+    "hypothesis_export": "results/tables/meeteval_hypothesis_segments.jsonl",
+    "observation": "compatibility bridge only; this export does not claim cpWER evaluation yet."
+  }
+]
