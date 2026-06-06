@@ -9,6 +9,8 @@ from src.project_harness import (
     build_frontier_focus_card_rows,
     build_frontier_handoff_packet_lines,
     build_frontier_handoff_packet_rows,
+    build_frontier_receipt_packet_lines,
+    build_frontier_receipt_packet_rows,
     build_report,
 )
 
@@ -164,6 +166,45 @@ class ProjectHarnessTest(unittest.TestCase):
         rendered = "\n".join(lines)
 
         self.assertIn("# Frontier Handoff Packet", rendered)
+        self.assertIn("meeteval_compatibility", rendered)
+        self.assertIn("meeteval_dry_run_handoff.md", rendered)
+        self.assertIn("meeteval_dry_run_receipt.json", rendered)
+
+    def test_build_frontier_receipt_packet_rows_point_queue_head_to_receipt_target(self) -> None:
+        rows = build_frontier_receipt_packet_rows(
+            [
+                {
+                    "queue_order": "1",
+                    "frontier_id": "meeteval_compatibility",
+                    "status": "documented_skill",
+                    "entry_artifact": "MeetEval readiness card",
+                    "why_now": "Use the readiness card to stage one narrow dry run before claiming any benchmark bridge.",
+                }
+            ]
+        )
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["current_frontier"], "meeteval_compatibility")
+        self.assertEqual(rows[0]["prerequisite_artifact"], "results/figures/meeteval_dry_run_handoff.md")
+        self.assertEqual(rows[0]["receipt_target"], "results/tables/meeteval_dry_run_receipt.json")
+        self.assertIn("receipt", rows[0]["execution_note"].lower())
+        self.assertIn("coordination-only", rows[0]["packet_scope"].lower())
+
+    def test_build_frontier_receipt_packet_lines_render_packet(self) -> None:
+        lines = build_frontier_receipt_packet_lines(
+            [
+                {
+                    "current_frontier": "meeteval_compatibility",
+                    "prerequisite_artifact": "results/figures/meeteval_dry_run_handoff.md",
+                    "receipt_target": "results/tables/meeteval_dry_run_receipt.json",
+                    "execution_note": "Open the handoff first, then write back to the receipt target after the narrow dry run.",
+                    "packet_scope": "Coordination-only packet; not a claim of completed frontier execution.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Frontier Receipt Packet", rendered)
         self.assertIn("meeteval_compatibility", rendered)
         self.assertIn("meeteval_dry_run_handoff.md", rendered)
         self.assertIn("meeteval_dry_run_receipt.json", rendered)

@@ -280,6 +280,40 @@ def build_frontier_handoff_packet_lines(rows: list[dict[str, str]]) -> list[str]
     return lines
 
 
+def build_frontier_receipt_packet_rows(queue_rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    if not queue_rows:
+        return []
+
+    head = queue_rows[0]
+    frontier_id = str(head.get("frontier_id", ""))
+    prerequisite_artifact, receipt_target = frontier_next_artifact(frontier_id)
+    return [
+        {
+            "current_frontier": frontier_id,
+            "prerequisite_artifact": prerequisite_artifact,
+            "receipt_target": receipt_target,
+            "execution_note": "Open the handoff first, then write back to the receipt target after the narrow next step.",
+            "packet_scope": "Coordination-only packet; not a claim of completed frontier execution.",
+        }
+    ]
+
+
+def build_frontier_receipt_packet_lines(rows: list[dict[str, str]]) -> list[str]:
+    lines = [
+        "# Frontier Receipt Packet",
+        "",
+        "This generated packet points the current frontier queue head at its receipt-level writeback target. It does not claim that the frontier work has already been executed.",
+        "",
+        "| current_frontier | prerequisite_artifact | receipt_target | execution_note | packet_scope |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['current_frontier']} | {row['prerequisite_artifact']} | {row['receipt_target']} | {row['execution_note']} | {row['packet_scope']} |"
+        )
+    return lines
+
+
 def build_report() -> dict[str, object]:
     missing_core = [path for path in CORE_FILES if not exists(path)]
     gold_status = inspect_gold_cases()
@@ -403,12 +437,28 @@ def write_frontier_handoff_packet(frontier_status: list[dict[str, str]]) -> tupl
     return json_path, md_path
 
 
+def write_frontier_receipt_packet(frontier_status: list[dict[str, str]]) -> tuple[Path, Path]:
+    tables_dir = PROJECT_ROOT / "results" / "tables"
+    figures_dir = PROJECT_ROOT / "results" / "figures"
+    tables_dir.mkdir(parents=True, exist_ok=True)
+    figures_dir.mkdir(parents=True, exist_ok=True)
+
+    queue_rows = build_frontier_execution_queue_rows(frontier_status)
+    receipt_rows = build_frontier_receipt_packet_rows(queue_rows)
+    json_path = tables_dir / "frontier_receipt_packet.json"
+    md_path = figures_dir / "frontier_receipt_packet.md"
+    json_path.write_text(json.dumps(receipt_rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    md_path.write_text("\n".join(build_frontier_receipt_packet_lines(receipt_rows)) + "\n", encoding="utf-8")
+    return json_path, md_path
+
+
 def main() -> None:
     report = build_report()
     json_path, md_path = write_report(report)
     queue_json_path, queue_md_path = write_frontier_queue(report["frontier_status"])
     focus_json_path, focus_md_path = write_frontier_focus_card(report["frontier_status"])
     handoff_json_path, handoff_md_path = write_frontier_handoff_packet(report["frontier_status"])
+    receipt_json_path, receipt_md_path = write_frontier_receipt_packet(report["frontier_status"])
     print(f"Wrote harness report: {json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote harness summary: {md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier queue JSON: {queue_json_path.relative_to(PROJECT_ROOT)}")
@@ -417,6 +467,8 @@ def main() -> None:
     print(f"Wrote frontier focus note: {focus_md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier handoff JSON: {handoff_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier handoff note: {handoff_md_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote frontier receipt JSON: {receipt_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote frontier receipt note: {receipt_md_path.relative_to(PROJECT_ROOT)}")
     print(f"gold_cases_present: {all(report['gold_cases'].values())}")
     print(f"gold_and_synthetic_separated: {report['gold_and_synthetic_separated']}")
 
