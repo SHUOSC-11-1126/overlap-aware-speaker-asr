@@ -19,6 +19,8 @@ from src.project_harness import (
     build_frontier_receipt_map_rows,
     build_frontier_receipt_packet_lines,
     build_frontier_receipt_packet_rows,
+    build_frontier_writeback_index_lines,
+    build_frontier_writeback_index_rows,
     build_report,
 )
 
@@ -411,6 +413,53 @@ class ProjectHarnessTest(unittest.TestCase):
         self.assertIn("MeetEval readiness card", rendered)
         self.assertIn("meeteval_dry_run_handoff.md", rendered)
         self.assertIn("meeteval_dry_run_receipt.json", rendered)
+
+    def test_build_frontier_writeback_index_rows_cover_all_current_frontiers(self) -> None:
+        rows = build_frontier_writeback_index_rows(
+            [
+                {
+                    "queue_order": "1",
+                    "frontier_id": "meeteval_compatibility",
+                    "status": "documented_skill",
+                    "entry_artifact": "MeetEval readiness card",
+                    "why_now": "Use the readiness card to stage one narrow dry run before claiming any benchmark bridge.",
+                },
+                {
+                    "queue_order": "2",
+                    "frontier_id": "external_validation",
+                    "status": "documented_skill",
+                    "entry_artifact": "external sanity-check prioritization card",
+                    "why_now": "Use the prioritization card to map one tiny sanity-check slice without claiming a completed benchmark.",
+                },
+            ]
+        )
+
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(rows[0]["frontier_id"], "meeteval_compatibility")
+        self.assertEqual(rows[0]["receipt_target"], "results/tables/meeteval_dry_run_receipt.json")
+        self.assertIn("open results/figures/meeteval_dry_run_handoff.md first", rows[0]["writeback_note"].lower())
+        self.assertEqual(rows[1]["frontier_id"], "external_validation")
+        self.assertIn("coordination-only", rows[0]["writeback_scope"].lower())
+
+    def test_build_frontier_writeback_index_lines_render_table(self) -> None:
+        lines = build_frontier_writeback_index_lines(
+            [
+                {
+                    "queue_order": "1",
+                    "frontier_id": "meeteval_compatibility",
+                    "entry_artifact": "MeetEval readiness card",
+                    "receipt_target": "results/tables/meeteval_dry_run_receipt.json",
+                    "writeback_note": "Open results/figures/meeteval_dry_run_handoff.md first, then write back to results/tables/meeteval_dry_run_receipt.json.",
+                    "writeback_scope": "Coordination-only index; not a claim of completed frontier execution.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Frontier Writeback Index", rendered)
+        self.assertIn("meeteval_compatibility", rendered)
+        self.assertIn("meeteval_dry_run_receipt.json", rendered)
+        self.assertIn("meeteval_dry_run_handoff.md", rendered)
 
 
 if __name__ == "__main__":
