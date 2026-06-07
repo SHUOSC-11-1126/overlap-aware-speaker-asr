@@ -493,6 +493,12 @@ Frontier writeback index:
 - `results/tables/frontier_writeback_index.json`
 - This index now separates the receipt target from the rest of the scan view. It still does not claim any executed frontier work; it simply keeps queue order, entry artifact, and receipt target visible together for a tighter writeback pass.
 
+Frontier writeback checklist:
+
+- `results/figures/frontier_writeback_checklist.md`
+- `results/tables/frontier_writeback_checklist.csv`
+- This checklist now turns the writeback index into an ordered closeout path. It stays explicitly coordination-only, keeps the receipt target visible, and helps a future agent complete the frontier writeback in order.
+
 Benchmark frontier bridge:
 
 - `results/figures/cascade_benchmark_frontier_bridge.md`

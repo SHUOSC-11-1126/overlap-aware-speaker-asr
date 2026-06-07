@@ -308,6 +308,16 @@ Current frontier coordination matrix result:
 - `results/figures/frontier_coordination_matrix.md` now gives the breadth-first set a denser scan view
 - This remains coordination-only and keeps queue order, entry artifact, pickup artifact, and receipt target visible together for the next pass
 
+Current frontier coordination checklist result:
+
+- `results/figures/frontier_coordination_checklist.md` now turns the coordination matrix into an ordered scan checklist
+- This checklist remains coordination-only and keeps the entry artifact visible without claiming that any frontier work has already been executed
+
+Current frontier writeback index result:
+
+- `results/figures/frontier_writeback_index.md` now isolates the receipt target for a tighter writeback pass
+- This remains coordination-only and keeps queue order, entry artifact, and receipt target visible together without claiming that any frontier work has already been executed
+
 Current MeetEval compatibility result:
 
 - `results/figures/meeteval_compatibility_note.md` now provides a segment-level compatibility bridge across verified gold references and speaker-attributed hypotheses without claiming a finished cpWER evaluation
