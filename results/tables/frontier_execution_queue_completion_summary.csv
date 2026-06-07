@@ -1,0 +1,2 @@
+﻿scope,ready_chain_count,total_chain_count,pending_chain_count,queue_status,observation
+frontier_execution_coordination_queue,3,3,0,queue_complete,Experimental/frontier execution coordination queue completion rollup; no official benchmark execution or external audio staging is claimed.
