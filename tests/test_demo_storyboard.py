@@ -5,6 +5,8 @@ import unittest
 from src.demo_storyboard import (
     build_demo_storyboard_cards,
     build_demo_storyboard_lines,
+    build_demo_storyboard_receipt_bridge_lines,
+    build_demo_storyboard_receipt_bridge_rows,
     build_demo_storyboard_receipt_lines,
     build_demo_storyboard_receipt_rows,
     build_demo_storyboard_bridge_checklist_lines,
@@ -88,6 +90,51 @@ class DemoStoryboardTest(unittest.TestCase):
         self.assertIn("template_only", rendered)
         self.assertIn("problem", rendered)
         self.assertIn("has been executed yet", rendered)
+
+    def test_build_demo_storyboard_receipt_bridge_rows_link_story_to_receipt(self) -> None:
+        rows = build_demo_storyboard_receipt_bridge_rows(
+            [
+                {"title": "Problem", "body": "Overlap-aware ASR should separate selectively."},
+                {"title": "Pipeline", "body": "Mixed ASR, separated ASR, routing, and evaluation compose the main flow."},
+            ],
+            [
+                {
+                    "execution_status": "template_only",
+                    "storyboard_scope": "problem",
+                    "expected_inputs": "Demo storyboard cards plus one review note stub.",
+                    "expected_outputs": "Narrow storyboard review note and a demo narrative writeback.",
+                    "writeback_note": "No storyboard review pass has been executed yet; fill this receipt only after the first review.",
+                }
+            ],
+        )
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["checklist_order"], "1")
+        self.assertEqual(rows[0]["story_card"], "Problem")
+        self.assertEqual(rows[0]["prerequisite_artifact"], "results/figures/demo_storyboard.md")
+        self.assertEqual(rows[0]["receipt_target"], "results/figures/demo_storyboard_receipt.md")
+        self.assertIn("bridge", rows[0]["checklist_goal"].lower())
+
+    def test_build_demo_storyboard_receipt_bridge_lines_render_bridge(self) -> None:
+        lines = build_demo_storyboard_receipt_bridge_lines(
+            [
+                {
+                    "checklist_order": "1",
+                    "story_card": "Problem",
+                    "prerequisite_artifact": "results/figures/demo_storyboard.md",
+                    "receipt_target": "results/figures/demo_storyboard_receipt.md",
+                    "checklist_goal": "Verify the storyboard-to-receipt bridge for the Problem card before any review writeback is advanced.",
+                    "bridge_note": "Open the storyboard first, then write back through the receipt target for storyboard_review.",
+                    "next_gate": "Confirm this bridge before opening the storyboard receipt target.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Demo Storyboard Receipt Bridge", rendered)
+        self.assertIn("results/figures/demo_storyboard.md", rendered)
+        self.assertIn("results/figures/demo_storyboard_receipt.md", rendered)
+        self.assertIn("demo support only", rendered)
 
     def test_build_demo_storyboard_bridge_checklist_rows_link_story_to_walkthrough(self) -> None:
         rows = build_demo_storyboard_bridge_checklist_rows(

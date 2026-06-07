@@ -47,6 +47,16 @@ STORYBOARD_BRIDGE_CHECKLIST_COLUMNS = [
     "next_gate",
 ]
 
+STORYBOARD_RECEIPT_BRIDGE_COLUMNS = [
+    "checklist_order",
+    "story_card",
+    "prerequisite_artifact",
+    "receipt_target",
+    "checklist_goal",
+    "bridge_note",
+    "next_gate",
+]
+
 
 def build_demo_walkthrough_receipt_rows(steps: list[dict[str, str]]) -> list[dict[str, str]]:
     if not steps:
@@ -110,6 +120,44 @@ def build_demo_storyboard_receipt_lines(rows: list[dict[str, str]]) -> list[str]
     for row in rows:
         lines.append(
             f"| {row['execution_status']} | {row['storyboard_scope']} | {row['expected_inputs']} | {row['expected_outputs']} | {row['writeback_note']} |"
+        )
+    return lines
+
+
+def build_demo_storyboard_receipt_bridge_rows(
+    cards: list[dict[str, str]],
+    receipt_rows: list[dict[str, str]],
+) -> list[dict[str, str]]:
+    if not cards or not receipt_rows:
+        return []
+
+    head = cards[0]
+    receipt = receipt_rows[0]
+    return [
+        {
+            "checklist_order": "1",
+            "story_card": str(head.get("title", "")),
+            "prerequisite_artifact": "results/figures/demo_storyboard.md",
+            "receipt_target": "results/figures/demo_storyboard_receipt.md",
+            "checklist_goal": f"Verify the storyboard-to-receipt bridge for the {str(head.get('title', 'story'))} card before any review writeback is advanced.",
+            "bridge_note": f"Open the storyboard first, then write back through the receipt target for {str(receipt.get('storyboard_scope', 'storyboard_review')).lower()}.",
+            "next_gate": "Confirm this bridge before opening the storyboard receipt target.",
+        }
+    ]
+
+
+def build_demo_storyboard_receipt_bridge_lines(rows: list[dict[str, str]]) -> list[str]:
+    lines = [
+        "# Demo Storyboard Receipt Bridge",
+        "",
+        "This generated bridge links the storyboard cards to the storyboard receipt. It remains demo support only and does not claim that any live demo or recording has been completed.",
+        "",
+        "| checklist_order | story_card | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['checklist_order']} | {row['story_card']} | {row['prerequisite_artifact']} | {row['receipt_target']} | {row['checklist_goal']} | {row['bridge_note']} | {row['next_gate']} |"
         )
     return lines
 
@@ -331,7 +379,7 @@ def build_demo_walkthrough_checklist_lines(rows: list[dict[str, str]]) -> list[s
 def write_outputs(
     cards: list[dict[str, str]],
     steps: list[dict[str, str]],
-) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path]:
+) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path]:
     tables_dir = PROJECT_ROOT / "results" / "tables"
     figures_dir = PROJECT_ROOT / "results" / "figures"
     tables_dir.mkdir(parents=True, exist_ok=True)
@@ -341,6 +389,10 @@ def write_outputs(
     storyboard_receipt_rows = build_demo_storyboard_receipt_rows(cards)
     storyboard_receipt_json_path = tables_dir / "demo_storyboard_receipt.json"
     storyboard_receipt_md_path = figures_dir / "demo_storyboard_receipt.md"
+    storyboard_receipt_bridge_rows = build_demo_storyboard_receipt_bridge_rows(cards, storyboard_receipt_rows)
+    storyboard_receipt_bridge_csv_path = tables_dir / "demo_storyboard_receipt_bridge.csv"
+    storyboard_receipt_bridge_json_path = tables_dir / "demo_storyboard_receipt_bridge.json"
+    storyboard_receipt_bridge_md_path = figures_dir / "demo_storyboard_receipt_bridge.md"
     walkthrough_json_path = tables_dir / "demo_walkthrough_steps.json"
     walkthrough_md_path = figures_dir / "demo_walkthrough.md"
     storyboard_bridge_checklist_rows = build_demo_storyboard_bridge_checklist_rows(cards, steps)
@@ -365,6 +417,18 @@ def write_outputs(
     storyboard_receipt_json_path.write_text(json.dumps(storyboard_receipt_rows, ensure_ascii=False, indent=2), encoding="utf-8")
     storyboard_receipt_md_path.write_text(
         "\n".join(build_demo_storyboard_receipt_lines(storyboard_receipt_rows)) + "\n",
+        encoding="utf-8",
+    )
+    with storyboard_receipt_bridge_csv_path.open("w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=STORYBOARD_RECEIPT_BRIDGE_COLUMNS)
+        writer.writeheader()
+        writer.writerows(storyboard_receipt_bridge_rows)
+    storyboard_receipt_bridge_json_path.write_text(
+        json.dumps(storyboard_receipt_bridge_rows, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    storyboard_receipt_bridge_md_path.write_text(
+        "\n".join(build_demo_storyboard_receipt_bridge_lines(storyboard_receipt_bridge_rows)) + "\n",
         encoding="utf-8",
     )
     with storyboard_bridge_checklist_csv_path.open("w", newline="", encoding="utf-8-sig") as f:
@@ -413,6 +477,9 @@ def write_outputs(
         md_path,
         storyboard_receipt_json_path,
         storyboard_receipt_md_path,
+        storyboard_receipt_bridge_csv_path,
+        storyboard_receipt_bridge_json_path,
+        storyboard_receipt_bridge_md_path,
         storyboard_bridge_checklist_csv_path,
         storyboard_bridge_checklist_json_path,
         storyboard_bridge_checklist_md_path,
@@ -443,6 +510,9 @@ def main() -> None:
         md_path,
         storyboard_receipt_json_path,
         storyboard_receipt_md_path,
+        storyboard_receipt_bridge_csv_path,
+        storyboard_receipt_bridge_json_path,
+        storyboard_receipt_bridge_md_path,
         storyboard_bridge_checklist_csv_path,
         storyboard_bridge_checklist_json_path,
         storyboard_bridge_checklist_md_path,
@@ -461,6 +531,9 @@ def main() -> None:
     print(f"Wrote demo storyboard note: {md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote demo storyboard receipt JSON: {storyboard_receipt_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote demo storyboard receipt note: {storyboard_receipt_md_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote demo storyboard receipt bridge CSV: {storyboard_receipt_bridge_csv_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote demo storyboard receipt bridge JSON: {storyboard_receipt_bridge_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote demo storyboard receipt bridge note: {storyboard_receipt_bridge_md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote demo storyboard bridge checklist CSV: {storyboard_bridge_checklist_csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote demo storyboard bridge checklist JSON: {storyboard_bridge_checklist_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote demo storyboard bridge checklist note: {storyboard_bridge_checklist_md_path.relative_to(PROJECT_ROOT)}")
