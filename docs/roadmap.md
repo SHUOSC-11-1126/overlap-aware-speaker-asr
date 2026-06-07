@@ -647,6 +647,12 @@ Update: `meeteval_compatibility` now also has a cpWER execution scaffold.
 - Summary view: `results/figures/meeteval_cpwer_execution_scaffold.md`
 - The scaffold records `scaffold_status = scaffold_only`; official cpWER evaluation remains pending.
 
+Update: `meeteval_compatibility` now also has a cpWER execution scaffold bridge checklist.
+
+- cpWER execution scaffold bridge checklist: `results/tables/meeteval_cpwer_execution_scaffold_bridge_checklist.csv`
+- Summary view: `results/figures/meeteval_cpwer_execution_scaffold_bridge_checklist.md`
+- This connects the execution scaffold to official MeetEval evaluation without claiming cpWER execution.
+
 Update: a generated llm critic review queue now turns the qualitative note into a first-pass triage order.
 
 - LLM critic review queue: `results/tables/llm_critic_review_queue.csv`
@@ -1054,6 +1060,18 @@ Update: `demo_excellence` now also has a storyboard review pass status rollup.
 
 - Storyboard review pass status: `results/tables/demo_storyboard_review_pass_status.csv`
 - Summary view: `results/figures/demo_storyboard_review_pass_status.md`
+- `queue_status = queue_complete` at `4/4` without any live demo or recording claim.
+
+Update: `demo_excellence` now also has a storyboard review pass status bridge checklist.
+
+- Storyboard review pass status bridge checklist: `results/tables/demo_storyboard_review_pass_status_bridge_checklist.csv`
+- Summary view: `results/figures/demo_storyboard_review_pass_status_bridge_checklist.md`
+- This connects the status rollup to the completion summary without claiming live demo delivery.
+
+Update: `demo_excellence` now also has a storyboard review pass completion summary.
+
+- Storyboard review pass completion summary: `results/tables/demo_storyboard_review_pass_completion_summary.csv`
+- Summary view: `results/figures/demo_storyboard_review_pass_completion_summary.md`
 - `queue_status = queue_complete` at `4/4` without any live demo or recording claim.
 
 Update: `external_validation` now has a dedicated skill card.

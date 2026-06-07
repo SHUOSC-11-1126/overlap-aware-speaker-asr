@@ -1,0 +1,12 @@
+[
+  {
+    "checklist_order": "1",
+    "case_id": "ALL",
+    "scaffold_status": "scaffold_only",
+    "prerequisite_artifact": "results/figures/meeteval_cpwer_execution_scaffold.md",
+    "receipt_target": "results/figures/meeteval_cpwer_bridge_handoff_bridge_checklist.md",
+    "checklist_goal": "Verify the cpWER execution scaffold for ALL before reopening official cpWER evaluation.",
+    "bridge_note": "Execution scaffold remains scaffold_only with cpwer_bridge_lite=0.120823; confirm scaffold context before advancing to MeetEval execution.",
+    "next_gate": "Confirm this bridge before opening a full MeetEval cpWER evaluation target."
+  }
+]

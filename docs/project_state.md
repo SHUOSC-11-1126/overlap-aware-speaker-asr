@@ -862,6 +862,12 @@ MeetEval cpWER execution scaffold:
 - `results/tables/meeteval_cpwer_execution_scaffold.csv`
 - The cpWER execution scaffold records `scaffold_status = scaffold_only` for one verified case; official cpWER evaluation remains pending.
 
+MeetEval cpWER execution scaffold bridge checklist:
+
+- `results/figures/meeteval_cpwer_execution_scaffold_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_execution_scaffold_bridge_checklist.csv`
+- This checklist connects the execution scaffold to official MeetEval evaluation without claiming cpWER execution.
+
 Speaker profile similarity bridge:
 
 - `results/figures/speaker_profile_risk_summary.md`
@@ -1371,6 +1377,18 @@ Demo storyboard review pass status:
 - `results/tables/demo_storyboard_review_pass_status.csv`
 - `queue_status = queue_complete` at `4/4` without any live demo or recording claim.
 
+Demo storyboard review pass status bridge checklist:
+
+- `results/figures/demo_storyboard_review_pass_status_bridge_checklist.md`
+- `results/tables/demo_storyboard_review_pass_status_bridge_checklist.csv`
+- This checklist connects the status rollup to the completion summary without claiming live demo delivery.
+
+Demo storyboard review pass completion summary:
+
+- `results/figures/demo_storyboard_review_pass_completion_summary.md`
+- `results/tables/demo_storyboard_review_pass_completion_summary.csv`
+- `queue_status = queue_complete` at `4/4` without any live demo or recording claim.
+
 ## How to Resume Work
 
 Common commands:
@@ -1446,8 +1464,11 @@ python -m src.demo_storyboard_review_pass_continue
 python -m src.demo_storyboard_review_pass_second_continue
 python -m src.demo_storyboard_review_pass_continue_bridge_checklist
 python -m src.demo_storyboard_review_pass_status
+python -m src.demo_storyboard_review_pass_status_bridge_checklist
+python -m src.demo_storyboard_review_pass_completion_summary
 python -m src.meeteval_cpwer_bridge_handoff_bridge_checklist
 python -m src.meeteval_cpwer_execution_scaffold
+python -m src.meeteval_cpwer_execution_scaffold_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_scaffold
 python -m src.speaker_profile_embedding_trial_handoff
 python -m src.speaker_profile_embedding_trial
