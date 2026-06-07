@@ -629,6 +629,12 @@ Update: `meeteval_compatibility` now also has a cpWER bridge handoff.
 - Summary view: `results/figures/meeteval_cpwer_bridge_handoff.md`
 - This keeps the bridge-lite result visible as the next narrow frontier step while full MeetEval evaluation remains pending.
 
+Update: `meeteval_compatibility` now also has a cpWER bridge handoff bridge checklist.
+
+- cpWER bridge handoff bridge checklist: `results/tables/meeteval_cpwer_bridge_handoff_bridge_checklist.csv`
+- Summary view: `results/figures/meeteval_cpwer_bridge_handoff_bridge_checklist.md`
+- This connects the cpWER bridge handoff to full MeetEval evaluation without claiming cpWER execution.
+
 Update: a generated llm critic review queue now turns the qualitative note into a first-pass triage order.
 
 - LLM critic review queue: `results/tables/llm_critic_review_queue.csv`
@@ -1011,6 +1017,13 @@ Update: `demo_excellence` now also has a storyboard review pass advance bridge c
 - Storyboard review pass advance bridge checklist: `results/tables/demo_storyboard_review_pass_advance_bridge_checklist.csv`
 - Summary view: `results/figures/demo_storyboard_review_pass_advance_bridge_checklist.md`
 - This connects card `2` to the third-card review pass without claiming live demo delivery.
+
+Update: `demo_excellence` now also has a storyboard review pass continue.
+
+- Storyboard review pass continue: `results/tables/demo_storyboard_review_pass_continue.csv`
+- Third pass table: `results/tables/demo_storyboard_review_pass_third.csv`
+- Summary view: `results/figures/demo_storyboard_review_pass_continue.md`
+- Card `3` (`Findings`) is the third queue pass after cards `1` and `2`; no live demo delivery is claimed.
 
 Update: `external_validation` now has a dedicated skill card.
 

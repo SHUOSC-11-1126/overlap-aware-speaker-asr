@@ -850,6 +850,12 @@ MeetEval cpWER bridge handoff:
 - `results/tables/meeteval_cpwer_bridge_handoff.csv`
 - This handoff turns the bridge-lite result into the next narrow frontier step while keeping full MeetEval evaluation explicitly pending.
 
+MeetEval cpWER bridge handoff bridge checklist:
+
+- `results/figures/meeteval_cpwer_bridge_handoff_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_bridge_handoff_bridge_checklist.csv`
+- This checklist connects the cpWER bridge handoff to full MeetEval evaluation without claiming cpWER execution.
+
 Speaker profile similarity bridge:
 
 - `results/figures/speaker_profile_risk_summary.md`
@@ -1317,6 +1323,18 @@ Demo storyboard review pass advance bridge checklist:
 - `results/tables/demo_storyboard_review_pass_advance_bridge_checklist.csv`
 - This checklist connects card `2` to the third-card review pass without claiming live demo delivery.
 
+Demo storyboard review pass continue:
+
+- `results/figures/demo_storyboard_review_pass_continue.md`
+- `results/tables/demo_storyboard_review_pass_continue.csv`
+- The storyboard review queue advanced to card `3` (`Findings`) after cards `1` and `2` reached `review_complete` without claiming live demo delivery.
+
+Demo storyboard review pass third:
+
+- `results/figures/demo_storyboard_review_pass_third.md`
+- `results/tables/demo_storyboard_review_pass_third.csv`
+- The third qualitative storyboard review pass records notes for card `3` only; no live demo or recording is claimed.
+
 ## How to Resume Work
 
 Common commands:
@@ -1388,6 +1406,8 @@ python -m src.demo_walkthrough_review_pass_completion_summary_bridge_checklist
 python -m src.demo_storyboard_review_pass
 python -m src.demo_storyboard_review_pass_advance
 python -m src.demo_storyboard_review_pass_advance_bridge_checklist
+python -m src.demo_storyboard_review_pass_continue
+python -m src.meeteval_cpwer_bridge_handoff_bridge_checklist
 python -m src.speaker_profile_embedding_trial_handoff
 python -m src.speaker_profile_embedding_trial
 python -m src.speaker_profile_embedding_trial_handoff_bridge_checklist
