@@ -1,0 +1,13 @@
+[
+  {
+    "checklist_order": "1",
+    "dataset_name": "AISHELL-4",
+    "readiness_status": "receipt_ready_to_fill",
+    "blocker": "license_confirmation_pending",
+    "prerequisite_artifact": "results/figures/external_validation_slice_staging_handoff_receipt_readiness.md",
+    "receipt_target": "results/tables/external_validation_slice_staging_handoff_receipt.json",
+    "checklist_goal": "Verify external staging receipt readiness for AISHELL-4 before any audio staging.",
+    "bridge_note": "Readiness reports readiness_status=receipt_ready_to_fill with blocker=license_confirmation_pending; confirm receipt readiness before any external audio staging.",
+    "next_gate": "Confirm this bridge before claiming any external audio staging or benchmark execution."
+  }
+]
