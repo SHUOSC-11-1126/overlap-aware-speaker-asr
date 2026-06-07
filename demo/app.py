@@ -162,6 +162,28 @@ def render_frontier_fill_status() -> None:
                 "official_cpwer": [row.get("official_cpwer", "—") or "—" for row in official_execution],
             }
         )
+    char_execution = load_json_list("results/tables/meeteval_cpwer_character_level_official_execution.json")
+    reconciliation = load_json_list("results/tables/meeteval_cpwer_official_execution_reconciliation_audit.json")
+    if char_execution:
+        st.markdown("**Character-spaced MeetEval cpWER (reconciled)**")
+        st.table(
+            {
+                "case_id": [row.get("case_id", "") for row in char_execution],
+                "char_cpwer": [row.get("official_cpwer", "—") or "—" for row in char_execution],
+                "raw_cpwer": [row.get("official_cpwer_raw", "—") or "—" for row in char_execution],
+            }
+        )
+    if reconciliation:
+        aligned = sum(1 for row in reconciliation if row.get("reconciliation_status") == "aligned")
+        st.metric("Bridge-lite reconciliation", f"{aligned}/{len(reconciliation)} aligned")
+        st.table(
+            {
+                "case_id": [row.get("case_id", "") for row in reconciliation],
+                "char_cpwer": [row.get("character_level_cpwer", "—") for row in reconciliation],
+                "bridge_lite": [row.get("cpwer_bridge_lite", "—") for row in reconciliation],
+                "status": [row.get("reconciliation_status", "") for row in reconciliation],
+            }
+        )
     if dashboard:
         st.markdown("**Fill execution dashboard**")
         st.write(dashboard.get("dashboard_note", ""))
