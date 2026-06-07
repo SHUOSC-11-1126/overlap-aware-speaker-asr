@@ -1,0 +1,8 @@
+{
+  "scope": "all_gold_cases",
+  "case_count": 5,
+  "average_cpwer_bridge_lite": 0.120823,
+  "direct_mapping_count": 5,
+  "swapped_mapping_count": 0,
+  "observation": "experimental/frontier all-case cpWER bridge-lite summary; this is not a full MeetEval cpWER benchmark claim."
+}

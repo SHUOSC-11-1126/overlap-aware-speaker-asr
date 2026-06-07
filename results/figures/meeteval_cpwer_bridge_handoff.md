@@ -4,4 +4,4 @@ This generated handoff packet turns the cpWER bridge-lite result into the next n
 
 | bridge_status | case_id | cpwer_bridge_lite | best_mapping | bridge_goal | primary_limitation | expected_evidence | handoff_note |
 | --- | --- | ---: | --- | --- | --- | --- | --- |
-| cpwer_bridge_complete | NoOverlap | 0.054312 | direct | Use the bridge-lite result as a narrow compatibility signal before any broader MeetEval integration. | This uses speaker-aggregated macro CER rather than a full MeetEval cpWER implementation. | results/tables/meeteval_cpwer_bridge_receipt.json | MeetEval cpWER bridge-lite has been computed for one case; it is not a finished benchmark claim. |
+| cpwer_bridge_complete | ALL | 0.120823 | direct=5, swapped=0 | Use the bridge-lite result as a narrow compatibility signal before any broader MeetEval integration. | This uses speaker-aggregated macro CER rather than a full MeetEval cpWER implementation. | results/tables/meeteval_cpwer_bridge_receipt.json | MeetEval cpWER bridge-lite has been computed across all gold cases; it is not a finished benchmark claim. |

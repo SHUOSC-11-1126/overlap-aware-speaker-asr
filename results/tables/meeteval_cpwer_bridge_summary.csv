@@ -1,0 +1,2 @@
+﻿scope,case_count,average_cpwer_bridge_lite,direct_mapping_count,swapped_mapping_count,observation
+all_gold_cases,5,0.120823,5,0,experimental/frontier all-case cpWER bridge-lite summary; this is not a full MeetEval cpWER benchmark claim.

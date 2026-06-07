@@ -1,12 +1,12 @@
 [
   {
     "bridge_status": "cpwer_bridge_complete",
-    "case_id": "NoOverlap",
-    "cpwer_bridge_lite": "0.054312",
-    "best_mapping": "direct",
+    "case_id": "ALL",
+    "cpwer_bridge_lite": "0.120823",
+    "best_mapping": "direct=5, swapped=0",
     "bridge_goal": "Use the bridge-lite result as a narrow compatibility signal before any broader MeetEval integration.",
     "primary_limitation": "This uses speaker-aggregated macro CER rather than a full MeetEval cpWER implementation.",
     "expected_evidence": "results/tables/meeteval_cpwer_bridge_receipt.json",
-    "handoff_note": "MeetEval cpWER bridge-lite has been computed for one case; it is not a finished benchmark claim."
+    "handoff_note": "MeetEval cpWER bridge-lite has been computed across all gold cases; it is not a finished benchmark claim."
   }
 ]

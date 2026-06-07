@@ -5,3 +5,7 @@ This generated note records a narrow cpWER bridge-lite pass on exported segments
 | case_id | hypothesis_source | speaker_count | direct_macro_cer | swapped_macro_cer | cpwer_bridge_lite | best_mapping | observation |
 | --- | --- | ---: | ---: | ---: | ---: | --- | --- |
 | NoOverlap | separated_whisper | 2 | 0.054312 | 0.91813 | 0.054312 | direct | experimental/frontier cpWER bridge-lite from JSONL exports; this is not a full MeetEval cpWER claim. |
+| LightOverlap | separated_whisper_cleaned | 2 | 0.135164 | 0.928692 | 0.135164 | direct | experimental/frontier cpWER bridge-lite from JSONL exports; this is not a full MeetEval cpWER claim. |
+| MidOverlap | separated_whisper_cleaned | 2 | 0.16862 | 0.905274 | 0.16862 | direct | experimental/frontier cpWER bridge-lite from JSONL exports; this is not a full MeetEval cpWER claim. |
+| HeavyOverlap | separated_whisper_cleaned | 2 | 0.162827 | 0.904226 | 0.162827 | direct | experimental/frontier cpWER bridge-lite from JSONL exports; this is not a full MeetEval cpWER claim. |
+| OppositeOverlap | separated_whisper_cleaned | 2 | 0.083193 | 0.894958 | 0.083193 | direct | experimental/frontier cpWER bridge-lite from JSONL exports; this is not a full MeetEval cpWER claim. |

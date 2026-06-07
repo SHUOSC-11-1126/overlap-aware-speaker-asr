@@ -1,10 +1,52 @@
-{
-  "case_id": "NoOverlap",
-  "hypothesis_source": "separated_whisper",
-  "speaker_count": 2,
-  "direct_macro_cer": 0.054312,
-  "swapped_macro_cer": 0.91813,
-  "cpwer_bridge_lite": 0.054312,
-  "best_mapping": "direct",
-  "observation": "experimental/frontier cpWER bridge-lite from JSONL exports; this is not a full MeetEval cpWER claim."
-}
+[
+  {
+    "case_id": "NoOverlap",
+    "hypothesis_source": "separated_whisper",
+    "speaker_count": 2,
+    "direct_macro_cer": 0.054312,
+    "swapped_macro_cer": 0.91813,
+    "cpwer_bridge_lite": 0.054312,
+    "best_mapping": "direct",
+    "observation": "experimental/frontier cpWER bridge-lite from JSONL exports; this is not a full MeetEval cpWER claim."
+  },
+  {
+    "case_id": "LightOverlap",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "speaker_count": 2,
+    "direct_macro_cer": 0.135164,
+    "swapped_macro_cer": 0.928692,
+    "cpwer_bridge_lite": 0.135164,
+    "best_mapping": "direct",
+    "observation": "experimental/frontier cpWER bridge-lite from JSONL exports; this is not a full MeetEval cpWER claim."
+  },
+  {
+    "case_id": "MidOverlap",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "speaker_count": 2,
+    "direct_macro_cer": 0.16862,
+    "swapped_macro_cer": 0.905274,
+    "cpwer_bridge_lite": 0.16862,
+    "best_mapping": "direct",
+    "observation": "experimental/frontier cpWER bridge-lite from JSONL exports; this is not a full MeetEval cpWER claim."
+  },
+  {
+    "case_id": "HeavyOverlap",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "speaker_count": 2,
+    "direct_macro_cer": 0.162827,
+    "swapped_macro_cer": 0.904226,
+    "cpwer_bridge_lite": 0.162827,
+    "best_mapping": "direct",
+    "observation": "experimental/frontier cpWER bridge-lite from JSONL exports; this is not a full MeetEval cpWER claim."
+  },
+  {
+    "case_id": "OppositeOverlap",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "speaker_count": 2,
+    "direct_macro_cer": 0.083193,
+    "swapped_macro_cer": 0.894958,
+    "cpwer_bridge_lite": 0.083193,
+    "best_mapping": "direct",
+    "observation": "experimental/frontier cpWER bridge-lite from JSONL exports; this is not a full MeetEval cpWER claim."
+  }
+]
