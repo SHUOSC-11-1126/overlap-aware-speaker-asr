@@ -1,0 +1,42 @@
+[
+  {
+    "case_id": "NoOverlap",
+    "best_profile_alignment": "swapped",
+    "profile_confidence_gap": "0.422118",
+    "proxy_method": "text_overlap_profile",
+    "diagnostic_status": "text_proxy_diagnostic_complete",
+    "diagnostic_note": "Text-profile proxy for NoOverlap reports swapped alignment with gap 0.422118; this is a risk signal only, not speaker identification."
+  },
+  {
+    "case_id": "LightOverlap",
+    "best_profile_alignment": "swapped",
+    "profile_confidence_gap": "0.418882",
+    "proxy_method": "text_overlap_profile",
+    "diagnostic_status": "text_proxy_diagnostic_complete",
+    "diagnostic_note": "Text-profile proxy for LightOverlap reports swapped alignment with gap 0.418882; this is a risk signal only, not speaker identification."
+  },
+  {
+    "case_id": "MidOverlap",
+    "best_profile_alignment": "swapped",
+    "profile_confidence_gap": "0.406764",
+    "proxy_method": "text_overlap_profile",
+    "diagnostic_status": "text_proxy_diagnostic_complete",
+    "diagnostic_note": "Text-profile proxy for MidOverlap reports swapped alignment with gap 0.406764; this is a risk signal only, not speaker identification."
+  },
+  {
+    "case_id": "HeavyOverlap",
+    "best_profile_alignment": "swapped",
+    "profile_confidence_gap": "0.411129",
+    "proxy_method": "text_overlap_profile",
+    "diagnostic_status": "text_proxy_diagnostic_complete",
+    "diagnostic_note": "Text-profile proxy for HeavyOverlap reports swapped alignment with gap 0.411129; this is a risk signal only, not speaker identification."
+  },
+  {
+    "case_id": "OppositeOverlap",
+    "best_profile_alignment": "swapped",
+    "profile_confidence_gap": "0.406764",
+    "proxy_method": "text_overlap_profile",
+    "diagnostic_status": "text_proxy_diagnostic_complete",
+    "diagnostic_note": "Text-profile proxy for OppositeOverlap reports swapped alignment with gap 0.406764; this is a risk signal only, not speaker identification."
+  }
+]

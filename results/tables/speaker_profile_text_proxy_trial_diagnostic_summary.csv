@@ -1,0 +1,2 @@
+﻿scope,case_count,swapped_count,direct_count,average_confidence_gap,diagnostic_conclusion,next_method_direction
+speaker_profile_text_proxy_trial,5,5,0,0.413131,All gold cases prefer swapped text-profile alignment; text proxy is useful as a warning sign but not deployment-ready attribution.,embedding_or_voiceprint_baseline

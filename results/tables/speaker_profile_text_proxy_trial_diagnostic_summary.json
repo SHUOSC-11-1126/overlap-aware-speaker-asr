@@ -1,0 +1,9 @@
+{
+  "scope": "speaker_profile_text_proxy_trial",
+  "case_count": "5",
+  "swapped_count": "5",
+  "direct_count": "0",
+  "average_confidence_gap": "0.413131",
+  "diagnostic_conclusion": "All gold cases prefer swapped text-profile alignment; text proxy is useful as a warning sign but not deployment-ready attribution.",
+  "next_method_direction": "embedding_or_voiceprint_baseline"
+}
