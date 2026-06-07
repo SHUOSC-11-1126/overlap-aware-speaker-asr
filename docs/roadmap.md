@@ -211,6 +211,12 @@ Update: `external_validation` now also has a slice manifest.
 - Summary view: `results/figures/external_validation_slice_manifest.md`
 - Staging remains `blocked_by_license_gate` for the first AISHELL-4 excerpt.
 
+Update: `external_validation` now also has a slice manifest bridge checklist.
+
+- Slice manifest bridge checklist: `results/tables/external_validation_slice_manifest_bridge_checklist.csv`
+- Summary view: `results/figures/external_validation_slice_manifest_bridge_checklist.md`
+- This keeps the manifest and manifest receipt visible together while external audio staging remains blocked.
+
 Update: `speaker_profile` now also has an embedding scaffold.
 
 - Embedding scaffold: `results/tables/speaker_profile_embedding_scaffold.json`
@@ -222,6 +228,12 @@ Update: `llm_critic` now has a first qualitative review pass.
 - Review pass table: `results/tables/llm_critic_review_pass.csv`
 - Summary view: `results/figures/llm_critic_review_pass.md`
 - `HeavyOverlap` is `review_complete` without any verified repair claim.
+
+Update: `llm_critic` now also has a review pass bridge checklist.
+
+- Review pass bridge checklist: `results/tables/llm_critic_review_pass_bridge_checklist.csv`
+- Summary view: `results/figures/llm_critic_review_pass_bridge_checklist.md`
+- This keeps the qualitative pass and receipt visible together without claiming verified transcript repair.
 
 Update: a generated demo walkthrough now turns the storyboard into a short presentation sequence.
 
@@ -282,6 +294,12 @@ Update: `meeteval_compatibility` now also has a cpWER alignment audit.
 - cpWER alignment table: `results/tables/meeteval_cpwer_alignment.csv`
 - Summary view: `results/figures/meeteval_cpwer_alignment.md`
 - Cross-metric alignment reports `matched_count = 4/5` with `HeavyOverlap` as the only drift case.
+
+Update: `meeteval_compatibility` now also has a cpWER alignment bridge checklist.
+
+- cpWER alignment bridge checklist: `results/tables/meeteval_cpwer_alignment_bridge_checklist.csv`
+- Summary view: `results/figures/meeteval_cpwer_alignment_bridge_checklist.md`
+- This keeps the alignment audit and bridge handoff visible together while full MeetEval evaluation remains pending.
 
 Update: `meeteval_compatibility` now also has a cpWER bridge handoff.
 
