@@ -437,6 +437,12 @@ Current external validation slice receipt result:
 - `results/figures/external_validation_slice_receipt.md` now materializes the expected evidence target for that first external slice
 - This still does not claim any external execution: it defines the template-only writeback slot, expected inputs, and expected outputs so a future narrow dry run has a concrete receipt to fill
 
+Current external validation slice bridge checklist result:
+
+- `results/figures/external_validation_slice_bridge_checklist.md`
+- `results/tables/external_validation_slice_bridge_checklist.csv`
+- This checklist now turns the first external slice handoff into an ordered bridge verification path. It stays `external/sanity-check` and keeps the handoff and receipt targets visible without claiming any external execution.
+
 Current external validation checklist result:
 
 - `results/figures/external_validation_checklist.md` now turns the prioritized candidates into an execution checklist so the next contributor can walk the external sanity-check path in order

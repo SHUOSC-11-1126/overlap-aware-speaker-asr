@@ -288,6 +288,12 @@ Update: a generated benchmark receipt bridge checklist now turns that bridge int
 - Summary view: `results/figures/cascade_benchmark_receipt_bridge_checklist.md`
 - This keeps the same receipt-target link visible while making the bridge itself row-by-row checkable before the benchmark closeout sequence advances.
 
+Update: a generated external validation slice bridge checklist now turns the first external handoff into a bridge verification path.
+
+- External validation slice bridge checklist: `results/tables/external_validation_slice_bridge_checklist.csv`
+- Summary view: `results/figures/external_validation_slice_bridge_checklist.md`
+- This keeps the external handoff and receipt targets visible together while staying explicit that no external benchmark execution has yet happened.
+
 Remaining stretch work:
 
 - replace proxy costs with a controlled hardware/runtime benchmark

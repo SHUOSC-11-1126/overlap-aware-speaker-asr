@@ -346,6 +346,14 @@ Benchmark handoff packet:
 - `results/figures/cascade_benchmark_handoff_packet.md`
 - This generated note now provides one benchmark-entry document that points to the readiness, plan, checklist, manifest template, execution-summary, execution-queue, session-ledger, dependency-graph, blocker-matrix, runbook-card, milestone-card, phase-checkpoint-card, completion-dashboard, operator-brief, frontier-bridge-checklist, receipt-bridge-checklist, evidence-receipt, and status-board layers together.
 
+## External Validation Frontier
+
+External validation slice bridge checklist:
+
+- `results/figures/external_validation_slice_bridge_checklist.md`
+- `results/tables/external_validation_slice_bridge_checklist.csv`
+- This checklist turns the first external handoff into a bridge verification path between the slice handoff and the slice receipt. It stays labeled `external/sanity-check` and does not claim any executed external benchmark.
+
 ## Synthetic Split Cascade Validation
 
 Label: `synthetic/silver` and `experimental/frontier`
