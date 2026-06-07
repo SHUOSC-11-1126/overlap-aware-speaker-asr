@@ -469,6 +469,12 @@ Frontier receipt map:
 - `results/tables/frontier_receipt_map.json`
 - This map now broadens that receipt-aware layer across every current frontier. It still does not claim any executed frontier work; it simply lets the next contributor scan queue order, prerequisite artifacts, and receipt targets for the whole breadth-first set in one place.
 
+Frontier receipt map checklist:
+
+- `results/figures/frontier_receipt_map_checklist.md`
+- `results/tables/frontier_receipt_map_checklist.csv`
+- This checklist now turns the receipt map into a row-by-row verification path. It remains coordination-only and keeps the receipt path visible without claiming that any frontier work has already been executed.
+
 Frontier parallel picklist:
 
 - `results/figures/frontier_parallel_picklist.md`

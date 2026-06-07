@@ -308,6 +308,11 @@ Current frontier receipt map result:
 - `results/figures/frontier_receipt_map.md` now lays out the receipt path for all current frontiers, not just the queue head
 - This also remains coordination-only: it shows queue order, prerequisite artifact, and receipt target across the breadth-first frontier set without claiming that any of those frontier steps have already been executed
 
+Current frontier receipt map checklist result:
+
+- `results/figures/frontier_receipt_map_checklist.md` now turns that map into a row-by-row verification checklist
+- This checklist remains coordination-only and keeps the receipt path visible without claiming that any frontier work has already been executed
+
 Current frontier parallel picklist result:
 
 - `results/figures/frontier_parallel_picklist.md` now lays out which current frontiers can be picked up independently while keeping the breadth-first queue visible
