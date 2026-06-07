@@ -33,6 +33,16 @@ RECEIPT_COLUMNS = [
     "writeback_note",
 ]
 
+BRIDGE_CHECKLIST_COLUMNS = [
+    "checklist_order",
+    "case_id",
+    "prerequisite_artifact",
+    "receipt_target",
+    "checklist_goal",
+    "bridge_note",
+    "next_gate",
+]
+
 CHECKLIST_COLUMNS = [
     "checklist_order",
     "case_id",
@@ -203,6 +213,42 @@ def build_critic_review_receipt_lines(rows: list[dict[str, Any]]) -> list[str]:
     return lines
 
 
+def build_critic_review_bridge_checklist_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    if not rows:
+        return []
+
+    head = rows[0]
+    case_id = str(head.get("case_id", ""))
+    review_priority = str(head.get("review_priority", "medium"))
+    return [
+        {
+            "checklist_order": "1",
+            "case_id": case_id,
+            "prerequisite_artifact": "results/figures/llm_critic_review_queue.md",
+            "receipt_target": "results/figures/llm_critic_review_receipt.md",
+            "checklist_goal": f"Verify the critic review bridge for {case_id} before any repair claim is advanced.",
+            "bridge_note": f"Open the review queue first, then write back through the receipt target for the {review_priority} review pass.",
+            "next_gate": "Confirm this bridge before opening the review receipt target.",
+        }
+    ]
+
+
+def build_critic_review_bridge_checklist_lines(rows: list[dict[str, Any]]) -> list[str]:
+    lines = [
+        "# LLM Critic Review Bridge Checklist",
+        "",
+        "This generated checklist turns the review queue into a row-by-row bridge verification path. It remains qualitative only and does not claim repaired transcripts.",
+        "",
+        "| checklist_order | case_id | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['checklist_order']} | {row['case_id']} | {row['prerequisite_artifact']} | {row['receipt_target']} | {row['checklist_goal']} | {row['bridge_note']} | {row['next_gate']} |"
+        )
+    return lines
+
+
 def build_critic_review_checklist_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     if not rows:
         return []
@@ -265,6 +311,10 @@ def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, P
     receipt_rows = build_critic_review_receipt_rows(queue_rows)
     receipt_json_path = tables_dir / "llm_critic_review_receipt.json"
     receipt_md_path = figures_dir / "llm_critic_review_receipt.md"
+    bridge_checklist_rows = build_critic_review_bridge_checklist_rows(queue_rows)
+    bridge_checklist_csv_path = tables_dir / "llm_critic_review_bridge_checklist.csv"
+    bridge_checklist_json_path = tables_dir / "llm_critic_review_bridge_checklist.json"
+    bridge_checklist_md_path = figures_dir / "llm_critic_review_bridge_checklist.md"
     checklist_rows = build_critic_review_checklist_rows(queue_rows)
     checklist_csv_path = tables_dir / "llm_critic_review_checklist.csv"
     checklist_json_path = tables_dir / "llm_critic_review_checklist.json"
@@ -284,6 +334,15 @@ def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, P
     queue_md_path.write_text("\n".join(build_critic_review_queue_lines(queue_rows)) + "\n", encoding="utf-8")
     receipt_json_path.write_text(json.dumps(receipt_rows, ensure_ascii=False, indent=2), encoding="utf-8")
     receipt_md_path.write_text("\n".join(build_critic_review_receipt_lines(receipt_rows)) + "\n", encoding="utf-8")
+    with bridge_checklist_csv_path.open("w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=BRIDGE_CHECKLIST_COLUMNS)
+        writer.writeheader()
+        writer.writerows(bridge_checklist_rows)
+    bridge_checklist_json_path.write_text(json.dumps(bridge_checklist_rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    bridge_checklist_md_path.write_text(
+        "\n".join(build_critic_review_bridge_checklist_lines(bridge_checklist_rows)) + "\n",
+        encoding="utf-8",
+    )
     with checklist_csv_path.open("w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=CHECKLIST_COLUMNS)
         writer.writeheader()
@@ -299,6 +358,9 @@ def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, P
         queue_md_path,
         receipt_json_path,
         receipt_md_path,
+        bridge_checklist_csv_path,
+        bridge_checklist_json_path,
+        bridge_checklist_md_path,
         checklist_csv_path,
         checklist_json_path,
         checklist_md_path,
@@ -318,6 +380,9 @@ def main() -> None:
         queue_md_path,
         receipt_json_path,
         receipt_md_path,
+        bridge_checklist_csv_path,
+        bridge_checklist_json_path,
+        bridge_checklist_md_path,
         checklist_csv_path,
         checklist_json_path,
         checklist_md_path,
@@ -330,6 +395,9 @@ def main() -> None:
     print(f"Wrote LLM critic queue note: {queue_md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote LLM critic receipt JSON: {receipt_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote LLM critic receipt note: {receipt_md_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote LLM critic bridge checklist CSV: {bridge_checklist_csv_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote LLM critic bridge checklist JSON: {bridge_checklist_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote LLM critic bridge checklist note: {bridge_checklist_md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote LLM critic checklist CSV: {checklist_csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote LLM critic checklist JSON: {checklist_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote LLM critic checklist note: {checklist_md_path.relative_to(PROJECT_ROOT)}")

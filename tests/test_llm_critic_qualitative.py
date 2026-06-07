@@ -4,6 +4,8 @@ import unittest
 
 from src.llm_correct import (
     build_critic_note_lines,
+    build_critic_review_bridge_checklist_lines,
+    build_critic_review_bridge_checklist_rows,
     build_critic_review_checklist_lines,
     build_critic_review_checklist_rows,
     build_critic_review_queue_lines,
@@ -147,6 +149,48 @@ class LlmCriticQualitativeTest(unittest.TestCase):
         self.assertIn("template_only", rendered)
         self.assertIn("HeavyOverlap", rendered)
         self.assertIn("has been executed yet", rendered)
+
+    def test_build_critic_review_bridge_checklist_rows_link_queue_to_receipt(self) -> None:
+        rows = build_critic_review_bridge_checklist_rows(
+            [
+                {
+                    "queue_order": "1",
+                    "case_id": "HeavyOverlap",
+                    "label": "qualitative/demo",
+                    "review_priority": "high",
+                    "why_now": "Risk flags plus swapped-profile uncertainty make this the strongest first review target.",
+                    "candidate_repair": "Try cleaned transcript first.",
+                }
+            ]
+        )
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["checklist_order"], "1")
+        self.assertEqual(rows[0]["case_id"], "HeavyOverlap")
+        self.assertEqual(rows[0]["prerequisite_artifact"], "results/figures/llm_critic_review_queue.md")
+        self.assertEqual(rows[0]["receipt_target"], "results/figures/llm_critic_review_receipt.md")
+        self.assertIn("bridge", rows[0]["checklist_goal"].lower())
+
+    def test_build_critic_review_bridge_checklist_lines_render_bridge(self) -> None:
+        lines = build_critic_review_bridge_checklist_lines(
+            [
+                {
+                    "checklist_order": "1",
+                    "case_id": "HeavyOverlap",
+                    "prerequisite_artifact": "results/figures/llm_critic_review_queue.md",
+                    "receipt_target": "results/figures/llm_critic_review_receipt.md",
+                    "checklist_goal": "Verify the critic review bridge for HeavyOverlap before any repair claim is advanced.",
+                    "bridge_note": "Open the review queue first, then write back through the receipt target for the high review pass.",
+                    "next_gate": "Confirm this bridge before opening the review receipt target.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# LLM Critic Review Bridge Checklist", rendered)
+        self.assertIn("HeavyOverlap", rendered)
+        self.assertIn("llm_critic_review_queue.md", rendered)
+        self.assertIn("llm_critic_review_receipt.md", rendered)
 
     def test_build_critic_review_checklist_rows_order_preflight_steps(self) -> None:
         rows = build_critic_review_checklist_rows(
