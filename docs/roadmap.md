@@ -223,6 +223,18 @@ Update: `external_validation` now also has a slice manifest bridge checklist.
 - Summary view: `results/figures/external_validation_slice_manifest_bridge_checklist.md`
 - This keeps the manifest and manifest receipt visible together while external audio staging remains blocked.
 
+Update: `external_validation` now also has a slice staging readiness audit.
+
+- Staging readiness table: `results/tables/external_validation_slice_staging_readiness.csv`
+- Summary view: `results/figures/external_validation_slice_staging_readiness.md`
+- `readiness_status = not_ready` with `blocker = license_confirmation_pending`.
+
+Update: `external_validation` now also has a slice staging readiness bridge checklist.
+
+- Staging readiness bridge checklist: `results/tables/external_validation_slice_staging_readiness_bridge_checklist.csv`
+- Summary view: `results/figures/external_validation_slice_staging_readiness_bridge_checklist.md`
+- This connects staging readiness to the slice manifest bridge checklist without claiming benchmark execution.
+
 Update: `speaker_profile` now also has an embedding scaffold.
 
 - Embedding scaffold: `results/tables/speaker_profile_embedding_scaffold.json`
@@ -264,7 +276,20 @@ Update: `llm_critic` now also has a review pass status rollup.
 
 - Review pass status table: `results/tables/llm_critic_review_pass_status.csv`
 - Summary view: `results/figures/llm_critic_review_pass_status.md`
-- `completed_count = 2/5` with `next_case_id = MidOverlap`; no verified repair claim is made.
+- `completed_count = 3/5` with `next_case_id = NoOverlap`; no verified repair claim is made.
+
+Update: `llm_critic` now also has a third qualitative review pass.
+
+- Review pass next table: `results/tables/llm_critic_review_pass_next.csv`
+- Third pass table: `results/tables/llm_critic_review_pass_third.csv`
+- Summary view: `results/figures/llm_critic_review_pass_third.md`
+- `MidOverlap` is the third queue pass; no verified repair claim is made.
+
+Update: `llm_critic` now also has a review pass status bridge checklist.
+
+- Review pass status bridge checklist: `results/tables/llm_critic_review_pass_status_bridge_checklist.csv`
+- Summary view: `results/figures/llm_critic_review_pass_status_bridge_checklist.md`
+- This connects the status rollup to the next pass receipt without claiming verified repair.
 
 Update: a generated demo walkthrough now turns the storyboard into a short presentation sequence.
 
@@ -343,6 +368,18 @@ Update: `meeteval_compatibility` now also has a cpWER alignment drift bridge che
 - Drift bridge checklist: `results/tables/meeteval_cpwer_alignment_drift_bridge_checklist.csv`
 - Summary view: `results/figures/meeteval_cpwer_alignment_drift_bridge_checklist.md`
 - This connects the drift diagnostic to the alignment bridge checklist without claiming MeetEval execution.
+
+Update: `meeteval_compatibility` now also has a cpWER alignment drift handoff.
+
+- Drift handoff table: `results/tables/meeteval_cpwer_alignment_drift_handoff.csv`
+- Summary view: `results/figures/meeteval_cpwer_alignment_drift_handoff.md`
+- `HeavyOverlap` drift is handed off for segment inspection while cpWER execution remains pending.
+
+Update: `meeteval_compatibility` now also has a cpWER alignment drift handoff bridge checklist.
+
+- Drift handoff bridge checklist: `results/tables/meeteval_cpwer_alignment_drift_handoff_bridge_checklist.csv`
+- Summary view: `results/figures/meeteval_cpwer_alignment_drift_handoff_bridge_checklist.md`
+- This connects the drift handoff back to the drift bridge checklist without claiming MeetEval execution.
 
 Update: `meeteval_compatibility` now also has a cpWER bridge handoff.
 
