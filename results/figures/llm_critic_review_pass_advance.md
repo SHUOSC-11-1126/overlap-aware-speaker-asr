@@ -1,0 +1,7 @@
+# LLM Critic Review Pass Advance
+
+This generated note records the second qualitative critic-style review pass in queue order. It does not claim verified transcript correction.
+
+| queue_order | case_id | prior_pass_status | review_priority | review_outcome | advance_note |
+| --- | --- | --- | --- | --- | --- |
+| 2 | LightOverlap | HeavyOverlap review_complete | high | Qualitative critic pass recorded for LightOverlap; no verified transcript repair was applied. | Queue advanced to LightOverlap after the first qualitative pass; no verified transcript repair was applied. |

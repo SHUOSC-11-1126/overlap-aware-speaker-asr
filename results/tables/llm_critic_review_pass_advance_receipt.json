@@ -1,0 +1,10 @@
+[
+  {
+    "execution_status": "review_complete",
+    "review_scope": "single_verified_case",
+    "case_id": "LightOverlap",
+    "review_outcome": "Qualitative critic pass recorded for LightOverlap; no verified transcript repair was applied.",
+    "expected_inputs": "Critic review queue head plus qualitative summary row.",
+    "writeback_note": "Second qualitative pass complete for LightOverlap; no verified repair claim was made."
+  }
+]

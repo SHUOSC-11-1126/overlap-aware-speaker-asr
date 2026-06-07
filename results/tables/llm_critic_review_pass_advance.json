@@ -1,0 +1,8 @@
+{
+  "queue_order": "2",
+  "case_id": "LightOverlap",
+  "prior_pass_status": "HeavyOverlap review_complete",
+  "review_priority": "high",
+  "review_outcome": "Qualitative critic pass recorded for LightOverlap; no verified transcript repair was applied.",
+  "advance_note": "Queue advanced to LightOverlap after the first qualitative pass; no verified transcript repair was applied."
+}
