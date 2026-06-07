@@ -1,0 +1,8 @@
+{
+  "scope": "meeteval_cpwer_official_execution",
+  "complete_count": "5",
+  "total_count": "5",
+  "tool_unavailable_count": "0",
+  "queue_status": "queue_complete",
+  "observation": "Experimental/frontier official MeetEval cpWER narrow dry-run completion rollup; full MeetEval benchmark completion is not claimed."
+}

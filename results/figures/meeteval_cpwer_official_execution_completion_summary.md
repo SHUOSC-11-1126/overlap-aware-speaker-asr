@@ -1,0 +1,7 @@
+# MeetEval cpWER Official Execution Completion Summary
+
+This generated note summarizes official MeetEval cpWER narrow dry-run completion. It does not claim full MeetEval benchmark completion.
+
+| scope | complete_count | total_count | tool_unavailable_count | queue_status | observation |
+| --- | ---: | ---: | ---: | --- | --- |
+| meeteval_cpwer_official_execution | 5 | 5 | 0 | queue_complete | Experimental/frontier official MeetEval cpWER narrow dry-run completion rollup; full MeetEval benchmark completion is not claimed. |
