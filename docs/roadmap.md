@@ -1301,6 +1301,18 @@ Update: the frontier receipt layer now has a fill execution handoff packet.
 - Summary view: `results/figures/frontier_execution_receipt_fill_execution_handoff_packet.md`
 - Single entrypoint for the fill execution coordination stack.
 
+Update: the frontier receipt layer now has a fill execution evidence receipt.
+
+- Evidence receipt: `results/tables/frontier_execution_receipt_fill_execution_evidence_receipt.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_evidence_receipt.md`
+- Writeback closeout card for the first fill target; no benchmark execution is claimed.
+
+Update: the frontier receipt layer now has a fill execution evidence receipt bridge checklist.
+
+- Evidence receipt bridge checklist: `results/tables/frontier_execution_receipt_fill_execution_evidence_receipt_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_evidence_receipt_bridge_checklist.md`
+- Connects the handoff packet to the evidence receipt without claiming benchmark execution.
+
 Update: `demo_excellence` now has a lightweight Streamlit viewer scaffold.
 
 - Demo app: `demo/app.py`

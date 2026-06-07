@@ -1508,6 +1508,18 @@ Frontier execution receipt fill execution handoff packet:
 - `results/tables/frontier_execution_receipt_fill_execution_handoff_packet.csv`
 - This packet consolidates the fill execution coordination stack into one entrypoint.
 
+Frontier execution receipt fill execution evidence receipt:
+
+- `results/figures/frontier_execution_receipt_fill_execution_evidence_receipt.md`
+- `results/tables/frontier_execution_receipt_fill_execution_evidence_receipt.csv`
+- This receipt shows what the current fill execution run must write back before advancing the stack.
+
+Frontier execution receipt fill execution evidence receipt bridge checklist:
+
+- `results/figures/frontier_execution_receipt_fill_execution_evidence_receipt_bridge_checklist.md`
+- `results/tables/frontier_execution_receipt_fill_execution_evidence_receipt_bridge_checklist.csv`
+- This checklist connects the handoff packet to the evidence receipt without claiming benchmark execution.
+
 MeetEval compatibility skill card:
 
 - `docs/skills/skill_04_meeteval_compatibility.md`
@@ -1905,6 +1917,8 @@ python -m src.frontier_execution_receipt_fill_execution_operator_brief
 python -m src.frontier_execution_receipt_fill_execution_receipt_bridge
 python -m src.frontier_execution_receipt_fill_execution_receipt_bridge_checklist
 python -m src.frontier_execution_receipt_fill_execution_handoff_packet
+python -m src.frontier_execution_receipt_fill_execution_evidence_receipt
+python -m src.frontier_execution_receipt_fill_execution_evidence_receipt_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_handoff
 python -m src.speaker_profile_embedding_trial_execution_handoff_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_preflight

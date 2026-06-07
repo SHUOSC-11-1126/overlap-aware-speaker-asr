@@ -68,6 +68,8 @@ python -m src.frontier_execution_receipt_fill_execution_operator_brief
 python -m src.frontier_execution_receipt_fill_execution_receipt_bridge
 python -m src.frontier_execution_receipt_fill_execution_receipt_bridge_checklist
 python -m src.frontier_execution_receipt_fill_execution_handoff_packet
+python -m src.frontier_execution_receipt_fill_execution_evidence_receipt
+python -m src.frontier_execution_receipt_fill_execution_evidence_receipt_bridge_checklist
 python -m src.frontier_execution_receipt_fill_execution_handoff_bridge_checklist
 ```
 
