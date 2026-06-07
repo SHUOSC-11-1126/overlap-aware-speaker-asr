@@ -4,4 +4,4 @@ This generated packet points the current frontier queue head at the single next 
 
 | queue_order | current_frontier | next_artifact | execution_intent | expected_evidence | handoff_scope |
 | --- | --- | --- | --- | --- | --- |
-| 1 | meeteval_compatibility | results/figures/meeteval_dry_run_handoff.md | Run a single narrow dry run handoff step for meeteval_compatibility before any broader claim. | results/tables/meeteval_dry_run_receipt.json | Coordination-only packet; not a claim of completed frontier execution. |
+| 1 | meeteval_compatibility | results/figures/meeteval_cpwer_bridge_handoff.md | Run a single narrow dry run handoff step for meeteval_compatibility before any broader claim. | results/tables/meeteval_cpwer_bridge_receipt.json | Coordination-only packet; not a claim of completed frontier execution. |

@@ -4,7 +4,7 @@ This generated picklist shows which current frontiers can be picked up independe
 
 | queue_order | current_frontier | pickup_artifact | receipt_target | pickup_note | picklist_scope |
 | --- | --- | --- | --- | --- | --- |
-| 1 | meeteval_compatibility | results/figures/meeteval_dry_run_handoff.md | results/tables/meeteval_dry_run_receipt.json | Safe to pick up in parallel after checking queue order and opening the pickup artifact first. | Coordination-only picklist; not a claim of completed frontier execution. |
+| 1 | meeteval_compatibility | results/figures/meeteval_cpwer_bridge_handoff.md | results/tables/meeteval_cpwer_bridge_receipt.json | Safe to pick up in parallel after checking queue order and opening the pickup artifact first. | Coordination-only picklist; not a claim of completed frontier execution. |
 | 2 | external_validation | results/figures/external_validation_prioritization.md | results/tables/external_validation_slice_receipt.json | Safe to pick up in parallel after checking queue order and opening the pickup artifact first. | Coordination-only picklist; not a claim of completed frontier execution. |
 | 3 | speaker_profile | results/figures/speaker_profile_triage.md | results/tables/speaker_profile_method_receipt.json | Safe to pick up in parallel after checking queue order and opening the pickup artifact first. | Coordination-only picklist; not a claim of completed frontier execution. |
 | 4 | llm_critic | results/figures/llm_critic_review_queue.md | results/tables/llm_critic_review_receipt.json | Safe to pick up in parallel after checking queue order and opening the pickup artifact first. | Coordination-only picklist; not a claim of completed frontier execution. |
