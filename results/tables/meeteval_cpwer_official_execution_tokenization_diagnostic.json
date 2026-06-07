@@ -1,0 +1,47 @@
+[
+  {
+    "case_id": "NoOverlap",
+    "speaker_count": "2",
+    "raw_token_count_per_speaker": "1.0",
+    "character_token_count_per_speaker": "139.0",
+    "root_cause": "no_whitespace_word_tokenization",
+    "diagnostic_status": "root_cause_identified",
+    "diagnostic_note": "MeetEval word-level cpWER treats each speaker aggregate as one token without whitespace; character-spaced tokenization is required for CJK alignment with bridge-lite."
+  },
+  {
+    "case_id": "LightOverlap",
+    "speaker_count": "2",
+    "raw_token_count_per_speaker": "1.0",
+    "character_token_count_per_speaker": "140.0",
+    "root_cause": "no_whitespace_word_tokenization",
+    "diagnostic_status": "root_cause_identified",
+    "diagnostic_note": "MeetEval word-level cpWER treats each speaker aggregate as one token without whitespace; character-spaced tokenization is required for CJK alignment with bridge-lite."
+  },
+  {
+    "case_id": "MidOverlap",
+    "speaker_count": "2",
+    "raw_token_count_per_speaker": "1.0",
+    "character_token_count_per_speaker": "142.5",
+    "root_cause": "no_whitespace_word_tokenization",
+    "diagnostic_status": "root_cause_identified",
+    "diagnostic_note": "MeetEval word-level cpWER treats each speaker aggregate as one token without whitespace; character-spaced tokenization is required for CJK alignment with bridge-lite."
+  },
+  {
+    "case_id": "HeavyOverlap",
+    "speaker_count": "2",
+    "raw_token_count_per_speaker": "1.0",
+    "character_token_count_per_speaker": "141.0",
+    "root_cause": "no_whitespace_word_tokenization",
+    "diagnostic_status": "root_cause_identified",
+    "diagnostic_note": "MeetEval word-level cpWER treats each speaker aggregate as one token without whitespace; character-spaced tokenization is required for CJK alignment with bridge-lite."
+  },
+  {
+    "case_id": "OppositeOverlap",
+    "speaker_count": "2",
+    "raw_token_count_per_speaker": "1.0",
+    "character_token_count_per_speaker": "138.0",
+    "root_cause": "no_whitespace_word_tokenization",
+    "diagnostic_status": "root_cause_identified",
+    "diagnostic_note": "MeetEval word-level cpWER treats each speaker aggregate as one token without whitespace; character-spaced tokenization is required for CJK alignment with bridge-lite."
+  }
+]
