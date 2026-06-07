@@ -30,6 +30,16 @@
     "section_role": "Batch receipt scaffold to official execution receipt verification"
   },
   {
+    "packet_section": "meeteval_execution_status_batch",
+    "artifact_path": "results/figures/meeteval_cpwer_execution_status_batch.md",
+    "section_role": "All-gold MeetEval cpWER execution chain status rollup"
+  },
+  {
+    "packet_section": "meeteval_execution_status_batch_bridge_checklist",
+    "artifact_path": "results/figures/meeteval_cpwer_execution_status_batch_bridge_checklist.md",
+    "section_role": "Batch execution status to official execution receipt verification"
+  },
+  {
     "packet_section": "frontier_bridge",
     "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_frontier_bridge.md",
     "section_role": "Fill execution to breadth-first frontier queue bridge"

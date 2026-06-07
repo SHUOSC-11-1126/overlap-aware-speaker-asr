@@ -10,6 +10,8 @@ This generated packet consolidates the fill execution coordination stack into on
 | meeteval_preflight_batch_bridge_checklist | results/figures/meeteval_cpwer_execution_preflight_batch_bridge_checklist.md | Batch preflight to official execution receipt verification |
 | meeteval_receipt_batch_scaffold | results/figures/meeteval_cpwer_execution_receipt_batch_scaffold.md | All-gold official cpWER execution receipt scaffold rollup |
 | meeteval_receipt_batch_scaffold_bridge_checklist | results/figures/meeteval_cpwer_execution_receipt_batch_scaffold_bridge_checklist.md | Batch receipt scaffold to official execution receipt verification |
+| meeteval_execution_status_batch | results/figures/meeteval_cpwer_execution_status_batch.md | All-gold MeetEval cpWER execution chain status rollup |
+| meeteval_execution_status_batch_bridge_checklist | results/figures/meeteval_cpwer_execution_status_batch_bridge_checklist.md | Batch execution status to official execution receipt verification |
 | frontier_bridge | results/figures/frontier_execution_receipt_fill_execution_frontier_bridge.md | Fill execution to breadth-first frontier queue bridge |
 | frontier_bridge_checklist | results/figures/frontier_execution_receipt_fill_execution_frontier_bridge_checklist.md | Frontier bridge verification path |
 | runbook | results/figures/frontier_execution_receipt_fill_execution_runbook_card.md | One-page first action execution card |
