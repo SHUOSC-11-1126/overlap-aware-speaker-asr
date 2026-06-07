@@ -1,0 +1,12 @@
+[
+  {
+    "checklist_order": "1",
+    "case_id": "HeavyOverlap",
+    "handoff_status": "redistribution_handoff_ready",
+    "prerequisite_artifact": "results/figures/meeteval_cpwer_alignment_drift_segment_redistribution_diagnostic_handoff.md",
+    "receipt_target": "results/figures/meeteval_cpwer_alignment_drift_segment_redistribution_diagnostic_bridge_checklist.md",
+    "checklist_goal": "Verify the redistribution diagnostic handoff bridge for HeavyOverlap before reopening the cpWER bridge handoff.",
+    "bridge_note": "Redistribution handoff remains redistribution_handoff_ready with redistribution_mismatch_count=2; confirm cpWER bridge context before advancing the bridge handoff.",
+    "next_gate": "Confirm this bridge before opening the MeetEval cpWER bridge handoff target."
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "handoff_status": "redistribution_handoff_ready",
+  "case_id": "HeavyOverlap",
+  "redistribution_mismatch_count": "2",
+  "dominant_blocker": "SPEAKER_1 hypothesis_merged",
+  "cpwer_bridge_target": "results/figures/meeteval_cpwer_bridge_handoff.md",
+  "handoff_goal": "Use the per-speaker redistribution diagnostic for HeavyOverlap as context before reopening the cpWER bridge handoff.",
+  "expected_evidence": "results/tables/meeteval_cpwer_bridge_handoff.csv",
+  "handoff_note": "experimental/frontier redistribution handoff only; reconciled alignment and cpWER execution remain pending."
+}
