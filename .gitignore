@@ -55,6 +55,15 @@ results/synthetic_overlap_v2/
 !results/tables/meeteval_cpwer_bridge_receipt.json
 !results/tables/meeteval_cpwer_bridge_summary.csv
 !results/tables/meeteval_cpwer_bridge_summary.json
+!results/tables/meeteval_cpwer_alignment.csv
+!results/tables/meeteval_cpwer_alignment.json
+!results/tables/meeteval_cpwer_alignment_summary.csv
+!results/tables/meeteval_cpwer_alignment_summary.json
+!results/tables/llm_critic_review_pass.csv
+!results/tables/llm_critic_review_pass.json
+!results/tables/external_validation_slice_manifest.csv
+!results/tables/external_validation_slice_manifest.json
+!results/tables/external_validation_slice_manifest_receipt.json
 !results/tables/external_validation_license_gate.csv
 !results/tables/external_validation_license_gate.json
 !results/tables/external_validation_license_gate_receipt.json
@@ -76,6 +85,11 @@ results/synthetic_overlap_v2/
 !results/figures/meeteval_cpwer_bridge_handoff.md
 !results/figures/meeteval_cpwer_bridge_receipt.md
 !results/figures/meeteval_cpwer_bridge_summary.md
+!results/figures/meeteval_cpwer_alignment.md
+!results/figures/meeteval_cpwer_alignment_summary.md
+!results/figures/llm_critic_review_pass.md
+!results/figures/external_validation_slice_manifest.md
+!results/figures/external_validation_slice_manifest_receipt.md
 !results/figures/external_validation_license_gate.md
 !results/figures/external_validation_license_gate_receipt.md
 !results/figures/speaker_profile_embedding_scaffold.md

@@ -1,0 +1,7 @@
+{
+  "scope": "all_gold_cases",
+  "case_count": 5,
+  "matched_count": 4,
+  "average_alignment_gap": 0.003258,
+  "observation": "Cross-metric alignment audit between cpWER bridge-lite and speaker-aware CER baseline; drift highlights where the bridge-lite export path diverges from the stable speaker_macro_cer view."
+}

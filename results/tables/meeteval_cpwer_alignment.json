@@ -1,0 +1,47 @@
+[
+  {
+    "case_id": "NoOverlap",
+    "hypothesis_source": "separated_whisper",
+    "cpwer_bridge_lite": 0.054312,
+    "speaker_macro_cer": 0.054312,
+    "alignment_gap": 0.0,
+    "alignment_status": "matched",
+    "observation": "experimental/frontier cross-metric alignment between cpWER bridge-lite and speaker_macro_cer; this is not a MeetEval benchmark claim."
+  },
+  {
+    "case_id": "LightOverlap",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "cpwer_bridge_lite": 0.135164,
+    "speaker_macro_cer": 0.135164,
+    "alignment_gap": 0.0,
+    "alignment_status": "matched",
+    "observation": "experimental/frontier cross-metric alignment between cpWER bridge-lite and speaker_macro_cer; this is not a MeetEval benchmark claim."
+  },
+  {
+    "case_id": "MidOverlap",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "cpwer_bridge_lite": 0.16862,
+    "speaker_macro_cer": 0.16862,
+    "alignment_gap": 0.0,
+    "alignment_status": "matched",
+    "observation": "experimental/frontier cross-metric alignment between cpWER bridge-lite and speaker_macro_cer; this is not a MeetEval benchmark claim."
+  },
+  {
+    "case_id": "HeavyOverlap",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "cpwer_bridge_lite": 0.162827,
+    "speaker_macro_cer": 0.146535,
+    "alignment_gap": 0.016292,
+    "alignment_status": "drift",
+    "observation": "experimental/frontier cross-metric alignment between cpWER bridge-lite and speaker_macro_cer; this is not a MeetEval benchmark claim."
+  },
+  {
+    "case_id": "OppositeOverlap",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "cpwer_bridge_lite": 0.083193,
+    "speaker_macro_cer": 0.083193,
+    "alignment_gap": 0.0,
+    "alignment_status": "matched",
+    "observation": "experimental/frontier cross-metric alignment between cpWER bridge-lite and speaker_macro_cer; this is not a MeetEval benchmark claim."
+  }
+]
