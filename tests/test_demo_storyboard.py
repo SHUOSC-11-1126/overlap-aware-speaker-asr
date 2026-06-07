@@ -7,6 +7,8 @@ from src.demo_storyboard import (
     build_demo_storyboard_lines,
     build_demo_storyboard_receipt_bridge_lines,
     build_demo_storyboard_receipt_bridge_rows,
+    build_demo_storyboard_receipt_board_lines,
+    build_demo_storyboard_receipt_board_rows,
     build_demo_storyboard_receipt_checklist_lines,
     build_demo_storyboard_receipt_checklist_rows,
     build_demo_storyboard_receipt_lines,
@@ -133,6 +135,58 @@ class DemoStoryboardTest(unittest.TestCase):
         self.assertIn("results/figures/demo_storyboard.md", rendered)
         self.assertIn("results/figures/demo_storyboard_receipt.md", rendered)
         self.assertIn("demo support only", rendered)
+
+    def test_build_demo_storyboard_receipt_board_rows_keep_path_visible(self) -> None:
+        rows = build_demo_storyboard_receipt_board_rows(
+            [
+                {
+                    "execution_status": "template_only",
+                    "storyboard_scope": "problem",
+                    "expected_inputs": "Demo storyboard cards plus one review note stub.",
+                    "expected_outputs": "Narrow storyboard review note and a demo narrative writeback.",
+                    "writeback_note": "No storyboard review pass has been executed yet; fill this receipt only after the first review.",
+                }
+            ],
+            [
+                {
+                    "checklist_order": "1",
+                    "storyboard_scope": "problem",
+                    "prerequisite_artifact": "results/figures/demo_storyboard.md",
+                    "receipt_target": "results/figures/demo_storyboard_receipt.md",
+                    "checklist_goal": "Verify the storyboard receipt path for problem before any review writeback is advanced.",
+                    "preflight_step": "Open the storyboard cards and confirm the first review note stub before filling the receipt.",
+                    "next_gate": "Fill the storyboard receipt before promoting any demo-review claim.",
+                }
+            ],
+        )
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["board_order"], "1")
+        self.assertEqual(rows[0]["storyboard_scope"], "problem")
+        self.assertEqual(rows[0]["receipt_state"], "template_only")
+        self.assertEqual(rows[0]["prerequisite_artifact"], "results/figures/demo_storyboard.md")
+        self.assertEqual(rows[0]["receipt_target"], "results/figures/demo_storyboard_receipt.md")
+
+    def test_build_demo_storyboard_receipt_board_lines_render_snapshot(self) -> None:
+        lines = build_demo_storyboard_receipt_board_lines(
+            [
+                {
+                    "board_order": "1",
+                    "storyboard_scope": "problem",
+                    "receipt_state": "template_only",
+                    "prerequisite_artifact": "results/figures/demo_storyboard.md",
+                    "receipt_target": "results/figures/demo_storyboard_receipt.md",
+                    "board_note": "Keep the storyboard receipt path visible for problem while the receipt remains template-only.",
+                    "next_gate": "Open the receipt checklist before filling the receipt writeback.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Demo Storyboard Receipt Board", rendered)
+        self.assertIn("results/figures/demo_storyboard.md", rendered)
+        self.assertIn("results/figures/demo_storyboard_receipt.md", rendered)
+        self.assertIn("coordination snapshot", rendered)
 
     def test_build_demo_storyboard_receipt_bridge_rows_link_story_to_receipt(self) -> None:
         rows = build_demo_storyboard_receipt_bridge_rows(
