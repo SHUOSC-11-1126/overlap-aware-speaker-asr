@@ -1,0 +1,29 @@
+[
+  {
+    "handoff_order": "1",
+    "frontier_name": "meeteval_compatibility",
+    "fill_execution_status": "awaiting_fill",
+    "recommended_action": "Execute the real frontier run, then update execution_status in results/tables/meeteval_cpwer_execution_receipt.json and attach the fill evidence note.",
+    "expected_inputs": "results/figures/frontier_execution_receipt_fill_execution_status.md; fill execution packet and handoff bridge checklist.",
+    "expected_outputs": "results/tables/meeteval_cpwer_execution_receipt.json",
+    "handoff_note": "Fill execution handoff for meeteval_compatibility while fill_execution_status=awaiting_fill; no benchmark execution or external audio staging is claimed until receipts are filled."
+  },
+  {
+    "handoff_order": "2",
+    "frontier_name": "speaker_profile",
+    "fill_execution_status": "awaiting_fill",
+    "recommended_action": "Execute the real frontier run, then update execution_status in results/tables/speaker_profile_embedding_trial_execution_receipt.json and attach the fill evidence note.",
+    "expected_inputs": "results/figures/frontier_execution_receipt_fill_execution_status.md; fill execution packet and handoff bridge checklist.",
+    "expected_outputs": "results/tables/speaker_profile_embedding_trial_execution_receipt.json",
+    "handoff_note": "Fill execution handoff for speaker_profile while fill_execution_status=awaiting_fill; no benchmark execution or external audio staging is claimed until receipts are filled."
+  },
+  {
+    "handoff_order": "3",
+    "frontier_name": "external_validation",
+    "fill_execution_status": "awaiting_fill",
+    "recommended_action": "Execute the real frontier run, then update execution_status in results/tables/external_validation_slice_staging_handoff_receipt.json and attach the fill evidence note.",
+    "expected_inputs": "results/figures/frontier_execution_receipt_fill_execution_status.md; fill execution packet and handoff bridge checklist.",
+    "expected_outputs": "results/tables/external_validation_slice_staging_handoff_receipt.json",
+    "handoff_note": "Fill execution handoff for external_validation while fill_execution_status=awaiting_fill; no benchmark execution or external audio staging is claimed until receipts are filled."
+  }
+]
