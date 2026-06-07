@@ -911,6 +911,12 @@ MeetEval cpWER execution status:
 - `results/tables/meeteval_cpwer_execution_status.csv`
 - The execution-chain rollup reports `execution_chain_status = execution_chain_ready` for `NoOverlap`; official MeetEval evaluation remains pending.
 
+MeetEval cpWER execution status bridge checklist:
+
+- `results/figures/meeteval_cpwer_execution_status_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_execution_status_bridge_checklist.csv`
+- This checklist connects the execution-chain status rollup to the official cpWER execution receipt without claiming benchmark execution.
+
 Speaker profile similarity bridge:
 
 - `results/figures/speaker_profile_risk_summary.md`
@@ -1025,6 +1031,12 @@ Speaker profile embedding trial execution status:
 - `results/figures/speaker_profile_embedding_trial_execution_status.md`
 - `results/tables/speaker_profile_embedding_trial_execution_status.csv`
 - The execution-chain rollup reports `execution_chain_status = execution_chain_ready` for `NoOverlap` with `swapped_bias_detected = true`; voiceprint execution remains pending.
+
+Speaker profile embedding trial execution status bridge checklist:
+
+- `results/figures/speaker_profile_embedding_trial_execution_status_bridge_checklist.md`
+- `results/tables/speaker_profile_embedding_trial_execution_status_bridge_checklist.csv`
+- This checklist connects the embedding execution-chain status rollup to the execution receipt without claiming voiceprint success.
 
 LLM critic qualitative bridge:
 
@@ -1260,6 +1272,35 @@ External validation slice staging handoff receipt scaffold:
 - `results/tables/external_validation_slice_staging_handoff_receipt_scaffold.csv`
 - `results/tables/external_validation_slice_staging_handoff_receipt.json`
 - The staging receipt scaffold records `scaffold_status = receipt_scaffold_only` for AISHELL-4 with `blocker = license_confirmation_pending`; external audio staging remains pending.
+
+External validation slice staging handoff receipt scaffold bridge checklist:
+
+- `results/figures/external_validation_slice_staging_handoff_receipt_scaffold_bridge_checklist.md`
+- `results/tables/external_validation_slice_staging_handoff_receipt_scaffold_bridge_checklist.csv`
+- This checklist connects the staging receipt scaffold to the external slice staging receipt without claiming benchmark execution.
+
+External validation slice staging execution status:
+
+- `results/figures/external_validation_slice_staging_execution_status.md`
+- `results/tables/external_validation_slice_staging_execution_status.csv`
+- The staging execution-chain rollup reports `execution_chain_status = execution_chain_ready` for AISHELL-4; external audio staging remains pending.
+
+Frontier execution queue status:
+
+- `results/figures/frontier_execution_queue_status.md`
+- `results/tables/frontier_execution_queue_status.csv`
+- The unified frontier rollup reports `combined_chain_status = execution_chain_ready` across MeetEval, speaker profile, and external staging; no benchmark execution is claimed.
+
+Frontier execution queue status bridge checklist:
+
+- `results/figures/frontier_execution_queue_status_bridge_checklist.md`
+- `results/tables/frontier_execution_queue_status_bridge_checklist.csv`
+- This checklist connects the unified frontier rollup to per-frontier execution receipt gates without claiming benchmark completion.
+
+MeetEval compatibility skill card:
+
+- `docs/skills/skill_04_meeteval_compatibility.md`
+- The frontier queue head now has a dedicated skill card so MeetEval compatibility work is directly pickable from the skills index.
 
 External validation checklist bridge:
 
@@ -1600,12 +1641,18 @@ python -m src.meeteval_cpwer_execution_preflight_bridge_checklist
 python -m src.meeteval_cpwer_execution_receipt_scaffold
 python -m src.meeteval_cpwer_execution_receipt_scaffold_bridge_checklist
 python -m src.meeteval_cpwer_execution_status
+python -m src.meeteval_cpwer_execution_status_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_scaffold
 python -m src.speaker_profile_embedding_trial_execution_receipt_scaffold
 python -m src.speaker_profile_embedding_trial_execution_preflight_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_receipt_scaffold_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_status
+python -m src.speaker_profile_embedding_trial_execution_status_bridge_checklist
 python -m src.external_validation_slice_staging_handoff_receipt_scaffold
+python -m src.external_validation_slice_staging_handoff_receipt_scaffold_bridge_checklist
+python -m src.external_validation_slice_staging_execution_status
+python -m src.frontier_execution_queue_status
+python -m src.frontier_execution_queue_status_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_handoff
 python -m src.speaker_profile_embedding_trial_execution_handoff_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_preflight

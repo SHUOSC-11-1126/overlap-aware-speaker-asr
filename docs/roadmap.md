@@ -1109,6 +1109,37 @@ Update: `external_validation` now has a dedicated skill card.
 - Skill card: `docs/skills/skill_07_external_validation.md`
 - This makes the external mini-validation frontier directly pickable from the skills index, so the queue head is no longer only discoverable from the roadmap or project-state layers.
 
+Update: `meeteval_compatibility` now also has execution status bridge checklists.
+
+- MeetEval execution status bridge: `results/tables/meeteval_cpwer_execution_status_bridge_checklist.csv`
+- Summary view: `results/figures/meeteval_cpwer_execution_status_bridge_checklist.md`
+- This connects the execution-chain status rollup to the official cpWER receipt gate without claiming benchmark execution.
+
+Update: `speaker_profile` now also has execution status bridge checklists.
+
+- Speaker profile execution status bridge: `results/tables/speaker_profile_embedding_trial_execution_status_bridge_checklist.csv`
+- Summary view: `results/figures/speaker_profile_embedding_trial_execution_status_bridge_checklist.md`
+- This connects the embedding execution-chain status rollup to the execution receipt without claiming voiceprint success.
+
+Update: `external_validation` now also has staging receipt scaffold bridge checklists and execution status.
+
+- Staging receipt scaffold bridge: `results/tables/external_validation_slice_staging_handoff_receipt_scaffold_bridge_checklist.csv`
+- Staging execution status: `results/tables/external_validation_slice_staging_execution_status.csv`
+- Summary views: `results/figures/external_validation_slice_staging_handoff_receipt_scaffold_bridge_checklist.md`, `results/figures/external_validation_slice_staging_execution_status.md`
+- External audio staging remains pending; no benchmark execution is claimed.
+
+Update: the frontier now has a unified execution queue status rollup.
+
+- Frontier execution queue status: `results/tables/frontier_execution_queue_status.csv`
+- Frontier execution queue status bridge: `results/tables/frontier_execution_queue_status_bridge_checklist.csv`
+- Summary views: `results/figures/frontier_execution_queue_status.md`, `results/figures/frontier_execution_queue_status_bridge_checklist.md`
+- `combined_chain_status = execution_chain_ready` when MeetEval, speaker profile, and external staging chains are all ready; no benchmark execution is claimed.
+
+Update: `meeteval_compatibility` now has a dedicated skill card.
+
+- Skill card: `docs/skills/skill_04_meeteval_compatibility.md`
+- The frontier queue head is now directly pickable from the skills index.
+
 ## Healthy Project Principles
 
 - New experiments should be isolated.
