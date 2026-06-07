@@ -1,0 +1,10 @@
+{
+  "scope": "speaker_profile_embedding_execution_chain",
+  "case_id": "NoOverlap",
+  "preflight_pass": "True",
+  "swapped_bias_detected": "True",
+  "receipt_scaffold_status": "receipt_scaffold_only",
+  "execution_receipt_status": "template_only",
+  "execution_chain_status": "execution_chain_ready",
+  "status_note": "experimental/frontier embedding execution-chain rollup for one verified gold case; voiceprint or embedding model execution is not claimed."
+}
