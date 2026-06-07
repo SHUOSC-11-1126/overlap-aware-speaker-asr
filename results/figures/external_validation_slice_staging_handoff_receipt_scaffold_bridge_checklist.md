@@ -1,0 +1,7 @@
+# External Validation Slice Staging Handoff Receipt Scaffold Bridge Checklist
+
+This generated checklist turns the external slice staging receipt scaffold into a row-by-row bridge verification path. It remains external/sanity-check coordination only and does not claim benchmark execution.
+
+| checklist_order | dataset_name | scaffold_status | blocker | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | AISHELL-4 | receipt_scaffold_only | license_confirmation_pending | results/figures/external_validation_slice_staging_handoff_receipt_scaffold.md | results/tables/external_validation_slice_staging_handoff_receipt.json | Verify the external slice staging receipt scaffold for AISHELL-4 before any audio staging. | Receipt scaffold remains receipt_scaffold_only with blocker=license_confirmation_pending; confirm scaffold context before filling the external slice staging receipt. | Confirm this bridge before claiming any external audio staging or benchmark execution. |
