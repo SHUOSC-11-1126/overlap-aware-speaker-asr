@@ -1,7 +1,7 @@
 # LLM Critic Review Receipt
 
-This generated receipt is a template-only writeback target for the first critic-style review pass. It does not claim verified transcript repair.
+This receipt records the first qualitative critic pass writeback. It does not claim verified transcript correction.
 
-| execution_status | review_scope | expected_inputs | expected_outputs | writeback_note |
-| --- | --- | --- | --- | --- |
-| template_only | HeavyOverlap | Critic review queue head plus one qualitative review note stub. | Diagnostic critic-pass note and a narrow review writeback. | No critic-style review pass has been executed yet; fill this receipt only after the first review. |
+| execution_status | review_scope | case_id | review_outcome | expected_inputs | writeback_note |
+| --- | --- | --- | --- | --- | --- |
+| review_complete | single_verified_case | HeavyOverlap | Qualitative critic pass recorded for HeavyOverlap; no verified transcript repair was applied. | Critic review queue head plus qualitative summary row. | Qualitative critic pass complete; no verified repair claim was made. |
