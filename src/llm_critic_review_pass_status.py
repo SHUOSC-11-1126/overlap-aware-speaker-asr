@@ -38,6 +38,7 @@ def load_completed_cases() -> set[str]:
         "results/tables/llm_critic_review_pass.json",
         "results/tables/llm_critic_review_pass_second.json",
         "results/tables/llm_critic_review_pass_third.json",
+        "results/tables/llm_critic_review_pass_fourth.json",
     ):
         path = PROJECT_ROOT / rel_path
         if not path.exists():
