@@ -33,6 +33,16 @@ RECEIPT_COLUMNS = [
     "writeback_note",
 ]
 
+CHECKLIST_COLUMNS = [
+    "checklist_order",
+    "case_id",
+    "review_priority",
+    "checklist_goal",
+    "expected_evidence",
+    "preflight_step",
+    "next_gate",
+]
+
 
 def read_csv_rows(path: Path) -> list[dict[str, Any]]:
     if not path.exists():
@@ -193,7 +203,54 @@ def build_critic_review_receipt_lines(rows: list[dict[str, Any]]) -> list[str]:
     return lines
 
 
-def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path]:
+def build_critic_review_checklist_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    if not rows:
+        return []
+
+    head = rows[0]
+    review_priority = str(head.get("review_priority", "medium"))
+    case_id = str(head.get("case_id", ""))
+    checklist_goal = str(head.get("candidate_repair", ""))
+    preflight_step = (
+        "Confirm the strongest risk flags before drafting the first critic-style repair note."
+        if review_priority == "high"
+        else "Confirm the current qualitative warning before drafting the first critic-style repair note."
+    )
+    next_gate = (
+        "Fill one critic review receipt before promoting any repair claim."
+        if case_id
+        else "Keep the queue ordered before promoting any repair claim."
+    )
+    return [
+        {
+            "checklist_order": "1",
+            "case_id": case_id,
+            "review_priority": review_priority,
+            "checklist_goal": checklist_goal,
+            "expected_evidence": "results/tables/llm_critic_review_receipt.json",
+            "preflight_step": preflight_step,
+            "next_gate": next_gate,
+        }
+    ]
+
+
+def build_critic_review_checklist_lines(rows: list[dict[str, Any]]) -> list[str]:
+    lines = [
+        "# LLM Critic Review Checklist",
+        "",
+        "This generated checklist turns the critic queue into an ordered execution path. It remains qualitative only and does not claim repaired transcripts.",
+        "",
+        "| checklist_order | case_id | review_priority | checklist_goal | expected_evidence | preflight_step | next_gate |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['checklist_order']} | {row['case_id']} | {row['review_priority']} | {row['checklist_goal']} | {row['expected_evidence']} | {row['preflight_step']} | {row['next_gate']} |"
+        )
+    return lines
+
+
+def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path]:
     tables_dir = PROJECT_ROOT / "results" / "tables"
     figures_dir = PROJECT_ROOT / "results" / "figures"
     tables_dir.mkdir(parents=True, exist_ok=True)
@@ -208,6 +265,10 @@ def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, P
     receipt_rows = build_critic_review_receipt_rows(queue_rows)
     receipt_json_path = tables_dir / "llm_critic_review_receipt.json"
     receipt_md_path = figures_dir / "llm_critic_review_receipt.md"
+    checklist_rows = build_critic_review_checklist_rows(queue_rows)
+    checklist_csv_path = tables_dir / "llm_critic_review_checklist.csv"
+    checklist_json_path = tables_dir / "llm_critic_review_checklist.json"
+    checklist_md_path = figures_dir / "llm_critic_review_checklist.md"
 
     with csv_path.open("w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=CSV_COLUMNS)
@@ -223,7 +284,25 @@ def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, P
     queue_md_path.write_text("\n".join(build_critic_review_queue_lines(queue_rows)) + "\n", encoding="utf-8")
     receipt_json_path.write_text(json.dumps(receipt_rows, ensure_ascii=False, indent=2), encoding="utf-8")
     receipt_md_path.write_text("\n".join(build_critic_review_receipt_lines(receipt_rows)) + "\n", encoding="utf-8")
-    return csv_path, json_path, md_path, queue_csv_path, queue_json_path, queue_md_path, receipt_json_path, receipt_md_path
+    with checklist_csv_path.open("w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=CHECKLIST_COLUMNS)
+        writer.writeheader()
+        writer.writerows(checklist_rows)
+    checklist_json_path.write_text(json.dumps(checklist_rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    checklist_md_path.write_text("\n".join(build_critic_review_checklist_lines(checklist_rows)) + "\n", encoding="utf-8")
+    return (
+        csv_path,
+        json_path,
+        md_path,
+        queue_csv_path,
+        queue_json_path,
+        queue_md_path,
+        receipt_json_path,
+        receipt_md_path,
+        checklist_csv_path,
+        checklist_json_path,
+        checklist_md_path,
+    )
 
 
 def main() -> None:
@@ -239,6 +318,9 @@ def main() -> None:
         queue_md_path,
         receipt_json_path,
         receipt_md_path,
+        checklist_csv_path,
+        checklist_json_path,
+        checklist_md_path,
     ) = write_outputs(rows)
     print(f"Wrote LLM critic summary: {csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote LLM critic JSON: {json_path.relative_to(PROJECT_ROOT)}")
@@ -248,6 +330,9 @@ def main() -> None:
     print(f"Wrote LLM critic queue note: {queue_md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote LLM critic receipt JSON: {receipt_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote LLM critic receipt note: {receipt_md_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote LLM critic checklist CSV: {checklist_csv_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote LLM critic checklist JSON: {checklist_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote LLM critic checklist note: {checklist_md_path.relative_to(PROJECT_ROOT)}")
 
 
 if __name__ == "__main__":

@@ -4,6 +4,8 @@ import unittest
 
 from src.llm_correct import (
     build_critic_note_lines,
+    build_critic_review_checklist_lines,
+    build_critic_review_checklist_rows,
     build_critic_review_queue_lines,
     build_critic_review_queue_rows,
     build_critic_review_receipt_lines,
@@ -145,6 +147,49 @@ class LlmCriticQualitativeTest(unittest.TestCase):
         self.assertIn("template_only", rendered)
         self.assertIn("HeavyOverlap", rendered)
         self.assertIn("has been executed yet", rendered)
+
+    def test_build_critic_review_checklist_rows_order_preflight_steps(self) -> None:
+        rows = build_critic_review_checklist_rows(
+            build_critic_review_queue_rows(
+                [
+                    {
+                        "case_id": "HeavyOverlap",
+                        "label": "qualitative/demo",
+                        "risk_explanation": "length_inflation_risk suggests unstable output.",
+                        "candidate_repair": "Try cleaned transcript first.",
+                        "uncertainty_note": "Profile alignment still prefers swapped, so attribution remains uncertain.",
+                    }
+                ]
+            )
+        )
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["checklist_order"], "1")
+        self.assertEqual(rows[0]["case_id"], "HeavyOverlap")
+        self.assertEqual(rows[0]["expected_evidence"], "results/tables/llm_critic_review_receipt.json")
+        self.assertIn("critic-style repair note", rows[0]["preflight_step"].lower())
+        self.assertIn("receipt", rows[0]["next_gate"].lower())
+
+    def test_build_critic_review_checklist_lines_render_ordered_queue(self) -> None:
+        lines = build_critic_review_checklist_lines(
+            [
+                {
+                    "checklist_order": "1",
+                    "case_id": "HeavyOverlap",
+                    "review_priority": "high",
+                    "checklist_goal": "Try cleaned transcript first.",
+                    "expected_evidence": "results/tables/llm_critic_review_receipt.json",
+                    "preflight_step": "Confirm the strongest risk flags before drafting the first critic-style repair note.",
+                    "next_gate": "Fill one critic review receipt before promoting any repair claim.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# LLM Critic Review Checklist", rendered)
+        self.assertIn("HeavyOverlap", rendered)
+        self.assertIn("results/tables/llm_critic_review_receipt.json", rendered)
+        self.assertIn("qualitative only", rendered)
 
 
 if __name__ == "__main__":
