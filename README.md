@@ -549,6 +549,12 @@ Current external validation skill result:
 - `docs/skills/skill_07_external_validation.md` now provides a dedicated skill card for the external mini-validation frontier
 - The frontier is therefore directly pickable from the skills index as well as from the roadmap and project-state layers
 
+Current Streamlit demo scaffold:
+
+- `demo/app.py` provides a lightweight qualitative/demo viewer for storyboard cards and gold benchmark averages
+- Install demo dependencies with `pip install -r requirements-demo.txt`, then run `streamlit run demo/app.py`
+- This does not run live ASR, separation, or routing
+
 Current demo storyboard result:
 
 - `results/figures/demo_storyboard.md` now provides a one-page demo-facing story that explains the problem, pipeline, findings, and current frontier extensions with a lightweight Mermaid diagram
