@@ -1,0 +1,2 @@
+﻿checklist_order,execution_chain_ready_count,execution_chain_total_count,prerequisite_artifact,receipt_target,checklist_goal,bridge_note,next_gate
+1,5,5,results/figures/meeteval_cpwer_execution_status_batch.md,results/tables/meeteval_cpwer_execution_receipt.json,Verify the batch execution chain status before opening the official cpWER execution receipt.,Batch status reports 5/5 cases execution_chain_ready; confirm preflight and scaffold alignment before official cpWER execution.,Confirm this bridge before opening the official MeetEval cpWER execution receipt.
