@@ -497,6 +497,30 @@ Update: `meeteval_compatibility` now also has a cpWER alignment drift segment re
 - Summary view: `results/figures/meeteval_cpwer_alignment_drift_segment_reconciliation_diagnostic.md`
 - `HeavyOverlap` reports `reconciliation_pass = false` because per-speaker segment counts do not match even though total segment counts align.
 
+Update: `meeteval_compatibility` now also has a cpWER alignment drift segment reconciliation diagnostic bridge checklist.
+
+- Drift segment reconciliation diagnostic bridge checklist: `results/tables/meeteval_cpwer_alignment_drift_segment_reconciliation_diagnostic_bridge_checklist.csv`
+- Summary view: `results/figures/meeteval_cpwer_alignment_drift_segment_reconciliation_diagnostic_bridge_checklist.md`
+- This connects the reconciliation diagnostic to the reconciliation handoff without claiming cpWER execution.
+
+Update: `meeteval_compatibility` now also has a cpWER alignment drift segment reconciliation handoff bridge checklist.
+
+- Drift segment reconciliation handoff bridge checklist: `results/tables/meeteval_cpwer_alignment_drift_segment_reconciliation_handoff_bridge_checklist.csv`
+- Summary view: `results/figures/meeteval_cpwer_alignment_drift_segment_reconciliation_handoff_bridge_checklist.md`
+- This connects the reconciliation handoff to the reconciliation scaffold bridge checklist while cpWER execution remains pending.
+
+Update: `meeteval_compatibility` now also has a cpWER alignment drift segment speaker count diagnostic.
+
+- Drift segment speaker count diagnostic: `results/tables/meeteval_cpwer_alignment_drift_segment_speaker_count_diagnostic.csv`
+- Summary view: `results/figures/meeteval_cpwer_alignment_drift_segment_speaker_count_diagnostic_summary.md`
+- `HeavyOverlap` reports `mismatched_speaker_count = 2/2` with `SPEAKER_1 delta=-1` and `SPEAKER_2 delta=+1`.
+
+Update: `meeteval_compatibility` now also has a cpWER alignment drift segment speaker count diagnostic bridge checklist.
+
+- Drift segment speaker count diagnostic bridge checklist: `results/tables/meeteval_cpwer_alignment_drift_segment_speaker_count_diagnostic_bridge_checklist.csv`
+- Summary view: `results/figures/meeteval_cpwer_alignment_drift_segment_speaker_count_diagnostic_bridge_checklist.md`
+- This connects the speaker count diagnostic to the reconciliation diagnostic bridge checklist without claiming cpWER execution.
+
 Update: `meeteval_compatibility` now also has a cpWER bridge handoff.
 
 - cpWER bridge handoff: `results/tables/meeteval_cpwer_bridge_handoff.csv`
@@ -809,6 +833,13 @@ Update: `demo_excellence` now also has a walkthrough review pass advance layer.
 - Second pass table: `results/tables/demo_walkthrough_review_pass_second.csv`
 - Summary view: `results/figures/demo_walkthrough_review_pass_advance.md`
 - Step `2` (`Baseline evidence`) is the second queue pass after step `1`; no live demo delivery is claimed.
+
+Update: `demo_excellence` now also has a walkthrough review pass continue layer.
+
+- Walkthrough review pass continue: `results/tables/demo_walkthrough_review_pass_continue.csv`
+- Third pass table: `results/tables/demo_walkthrough_review_pass_third.csv`
+- Summary view: `results/figures/demo_walkthrough_review_pass_continue.md`
+- Step `3` (`Routing takeaway`) is the third queue pass after steps `1` and `2`; no live demo delivery is claimed.
 
 Update: `external_validation` now has a dedicated skill card.
 

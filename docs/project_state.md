@@ -736,6 +736,30 @@ MeetEval cpWER alignment drift segment reconciliation diagnostic:
 - `results/tables/meeteval_cpwer_alignment_drift_segment_reconciliation_diagnostic.csv`
 - The first narrow reconciliation diagnostic on `HeavyOverlap` reports `reconciliation_pass = false` because `speaker_segment_count_match = false` even though total segment counts align; reconciled alignment and cpWER execution remain pending.
 
+MeetEval cpWER alignment drift segment reconciliation diagnostic bridge checklist:
+
+- `results/figures/meeteval_cpwer_alignment_drift_segment_reconciliation_diagnostic_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_alignment_drift_segment_reconciliation_diagnostic_bridge_checklist.csv`
+- This checklist connects the reconciliation diagnostic to the reconciliation handoff without claiming cpWER execution.
+
+MeetEval cpWER alignment drift segment reconciliation handoff bridge checklist:
+
+- `results/figures/meeteval_cpwer_alignment_drift_segment_reconciliation_handoff_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_alignment_drift_segment_reconciliation_handoff_bridge_checklist.csv`
+- This checklist connects the reconciliation handoff to the reconciliation scaffold bridge checklist while cpWER execution remains pending.
+
+MeetEval cpWER alignment drift segment speaker count diagnostic:
+
+- `results/figures/meeteval_cpwer_alignment_drift_segment_speaker_count_diagnostic.md`
+- `results/tables/meeteval_cpwer_alignment_drift_segment_speaker_count_diagnostic.csv`
+- Per-speaker comparison on `HeavyOverlap` reports `mismatched_speaker_count = 2/2` with `SPEAKER_1 delta=-1` and `SPEAKER_2 delta=+1`; reconciled alignment and cpWER execution remain pending.
+
+MeetEval cpWER alignment drift segment speaker count diagnostic bridge checklist:
+
+- `results/figures/meeteval_cpwer_alignment_drift_segment_speaker_count_diagnostic_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_alignment_drift_segment_speaker_count_diagnostic_bridge_checklist.csv`
+- This checklist connects the speaker count diagnostic to the reconciliation diagnostic bridge checklist without claiming cpWER execution.
+
 MeetEval cpWER bridge handoff:
 
 - `results/figures/meeteval_cpwer_bridge_handoff.md`
@@ -1095,6 +1119,18 @@ Demo walkthrough review pass second:
 - `results/tables/demo_walkthrough_review_pass_second.csv`
 - The second qualitative walkthrough review pass records critic-style notes for step `2` only; no live demo or recording is claimed.
 
+Demo walkthrough review pass continue:
+
+- `results/figures/demo_walkthrough_review_pass_continue.md`
+- `results/tables/demo_walkthrough_review_pass_continue.csv`
+- The walkthrough review queue advanced to step `3` (`Routing takeaway`) after steps `1` and `2` reached `review_complete` without claiming live demo delivery.
+
+Demo walkthrough review pass third:
+
+- `results/figures/demo_walkthrough_review_pass_third.md`
+- `results/tables/demo_walkthrough_review_pass_third.csv`
+- The third qualitative walkthrough review pass records notes for step `3` only; no live demo or recording is claimed.
+
 ## How to Resume Work
 
 Common commands:
@@ -1134,8 +1170,13 @@ python -m src.meeteval_cpwer_alignment_drift_segment_reconciliation_scaffold
 python -m src.meeteval_cpwer_alignment_drift_segment_reconciliation_scaffold_bridge_checklist
 python -m src.meeteval_cpwer_alignment_drift_segment_reconciliation_handoff
 python -m src.meeteval_cpwer_alignment_drift_segment_reconciliation_diagnostic
+python -m src.meeteval_cpwer_alignment_drift_segment_reconciliation_diagnostic_bridge_checklist
+python -m src.meeteval_cpwer_alignment_drift_segment_reconciliation_handoff_bridge_checklist
+python -m src.meeteval_cpwer_alignment_drift_segment_speaker_count_diagnostic
+python -m src.meeteval_cpwer_alignment_drift_segment_speaker_count_diagnostic_bridge_checklist
 python -m src.demo_walkthrough_review_pass
 python -m src.demo_walkthrough_review_pass_advance
+python -m src.demo_walkthrough_review_pass_continue
 python -m src.external_validation_license_confirmation_receipt_bridge_checklist
 python -m src.external_validation_slice_manifest
 python -m src.external_validation_slice_manifest_bridge_checklist
