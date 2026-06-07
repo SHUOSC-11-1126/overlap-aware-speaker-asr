@@ -327,8 +327,8 @@ def build_frontier_focus_card_checklist_lines(rows: list[dict[str, str]]) -> lis
 def frontier_next_artifact(frontier_id: str) -> tuple[str, str]:
     mapping = {
         "meeteval_compatibility": (
-            "results/figures/meeteval_dry_run_handoff.md",
-            "results/tables/meeteval_dry_run_receipt.json",
+            "results/figures/meeteval_cpwer_bridge_handoff.md",
+            "results/tables/meeteval_cpwer_bridge_receipt.json",
         ),
         "external_validation": (
             "results/figures/external_validation_prioritization.md",
