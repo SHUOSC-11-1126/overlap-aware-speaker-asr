@@ -622,6 +622,12 @@ MeetEval dry run receipt board bridge:
 - `results/tables/meeteval_dry_run_receipt_board.csv`
 - This board condenses the dry-run receipt path into a single snapshot. It stays coordination-only and does not claim a finished MeetEval or cpWER evaluation.
 
+MeetEval dry run receipt map bridge:
+
+- `results/figures/meeteval_dry_run_receipt_map.md`
+- `results/tables/meeteval_dry_run_receipt_map.csv`
+- This map condenses the dry-run receipt path across the receipt, checklist, and board views. It stays coordination-only and does not claim a finished MeetEval or cpWER evaluation.
+
 Speaker profile similarity bridge:
 
 - `results/figures/speaker_profile_risk_summary.md`
