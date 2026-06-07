@@ -408,6 +408,7 @@ def build_benchmark_packet_lines(
     phase_checkpoint_card_rows: list[dict[str, Any]],
     completion_dashboard_rows: list[dict[str, Any]],
     operator_brief_rows: list[dict[str, Any]],
+    frontier_bridge_checklist_rows: list[dict[str, Any]],
     evidence_receipt_rows: list[dict[str, Any]],
     evidence_checklist_rows: list[dict[str, Any]],
 ) -> list[str]:
@@ -496,6 +497,12 @@ def build_benchmark_packet_lines(
         lines.append(
             f"- step `{row.get('operator_step', '')}` / action `{row.get('operator_action', '')}` / session `{row.get('operator_session_type', '')}` / "
             f"evidence `{row.get('operator_evidence', '')}` / note `{row.get('operator_note', '')}`"
+        )
+    lines.extend(["", "## Frontier Bridge Checklist", ""])
+    for row in frontier_bridge_checklist_rows:
+        lines.append(
+            f"- order `{row.get('checklist_order', '')}` / operator `{row.get('benchmark_operator_step', '')}` / action `{row.get('benchmark_operator_action', '')}` / "
+            f"queue head `{row.get('frontier_queue_head', '')}` / goal `{row.get('checklist_goal', '')}` / reason `{row.get('bridge_reason', '')}` / next `{row.get('next_gate', '')}`"
         )
     lines.extend(["", "## Evidence Receipt", ""])
     for row in evidence_receipt_rows:
@@ -1505,6 +1512,7 @@ def write_benchmark_packet_output(
     phase_checkpoint_card_rows: list[dict[str, Any]],
     completion_dashboard_rows: list[dict[str, Any]],
     operator_brief_rows: list[dict[str, Any]],
+    frontier_bridge_checklist_rows: list[dict[str, Any]],
     evidence_receipt_rows: list[dict[str, Any]],
     evidence_checklist_rows: list[dict[str, Any]],
     output_path: Path,
@@ -1528,6 +1536,7 @@ def write_benchmark_packet_output(
                 phase_checkpoint_card_rows,
                 completion_dashboard_rows,
                 operator_brief_rows,
+                frontier_bridge_checklist_rows,
                 evidence_receipt_rows,
                 evidence_checklist_rows,
             )
@@ -3743,6 +3752,7 @@ def main() -> None:
             benchmark_phase_checkpoint_card_rows,
             benchmark_completion_dashboard_rows,
             benchmark_operator_brief_rows,
+            benchmark_frontier_bridge_checklist_rows,
             benchmark_evidence_receipt_rows,
             benchmark_evidence_checklist_rows,
             benchmark_packet_md,

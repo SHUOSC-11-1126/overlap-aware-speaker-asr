@@ -1811,6 +1811,17 @@ class ComputeAwareCascadeTest(unittest.TestCase):
                 "operator_note": "Run phase1_gold_runtime_foundation now; it is blocked by runtime_capture_missing and carries high urgency.",
             }
         ]
+        frontier_bridge_checklist_rows = [
+            {
+                "checklist_order": "1",
+                "benchmark_operator_step": "phase1_gold_runtime_foundation",
+                "benchmark_operator_action": "collect_controlled_runtime",
+                "frontier_queue_head": "meeteval_compatibility",
+                "checklist_goal": "Verify the frontier bridge for phase1_gold_runtime_foundation before advancing the benchmark stack.",
+                "bridge_reason": "The benchmark runtime foundation still matters because it is the strongest shared evidence layer before narrower frontier follow-ups.",
+                "next_gate": "Confirm this bridge before opening the frontier queue head.",
+            }
+        ]
         evidence_receipt_rows = [
             {
                 "receipt_step": "phase1_gold_runtime_foundation",
@@ -1849,6 +1860,7 @@ class ComputeAwareCascadeTest(unittest.TestCase):
             phase_checkpoint_card_rows,
             completion_dashboard_rows,
             operator_brief_rows,
+            frontier_bridge_checklist_rows,
             evidence_receipt_rows,
             evidence_checklist_rows,
         )
@@ -1866,6 +1878,7 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertIn("## Phase Checkpoint Card", rendered)
         self.assertIn("## Completion Dashboard", rendered)
         self.assertIn("## Operator Brief", rendered)
+        self.assertIn("## Frontier Bridge Checklist", rendered)
         self.assertIn("## Evidence Receipt", rendered)
         self.assertIn("## Evidence Checklist", rendered)
         self.assertIn("## Execution Status", rendered)
