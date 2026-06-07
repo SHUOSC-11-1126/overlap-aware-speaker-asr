@@ -1,0 +1,10 @@
+{
+  "handoff_status": "execution_handoff_ready",
+  "case_id": "ALL",
+  "scaffold_status": "scaffold_only",
+  "cpwer_bridge_lite": "0.120823",
+  "execution_target": "results/tables/meeteval_cpwer_execution_receipt.json",
+  "handoff_goal": "Run a narrow official MeetEval cpWER evaluation for ALL after the execution scaffold audit.",
+  "expected_evidence": "results/tables/meeteval_cpwer_execution_receipt.json",
+  "handoff_note": "experimental/frontier cpWER execution handoff only; official benchmark completion is not claimed."
+}

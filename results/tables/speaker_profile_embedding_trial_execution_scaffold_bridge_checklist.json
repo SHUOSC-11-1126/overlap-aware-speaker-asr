@@ -1,0 +1,12 @@
+[
+  {
+    "checklist_order": "1",
+    "case_id": "NoOverlap",
+    "scaffold_status": "execution_scaffold_only",
+    "prerequisite_artifact": "results/figures/speaker_profile_embedding_trial_execution_scaffold.md",
+    "receipt_target": "results/figures/speaker_profile_embedding_trial_handoff_bridge_checklist.md",
+    "checklist_goal": "Verify the embedding execution scaffold for NoOverlap before reopening voiceprint execution.",
+    "bridge_note": "Execution scaffold remains execution_scaffold_only with profile_confidence_gap=0.422118; confirm scaffold context before advancing to voiceprint execution.",
+    "next_gate": "Confirm this bridge before opening a voiceprint or embedding model execution target."
+  }
+]
