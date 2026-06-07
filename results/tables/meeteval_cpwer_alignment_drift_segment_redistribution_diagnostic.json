@@ -1,0 +1,20 @@
+[
+  {
+    "case_id": "HeavyOverlap",
+    "speaker": "SPEAKER_1",
+    "reference_segment_count": "11",
+    "hypothesis_segment_count": "10",
+    "segment_count_delta": "-1",
+    "redistribution_pattern": "hypothesis_merged",
+    "pattern_match": "False"
+  },
+  {
+    "case_id": "HeavyOverlap",
+    "speaker": "SPEAKER_2",
+    "reference_segment_count": "14",
+    "hypothesis_segment_count": "15",
+    "segment_count_delta": "1",
+    "redistribution_pattern": "hypothesis_split",
+    "pattern_match": "False"
+  }
+]
