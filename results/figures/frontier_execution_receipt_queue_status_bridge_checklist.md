@@ -1,0 +1,7 @@
+# Frontier Execution Receipt Queue Status Bridge Checklist
+
+This generated checklist turns the unified frontier receipt readiness rollup into a bridge verification path. It remains experimental/frontier coordination only and does not claim benchmark execution.
+
+| checklist_order | combined_readiness_status | meeteval_readiness_status | speaker_profile_readiness_status | external_staging_readiness_status | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | receipt_ready_to_fill | receipt_ready_to_fill | receipt_ready_to_fill | receipt_ready_to_fill | results/figures/frontier_execution_receipt_queue_status.md | results/figures/frontier_execution_receipt_queue_completion_summary.md | Verify the unified frontier receipt readiness rollup before opening the completion summary. | Receipt rollup reports combined_readiness_status=receipt_ready_to_fill; meeteval=receipt_ready_to_fill, speaker_profile=receipt_ready_to_fill, external_staging=receipt_ready_to_fill. | Confirm this bridge before opening the frontier execution receipt completion summary. |
