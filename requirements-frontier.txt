@@ -1,0 +1,4 @@
+# Optional frontier dependencies (experimental/frontier only).
+# Install when running official MeetEval cpWER narrow dry runs:
+#   pip install -r requirements-frontier.txt
+meeteval>=0.4.0
