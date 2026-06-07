@@ -1,0 +1,12 @@
+[
+  {
+    "checklist_order": "1",
+    "case_id": "HeavyOverlap",
+    "inspection_status": "segment_inspection_complete",
+    "prerequisite_artifact": "results/figures/meeteval_cpwer_alignment_drift_segment_inspection.md",
+    "receipt_target": "results/figures/meeteval_cpwer_alignment_drift_segment_handoff_bridge_checklist.md",
+    "checklist_goal": "Verify the segment inspection bridge for HeavyOverlap before reopening the segment handoff bridge checklist.",
+    "bridge_note": "Segment inspection status=segment_inspection_complete; confirm drift context before advancing the handoff bridge.",
+    "next_gate": "Confirm this bridge before opening the cpWER segment handoff bridge checklist target."
+  }
+]
