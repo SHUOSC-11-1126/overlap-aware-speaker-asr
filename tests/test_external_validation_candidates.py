@@ -9,6 +9,8 @@ from src.external_validation_candidates import (
     build_external_validation_checklist_rows,
     build_external_validation_slice_handoff_lines,
     build_external_validation_slice_handoff_rows,
+    build_external_validation_slice_bridge_checklist_lines,
+    build_external_validation_slice_bridge_checklist_rows,
     build_external_validation_slice_receipt_lines,
     build_external_validation_slice_receipt_rows,
     build_external_validation_prioritization_lines,
@@ -167,6 +169,58 @@ class ExternalValidationCandidatesTest(unittest.TestCase):
         self.assertIn("template_only", rendered)
         self.assertIn("single_short_meeting_excerpt", rendered)
         self.assertIn("No external validation slice has been executed yet", rendered)
+
+    def test_build_external_validation_slice_bridge_checklist_rows_link_handoff_to_receipt(self) -> None:
+        handoff_rows = [
+            {
+                "dataset_name": "AISHELL-4",
+                "label": "external/sanity-check",
+                "first_slice_shape": "single_short_meeting_excerpt",
+                "license_gate": "Confirm official license terms before any local slice staging.",
+                "mapping_artifact": "Create one repo mapping stub for the first external slice.",
+                "dry_run_goal": "Run one narrow external sanity-check dry run for AISHELL-4 without claiming a benchmark result.",
+                "handoff_note": "No external benchmark has been run yet; this card only frames the first slice.",
+            }
+        ]
+        receipt_rows = [
+            {
+                "execution_status": "template_only",
+                "slice_scope": "single_short_meeting_excerpt",
+                "expected_inputs": "License confirmation plus one repo mapping stub for AISHELL-4.",
+                "expected_outputs": "Diagnostic external-slice staging confirmation and a narrow run note.",
+                "writeback_note": "No external validation slice has been executed yet; fill this receipt only after the first dry run.",
+            }
+        ]
+
+        rows = build_external_validation_slice_bridge_checklist_rows(handoff_rows, receipt_rows)
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["checklist_order"], "1")
+        self.assertEqual(rows[0]["dataset_name"], "AISHELL-4")
+        self.assertEqual(rows[0]["prerequisite_artifact"], "results/figures/external_validation_slice_handoff.md")
+        self.assertEqual(rows[0]["receipt_target"], "results/figures/external_validation_slice_receipt.md")
+        self.assertIn("dry-run writeback", rows[0]["checklist_goal"].lower())
+
+    def test_build_external_validation_slice_bridge_checklist_lines_render_bridge(self) -> None:
+        lines = build_external_validation_slice_bridge_checklist_lines(
+            [
+                {
+                    "checklist_order": "1",
+                    "dataset_name": "AISHELL-4",
+                    "prerequisite_artifact": "results/figures/external_validation_slice_handoff.md",
+                    "receipt_target": "results/figures/external_validation_slice_receipt.md",
+                    "checklist_goal": "Verify the first external slice bridge for AISHELL-4 before any dry-run writeback is advanced.",
+                    "bridge_note": "Open the handoff packet first, then write back through the slice receipt for single_short_meeting_excerpt.",
+                    "next_gate": "Confirm this bridge before opening the slice receipt target.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# External Validation Slice Bridge Checklist", rendered)
+        self.assertIn("AISHELL-4", rendered)
+        self.assertIn("external_validation_slice_handoff.md", rendered)
+        self.assertIn("external_validation_slice_receipt.md", rendered)
 
     def test_build_external_validation_checklist_rows_order_preflight_steps(self) -> None:
         rows = build_external_validation_checklist_rows(

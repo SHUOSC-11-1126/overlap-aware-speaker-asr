@@ -45,6 +45,16 @@ SLICE_RECEIPT_COLUMNS = [
     "writeback_note",
 ]
 
+SLICE_BRIDGE_CHECKLIST_COLUMNS = [
+    "checklist_order",
+    "dataset_name",
+    "prerequisite_artifact",
+    "receipt_target",
+    "checklist_goal",
+    "bridge_note",
+    "next_gate",
+]
+
 CHECKLIST_COLUMNS = [
     "dataset_name",
     "label",
@@ -261,6 +271,48 @@ def build_external_validation_slice_receipt_lines(
     return lines
 
 
+def build_external_validation_slice_bridge_checklist_rows(
+    handoff_rows: list[dict[str, str]],
+    receipt_rows: list[dict[str, str]],
+) -> list[dict[str, str]]:
+    if not handoff_rows or not receipt_rows:
+        return []
+
+    handoff = handoff_rows[0]
+    receipt = receipt_rows[0]
+    dataset_name = str(handoff.get("dataset_name", ""))
+    slice_scope = str(receipt.get("slice_scope", ""))
+    return [
+        {
+            "checklist_order": "1",
+            "dataset_name": dataset_name,
+            "prerequisite_artifact": "results/figures/external_validation_slice_handoff.md",
+            "receipt_target": "results/figures/external_validation_slice_receipt.md",
+            "checklist_goal": f"Verify the first external slice bridge for {dataset_name} before any dry-run writeback is advanced.",
+            "bridge_note": f"Open the handoff packet first, then write back through the slice receipt for {slice_scope}.",
+            "next_gate": "Confirm this bridge before opening the slice receipt target.",
+        }
+    ]
+
+
+def build_external_validation_slice_bridge_checklist_lines(
+    rows: list[dict[str, str]],
+) -> list[str]:
+    lines = [
+        "# External Validation Slice Bridge Checklist",
+        "",
+        "This generated checklist turns the first external slice handoff into a row-by-row bridge verification path. It remains coordination-only and does not claim that any external benchmark has already been executed.",
+        "",
+        "| checklist_order | dataset_name | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['checklist_order']} | {row['dataset_name']} | {row['prerequisite_artifact']} | {row['receipt_target']} | {row['checklist_goal']} | {row['bridge_note']} | {row['next_gate']} |"
+        )
+    return lines
+
+
 def build_external_validation_checklist_rows(
     rows: list[dict[str, str]],
 ) -> list[dict[str, str]]:
@@ -308,7 +360,7 @@ def build_external_validation_checklist_lines(
     return lines
 
 
-def write_outputs(rows: list[dict[str, str]]) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path]:
+def write_outputs(rows: list[dict[str, str]]) -> tuple[Path, ...]:
     tables_dir = PROJECT_ROOT / "results" / "tables"
     figures_dir = PROJECT_ROOT / "results" / "figures"
     tables_dir.mkdir(parents=True, exist_ok=True)
@@ -327,6 +379,10 @@ def write_outputs(rows: list[dict[str, str]]) -> tuple[Path, Path, Path, Path, P
     slice_receipt_rows = build_external_validation_slice_receipt_rows(slice_handoff_rows)
     slice_receipt_json_path = tables_dir / "external_validation_slice_receipt.json"
     slice_receipt_md_path = figures_dir / "external_validation_slice_receipt.md"
+    slice_bridge_checklist_rows = build_external_validation_slice_bridge_checklist_rows(slice_handoff_rows, slice_receipt_rows)
+    slice_bridge_checklist_csv_path = tables_dir / "external_validation_slice_bridge_checklist.csv"
+    slice_bridge_checklist_json_path = tables_dir / "external_validation_slice_bridge_checklist.json"
+    slice_bridge_checklist_md_path = figures_dir / "external_validation_slice_bridge_checklist.md"
     checklist_rows = build_external_validation_checklist_rows(prioritization_rows)
     checklist_csv_path = tables_dir / "external_validation_checklist.csv"
     checklist_json_path = tables_dir / "external_validation_checklist.json"
@@ -360,6 +416,15 @@ def write_outputs(rows: list[dict[str, str]]) -> tuple[Path, Path, Path, Path, P
         "\n".join(build_external_validation_slice_receipt_lines(slice_receipt_rows)) + "\n",
         encoding="utf-8",
     )
+    with slice_bridge_checklist_csv_path.open("w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=SLICE_BRIDGE_CHECKLIST_COLUMNS)
+        writer.writeheader()
+        writer.writerows(slice_bridge_checklist_rows)
+    slice_bridge_checklist_json_path.write_text(json.dumps(slice_bridge_checklist_rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    slice_bridge_checklist_md_path.write_text(
+        "\n".join(build_external_validation_slice_bridge_checklist_lines(slice_bridge_checklist_rows)) + "\n",
+        encoding="utf-8",
+    )
     with checklist_csv_path.open("w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=CHECKLIST_COLUMNS)
         writer.writeheader()
@@ -381,6 +446,9 @@ def write_outputs(rows: list[dict[str, str]]) -> tuple[Path, Path, Path, Path, P
         slice_handoff_md_path,
         slice_receipt_json_path,
         slice_receipt_md_path,
+        slice_bridge_checklist_csv_path,
+        slice_bridge_checklist_json_path,
+        slice_bridge_checklist_md_path,
         checklist_csv_path,
         checklist_json_path,
         checklist_md_path,
@@ -401,6 +469,9 @@ def main() -> None:
         slice_handoff_md_path,
         slice_receipt_json_path,
         slice_receipt_md_path,
+        slice_bridge_checklist_csv_path,
+        slice_bridge_checklist_json_path,
+        slice_bridge_checklist_md_path,
         checklist_csv_path,
         checklist_json_path,
         checklist_md_path,
@@ -416,6 +487,9 @@ def main() -> None:
     print(f"Wrote external validation slice handoff note: {slice_handoff_md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote external validation slice receipt JSON: {slice_receipt_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote external validation slice receipt note: {slice_receipt_md_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote external validation slice bridge checklist: {slice_bridge_checklist_csv_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote external validation slice bridge checklist JSON: {slice_bridge_checklist_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote external validation slice bridge checklist note: {slice_bridge_checklist_md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote external validation checklist: {checklist_csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote external validation checklist JSON: {checklist_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote external validation checklist note: {checklist_md_path.relative_to(PROJECT_ROOT)}")
