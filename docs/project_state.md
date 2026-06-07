@@ -652,6 +652,18 @@ MeetEval cpWER alignment bridge checklist:
 - `results/tables/meeteval_cpwer_alignment_bridge_checklist.csv`
 - This checklist turns the alignment audit into an ordered bridge verification path between the alignment note and bridge handoff.
 
+MeetEval cpWER alignment drift diagnostic:
+
+- `results/figures/meeteval_cpwer_alignment_drift_diagnostic.md`
+- `results/tables/meeteval_cpwer_alignment_drift_diagnostic.csv`
+- The only drift case is `HeavyOverlap` with `alignment_gap = 0.016292` and `drift_severity = moderate`.
+
+MeetEval cpWER alignment drift bridge checklist:
+
+- `results/figures/meeteval_cpwer_alignment_drift_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_alignment_drift_bridge_checklist.csv`
+- This checklist connects the drift diagnostic to the alignment bridge checklist while cpWER execution remains pending.
+
 MeetEval cpWER bridge handoff:
 
 - `results/figures/meeteval_cpwer_bridge_handoff.md`
@@ -724,6 +736,24 @@ LLM critic review pass bridge checklist:
 - `results/tables/llm_critic_review_pass_bridge_checklist.csv`
 - This checklist turns the review pass into an ordered bridge verification path between the pass note and receipt.
 
+LLM critic review pass advance bridge:
+
+- `results/figures/llm_critic_review_pass_advance.md`
+- `results/tables/llm_critic_review_pass_advance.csv`
+- The queue advanced to `LightOverlap` after `HeavyOverlap` reached `review_complete` without any verified repair claim.
+
+LLM critic review pass second bridge:
+
+- `results/figures/llm_critic_review_pass_second.md`
+- `results/tables/llm_critic_review_pass_second.csv`
+- The second qualitative pass records critic-style notes for `LightOverlap` only; no verified transcript repair is claimed.
+
+LLM critic review pass advance bridge checklist:
+
+- `results/figures/llm_critic_review_pass_advance_bridge_checklist.md`
+- `results/tables/llm_critic_review_pass_advance_bridge_checklist.csv`
+- This checklist connects the second qualitative pass to the advance receipt without claiming verified repair.
+
 LLM critic review bridge checklist:
 
 - `results/figures/llm_critic_review_bridge_checklist.md`
@@ -771,6 +801,12 @@ External validation license gate bridge:
 - `results/figures/external_validation_license_gate.md`
 - `results/tables/external_validation_license_gate.csv`
 - The license gate checklist documents preflight steps while `license_status` remains `pending_confirmation` and external audio staging stays blocked.
+
+External validation license gate bridge checklist:
+
+- `results/figures/external_validation_license_gate_bridge_checklist.md`
+- `results/tables/external_validation_license_gate_bridge_checklist.csv`
+- This checklist connects the license gate to the slice manifest while external audio staging remains blocked.
 
 External validation slice manifest bridge:
 
@@ -880,13 +916,18 @@ python -m src.meeteval_dry_run
 python -m src.meeteval_cpwer_bridge --case all
 python -m src.meeteval_cpwer_alignment
 python -m src.meeteval_cpwer_alignment_bridge_checklist
+python -m src.meeteval_cpwer_alignment_drift_diagnostic
+python -m src.meeteval_cpwer_alignment_drift_bridge_checklist
 python -m src.external_validation_slice_scaffold
 python -m src.external_validation_license_gate
+python -m src.external_validation_license_gate_bridge_checklist
 python -m src.external_validation_slice_manifest
 python -m src.external_validation_slice_manifest_bridge_checklist
 python -m src.speaker_profile_embedding_scaffold
 python -m src.llm_critic_review_pass
 python -m src.llm_critic_review_pass_bridge_checklist
+python -m src.llm_critic_review_pass_advance
+python -m src.llm_critic_review_pass_advance_bridge_checklist
 python -m src.project_harness
 ```
 
