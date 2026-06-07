@@ -487,6 +487,12 @@ Current demo storyboard receipt bridge result:
 - `results/tables/demo_storyboard_receipt_bridge.csv`
 - This bridge now links the storyboard cards to the storyboard receipt. It stays demo support only and keeps the story and receipt targets visible without claiming that any live demo has been completed.
 
+Current demo storyboard receipt checklist result:
+
+- `results/figures/demo_storyboard_receipt_checklist.md`
+- `results/tables/demo_storyboard_receipt_checklist.csv`
+- This checklist now turns the storyboard receipt into an ordered review path. It stays demo support only and keeps the storyboard and receipt targets visible without claiming that any live demo has been completed.
+
 Current demo storyboard bridge checklist result:
 
 - `results/figures/demo_storyboard_bridge_checklist.md`
