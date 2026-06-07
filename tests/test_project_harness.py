@@ -29,6 +29,8 @@ from src.project_harness import (
     build_frontier_receipt_packet_rows,
     build_frontier_writeback_index_lines,
     build_frontier_writeback_index_rows,
+    build_frontier_writeback_checklist_lines,
+    build_frontier_writeback_checklist_rows,
     build_report,
 )
 
@@ -634,6 +636,47 @@ class ProjectHarnessTest(unittest.TestCase):
         self.assertIn("meeteval_compatibility", rendered)
         self.assertIn("meeteval_dry_run_receipt.json", rendered)
         self.assertIn("meeteval_dry_run_handoff.md", rendered)
+
+    def test_build_frontier_writeback_checklist_rows_point_queue_head_to_closeout_step(self) -> None:
+        rows = build_frontier_writeback_checklist_rows(
+            [
+                {
+                    "queue_order": "1",
+                    "frontier_id": "meeteval_compatibility",
+                    "status": "documented_skill",
+                    "entry_artifact": "MeetEval readiness card",
+                    "why_now": "Use the readiness card to stage one narrow dry run before claiming any benchmark bridge.",
+                }
+            ]
+        )
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["checklist_order"], "1")
+        self.assertEqual(rows[0]["frontier_id"], "meeteval_compatibility")
+        self.assertEqual(rows[0]["receipt_target"], "results/tables/meeteval_dry_run_receipt.json")
+        self.assertIn("writeback path", rows[0]["checklist_goal"].lower())
+        self.assertIn("open results/figures/meeteval_dry_run_handoff.md first", rows[0]["writeback_note"].lower())
+
+    def test_build_frontier_writeback_checklist_lines_render_queue(self) -> None:
+        lines = build_frontier_writeback_checklist_lines(
+            [
+                {
+                    "checklist_order": "1",
+                    "frontier_id": "meeteval_compatibility",
+                    "entry_artifact": "MeetEval readiness card",
+                    "receipt_target": "results/tables/meeteval_dry_run_receipt.json",
+                    "checklist_goal": "Use the writeback index to complete the frontier writeback path for meeteval_compatibility.",
+                    "writeback_note": "Open results/figures/meeteval_dry_run_handoff.md first, then write back to results/tables/meeteval_dry_run_receipt.json after the narrow next step.",
+                    "next_gate": "Confirm the writeback index snapshot before advancing the queue.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Frontier Writeback Checklist", rendered)
+        self.assertIn("meeteval_compatibility", rendered)
+        self.assertIn("meeteval_dry_run_receipt.json", rendered)
+        self.assertIn("closeout path", rendered)
 
 
 if __name__ == "__main__":
