@@ -1,0 +1,20 @@
+[
+  {
+    "dataset_name": "AISHELL-4",
+    "label": "external/sanity-check",
+    "license_status": "pending_confirmation",
+    "gate_step": "Confirm official AISHELL-4 license terms before staging any local audio.",
+    "gate_order": "1",
+    "gate_note": "Read the official release page and record whether local reuse is permitted for a tiny sanity-check slice.",
+    "next_gate": "Document the license decision in the slice receipt before downloading audio."
+  },
+  {
+    "dataset_name": "AISHELL-4",
+    "label": "external/sanity-check",
+    "license_status": "pending_confirmation",
+    "gate_step": "Verify attribution and redistribution constraints for any excerpt used in the repo.",
+    "gate_order": "2",
+    "gate_note": "Keep the external slice explicitly labeled external/sanity-check and separate from gold benchmark claims.",
+    "next_gate": "Only after the license gate is documented should any audio staging begin."
+  }
+]

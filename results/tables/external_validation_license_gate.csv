@@ -1,0 +1,3 @@
+﻿dataset_name,label,license_status,gate_step,gate_order,gate_note,next_gate
+AISHELL-4,external/sanity-check,pending_confirmation,Confirm official AISHELL-4 license terms before staging any local audio.,1,Read the official release page and record whether local reuse is permitted for a tiny sanity-check slice.,Document the license decision in the slice receipt before downloading audio.
+AISHELL-4,external/sanity-check,pending_confirmation,Verify attribution and redistribution constraints for any excerpt used in the repo.,2,Keep the external slice explicitly labeled external/sanity-check and separate from gold benchmark claims.,Only after the license gate is documented should any audio staging begin.

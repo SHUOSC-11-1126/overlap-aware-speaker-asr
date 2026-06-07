@@ -1,0 +1,10 @@
+[
+  {
+    "execution_status": "license_gate_documented",
+    "slice_scope": "single_short_meeting_excerpt",
+    "dataset_name": "AISHELL-4",
+    "license_status": "pending_confirmation",
+    "expected_inputs": "Official AISHELL-4 license terms plus the existing slice mapping stub.",
+    "writeback_note": "License gate checklist documented; external audio staging remains blocked until license confirmation is recorded."
+  }
+]
