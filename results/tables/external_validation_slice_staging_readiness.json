@@ -1,0 +1,10 @@
+{
+  "dataset_name": "AISHELL-4",
+  "slice_id": "aishell4_meeting_excerpt_stub_001",
+  "label": "external/sanity-check",
+  "license_status": "pending_confirmation",
+  "staging_status": "blocked_by_license_gate",
+  "readiness_status": "not_ready",
+  "blocker": "license_confirmation_pending",
+  "readiness_note": "Staging readiness audit for the first external slice. No external audio has been downloaded or evaluated."
+}

@@ -1,0 +1,11 @@
+[
+  {
+    "checklist_order": "1",
+    "readiness_status": "not_ready",
+    "prerequisite_artifact": "results/figures/external_validation_slice_staging_readiness.md",
+    "receipt_target": "results/figures/external_validation_slice_manifest_bridge_checklist.md",
+    "checklist_goal": "Verify the staging readiness bridge before advancing the slice manifest bridge checklist.",
+    "bridge_note": "Readiness remains not_ready with blocker=license_confirmation_pending; confirm license gate context first.",
+    "next_gate": "Confirm this bridge before opening the slice manifest bridge checklist target."
+  }
+]
