@@ -1,0 +1,11 @@
+[
+  {
+    "checklist_order": "1",
+    "combined_fill_execution_status": "fill_execution_ready",
+    "prerequisite_artifact": "results/figures/frontier_execution_receipt_fill_execution_status.md",
+    "receipt_target": "results/figures/frontier_execution_receipt_fill_execution_handoff.md",
+    "checklist_goal": "Verify the unified fill execution status rollup before opening the fill execution handoff.",
+    "bridge_note": "Status rollup reports combined_fill_execution_status=fill_execution_ready; confirm fill execution readiness before advancing the fill execution handoff.",
+    "next_gate": "Confirm this bridge before opening the frontier execution receipt fill execution handoff target."
+  }
+]
