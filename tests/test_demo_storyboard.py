@@ -5,6 +5,8 @@ import unittest
 from src.demo_storyboard import (
     build_demo_storyboard_cards,
     build_demo_storyboard_lines,
+    build_demo_walkthrough_bridge_checklist_lines,
+    build_demo_walkthrough_bridge_checklist_rows,
     build_demo_walkthrough_checklist_lines,
     build_demo_walkthrough_checklist_rows,
     build_demo_walkthrough_receipt_lines,
@@ -118,6 +120,55 @@ class DemoStoryboardTest(unittest.TestCase):
         self.assertIn("template_only", rendered)
         self.assertIn("step_1_problem_framing", rendered)
         self.assertIn("has been executed yet", rendered)
+
+    def test_build_demo_walkthrough_bridge_checklist_rows_link_walkthrough_to_receipt(self) -> None:
+        rows = build_demo_walkthrough_bridge_checklist_rows(
+            [
+                {
+                    "step_id": "1",
+                    "focus": "Problem framing",
+                    "talk_track": "Start by explaining why overlap does not always justify separation.",
+                    "artifact_anchor": "README.md",
+                }
+            ],
+            [
+                {
+                    "execution_status": "template_only",
+                    "walkthrough_scope": "step_1_problem_framing",
+                    "expected_inputs": "Demo walkthrough head plus one narration note stub.",
+                    "expected_outputs": "Diagnostic walkthrough note and a narrow presentation writeback.",
+                    "writeback_note": "No demo walkthrough pass has been executed yet; fill this receipt only after the first run.",
+                }
+            ],
+        )
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["checklist_order"], "1")
+        self.assertEqual(rows[0]["step_id"], "1")
+        self.assertEqual(rows[0]["prerequisite_artifact"], "results/figures/demo_walkthrough.md")
+        self.assertEqual(rows[0]["receipt_target"], "results/figures/demo_walkthrough_receipt.md")
+        self.assertIn("bridge", rows[0]["checklist_goal"].lower())
+
+    def test_build_demo_walkthrough_bridge_checklist_lines_render_bridge(self) -> None:
+        lines = build_demo_walkthrough_bridge_checklist_lines(
+            [
+                {
+                    "checklist_order": "1",
+                    "step_id": "1",
+                    "prerequisite_artifact": "results/figures/demo_walkthrough.md",
+                    "receipt_target": "results/figures/demo_walkthrough_receipt.md",
+                    "checklist_goal": "Verify the demo walkthrough bridge before any presentation claim is advanced.",
+                    "bridge_note": "Open the walkthrough first, then write back through the receipt target for step_1_problem_framing and the Problem framing focus.",
+                    "next_gate": "Confirm this bridge before opening the walkthrough receipt target.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Demo Walkthrough Bridge Checklist", rendered)
+        self.assertIn("results/figures/demo_walkthrough.md", rendered)
+        self.assertIn("results/figures/demo_walkthrough_receipt.md", rendered)
+        self.assertIn("presentation support only", rendered)
 
     def test_build_demo_walkthrough_checklist_rows_order_execution_path(self) -> None:
         rows = build_demo_walkthrough_checklist_rows(
