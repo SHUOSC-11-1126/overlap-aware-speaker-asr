@@ -1,0 +1,13 @@
+[
+  {
+    "checklist_order": "1",
+    "case_id": "NoOverlap",
+    "readiness_status": "receipt_ready_to_fill",
+    "swapped_bias_detected": "True",
+    "prerequisite_artifact": "results/figures/speaker_profile_embedding_trial_execution_receipt_readiness.md",
+    "receipt_target": "results/tables/speaker_profile_embedding_trial_execution_receipt.json",
+    "checklist_goal": "Verify embedding receipt readiness for NoOverlap before filling the execution receipt.",
+    "bridge_note": "Readiness reports readiness_status=receipt_ready_to_fill with swapped_bias_detected=True; confirm receipt readiness before any voiceprint run.",
+    "next_gate": "Confirm this bridge before claiming any voiceprint or embedding attribution success."
+  }
+]
