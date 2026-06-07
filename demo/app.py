@@ -113,6 +113,14 @@ def render_frontier_fill_status() -> None:
     if preflight_batch:
         pass_count = sum(1 for row in preflight_batch if str(row.get("preflight_pass", "")).lower() == "true")
         st.metric("MeetEval preflight batch", f"{pass_count}/{len(preflight_batch)} cases passed")
+        st.markdown("**MeetEval preflight batch cases**")
+        st.table(
+            {
+                "case_id": [row.get("case_id", "") for row in preflight_batch],
+                "preflight_pass": [row.get("preflight_pass", "") for row in preflight_batch],
+                "hypothesis_source": [row.get("hypothesis_source", "") for row in preflight_batch],
+            }
+        )
     if dashboard:
         st.markdown("**Fill execution dashboard**")
         st.write(dashboard.get("dashboard_note", ""))
