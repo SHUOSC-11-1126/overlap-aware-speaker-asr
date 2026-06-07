@@ -1,0 +1,32 @@
+[
+  {
+    "checklist_order": "1",
+    "frontier_name": "meeteval_compatibility",
+    "readiness_status": "receipt_ready_to_fill",
+    "prerequisite_artifact": "results/figures/frontier_execution_receipt_queue_handoff.md",
+    "receipt_target": "results/tables/meeteval_cpwer_execution_receipt.json",
+    "checklist_goal": "Verify the receipt-fill handoff for meeteval_compatibility before opening the execution receipt.",
+    "bridge_note": "Handoff reports readiness_status=receipt_ready_to_fill for meeteval_compatibility; confirm handoff context before filling the execution receipt.",
+    "next_gate": "Confirm this bridge before claiming any meeteval_compatibility benchmark execution."
+  },
+  {
+    "checklist_order": "2",
+    "frontier_name": "speaker_profile",
+    "readiness_status": "receipt_ready_to_fill",
+    "prerequisite_artifact": "results/figures/frontier_execution_receipt_queue_handoff.md",
+    "receipt_target": "results/tables/speaker_profile_embedding_trial_execution_receipt.json",
+    "checklist_goal": "Verify the receipt-fill handoff for speaker_profile before opening the execution receipt.",
+    "bridge_note": "Handoff reports readiness_status=receipt_ready_to_fill for speaker_profile; confirm handoff context before filling the execution receipt.",
+    "next_gate": "Confirm this bridge before claiming any speaker_profile benchmark execution."
+  },
+  {
+    "checklist_order": "3",
+    "frontier_name": "external_validation",
+    "readiness_status": "receipt_ready_to_fill",
+    "prerequisite_artifact": "results/figures/frontier_execution_receipt_queue_handoff.md",
+    "receipt_target": "results/tables/external_validation_slice_staging_handoff_receipt.json",
+    "checklist_goal": "Verify the receipt-fill handoff for external_validation before opening the execution receipt.",
+    "bridge_note": "Handoff reports readiness_status=receipt_ready_to_fill for external_validation; confirm handoff context before filling the execution receipt.",
+    "next_gate": "Confirm this bridge before claiming any external_validation benchmark execution."
+  }
+]
