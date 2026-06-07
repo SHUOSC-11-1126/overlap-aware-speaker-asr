@@ -705,6 +705,12 @@ Demo storyboard bridge:
 - `results/tables/demo_storyboard_cards.json`
 - This bridge now turns the repository into a one-page demo-facing story so a new visitor can understand the problem, pipeline, findings, and frontier directions quickly without opening the full report first.
 
+Demo storyboard receipt:
+
+- `results/figures/demo_storyboard_receipt.md`
+- `results/tables/demo_storyboard_receipt.json`
+- This receipt now creates the first evidence slot for a demo storyboard review pass. It stays demo support only and does not claim that any live demo or recording has already happened.
+
 Demo storyboard bridge checklist:
 
 - `results/figures/demo_storyboard_bridge_checklist.md`

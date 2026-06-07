@@ -463,6 +463,12 @@ Update: `demo_excellence` now has a first lightweight onboarding artifact.
 - Story cards: `results/tables/demo_storyboard_cards.json`
 - This is a simple demo-facing bridge rather than a full app: it gives a new visitor a one-page explanation of the problem, pipeline, findings, and frontier directions before heavier UI work exists.
 
+Update: `demo_excellence` now also has a storyboard receipt.
+
+- Storyboard receipt: `results/tables/demo_storyboard_receipt.json`
+- Summary view: `results/figures/demo_storyboard_receipt.md`
+- This keeps the storyboard review path explicit while staying clear that no live demo or recording has yet been completed.
+
 Update: `demo_excellence` now also has a storyboard bridge checklist.
 
 - Storyboard bridge checklist: `results/tables/demo_storyboard_bridge_checklist.csv`

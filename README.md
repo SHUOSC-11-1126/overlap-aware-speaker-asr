@@ -475,6 +475,12 @@ Current demo storyboard result:
 
 - `results/figures/demo_storyboard.md` now provides a one-page demo-facing story that explains the problem, pipeline, findings, and current frontier extensions with a lightweight Mermaid diagram
 
+Current demo storyboard receipt result:
+
+- `results/figures/demo_storyboard_receipt.md`
+- `results/tables/demo_storyboard_receipt.json`
+- This receipt now creates the first evidence slot for a demo storyboard review pass. It stays demo support only and does not claim that any live demo or recording has been completed.
+
 Current demo storyboard bridge checklist result:
 
 - `results/figures/demo_storyboard_bridge_checklist.md`
