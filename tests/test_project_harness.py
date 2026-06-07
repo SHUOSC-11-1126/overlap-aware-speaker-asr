@@ -7,6 +7,8 @@ from src.project_harness import (
     build_frontier_execution_queue_checklist_lines,
     build_frontier_execution_queue_checklist_rows,
     build_frontier_execution_queue_rows,
+    build_frontier_status_checklist_lines,
+    build_frontier_status_checklist_rows,
     build_frontier_focus_card_lines,
     build_frontier_focus_card_checklist_lines,
     build_frontier_focus_card_checklist_rows,
@@ -71,6 +73,52 @@ class ProjectHarnessTest(unittest.TestCase):
         self.assertIn("tiny sanity-check slice", by_id["external_validation"]["next_step"])
         self.assertIn("walkthrough", by_id["demo_excellence"]["expected_output"])
         self.assertIn("demo walk", by_id["demo_excellence"]["next_step"].lower())
+
+    def test_build_frontier_status_checklist_rows_preserve_frontier_order(self) -> None:
+        rows = build_frontier_status_checklist_rows(
+            [
+                {
+                    "frontier_id": "speaker_profile",
+                    "status": "documented_skill",
+                    "evidence_path": "docs/skills/skill_03_speaker_profile_voiceprint.md",
+                    "expected_output": "speaker profile triage card",
+                    "next_step": "Use the triage card to justify a stronger profile method while keeping the signal scoped to risk detection.",
+                },
+                {
+                    "frontier_id": "meeteval_compatibility",
+                    "status": "documented_skill",
+                    "evidence_path": "docs/skills/skill_04_meeteval_compatibility.md",
+                    "expected_output": "MeetEval readiness card",
+                    "next_step": "Use the readiness card to stage one narrow dry run before claiming any benchmark bridge.",
+                },
+            ]
+        )
+
+        self.assertEqual([row["checklist_order"] for row in rows], ["1", "2"])
+        self.assertEqual(rows[0]["frontier_id"], "speaker_profile")
+        self.assertIn("status entry", rows[0]["checklist_goal"].lower())
+
+    def test_build_frontier_status_checklist_lines_render_table(self) -> None:
+        lines = build_frontier_status_checklist_lines(
+            [
+                {
+                    "checklist_order": "1",
+                    "frontier_id": "speaker_profile",
+                    "status": "documented_skill",
+                    "evidence_path": "docs/skills/skill_03_speaker_profile_voiceprint.md",
+                    "expected_output": "speaker profile triage card",
+                    "next_step": "Use the triage card to justify a stronger profile method while keeping the signal scoped to risk detection.",
+                    "checklist_goal": "Verify the frontier status entry for speaker_profile before it is converted into queue order.",
+                    "status_note": "Read the evidence path first, then confirm the expected output and next step before advancing.",
+                    "next_gate": "Confirm this status row before building the execution queue.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Frontier Status Checklist", rendered)
+        self.assertIn("speaker_profile", rendered)
+        self.assertIn("evidence_path", rendered)
 
     def test_build_frontier_execution_queue_rows_prioritize_actionable_handoffs(self) -> None:
         rows = build_frontier_execution_queue_rows(
