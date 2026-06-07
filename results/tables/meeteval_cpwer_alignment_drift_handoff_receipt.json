@@ -1,0 +1,9 @@
+[
+  {
+    "execution_status": "handoff_documented",
+    "handoff_scope": "single_drift_case",
+    "case_id": "HeavyOverlap",
+    "expected_inputs": "MeetEval cpWER alignment drift diagnostic table.",
+    "writeback_note": "Drift handoff documented for coordination; segment-level reconciliation remains pending."
+  }
+]
