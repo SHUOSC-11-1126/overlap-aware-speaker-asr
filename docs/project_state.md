@@ -457,6 +457,12 @@ Frontier parallel picklist:
 - `results/tables/frontier_parallel_picklist.json`
 - This picklist now turns that same breadth-first set into a parallel-friendly pickup view. It still does not claim any executed frontier work; it simply lets the next contributor see which artifact to open and where to write back for each current frontier without changing queue order.
 
+Frontier parallel picklist checklist:
+
+- `results/figures/frontier_parallel_picklist_checklist.md`
+- `results/tables/frontier_parallel_picklist_checklist.csv`
+- This checklist now turns the parallel picklist into an ordered pickup path. It stays explicitly coordination-only, keeps the pickup artifact visible, and helps a future agent follow the parallel-friendly frontier path in order.
+
 Frontier receipt board:
 
 - `results/figures/frontier_receipt_board.md`

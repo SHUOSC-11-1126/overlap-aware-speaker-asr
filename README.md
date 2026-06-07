@@ -293,6 +293,11 @@ Current frontier parallel picklist result:
 - `results/figures/frontier_parallel_picklist.md` now lays out which current frontiers can be picked up independently while keeping the breadth-first queue visible
 - This remains coordination-only as well: it shows queue order, pickup artifact, and receipt target for parallel-friendly pickup without claiming that any frontier step has already been executed
 
+Current frontier parallel picklist checklist result:
+
+- `results/figures/frontier_parallel_picklist_checklist.md` now turns the parallel picklist into an ordered pickup checklist
+- This checklist remains coordination-only and keeps the pickup artifact visible without claiming that any frontier step has already been executed
+
 Current MeetEval compatibility result:
 
 - `results/figures/meeteval_compatibility_note.md` now provides a segment-level compatibility bridge across verified gold references and speaker-attributed hypotheses without claiming a finished cpWER evaluation
