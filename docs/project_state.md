@@ -886,6 +886,19 @@ MeetEval cpWER execution preflight:
 - `results/tables/meeteval_cpwer_execution_preflight.csv`
 - The first narrow execution preflight on `NoOverlap` reports `preflight_pass = true` with aligned segment exports; official cpWER evaluation remains pending.
 
+MeetEval cpWER execution preflight bridge checklist:
+
+- `results/figures/meeteval_cpwer_execution_preflight_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_execution_preflight_bridge_checklist.csv`
+- This checklist connects the execution preflight to the official cpWER execution receipt without claiming cpWER execution.
+
+MeetEval cpWER execution receipt scaffold:
+
+- `results/figures/meeteval_cpwer_execution_receipt_scaffold.md`
+- `results/tables/meeteval_cpwer_execution_receipt_scaffold.csv`
+- `results/tables/meeteval_cpwer_execution_receipt.json`
+- The receipt scaffold records `scaffold_status = receipt_scaffold_only` for `NoOverlap` after `preflight_pass = true`; official MeetEval evaluation remains pending.
+
 Speaker profile similarity bridge:
 
 - `results/figures/speaker_profile_risk_summary.md`
@@ -963,6 +976,18 @@ Speaker profile embedding trial execution handoff:
 - `results/figures/speaker_profile_embedding_trial_execution_handoff.md`
 - `results/tables/speaker_profile_embedding_trial_execution_handoff.csv`
 - The embedding execution handoff targets `NoOverlap` for a narrow embedding-or-voiceprint diagnostic trial; improved speaker attribution remains unverified.
+
+Speaker profile embedding trial execution handoff bridge checklist:
+
+- `results/figures/speaker_profile_embedding_trial_execution_handoff_bridge_checklist.md`
+- `results/tables/speaker_profile_embedding_trial_execution_handoff_bridge_checklist.csv`
+- This checklist connects the embedding execution handoff to the execution receipt without claiming voiceprint success.
+
+Speaker profile embedding trial execution preflight:
+
+- `results/figures/speaker_profile_embedding_trial_execution_preflight.md`
+- `results/tables/speaker_profile_embedding_trial_execution_preflight.csv`
+- The first narrow execution preflight on `NoOverlap` reports `preflight_pass = true` with `swapped_bias_detected = true`; voiceprint execution remains pending.
 
 LLM critic qualitative bridge:
 
@@ -1527,8 +1552,12 @@ python -m src.meeteval_cpwer_execution_scaffold_bridge_checklist
 python -m src.meeteval_cpwer_execution_handoff
 python -m src.meeteval_cpwer_execution_handoff_bridge_checklist
 python -m src.meeteval_cpwer_execution_preflight
+python -m src.meeteval_cpwer_execution_preflight_bridge_checklist
+python -m src.meeteval_cpwer_execution_receipt_scaffold
 python -m src.speaker_profile_embedding_trial_execution_scaffold
 python -m src.speaker_profile_embedding_trial_execution_handoff
+python -m src.speaker_profile_embedding_trial_execution_handoff_bridge_checklist
+python -m src.speaker_profile_embedding_trial_execution_preflight
 python -m src.external_validation_slice_staging_readiness_handoff_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_scaffold_bridge_checklist
 python -m src.speaker_profile_embedding_trial_handoff
