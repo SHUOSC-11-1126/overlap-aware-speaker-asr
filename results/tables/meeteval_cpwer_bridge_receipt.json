@@ -1,0 +1,11 @@
+[
+  {
+    "execution_status": "bridge_complete",
+    "run_scope": "single_verified_case",
+    "case_id": "NoOverlap",
+    "cpwer_bridge_lite": "0.054312",
+    "best_mapping": "direct",
+    "expected_inputs": "results/tables/meeteval_reference_segments.jsonl; results/tables/meeteval_hypothesis_segments.jsonl",
+    "writeback_note": "cpWER bridge-lite complete for one case; full MeetEval evaluation remains pending."
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "case_id": "NoOverlap",
+  "hypothesis_source": "separated_whisper",
+  "speaker_count": 2,
+  "direct_macro_cer": 0.054312,
+  "swapped_macro_cer": 0.91813,
+  "cpwer_bridge_lite": 0.054312,
+  "best_mapping": "direct",
+  "observation": "experimental/frontier cpWER bridge-lite from JSONL exports; this is not a full MeetEval cpWER claim."
+}
