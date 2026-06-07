@@ -1,0 +1,8 @@
+# MeetEval cpWER Alignment Drift Segment Granularity Diagnostic
+
+This generated note records per-speaker average segment duration comparison for the drift case. It does not claim reconciled alignment or cpWER execution.
+
+| case_id | speaker | reference_segment_count | hypothesis_segment_count | reference_avg_segment_duration_sec | hypothesis_avg_segment_duration_sec | avg_duration_delta_sec | granularity_match |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
+| HeavyOverlap | SPEAKER_1 | 11 | 10 | 2.851 | 2.900 | 0.049 | True |
+| HeavyOverlap | SPEAKER_2 | 14 | 15 | 2.597 | 2.424 | -0.173 | False |

@@ -1,0 +1,22 @@
+[
+  {
+    "case_id": "HeavyOverlap",
+    "speaker": "SPEAKER_1",
+    "reference_segment_count": "11",
+    "hypothesis_segment_count": "10",
+    "reference_avg_segment_duration_sec": "2.851",
+    "hypothesis_avg_segment_duration_sec": "2.900",
+    "avg_duration_delta_sec": "0.049",
+    "granularity_match": "True"
+  },
+  {
+    "case_id": "HeavyOverlap",
+    "speaker": "SPEAKER_2",
+    "reference_segment_count": "14",
+    "hypothesis_segment_count": "15",
+    "reference_avg_segment_duration_sec": "2.597",
+    "hypothesis_avg_segment_duration_sec": "2.424",
+    "avg_duration_delta_sec": "-0.173",
+    "granularity_match": "False"
+  }
+]
