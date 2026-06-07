@@ -38,8 +38,15 @@ The frontier receipt-fill execution stack now has an operator brief and receipt 
 - MeetEval tokenization diagnostic: `results/figures/meeteval_cpwer_official_execution_tokenization_diagnostic.md`
 - MeetEval character-level official execution: `results/figures/meeteval_cpwer_character_level_official_execution.md`
 - MeetEval reconciliation audit: `results/figures/meeteval_cpwer_official_execution_reconciliation_audit.md`
+- MeetEval tokenization adaptation completion summary: `results/figures/meeteval_cpwer_tokenization_adaptation_completion_summary.md`
+- MeetEval tokenization adaptation bridge checklist: `results/figures/meeteval_cpwer_tokenization_adaptation_completion_summary_bridge_checklist.md`
+- Speaker profile text-proxy diagnostic bridge checklist: `results/figures/speaker_profile_text_proxy_trial_diagnostic_bridge_checklist.md`
+- Speaker profile text-proxy completion summary: `results/figures/speaker_profile_text_proxy_trial_diagnostic_completion_summary.md`
+- Speaker profile text-proxy completion bridge checklist: `results/figures/speaker_profile_text_proxy_trial_diagnostic_completion_summary_bridge_checklist.md`
 
 MeetEval compatibility remains the recommended first fill target. Character-spaced official cpWER (`python -m src.meeteval_cpwer_character_level_official_execution --all`) reconciles `5/5` gold cases with bridge-lite. Raw word-level official cpWER drift is diagnosed as a Chinese tokenization artifact, not a speaker-mapping failure.
+
+Speaker profile text-proxy diagnostic is complete at `5/5` swapped bias (`queue_status = queue_complete`). Next frontier step is the embedding trial handoff — still diagnostic-only, not voiceprint success.
 
 ## Level 1: Documentation / Presentation
 

@@ -977,6 +977,24 @@ Speaker profile text-proxy trial diagnostic:
 - `results/tables/speaker_profile_text_proxy_trial_diagnostic.csv`
 - All-gold text-profile proxy diagnostic reports `5/5` swapped bias; next direction remains `embedding_or_voiceprint_baseline`.
 
+Speaker profile text-proxy trial diagnostic bridge checklist:
+
+- `results/figures/speaker_profile_text_proxy_trial_diagnostic_bridge_checklist.md`
+- `results/tables/speaker_profile_text_proxy_trial_diagnostic_bridge_checklist.csv`
+- This checklist connects the text-proxy diagnostic to the embedding trial handoff without claiming voiceprint success.
+
+Speaker profile text-proxy trial diagnostic completion summary:
+
+- `results/figures/speaker_profile_text_proxy_trial_diagnostic_completion_summary.md`
+- `results/tables/speaker_profile_text_proxy_trial_diagnostic_completion_summary.csv`
+- `queue_status = queue_complete` at `5/5` swapped bias; no voiceprint success is claimed.
+
+Speaker profile text-proxy trial diagnostic completion summary bridge checklist:
+
+- `results/figures/speaker_profile_text_proxy_trial_diagnostic_completion_summary_bridge_checklist.md`
+- `results/tables/speaker_profile_text_proxy_trial_diagnostic_completion_summary_bridge_checklist.csv`
+- This checklist connects the completion summary to the embedding trial handoff without claiming voiceprint success.
+
 Speaker profile embedding trial handoff bridge checklist:
 
 - `results/figures/speaker_profile_embedding_trial_handoff_bridge_checklist.md`
@@ -1675,6 +1693,18 @@ MeetEval cpWER official execution reconciliation audit:
 
 - `results/figures/meeteval_cpwer_official_execution_reconciliation_audit.md`
 - After character tokenization, `5/5` cases align with bridge-lite within tolerance.
+
+MeetEval cpWER tokenization adaptation completion summary:
+
+- `results/figures/meeteval_cpwer_tokenization_adaptation_completion_summary.md`
+- `results/tables/meeteval_cpwer_tokenization_adaptation_completion_summary.csv`
+- `queue_status = queue_complete` at `5/5` reconciled cases; no full MeetEval benchmark claim.
+
+MeetEval cpWER tokenization adaptation completion summary bridge checklist:
+
+- `results/figures/meeteval_cpwer_tokenization_adaptation_completion_summary_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_tokenization_adaptation_completion_summary_bridge_checklist.csv`
+- This checklist connects the tokenization adaptation completion summary to frontier fill execution without claiming benchmark completion.
 
 MeetEval compatibility skill card:
 

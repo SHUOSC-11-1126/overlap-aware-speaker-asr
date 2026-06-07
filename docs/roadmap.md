@@ -1439,6 +1439,26 @@ Update: `demo_excellence` now has a lightweight Streamlit viewer scaffold.
 - Demo requirements: `requirements-demo.txt`
 - Run with `streamlit run demo/app.py`; this is qualitative/demo support only and does not run live ASR.
 
+Update: `meeteval_compatibility` now also has a tokenization adaptation completion bridge.
+
+- Completion summary: `results/tables/meeteval_cpwer_tokenization_adaptation_completion_summary.csv`
+- Bridge checklist: `results/tables/meeteval_cpwer_tokenization_adaptation_completion_summary_bridge_checklist.csv`
+- Script: `python -m src.meeteval_cpwer_tokenization_adaptation_completion_summary_bridge_checklist`
+- Connects reconciled character-spaced cpWER to frontier fill execution without claiming full MeetEval benchmark completion.
+
+Update: `speaker_profile` now also has a text-proxy diagnostic completion stack.
+
+- Diagnostic bridge checklist: `results/tables/speaker_profile_text_proxy_trial_diagnostic_bridge_checklist.csv`
+- Completion summary: `results/tables/speaker_profile_text_proxy_trial_diagnostic_completion_summary.csv`
+- Completion summary bridge checklist: `results/tables/speaker_profile_text_proxy_trial_diagnostic_completion_summary_bridge_checklist.csv`
+- Scripts: `python -m src.speaker_profile_text_proxy_trial_diagnostic_bridge_checklist`, `python -m src.speaker_profile_text_proxy_trial_diagnostic_completion_summary`, `python -m src.speaker_profile_text_proxy_trial_diagnostic_completion_summary_bridge_checklist`
+- All-gold text-proxy diagnostic reports `5/5` swapped bias; next direction remains embedding-or-voiceprint baseline.
+
+Update: the Streamlit demo now surfaces speaker profile text-proxy diagnostic status.
+
+- Tab: Speaker profile in `demo/app.py`
+- Shows swapped bias, per-case alignment, and bridge checklist note; qualitative/demo only.
+
 ## Healthy Project Principles
 
 - New experiments should be isolated.
