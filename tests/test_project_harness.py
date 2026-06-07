@@ -9,6 +9,8 @@ from src.project_harness import (
     build_frontier_focus_card_rows,
     build_frontier_handoff_packet_lines,
     build_frontier_handoff_packet_rows,
+    build_frontier_handoff_checklist_lines,
+    build_frontier_handoff_checklist_rows,
     build_frontier_parallel_picklist_lines,
     build_frontier_parallel_picklist_rows,
     build_frontier_parallel_picklist_checklist_lines,
@@ -230,6 +232,47 @@ class ProjectHarnessTest(unittest.TestCase):
         self.assertIn("meeteval_compatibility", rendered)
         self.assertIn("meeteval_dry_run_handoff.md", rendered)
         self.assertIn("meeteval_dry_run_receipt.json", rendered)
+
+    def test_build_frontier_handoff_checklist_rows_point_queue_head_to_open_artifact_step(self) -> None:
+        rows = build_frontier_handoff_checklist_rows(
+            [
+                {
+                    "queue_order": "1",
+                    "frontier_id": "meeteval_compatibility",
+                    "status": "documented_skill",
+                    "entry_artifact": "MeetEval readiness card",
+                    "why_now": "Use the readiness card to stage one narrow dry run before claiming any benchmark bridge.",
+                }
+            ]
+        )
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["checklist_order"], "1")
+        self.assertEqual(rows[0]["current_frontier"], "meeteval_compatibility")
+        self.assertEqual(rows[0]["next_artifact"], "results/figures/meeteval_dry_run_handoff.md")
+        self.assertIn("handoff packet", rows[0]["checklist_goal"].lower())
+        self.assertIn("receipt target", rows[0]["execution_intent"].lower())
+
+    def test_build_frontier_handoff_checklist_lines_render_queue(self) -> None:
+        lines = build_frontier_handoff_checklist_lines(
+            [
+                {
+                    "checklist_order": "1",
+                    "current_frontier": "meeteval_compatibility",
+                    "next_artifact": "results/figures/meeteval_dry_run_handoff.md",
+                    "receipt_target": "results/tables/meeteval_dry_run_receipt.json",
+                    "checklist_goal": "Use the handoff packet to stage the next frontier pass for meeteval_compatibility.",
+                    "execution_intent": "Open the next artifact first, then keep the receipt target visible for the narrow follow-up step.",
+                    "next_gate": "Confirm the handoff packet snapshot before advancing the queue.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Frontier Handoff Checklist", rendered)
+        self.assertIn("meeteval_compatibility", rendered)
+        self.assertIn("meeteval_dry_run_handoff.md", rendered)
+        self.assertIn("open-artifact path", rendered)
 
     def test_build_frontier_receipt_packet_rows_point_queue_head_to_receipt_target(self) -> None:
         rows = build_frontier_receipt_packet_rows(
