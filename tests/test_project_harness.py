@@ -4,6 +4,8 @@ import unittest
 
 from src.project_harness import (
     build_frontier_execution_queue_lines,
+    build_frontier_execution_queue_checklist_lines,
+    build_frontier_execution_queue_checklist_rows,
     build_frontier_execution_queue_rows,
     build_frontier_focus_card_lines,
     build_frontier_focus_card_checklist_lines,
@@ -110,6 +112,50 @@ class ProjectHarnessTest(unittest.TestCase):
         self.assertIn("# Frontier Execution Queue", rendered)
         self.assertIn("meeteval_compatibility", rendered)
         self.assertIn("entry_artifact", rendered)
+
+    def test_build_frontier_execution_queue_checklist_rows_preserve_queue_order(self) -> None:
+        rows = build_frontier_execution_queue_checklist_rows(
+            [
+                {
+                    "queue_order": "1",
+                    "frontier_id": "meeteval_compatibility",
+                    "status": "documented_skill",
+                    "entry_artifact": "MeetEval readiness card",
+                    "why_now": "Use the readiness card to stage one narrow dry run before claiming any benchmark bridge.",
+                },
+                {
+                    "queue_order": "2",
+                    "frontier_id": "external_validation",
+                    "status": "documented_skill",
+                    "entry_artifact": "external sanity-check prioritization card",
+                    "why_now": "Use the prioritization card to map one tiny sanity-check slice without claiming a completed benchmark.",
+                },
+            ]
+        )
+
+        self.assertEqual([row["checklist_order"] for row in rows], ["1", "2"])
+        self.assertEqual(rows[0]["frontier_id"], "meeteval_compatibility")
+        self.assertIn("queue entry", rows[0]["checklist_goal"].lower())
+
+    def test_build_frontier_execution_queue_checklist_lines_render_queue(self) -> None:
+        lines = build_frontier_execution_queue_checklist_lines(
+            [
+                {
+                    "checklist_order": "1",
+                    "frontier_id": "meeteval_compatibility",
+                    "entry_artifact": "MeetEval readiness card",
+                    "why_now": "Use the readiness card to stage one narrow dry run before claiming any benchmark bridge.",
+                    "checklist_goal": "Verify the execution queue entry for meeteval_compatibility before opening the next frontier artifact.",
+                    "queue_note": "Read the queue order first, then keep the entry artifact and why-now note visible while you confirm priority.",
+                    "next_gate": "Confirm this queue row before moving to the next frontier entry.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Frontier Execution Queue Checklist", rendered)
+        self.assertIn("meeteval_compatibility", rendered)
+        self.assertIn("why_now", rendered)
 
     def test_build_frontier_parallel_picklist_checklist_rows_point_queue_head_to_pickup_step(self) -> None:
         rows = build_frontier_parallel_picklist_checklist_rows(

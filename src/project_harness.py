@@ -187,6 +187,40 @@ def build_frontier_execution_queue_lines(rows: list[dict[str, str]]) -> list[str
     return lines
 
 
+def build_frontier_execution_queue_checklist_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    checklist_rows: list[dict[str, str]] = []
+    for row in rows:
+        frontier_id = str(row.get("frontier_id", ""))
+        checklist_rows.append(
+            {
+                "checklist_order": str(row.get("queue_order", "")),
+                "frontier_id": frontier_id,
+                "entry_artifact": str(row.get("entry_artifact", "")),
+                "why_now": str(row.get("why_now", "")),
+                "checklist_goal": f"Verify the execution queue entry for {frontier_id} before opening the next frontier artifact.",
+                "queue_note": "Read the queue order first, then keep the entry artifact and why-now note visible while you confirm priority.",
+                "next_gate": "Confirm this queue row before moving to the next frontier entry.",
+            }
+        )
+    return checklist_rows
+
+
+def build_frontier_execution_queue_checklist_lines(rows: list[dict[str, str]]) -> list[str]:
+    lines = [
+        "# Frontier Execution Queue Checklist",
+        "",
+        "This generated checklist turns the execution queue into a row-by-row verification path. It remains coordination-only and does not claim that any frontier work has already been executed.",
+        "",
+        "| checklist_order | frontier_id | entry_artifact | why_now | checklist_goal | queue_note | next_gate |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['checklist_order']} | {row['frontier_id']} | {row['entry_artifact']} | {row['why_now']} | {row['checklist_goal']} | {row['queue_note']} | {row['next_gate']} |"
+        )
+    return lines
+
+
 def build_frontier_focus_card_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     if not rows:
         return []
@@ -348,6 +382,16 @@ FRONTIER_FOCUS_CHECKLIST_COLUMNS = [
     "current_action",
     "checklist_goal",
     "focus_note",
+    "next_gate",
+]
+
+FRONTIER_QUEUE_CHECKLIST_COLUMNS = [
+    "checklist_order",
+    "frontier_id",
+    "entry_artifact",
+    "why_now",
+    "checklist_goal",
+    "queue_note",
     "next_gate",
 ]
 
@@ -944,6 +988,26 @@ def write_frontier_queue(frontier_status: list[dict[str, str]]) -> tuple[Path, P
     return json_path, md_path
 
 
+def write_frontier_execution_queue_checklist(frontier_status: list[dict[str, str]]) -> tuple[Path, Path, Path]:
+    tables_dir = PROJECT_ROOT / "results" / "tables"
+    figures_dir = PROJECT_ROOT / "results" / "figures"
+    tables_dir.mkdir(parents=True, exist_ok=True)
+    figures_dir.mkdir(parents=True, exist_ok=True)
+
+    queue_rows = build_frontier_execution_queue_rows(frontier_status)
+    checklist_rows = build_frontier_execution_queue_checklist_rows(queue_rows)
+    csv_path = tables_dir / "frontier_execution_queue_checklist.csv"
+    json_path = tables_dir / "frontier_execution_queue_checklist.json"
+    md_path = figures_dir / "frontier_execution_queue_checklist.md"
+    with csv_path.open("w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=FRONTIER_QUEUE_CHECKLIST_COLUMNS)
+        writer.writeheader()
+        writer.writerows(checklist_rows)
+    json_path.write_text(json.dumps(checklist_rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    md_path.write_text("\n".join(build_frontier_execution_queue_checklist_lines(checklist_rows)) + "\n", encoding="utf-8")
+    return csv_path, json_path, md_path
+
+
 def write_frontier_focus_card(frontier_status: list[dict[str, str]]) -> tuple[Path, Path]:
     tables_dir = PROJECT_ROOT / "results" / "tables"
     figures_dir = PROJECT_ROOT / "results" / "figures"
@@ -1169,6 +1233,7 @@ def main() -> None:
     report = build_report()
     json_path, md_path = write_report(report)
     queue_json_path, queue_md_path = write_frontier_queue(report["frontier_status"])
+    queue_checklist_csv_path, queue_checklist_json_path, queue_checklist_md_path = write_frontier_execution_queue_checklist(report["frontier_status"])
     focus_json_path, focus_md_path = write_frontier_focus_card(report["frontier_status"])
     focus_checklist_csv_path, focus_checklist_json_path, focus_checklist_md_path = write_frontier_focus_card_checklist(report["frontier_status"])
     handoff_json_path, handoff_md_path = write_frontier_handoff_packet(report["frontier_status"])
@@ -1188,6 +1253,9 @@ def main() -> None:
     print(f"Wrote harness summary: {md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier queue JSON: {queue_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier queue note: {queue_md_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote frontier queue checklist CSV: {queue_checklist_csv_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote frontier queue checklist JSON: {queue_checklist_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote frontier queue checklist note: {queue_checklist_md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier focus JSON: {focus_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier focus note: {focus_md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier focus checklist CSV: {focus_checklist_csv_path.relative_to(PROJECT_ROOT)}")
