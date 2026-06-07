@@ -1,0 +1,12 @@
+[
+  {
+    "checklist_order": "1",
+    "case_id": "NoOverlap",
+    "preflight_pass": "True",
+    "prerequisite_artifact": "results/figures/meeteval_cpwer_execution_preflight.md",
+    "receipt_target": "results/tables/meeteval_cpwer_execution_receipt.json",
+    "checklist_goal": "Verify the cpWER execution preflight for NoOverlap before opening the official execution receipt.",
+    "bridge_note": "Execution preflight reports preflight_pass=True with hypothesis_source=separated_whisper; confirm segment-export readiness before advancing to official cpWER execution.",
+    "next_gate": "Confirm this bridge before opening the official MeetEval cpWER execution receipt target."
+  }
+]
