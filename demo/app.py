@@ -209,13 +209,51 @@ def render_frontier_fill_status() -> None:
         )
 
 
+def render_speaker_profile_status() -> None:
+    diagnostic = load_json_list("results/tables/speaker_profile_text_proxy_trial_diagnostic.json")
+    summary = load_json_dict("results/tables/speaker_profile_text_proxy_trial_diagnostic_summary.json")
+    completion = load_json_dict("results/tables/speaker_profile_text_proxy_trial_diagnostic_completion_summary.json")
+    bridge = load_json_list("results/tables/speaker_profile_text_proxy_trial_diagnostic_bridge_checklist.json")
+    if not summary:
+        st.warning("Speaker profile text-proxy diagnostic summary not found.")
+        return
+    col_a, col_b = st.columns(2)
+    with col_a:
+        st.metric(
+            "Swapped bias",
+            f"{summary.get('swapped_count', '0')}/{summary.get('case_count', '0')} cases",
+        )
+        st.metric("Average confidence gap", summary.get("average_confidence_gap", "—"))
+    with col_b:
+        if completion:
+            st.metric("Diagnostic queue", completion.get("queue_status", "unknown"))
+        st.caption(f"Next method: `{summary.get('next_method_direction', '')}`")
+    if diagnostic:
+        st.markdown("**All-gold text-proxy diagnostic**")
+        st.table(
+            {
+                "case_id": [row.get("case_id", "") for row in diagnostic],
+                "alignment": [row.get("best_profile_alignment", "") for row in diagnostic],
+                "gap": [row.get("profile_confidence_gap", "") for row in diagnostic],
+            }
+        )
+    if bridge:
+        st.markdown("**Diagnostic bridge checklist**")
+        st.write(bridge[0].get("bridge_note", ""))
+        st.caption(f"Next gate: {bridge[0].get('next_gate', '')}")
+    st.info(
+        "Text-profile proxy is a risk signal only — not deployment-ready speaker identification. "
+        "All gold cases currently prefer swapped alignment."
+    )
+
+
 def main() -> None:
     st.set_page_config(page_title="Overlap-aware ASR Demo", layout="wide")
     st.title("When Should We Separate?")
     st.caption("Qualitative/demo viewer — not a live ASR runtime.")
 
-    tab_story, tab_walk, tab_gold, tab_frontier = st.tabs(
-        ["Storyboard", "Walkthrough", "Gold CER", "Frontier fill queue"]
+    tab_story, tab_walk, tab_gold, tab_frontier, tab_speaker = st.tabs(
+        ["Storyboard", "Walkthrough", "Gold CER", "Frontier fill queue", "Speaker profile"]
     )
     with tab_story:
         render_storyboard()
@@ -225,6 +263,8 @@ def main() -> None:
         render_gold_table()
     with tab_frontier:
         render_frontier_fill_status()
+    with tab_speaker:
+        render_speaker_profile_status()
 
     st.info(
         "This demo surfaces existing stable/gold and qualitative/demo artifacts. "
