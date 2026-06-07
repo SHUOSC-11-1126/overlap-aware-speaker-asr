@@ -1,0 +1,12 @@
+[
+  {
+    "checklist_order": "1",
+    "combined_fill_status": "fill_queue_ready",
+    "awaiting_fill_count": "3",
+    "prerequisite_artifact": "results/figures/frontier_execution_receipt_fill_queue_completion_summary.md",
+    "receipt_target": "results/figures/frontier_execution_receipt_fill_queue_handoff.md",
+    "checklist_goal": "Verify the receipt fill coordination queue completion summary before opening the fill handoff.",
+    "bridge_note": "Completion summary reports combined_fill_status=fill_queue_ready with awaiting_fill_count=3; confirm fill queue readiness before advancing the fill execution handoff.",
+    "next_gate": "Confirm this bridge before opening the frontier execution receipt fill queue handoff target."
+  }
+]
