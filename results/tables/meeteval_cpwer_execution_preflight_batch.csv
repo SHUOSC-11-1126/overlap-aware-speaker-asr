@@ -1,0 +1,6 @@
+﻿case_id,handoff_status,scaffold_status,hypothesis_source,reference_segment_count,hypothesis_segment_count,speaker_set_match,time_range_valid,export_path_valid,preflight_pass,preflight_note
+NoOverlap,execution_handoff_ready,scaffold_only,separated_whisper,25,25,True,True,True,True,Execution preflight validated for NoOverlap; segment exports align on speakers and time ranges. Official cpWER has not been computed.
+LightOverlap,execution_handoff_ready,scaffold_only,separated_whisper_cleaned,25,26,True,True,True,True,Execution preflight validated for LightOverlap; segment exports align on speakers and time ranges. Official cpWER has not been computed.
+MidOverlap,execution_handoff_ready,scaffold_only,separated_whisper_cleaned,25,27,True,True,True,True,Execution preflight validated for MidOverlap; segment exports align on speakers and time ranges. Official cpWER has not been computed.
+HeavyOverlap,execution_handoff_ready,scaffold_only,separated_whisper_cleaned,25,25,True,True,True,True,Execution preflight validated for HeavyOverlap; segment exports align on speakers and time ranges. Official cpWER has not been computed.
+OppositeOverlap,execution_handoff_ready,scaffold_only,separated_whisper_cleaned,24,25,True,True,True,True,Execution preflight validated for OppositeOverlap; segment exports align on speakers and time ranges. Official cpWER has not been computed.
