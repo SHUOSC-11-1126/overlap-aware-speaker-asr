@@ -40,8 +40,11 @@ results/synthetic_overlap_v2/
 !results/tables/cascade_benchmark_status.json
 !results/tables/meeteval_dry_run_checklist.csv
 !results/tables/meeteval_dry_run_checklist.json
+!results/tables/external_validation_checklist.csv
+!results/tables/external_validation_checklist.json
 !results/figures/cascade_benchmark_status.md
 !results/figures/meeteval_dry_run_checklist.md
+!results/figures/external_validation_checklist.md
 
 # Large synthetic benchmark assets
 resources/synthetic_overlap_v2/audio/

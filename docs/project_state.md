@@ -578,6 +578,12 @@ External validation slice receipt bridge:
 - `results/tables/external_validation_slice_receipt.json`
 - This bridge now materializes the expected evidence slot for that first slice as a template-only receipt. It still does not claim any executed external sanity-check; it simply defines what the first narrow follow-up should write back once it actually happens.
 
+External validation checklist bridge:
+
+- `results/figures/external_validation_checklist.md`
+- `results/tables/external_validation_checklist.csv`
+- This bridge now turns the prioritized external candidates into an execution checklist. It still stays in `external/sanity-check` mode and does not claim that any external validation run has been completed.
+
 External validation skill card:
 
 - `docs/skills/skill_07_external_validation.md`

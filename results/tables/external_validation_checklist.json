@@ -1,0 +1,38 @@
+[
+  {
+    "dataset_name": "AISHELL-4",
+    "label": "external/sanity-check",
+    "checklist_order": "1",
+    "preflight_step": "Confirm license and choose a tiny sanity-check slice.",
+    "expected_evidence": "results/tables/external_validation_slice_receipt.json",
+    "next_gate": "Confirm license, then stage one tiny slice before any evaluation claim.",
+    "validation_note": "Closest meeting-style target, so keep it at the front of the external sanity-check queue."
+  },
+  {
+    "dataset_name": "AliMeeting",
+    "label": "external/sanity-check",
+    "checklist_order": "2",
+    "preflight_step": "Confirm license and choose one compact overlap-heavy excerpt.",
+    "expected_evidence": "results/tables/external_validation_slice_receipt.json",
+    "next_gate": "Confirm license, then stage one tiny slice before any evaluation claim.",
+    "validation_note": "Near-term backup if AISHELL-4 access or packaging is slower than expected."
+  },
+  {
+    "dataset_name": "AMI",
+    "label": "external/sanity-check",
+    "checklist_order": "3",
+    "preflight_step": "Confirm license and compare one clip against current meeting-style exports.",
+    "expected_evidence": "results/tables/external_validation_slice_receipt.json",
+    "next_gate": "Confirm license, then stage one tiny slice before any evaluation claim.",
+    "validation_note": "Useful cross-domain reference, but keep the license check explicit before any slice is staged."
+  },
+  {
+    "dataset_name": "LibriCSS",
+    "label": "external/sanity-check",
+    "checklist_order": "4",
+    "preflight_step": "Confirm license and choose one overlap condition for a narrow sanity-check.",
+    "expected_evidence": "results/tables/external_validation_slice_receipt.json",
+    "next_gate": "Confirm license, then stage one tiny slice before any evaluation claim.",
+    "validation_note": "Best reserved for overlap-heavy follow-up after one meeting-style path is already established."
+  }
+]

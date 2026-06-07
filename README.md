@@ -360,6 +360,11 @@ Current external validation slice receipt result:
 - `results/figures/external_validation_slice_receipt.md` now materializes the expected evidence target for that first external slice
 - This still does not claim any external execution: it defines the template-only writeback slot, expected inputs, and expected outputs so a future narrow dry run has a concrete receipt to fill
 
+Current external validation checklist result:
+
+- `results/figures/external_validation_checklist.md` now turns the prioritized candidates into an execution checklist so the next contributor can walk the external sanity-check path in order
+- This stays labeled `external/sanity-check`: it sequences the preflight steps and still does not claim that any external validation run has been completed
+
 Current external validation skill result:
 
 - `docs/skills/skill_07_external_validation.md` now provides a dedicated skill card for the external mini-validation frontier
