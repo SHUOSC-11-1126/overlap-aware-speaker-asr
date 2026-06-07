@@ -874,6 +874,18 @@ MeetEval cpWER execution handoff:
 - `results/tables/meeteval_cpwer_execution_handoff.csv`
 - The execution handoff targets official cpWER evaluation for one verified case; benchmark completion remains pending.
 
+MeetEval cpWER execution handoff bridge checklist:
+
+- `results/figures/meeteval_cpwer_execution_handoff_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_execution_handoff_bridge_checklist.csv`
+- This checklist connects the execution handoff to the official cpWER execution receipt without claiming cpWER execution.
+
+MeetEval cpWER execution preflight:
+
+- `results/figures/meeteval_cpwer_execution_preflight.md`
+- `results/tables/meeteval_cpwer_execution_preflight.csv`
+- The first narrow execution preflight on `NoOverlap` reports `preflight_pass = true` with aligned segment exports; official cpWER evaluation remains pending.
+
 Speaker profile similarity bridge:
 
 - `results/figures/speaker_profile_risk_summary.md`
@@ -945,6 +957,12 @@ Speaker profile embedding trial execution scaffold bridge checklist:
 - `results/figures/speaker_profile_embedding_trial_execution_scaffold_bridge_checklist.md`
 - `results/tables/speaker_profile_embedding_trial_execution_scaffold_bridge_checklist.csv`
 - This checklist connects the execution scaffold to voiceprint execution without claiming attribution success.
+
+Speaker profile embedding trial execution handoff:
+
+- `results/figures/speaker_profile_embedding_trial_execution_handoff.md`
+- `results/tables/speaker_profile_embedding_trial_execution_handoff.csv`
+- The embedding execution handoff targets `NoOverlap` for a narrow embedding-or-voiceprint diagnostic trial; improved speaker attribution remains unverified.
 
 LLM critic qualitative bridge:
 
@@ -1167,6 +1185,12 @@ External validation slice staging readiness handoff:
 - `results/figures/external_validation_slice_staging_readiness_handoff.md`
 - `results/tables/external_validation_slice_staging_readiness_handoff.csv`
 - The staging handoff records `blocker = license_confirmation_pending` for AISHELL-4; external audio staging remains pending.
+
+External validation slice staging readiness handoff bridge checklist:
+
+- `results/figures/external_validation_slice_staging_readiness_handoff_bridge_checklist.md`
+- `results/tables/external_validation_slice_staging_readiness_handoff_bridge_checklist.csv`
+- This checklist connects the staging handoff to the slice staging receipt without claiming benchmark execution.
 
 External validation checklist bridge:
 
@@ -1501,7 +1525,11 @@ python -m src.demo_excellence_queue_status
 python -m src.meeteval_cpwer_execution_scaffold
 python -m src.meeteval_cpwer_execution_scaffold_bridge_checklist
 python -m src.meeteval_cpwer_execution_handoff
+python -m src.meeteval_cpwer_execution_handoff_bridge_checklist
+python -m src.meeteval_cpwer_execution_preflight
 python -m src.speaker_profile_embedding_trial_execution_scaffold
+python -m src.speaker_profile_embedding_trial_execution_handoff
+python -m src.external_validation_slice_staging_readiness_handoff_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_scaffold_bridge_checklist
 python -m src.speaker_profile_embedding_trial_handoff
 python -m src.speaker_profile_embedding_trial
