@@ -1,0 +1,7 @@
+# Frontier Execution Queue Status Bridge Checklist
+
+This generated checklist turns the unified frontier execution-chain rollup into a row-by-row bridge verification path. It remains experimental/frontier coordination only and does not claim benchmark completion.
+
+| checklist_order | combined_chain_status | meeteval_chain_status | speaker_profile_chain_status | external_staging_chain_status | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | execution_chain_ready | execution_chain_ready | execution_chain_ready | execution_chain_ready | results/figures/frontier_execution_queue_status.md | results/figures/meeteval_cpwer_execution_status_bridge_checklist.md | Verify the unified frontier execution-chain rollup before opening any per-frontier execution receipt. | Combined rollup reports combined_chain_status=execution_chain_ready; meeteval=execution_chain_ready, speaker_profile=execution_chain_ready, external_staging=execution_chain_ready. | Confirm this bridge before claiming any frontier benchmark execution. |
