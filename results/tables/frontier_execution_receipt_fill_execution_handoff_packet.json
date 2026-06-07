@@ -1,8 +1,23 @@
 [
   {
+    "packet_section": "dashboard",
+    "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_completion_dashboard.md",
+    "section_role": "Top-level fill execution queue snapshot"
+  },
+  {
+    "packet_section": "runbook",
+    "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_runbook_card.md",
+    "section_role": "One-page first action execution card"
+  },
+  {
+    "packet_section": "milestone",
+    "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_milestone_card.md",
+    "section_role": "Immediate completion boundary"
+  },
+  {
     "packet_section": "entry",
     "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_completion_summary.md",
-    "section_role": "Start here for queue completion status"
+    "section_role": "Queue completion status rollup"
   },
   {
     "packet_section": "handoff",
@@ -35,6 +50,16 @@
     "section_role": "Handoff packet to evidence receipt verification"
   },
   {
+    "packet_section": "execution_receipt_bridge",
+    "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_execution_receipt_bridge.md",
+    "section_role": "Evidence receipt to JSON execution receipt bridge"
+  },
+  {
+    "packet_section": "execution_receipt_bridge_checklist",
+    "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_execution_receipt_bridge_checklist.md",
+    "section_role": "Ordered JSON receipt writeback verification"
+  },
+  {
     "packet_section": "status",
     "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_status.md",
     "section_role": "Unified fill execution status rollup"
@@ -42,6 +67,6 @@
   {
     "packet_section": "packet",
     "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_packet.md",
-    "section_role": "Single-entry fill execution packet"
+    "section_role": "Earlier fill execution packet entrypoint"
   }
 ]
