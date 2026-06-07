@@ -2,15 +2,15 @@
 
 ## What question does this skill explore?
 
-How can the current evaluation stack be aligned with meeting-transcription conventions such as cpWER or ORC-WER?
+Can the project's overlap-aware ASR outputs be exported and evaluated with MeetEval-compatible cpWER tooling without breaking the stable baseline?
 
 ## Why is it relevant to the current project?
 
-The project already has speaker-aware CER and cpCER-lite. This skill defines a path toward compatibility with more standard multi-speaker meeting benchmarks.
+The repository already has speaker-aware CER and cpCER-lite on the gold benchmark. MeetEval compatibility is the frontier path toward community-standard meeting transcription metrics while keeping the stable evaluation layer intact.
 
 ## Current queue position
 
-Queue head. If you are picking up a frontier task now, start here and use the readiness handoff before moving to any other frontier card.
+First in the current frontier queue. Use it before external validation or speaker-profile work so compatibility scaffolding stays separate from sanity-check and risk-signal experiments.
 
 ## Challenge level
 
@@ -18,49 +18,51 @@ Level 3: Research Extension
 
 ## Minimum viable attempt
 
-- Export current transcripts into a MeetEval-compatible format
-- Compare the current metrics with cpWER-style expectations
-- Write a short compatibility note
+- Export one verified gold case into MeetEval-compatible segment format
+- Run a dry-run alignment check without claiming official cpWER scores
+- Document the export path and any speaker-label mapping assumptions
 
 ## Stretch goal
 
-- Run a small external sanity check using a compatible export
-- Compare speaker-aware CER, cpCER-lite, and standard meeting metrics side by side
+- Compare cpWER-lite and official cpWER on one narrow case
+- Document alignment drift and segment-granularity issues
+- Turn the export path into a repeatable compatibility scaffold
 
 ## Failure is useful if...
 
-- The export is tricky, but the format mismatch is clearly documented
-- The current benchmark is enough for a local comparison even if the external integration is partial
-- The exercise clarifies what would be needed for a real meeting benchmark bridge
+- The export format is correct but cpWER reveals alignment drift the project had not surfaced
+- The work clarifies which cases are safe for official MeetEval evaluation first
+- The scaffold shows that compatibility work must stay separate from gold CER tables
 
 ## Inputs
 
-- Speaker-aware transcripts
-- cpCER-lite outputs
-- Gold references
+- Verified gold references
+- Speaker-track and mixed transcript outputs
+- MeetEval export conventions
 
 ## Outputs
 
-- MeetEval-compatible export
-- cpWER / ORC-WER discussion note
+- MeetEval-compatible export artifacts
+- cpWER execution scaffold and preflight notes
+- Explicit experimental/frontier labels on all compatibility outputs
 
 ## What not to do
 
-- Do not force a large benchmark integration if the project does not need it.
-- Do not present this as a core quantitative result unless it is actually evaluated.
-- Do not blur the line between current metrics and future work.
-- Do not pretend compatibility is the same as evaluation.
+- Do not overwrite stable gold CER tables with cpWER results.
+- Do not claim official MeetEval evaluation before the execution receipt is filled.
+- Do not use reference transcripts as routing input.
+- Do not blur oracle/analysis-only alignment work with deployable metrics.
 
 ## Success criteria
 
-- A clear export path exists.
-- The report explains how the current metrics relate to standard meeting evaluation.
-- The work is framed as a compatibility bridge, not a new benchmark obsession.
+- One verified case has a documented MeetEval export and preflight path.
+- All outputs are labeled `experimental/frontier`.
+- A future agent can see whether official cpWER evaluation is worth running next.
 
 ## Suggested agent prompt
 
-Bridge the current evaluation pipeline toward MeetEval / cpWER compatibility without confusing export support with a new benchmark claim.
+"Pick up Skill 04. Advance the MeetEval cpWER execution chain for one verified gold case. Keep all outputs in experimental/frontier scope and do not claim official benchmark completion."
 
 ## Owner suggestion
 
-Metrics / benchmarking owner.
+Mode B focused extension agent with evaluation discipline.
