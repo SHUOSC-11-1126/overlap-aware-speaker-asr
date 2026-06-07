@@ -63,6 +63,11 @@ python -m src.router_ablation
 python -m src.router_ablation_split
 python -m src.project_harness
 python -m src.frontier_execution_receipt_fill_execution_completion_summary
+python -m src.frontier_execution_receipt_fill_execution_completion_summary_bridge_checklist
+python -m src.frontier_execution_receipt_fill_execution_operator_brief
+python -m src.frontier_execution_receipt_fill_execution_receipt_bridge
+python -m src.frontier_execution_receipt_fill_execution_receipt_bridge_checklist
+python -m src.frontier_execution_receipt_fill_execution_handoff_packet
 python -m src.frontier_execution_receipt_fill_execution_handoff_bridge_checklist
 ```
 

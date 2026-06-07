@@ -1484,6 +1484,30 @@ Frontier execution receipt fill execution completion summary bridge checklist:
 - `results/tables/frontier_execution_receipt_fill_execution_completion_summary_bridge_checklist.csv`
 - This checklist connects the fill execution completion summary to the fill execution handoff.
 
+Frontier execution receipt fill execution operator brief:
+
+- `results/figures/frontier_execution_receipt_fill_execution_operator_brief.md`
+- `results/tables/frontier_execution_receipt_fill_execution_operator_brief.csv`
+- This brief gives the current frontier operator a plain-language next step for the first fill target (`meeteval_compatibility`).
+
+Frontier execution receipt fill execution receipt bridge:
+
+- `results/figures/frontier_execution_receipt_fill_execution_receipt_bridge.md`
+- `results/tables/frontier_execution_receipt_fill_execution_receipt_bridge.csv`
+- This bridge connects the operator brief to the MeetEval execution receipt target without claiming benchmark execution.
+
+Frontier execution receipt fill execution receipt bridge checklist:
+
+- `results/figures/frontier_execution_receipt_fill_execution_receipt_bridge_checklist.md`
+- `results/tables/frontier_execution_receipt_fill_execution_receipt_bridge_checklist.csv`
+- This checklist turns the receipt bridge into an ordered writeback verification path.
+
+Frontier execution receipt fill execution handoff packet:
+
+- `results/figures/frontier_execution_receipt_fill_execution_handoff_packet.md`
+- `results/tables/frontier_execution_receipt_fill_execution_handoff_packet.csv`
+- This packet consolidates the fill execution coordination stack into one entrypoint.
+
 MeetEval compatibility skill card:
 
 - `docs/skills/skill_04_meeteval_compatibility.md`
@@ -1877,6 +1901,10 @@ python -m src.frontier_execution_receipt_fill_execution_handoff
 python -m src.frontier_execution_receipt_fill_execution_handoff_bridge_checklist
 python -m src.frontier_execution_receipt_fill_execution_completion_summary
 python -m src.frontier_execution_receipt_fill_execution_completion_summary_bridge_checklist
+python -m src.frontier_execution_receipt_fill_execution_operator_brief
+python -m src.frontier_execution_receipt_fill_execution_receipt_bridge
+python -m src.frontier_execution_receipt_fill_execution_receipt_bridge_checklist
+python -m src.frontier_execution_receipt_fill_execution_handoff_packet
 python -m src.speaker_profile_embedding_trial_execution_handoff
 python -m src.speaker_profile_embedding_trial_execution_handoff_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_preflight

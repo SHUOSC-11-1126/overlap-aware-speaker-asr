@@ -1277,6 +1277,30 @@ Update: the frontier receipt layer now has a fill execution completion summary b
 - Summary view: `results/figures/frontier_execution_receipt_fill_execution_completion_summary_bridge_checklist.md`
 - Connects the fill execution completion summary to the fill execution handoff.
 
+Update: the frontier receipt layer now has a fill execution operator brief.
+
+- Operator brief: `results/tables/frontier_execution_receipt_fill_execution_operator_brief.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_operator_brief.md`
+- Plain-language next step for the first fill target (`meeteval_compatibility`).
+
+Update: the frontier receipt layer now has a fill execution receipt bridge.
+
+- Receipt bridge: `results/tables/frontier_execution_receipt_fill_execution_receipt_bridge.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_receipt_bridge.md`
+- Connects the operator brief to the MeetEval execution receipt target.
+
+Update: the frontier receipt layer now has a fill execution receipt bridge checklist.
+
+- Receipt bridge checklist: `results/tables/frontier_execution_receipt_fill_execution_receipt_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_receipt_bridge_checklist.md`
+- Ordered writeback verification path before opening the execution receipt.
+
+Update: the frontier receipt layer now has a fill execution handoff packet.
+
+- Handoff packet: `results/tables/frontier_execution_receipt_fill_execution_handoff_packet.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_handoff_packet.md`
+- Single entrypoint for the fill execution coordination stack.
+
 Update: `demo_excellence` now has a lightweight Streamlit viewer scaffold.
 
 - Demo app: `demo/app.py`
