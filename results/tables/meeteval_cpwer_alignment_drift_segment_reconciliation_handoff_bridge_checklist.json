@@ -1,0 +1,12 @@
+[
+  {
+    "checklist_order": "1",
+    "case_id": "HeavyOverlap",
+    "handoff_status": "reconciliation_handoff_ready",
+    "prerequisite_artifact": "results/figures/meeteval_cpwer_alignment_drift_segment_reconciliation_handoff.md",
+    "receipt_target": "results/figures/meeteval_cpwer_alignment_drift_segment_reconciliation_scaffold_bridge_checklist.md",
+    "checklist_goal": "Verify the reconciliation handoff bridge for HeavyOverlap before reopening the reconciliation scaffold bridge.",
+    "bridge_note": "Reconciliation handoff remains reconciliation_handoff_ready; confirm diagnostic context before advancing the scaffold bridge.",
+    "next_gate": "Confirm this bridge before opening the cpWER segment reconciliation scaffold bridge checklist target."
+  }
+]
