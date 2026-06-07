@@ -1140,6 +1140,25 @@ Update: `meeteval_compatibility` now has a dedicated skill card.
 - Skill card: `docs/skills/skill_04_meeteval_compatibility.md`
 - The frontier queue head is now directly pickable from the skills index.
 
+Update: `external_validation` now also has staging execution status bridge checklists.
+
+- Staging execution status bridge: `results/tables/external_validation_slice_staging_execution_status_bridge_checklist.csv`
+- Summary view: `results/figures/external_validation_slice_staging_execution_status_bridge_checklist.md`
+- This completes the per-chain status bridge layer for external staging without claiming benchmark execution.
+
+Update: the frontier now has a coordination queue completion summary.
+
+- Frontier execution queue completion summary: `results/tables/frontier_execution_queue_completion_summary.csv`
+- Completion summary bridge: `results/tables/frontier_execution_queue_completion_summary_bridge_checklist.csv`
+- Summary views: `results/figures/frontier_execution_queue_completion_summary.md`, `results/figures/frontier_execution_queue_completion_summary_bridge_checklist.md`
+- `queue_status = queue_complete` at `3/3` ready chains; no benchmark execution is claimed.
+
+Update: the frontier now has a per-frontier execution handoff.
+
+- Frontier execution queue handoff: `results/tables/frontier_execution_queue_handoff.csv`
+- Summary view: `results/figures/frontier_execution_queue_handoff.md`
+- This turns the unified rollup into receipt-fill handoff actions for MeetEval, speaker profile, and external staging.
+
 ## Healthy Project Principles
 
 - New experiments should be isolated.

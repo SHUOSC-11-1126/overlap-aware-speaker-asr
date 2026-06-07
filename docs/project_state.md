@@ -1285,6 +1285,12 @@ External validation slice staging execution status:
 - `results/tables/external_validation_slice_staging_execution_status.csv`
 - The staging execution-chain rollup reports `execution_chain_status = execution_chain_ready` for AISHELL-4; external audio staging remains pending.
 
+External validation slice staging execution status bridge checklist:
+
+- `results/figures/external_validation_slice_staging_execution_status_bridge_checklist.md`
+- `results/tables/external_validation_slice_staging_execution_status_bridge_checklist.csv`
+- This checklist connects the staging execution-chain status rollup to the external slice staging receipt without claiming benchmark execution.
+
 Frontier execution queue status:
 
 - `results/figures/frontier_execution_queue_status.md`
@@ -1296,6 +1302,24 @@ Frontier execution queue status bridge checklist:
 - `results/figures/frontier_execution_queue_status_bridge_checklist.md`
 - `results/tables/frontier_execution_queue_status_bridge_checklist.csv`
 - This checklist connects the unified frontier rollup to per-frontier execution receipt gates without claiming benchmark completion.
+
+Frontier execution queue completion summary:
+
+- `results/figures/frontier_execution_queue_completion_summary.md`
+- `results/tables/frontier_execution_queue_completion_summary.csv`
+- The coordination queue rollup reports `queue_status = queue_complete` at `3/3` ready chains; no benchmark execution is claimed.
+
+Frontier execution queue completion summary bridge checklist:
+
+- `results/figures/frontier_execution_queue_completion_summary_bridge_checklist.md`
+- `results/tables/frontier_execution_queue_completion_summary_bridge_checklist.csv`
+- This checklist connects the coordination queue completion summary to the execution handoff without claiming benchmark completion.
+
+Frontier execution queue handoff:
+
+- `results/figures/frontier_execution_queue_handoff.md`
+- `results/tables/frontier_execution_queue_handoff.csv`
+- This handoff turns the unified frontier rollup into per-frontier execution receipt actions for MeetEval, speaker profile, and external staging.
 
 MeetEval compatibility skill card:
 
@@ -1651,8 +1675,12 @@ python -m src.speaker_profile_embedding_trial_execution_status_bridge_checklist
 python -m src.external_validation_slice_staging_handoff_receipt_scaffold
 python -m src.external_validation_slice_staging_handoff_receipt_scaffold_bridge_checklist
 python -m src.external_validation_slice_staging_execution_status
+python -m src.external_validation_slice_staging_execution_status_bridge_checklist
 python -m src.frontier_execution_queue_status
 python -m src.frontier_execution_queue_status_bridge_checklist
+python -m src.frontier_execution_queue_completion_summary
+python -m src.frontier_execution_queue_completion_summary_bridge_checklist
+python -m src.frontier_execution_queue_handoff
 python -m src.speaker_profile_embedding_trial_execution_handoff
 python -m src.speaker_profile_embedding_trial_execution_handoff_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_preflight
