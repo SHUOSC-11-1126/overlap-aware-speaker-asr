@@ -75,6 +75,8 @@ def render_frontier_fill_status() -> None:
     rows = load_json_list("results/tables/frontier_execution_receipt_fill_queue_status.json")
     handoff_rows = load_json_list("results/tables/frontier_execution_receipt_fill_execution_handoff.json")
     operator_brief = load_json_dict("results/tables/frontier_execution_receipt_fill_execution_operator_brief.json")
+    runbook = load_json_dict("results/tables/frontier_execution_receipt_fill_execution_runbook_card.json")
+    dashboard = load_json_dict("results/tables/frontier_execution_receipt_fill_execution_completion_dashboard.json")
     if not summary:
         st.warning("Frontier fill queue summary not found.")
         return
@@ -107,6 +109,13 @@ def render_frontier_fill_status() -> None:
                 "execution_status": [row.get("execution_status", "") for row in rows],
             }
         )
+    if dashboard:
+        st.markdown("**Fill execution dashboard**")
+        st.write(dashboard.get("dashboard_note", ""))
+    if runbook:
+        st.markdown("**Fill execution runbook card**")
+        st.write(runbook.get("runbook_note", ""))
+        st.caption(f"Action: `{runbook.get('recommended_action', '')}`")
     if operator_brief:
         st.markdown("**Fill execution operator brief**")
         st.write(operator_brief.get("operator_note", ""))
