@@ -1,0 +1,12 @@
+[
+  {
+    "checklist_order": "1",
+    "card_index": "2",
+    "card_title": "Pipeline",
+    "prerequisite_artifact": "results/figures/demo_storyboard_review_pass_advance.md",
+    "receipt_target": "results/figures/demo_storyboard_review_pass.md",
+    "checklist_goal": "Verify the storyboard review advance bridge for card 2 (Pipeline) before opening the third card review pass.",
+    "bridge_note": "Storyboard review advanced with prior_card_status=Problem review_complete; confirm card order before advancing to the Findings card.",
+    "next_gate": "Confirm this bridge before opening the demo storyboard review pass third target."
+  }
+]

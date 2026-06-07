@@ -1,0 +1,8 @@
+{
+  "review_order": "2",
+  "card_index": "2",
+  "card_title": "Pipeline",
+  "review_status": "review_complete",
+  "review_note": "Qualitative storyboard review for card 2 (Pipeline) complete; no live demo or recording is claimed.",
+  "expected_evidence": "results/tables/demo_storyboard_receipt.json"
+}
