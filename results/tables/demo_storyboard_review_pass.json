@@ -1,0 +1,8 @@
+{
+  "review_order": "1",
+  "card_index": "1",
+  "card_title": "Problem",
+  "review_status": "review_complete",
+  "review_note": "Qualitative storyboard review for card 1 (Problem) complete; no live demo or recording is claimed.",
+  "expected_evidence": "results/tables/demo_storyboard_receipt.json"
+}
