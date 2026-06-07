@@ -1,12 +1,13 @@
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 from pathlib import Path
 from typing import Any
 
 from .config import PROJECT_ROOT
-from .evaluate_cer import levenshtein_distance, normalize_text
+from .evaluate_cer import levenshtein_distance, list_verified_cases, normalize_text
 from .meeteval_dry_run import load_jsonl_segments, select_preferred_case
 
 
@@ -40,6 +41,15 @@ RECEIPT_COLUMNS = [
     "best_mapping",
     "expected_inputs",
     "writeback_note",
+]
+
+SUMMARY_COLUMNS = [
+    "scope",
+    "case_count",
+    "average_cpwer_bridge_lite",
+    "direct_mapping_count",
+    "swapped_mapping_count",
+    "observation",
 ]
 
 
@@ -140,7 +150,7 @@ def build_cpwer_bridge_row(
     }
 
 
-def build_cpwer_bridge_lines(row: dict[str, Any]) -> list[str]:
+def build_cpwer_bridge_lines(rows: list[dict[str, Any]]) -> list[str]:
     lines = [
         "# MeetEval cpWER Bridge",
         "",
@@ -149,29 +159,128 @@ def build_cpwer_bridge_lines(row: dict[str, Any]) -> list[str]:
         "",
         "| case_id | hypothesis_source | speaker_count | direct_macro_cer | swapped_macro_cer | cpwer_bridge_lite | best_mapping | observation |",
         "| --- | --- | ---: | ---: | ---: | ---: | --- | --- |",
-        (
+    ]
+    for row in rows:
+        lines.append(
             f"| {row['case_id']} | {row['hypothesis_source']} | {row['speaker_count']} | "
             f"{row['direct_macro_cer']} | {row['swapped_macro_cer']} | {row['cpwer_bridge_lite']} | "
             f"{row['best_mapping']} | {row['observation']} |"
+        )
+    return lines
+
+
+def build_cpwer_bridge_summary_row(rows: list[dict[str, Any]], scope: str) -> dict[str, Any]:
+    if not rows:
+        return {
+            "scope": scope,
+            "case_count": 0,
+            "average_cpwer_bridge_lite": 0.0,
+            "direct_mapping_count": 0,
+            "swapped_mapping_count": 0,
+            "observation": "No cpWER bridge-lite rows were available for summary.",
+        }
+
+    direct_count = sum(1 for row in rows if str(row.get("best_mapping", "")) == "direct")
+    swapped_count = sum(1 for row in rows if str(row.get("best_mapping", "")) == "swapped")
+    average = round(
+        sum(float(row.get("cpwer_bridge_lite", 0.0) or 0.0) for row in rows) / len(rows),
+        6,
+    )
+    return {
+        "scope": scope,
+        "case_count": len(rows),
+        "average_cpwer_bridge_lite": average,
+        "direct_mapping_count": direct_count,
+        "swapped_mapping_count": swapped_count,
+        "observation": (
+            "experimental/frontier all-case cpWER bridge-lite summary; "
+            "this is not a full MeetEval cpWER benchmark claim."
+        ),
+    }
+
+
+def build_cpwer_bridge_summary_lines(row: dict[str, Any]) -> list[str]:
+    lines = [
+        "# MeetEval cpWER Bridge Summary",
+        "",
+        "This generated note summarizes the cpWER bridge-lite pass across the selected gold scope. "
+        "It does not claim a full MeetEval or official cpWER benchmark evaluation.",
+        "",
+        "| scope | case_count | average_cpwer_bridge_lite | direct_mapping_count | swapped_mapping_count | observation |",
+        "| --- | ---: | ---: | ---: | ---: | --- |",
+        (
+            f"| {row['scope']} | {row['case_count']} | {row['average_cpwer_bridge_lite']} | "
+            f"{row['direct_mapping_count']} | {row['swapped_mapping_count']} | {row['observation']} |"
         ),
     ]
     return lines
 
 
-def build_cpwer_bridge_handoff_rows(bridge_row: dict[str, Any]) -> list[dict[str, str]]:
-    if not bridge_row:
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Run MeetEval cpWER bridge-lite on exported segments.")
+    parser.add_argument(
+        "--case",
+        default="preferred",
+        help="Verified case id, 'all', or 'preferred' (default uses dry-run checklist priority).",
+    )
+    return parser.parse_args()
+
+
+def load_hypothesis_source_map() -> dict[str, str]:
+    summary_path = PROJECT_ROOT / "results" / "tables" / "meeteval_compatibility_summary.json"
+    if not summary_path.exists():
+        return {}
+    payload = json.loads(summary_path.read_text(encoding="utf-8"))
+    return {
+        str(row.get("case_id", "")): str(row.get("hypothesis_source", ""))
+        for row in payload
+        if str(row.get("case_id", ""))
+    }
+
+
+def resolve_case_ids(case_arg: str) -> list[str]:
+    if case_arg == "all":
+        return list_verified_cases()
+    if case_arg == "preferred":
+        checklist_path = PROJECT_ROOT / "results" / "tables" / "meeteval_dry_run_checklist.csv"
+        return [select_preferred_case(checklist_path)]
+    return [case_arg]
+
+
+def build_cpwer_bridge_handoff_rows(
+    bridge_rows: list[dict[str, Any]],
+    summary_row: dict[str, Any],
+) -> list[dict[str, str]]:
+    if not bridge_rows:
         return []
 
+    scope = str(summary_row.get("scope", "single_verified_case"))
+    case_id = "ALL" if scope == "all_gold_cases" else str(bridge_rows[0].get("case_id", ""))
+    cpwer_value = (
+        str(summary_row.get("average_cpwer_bridge_lite", ""))
+        if scope == "all_gold_cases"
+        else str(bridge_rows[0].get("cpwer_bridge_lite", ""))
+    )
+    mapping_note = (
+        f"direct={summary_row.get('direct_mapping_count', 0)}, swapped={summary_row.get('swapped_mapping_count', 0)}"
+        if scope == "all_gold_cases"
+        else str(bridge_rows[0].get("best_mapping", ""))
+    )
+    handoff_note = (
+        "MeetEval cpWER bridge-lite has been computed across all gold cases; it is not a finished benchmark claim."
+        if scope == "all_gold_cases"
+        else "MeetEval cpWER bridge-lite has been computed for one case; it is not a finished benchmark claim."
+    )
     return [
         {
             "bridge_status": "cpwer_bridge_complete",
-            "case_id": str(bridge_row.get("case_id", "")),
-            "cpwer_bridge_lite": str(bridge_row.get("cpwer_bridge_lite", "")),
-            "best_mapping": str(bridge_row.get("best_mapping", "")),
+            "case_id": case_id,
+            "cpwer_bridge_lite": cpwer_value,
+            "best_mapping": mapping_note,
             "bridge_goal": "Use the bridge-lite result as a narrow compatibility signal before any broader MeetEval integration.",
             "primary_limitation": "This uses speaker-aggregated macro CER rather than a full MeetEval cpWER implementation.",
             "expected_evidence": "results/tables/meeteval_cpwer_bridge_receipt.json",
-            "handoff_note": "MeetEval cpWER bridge-lite has been computed for one case; it is not a finished benchmark claim.",
+            "handoff_note": handoff_note,
         }
     ]
 
@@ -228,27 +337,35 @@ def build_cpwer_bridge_receipt_lines(rows: list[dict[str, str]]) -> list[str]:
     return lines
 
 
-def run_cpwer_bridge(case_id: str) -> dict[str, Any]:
+def run_cpwer_bridge(case_id: str, hypothesis_source_map: dict[str, str] | None = None) -> dict[str, Any]:
     reference_path = PROJECT_ROOT / "results" / "tables" / "meeteval_reference_segments.jsonl"
     hypothesis_path = PROJECT_ROOT / "results" / "tables" / "meeteval_hypothesis_segments.jsonl"
     reference_segments = load_jsonl_segments(reference_path, case_id)
     hypothesis_segments = load_jsonl_segments(hypothesis_path, case_id)
 
-    hypothesis_source = ""
-    diagnostic_path = PROJECT_ROOT / "results" / "tables" / "meeteval_dry_run_diagnostic.json"
-    if diagnostic_path.exists():
-        diagnostic = json.loads(diagnostic_path.read_text(encoding="utf-8"))
-        if str(diagnostic.get("case_id", "")) == case_id:
-            hypothesis_source = str(diagnostic.get("hypothesis_source", ""))
+    source_map = hypothesis_source_map or {}
+    hypothesis_source = str(source_map.get(case_id, ""))
+    if not hypothesis_source:
+        diagnostic_path = PROJECT_ROOT / "results" / "tables" / "meeteval_dry_run_diagnostic.json"
+        if diagnostic_path.exists():
+            diagnostic = json.loads(diagnostic_path.read_text(encoding="utf-8"))
+            if str(diagnostic.get("case_id", "")) == case_id:
+                hypothesis_source = str(diagnostic.get("hypothesis_source", ""))
 
     return build_cpwer_bridge_row(case_id, reference_segments, hypothesis_segments, hypothesis_source)
 
 
+def run_cpwer_bridges(case_ids: list[str]) -> list[dict[str, Any]]:
+    source_map = load_hypothesis_source_map()
+    return [run_cpwer_bridge(case_id, source_map) for case_id in case_ids]
+
+
 def write_outputs(
-    bridge_row: dict[str, Any],
+    bridge_rows: list[dict[str, Any]],
+    summary_row: dict[str, Any],
     handoff_rows: list[dict[str, str]],
     receipt_rows: list[dict[str, str]],
-) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path]:
+) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path, Path, Path]:
     tables_dir = PROJECT_ROOT / "results" / "tables"
     figures_dir = PROJECT_ROOT / "results" / "figures"
     tables_dir.mkdir(parents=True, exist_ok=True)
@@ -257,6 +374,9 @@ def write_outputs(
     bridge_csv_path = tables_dir / "meeteval_cpwer_bridge.csv"
     bridge_json_path = tables_dir / "meeteval_cpwer_bridge.json"
     bridge_md_path = figures_dir / "meeteval_cpwer_bridge.md"
+    summary_csv_path = tables_dir / "meeteval_cpwer_bridge_summary.csv"
+    summary_json_path = tables_dir / "meeteval_cpwer_bridge_summary.json"
+    summary_md_path = figures_dir / "meeteval_cpwer_bridge_summary.md"
     handoff_csv_path = tables_dir / "meeteval_cpwer_bridge_handoff.csv"
     handoff_json_path = tables_dir / "meeteval_cpwer_bridge_handoff.json"
     handoff_md_path = figures_dir / "meeteval_cpwer_bridge_handoff.md"
@@ -266,9 +386,15 @@ def write_outputs(
     with bridge_csv_path.open("w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=BRIDGE_COLUMNS)
         writer.writeheader()
-        writer.writerow(bridge_row)
-    bridge_json_path.write_text(json.dumps(bridge_row, ensure_ascii=False, indent=2), encoding="utf-8")
-    bridge_md_path.write_text("\n".join(build_cpwer_bridge_lines(bridge_row)) + "\n", encoding="utf-8")
+        writer.writerows(bridge_rows)
+    bridge_json_path.write_text(json.dumps(bridge_rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    bridge_md_path.write_text("\n".join(build_cpwer_bridge_lines(bridge_rows)) + "\n", encoding="utf-8")
+    with summary_csv_path.open("w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=SUMMARY_COLUMNS)
+        writer.writeheader()
+        writer.writerow(summary_row)
+    summary_json_path.write_text(json.dumps(summary_row, ensure_ascii=False, indent=2), encoding="utf-8")
+    summary_md_path.write_text("\n".join(build_cpwer_bridge_summary_lines(summary_row)) + "\n", encoding="utf-8")
     with handoff_csv_path.open("w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=HANDOFF_COLUMNS)
         writer.writeheader()
@@ -281,6 +407,9 @@ def write_outputs(
         bridge_csv_path,
         bridge_json_path,
         bridge_md_path,
+        summary_csv_path,
+        summary_json_path,
+        summary_md_path,
         handoff_csv_path,
         handoff_json_path,
         handoff_md_path,
@@ -290,30 +419,41 @@ def write_outputs(
 
 
 def main() -> None:
-    checklist_path = PROJECT_ROOT / "results" / "tables" / "meeteval_dry_run_checklist.csv"
-    case_id = select_preferred_case(checklist_path)
-    bridge_row = run_cpwer_bridge(case_id)
-    handoff_rows = build_cpwer_bridge_handoff_rows(bridge_row)
+    args = parse_args()
+    case_ids = resolve_case_ids(args.case)
+    scope = "all_gold_cases" if args.case == "all" else "single_verified_case"
+    bridge_rows = run_cpwer_bridges(case_ids)
+    summary_row = build_cpwer_bridge_summary_row(bridge_rows, scope)
+    handoff_rows = build_cpwer_bridge_handoff_rows(bridge_rows, summary_row)
     receipt_rows = build_cpwer_bridge_receipt_rows(handoff_rows)
     (
         bridge_csv_path,
         bridge_json_path,
         bridge_md_path,
+        summary_csv_path,
+        summary_json_path,
+        summary_md_path,
         handoff_csv_path,
         handoff_json_path,
         handoff_md_path,
         receipt_json_path,
         receipt_md_path,
-    ) = write_outputs(bridge_row, handoff_rows, receipt_rows)
+    ) = write_outputs(bridge_rows, summary_row, handoff_rows, receipt_rows)
     print(f"Wrote MeetEval cpWER bridge CSV: {bridge_csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote MeetEval cpWER bridge JSON: {bridge_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote MeetEval cpWER bridge note: {bridge_md_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote MeetEval cpWER bridge summary CSV: {summary_csv_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote MeetEval cpWER bridge summary JSON: {summary_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote MeetEval cpWER bridge summary note: {summary_md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote MeetEval cpWER bridge handoff CSV: {handoff_csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote MeetEval cpWER bridge handoff JSON: {handoff_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote MeetEval cpWER bridge handoff note: {handoff_md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote MeetEval cpWER bridge receipt JSON: {receipt_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote MeetEval cpWER bridge receipt note: {receipt_md_path.relative_to(PROJECT_ROOT)}")
-    print(f"cpWER bridge-lite: {bridge_row['cpwer_bridge_lite']} ({bridge_row['best_mapping']})")
+    print(
+        f"cpWER bridge-lite summary: scope={summary_row['scope']}, "
+        f"average={summary_row['average_cpwer_bridge_lite']}, cases={summary_row['case_count']}"
+    )
 
 
 if __name__ == "__main__":

@@ -9,6 +9,8 @@ from src.meeteval_cpwer_bridge import (
     build_cpwer_bridge_receipt_lines,
     build_cpwer_bridge_receipt_rows,
     build_cpwer_bridge_row,
+    build_cpwer_bridge_summary_lines,
+    build_cpwer_bridge_summary_row,
     compute_cer,
 )
 
@@ -55,16 +57,18 @@ class MeetEvalCpwerBridgeTest(unittest.TestCase):
 
     def test_build_cpwer_bridge_lines_render_note(self) -> None:
         lines = build_cpwer_bridge_lines(
-            {
-                "case_id": "NoOverlap",
-                "hypothesis_source": "separated_whisper",
-                "speaker_count": 2,
-                "direct_macro_cer": 0.1,
-                "swapped_macro_cer": 0.2,
-                "cpwer_bridge_lite": 0.1,
-                "best_mapping": "direct",
-                "observation": "experimental/frontier cpWER bridge-lite from JSONL exports; this is not a full MeetEval cpWER claim.",
-            }
+            [
+                {
+                    "case_id": "NoOverlap",
+                    "hypothesis_source": "separated_whisper",
+                    "speaker_count": 2,
+                    "direct_macro_cer": 0.1,
+                    "swapped_macro_cer": 0.2,
+                    "cpwer_bridge_lite": 0.1,
+                    "best_mapping": "direct",
+                    "observation": "experimental/frontier cpWER bridge-lite from JSONL exports; this is not a full MeetEval cpWER claim.",
+                }
+            ]
         )
         rendered = "\n".join(lines)
 
@@ -72,13 +76,53 @@ class MeetEvalCpwerBridgeTest(unittest.TestCase):
         self.assertIn("NoOverlap", rendered)
         self.assertIn("not a full MeetEval", rendered)
 
+    def test_build_cpwer_bridge_summary_row_averages_selected_cases(self) -> None:
+        summary = build_cpwer_bridge_summary_row(
+            [
+                {"cpwer_bridge_lite": 0.1, "best_mapping": "direct"},
+                {"cpwer_bridge_lite": 0.3, "best_mapping": "swapped"},
+            ],
+            "all_gold_cases",
+        )
+
+        self.assertEqual(summary["scope"], "all_gold_cases")
+        self.assertEqual(summary["case_count"], 2)
+        self.assertEqual(summary["average_cpwer_bridge_lite"], 0.2)
+        self.assertEqual(summary["direct_mapping_count"], 1)
+        self.assertEqual(summary["swapped_mapping_count"], 1)
+
+    def test_build_cpwer_bridge_summary_lines_render_summary(self) -> None:
+        lines = build_cpwer_bridge_summary_lines(
+            {
+                "scope": "all_gold_cases",
+                "case_count": 5,
+                "average_cpwer_bridge_lite": 0.12,
+                "direct_mapping_count": 4,
+                "swapped_mapping_count": 1,
+                "observation": "experimental/frontier all-case cpWER bridge-lite summary; this is not a full MeetEval cpWER benchmark claim.",
+            }
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# MeetEval cpWER Bridge Summary", rendered)
+        self.assertIn("all_gold_cases", rendered)
+
     def test_build_cpwer_bridge_handoff_rows_link_bridge_to_receipt(self) -> None:
         rows = build_cpwer_bridge_handoff_rows(
+            [
+                {
+                    "case_id": "NoOverlap",
+                    "cpwer_bridge_lite": 0.054312,
+                    "best_mapping": "direct",
+                }
+            ],
             {
-                "case_id": "NoOverlap",
-                "cpwer_bridge_lite": 0.054312,
-                "best_mapping": "direct",
-            }
+                "scope": "single_verified_case",
+                "case_count": 1,
+                "average_cpwer_bridge_lite": 0.054312,
+                "direct_mapping_count": 1,
+                "swapped_mapping_count": 0,
+            },
         )
 
         self.assertEqual(rows[0]["bridge_status"], "cpwer_bridge_complete")
