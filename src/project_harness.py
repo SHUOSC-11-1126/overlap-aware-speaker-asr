@@ -266,6 +266,16 @@ FRONTIER_PICKLIST_CHECKLIST_COLUMNS = [
     "next_gate",
 ]
 
+FRONTIER_RECEIPT_BOARD_CHECKLIST_COLUMNS = [
+    "checklist_order",
+    "frontier_id",
+    "pickup_artifact",
+    "receipt_target",
+    "checklist_goal",
+    "board_note",
+    "next_gate",
+]
+
 
 def build_frontier_handoff_packet_rows(queue_rows: list[dict[str, str]]) -> list[dict[str, str]]:
     if not queue_rows:
@@ -507,6 +517,42 @@ def build_frontier_receipt_board_lines(rows: list[dict[str, str]]) -> list[str]:
     for row in rows:
         lines.append(
             f"| {row['queue_order']} | {row['frontier_id']} | {row['pickup_artifact']} | {row['receipt_target']} | {row['board_status']} | {row['board_note']} | {row['board_scope']} |"
+        )
+    return lines
+
+
+def build_frontier_receipt_board_checklist_rows(queue_rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    if not queue_rows:
+        return []
+
+    head = queue_rows[0]
+    frontier_id = str(head.get("frontier_id", ""))
+    pickup_artifact, receipt_target = frontier_next_artifact(frontier_id)
+    return [
+        {
+            "checklist_order": "1",
+            "frontier_id": frontier_id,
+            "pickup_artifact": pickup_artifact,
+            "receipt_target": receipt_target,
+            "checklist_goal": f"Use the receipt board to stage the next frontier pass for {frontier_id}.",
+            "board_note": "Open the board snapshot first, then keep the pickup artifact visible while writing back.",
+            "next_gate": "Confirm the board snapshot and receipt target before the next queue head advances.",
+        }
+    ]
+
+
+def build_frontier_receipt_board_checklist_lines(rows: list[dict[str, str]]) -> list[str]:
+    lines = [
+        "# Frontier Receipt Board Checklist",
+        "",
+        "This generated checklist turns the receipt board into an ordered snapshot path. It remains coordination-only and does not claim that any frontier work has already been executed.",
+        "",
+        "| checklist_order | frontier_id | pickup_artifact | receipt_target | checklist_goal | board_note | next_gate |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['checklist_order']} | {row['frontier_id']} | {row['pickup_artifact']} | {row['receipt_target']} | {row['checklist_goal']} | {row['board_note']} | {row['next_gate']} |"
         )
     return lines
 
@@ -804,6 +850,26 @@ def write_frontier_receipt_board(frontier_status: list[dict[str, str]]) -> tuple
     return json_path, md_path
 
 
+def write_frontier_receipt_board_checklist(frontier_status: list[dict[str, str]]) -> tuple[Path, Path, Path]:
+    tables_dir = PROJECT_ROOT / "results" / "tables"
+    figures_dir = PROJECT_ROOT / "results" / "figures"
+    tables_dir.mkdir(parents=True, exist_ok=True)
+    figures_dir.mkdir(parents=True, exist_ok=True)
+
+    queue_rows = build_frontier_execution_queue_rows(frontier_status)
+    checklist_rows = build_frontier_receipt_board_checklist_rows(queue_rows)
+    csv_path = tables_dir / "frontier_receipt_board_checklist.csv"
+    json_path = tables_dir / "frontier_receipt_board_checklist.json"
+    md_path = figures_dir / "frontier_receipt_board_checklist.md"
+    with csv_path.open("w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=FRONTIER_RECEIPT_BOARD_CHECKLIST_COLUMNS)
+        writer.writeheader()
+        writer.writerows(checklist_rows)
+    json_path.write_text(json.dumps(checklist_rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    md_path.write_text("\n".join(build_frontier_receipt_board_checklist_lines(checklist_rows)) + "\n", encoding="utf-8")
+    return csv_path, json_path, md_path
+
+
 def write_frontier_coordination_matrix(frontier_status: list[dict[str, str]]) -> tuple[Path, Path]:
     tables_dir = PROJECT_ROOT / "results" / "tables"
     figures_dir = PROJECT_ROOT / "results" / "figures"
@@ -846,6 +912,7 @@ def main() -> None:
     parallel_picklist_json_path, parallel_picklist_md_path = write_frontier_parallel_picklist(report["frontier_status"])
     parallel_picklist_checklist_csv_path, parallel_picklist_checklist_json_path, parallel_picklist_checklist_md_path = write_frontier_parallel_picklist_checklist(report["frontier_status"])
     receipt_board_json_path, receipt_board_md_path = write_frontier_receipt_board(report["frontier_status"])
+    receipt_board_checklist_csv_path, receipt_board_checklist_json_path, receipt_board_checklist_md_path = write_frontier_receipt_board_checklist(report["frontier_status"])
     coordination_matrix_json_path, coordination_matrix_md_path = write_frontier_coordination_matrix(report["frontier_status"])
     writeback_index_json_path, writeback_index_md_path = write_frontier_writeback_index(report["frontier_status"])
     print(f"Wrote harness report: {json_path.relative_to(PROJECT_ROOT)}")
@@ -870,6 +937,9 @@ def main() -> None:
     print(f"Wrote frontier parallel picklist checklist note: {parallel_picklist_checklist_md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier receipt board JSON: {receipt_board_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier receipt board note: {receipt_board_md_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote frontier receipt board checklist CSV: {receipt_board_checklist_csv_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote frontier receipt board checklist JSON: {receipt_board_checklist_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote frontier receipt board checklist note: {receipt_board_checklist_md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier coordination matrix JSON: {coordination_matrix_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier coordination matrix note: {coordination_matrix_md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote frontier writeback index JSON: {writeback_index_json_path.relative_to(PROJECT_ROOT)}")
