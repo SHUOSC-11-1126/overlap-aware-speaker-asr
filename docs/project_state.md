@@ -898,6 +898,18 @@ Speaker profile embedding trial handoff:
 - `results/tables/speaker_profile_embedding_trial_handoff.csv`
 - The embedding trial handoff targets `NoOverlap` for a narrow embedding-or-voiceprint diagnostic trial; improved speaker attribution remains unverified.
 
+Speaker profile embedding trial:
+
+- `results/figures/speaker_profile_embedding_trial.md`
+- `results/tables/speaker_profile_embedding_trial.csv`
+- The embedding trial scaffold records `trial_status = scaffold_only` for `NoOverlap` using text-profile proxy scores; voiceprint execution remains pending.
+
+Speaker profile embedding trial handoff bridge checklist:
+
+- `results/figures/speaker_profile_embedding_trial_handoff_bridge_checklist.md`
+- `results/tables/speaker_profile_embedding_trial_handoff_bridge_checklist.csv`
+- This checklist connects the embedding trial scaffold to the handoff without claiming voiceprint success.
+
 LLM critic qualitative bridge:
 
 - `results/figures/llm_critic_qualitative_note.md`
@@ -1287,6 +1299,24 @@ Demo storyboard review pass:
 - `results/tables/demo_storyboard_review_pass.csv`
 - The first qualitative storyboard review pass records `review_complete` for the `Problem` card without claiming live demo or recording delivery.
 
+Demo storyboard review pass advance:
+
+- `results/figures/demo_storyboard_review_pass_advance.md`
+- `results/tables/demo_storyboard_review_pass_advance.csv`
+- The storyboard review queue advanced to card `2` (`Pipeline`) after card `1` reached `review_complete` without claiming live demo delivery.
+
+Demo storyboard review pass second:
+
+- `results/figures/demo_storyboard_review_pass_second.md`
+- `results/tables/demo_storyboard_review_pass_second.csv`
+- The second qualitative storyboard review pass records notes for card `2` only; no live demo or recording is claimed.
+
+Demo storyboard review pass advance bridge checklist:
+
+- `results/figures/demo_storyboard_review_pass_advance_bridge_checklist.md`
+- `results/tables/demo_storyboard_review_pass_advance_bridge_checklist.csv`
+- This checklist connects card `2` to the third-card review pass without claiming live demo delivery.
+
 ## How to Resume Work
 
 Common commands:
@@ -1356,7 +1386,11 @@ python -m src.demo_walkthrough_review_pass_final_bridge_checklist
 python -m src.demo_walkthrough_review_pass_completion_summary
 python -m src.demo_walkthrough_review_pass_completion_summary_bridge_checklist
 python -m src.demo_storyboard_review_pass
+python -m src.demo_storyboard_review_pass_advance
+python -m src.demo_storyboard_review_pass_advance_bridge_checklist
 python -m src.speaker_profile_embedding_trial_handoff
+python -m src.speaker_profile_embedding_trial
+python -m src.speaker_profile_embedding_trial_handoff_bridge_checklist
 python -m src.external_validation_license_confirmation_receipt_bridge_checklist
 python -m src.external_validation_slice_manifest
 python -m src.external_validation_slice_manifest_bridge_checklist

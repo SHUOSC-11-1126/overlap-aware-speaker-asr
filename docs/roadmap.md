@@ -277,6 +277,18 @@ Update: `speaker_profile` now also has an embedding trial handoff.
 - Summary view: `results/figures/speaker_profile_embedding_trial_handoff.md`
 - This targets `NoOverlap` for a narrow embedding-or-voiceprint diagnostic trial without claiming improved speaker attribution.
 
+Update: `speaker_profile` now also has an embedding trial scaffold.
+
+- Embedding trial: `results/tables/speaker_profile_embedding_trial.csv`
+- Summary view: `results/figures/speaker_profile_embedding_trial.md`
+- The embedding trial scaffold records `trial_status = scaffold_only` for `NoOverlap`; voiceprint execution remains pending.
+
+Update: `speaker_profile` now also has an embedding trial handoff bridge checklist.
+
+- Embedding trial handoff bridge checklist: `results/tables/speaker_profile_embedding_trial_handoff_bridge_checklist.csv`
+- Summary view: `results/figures/speaker_profile_embedding_trial_handoff_bridge_checklist.md`
+- This connects the embedding trial scaffold to the handoff without claiming voiceprint success.
+
 Update: `llm_critic` now has a first qualitative review pass.
 
 - Review pass table: `results/tables/llm_critic_review_pass.csv`
@@ -986,6 +998,19 @@ Update: `demo_excellence` now also has a storyboard review pass.
 - Storyboard review pass: `results/tables/demo_storyboard_review_pass.csv`
 - Summary view: `results/figures/demo_storyboard_review_pass.md`
 - The first qualitative storyboard review pass records `review_complete` for the `Problem` card without claiming live demo delivery.
+
+Update: `demo_excellence` now also has a storyboard review pass advance.
+
+- Storyboard review pass advance: `results/tables/demo_storyboard_review_pass_advance.csv`
+- Second pass table: `results/tables/demo_storyboard_review_pass_second.csv`
+- Summary view: `results/figures/demo_storyboard_review_pass_advance.md`
+- Card `2` (`Pipeline`) is the second queue pass after card `1`; no live demo delivery is claimed.
+
+Update: `demo_excellence` now also has a storyboard review pass advance bridge checklist.
+
+- Storyboard review pass advance bridge checklist: `results/tables/demo_storyboard_review_pass_advance_bridge_checklist.csv`
+- Summary view: `results/figures/demo_storyboard_review_pass_advance_bridge_checklist.md`
+- This connects card `2` to the third-card review pass without claiming live demo delivery.
 
 Update: `external_validation` now has a dedicated skill card.
 

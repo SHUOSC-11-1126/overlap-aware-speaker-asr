@@ -1,0 +1,9 @@
+[
+  {
+    "execution_status": "trial_scaffold_complete",
+    "trial_scope": "single_verified_case",
+    "case_id": "NoOverlap",
+    "method_direction": "embedding_or_voiceprint_baseline",
+    "writeback_note": "Embedding trial scaffold documented using text-profile proxy scores; voiceprint or embedding execution remains pending."
+  }
+]
