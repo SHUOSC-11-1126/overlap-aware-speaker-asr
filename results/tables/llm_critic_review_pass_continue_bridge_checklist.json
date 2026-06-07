@@ -1,0 +1,11 @@
+[
+  {
+    "checklist_order": "1",
+    "case_id": "NoOverlap",
+    "prerequisite_artifact": "results/figures/llm_critic_review_pass_continue.md",
+    "receipt_target": "results/figures/llm_critic_review_pass_continue_receipt.md",
+    "checklist_goal": "Verify the fourth qualitative pass bridge for NoOverlap before any repair claim is advanced.",
+    "bridge_note": "Continue pass reports completed_pass_count=3; confirm the fourth pass note before opening the continue receipt target.",
+    "next_gate": "Confirm this bridge before opening the critic review pass continue receipt target."
+  }
+]

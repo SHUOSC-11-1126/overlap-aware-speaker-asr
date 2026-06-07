@@ -23,9 +23,9 @@
   {
     "queue_order": "4",
     "case_id": "NoOverlap",
-    "pass_status": "pending_review",
+    "pass_status": "review_complete",
     "review_priority": "high",
-    "next_action": "Continue qualitative review without claiming verified repair."
+    "next_action": "Pass recorded; move to the next queue item when ready."
   },
   {
     "queue_order": "5",

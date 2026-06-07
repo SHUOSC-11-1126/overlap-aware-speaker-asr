@@ -1,0 +1,8 @@
+{
+  "queue_order": "4",
+  "case_id": "NoOverlap",
+  "completed_pass_count": "3",
+  "review_priority": "high",
+  "review_outcome": "Qualitative critic pass recorded for NoOverlap; no verified transcript repair was applied.",
+  "continue_note": "Fourth qualitative pass recorded for NoOverlap; no verified transcript repair was applied."
+}

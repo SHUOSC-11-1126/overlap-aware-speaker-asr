@@ -1,0 +1,9 @@
+{
+  "case_id": "NoOverlap",
+  "label": "qualitative/demo",
+  "review_priority": "high",
+  "risk_explanation": "The selector reports a medium risk state even without explicit flags, so the current transcript still deserves critic review.",
+  "candidate_repair": "Try base separated output is stable enough before treating the current transcript as final.",
+  "uncertainty_note": "Profile alignment still prefers swapped, so attribution remains uncertain.",
+  "review_outcome": "Qualitative critic pass recorded for NoOverlap; no verified transcript repair was applied."
+}
