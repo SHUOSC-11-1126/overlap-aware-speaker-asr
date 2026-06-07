@@ -1,0 +1,7 @@
+# MeetEval cpWER Alignment Drift Segment Reconciliation Diagnostic
+
+This generated note records the first narrow reconciliation diagnostic for the drift handoff case. It does not claim reconciled alignment or cpWER execution.
+
+| case_id | hypothesis_source | reference_segment_count | hypothesis_segment_count | speaker_segment_count_match | speaker_set_match | time_range_valid | export_path_valid | reconciliation_pass | diagnostic_note |
+| --- | --- | ---: | ---: | --- | --- | --- | --- | --- | --- |
+| HeavyOverlap | separated_whisper_cleaned | 25 | 25 | False | True | True | True | False | Reconciliation readiness check for drift case HeavyOverlap found issues; review per-speaker segment structure before any cpWER claim. |

@@ -1,0 +1,12 @@
+{
+  "case_id": "HeavyOverlap",
+  "hypothesis_source": "separated_whisper_cleaned",
+  "reference_segment_count": 25,
+  "hypothesis_segment_count": 25,
+  "speaker_segment_count_match": false,
+  "speaker_set_match": true,
+  "time_range_valid": true,
+  "export_path_valid": true,
+  "reconciliation_pass": false,
+  "diagnostic_note": "Reconciliation readiness check for drift case HeavyOverlap found issues; review per-speaker segment structure before any cpWER claim."
+}

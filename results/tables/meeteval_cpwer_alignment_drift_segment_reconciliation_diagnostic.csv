@@ -1,0 +1,2 @@
+﻿case_id,hypothesis_source,reference_segment_count,hypothesis_segment_count,speaker_segment_count_match,speaker_set_match,time_range_valid,export_path_valid,reconciliation_pass,diagnostic_note
+HeavyOverlap,separated_whisper_cleaned,25,25,False,True,True,True,False,Reconciliation readiness check for drift case HeavyOverlap found issues; review per-speaker segment structure before any cpWER claim.
