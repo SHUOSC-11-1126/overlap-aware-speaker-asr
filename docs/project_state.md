@@ -868,6 +868,12 @@ MeetEval cpWER execution scaffold bridge checklist:
 - `results/tables/meeteval_cpwer_execution_scaffold_bridge_checklist.csv`
 - This checklist connects the execution scaffold to official MeetEval evaluation without claiming cpWER execution.
 
+MeetEval cpWER execution handoff:
+
+- `results/figures/meeteval_cpwer_execution_handoff.md`
+- `results/tables/meeteval_cpwer_execution_handoff.csv`
+- The execution handoff targets official cpWER evaluation for one verified case; benchmark completion remains pending.
+
 Speaker profile similarity bridge:
 
 - `results/figures/speaker_profile_risk_summary.md`
@@ -933,6 +939,12 @@ Speaker profile embedding trial execution scaffold:
 - `results/figures/speaker_profile_embedding_trial_execution_scaffold.md`
 - `results/tables/speaker_profile_embedding_trial_execution_scaffold.csv`
 - The embedding execution scaffold records `scaffold_status = execution_scaffold_only` for `NoOverlap`; voiceprint execution remains pending.
+
+Speaker profile embedding trial execution scaffold bridge checklist:
+
+- `results/figures/speaker_profile_embedding_trial_execution_scaffold_bridge_checklist.md`
+- `results/tables/speaker_profile_embedding_trial_execution_scaffold_bridge_checklist.csv`
+- This checklist connects the execution scaffold to voiceprint execution without claiming attribution success.
 
 LLM critic qualitative bridge:
 
@@ -1149,6 +1161,12 @@ External validation slice staging readiness bridge checklist:
 - `results/figures/external_validation_slice_staging_readiness_bridge_checklist.md`
 - `results/tables/external_validation_slice_staging_readiness_bridge_checklist.csv`
 - This checklist connects staging readiness to the slice manifest bridge checklist without claiming benchmark execution.
+
+External validation slice staging readiness handoff:
+
+- `results/figures/external_validation_slice_staging_readiness_handoff.md`
+- `results/tables/external_validation_slice_staging_readiness_handoff.csv`
+- The staging handoff records `blocker = license_confirmation_pending` for AISHELL-4; external audio staging remains pending.
 
 External validation checklist bridge:
 
@@ -1389,6 +1407,18 @@ Demo storyboard review pass completion summary:
 - `results/tables/demo_storyboard_review_pass_completion_summary.csv`
 - `queue_status = queue_complete` at `4/4` without any live demo or recording claim.
 
+Demo storyboard review pass completion summary bridge checklist:
+
+- `results/figures/demo_storyboard_review_pass_completion_summary_bridge_checklist.md`
+- `results/tables/demo_storyboard_review_pass_completion_summary_bridge_checklist.csv`
+- This checklist connects the storyboard completion summary to the demo excellence queue status without claiming live demo delivery.
+
+Demo excellence queue status:
+
+- `results/figures/demo_excellence_queue_status.md`
+- `results/tables/demo_excellence_queue_status.csv`
+- `combined_queue_status = queue_complete` when both walkthrough and storyboard queues are complete; no live demo delivery is claimed.
+
 ## How to Resume Work
 
 Common commands:
@@ -1466,10 +1496,13 @@ python -m src.demo_storyboard_review_pass_continue_bridge_checklist
 python -m src.demo_storyboard_review_pass_status
 python -m src.demo_storyboard_review_pass_status_bridge_checklist
 python -m src.demo_storyboard_review_pass_completion_summary
-python -m src.meeteval_cpwer_bridge_handoff_bridge_checklist
+python -m src.demo_storyboard_review_pass_completion_summary_bridge_checklist
+python -m src.demo_excellence_queue_status
 python -m src.meeteval_cpwer_execution_scaffold
 python -m src.meeteval_cpwer_execution_scaffold_bridge_checklist
+python -m src.meeteval_cpwer_execution_handoff
 python -m src.speaker_profile_embedding_trial_execution_scaffold
+python -m src.speaker_profile_embedding_trial_execution_scaffold_bridge_checklist
 python -m src.speaker_profile_embedding_trial_handoff
 python -m src.speaker_profile_embedding_trial
 python -m src.speaker_profile_embedding_trial_handoff_bridge_checklist
@@ -1478,6 +1511,7 @@ python -m src.external_validation_slice_manifest
 python -m src.external_validation_slice_manifest_bridge_checklist
 python -m src.external_validation_slice_staging_readiness
 python -m src.external_validation_slice_staging_readiness_bridge_checklist
+python -m src.external_validation_slice_staging_readiness_handoff
 python -m src.speaker_profile_embedding_scaffold
 python -m src.speaker_profile_embedding_scaffold_bridge_checklist
 python -m src.llm_critic_review_pass

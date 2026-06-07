@@ -259,6 +259,12 @@ Update: `external_validation` now also has a slice staging readiness bridge chec
 - Summary view: `results/figures/external_validation_slice_staging_readiness_bridge_checklist.md`
 - This connects staging readiness to the slice manifest bridge checklist without claiming benchmark execution.
 
+Update: `external_validation` now also has a slice staging readiness handoff.
+
+- Staging readiness handoff: `results/tables/external_validation_slice_staging_readiness_handoff.csv`
+- Summary view: `results/figures/external_validation_slice_staging_readiness_handoff.md`
+- The handoff records `blocker = license_confirmation_pending` for AISHELL-4; external audio staging remains pending.
+
 Update: `speaker_profile` now also has an embedding scaffold.
 
 - Embedding scaffold: `results/tables/speaker_profile_embedding_scaffold.json`
@@ -294,6 +300,12 @@ Update: `speaker_profile` now also has an embedding trial execution scaffold.
 - Embedding trial execution scaffold: `results/tables/speaker_profile_embedding_trial_execution_scaffold.csv`
 - Summary view: `results/figures/speaker_profile_embedding_trial_execution_scaffold.md`
 - The execution scaffold records `scaffold_status = execution_scaffold_only`; voiceprint execution remains pending.
+
+Update: `speaker_profile` now also has an embedding trial execution scaffold bridge checklist.
+
+- Embedding trial execution scaffold bridge checklist: `results/tables/speaker_profile_embedding_trial_execution_scaffold_bridge_checklist.csv`
+- Summary view: `results/figures/speaker_profile_embedding_trial_execution_scaffold_bridge_checklist.md`
+- This connects the execution scaffold to voiceprint execution without claiming attribution success.
 
 Update: `llm_critic` now has a first qualitative review pass.
 
@@ -652,6 +664,12 @@ Update: `meeteval_compatibility` now also has a cpWER execution scaffold bridge 
 - cpWER execution scaffold bridge checklist: `results/tables/meeteval_cpwer_execution_scaffold_bridge_checklist.csv`
 - Summary view: `results/figures/meeteval_cpwer_execution_scaffold_bridge_checklist.md`
 - This connects the execution scaffold to official MeetEval evaluation without claiming cpWER execution.
+
+Update: `meeteval_compatibility` now also has a cpWER execution handoff.
+
+- cpWER execution handoff: `results/tables/meeteval_cpwer_execution_handoff.csv`
+- Summary view: `results/figures/meeteval_cpwer_execution_handoff.md`
+- The handoff targets official cpWER evaluation; benchmark completion remains pending.
 
 Update: a generated llm critic review queue now turns the qualitative note into a first-pass triage order.
 
@@ -1073,6 +1091,18 @@ Update: `demo_excellence` now also has a storyboard review pass completion summa
 - Storyboard review pass completion summary: `results/tables/demo_storyboard_review_pass_completion_summary.csv`
 - Summary view: `results/figures/demo_storyboard_review_pass_completion_summary.md`
 - `queue_status = queue_complete` at `4/4` without any live demo or recording claim.
+
+Update: `demo_excellence` now also has a storyboard review pass completion summary bridge checklist.
+
+- Storyboard review pass completion summary bridge checklist: `results/tables/demo_storyboard_review_pass_completion_summary_bridge_checklist.csv`
+- Summary view: `results/figures/demo_storyboard_review_pass_completion_summary_bridge_checklist.md`
+- This connects the storyboard completion summary to the demo excellence queue status without claiming live demo delivery.
+
+Update: `demo_excellence` now also has a unified queue status rollup.
+
+- Demo excellence queue status: `results/tables/demo_excellence_queue_status.csv`
+- Summary view: `results/figures/demo_excellence_queue_status.md`
+- `combined_queue_status = queue_complete` when both walkthrough and storyboard queues are complete; no live demo delivery is claimed.
 
 Update: `external_validation` now has a dedicated skill card.
 

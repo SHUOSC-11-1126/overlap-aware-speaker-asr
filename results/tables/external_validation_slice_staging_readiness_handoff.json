@@ -1,0 +1,10 @@
+{
+  "handoff_status": "staging_handoff_ready",
+  "dataset_name": "AISHELL-4",
+  "readiness_status": "not_ready",
+  "blocker": "license_confirmation_pending",
+  "staging_handoff_target": "results/figures/external_validation_slice_staging_handoff.md",
+  "handoff_goal": "Resolve the license_confirmation_pending blocker for AISHELL-4 before any external audio staging attempt.",
+  "expected_evidence": "results/tables/external_validation_slice_staging_handoff_receipt.json",
+  "handoff_note": "external/sanity-check staging handoff only; no external audio download or benchmark evaluation is claimed."
+}
