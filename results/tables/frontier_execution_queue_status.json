@@ -1,0 +1,8 @@
+{
+  "scope": "frontier_execution_queues",
+  "meeteval_chain_status": "execution_chain_ready",
+  "speaker_profile_chain_status": "execution_chain_ready",
+  "external_staging_chain_status": "execution_chain_ready",
+  "combined_chain_status": "execution_chain_ready",
+  "status_note": "Unified experimental/frontier execution-chain rollup across MeetEval, speaker profile, and external staging; no official benchmark execution or external audio staging is claimed."
+}
