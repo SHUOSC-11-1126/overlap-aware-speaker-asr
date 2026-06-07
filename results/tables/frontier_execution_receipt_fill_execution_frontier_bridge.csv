@@ -1,0 +1,2 @@
+﻿fill_execution_frontier,frontier_queue_head,bridge_reason,bridge_note
+meeteval_compatibility,meeteval_compatibility,The fill execution queue head aligns with the breadth-first frontier queue head for MeetEval work.,Fill execution recommends meeteval_compatibility while the frontier queue head is meeteval_compatibility; no benchmark execution is claimed until receipts are filled.
