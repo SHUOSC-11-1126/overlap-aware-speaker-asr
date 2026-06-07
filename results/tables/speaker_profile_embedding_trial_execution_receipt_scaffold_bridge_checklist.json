@@ -1,0 +1,14 @@
+[
+  {
+    "checklist_order": "1",
+    "case_id": "NoOverlap",
+    "scaffold_status": "receipt_scaffold_only",
+    "preflight_pass": "True",
+    "swapped_bias_detected": "True",
+    "prerequisite_artifact": "results/figures/speaker_profile_embedding_trial_execution_receipt_scaffold.md",
+    "receipt_target": "results/tables/speaker_profile_embedding_trial_execution_receipt.json",
+    "checklist_goal": "Verify the embedding execution receipt scaffold for NoOverlap before any voiceprint run.",
+    "bridge_note": "Receipt scaffold remains receipt_scaffold_only with preflight_pass=True and swapped_bias_detected=True; confirm scaffold context before filling the execution receipt.",
+    "next_gate": "Confirm this bridge before claiming any voiceprint or embedding model execution."
+  }
+]
