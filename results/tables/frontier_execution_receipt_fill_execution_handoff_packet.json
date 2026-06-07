@@ -10,6 +10,26 @@
     "section_role": "Dashboard to runbook verification"
   },
   {
+    "packet_section": "meeteval_preflight_batch",
+    "artifact_path": "results/figures/meeteval_cpwer_execution_preflight_batch.md",
+    "section_role": "All-gold MeetEval cpWER execution preflight rollup"
+  },
+  {
+    "packet_section": "meeteval_preflight_batch_bridge_checklist",
+    "artifact_path": "results/figures/meeteval_cpwer_execution_preflight_batch_bridge_checklist.md",
+    "section_role": "Batch preflight to official execution receipt verification"
+  },
+  {
+    "packet_section": "meeteval_receipt_batch_scaffold",
+    "artifact_path": "results/figures/meeteval_cpwer_execution_receipt_batch_scaffold.md",
+    "section_role": "All-gold official cpWER execution receipt scaffold rollup"
+  },
+  {
+    "packet_section": "meeteval_receipt_batch_scaffold_bridge_checklist",
+    "artifact_path": "results/figures/meeteval_cpwer_execution_receipt_batch_scaffold_bridge_checklist.md",
+    "section_role": "Batch receipt scaffold to official execution receipt verification"
+  },
+  {
     "packet_section": "frontier_bridge",
     "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_frontier_bridge.md",
     "section_role": "Fill execution to breadth-first frontier queue bridge"
