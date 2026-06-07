@@ -1592,6 +1592,18 @@ MeetEval cpWER execution receipt batch scaffold bridge checklist:
 - `results/tables/meeteval_cpwer_execution_receipt_batch_scaffold_bridge_checklist.csv`
 - This checklist connects the batch receipt scaffold to the official execution receipt target.
 
+MeetEval cpWER execution status batch:
+
+- `results/figures/meeteval_cpwer_execution_status_batch.md`
+- `results/tables/meeteval_cpwer_execution_status_batch.csv`
+- Rolls up execution-chain readiness across all five verified gold cases; official evaluation remains pending.
+
+MeetEval cpWER execution status batch bridge checklist:
+
+- `results/figures/meeteval_cpwer_execution_status_batch_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_execution_status_batch_bridge_checklist.csv`
+- This checklist connects the batch execution status to the official execution receipt target.
+
 MeetEval compatibility skill card:
 
 - `docs/skills/skill_04_meeteval_compatibility.md`

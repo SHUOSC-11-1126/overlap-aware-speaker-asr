@@ -1385,6 +1385,18 @@ Update: the MeetEval receipt layer now has a batch scaffold bridge checklist.
 - Summary view: `results/figures/meeteval_cpwer_execution_receipt_batch_scaffold_bridge_checklist.md`
 - Connects the batch receipt scaffold to the official execution receipt target.
 
+Update: `meeteval_compatibility` now has an all-gold execution status batch rollup.
+
+- Execution status batch: `results/tables/meeteval_cpwer_execution_status_batch.csv`
+- Summary view: `results/figures/meeteval_cpwer_execution_status_batch.md`
+- Rolls up execution-chain readiness across all five verified gold cases.
+
+Update: the MeetEval execution layer now has a status batch bridge checklist.
+
+- Status batch bridge checklist: `results/tables/meeteval_cpwer_execution_status_batch_bridge_checklist.csv`
+- Summary view: `results/figures/meeteval_cpwer_execution_status_batch_bridge_checklist.md`
+- Connects the batch execution status to the official execution receipt target.
+
 Update: `demo_excellence` now has a lightweight Streamlit viewer scaffold.
 
 - Demo app: `demo/app.py`
