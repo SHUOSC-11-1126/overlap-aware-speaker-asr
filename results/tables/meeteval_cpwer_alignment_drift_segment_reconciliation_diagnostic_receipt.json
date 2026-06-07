@@ -1,0 +1,9 @@
+[
+  {
+    "execution_status": "reconciliation_diagnostic_complete",
+    "diagnostic_scope": "single_drift_case",
+    "case_id": "HeavyOverlap",
+    "reconciliation_pass": "False",
+    "writeback_note": "Narrow reconciliation diagnostic complete for the drift case. Reconciled alignment and cpWER execution remain pending."
+  }
+]
