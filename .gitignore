@@ -52,6 +52,8 @@ results/synthetic_overlap_v2/
 !results/tables/meeteval_cpwer_bridge.json
 !results/tables/meeteval_cpwer_bridge_handoff.csv
 !results/tables/meeteval_cpwer_bridge_handoff.json
+!results/tables/meeteval_cpwer_bridge_handoff_bridge_checklist.csv
+!results/tables/meeteval_cpwer_bridge_handoff_bridge_checklist.json
 !results/tables/meeteval_cpwer_bridge_receipt.json
 !results/tables/meeteval_cpwer_bridge_summary.csv
 !results/tables/meeteval_cpwer_bridge_summary.json
@@ -254,6 +256,11 @@ results/synthetic_overlap_v2/
 !results/tables/demo_storyboard_review_pass_advance_receipt.json
 !results/tables/demo_storyboard_review_pass_advance_bridge_checklist.csv
 !results/tables/demo_storyboard_review_pass_advance_bridge_checklist.json
+!results/tables/demo_storyboard_review_pass_continue.csv
+!results/tables/demo_storyboard_review_pass_continue.json
+!results/tables/demo_storyboard_review_pass_third.csv
+!results/tables/demo_storyboard_review_pass_third.json
+!results/tables/demo_storyboard_review_pass_continue_receipt.json
 !results/tables/speaker_profile_embedding_trial_handoff.csv
 !results/tables/speaker_profile_embedding_trial_handoff.json
 !results/tables/speaker_profile_embedding_trial_handoff_receipt.json
@@ -282,6 +289,7 @@ results/synthetic_overlap_v2/
 !results/figures/meeteval_dry_run_receipt_map.md
 !results/figures/meeteval_cpwer_bridge.md
 !results/figures/meeteval_cpwer_bridge_handoff.md
+!results/figures/meeteval_cpwer_bridge_handoff_bridge_checklist.md
 !results/figures/meeteval_cpwer_bridge_receipt.md
 !results/figures/meeteval_cpwer_bridge_summary.md
 !results/figures/meeteval_cpwer_alignment.md
@@ -363,6 +371,9 @@ results/synthetic_overlap_v2/
 !results/figures/demo_storyboard_review_pass_second.md
 !results/figures/demo_storyboard_review_pass_advance_receipt.md
 !results/figures/demo_storyboard_review_pass_advance_bridge_checklist.md
+!results/figures/demo_storyboard_review_pass_continue.md
+!results/figures/demo_storyboard_review_pass_third.md
+!results/figures/demo_storyboard_review_pass_continue_receipt.md
 !results/figures/demo_walkthrough_review_pass_final_bridge_checklist.md
 !results/figures/demo_walkthrough_review_pass_status_bridge_checklist.md
 !results/figures/llm_critic_review_pass.md
