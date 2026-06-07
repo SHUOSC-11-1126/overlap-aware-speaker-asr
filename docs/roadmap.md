@@ -205,11 +205,23 @@ Update: `external_validation` now also has a license gate checklist.
 - Summary view: `results/figures/external_validation_license_gate.md`
 - This documents preflight license steps while external audio staging remains blocked.
 
+Update: `external_validation` now also has a slice manifest.
+
+- Slice manifest: `results/tables/external_validation_slice_manifest.json`
+- Summary view: `results/figures/external_validation_slice_manifest.md`
+- Staging remains `blocked_by_license_gate` for the first AISHELL-4 excerpt.
+
 Update: `speaker_profile` now also has an embedding scaffold.
 
 - Embedding scaffold: `results/tables/speaker_profile_embedding_scaffold.json`
 - Summary view: `results/figures/speaker_profile_embedding_scaffold.md`
 - This points toward `embedding_or_voiceprint_baseline` without claiming improved speaker attribution.
+
+Update: `llm_critic` now has a first qualitative review pass.
+
+- Review pass table: `results/tables/llm_critic_review_pass.csv`
+- Summary view: `results/figures/llm_critic_review_pass.md`
+- `HeavyOverlap` is `review_complete` without any verified repair claim.
 
 Update: a generated demo walkthrough now turns the storyboard into a short presentation sequence.
 
