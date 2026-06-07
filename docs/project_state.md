@@ -413,6 +413,12 @@ Frontier harness breadth status:
 - `results/figures/project_harness_report.md`
 - The harness report now includes a generated `frontier_status` table covering `speaker_profile`, `meeteval_compatibility`, `llm_critic`, `external_validation`, and `demo_excellence` so breadth-first work can be spread across multiple frontiers.
 
+Frontier status checklist:
+
+- `results/figures/frontier_status_checklist.md`
+- `results/tables/frontier_status_checklist.csv`
+- This checklist now turns the frontier status table into a row-by-row verification path. It remains coordination-only and keeps the evidence path visible without claiming that any frontier work has already been executed.
+
 Frontier execution queue:
 
 - `results/figures/frontier_execution_queue.md`

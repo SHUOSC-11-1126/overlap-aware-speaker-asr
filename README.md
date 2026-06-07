@@ -258,6 +258,11 @@ Current frontier harness breadth result:
 
 - `results/figures/project_harness_report.md` now includes a `frontier_status` table so contributors can see the current breadth-first status of `speaker_profile`, `meeteval_compatibility`, `llm_critic`, `external_validation`, and `demo_excellence`
 
+Current frontier status checklist result:
+
+- `results/figures/frontier_status_checklist.md` now turns that breadth-first status table into a row-by-row verification checklist
+- This checklist remains coordination-only and keeps the evidence path visible without claiming that any frontier work has already been executed
+
 Current frontier execution queue result:
 
 - `results/figures/frontier_execution_queue.md` now turns that breadth-first status view into an ordered next-step queue
