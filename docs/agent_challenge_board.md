@@ -32,9 +32,11 @@ The frontier receipt-fill execution stack now has an operator brief and receipt 
 - MeetEval batch completion summary: `results/figures/meeteval_cpwer_execution_status_batch_completion_summary.md`
 - MeetEval batch handoff: `results/figures/meeteval_cpwer_execution_status_batch_handoff.md`
 - MeetEval official execution: `results/figures/meeteval_cpwer_official_execution.md`
-- Frontier bridge: `results/figures/frontier_execution_receipt_fill_execution_frontier_bridge.md`
+- MeetEval official execution bridge checklist: `results/figures/meeteval_cpwer_official_execution_bridge_checklist.md`
+- MeetEval official execution completion summary: `results/figures/meeteval_cpwer_official_execution_completion_summary.md`
+- MeetEval official execution alignment audit: `results/figures/meeteval_cpwer_official_execution_alignment_audit.md`
 
-MeetEval compatibility remains the recommended first fill target. The batch stack now extends through completion summary, batch handoff, and official cpWER narrow dry-run execution (`python -m src.meeteval_cpwer_official_execution --case preferred`). Official cpWER results are labeled `experimental/frontier` and do not constitute a full benchmark claim.
+MeetEval compatibility remains the recommended first fill target. All-gold official cpWER narrow dry run is now available via `python -m src.meeteval_cpwer_official_execution --all`. Results are labeled `experimental/frontier`; alignment audit shows moderate drift vs bridge-lite due to Chinese tokenization, not a full benchmark claim.
 
 ## Level 1: Documentation / Presentation
 

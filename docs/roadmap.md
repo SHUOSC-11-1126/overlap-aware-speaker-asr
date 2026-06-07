@@ -1413,9 +1413,17 @@ Update: `meeteval_compatibility` now also has an official cpWER narrow dry-run e
 
 - Official execution: `results/tables/meeteval_cpwer_official_execution.csv`
 - Summary view: `results/figures/meeteval_cpwer_official_execution.md`
-- Script: `python -m src.meeteval_cpwer_official_execution --case preferred`
+- Script: `python -m src.meeteval_cpwer_official_execution --case preferred` or `--all` for all gold cases
 - Optional dependency: `requirements-frontier.txt` (`pip install meeteval`)
-- On success, writes back to `results/tables/meeteval_cpwer_execution_receipt.json` for the executed case only; results remain `experimental/frontier`.
+- On success, writes back to `results/tables/meeteval_cpwer_execution_receipt.json` for each executed case; results remain `experimental/frontier`.
+
+Update: `meeteval_compatibility` now also has an all-gold official cpWER execution stack.
+
+- Bridge checklist: `results/tables/meeteval_cpwer_official_execution_bridge_checklist.csv`
+- Completion summary: `results/tables/meeteval_cpwer_official_execution_completion_summary.csv`
+- Alignment audit: `results/tables/meeteval_cpwer_official_execution_alignment_audit.csv`
+- Completion summary bridge checklist: `results/tables/meeteval_cpwer_official_execution_completion_summary_bridge_checklist.csv`
+- All five gold cases report `queue_complete`; alignment audit shows `moderate_drift` vs bridge-lite due to Chinese tokenization mismatch in MeetEval word-level cpWER.
 
 Update: `demo_excellence` now has a lightweight Streamlit viewer scaffold.
 

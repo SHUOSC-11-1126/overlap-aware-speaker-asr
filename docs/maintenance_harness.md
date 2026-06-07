@@ -91,6 +91,11 @@ python -m src.meeteval_cpwer_execution_status_batch_completion_summary_bridge_ch
 python -m src.meeteval_cpwer_execution_status_batch_handoff
 python -m src.meeteval_cpwer_execution_status_batch_handoff_bridge_checklist
 python -m src.meeteval_cpwer_official_execution --case preferred
+python -m src.meeteval_cpwer_official_execution --all
+python -m src.meeteval_cpwer_official_execution_bridge_checklist
+python -m src.meeteval_cpwer_official_execution_completion_summary
+python -m src.meeteval_cpwer_official_execution_completion_summary_bridge_checklist
+python -m src.meeteval_cpwer_official_execution_alignment_audit
 python -m src.frontier_execution_receipt_fill_execution_handoff_bridge_checklist
 ```
 

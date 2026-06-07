@@ -1632,7 +1632,28 @@ MeetEval cpWER official execution:
 
 - `results/figures/meeteval_cpwer_official_execution.md`
 - `results/tables/meeteval_cpwer_official_execution.csv`
-- Narrow dry-run official MeetEval cpWER for the preferred gold case; receipt writeback on success.
+- All-gold official MeetEval cpWER narrow dry run via `python -m src.meeteval_cpwer_official_execution --all`; receipt writeback on success.
+- All five cases report `official_cpwer_narrow_dry_run_complete`; official cpWER scores show moderate drift vs bridge-lite due to Chinese tokenization (MeetEval word-level vs character-level bridge-lite).
+
+MeetEval cpWER official execution bridge checklist:
+
+- `results/figures/meeteval_cpwer_official_execution_bridge_checklist.md`
+- Connects official execution output to the execution receipt without claiming full benchmark completion.
+
+MeetEval cpWER official execution completion summary:
+
+- `results/figures/meeteval_cpwer_official_execution_completion_summary.md`
+- `queue_status = queue_complete` at `5/5` when all gold cases complete narrow dry run.
+
+MeetEval cpWER official execution alignment audit:
+
+- `results/figures/meeteval_cpwer_official_execution_alignment_audit.md`
+- Compares official cpWER against bridge-lite; all five gold cases currently report `moderate_drift`.
+
+MeetEval cpWER official execution completion summary bridge checklist:
+
+- `results/figures/meeteval_cpwer_official_execution_completion_summary_bridge_checklist.md`
+- Connects completion summary to alignment audit verification path.
 
 MeetEval compatibility skill card:
 
