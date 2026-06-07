@@ -75,6 +75,8 @@ python -m src.frontier_execution_receipt_fill_execution_completion_dashboard
 python -m src.frontier_execution_receipt_fill_execution_milestone_card
 python -m src.frontier_execution_receipt_fill_execution_execution_receipt_bridge
 python -m src.frontier_execution_receipt_fill_execution_execution_receipt_bridge_checklist
+python -m src.frontier_execution_receipt_fill_execution_phase_checkpoint_card
+python -m src.frontier_execution_receipt_fill_execution_runbook_bridge_checklist
 python -m src.frontier_execution_receipt_fill_execution_handoff_bridge_checklist
 ```
 
