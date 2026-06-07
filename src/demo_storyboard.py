@@ -47,6 +47,16 @@ RECEIPT_BOARD_COLUMNS = [
     "next_gate",
 ]
 
+RECEIPT_MAP_COLUMNS = [
+    "map_order",
+    "storyboard_scope",
+    "receipt_state",
+    "prerequisite_artifact",
+    "receipt_target",
+    "map_note",
+    "next_gate",
+]
+
 BRIDGE_CHECKLIST_COLUMNS = [
     "checklist_order",
     "step_id",
@@ -214,6 +224,47 @@ def build_demo_storyboard_receipt_board_lines(rows: list[dict[str, str]]) -> lis
     for row in rows:
         lines.append(
             f"| {row['board_order']} | {row['storyboard_scope']} | {row['receipt_state']} | {row['prerequisite_artifact']} | {row['receipt_target']} | {row['board_note']} | {row['next_gate']} |"
+        )
+    return lines
+
+
+def build_demo_storyboard_receipt_map_rows(
+    receipt_rows: list[dict[str, str]],
+    receipt_checklist_rows: list[dict[str, str]],
+    receipt_board_rows: list[dict[str, str]],
+) -> list[dict[str, str]]:
+    if not receipt_rows:
+        return []
+
+    receipt = receipt_rows[0]
+    checklist = receipt_checklist_rows[0] if receipt_checklist_rows else {}
+    board = receipt_board_rows[0] if receipt_board_rows else {}
+    storyboard_scope = str(receipt.get("storyboard_scope", ""))
+    return [
+        {
+            "map_order": "1",
+            "storyboard_scope": storyboard_scope,
+            "receipt_state": str(receipt.get("execution_status", "template_only")),
+            "prerequisite_artifact": str(board.get("prerequisite_artifact", checklist.get("prerequisite_artifact", "results/figures/demo_storyboard.md"))),
+            "receipt_target": str(board.get("receipt_target", checklist.get("receipt_target", "results/figures/demo_storyboard_receipt.md"))),
+            "map_note": f"Keep the storyboard receipt path visible across the receipt, checklist, and board views for {storyboard_scope}.",
+            "next_gate": "Open the receipt board and checklist before filling the receipt writeback.",
+        }
+    ]
+
+
+def build_demo_storyboard_receipt_map_lines(rows: list[dict[str, str]]) -> list[str]:
+    lines = [
+        "# Demo Storyboard Receipt Map",
+        "",
+        "This generated map condenses the storyboard receipt path into a single coordination view across the receipt, checklist, and board layers. It remains demo support only and does not claim that any live demo or recording has been completed.",
+        "",
+        "| map_order | storyboard_scope | receipt_state | prerequisite_artifact | receipt_target | map_note | next_gate |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['map_order']} | {row['storyboard_scope']} | {row['receipt_state']} | {row['prerequisite_artifact']} | {row['receipt_target']} | {row['map_note']} | {row['next_gate']} |"
         )
     return lines
 
@@ -498,6 +549,14 @@ def write_outputs(
     storyboard_receipt_board_csv_path = tables_dir / "demo_storyboard_receipt_board.csv"
     storyboard_receipt_board_json_path = tables_dir / "demo_storyboard_receipt_board.json"
     storyboard_receipt_board_md_path = figures_dir / "demo_storyboard_receipt_board.md"
+    storyboard_receipt_map_rows = build_demo_storyboard_receipt_map_rows(
+        storyboard_receipt_rows,
+        storyboard_receipt_checklist_rows,
+        storyboard_receipt_board_rows,
+    )
+    storyboard_receipt_map_csv_path = tables_dir / "demo_storyboard_receipt_map.csv"
+    storyboard_receipt_map_json_path = tables_dir / "demo_storyboard_receipt_map.json"
+    storyboard_receipt_map_md_path = figures_dir / "demo_storyboard_receipt_map.md"
     walkthrough_json_path = tables_dir / "demo_walkthrough_steps.json"
     walkthrough_md_path = figures_dir / "demo_walkthrough.md"
     storyboard_bridge_checklist_rows = build_demo_storyboard_bridge_checklist_rows(cards, steps)
@@ -560,6 +619,18 @@ def write_outputs(
         "\n".join(build_demo_storyboard_receipt_board_lines(storyboard_receipt_board_rows)) + "\n",
         encoding="utf-8",
     )
+    with storyboard_receipt_map_csv_path.open("w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=RECEIPT_MAP_COLUMNS)
+        writer.writeheader()
+        writer.writerows(storyboard_receipt_map_rows)
+    storyboard_receipt_map_json_path.write_text(
+        json.dumps(storyboard_receipt_map_rows, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    storyboard_receipt_map_md_path.write_text(
+        "\n".join(build_demo_storyboard_receipt_map_lines(storyboard_receipt_map_rows)) + "\n",
+        encoding="utf-8",
+    )
     with storyboard_bridge_checklist_csv_path.open("w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=STORYBOARD_BRIDGE_CHECKLIST_COLUMNS)
         writer.writeheader()
@@ -615,6 +686,9 @@ def write_outputs(
         storyboard_receipt_board_csv_path,
         storyboard_receipt_board_json_path,
         storyboard_receipt_board_md_path,
+        storyboard_receipt_map_csv_path,
+        storyboard_receipt_map_json_path,
+        storyboard_receipt_map_md_path,
         storyboard_bridge_checklist_csv_path,
         storyboard_bridge_checklist_json_path,
         storyboard_bridge_checklist_md_path,
@@ -654,6 +728,9 @@ def main() -> None:
         storyboard_receipt_board_csv_path,
         storyboard_receipt_board_json_path,
         storyboard_receipt_board_md_path,
+        storyboard_receipt_map_csv_path,
+        storyboard_receipt_map_json_path,
+        storyboard_receipt_map_md_path,
         storyboard_bridge_checklist_csv_path,
         storyboard_bridge_checklist_json_path,
         storyboard_bridge_checklist_md_path,
@@ -681,6 +758,9 @@ def main() -> None:
     print(f"Wrote demo storyboard receipt board CSV: {storyboard_receipt_board_csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote demo storyboard receipt board JSON: {storyboard_receipt_board_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote demo storyboard receipt board note: {storyboard_receipt_board_md_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote demo storyboard receipt map CSV: {storyboard_receipt_map_csv_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote demo storyboard receipt map JSON: {storyboard_receipt_map_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote demo storyboard receipt map note: {storyboard_receipt_map_md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote demo storyboard bridge checklist CSV: {storyboard_bridge_checklist_csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote demo storyboard bridge checklist JSON: {storyboard_bridge_checklist_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote demo storyboard bridge checklist note: {storyboard_bridge_checklist_md_path.relative_to(PROJECT_ROOT)}")
