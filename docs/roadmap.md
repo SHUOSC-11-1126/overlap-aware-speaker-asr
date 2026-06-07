@@ -199,6 +199,18 @@ Update: the first external validation slice scaffold now exists.
 - Summary view: `results/figures/external_validation_slice_scaffold.md`
 - AISHELL-4 remains `scaffold_only` with `license_status = pending_confirmation`; no external audio or benchmark evaluation has been run yet.
 
+Update: `external_validation` now also has a license gate checklist.
+
+- License gate checklist: `results/tables/external_validation_license_gate.csv`
+- Summary view: `results/figures/external_validation_license_gate.md`
+- This documents preflight license steps while external audio staging remains blocked.
+
+Update: `speaker_profile` now also has an embedding scaffold.
+
+- Embedding scaffold: `results/tables/speaker_profile_embedding_scaffold.json`
+- Summary view: `results/figures/speaker_profile_embedding_scaffold.md`
+- This points toward `embedding_or_voiceprint_baseline` without claiming improved speaker attribution.
+
 Update: a generated demo walkthrough now turns the storyboard into a short presentation sequence.
 
 - Demo walkthrough: `results/tables/demo_walkthrough_steps.json`
@@ -245,7 +257,13 @@ Update: the first MeetEval cpWER bridge-lite pass now exists.
 
 - cpWER bridge table: `results/tables/meeteval_cpwer_bridge.csv`
 - Summary view: `results/figures/meeteval_cpwer_bridge.md`
-- `NoOverlap` reports `cpwer_bridge_lite = 0.054312` with `direct` mapping. This remains `experimental/frontier` rather than a full MeetEval benchmark claim.
+- All five gold cases now report `average_cpwer_bridge_lite = 0.120823` with `direct_mapping_count = 5/5`. This remains `experimental/frontier` rather than a full MeetEval benchmark claim.
+
+Update: `meeteval_compatibility` now also has a cpWER bridge summary.
+
+- cpWER bridge summary: `results/tables/meeteval_cpwer_bridge_summary.csv`
+- Summary view: `results/figures/meeteval_cpwer_bridge_summary.md`
+- This condenses the all-gold bridge-lite pass without promoting it into a finished MeetEval evaluation claim.
 
 Update: `meeteval_compatibility` now also has a cpWER bridge handoff.
 

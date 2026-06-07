@@ -413,7 +413,13 @@ Current MeetEval cpWER bridge result:
 
 - `results/figures/meeteval_cpwer_bridge.md`
 - `results/tables/meeteval_cpwer_bridge.csv`
-- The first cpWER bridge-lite pass on `NoOverlap` reports `cpwer_bridge_lite = 0.054312` with `direct` mapping. This is `experimental/frontier` evidence, not a full MeetEval benchmark claim.
+- The all-gold cpWER bridge-lite pass reports `average_cpwer_bridge_lite = 0.120823` with `direct_mapping_count = 5/5`. This is `experimental/frontier` evidence, not a full MeetEval benchmark claim.
+
+Current MeetEval cpWER bridge summary result:
+
+- `results/figures/meeteval_cpwer_bridge_summary.md`
+- `results/tables/meeteval_cpwer_bridge_summary.csv`
+- The summary condenses the five verified gold cases without promoting bridge-lite evidence into a finished MeetEval evaluation claim.
 
 Current MeetEval cpWER bridge handoff result:
 
@@ -445,6 +451,12 @@ Current speaker profile method bridge checklist result:
 - `results/figures/speaker_profile_method_bridge_checklist.md`
 - `results/tables/speaker_profile_method_bridge_checklist.csv`
 - This checklist now turns the method handoff into an ordered bridge verification path. It stays coordination-only and keeps the handoff and receipt targets visible without claiming any stronger speaker-profile method has been executed.
+
+Current speaker profile embedding scaffold result:
+
+- `results/figures/speaker_profile_embedding_scaffold.md`
+- `results/tables/speaker_profile_embedding_scaffold.json`
+- The stronger-method scaffold is `scaffold_only` and points toward `embedding_or_voiceprint_baseline` without claiming improved speaker attribution.
 
 Current llm critic result:
 
@@ -496,6 +508,12 @@ Current external validation slice scaffold result:
 - `results/figures/external_validation_slice_scaffold.md`
 - `results/tables/external_validation_slice_mapping.json`
 - The first AISHELL-4 mapping stub is `scaffold_only` with `license_status = pending_confirmation`. No external audio or benchmark evaluation has been run yet.
+
+Current external validation license gate result:
+
+- `results/figures/external_validation_license_gate.md`
+- `results/tables/external_validation_license_gate.csv`
+- The license gate checklist documents preflight steps while `license_status` remains `pending_confirmation` and external audio staging stays blocked.
 
 Current external validation slice bridge checklist result:
 
@@ -612,8 +630,10 @@ python -m src.router_ablation
 python -m src.router_ablation_split
 python -m src.export_meeteval_compatibility
 python -m src.meeteval_dry_run
-python -m src.meeteval_cpwer_bridge
+python -m src.meeteval_cpwer_bridge --case all
 python -m src.external_validation_slice_scaffold
+python -m src.external_validation_license_gate
+python -m src.speaker_profile_embedding_scaffold
 python -m src.project_harness
 ```
 
