@@ -1,0 +1,37 @@
+[
+  {
+    "packet_section": "entry",
+    "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_completion_summary.md",
+    "section_role": "Start here for queue completion status"
+  },
+  {
+    "packet_section": "handoff",
+    "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_handoff.md",
+    "section_role": "Per-frontier fill execution actions"
+  },
+  {
+    "packet_section": "operator",
+    "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_operator_brief.md",
+    "section_role": "Plain-language operator next step"
+  },
+  {
+    "packet_section": "receipt_bridge",
+    "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_receipt_bridge.md",
+    "section_role": "Bridge to execution receipt target"
+  },
+  {
+    "packet_section": "receipt_bridge_checklist",
+    "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_receipt_bridge_checklist.md",
+    "section_role": "Ordered receipt writeback verification"
+  },
+  {
+    "packet_section": "status",
+    "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_status.md",
+    "section_role": "Unified fill execution status rollup"
+  },
+  {
+    "packet_section": "packet",
+    "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_packet.md",
+    "section_role": "Single-entry fill execution packet"
+  }
+]
