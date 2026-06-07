@@ -545,6 +545,30 @@ Update: `meeteval_compatibility` now also has a cpWER alignment drift segment sp
 - Summary view: `results/figures/meeteval_cpwer_alignment_drift_segment_speaker_count_diagnostic_handoff_bridge_checklist.md`
 - This connects the speaker count handoff to the timing diagnostic bridge without claiming cpWER execution.
 
+Update: `meeteval_compatibility` now also has a cpWER alignment drift segment timing diagnostic handoff.
+
+- Drift segment timing diagnostic handoff: `results/tables/meeteval_cpwer_alignment_drift_segment_timing_diagnostic_handoff.csv`
+- Summary view: `results/figures/meeteval_cpwer_alignment_drift_segment_timing_diagnostic_handoff.md`
+- This hands off `HeavyOverlap` to per-speaker granularity diagnostic follow-up while cpWER execution remains pending.
+
+Update: `meeteval_compatibility` now also has a cpWER alignment drift segment granularity diagnostic.
+
+- Drift segment granularity diagnostic: `results/tables/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic.csv`
+- Summary view: `results/figures/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_summary.md`
+- `HeavyOverlap` reports `mismatched_speaker_count = 1/2` with `SPEAKER_2 delta=-0.173s`; reconciled alignment and cpWER execution remain pending.
+
+Update: `meeteval_compatibility` now also has a cpWER alignment drift segment timing diagnostic handoff bridge checklist.
+
+- Drift segment timing diagnostic handoff bridge checklist: `results/tables/meeteval_cpwer_alignment_drift_segment_timing_diagnostic_handoff_bridge_checklist.csv`
+- Summary view: `results/figures/meeteval_cpwer_alignment_drift_segment_timing_diagnostic_handoff_bridge_checklist.md`
+- This connects the timing handoff to the granularity diagnostic bridge without claiming cpWER execution.
+
+Update: `meeteval_compatibility` now also has a cpWER alignment drift segment granularity diagnostic bridge checklist.
+
+- Drift segment granularity diagnostic bridge checklist: `results/tables/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_bridge_checklist.csv`
+- Summary view: `results/figures/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_bridge_checklist.md`
+- This connects the granularity diagnostic to the timing handoff bridge without claiming cpWER execution.
+
 Update: `meeteval_compatibility` now also has a cpWER bridge handoff.
 
 - cpWER bridge handoff: `results/tables/meeteval_cpwer_bridge_handoff.csv`
@@ -890,6 +914,24 @@ Update: `demo_excellence` now also has a walkthrough review pass status rollup.
 - Walkthrough review pass status: `results/tables/demo_walkthrough_review_pass_status.csv`
 - Summary view: `results/figures/demo_walkthrough_review_pass_status.md`
 - `queue_status = queue_complete` without any live demo or recording claim.
+
+Update: `demo_excellence` now also has a walkthrough review pass status bridge checklist.
+
+- Walkthrough review pass status bridge checklist: `results/tables/demo_walkthrough_review_pass_status_bridge_checklist.csv`
+- Summary view: `results/figures/demo_walkthrough_review_pass_status_bridge_checklist.md`
+- This connects the status rollup to the final pass bridge without claiming live demo delivery.
+
+Update: `demo_excellence` now also has a walkthrough review pass final bridge checklist.
+
+- Walkthrough review pass final bridge checklist: `results/tables/demo_walkthrough_review_pass_final_bridge_checklist.csv`
+- Summary view: `results/figures/demo_walkthrough_review_pass_final_bridge_checklist.md`
+- This connects step `5` to the completion summary without claiming live demo delivery.
+
+Update: `demo_excellence` now also has a walkthrough review pass completion summary.
+
+- Walkthrough review pass completion summary: `results/tables/demo_walkthrough_review_pass_completion_summary.csv`
+- Summary view: `results/figures/demo_walkthrough_review_pass_completion_summary.md`
+- `queue_status = queue_complete` at `5/5` without any live demo or recording claim.
 
 Update: `external_validation` now has a dedicated skill card.
 

@@ -784,6 +784,30 @@ MeetEval cpWER alignment drift segment speaker count diagnostic handoff bridge c
 - `results/tables/meeteval_cpwer_alignment_drift_segment_speaker_count_diagnostic_handoff_bridge_checklist.csv`
 - This checklist connects the speaker count handoff to the timing diagnostic bridge without claiming cpWER execution.
 
+MeetEval cpWER alignment drift segment timing diagnostic handoff:
+
+- `results/figures/meeteval_cpwer_alignment_drift_segment_timing_diagnostic_handoff.md`
+- `results/tables/meeteval_cpwer_alignment_drift_segment_timing_diagnostic_handoff.csv`
+- The timing diagnostic handoff targets per-speaker granularity follow-up for `HeavyOverlap`; reconciled alignment and cpWER execution remain pending.
+
+MeetEval cpWER alignment drift segment granularity diagnostic:
+
+- `results/figures/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic.md`
+- `results/tables/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic.csv`
+- Per-speaker granularity on `HeavyOverlap` reports `mismatched_speaker_count = 1/2` with `SPEAKER_2 delta=-0.173s`; reconciled alignment and cpWER execution remain pending.
+
+MeetEval cpWER alignment drift segment timing diagnostic handoff bridge checklist:
+
+- `results/figures/meeteval_cpwer_alignment_drift_segment_timing_diagnostic_handoff_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_alignment_drift_segment_timing_diagnostic_handoff_bridge_checklist.csv`
+- This checklist connects the timing handoff to the granularity diagnostic bridge without claiming cpWER execution.
+
+MeetEval cpWER alignment drift segment granularity diagnostic bridge checklist:
+
+- `results/figures/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_bridge_checklist.csv`
+- This checklist connects the granularity diagnostic to the timing handoff bridge without claiming cpWER execution.
+
 MeetEval cpWER bridge handoff:
 
 - `results/figures/meeteval_cpwer_bridge_handoff.md`
@@ -1191,6 +1215,24 @@ Demo walkthrough review pass status:
 - `results/tables/demo_walkthrough_review_pass_status.csv`
 - The walkthrough review queue rollup reports `queue_status = queue_complete` with `completed_count = 5/5`; no live demo delivery is claimed.
 
+Demo walkthrough review pass status bridge checklist:
+
+- `results/figures/demo_walkthrough_review_pass_status_bridge_checklist.md`
+- `results/tables/demo_walkthrough_review_pass_status_bridge_checklist.csv`
+- This checklist connects the status rollup to the final pass bridge without claiming live demo delivery.
+
+Demo walkthrough review pass final bridge checklist:
+
+- `results/figures/demo_walkthrough_review_pass_final_bridge_checklist.md`
+- `results/tables/demo_walkthrough_review_pass_final_bridge_checklist.csv`
+- This checklist connects step `5` to the completion summary without claiming live demo delivery.
+
+Demo walkthrough review pass completion summary:
+
+- `results/figures/demo_walkthrough_review_pass_completion_summary.md`
+- `results/tables/demo_walkthrough_review_pass_completion_summary.csv`
+- The completion summary reports `queue_status = queue_complete` with `completed_count = 5/5`; no live demo delivery is claimed.
+
 ## How to Resume Work
 
 Common commands:
@@ -1238,6 +1280,10 @@ python -m src.meeteval_cpwer_alignment_drift_segment_speaker_count_diagnostic_ha
 python -m src.meeteval_cpwer_alignment_drift_segment_timing_diagnostic
 python -m src.meeteval_cpwer_alignment_drift_segment_timing_diagnostic_bridge_checklist
 python -m src.meeteval_cpwer_alignment_drift_segment_speaker_count_diagnostic_handoff_bridge_checklist
+python -m src.meeteval_cpwer_alignment_drift_segment_timing_diagnostic_handoff
+python -m src.meeteval_cpwer_alignment_drift_segment_granularity_diagnostic
+python -m src.meeteval_cpwer_alignment_drift_segment_timing_diagnostic_handoff_bridge_checklist
+python -m src.meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_bridge_checklist
 python -m src.demo_walkthrough_review_pass
 python -m src.demo_walkthrough_review_pass_advance
 python -m src.demo_walkthrough_review_pass_continue
@@ -1245,6 +1291,9 @@ python -m src.demo_walkthrough_review_pass_continue_bridge_checklist
 python -m src.demo_walkthrough_review_pass_second_continue
 python -m src.demo_walkthrough_review_pass_third_continue
 python -m src.demo_walkthrough_review_pass_status
+python -m src.demo_walkthrough_review_pass_status_bridge_checklist
+python -m src.demo_walkthrough_review_pass_final_bridge_checklist
+python -m src.demo_walkthrough_review_pass_completion_summary
 python -m src.external_validation_license_confirmation_receipt_bridge_checklist
 python -m src.external_validation_slice_manifest
 python -m src.external_validation_slice_manifest_bridge_checklist
