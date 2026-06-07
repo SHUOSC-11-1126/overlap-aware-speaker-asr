@@ -1,0 +1,12 @@
+[
+  {
+    "checklist_order": "1",
+    "case_id": "HeavyOverlap",
+    "mismatched_speaker_count": "1",
+    "prerequisite_artifact": "results/figures/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_summary.md",
+    "receipt_target": "results/figures/meeteval_cpwer_alignment_drift_segment_timing_diagnostic_handoff_bridge_checklist.md",
+    "checklist_goal": "Verify the granularity diagnostic bridge for HeavyOverlap before reopening the timing handoff bridge.",
+    "bridge_note": "mismatched_speaker_count=1 with dominant_blocker=SPEAKER_2 delta=-0.173s; confirm per-speaker granularity drift before advancing the timing handoff bridge.",
+    "next_gate": "Confirm this bridge before opening the cpWER segment timing diagnostic handoff bridge checklist target."
+  }
+]

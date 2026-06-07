@@ -1,0 +1,8 @@
+[
+  {
+    "execution_status": "handoff_documented",
+    "handoff_scope": "single_drift_case_timing_to_granularity",
+    "case_id": "HeavyOverlap",
+    "writeback_note": "Timing diagnostic handoff documented for coordination; per-speaker granularity diagnostic and cpWER execution remain pending."
+  }
+]
