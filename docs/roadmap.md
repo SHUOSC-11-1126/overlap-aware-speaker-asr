@@ -294,6 +294,12 @@ Update: a generated external validation slice bridge checklist now turns the fir
 - Summary view: `results/figures/external_validation_slice_bridge_checklist.md`
 - This keeps the external handoff and receipt targets visible together while staying explicit that no external benchmark execution has yet happened.
 
+Update: a generated MeetEval dry run bridge checklist now turns the handoff into a bridge verification path.
+
+- MeetEval dry run bridge checklist: `results/tables/meeteval_dry_run_bridge_checklist.csv`
+- Summary view: `results/figures/meeteval_dry_run_bridge_checklist.md`
+- This keeps the MeetEval handoff and receipt targets visible together while staying explicit that no cpWER execution has yet happened.
+
 Remaining stretch work:
 
 - replace proxy costs with a controlled hardware/runtime benchmark

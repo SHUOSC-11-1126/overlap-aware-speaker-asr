@@ -592,6 +592,12 @@ MeetEval dry run receipt bridge:
 - `results/tables/meeteval_dry_run_receipt.json`
 - This bridge now materializes that expected evidence target as a template-only receipt. It still does not claim any executed dry run; it simply defines what the first narrow diagnostic follow-up should write back once it actually happens.
 
+MeetEval dry run bridge checklist:
+
+- `results/figures/meeteval_dry_run_bridge_checklist.md`
+- `results/tables/meeteval_dry_run_bridge_checklist.csv`
+- This checklist turns the dry-run handoff into an ordered bridge verification path between the handoff and receipt. It stays coordination-only and does not claim that any MeetEval or cpWER execution has already happened.
+
 MeetEval dry run checklist bridge:
 
 - `results/figures/meeteval_dry_run_checklist.md`

@@ -374,6 +374,12 @@ Current MeetEval dry run receipt result:
 - `results/figures/meeteval_dry_run_receipt.md` now materializes that expected evidence target as a template-only receipt
 - This still does not claim execution: it defines the intended run scope, expected inputs, and post-run writeback note so the first diagnostic dry run has an explicit evidence slot before anyone fills it
 
+Current MeetEval dry run bridge checklist result:
+
+- `results/figures/meeteval_dry_run_bridge_checklist.md`
+- `results/tables/meeteval_dry_run_bridge_checklist.csv`
+- This checklist now turns the dry-run handoff into an ordered bridge verification path. It stays coordination-only and keeps the handoff and receipt targets visible without claiming any MeetEval or cpWER execution.
+
 Current MeetEval dry run checklist result:
 
 - `results/figures/meeteval_dry_run_checklist.md` now turns the verified cases into an ordered dry-run checklist so the next contributor can pick a concrete case before touching the receipt slot
