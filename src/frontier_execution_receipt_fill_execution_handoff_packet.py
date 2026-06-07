@@ -20,6 +20,8 @@ PACKET_SECTIONS = [
     ("operator", "results/figures/frontier_execution_receipt_fill_execution_operator_brief.md", "Plain-language operator next step"),
     ("receipt_bridge", "results/figures/frontier_execution_receipt_fill_execution_receipt_bridge.md", "Bridge to execution receipt target"),
     ("receipt_bridge_checklist", "results/figures/frontier_execution_receipt_fill_execution_receipt_bridge_checklist.md", "Ordered receipt writeback verification"),
+    ("evidence_receipt", "results/figures/frontier_execution_receipt_fill_execution_evidence_receipt.md", "Fill execution writeback closeout card"),
+    ("evidence_receipt_bridge_checklist", "results/figures/frontier_execution_receipt_fill_execution_evidence_receipt_bridge_checklist.md", "Handoff packet to evidence receipt verification"),
     ("status", "results/figures/frontier_execution_receipt_fill_execution_status.md", "Unified fill execution status rollup"),
     ("packet", "results/figures/frontier_execution_receipt_fill_execution_packet.md", "Single-entry fill execution packet"),
 ]

@@ -25,6 +25,16 @@
     "section_role": "Ordered receipt writeback verification"
   },
   {
+    "packet_section": "evidence_receipt",
+    "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_evidence_receipt.md",
+    "section_role": "Fill execution writeback closeout card"
+  },
+  {
+    "packet_section": "evidence_receipt_bridge_checklist",
+    "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_evidence_receipt_bridge_checklist.md",
+    "section_role": "Handoff packet to evidence receipt verification"
+  },
+  {
     "packet_section": "status",
     "artifact_path": "results/figures/frontier_execution_receipt_fill_execution_status.md",
     "section_role": "Unified fill execution status rollup"
