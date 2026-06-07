@@ -1,9 +1,49 @@
 [
   {
     "execution_status": "template_only",
-    "run_scope": "single_case_cpwer_execution",
+    "run_scope": "all_gold_cpwer_execution",
     "case_id": "NoOverlap",
     "hypothesis_source": "separated_whisper",
+    "preflight_pass": "True",
+    "expected_inputs": "results/tables/meeteval_reference_segments.jsonl; results/tables/meeteval_hypothesis_segments.jsonl; MeetEval cpWER tooling.",
+    "expected_outputs": "Official cpWER score and evaluation note.",
+    "writeback_note": "Official MeetEval cpWER has not been executed yet; fill this receipt only after a real cpWER evaluation run."
+  },
+  {
+    "execution_status": "template_only",
+    "run_scope": "all_gold_cpwer_execution",
+    "case_id": "LightOverlap",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "preflight_pass": "True",
+    "expected_inputs": "results/tables/meeteval_reference_segments.jsonl; results/tables/meeteval_hypothesis_segments.jsonl; MeetEval cpWER tooling.",
+    "expected_outputs": "Official cpWER score and evaluation note.",
+    "writeback_note": "Official MeetEval cpWER has not been executed yet; fill this receipt only after a real cpWER evaluation run."
+  },
+  {
+    "execution_status": "template_only",
+    "run_scope": "all_gold_cpwer_execution",
+    "case_id": "MidOverlap",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "preflight_pass": "True",
+    "expected_inputs": "results/tables/meeteval_reference_segments.jsonl; results/tables/meeteval_hypothesis_segments.jsonl; MeetEval cpWER tooling.",
+    "expected_outputs": "Official cpWER score and evaluation note.",
+    "writeback_note": "Official MeetEval cpWER has not been executed yet; fill this receipt only after a real cpWER evaluation run."
+  },
+  {
+    "execution_status": "template_only",
+    "run_scope": "all_gold_cpwer_execution",
+    "case_id": "HeavyOverlap",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "preflight_pass": "True",
+    "expected_inputs": "results/tables/meeteval_reference_segments.jsonl; results/tables/meeteval_hypothesis_segments.jsonl; MeetEval cpWER tooling.",
+    "expected_outputs": "Official cpWER score and evaluation note.",
+    "writeback_note": "Official MeetEval cpWER has not been executed yet; fill this receipt only after a real cpWER evaluation run."
+  },
+  {
+    "execution_status": "template_only",
+    "run_scope": "all_gold_cpwer_execution",
+    "case_id": "OppositeOverlap",
+    "hypothesis_source": "separated_whisper_cleaned",
     "preflight_pass": "True",
     "expected_inputs": "results/tables/meeteval_reference_segments.jsonl; results/tables/meeteval_hypothesis_segments.jsonl; MeetEval cpWER tooling.",
     "expected_outputs": "Official cpWER score and evaluation note.",
