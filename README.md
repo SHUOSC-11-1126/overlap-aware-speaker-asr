@@ -404,6 +404,12 @@ Current speaker profile method receipt result:
 - `results/figures/speaker_profile_method_receipt.md` now materializes that expected evidence target as a template-only receipt
 - This still does not claim any improved attribution: it defines the method scope, expected inputs, expected outputs, and writeback note so the first stronger-method trial has a concrete receipt to fill
 
+Current speaker profile method bridge checklist result:
+
+- `results/figures/speaker_profile_method_bridge_checklist.md`
+- `results/tables/speaker_profile_method_bridge_checklist.csv`
+- This checklist now turns the method handoff into an ordered bridge verification path. It stays coordination-only and keeps the handoff and receipt targets visible without claiming any stronger speaker-profile method has been executed.
+
 Current llm critic result:
 
 - `results/figures/llm_critic_qualitative_note.md` now provides a qualitative/demo critic bridge that turns structured risk cues into critique, repair direction, and uncertainty notes without claiming verified transcript correction

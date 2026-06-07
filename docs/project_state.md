@@ -628,6 +628,12 @@ Speaker profile method receipt bridge:
 - `results/tables/speaker_profile_method_receipt.json`
 - This bridge now materializes the expected evidence slot for that stronger-method trial as a template-only receipt. It still does not claim any executed profile improvement; it simply defines what the first stronger-method follow-up should write back once it actually happens.
 
+Speaker profile method bridge checklist:
+
+- `results/figures/speaker_profile_method_bridge_checklist.md`
+- `results/tables/speaker_profile_method_bridge_checklist.csv`
+- This checklist turns the method handoff into an ordered bridge verification path between the handoff and receipt. It stays coordination-only and does not claim that any stronger speaker-profile method has already happened.
+
 LLM critic qualitative bridge:
 
 - `results/figures/llm_critic_qualitative_note.md`
