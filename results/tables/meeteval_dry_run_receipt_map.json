@@ -1,0 +1,11 @@
+[
+  {
+    "map_order": "1",
+    "dry_run_scope": "single_verified_case",
+    "receipt_state": "template_only",
+    "prerequisite_artifact": "results/figures/meeteval_dry_run_checklist.md",
+    "receipt_target": "results/figures/meeteval_dry_run_receipt.md",
+    "map_note": "Keep the dry-run receipt path visible across the receipt, checklist, and board views for single_verified_case.",
+    "next_gate": "Open the receipt board and checklist before advancing any MeetEval evaluation claim."
+  }
+]
