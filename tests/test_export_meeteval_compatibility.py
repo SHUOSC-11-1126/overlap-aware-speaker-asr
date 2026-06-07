@@ -12,8 +12,12 @@ from src.export_meeteval_compatibility import (
     build_meeteval_dry_run_bridge_checklist_rows,
     build_meeteval_dry_run_checklist_lines,
     build_meeteval_dry_run_checklist_rows,
+    build_meeteval_dry_run_receipt_board_lines,
+    build_meeteval_dry_run_receipt_board_rows,
     build_meeteval_dry_run_receipt_checklist_lines,
     build_meeteval_dry_run_receipt_checklist_rows,
+    build_meeteval_dry_run_receipt_map_lines,
+    build_meeteval_dry_run_receipt_map_rows,
     build_meeteval_dry_run_receipt_lines,
     build_meeteval_dry_run_receipt_rows,
     build_meeteval_readiness_lines,
@@ -339,6 +343,80 @@ class MeetEvalCompatibilityTest(unittest.TestCase):
         self.assertIn("# MeetEval Dry Run Receipt Checklist", rendered)
         self.assertIn("single_verified_case", rendered)
         self.assertIn("meeteval_dry_run_receipt.md", rendered)
+
+    def test_build_meeteval_dry_run_receipt_board_rows_condense_receipt_path(self) -> None:
+        receipt_rows = [
+            {
+                "execution_status": "diagnostic_complete",
+                "run_scope": "single_verified_case",
+            }
+        ]
+        checklist_rows = [
+            {
+                "prerequisite_artifact": "results/figures/meeteval_dry_run_checklist.md",
+                "receipt_target": "results/figures/meeteval_dry_run_receipt.md",
+            }
+        ]
+
+        rows = build_meeteval_dry_run_receipt_board_rows(receipt_rows, checklist_rows)
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["receipt_state"], "diagnostic_complete")
+        self.assertIn("cpwer", rows[0]["board_note"].lower())
+
+    def test_build_meeteval_dry_run_receipt_board_lines_render_board(self) -> None:
+        lines = build_meeteval_dry_run_receipt_board_lines(
+            [
+                {
+                    "board_order": "1",
+                    "dry_run_scope": "single_verified_case",
+                    "receipt_state": "diagnostic_complete",
+                    "prerequisite_artifact": "results/figures/meeteval_dry_run_checklist.md",
+                    "receipt_target": "results/figures/meeteval_dry_run_receipt.md",
+                    "board_note": "Keep the dry-run receipt path visible for single_verified_case while cpWER evaluation remains pending.",
+                    "next_gate": "Open the receipt checklist before advancing any MeetEval evaluation claim.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# MeetEval Dry Run Receipt Board", rendered)
+        self.assertIn("diagnostic_complete", rendered)
+
+    def test_build_meeteval_dry_run_receipt_map_rows_merge_layers(self) -> None:
+        receipt_rows = [{"execution_status": "diagnostic_complete", "run_scope": "single_verified_case"}]
+        checklist_rows = [{"receipt_target": "results/figures/meeteval_dry_run_receipt.md"}]
+        board_rows = [
+            {
+                "prerequisite_artifact": "results/figures/meeteval_dry_run_checklist.md",
+                "receipt_target": "results/figures/meeteval_dry_run_receipt.md",
+            }
+        ]
+
+        rows = build_meeteval_dry_run_receipt_map_rows(receipt_rows, checklist_rows, board_rows)
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["receipt_state"], "diagnostic_complete")
+        self.assertIn("receipt, checklist, and board", rows[0]["map_note"].lower())
+
+    def test_build_meeteval_dry_run_receipt_map_lines_render_map(self) -> None:
+        lines = build_meeteval_dry_run_receipt_map_lines(
+            [
+                {
+                    "map_order": "1",
+                    "dry_run_scope": "single_verified_case",
+                    "receipt_state": "diagnostic_complete",
+                    "prerequisite_artifact": "results/figures/meeteval_dry_run_checklist.md",
+                    "receipt_target": "results/figures/meeteval_dry_run_receipt.md",
+                    "map_note": "Keep the dry-run receipt path visible across the receipt, checklist, and board views for single_verified_case.",
+                    "next_gate": "Open the receipt board and checklist before advancing any MeetEval evaluation claim.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# MeetEval Dry Run Receipt Map", rendered)
+        self.assertIn("single_verified_case", rendered)
 
     def test_build_meeteval_dry_run_checklist_lines_render_queue(self) -> None:
         lines = build_meeteval_dry_run_checklist_lines(
