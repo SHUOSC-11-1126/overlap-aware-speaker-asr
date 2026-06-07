@@ -1,0 +1,11 @@
+[
+  {
+    "execution_status": "template_only",
+    "run_scope": "single_external_slice_staging",
+    "dataset_name": "AISHELL-4",
+    "blocker": "license_confirmation_pending",
+    "expected_inputs": "License confirmation note plus AISHELL-4 slice manifest and mapping artifact.",
+    "expected_outputs": "External slice staging note and mapping confirmation.",
+    "writeback_note": "External audio staging has not happened yet; fill this receipt only after license confirmation and slice staging."
+  }
+]
