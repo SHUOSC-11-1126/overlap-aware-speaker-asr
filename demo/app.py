@@ -71,7 +71,9 @@ def render_gold_table() -> None:
 def render_frontier_fill_status() -> None:
     summary = load_json_dict("results/tables/frontier_execution_receipt_fill_queue_summary.json")
     execution = load_json_dict("results/tables/frontier_execution_receipt_fill_execution_status.json")
+    completion = load_json_dict("results/tables/frontier_execution_receipt_fill_execution_completion_summary.json")
     rows = load_json_list("results/tables/frontier_execution_receipt_fill_queue_status.json")
+    handoff_rows = load_json_list("results/tables/frontier_execution_receipt_fill_execution_handoff.json")
     if not summary:
         st.warning("Frontier fill queue summary not found.")
         return
@@ -88,12 +90,29 @@ def render_frontier_fill_status() -> None:
                 "Fill execution status",
                 execution.get("combined_fill_execution_status", "unknown"),
             )
+        if completion:
+            st.metric(
+                "Awaiting fill execution",
+                (
+                    f"{completion.get('awaiting_fill_execution_count', '0')}/"
+                    f"{completion.get('total_frontier_count', '0')}"
+                ),
+            )
     if rows:
         st.table(
             {
                 "frontier": [row.get("frontier_name", "") for row in rows],
                 "fill_status": [row.get("fill_status", "") for row in rows],
                 "execution_status": [row.get("execution_status", "") for row in rows],
+            }
+        )
+    if handoff_rows:
+        st.markdown("**Fill execution handoff actions**")
+        st.table(
+            {
+                "frontier": [row.get("frontier_name", "") for row in handoff_rows],
+                "fill execution status": [row.get("fill_execution_status", "") for row in handoff_rows],
+                "recommended action": [row.get("recommended_action", "") for row in handoff_rows],
             }
         )
 
