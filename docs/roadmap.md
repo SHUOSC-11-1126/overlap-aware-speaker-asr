@@ -229,6 +229,12 @@ Update: `speaker_profile` now also has an embedding scaffold.
 - Summary view: `results/figures/speaker_profile_embedding_scaffold.md`
 - This points toward `embedding_or_voiceprint_baseline` without claiming improved speaker attribution.
 
+Update: `speaker_profile` now also has an embedding scaffold bridge checklist.
+
+- Embedding scaffold bridge checklist: `results/tables/speaker_profile_embedding_scaffold_bridge_checklist.csv`
+- Summary view: `results/figures/speaker_profile_embedding_scaffold_bridge_checklist.md`
+- This connects the embedding scaffold to the method receipt without claiming voiceprint success.
+
 Update: `llm_critic` now has a first qualitative review pass.
 
 - Review pass table: `results/tables/llm_critic_review_pass.csv`
@@ -253,6 +259,12 @@ Update: `llm_critic` now also has a review pass advance bridge checklist.
 - Review pass advance bridge checklist: `results/tables/llm_critic_review_pass_advance_bridge_checklist.csv`
 - Summary view: `results/figures/llm_critic_review_pass_advance_bridge_checklist.md`
 - This keeps the second qualitative pass and advance receipt visible together without claiming verified repair.
+
+Update: `llm_critic` now also has a review pass status rollup.
+
+- Review pass status table: `results/tables/llm_critic_review_pass_status.csv`
+- Summary view: `results/figures/llm_critic_review_pass_status.md`
+- `completed_count = 2/5` with `next_case_id = MidOverlap`; no verified repair claim is made.
 
 Update: a generated demo walkthrough now turns the storyboard into a short presentation sequence.
 

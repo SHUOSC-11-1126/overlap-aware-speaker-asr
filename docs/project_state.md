@@ -706,6 +706,12 @@ Speaker profile embedding scaffold bridge:
 - `results/tables/speaker_profile_embedding_scaffold.json`
 - The stronger-method scaffold is `scaffold_only` and points toward `embedding_or_voiceprint_baseline` without claiming improved speaker attribution.
 
+Speaker profile embedding scaffold bridge checklist:
+
+- `results/figures/speaker_profile_embedding_scaffold_bridge_checklist.md`
+- `results/tables/speaker_profile_embedding_scaffold_bridge_checklist.csv`
+- This checklist connects the embedding scaffold to the method receipt without claiming voiceprint success.
+
 LLM critic qualitative bridge:
 
 - `results/figures/llm_critic_qualitative_note.md`
@@ -753,6 +759,12 @@ LLM critic review pass advance bridge checklist:
 - `results/figures/llm_critic_review_pass_advance_bridge_checklist.md`
 - `results/tables/llm_critic_review_pass_advance_bridge_checklist.csv`
 - This checklist connects the second qualitative pass to the advance receipt without claiming verified repair.
+
+LLM critic review pass status rollup:
+
+- `results/figures/llm_critic_review_pass_status.md`
+- `results/tables/llm_critic_review_pass_status.csv`
+- The queue rollup reports `completed_count = 2/5` with `next_case_id = MidOverlap` and no verified repair claim.
 
 LLM critic review bridge checklist:
 

@@ -77,6 +77,10 @@ results/synthetic_overlap_v2/
 !results/tables/llm_critic_review_pass_advance_receipt.json
 !results/tables/llm_critic_review_pass_advance_bridge_checklist.csv
 !results/tables/llm_critic_review_pass_advance_bridge_checklist.json
+!results/tables/llm_critic_review_pass_status.csv
+!results/tables/llm_critic_review_pass_status.json
+!results/tables/llm_critic_review_pass_status_summary.csv
+!results/tables/llm_critic_review_pass_status_summary.json
 !results/tables/external_validation_slice_manifest.csv
 !results/tables/external_validation_slice_manifest.json
 !results/tables/external_validation_slice_manifest_receipt.json
@@ -90,6 +94,8 @@ results/synthetic_overlap_v2/
 !results/tables/speaker_profile_embedding_scaffold.csv
 !results/tables/speaker_profile_embedding_scaffold.json
 !results/tables/speaker_profile_embedding_scaffold_receipt.json
+!results/tables/speaker_profile_embedding_scaffold_bridge_checklist.csv
+!results/tables/speaker_profile_embedding_scaffold_bridge_checklist.json
 !results/tables/external_validation_checklist.csv
 !results/tables/external_validation_checklist.json
 !results/tables/external_validation_slice_mapping.csv
@@ -117,6 +123,8 @@ results/synthetic_overlap_v2/
 !results/figures/llm_critic_review_pass_second.md
 !results/figures/llm_critic_review_pass_advance_receipt.md
 !results/figures/llm_critic_review_pass_advance_bridge_checklist.md
+!results/figures/llm_critic_review_pass_status.md
+!results/figures/llm_critic_review_pass_status_summary.md
 !results/figures/external_validation_slice_manifest.md
 !results/figures/external_validation_slice_manifest_receipt.md
 !results/figures/external_validation_slice_manifest_bridge_checklist.md
@@ -125,6 +133,7 @@ results/synthetic_overlap_v2/
 !results/figures/external_validation_license_gate_bridge_checklist.md
 !results/figures/speaker_profile_embedding_scaffold.md
 !results/figures/speaker_profile_embedding_scaffold_receipt.md
+!results/figures/speaker_profile_embedding_scaffold_bridge_checklist.md
 !results/figures/external_validation_checklist.md
 !results/figures/external_validation_slice_scaffold.md
 !results/figures/external_validation_slice_receipt.md
