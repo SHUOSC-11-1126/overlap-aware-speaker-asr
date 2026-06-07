@@ -99,6 +99,15 @@
     "intended_use": "Bridge card linking the current benchmark operator step to the broader frontier execution queue."
   },
   {
+    "artifact_id": "cross_dataset_benchmark_frontier_bridge_checklist",
+    "dataset": "cross_dataset",
+    "label": "experimental/frontier",
+    "artifact_group": "report",
+    "artifact_path": "results/figures/cascade_benchmark_frontier_bridge_checklist.md",
+    "generator_command": "python -m src.compute_aware_cascade --dataset synthetic_split",
+    "intended_use": "Verification checklist for the benchmark bridge between the current operator step and the frontier queue."
+  },
+  {
     "artifact_id": "cross_dataset_benchmark_handoff_packet",
     "dataset": "cross_dataset",
     "label": "experimental/frontier",

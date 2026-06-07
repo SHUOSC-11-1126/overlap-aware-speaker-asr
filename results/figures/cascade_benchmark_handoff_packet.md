@@ -92,6 +92,10 @@ This generated packet consolidates the benchmark readiness scaffold, staged plan
 
 - step `phase1_gold_runtime_foundation` / action `collect_controlled_runtime` / evidence `hardware_label;device;repeat_count;warmup_count;batch_shape;timing_notes` / completion `Gold runtime foundation artifacts are rebuilt from controlled timing.` / follow-up `collect_controlled_runtime -> Gold runtime foundation artifacts are rebuilt from controlled timing.` / note `After phase1_gold_runtime_foundation, write back the evidence payload and confirm the foundation completion signal.`
 
+## Evidence Checklist
+
+- order `1` / step `phase1_gold_runtime_foundation` / action `collect_controlled_runtime` / goal `Gold runtime foundation artifacts are rebuilt from controlled timing.` / evidence `results/tables/cascade_benchmark_evidence_receipt.json` / preflight `Open the handoff packet and verify the receipt payload before the benchmark writeback.` / next `Write back the evidence receipt and confirm the completion signal before the next step.`
+
 ## Execution Status
 
 - step 1: `phase1_gold_runtime_foundation` is `template_only` / `pending_execution` with missing `hardware_label;device;repeat_count;warmup_count;batch_shape;timing_notes`

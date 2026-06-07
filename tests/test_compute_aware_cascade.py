@@ -33,6 +33,8 @@ from src.compute_aware_cascade import (
     build_benchmark_receipt_bridge_lines,
     build_benchmark_receipt_bridge_rows,
     build_benchmark_frontier_bridge_lines,
+    build_benchmark_frontier_bridge_checklist_lines,
+    build_benchmark_frontier_bridge_checklist_rows,
     build_benchmark_frontier_bridge_rows,
     build_benchmark_operator_brief_lines,
     build_benchmark_operator_brief_rows,
@@ -1431,6 +1433,56 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertIn("phase1_gold_runtime_foundation", rendered)
         self.assertIn("meeteval_compatibility", rendered)
 
+    def test_build_benchmark_frontier_bridge_checklist_rows_verify_operator_to_queue_bridge(self) -> None:
+        rows = build_benchmark_frontier_bridge_checklist_rows(
+            [
+                {
+                    "operator_step": "phase1_gold_runtime_foundation",
+                    "operator_action": "collect_controlled_runtime",
+                    "operator_session_type": "timing_capture",
+                    "operator_evidence": "hardware_label;device",
+                    "operator_note": "Run phase1_gold_runtime_foundation now; it is blocked by runtime_capture_missing and carries high urgency.",
+                }
+            ],
+            [
+                {
+                    "queue_order": "1",
+                    "frontier_id": "meeteval_compatibility",
+                    "status": "documented_skill",
+                    "entry_artifact": "MeetEval readiness card",
+                    "why_now": "Use the readiness card to stage one narrow dry run before claiming any benchmark bridge.",
+                }
+            ],
+        )
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["checklist_order"], "1")
+        self.assertEqual(rows[0]["benchmark_operator_step"], "phase1_gold_runtime_foundation")
+        self.assertEqual(rows[0]["frontier_queue_head"], "meeteval_compatibility")
+        self.assertIn("bridge", rows[0]["checklist_goal"].lower())
+        self.assertIn("shared evidence layer", rows[0]["bridge_reason"].lower())
+
+    def test_build_benchmark_frontier_bridge_checklist_lines_render_bridge(self) -> None:
+        lines = build_benchmark_frontier_bridge_checklist_lines(
+            [
+                {
+                    "checklist_order": "1",
+                    "benchmark_operator_step": "phase1_gold_runtime_foundation",
+                    "benchmark_operator_action": "collect_controlled_runtime",
+                    "frontier_queue_head": "meeteval_compatibility",
+                    "checklist_goal": "Verify the frontier bridge for phase1_gold_runtime_foundation before advancing the benchmark stack.",
+                    "bridge_reason": "The benchmark runtime foundation still matters because it is the strongest shared evidence layer before narrower frontier follow-ups.",
+                    "next_gate": "Confirm this bridge before opening the frontier queue head.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Cascade Benchmark Frontier Bridge Checklist", rendered)
+        self.assertIn("phase1_gold_runtime_foundation", rendered)
+        self.assertIn("meeteval_compatibility", rendered)
+        self.assertIn("shared evidence layer", rendered)
+
     def test_build_benchmark_evidence_receipt_rows_capture_writeback_expectations(self) -> None:
         dashboard_rows = [
             {
@@ -1587,10 +1639,15 @@ class ComputeAwareCascadeTest(unittest.TestCase):
     def test_build_artifact_index_rows_include_benchmark_status_board(self) -> None:
         rows = build_artifact_index_rows()
         status_row = next(row for row in rows if row["artifact_id"] == "cross_dataset_benchmark_status")
+        frontier_bridge_checklist_row = next(
+            row for row in rows if row["artifact_id"] == "cross_dataset_benchmark_frontier_bridge_checklist"
+        )
 
         self.assertEqual(status_row["dataset"], "cross_dataset")
         self.assertEqual(status_row["artifact_path"], "results/figures/cascade_benchmark_status.md")
         self.assertIn("status board", status_row["intended_use"])
+        self.assertEqual(frontier_bridge_checklist_row["artifact_path"], "results/figures/cascade_benchmark_frontier_bridge_checklist.md")
+        self.assertIn("Verification checklist", frontier_bridge_checklist_row["intended_use"])
 
     def test_build_benchmark_packet_lines_consolidate_execution_artifacts(self) -> None:
         readiness_rows = [

@@ -535,6 +535,12 @@ Benchmark frontier bridge:
 - `results/tables/cascade_benchmark_frontier_bridge.csv`
 - This bridge now links the benchmark operator brief back to the broader frontier queue so the runtime-foundation work remains visible inside the breadth-first coordination layer.
 
+Benchmark frontier bridge checklist:
+
+- `results/figures/cascade_benchmark_frontier_bridge_checklist.md`
+- `results/tables/cascade_benchmark_frontier_bridge_checklist.csv`
+- This checklist now turns the bridge into a row-by-row verification path. It stays explicitly coordination-only and keeps the bridge reason visible without claiming that any benchmark work has already been executed.
+
 Benchmark receipt bridge:
 
 - `results/figures/cascade_benchmark_receipt_bridge.md`

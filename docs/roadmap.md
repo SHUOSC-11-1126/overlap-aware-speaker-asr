@@ -259,6 +259,12 @@ Update: a generated benchmark frontier bridge now connects that operator note ba
 - Summary view: `results/figures/cascade_benchmark_frontier_bridge.md`
 - This stays strictly at the coordination layer: it explains why the benchmark runtime foundation still belongs at the front of the broader work stream without claiming any new timing evidence.
 
+Update: a generated benchmark frontier bridge checklist now turns that bridge into a verification path.
+
+- Benchmark frontier bridge checklist: `results/tables/cascade_benchmark_frontier_bridge_checklist.csv`
+- Summary view: `results/figures/cascade_benchmark_frontier_bridge_checklist.md`
+- This keeps the same runtime-foundation link visible while making the bridge itself row-by-row checkable before the frontier queue advances.
+
 Update: a generated benchmark evidence receipt now turns the operator note into a writeback closeout card.
 
 - Benchmark evidence receipt: `results/tables/cascade_benchmark_evidence_receipt.csv`
