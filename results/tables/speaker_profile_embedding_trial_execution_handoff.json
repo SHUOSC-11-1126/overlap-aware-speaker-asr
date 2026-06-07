@@ -1,0 +1,11 @@
+{
+  "handoff_status": "execution_handoff_ready",
+  "case_id": "NoOverlap",
+  "scaffold_status": "execution_scaffold_only",
+  "method_direction": "embedding_or_voiceprint_baseline",
+  "profile_confidence_gap": "0.422118",
+  "execution_target": "results/tables/speaker_profile_embedding_trial_execution_receipt.json",
+  "handoff_goal": "Run a narrow embedding-or-voiceprint diagnostic trial for NoOverlap after the execution scaffold audit.",
+  "expected_evidence": "results/tables/speaker_profile_embedding_trial_execution_receipt.json",
+  "handoff_note": "experimental/frontier embedding execution handoff only; improved speaker attribution is not claimed."
+}

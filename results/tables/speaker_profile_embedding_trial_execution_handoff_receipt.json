@@ -1,0 +1,8 @@
+[
+  {
+    "execution_status": "handoff_documented",
+    "handoff_scope": "single_case_embedding_execution",
+    "case_id": "NoOverlap",
+    "writeback_note": "Embedding execution handoff documented for coordination; voiceprint or embedding model execution remains pending."
+  }
+]
