@@ -30,6 +30,8 @@ from src.project_harness import (
     build_frontier_receipt_checklist_lines,
     build_frontier_receipt_checklist_rows,
     build_frontier_receipt_map_lines,
+    build_frontier_receipt_map_checklist_lines,
+    build_frontier_receipt_map_checklist_rows,
     build_frontier_receipt_map_rows,
     build_frontier_receipt_packet_lines,
     build_frontier_receipt_packet_rows,
@@ -486,6 +488,52 @@ class ProjectHarnessTest(unittest.TestCase):
         self.assertIn("meeteval_compatibility", rendered)
         self.assertIn("meeteval_dry_run_handoff.md", rendered)
         self.assertIn("meeteval_dry_run_receipt.json", rendered)
+
+    def test_build_frontier_receipt_map_checklist_rows_preserve_map_order(self) -> None:
+        rows = build_frontier_receipt_map_checklist_rows(
+            [
+                {
+                    "queue_order": "1",
+                    "current_frontier": "meeteval_compatibility",
+                    "prerequisite_artifact": "results/figures/meeteval_dry_run_handoff.md",
+                    "receipt_target": "results/tables/meeteval_dry_run_receipt.json",
+                    "map_note": "Open the prerequisite artifact first, then use the receipt target for writeback.",
+                    "map_scope": "Coordination-only map; not a claim of completed frontier execution.",
+                },
+                {
+                    "queue_order": "2",
+                    "current_frontier": "external_validation",
+                    "prerequisite_artifact": "results/figures/external_validation_prioritization.md",
+                    "receipt_target": "results/tables/external_validation_slice_receipt.json",
+                    "map_note": "Open the prerequisite artifact first, then use the receipt target for writeback.",
+                    "map_scope": "Coordination-only map; not a claim of completed frontier execution.",
+                },
+            ]
+        )
+
+        self.assertEqual([row["checklist_order"] for row in rows], ["1", "2"])
+        self.assertEqual(rows[0]["current_frontier"], "meeteval_compatibility")
+        self.assertIn("receipt map", rows[0]["checklist_goal"].lower())
+
+    def test_build_frontier_receipt_map_checklist_lines_render_table(self) -> None:
+        lines = build_frontier_receipt_map_checklist_lines(
+            [
+                {
+                    "checklist_order": "1",
+                    "current_frontier": "meeteval_compatibility",
+                    "prerequisite_artifact": "results/figures/meeteval_dry_run_handoff.md",
+                    "receipt_target": "results/tables/meeteval_dry_run_receipt.json",
+                    "checklist_goal": "Verify the receipt map entry for meeteval_compatibility before opening the next frontier artifact.",
+                    "map_note": "Open the prerequisite artifact first, then use the receipt target for writeback.",
+                    "next_gate": "Confirm this map row before moving to the next receipt path.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Frontier Receipt Map Checklist", rendered)
+        self.assertIn("meeteval_compatibility", rendered)
+        self.assertIn("receipt_target", rendered)
 
     def test_build_frontier_parallel_picklist_rows_cover_all_current_frontiers(self) -> None:
         rows = build_frontier_parallel_picklist_rows(
