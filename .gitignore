@@ -270,6 +270,12 @@ results/synthetic_overlap_v2/
 !results/tables/demo_storyboard_review_pass_continue_bridge_checklist.json
 !results/tables/demo_storyboard_review_pass_status.csv
 !results/tables/demo_storyboard_review_pass_status.json
+!results/tables/demo_storyboard_review_pass_status_bridge_checklist.csv
+!results/tables/demo_storyboard_review_pass_status_bridge_checklist.json
+!results/tables/demo_storyboard_review_pass_completion_summary.csv
+!results/tables/demo_storyboard_review_pass_completion_summary.json
+!results/tables/meeteval_cpwer_execution_scaffold_bridge_checklist.csv
+!results/tables/meeteval_cpwer_execution_scaffold_bridge_checklist.json
 !results/tables/meeteval_cpwer_execution_scaffold.csv
 !results/tables/meeteval_cpwer_execution_scaffold.json
 !results/tables/meeteval_cpwer_execution_scaffold_receipt.json
@@ -394,6 +400,9 @@ results/synthetic_overlap_v2/
 !results/figures/demo_storyboard_review_pass_second_continue_receipt.md
 !results/figures/demo_storyboard_review_pass_continue_bridge_checklist.md
 !results/figures/demo_storyboard_review_pass_status.md
+!results/figures/demo_storyboard_review_pass_status_bridge_checklist.md
+!results/figures/demo_storyboard_review_pass_completion_summary.md
+!results/figures/meeteval_cpwer_execution_scaffold_bridge_checklist.md
 !results/figures/meeteval_cpwer_execution_scaffold.md
 !results/figures/meeteval_cpwer_execution_scaffold_receipt.md
 !results/figures/speaker_profile_embedding_trial_execution_scaffold.md
