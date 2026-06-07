@@ -409,6 +409,18 @@ Current MeetEval dry run receipt map result:
 - `results/tables/meeteval_dry_run_receipt_map.csv`
 - This map now condenses the dry-run receipt path across the receipt, checklist, and board views. It stays coordination-only and does not claim a finished MeetEval or cpWER evaluation.
 
+Current MeetEval cpWER bridge result:
+
+- `results/figures/meeteval_cpwer_bridge.md`
+- `results/tables/meeteval_cpwer_bridge.csv`
+- The first cpWER bridge-lite pass on `NoOverlap` reports `cpwer_bridge_lite = 0.054312` with `direct` mapping. This is `experimental/frontier` evidence, not a full MeetEval benchmark claim.
+
+Current MeetEval cpWER bridge handoff result:
+
+- `results/figures/meeteval_cpwer_bridge_handoff.md`
+- `results/tables/meeteval_cpwer_bridge_handoff.csv`
+- This handoff turns the bridge-lite result into the next narrow frontier step while keeping full MeetEval evaluation explicitly pending.
+
 Current speaker profile result:
 
 - `results/figures/speaker_profile_risk_summary.md` now provides a lightweight text-profile overlap report that compares direct vs swapped alignment and currently exposes a useful failure mode rather than a speaker-ID success claim
@@ -594,6 +606,7 @@ python -m src.router_ablation
 python -m src.router_ablation_split
 python -m src.export_meeteval_compatibility
 python -m src.meeteval_dry_run
+python -m src.meeteval_cpwer_bridge
 python -m src.project_harness
 ```
 

@@ -235,6 +235,18 @@ Update: `meeteval_compatibility` now also has a dry-run receipt map.
 - Summary view: `results/figures/meeteval_dry_run_receipt_map.md`
 - This keeps the dry-run receipt path visible across the receipt, checklist, and board layers while staying explicit that cpWER has not yet been executed.
 
+Update: the first MeetEval cpWER bridge-lite pass now exists.
+
+- cpWER bridge table: `results/tables/meeteval_cpwer_bridge.csv`
+- Summary view: `results/figures/meeteval_cpwer_bridge.md`
+- `NoOverlap` reports `cpwer_bridge_lite = 0.054312` with `direct` mapping. This remains `experimental/frontier` rather than a full MeetEval benchmark claim.
+
+Update: `meeteval_compatibility` now also has a cpWER bridge handoff.
+
+- cpWER bridge handoff: `results/tables/meeteval_cpwer_bridge_handoff.csv`
+- Summary view: `results/figures/meeteval_cpwer_bridge_handoff.md`
+- This keeps the bridge-lite result visible as the next narrow frontier step while full MeetEval evaluation remains pending.
+
 Update: a generated llm critic review queue now turns the qualitative note into a first-pass triage order.
 
 - LLM critic review queue: `results/tables/llm_critic_review_queue.csv`
