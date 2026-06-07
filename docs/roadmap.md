@@ -205,6 +205,12 @@ Update: `external_validation` now also has a license gate checklist.
 - Summary view: `results/figures/external_validation_license_gate.md`
 - This documents preflight license steps while external audio staging remains blocked.
 
+Update: `external_validation` now also has a license gate bridge checklist.
+
+- License gate bridge checklist: `results/tables/external_validation_license_gate_bridge_checklist.csv`
+- Summary view: `results/figures/external_validation_license_gate_bridge_checklist.md`
+- This connects the license gate to the slice manifest while staging remains blocked.
+
 Update: `external_validation` now also has a slice manifest.
 
 - Slice manifest: `results/tables/external_validation_slice_manifest.json`
@@ -234,6 +240,19 @@ Update: `llm_critic` now also has a review pass bridge checklist.
 - Review pass bridge checklist: `results/tables/llm_critic_review_pass_bridge_checklist.csv`
 - Summary view: `results/figures/llm_critic_review_pass_bridge_checklist.md`
 - This keeps the qualitative pass and receipt visible together without claiming verified transcript repair.
+
+Update: `llm_critic` now also has a second qualitative review pass advance.
+
+- Review pass advance table: `results/tables/llm_critic_review_pass_advance.csv`
+- Second pass table: `results/tables/llm_critic_review_pass_second.csv`
+- Summary view: `results/figures/llm_critic_review_pass_advance.md`
+- `LightOverlap` is the second queue pass after `HeavyOverlap`; no verified repair claim is made.
+
+Update: `llm_critic` now also has a review pass advance bridge checklist.
+
+- Review pass advance bridge checklist: `results/tables/llm_critic_review_pass_advance_bridge_checklist.csv`
+- Summary view: `results/figures/llm_critic_review_pass_advance_bridge_checklist.md`
+- This keeps the second qualitative pass and advance receipt visible together without claiming verified repair.
 
 Update: a generated demo walkthrough now turns the storyboard into a short presentation sequence.
 
@@ -300,6 +319,18 @@ Update: `meeteval_compatibility` now also has a cpWER alignment bridge checklist
 - cpWER alignment bridge checklist: `results/tables/meeteval_cpwer_alignment_bridge_checklist.csv`
 - Summary view: `results/figures/meeteval_cpwer_alignment_bridge_checklist.md`
 - This keeps the alignment audit and bridge handoff visible together while full MeetEval evaluation remains pending.
+
+Update: `meeteval_compatibility` now also has a cpWER alignment drift diagnostic.
+
+- Drift diagnostic table: `results/tables/meeteval_cpwer_alignment_drift_diagnostic.csv`
+- Summary view: `results/figures/meeteval_cpwer_alignment_drift_diagnostic.md`
+- `HeavyOverlap` is the only drift case with `drift_severity = moderate`; cpWER execution remains pending.
+
+Update: `meeteval_compatibility` now also has a cpWER alignment drift bridge checklist.
+
+- Drift bridge checklist: `results/tables/meeteval_cpwer_alignment_drift_bridge_checklist.csv`
+- Summary view: `results/figures/meeteval_cpwer_alignment_drift_bridge_checklist.md`
+- This connects the drift diagnostic to the alignment bridge checklist without claiming MeetEval execution.
 
 Update: `meeteval_compatibility` now also has a cpWER bridge handoff.
 
