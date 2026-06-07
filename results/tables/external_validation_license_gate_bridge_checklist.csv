@@ -1,0 +1,2 @@
+﻿checklist_order,dataset_name,license_status,prerequisite_artifact,receipt_target,checklist_goal,bridge_note,next_gate
+1,AISHELL-4,pending_confirmation,results/figures/external_validation_license_gate.md,results/figures/external_validation_slice_manifest.md,Verify the license gate bridge for AISHELL-4 before advancing slice manifest staging.,License status remains pending_confirmation; confirm gate steps before opening the slice manifest target.,Confirm this bridge before opening the external slice manifest target.
