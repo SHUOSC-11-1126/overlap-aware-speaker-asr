@@ -1,0 +1,11 @@
+[
+  {
+    "checklist_order": "1",
+    "case_id": "HeavyOverlap",
+    "prerequisite_artifact": "results/figures/llm_critic_review_pass.md",
+    "receipt_target": "results/figures/llm_critic_review_receipt.md",
+    "checklist_goal": "Verify the critic review pass bridge for HeavyOverlap before any repair claim is advanced.",
+    "bridge_note": "Open the review pass note first, then write back through the receipt target for the high qualitative pass.",
+    "next_gate": "Confirm this bridge before opening the critic review receipt target."
+  }
+]
