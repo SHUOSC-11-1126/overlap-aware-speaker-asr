@@ -1,0 +1,2 @@
+﻿case_id,method_direction,trial_status,profile_confidence_gap,scaffold_status,expected_inputs,expected_outputs,scaffold_note
+NoOverlap,embedding_or_voiceprint_baseline,scaffold_only,0.422118,execution_scaffold_only,con/pro snippet audio for one verified gold case plus embedding or voiceprint tooling.,Diagnostic embedding-similarity receipt comparing direct vs swapped speaker assignment.,Template-only embedding execution scaffold for NoOverlap after trial_status=scaffold_only. Voiceprint or embedding model execution remains pending.

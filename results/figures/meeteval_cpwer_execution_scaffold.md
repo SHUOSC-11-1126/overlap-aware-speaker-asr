@@ -1,0 +1,7 @@
+# MeetEval cpWER Execution Scaffold
+
+This generated note records a template-only full MeetEval cpWER execution scaffold. It does not claim official cpWER evaluation or benchmark completion.
+
+| case_id | bridge_status | cpwer_bridge_lite | scaffold_status | expected_inputs | expected_outputs | scaffold_note |
+| --- | --- | ---: | --- | --- | --- | --- |
+| ALL | cpwer_bridge_complete | 0.120823 | scaffold_only | results/tables/meeteval_reference_segments.jsonl; results/tables/meeteval_hypothesis_segments.jsonl; MeetEval cpWER tooling. | Official cpWER score receipt for one verified gold case. | Template-only full MeetEval cpWER execution scaffold for ALL. Bridge-lite context is recorded; official cpWER execution remains pending. |

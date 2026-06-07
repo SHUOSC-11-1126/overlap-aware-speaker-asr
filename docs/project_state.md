@@ -856,6 +856,12 @@ MeetEval cpWER bridge handoff bridge checklist:
 - `results/tables/meeteval_cpwer_bridge_handoff_bridge_checklist.csv`
 - This checklist connects the cpWER bridge handoff to full MeetEval evaluation without claiming cpWER execution.
 
+MeetEval cpWER execution scaffold:
+
+- `results/figures/meeteval_cpwer_execution_scaffold.md`
+- `results/tables/meeteval_cpwer_execution_scaffold.csv`
+- The cpWER execution scaffold records `scaffold_status = scaffold_only` for one verified case; official cpWER evaluation remains pending.
+
 Speaker profile similarity bridge:
 
 - `results/figures/speaker_profile_risk_summary.md`
@@ -915,6 +921,12 @@ Speaker profile embedding trial handoff bridge checklist:
 - `results/figures/speaker_profile_embedding_trial_handoff_bridge_checklist.md`
 - `results/tables/speaker_profile_embedding_trial_handoff_bridge_checklist.csv`
 - This checklist connects the embedding trial scaffold to the handoff without claiming voiceprint success.
+
+Speaker profile embedding trial execution scaffold:
+
+- `results/figures/speaker_profile_embedding_trial_execution_scaffold.md`
+- `results/tables/speaker_profile_embedding_trial_execution_scaffold.csv`
+- The embedding execution scaffold records `scaffold_status = execution_scaffold_only` for `NoOverlap`; voiceprint execution remains pending.
 
 LLM critic qualitative bridge:
 
@@ -1335,6 +1347,30 @@ Demo storyboard review pass third:
 - `results/tables/demo_storyboard_review_pass_third.csv`
 - The third qualitative storyboard review pass records notes for card `3` only; no live demo or recording is claimed.
 
+Demo storyboard review pass second continue:
+
+- `results/figures/demo_storyboard_review_pass_second_continue.md`
+- `results/tables/demo_storyboard_review_pass_second_continue.csv`
+- The storyboard review queue advanced to card `4` (`Frontier`) after cards `1`–`3` reached `review_complete` without claiming live demo delivery.
+
+Demo storyboard review pass fourth:
+
+- `results/figures/demo_storyboard_review_pass_fourth.md`
+- `results/tables/demo_storyboard_review_pass_fourth.csv`
+- The fourth qualitative storyboard review pass records notes for card `4` only; no live demo or recording is claimed.
+
+Demo storyboard review pass continue bridge checklist:
+
+- `results/figures/demo_storyboard_review_pass_continue_bridge_checklist.md`
+- `results/tables/demo_storyboard_review_pass_continue_bridge_checklist.csv`
+- This checklist connects card `3` to the fourth-card review pass without claiming live demo delivery.
+
+Demo storyboard review pass status:
+
+- `results/figures/demo_storyboard_review_pass_status.md`
+- `results/tables/demo_storyboard_review_pass_status.csv`
+- `queue_status = queue_complete` at `4/4` without any live demo or recording claim.
+
 ## How to Resume Work
 
 Common commands:
@@ -1407,7 +1443,12 @@ python -m src.demo_storyboard_review_pass
 python -m src.demo_storyboard_review_pass_advance
 python -m src.demo_storyboard_review_pass_advance_bridge_checklist
 python -m src.demo_storyboard_review_pass_continue
+python -m src.demo_storyboard_review_pass_second_continue
+python -m src.demo_storyboard_review_pass_continue_bridge_checklist
+python -m src.demo_storyboard_review_pass_status
 python -m src.meeteval_cpwer_bridge_handoff_bridge_checklist
+python -m src.meeteval_cpwer_execution_scaffold
+python -m src.speaker_profile_embedding_trial_execution_scaffold
 python -m src.speaker_profile_embedding_trial_handoff
 python -m src.speaker_profile_embedding_trial
 python -m src.speaker_profile_embedding_trial_handoff_bridge_checklist

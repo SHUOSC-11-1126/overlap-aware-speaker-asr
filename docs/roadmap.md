@@ -289,6 +289,12 @@ Update: `speaker_profile` now also has an embedding trial handoff bridge checkli
 - Summary view: `results/figures/speaker_profile_embedding_trial_handoff_bridge_checklist.md`
 - This connects the embedding trial scaffold to the handoff without claiming voiceprint success.
 
+Update: `speaker_profile` now also has an embedding trial execution scaffold.
+
+- Embedding trial execution scaffold: `results/tables/speaker_profile_embedding_trial_execution_scaffold.csv`
+- Summary view: `results/figures/speaker_profile_embedding_trial_execution_scaffold.md`
+- The execution scaffold records `scaffold_status = execution_scaffold_only`; voiceprint execution remains pending.
+
 Update: `llm_critic` now has a first qualitative review pass.
 
 - Review pass table: `results/tables/llm_critic_review_pass.csv`
@@ -634,6 +640,12 @@ Update: `meeteval_compatibility` now also has a cpWER bridge handoff bridge chec
 - cpWER bridge handoff bridge checklist: `results/tables/meeteval_cpwer_bridge_handoff_bridge_checklist.csv`
 - Summary view: `results/figures/meeteval_cpwer_bridge_handoff_bridge_checklist.md`
 - This connects the cpWER bridge handoff to full MeetEval evaluation without claiming cpWER execution.
+
+Update: `meeteval_compatibility` now also has a cpWER execution scaffold.
+
+- cpWER execution scaffold: `results/tables/meeteval_cpwer_execution_scaffold.csv`
+- Summary view: `results/figures/meeteval_cpwer_execution_scaffold.md`
+- The scaffold records `scaffold_status = scaffold_only`; official cpWER evaluation remains pending.
 
 Update: a generated llm critic review queue now turns the qualitative note into a first-pass triage order.
 
@@ -1024,6 +1036,25 @@ Update: `demo_excellence` now also has a storyboard review pass continue.
 - Third pass table: `results/tables/demo_storyboard_review_pass_third.csv`
 - Summary view: `results/figures/demo_storyboard_review_pass_continue.md`
 - Card `3` (`Findings`) is the third queue pass after cards `1` and `2`; no live demo delivery is claimed.
+
+Update: `demo_excellence` now also has a storyboard review pass second continue.
+
+- Storyboard review pass second continue: `results/tables/demo_storyboard_review_pass_second_continue.csv`
+- Fourth pass table: `results/tables/demo_storyboard_review_pass_fourth.csv`
+- Summary view: `results/figures/demo_storyboard_review_pass_second_continue.md`
+- Card `4` (`Frontier`) closes the storyboard queue at `4/4`; no live demo delivery is claimed.
+
+Update: `demo_excellence` now also has a storyboard review pass continue bridge checklist.
+
+- Storyboard review pass continue bridge checklist: `results/tables/demo_storyboard_review_pass_continue_bridge_checklist.csv`
+- Summary view: `results/figures/demo_storyboard_review_pass_continue_bridge_checklist.md`
+- This connects card `3` to the fourth-card review pass without claiming live demo delivery.
+
+Update: `demo_excellence` now also has a storyboard review pass status rollup.
+
+- Storyboard review pass status: `results/tables/demo_storyboard_review_pass_status.csv`
+- Summary view: `results/figures/demo_storyboard_review_pass_status.md`
+- `queue_status = queue_complete` at `4/4` without any live demo or recording claim.
 
 Update: `external_validation` now has a dedicated skill card.
 
