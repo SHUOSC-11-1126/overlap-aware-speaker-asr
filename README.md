@@ -493,6 +493,12 @@ Current demo storyboard receipt checklist result:
 - `results/tables/demo_storyboard_receipt_checklist.csv`
 - This checklist now turns the storyboard receipt into an ordered review path. It stays demo support only and keeps the storyboard and receipt targets visible without claiming that any live demo has been completed.
 
+Current demo storyboard receipt board result:
+
+- `results/figures/demo_storyboard_receipt_board.md`
+- `results/tables/demo_storyboard_receipt_board.csv`
+- This board now condenses the storyboard receipt path into a single snapshot. It stays demo support only and keeps the storyboard receipt target visible without claiming that any live demo has been completed.
+
 Current demo storyboard bridge checklist result:
 
 - `results/figures/demo_storyboard_bridge_checklist.md`

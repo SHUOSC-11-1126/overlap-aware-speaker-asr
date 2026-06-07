@@ -723,6 +723,12 @@ Demo storyboard receipt checklist:
 - `results/tables/demo_storyboard_receipt_checklist.csv`
 - This checklist turns the storyboard receipt into an ordered review path between the storyboard and receipt. It stays demo support only and does not claim that any live demo or recording has already happened.
 
+Demo storyboard receipt board:
+
+- `results/figures/demo_storyboard_receipt_board.md`
+- `results/tables/demo_storyboard_receipt_board.csv`
+- This board condenses the storyboard receipt path into a single snapshot between the storyboard and receipt. It stays demo support only and does not claim that any live demo or recording has already happened.
+
 Demo storyboard bridge checklist:
 
 - `results/figures/demo_storyboard_bridge_checklist.md`
