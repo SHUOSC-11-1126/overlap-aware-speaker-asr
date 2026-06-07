@@ -1,0 +1,12 @@
+[
+  {
+    "case_id": "NoOverlap",
+    "hypothesis_source": "separated_whisper",
+    "execution_status": "official_cpwer_tool_unavailable",
+    "official_cpwer": "",
+    "cpwer_tool": "unavailable",
+    "speaker_count": "2",
+    "result_label": "experimental/frontier",
+    "execution_note": "MeetEval package not installed; run `pip install meeteval` before official cpWER execution."
+  }
+]
