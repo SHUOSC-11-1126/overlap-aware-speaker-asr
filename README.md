@@ -391,6 +391,12 @@ Current MeetEval dry run diagnostic result:
 - `results/tables/meeteval_dry_run_diagnostic.csv`
 - The first narrow diagnostic pass on `NoOverlap` validated the export path and updated the receipt to `diagnostic_complete` without claiming cpWER evaluation.
 
+Current MeetEval dry run receipt checklist result:
+
+- `results/figures/meeteval_dry_run_receipt_checklist.md`
+- `results/tables/meeteval_dry_run_receipt_checklist.csv`
+- This checklist now turns the dry-run receipt into an ordered verification path. It stays coordination-only and does not claim a finished MeetEval or cpWER evaluation.
+
 Current speaker profile result:
 
 - `results/figures/speaker_profile_risk_summary.md` now provides a lightweight text-profile overlap report that compares direct vs swapped alignment and currently exposes a useful failure mode rather than a speaker-ID success claim

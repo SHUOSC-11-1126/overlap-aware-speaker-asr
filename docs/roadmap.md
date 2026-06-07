@@ -217,6 +217,12 @@ Update: the first MeetEval dry-run diagnostic pass now exists.
 - Summary view: `results/figures/meeteval_dry_run_diagnostic.md`
 - The `NoOverlap` export path passed speaker and time-range checks; the receipt moved to `diagnostic_complete` while cpWER evaluation remains pending.
 
+Update: `meeteval_compatibility` now also has a dry-run receipt checklist.
+
+- Dry-run receipt checklist: `results/tables/meeteval_dry_run_receipt_checklist.csv`
+- Summary view: `results/figures/meeteval_dry_run_receipt_checklist.md`
+- This keeps the receipt path visible in an ordered verification layer while staying explicit that cpWER has not yet been executed.
+
 Update: a generated llm critic review queue now turns the qualitative note into a first-pass triage order.
 
 - LLM critic review queue: `results/tables/llm_critic_review_queue.csv`
