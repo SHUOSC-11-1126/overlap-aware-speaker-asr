@@ -82,6 +82,8 @@ python -m src.frontier_execution_receipt_fill_execution_frontier_bridge_checklis
 python -m src.frontier_execution_receipt_fill_execution_dashboard_bridge_checklist
 python -m src.meeteval_cpwer_execution_preflight_batch
 python -m src.meeteval_cpwer_execution_preflight_batch_bridge_checklist
+python -m src.meeteval_cpwer_execution_receipt_batch_scaffold
+python -m src.meeteval_cpwer_execution_receipt_batch_scaffold_bridge_checklist
 python -m src.frontier_execution_receipt_fill_execution_handoff_bridge_checklist
 ```
 
