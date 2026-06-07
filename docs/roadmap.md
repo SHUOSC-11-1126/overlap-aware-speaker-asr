@@ -271,6 +271,12 @@ Update: `speaker_profile` now also has an embedding scaffold bridge checklist.
 - Summary view: `results/figures/speaker_profile_embedding_scaffold_bridge_checklist.md`
 - This connects the embedding scaffold to the method receipt without claiming voiceprint success.
 
+Update: `speaker_profile` now also has an embedding trial handoff.
+
+- Embedding trial handoff: `results/tables/speaker_profile_embedding_trial_handoff.csv`
+- Summary view: `results/figures/speaker_profile_embedding_trial_handoff.md`
+- This targets `NoOverlap` for a narrow embedding-or-voiceprint diagnostic trial without claiming improved speaker attribution.
+
 Update: `llm_critic` now has a first qualitative review pass.
 
 - Review pass table: `results/tables/llm_critic_review_pass.csv`
@@ -568,6 +574,30 @@ Update: `meeteval_compatibility` now also has a cpWER alignment drift segment gr
 - Drift segment granularity diagnostic bridge checklist: `results/tables/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_bridge_checklist.csv`
 - Summary view: `results/figures/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_bridge_checklist.md`
 - This connects the granularity diagnostic to the timing handoff bridge without claiming cpWER execution.
+
+Update: `meeteval_compatibility` now also has a cpWER alignment drift segment granularity diagnostic handoff.
+
+- Drift segment granularity diagnostic handoff: `results/tables/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_handoff.csv`
+- Summary view: `results/figures/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_handoff.md`
+- This hands off `HeavyOverlap` to per-speaker redistribution diagnostic follow-up while cpWER execution remains pending.
+
+Update: `meeteval_compatibility` now also has a cpWER alignment drift segment redistribution diagnostic.
+
+- Drift segment redistribution diagnostic: `results/tables/meeteval_cpwer_alignment_drift_segment_redistribution_diagnostic.csv`
+- Summary view: `results/figures/meeteval_cpwer_alignment_drift_segment_redistribution_diagnostic_summary.md`
+- `HeavyOverlap` reports `redistribution_mismatch_count = 2/2` with `SPEAKER_1 hypothesis_merged` and `SPEAKER_2 hypothesis_split`; reconciled alignment and cpWER execution remain pending.
+
+Update: `meeteval_compatibility` now also has a cpWER alignment drift segment granularity diagnostic handoff bridge checklist.
+
+- Drift segment granularity diagnostic handoff bridge checklist: `results/tables/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_handoff_bridge_checklist.csv`
+- Summary view: `results/figures/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_handoff_bridge_checklist.md`
+- This connects the granularity handoff to the redistribution diagnostic bridge without claiming cpWER execution.
+
+Update: `meeteval_compatibility` now also has a cpWER alignment drift segment redistribution diagnostic bridge checklist.
+
+- Drift segment redistribution diagnostic bridge checklist: `results/tables/meeteval_cpwer_alignment_drift_segment_redistribution_diagnostic_bridge_checklist.csv`
+- Summary view: `results/figures/meeteval_cpwer_alignment_drift_segment_redistribution_diagnostic_bridge_checklist.md`
+- This connects the redistribution diagnostic to the granularity handoff bridge without claiming cpWER execution.
 
 Update: `meeteval_compatibility` now also has a cpWER bridge handoff.
 
@@ -932,6 +962,18 @@ Update: `demo_excellence` now also has a walkthrough review pass completion summ
 - Walkthrough review pass completion summary: `results/tables/demo_walkthrough_review_pass_completion_summary.csv`
 - Summary view: `results/figures/demo_walkthrough_review_pass_completion_summary.md`
 - `queue_status = queue_complete` at `5/5` without any live demo or recording claim.
+
+Update: `demo_excellence` now also has a walkthrough review pass completion summary bridge checklist.
+
+- Walkthrough review pass completion summary bridge checklist: `results/tables/demo_walkthrough_review_pass_completion_summary_bridge_checklist.csv`
+- Summary view: `results/figures/demo_walkthrough_review_pass_completion_summary_bridge_checklist.md`
+- This connects the walkthrough completion summary to the storyboard review pass without claiming live demo delivery.
+
+Update: `demo_excellence` now also has a storyboard review pass.
+
+- Storyboard review pass: `results/tables/demo_storyboard_review_pass.csv`
+- Summary view: `results/figures/demo_storyboard_review_pass.md`
+- The first qualitative storyboard review pass records `review_complete` for the `Problem` card without claiming live demo delivery.
 
 Update: `external_validation` now has a dedicated skill card.
 

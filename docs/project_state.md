@@ -808,6 +808,30 @@ MeetEval cpWER alignment drift segment granularity diagnostic bridge checklist:
 - `results/tables/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_bridge_checklist.csv`
 - This checklist connects the granularity diagnostic to the timing handoff bridge without claiming cpWER execution.
 
+MeetEval cpWER alignment drift segment granularity diagnostic handoff:
+
+- `results/figures/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_handoff.md`
+- `results/tables/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_handoff.csv`
+- The granularity diagnostic handoff targets per-speaker redistribution follow-up for `HeavyOverlap`; reconciled alignment and cpWER execution remain pending.
+
+MeetEval cpWER alignment drift segment redistribution diagnostic:
+
+- `results/figures/meeteval_cpwer_alignment_drift_segment_redistribution_diagnostic.md`
+- `results/tables/meeteval_cpwer_alignment_drift_segment_redistribution_diagnostic.csv`
+- Per-speaker redistribution on `HeavyOverlap` reports `redistribution_mismatch_count = 2/2` with `SPEAKER_1 hypothesis_merged` and `SPEAKER_2 hypothesis_split`; reconciled alignment and cpWER execution remain pending.
+
+MeetEval cpWER alignment drift segment granularity diagnostic handoff bridge checklist:
+
+- `results/figures/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_handoff_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_handoff_bridge_checklist.csv`
+- This checklist connects the granularity handoff to the redistribution diagnostic bridge without claiming cpWER execution.
+
+MeetEval cpWER alignment drift segment redistribution diagnostic bridge checklist:
+
+- `results/figures/meeteval_cpwer_alignment_drift_segment_redistribution_diagnostic_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_alignment_drift_segment_redistribution_diagnostic_bridge_checklist.csv`
+- This checklist connects the redistribution diagnostic to the granularity handoff bridge without claiming cpWER execution.
+
 MeetEval cpWER bridge handoff:
 
 - `results/figures/meeteval_cpwer_bridge_handoff.md`
@@ -855,6 +879,12 @@ Speaker profile embedding scaffold bridge checklist:
 - `results/figures/speaker_profile_embedding_scaffold_bridge_checklist.md`
 - `results/tables/speaker_profile_embedding_scaffold_bridge_checklist.csv`
 - This checklist connects the embedding scaffold to the method receipt without claiming voiceprint success.
+
+Speaker profile embedding trial handoff:
+
+- `results/figures/speaker_profile_embedding_trial_handoff.md`
+- `results/tables/speaker_profile_embedding_trial_handoff.csv`
+- The embedding trial handoff targets `NoOverlap` for a narrow embedding-or-voiceprint diagnostic trial; improved speaker attribution remains unverified.
 
 LLM critic qualitative bridge:
 
@@ -1233,6 +1263,18 @@ Demo walkthrough review pass completion summary:
 - `results/tables/demo_walkthrough_review_pass_completion_summary.csv`
 - The completion summary reports `queue_status = queue_complete` with `completed_count = 5/5`; no live demo delivery is claimed.
 
+Demo walkthrough review pass completion summary bridge checklist:
+
+- `results/figures/demo_walkthrough_review_pass_completion_summary_bridge_checklist.md`
+- `results/tables/demo_walkthrough_review_pass_completion_summary_bridge_checklist.csv`
+- This checklist connects the walkthrough completion summary to the storyboard review pass without claiming live demo delivery.
+
+Demo storyboard review pass:
+
+- `results/figures/demo_storyboard_review_pass.md`
+- `results/tables/demo_storyboard_review_pass.csv`
+- The first qualitative storyboard review pass records `review_complete` for the `Problem` card without claiming live demo or recording delivery.
+
 ## How to Resume Work
 
 Common commands:
@@ -1284,6 +1326,10 @@ python -m src.meeteval_cpwer_alignment_drift_segment_timing_diagnostic_handoff
 python -m src.meeteval_cpwer_alignment_drift_segment_granularity_diagnostic
 python -m src.meeteval_cpwer_alignment_drift_segment_timing_diagnostic_handoff_bridge_checklist
 python -m src.meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_bridge_checklist
+python -m src.meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_handoff
+python -m src.meeteval_cpwer_alignment_drift_segment_redistribution_diagnostic
+python -m src.meeteval_cpwer_alignment_drift_segment_granularity_diagnostic_handoff_bridge_checklist
+python -m src.meeteval_cpwer_alignment_drift_segment_redistribution_diagnostic_bridge_checklist
 python -m src.demo_walkthrough_review_pass
 python -m src.demo_walkthrough_review_pass_advance
 python -m src.demo_walkthrough_review_pass_continue
@@ -1294,6 +1340,9 @@ python -m src.demo_walkthrough_review_pass_status
 python -m src.demo_walkthrough_review_pass_status_bridge_checklist
 python -m src.demo_walkthrough_review_pass_final_bridge_checklist
 python -m src.demo_walkthrough_review_pass_completion_summary
+python -m src.demo_walkthrough_review_pass_completion_summary_bridge_checklist
+python -m src.demo_storyboard_review_pass
+python -m src.speaker_profile_embedding_trial_handoff
 python -m src.external_validation_license_confirmation_receipt_bridge_checklist
 python -m src.external_validation_slice_manifest
 python -m src.external_validation_slice_manifest_bridge_checklist
