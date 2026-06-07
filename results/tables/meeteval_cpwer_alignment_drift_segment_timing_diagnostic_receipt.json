@@ -1,0 +1,9 @@
+[
+  {
+    "execution_status": "timing_diagnostic_complete",
+    "diagnostic_scope": "single_drift_case_per_speaker_timing",
+    "case_id": "HeavyOverlap",
+    "mismatched_speaker_count": "1",
+    "writeback_note": "Per-speaker timing diagnostic complete for the drift case. Reconciled alignment and cpWER execution remain pending."
+  }
+]

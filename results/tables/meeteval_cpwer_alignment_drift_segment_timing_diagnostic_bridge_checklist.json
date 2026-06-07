@@ -1,0 +1,12 @@
+[
+  {
+    "checklist_order": "1",
+    "case_id": "HeavyOverlap",
+    "mismatched_speaker_count": "1",
+    "prerequisite_artifact": "results/figures/meeteval_cpwer_alignment_drift_segment_timing_diagnostic_summary.md",
+    "receipt_target": "results/figures/meeteval_cpwer_alignment_drift_segment_speaker_count_diagnostic_handoff_bridge_checklist.md",
+    "checklist_goal": "Verify the timing diagnostic bridge for HeavyOverlap before reopening the speaker count handoff bridge.",
+    "bridge_note": "mismatched_speaker_count=1 with dominant_blocker=SPEAKER_1 delta=-2.360s; confirm per-speaker timing drift before advancing the speaker count handoff bridge.",
+    "next_gate": "Confirm this bridge before opening the cpWER segment speaker count diagnostic handoff bridge checklist target."
+  }
+]
