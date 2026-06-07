@@ -1,0 +1,67 @@
+[
+  {
+    "case_id": "NoOverlap",
+    "handoff_status": "execution_handoff_ready",
+    "scaffold_status": "scaffold_only",
+    "hypothesis_source": "separated_whisper",
+    "reference_segment_count": 25,
+    "hypothesis_segment_count": 25,
+    "speaker_set_match": true,
+    "time_range_valid": true,
+    "export_path_valid": true,
+    "preflight_pass": true,
+    "preflight_note": "Execution preflight validated for NoOverlap; segment exports align on speakers and time ranges. Official cpWER has not been computed."
+  },
+  {
+    "case_id": "LightOverlap",
+    "handoff_status": "execution_handoff_ready",
+    "scaffold_status": "scaffold_only",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "reference_segment_count": 25,
+    "hypothesis_segment_count": 26,
+    "speaker_set_match": true,
+    "time_range_valid": true,
+    "export_path_valid": true,
+    "preflight_pass": true,
+    "preflight_note": "Execution preflight validated for LightOverlap; segment exports align on speakers and time ranges. Official cpWER has not been computed."
+  },
+  {
+    "case_id": "MidOverlap",
+    "handoff_status": "execution_handoff_ready",
+    "scaffold_status": "scaffold_only",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "reference_segment_count": 25,
+    "hypothesis_segment_count": 27,
+    "speaker_set_match": true,
+    "time_range_valid": true,
+    "export_path_valid": true,
+    "preflight_pass": true,
+    "preflight_note": "Execution preflight validated for MidOverlap; segment exports align on speakers and time ranges. Official cpWER has not been computed."
+  },
+  {
+    "case_id": "HeavyOverlap",
+    "handoff_status": "execution_handoff_ready",
+    "scaffold_status": "scaffold_only",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "reference_segment_count": 25,
+    "hypothesis_segment_count": 25,
+    "speaker_set_match": true,
+    "time_range_valid": true,
+    "export_path_valid": true,
+    "preflight_pass": true,
+    "preflight_note": "Execution preflight validated for HeavyOverlap; segment exports align on speakers and time ranges. Official cpWER has not been computed."
+  },
+  {
+    "case_id": "OppositeOverlap",
+    "handoff_status": "execution_handoff_ready",
+    "scaffold_status": "scaffold_only",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "reference_segment_count": 24,
+    "hypothesis_segment_count": 25,
+    "speaker_set_match": true,
+    "time_range_valid": true,
+    "export_path_valid": true,
+    "preflight_pass": true,
+    "preflight_note": "Execution preflight validated for OppositeOverlap; segment exports align on speakers and time ranges. Official cpWER has not been computed."
+  }
+]

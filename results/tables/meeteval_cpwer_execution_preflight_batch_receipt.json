@@ -1,0 +1,12 @@
+[
+  {
+    "execution_status": "preflight_batch_complete",
+    "run_scope": "all_gold_cpwer_execution_preflight",
+    "case_id": "ALL",
+    "preflight_pass_count": "5",
+    "preflight_total_count": "5",
+    "expected_inputs": "results/tables/meeteval_reference_segments.jsonl; results/tables/meeteval_hypothesis_segments.jsonl",
+    "expected_outputs": "Official cpWER score receipt per verified gold case.",
+    "writeback_note": "Batch execution preflight documented; official MeetEval cpWER evaluation remains pending."
+  }
+]

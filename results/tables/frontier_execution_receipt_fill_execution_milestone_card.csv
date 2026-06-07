@@ -1,0 +1,2 @@
+﻿next_milestone,unlocks,remaining_frontier_count,milestone_note
+first_execution_receipt_filled,Advance to speaker_profile fill execution after the first receipt is filled,2,Filling the first execution receipt closes milestone 1 of 3; no benchmark execution is claimed until a real frontier run happens.

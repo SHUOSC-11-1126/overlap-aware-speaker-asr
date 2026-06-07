@@ -1259,6 +1259,144 @@ Update: the frontier receipt layer now has a fill execution handoff.
 - Summary view: `results/figures/frontier_execution_receipt_fill_execution_handoff.md`
 - Per-frontier fill execution actions for MeetEval, speaker profile, and external staging.
 
+Update: the frontier receipt layer now has a fill execution handoff bridge checklist.
+
+- Handoff bridge checklist: `results/tables/frontier_execution_receipt_fill_execution_handoff_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_handoff_bridge_checklist.md`
+- Connects the fill execution handoff to per-frontier execution receipts without claiming benchmark execution.
+
+Update: the frontier receipt layer now has a fill execution completion summary.
+
+- Completion summary: `results/tables/frontier_execution_receipt_fill_execution_completion_summary.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_completion_summary.md`
+- `combined_fill_execution_status = fill_execution_ready` with `awaiting_fill_execution_count = 3/3`; no benchmark execution is claimed.
+
+Update: the frontier receipt layer now has a fill execution completion summary bridge checklist.
+
+- Completion summary bridge checklist: `results/tables/frontier_execution_receipt_fill_execution_completion_summary_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_completion_summary_bridge_checklist.md`
+- Connects the fill execution completion summary to the fill execution handoff.
+
+Update: the frontier receipt layer now has a fill execution operator brief.
+
+- Operator brief: `results/tables/frontier_execution_receipt_fill_execution_operator_brief.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_operator_brief.md`
+- Plain-language next step for the first fill target (`meeteval_compatibility`).
+
+Update: the frontier receipt layer now has a fill execution receipt bridge.
+
+- Receipt bridge: `results/tables/frontier_execution_receipt_fill_execution_receipt_bridge.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_receipt_bridge.md`
+- Connects the operator brief to the MeetEval execution receipt target.
+
+Update: the frontier receipt layer now has a fill execution receipt bridge checklist.
+
+- Receipt bridge checklist: `results/tables/frontier_execution_receipt_fill_execution_receipt_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_receipt_bridge_checklist.md`
+- Ordered writeback verification path before opening the execution receipt.
+
+Update: the frontier receipt layer now has a fill execution handoff packet.
+
+- Handoff packet: `results/tables/frontier_execution_receipt_fill_execution_handoff_packet.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_handoff_packet.md`
+- Single entrypoint for the fill execution coordination stack.
+
+Update: the frontier receipt layer now has a fill execution evidence receipt.
+
+- Evidence receipt: `results/tables/frontier_execution_receipt_fill_execution_evidence_receipt.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_evidence_receipt.md`
+- Writeback closeout card for the first fill target; no benchmark execution is claimed.
+
+Update: the frontier receipt layer now has a fill execution evidence receipt bridge checklist.
+
+- Evidence receipt bridge checklist: `results/tables/frontier_execution_receipt_fill_execution_evidence_receipt_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_evidence_receipt_bridge_checklist.md`
+- Connects the handoff packet to the evidence receipt without claiming benchmark execution.
+
+Update: the frontier receipt layer now has a fill execution runbook card.
+
+- Runbook card: `results/tables/frontier_execution_receipt_fill_execution_runbook_card.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_runbook_card.md`
+- One-page first action card for the MeetEval fill execution target.
+
+Update: the frontier receipt layer now has a fill execution completion dashboard.
+
+- Completion dashboard: `results/tables/frontier_execution_receipt_fill_execution_completion_dashboard.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_completion_dashboard.md`
+- Top-level queue snapshot across all three frontiers.
+
+Update: the frontier receipt layer now has a fill execution milestone card.
+
+- Milestone card: `results/tables/frontier_execution_receipt_fill_execution_milestone_card.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_milestone_card.md`
+- Immediate completion boundary before advancing to the second frontier.
+
+Update: the frontier receipt layer now has a fill execution execution receipt bridge.
+
+- Execution receipt bridge: `results/tables/frontier_execution_receipt_fill_execution_execution_receipt_bridge.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_execution_receipt_bridge.md`
+- Connects the evidence receipt to the JSON execution receipt target.
+
+Update: the frontier receipt layer now has a fill execution execution receipt bridge checklist.
+
+- Execution receipt bridge checklist: `results/tables/frontier_execution_receipt_fill_execution_execution_receipt_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_execution_receipt_bridge_checklist.md`
+- Ordered verification path before opening the JSON execution receipt.
+
+Update: the frontier receipt layer now has a fill execution phase checkpoint card.
+
+- Phase checkpoint card: `results/tables/frontier_execution_receipt_fill_execution_phase_checkpoint_card.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_phase_checkpoint_card.md`
+- Per-phase completion signal for the current fill execution step.
+
+Update: the frontier receipt layer now has a fill execution runbook bridge checklist.
+
+- Runbook bridge checklist: `results/tables/frontier_execution_receipt_fill_execution_runbook_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_runbook_bridge_checklist.md`
+- Connects the runbook card to the evidence receipt target.
+
+Update: `meeteval_compatibility` now has an all-gold execution preflight batch.
+
+- Preflight batch: `results/tables/meeteval_cpwer_execution_preflight_batch.csv`
+- Summary view: `results/figures/meeteval_cpwer_execution_preflight_batch.md`
+- All five verified gold cases pass segment-export preflight; official cpWER remains pending.
+
+Update: the frontier receipt layer now has a fill execution frontier bridge.
+
+- Frontier bridge: `results/tables/frontier_execution_receipt_fill_execution_frontier_bridge.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_frontier_bridge.md`
+- Connects fill execution to the breadth-first frontier queue head.
+
+Update: the frontier receipt layer now has a fill execution dashboard bridge checklist.
+
+- Dashboard bridge checklist: `results/tables/frontier_execution_receipt_fill_execution_dashboard_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_dashboard_bridge_checklist.md`
+- Connects the completion dashboard to the runbook card target.
+
+Update: `meeteval_compatibility` now has an all-gold execution receipt batch scaffold.
+
+- Receipt batch scaffold: `results/tables/meeteval_cpwer_execution_receipt_batch_scaffold.csv`
+- Summary view: `results/figures/meeteval_cpwer_execution_receipt_batch_scaffold.md`
+- Template-only official cpWER execution receipt scaffolds for all five verified gold cases.
+
+Update: the MeetEval receipt layer now has a batch scaffold bridge checklist.
+
+- Batch scaffold bridge checklist: `results/tables/meeteval_cpwer_execution_receipt_batch_scaffold_bridge_checklist.csv`
+- Summary view: `results/figures/meeteval_cpwer_execution_receipt_batch_scaffold_bridge_checklist.md`
+- Connects the batch receipt scaffold to the official execution receipt target.
+
+Update: `meeteval_compatibility` now has an all-gold execution status batch rollup.
+
+- Execution status batch: `results/tables/meeteval_cpwer_execution_status_batch.csv`
+- Summary view: `results/figures/meeteval_cpwer_execution_status_batch.md`
+- Rolls up execution-chain readiness across all five verified gold cases.
+
+Update: the MeetEval execution layer now has a status batch bridge checklist.
+
+- Status batch bridge checklist: `results/tables/meeteval_cpwer_execution_status_batch_bridge_checklist.csv`
+- Summary view: `results/figures/meeteval_cpwer_execution_status_batch_bridge_checklist.md`
+- Connects the batch execution status to the official execution receipt target.
+
 Update: `demo_excellence` now has a lightweight Streamlit viewer scaffold.
 
 - Demo app: `demo/app.py`

@@ -71,7 +71,15 @@ def render_gold_table() -> None:
 def render_frontier_fill_status() -> None:
     summary = load_json_dict("results/tables/frontier_execution_receipt_fill_queue_summary.json")
     execution = load_json_dict("results/tables/frontier_execution_receipt_fill_execution_status.json")
+    completion = load_json_dict("results/tables/frontier_execution_receipt_fill_execution_completion_summary.json")
     rows = load_json_list("results/tables/frontier_execution_receipt_fill_queue_status.json")
+    handoff_rows = load_json_list("results/tables/frontier_execution_receipt_fill_execution_handoff.json")
+    operator_brief = load_json_dict("results/tables/frontier_execution_receipt_fill_execution_operator_brief.json")
+    runbook = load_json_dict("results/tables/frontier_execution_receipt_fill_execution_runbook_card.json")
+    dashboard = load_json_dict("results/tables/frontier_execution_receipt_fill_execution_completion_dashboard.json")
+    preflight_batch = load_json_list("results/tables/meeteval_cpwer_execution_preflight_batch.json")
+    receipt_batch_scaffold = load_json_list("results/tables/meeteval_cpwer_execution_receipt_batch_scaffold.json")
+    execution_status_batch = load_json_list("results/tables/meeteval_cpwer_execution_status_batch.json")
     if not summary:
         st.warning("Frontier fill queue summary not found.")
         return
@@ -88,12 +96,64 @@ def render_frontier_fill_status() -> None:
                 "Fill execution status",
                 execution.get("combined_fill_execution_status", "unknown"),
             )
+        if completion:
+            st.metric(
+                "Awaiting fill execution",
+                (
+                    f"{completion.get('awaiting_fill_execution_count', '0')}/"
+                    f"{completion.get('total_frontier_count', '0')}"
+                ),
+            )
     if rows:
         st.table(
             {
                 "frontier": [row.get("frontier_name", "") for row in rows],
                 "fill_status": [row.get("fill_status", "") for row in rows],
                 "execution_status": [row.get("execution_status", "") for row in rows],
+            }
+        )
+    if preflight_batch:
+        pass_count = sum(1 for row in preflight_batch if str(row.get("preflight_pass", "")).lower() == "true")
+        st.metric("MeetEval preflight batch", f"{pass_count}/{len(preflight_batch)} cases passed")
+        st.markdown("**MeetEval preflight batch cases**")
+        st.table(
+            {
+                "case_id": [row.get("case_id", "") for row in preflight_batch],
+                "preflight_pass": [row.get("preflight_pass", "") for row in preflight_batch],
+                "hypothesis_source": [row.get("hypothesis_source", "") for row in preflight_batch],
+            }
+        )
+    if receipt_batch_scaffold:
+        st.metric(
+            "MeetEval receipt scaffolds",
+            f"{len(receipt_batch_scaffold)}/5 cases scaffolded",
+        )
+    if execution_status_batch:
+        ready_count = sum(
+            1 for row in execution_status_batch if row.get("execution_chain_status") == "execution_chain_ready"
+        )
+        st.metric("MeetEval execution chain", f"{ready_count}/{len(execution_status_batch)} cases ready")
+    if dashboard:
+        st.markdown("**Fill execution dashboard**")
+        st.write(dashboard.get("dashboard_note", ""))
+    if runbook:
+        st.markdown("**Fill execution runbook card**")
+        st.write(runbook.get("runbook_note", ""))
+        st.caption(f"Action: `{runbook.get('recommended_action', '')}`")
+    if operator_brief:
+        st.markdown("**Fill execution operator brief**")
+        st.write(operator_brief.get("operator_note", ""))
+        st.caption(
+            f"First target: `{operator_brief.get('operator_frontier', '')}` → "
+            f"`{operator_brief.get('operator_receipt', '')}`"
+        )
+    if handoff_rows:
+        st.markdown("**Fill execution handoff actions**")
+        st.table(
+            {
+                "frontier": [row.get("frontier_name", "") for row in handoff_rows],
+                "fill execution status": [row.get("fill_execution_status", "") for row in handoff_rows],
+                "recommended action": [row.get("recommended_action", "") for row in handoff_rows],
             }
         )
 

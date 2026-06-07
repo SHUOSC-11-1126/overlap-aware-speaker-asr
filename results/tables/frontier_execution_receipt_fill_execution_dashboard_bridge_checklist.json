@@ -1,0 +1,11 @@
+[
+  {
+    "checklist_order": "1",
+    "current_first_frontier": "meeteval_compatibility",
+    "prerequisite_artifact": "results/figures/frontier_execution_receipt_fill_execution_completion_dashboard.md",
+    "receipt_target": "results/figures/frontier_execution_receipt_fill_execution_runbook_card.md",
+    "checklist_goal": "Verify the completion dashboard for meeteval_compatibility before opening the runbook card.",
+    "bridge_note": "meeteval_compatibility leads the fill execution queue with 3/3 frontiers still awaiting fill; no benchmark execution is claimed until receipts are filled.",
+    "next_gate": "Confirm this bridge before opening the runbook card target."
+  }
+]

@@ -14,6 +14,25 @@ Use this order when picking a new breadth-first frontier task:
 
 This sequence is coordination guidance only. It does not claim that any frontier item has been completed.
 
+## Current Coordination Focus
+
+The frontier receipt-fill execution stack now has an operator brief and receipt bridge:
+
+- Entry: `results/figures/frontier_execution_receipt_fill_execution_handoff_packet.md`
+- Runbook card: `results/figures/frontier_execution_receipt_fill_execution_runbook_card.md`
+- Dashboard: `results/figures/frontier_execution_receipt_fill_execution_completion_dashboard.md`
+- Operator brief: `results/figures/frontier_execution_receipt_fill_execution_operator_brief.md`
+- Receipt bridge: `results/figures/frontier_execution_receipt_fill_execution_receipt_bridge.md`
+- Bridge checklist: `results/figures/frontier_execution_receipt_fill_execution_receipt_bridge_checklist.md`
+- Evidence receipt: `results/figures/frontier_execution_receipt_fill_execution_evidence_receipt.md`
+- Execution receipt bridge: `results/figures/frontier_execution_receipt_fill_execution_execution_receipt_bridge.md`
+- MeetEval preflight batch: `results/figures/meeteval_cpwer_execution_preflight_batch.md`
+- MeetEval receipt batch scaffold: `results/figures/meeteval_cpwer_execution_receipt_batch_scaffold.md`
+- MeetEval execution status batch: `results/figures/meeteval_cpwer_execution_status_batch.md`
+- Frontier bridge: `results/figures/frontier_execution_receipt_fill_execution_frontier_bridge.md`
+
+MeetEval compatibility remains the recommended first fill target. Filling execution receipts is coordination-only until a real frontier run happens; no benchmark execution is claimed by the scaffold alone.
+
 ## Level 1: Documentation / Presentation
 
 - README beautification

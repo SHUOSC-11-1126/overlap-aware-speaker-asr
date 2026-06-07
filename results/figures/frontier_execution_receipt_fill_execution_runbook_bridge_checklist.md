@@ -1,0 +1,7 @@
+# Frontier Execution Receipt Fill Execution Runbook Bridge Checklist
+
+This generated checklist connects the runbook card to the evidence receipt target. It remains experimental/frontier coordination only and does not claim benchmark execution.
+
+| checklist_order | recommended_frontier | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | meeteval_compatibility | results/figures/frontier_execution_receipt_fill_execution_runbook_card.md | results/figures/frontier_execution_receipt_fill_execution_evidence_receipt.md | Verify the runbook card for meeteval_compatibility before opening the evidence receipt. | Start with meeteval_compatibility because it is handoff_order=1 and all receipts remain template_only. No benchmark execution is claimed until the execution receipt is filled. | Confirm this bridge before opening the evidence receipt target. |
