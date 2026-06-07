@@ -481,6 +481,12 @@ Benchmark receipt bridge:
 - `results/tables/cascade_benchmark_receipt_bridge.csv`
 - This bridge now links the benchmark handoff packet directly to the benchmark evidence receipt. It still does not claim any executed benchmark run; it simply shows which packet should be opened first and which receipt target should eventually capture the writeback.
 
+Benchmark evidence checklist:
+
+- `results/figures/cascade_benchmark_evidence_checklist.md`
+- `results/tables/cascade_benchmark_evidence_checklist.csv`
+- This checklist now turns the evidence receipt into an ordered writeback path. It stays explicitly coordination-only, keeps the receipt target visible, and helps a future agent complete the benchmark closeout sequence in order.
+
 MeetEval compatibility bridge:
 
 - `results/figures/meeteval_compatibility_note.md`

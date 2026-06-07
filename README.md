@@ -240,6 +240,11 @@ Current benchmark evidence receipt result:
 
 - `results/figures/cascade_benchmark_evidence_receipt.md` now shows what the current benchmark run must write back, which completion signal closes it, and what follow-up note should remain
 
+Current benchmark evidence checklist result:
+
+- `results/figures/cascade_benchmark_evidence_checklist.md` now turns that receipt into an ordered writeback checklist
+- This checklist stays coordination-only and makes the receipt target explicit without claiming that any benchmark execution has already happened
+
 Current benchmark receipt bridge result:
 
 - `results/figures/cascade_benchmark_receipt_bridge.md` now links the benchmark handoff packet directly to the benchmark evidence receipt
