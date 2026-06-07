@@ -1,0 +1,13 @@
+[
+  {
+    "checklist_order": "1",
+    "queue_status": "queue_complete",
+    "aligned_count": "5",
+    "total_count": "5",
+    "prerequisite_artifact": "results/figures/meeteval_cpwer_tokenization_adaptation_completion_summary.md",
+    "receipt_target": "results/figures/frontier_execution_receipt_fill_execution_operator_brief.md",
+    "checklist_goal": "Verify tokenization adaptation completion before advancing frontier fill execution.",
+    "bridge_note": "Tokenization adaptation reports queue_status=queue_complete with 5/5 reconciled cases; confirm before treating character-spaced cpWER as the preferred frontier metric.",
+    "next_gate": "Confirm this bridge before opening the frontier fill execution operator brief."
+  }
+]
