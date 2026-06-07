@@ -46,6 +46,15 @@ METHOD_RECEIPT_COLUMNS = [
     "writeback_note",
 ]
 
+CHECKLIST_COLUMNS = [
+    "checklist_order",
+    "dominant_pattern",
+    "checklist_goal",
+    "expected_evidence",
+    "preflight_step",
+    "next_gate",
+]
+
 
 def text_overlap_ratio(left: str, right: str) -> float:
     left_counter = Counter(str(left).strip())
@@ -226,6 +235,52 @@ def build_speaker_profile_method_receipt_rows(rows: list[dict[str, str]]) -> lis
     ]
 
 
+def build_speaker_profile_checklist_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    if not rows:
+        return []
+
+    handoff = rows[0]
+    dominant_pattern = str(handoff.get("dominant_pattern", ""))
+    first_method_direction = str(handoff.get("first_method_direction", ""))
+    checklist_goal = str(handoff.get("method_goal", "Test a stronger profile method before any attribution claim."))
+    preflight_step = (
+        "Confirm swapped-bias diagnostics before staging the stronger-profile baseline stub."
+        if dominant_pattern == "swapped_bias"
+        else "Confirm the current profile signal before comparing against a stronger baseline stub."
+    )
+    next_gate = (
+        "Verify one stronger profile method before any speaker-attribution claim."
+        if first_method_direction == "embedding_or_voiceprint_baseline"
+        else "Keep the profile signal diagnostic and compare it against the current baseline stub."
+    )
+    return [
+        {
+            "checklist_order": "1",
+            "dominant_pattern": dominant_pattern,
+            "checklist_goal": checklist_goal,
+            "expected_evidence": "results/tables/speaker_profile_method_receipt.json",
+            "preflight_step": preflight_step,
+            "next_gate": next_gate,
+        }
+    ]
+
+
+def build_speaker_profile_checklist_lines(rows: list[dict[str, str]]) -> list[str]:
+    lines = [
+        "# Speaker Profile Checklist",
+        "",
+        "This generated checklist orders the speaker-profile frontier before any stronger attribution method is claimed to work. It does not claim voiceprint success.",
+        "",
+        "| checklist_order | dominant_pattern | checklist_goal | expected_evidence | preflight_step | next_gate |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['checklist_order']} | {row['dominant_pattern']} | {row['checklist_goal']} | {row['expected_evidence']} | {row['preflight_step']} | {row['next_gate']} |"
+        )
+    return lines
+
+
 def build_speaker_profile_method_receipt_lines(rows: list[dict[str, str]]) -> list[str]:
     lines = [
         "# Speaker Profile Method Receipt",
@@ -276,7 +331,7 @@ def load_hypothesis_text(case_id: str) -> dict[str, Any]:
     }
 
 
-def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path]:
+def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path]:
     tables_dir = PROJECT_ROOT / "results" / "tables"
     figures_dir = PROJECT_ROOT / "results" / "figures"
     tables_dir.mkdir(parents=True, exist_ok=True)
@@ -295,6 +350,10 @@ def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, P
     method_receipt_rows = build_speaker_profile_method_receipt_rows(method_handoff_rows)
     method_receipt_json_path = tables_dir / "speaker_profile_method_receipt.json"
     method_receipt_md_path = figures_dir / "speaker_profile_method_receipt.md"
+    checklist_rows = build_speaker_profile_checklist_rows(method_handoff_rows)
+    checklist_csv_path = tables_dir / "speaker_profile_checklist.csv"
+    checklist_json_path = tables_dir / "speaker_profile_checklist.json"
+    checklist_md_path = figures_dir / "speaker_profile_checklist.md"
     with csv_path.open("w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=CSV_COLUMNS)
         writer.writeheader()
@@ -321,6 +380,15 @@ def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, P
         "\n".join(build_speaker_profile_method_receipt_lines(method_receipt_rows)) + "\n",
         encoding="utf-8",
     )
+    with checklist_csv_path.open("w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=CHECKLIST_COLUMNS)
+        writer.writeheader()
+        writer.writerows(checklist_rows)
+    checklist_json_path.write_text(json.dumps(checklist_rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    checklist_md_path.write_text(
+        "\n".join(build_speaker_profile_checklist_lines(checklist_rows)) + "\n",
+        encoding="utf-8",
+    )
     return (
         csv_path,
         json_path,
@@ -333,6 +401,9 @@ def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path, Path, P
         method_handoff_md_path,
         method_receipt_json_path,
         method_receipt_md_path,
+        checklist_csv_path,
+        checklist_json_path,
+        checklist_md_path,
     )
 
 
@@ -357,6 +428,9 @@ def main() -> None:
         method_handoff_md_path,
         method_receipt_json_path,
         method_receipt_md_path,
+        checklist_csv_path,
+        checklist_json_path,
+        checklist_md_path,
     ) = write_outputs(rows)
     print(f"Wrote speaker profile similarity: {csv_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote speaker profile JSON: {json_path.relative_to(PROJECT_ROOT)}")
@@ -369,6 +443,9 @@ def main() -> None:
     print(f"Wrote speaker profile method handoff note: {method_handoff_md_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote speaker profile method receipt JSON: {method_receipt_json_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote speaker profile method receipt note: {method_receipt_md_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote speaker profile checklist CSV: {checklist_csv_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote speaker profile checklist JSON: {checklist_json_path.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote speaker profile checklist note: {checklist_md_path.relative_to(PROJECT_ROOT)}")
 
 
 if __name__ == "__main__":

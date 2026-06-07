@@ -5,6 +5,8 @@ import unittest
 from src.speaker_profile_similarity import (
     build_profile_text,
     build_similarity_rows,
+    build_speaker_profile_checklist_lines,
+    build_speaker_profile_checklist_rows,
     build_speaker_profile_method_handoff_lines,
     build_speaker_profile_method_handoff_rows,
     build_speaker_profile_method_receipt_lines,
@@ -189,6 +191,48 @@ class SpeakerProfileSimilarityTest(unittest.TestCase):
         self.assertIn("triage", rows[0]["expected_inputs"].lower())
         self.assertIn("diagnostic", rows[0]["expected_outputs"].lower())
         self.assertIn("has been executed", rows[0]["writeback_note"].lower())
+
+    def test_build_speaker_profile_checklist_rows_order_next_steps(self) -> None:
+        rows = build_speaker_profile_checklist_rows(
+            build_speaker_profile_method_handoff_rows(
+                [
+                    {
+                        "dominant_pattern": "swapped_bias",
+                        "first_method_direction": "embedding_or_voiceprint_baseline",
+                        "method_goal": "Test a stronger profile method before any attribution claim.",
+                        "expected_evidence": "results/tables/speaker_profile_method_receipt.json",
+                        "handoff_note": "Current signal is diagnostic only, not speaker-ID success.",
+                    }
+                ]
+            )
+        )
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["checklist_order"], "1")
+        self.assertEqual(rows[0]["dominant_pattern"], "swapped_bias")
+        self.assertEqual(rows[0]["expected_evidence"], "results/tables/speaker_profile_method_receipt.json")
+        self.assertIn("stronger profile method", rows[0]["next_gate"].lower())
+
+    def test_build_speaker_profile_checklist_lines_render_queue(self) -> None:
+        lines = build_speaker_profile_checklist_lines(
+            [
+                {
+                    "checklist_order": "1",
+                    "dominant_pattern": "swapped_bias",
+                    "checklist_goal": "Test a stronger profile method before any attribution claim.",
+                    "expected_evidence": "results/tables/speaker_profile_method_receipt.json",
+                    "preflight_step": "Confirm swapped-bias diagnostics before staging the stronger-profile baseline stub.",
+                    "next_gate": "Verify one stronger profile method before any speaker-attribution claim.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Speaker Profile Checklist", rendered)
+        self.assertIn("swapped_bias", rendered)
+        self.assertIn("speaker-profile frontier", rendered)
+        self.assertIn("results/tables/speaker_profile_method_receipt.json", rendered)
+
 
     def test_build_speaker_profile_method_receipt_lines_render_template(self) -> None:
         lines = build_speaker_profile_method_receipt_lines(
