@@ -223,6 +223,12 @@ Update: `meeteval_compatibility` now also has a dry-run receipt checklist.
 - Summary view: `results/figures/meeteval_dry_run_receipt_checklist.md`
 - This keeps the receipt path visible in an ordered verification layer while staying explicit that cpWER has not yet been executed.
 
+Update: `meeteval_compatibility` now also has a dry-run receipt board.
+
+- Dry-run receipt board: `results/tables/meeteval_dry_run_receipt_board.csv`
+- Summary view: `results/figures/meeteval_dry_run_receipt_board.md`
+- This keeps the dry-run receipt path visible in one compact snapshot while staying explicit that cpWER has not yet been executed.
+
 Update: a generated llm critic review queue now turns the qualitative note into a first-pass triage order.
 
 - LLM critic review queue: `results/tables/llm_critic_review_queue.csv`

@@ -616,6 +616,12 @@ MeetEval dry run receipt checklist bridge:
 - `results/tables/meeteval_dry_run_receipt_checklist.csv`
 - This checklist turns the dry-run receipt into an ordered verification path. It stays coordination-only and does not claim a finished MeetEval or cpWER evaluation.
 
+MeetEval dry run receipt board bridge:
+
+- `results/figures/meeteval_dry_run_receipt_board.md`
+- `results/tables/meeteval_dry_run_receipt_board.csv`
+- This board condenses the dry-run receipt path into a single snapshot. It stays coordination-only and does not claim a finished MeetEval or cpWER evaluation.
+
 Speaker profile similarity bridge:
 
 - `results/figures/speaker_profile_risk_summary.md`

@@ -397,6 +397,12 @@ Current MeetEval dry run receipt checklist result:
 - `results/tables/meeteval_dry_run_receipt_checklist.csv`
 - This checklist now turns the dry-run receipt into an ordered verification path. It stays coordination-only and does not claim a finished MeetEval or cpWER evaluation.
 
+Current MeetEval dry run receipt board result:
+
+- `results/figures/meeteval_dry_run_receipt_board.md`
+- `results/tables/meeteval_dry_run_receipt_board.csv`
+- This board now condenses the dry-run receipt path into a single snapshot. It stays coordination-only and does not claim a finished MeetEval or cpWER evaluation.
+
 Current speaker profile result:
 
 - `results/figures/speaker_profile_risk_summary.md` now provides a lightweight text-profile overlap report that compares direct vs swapped alignment and currently exposes a useful failure mode rather than a speaker-ID success claim
