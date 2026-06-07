@@ -74,6 +74,7 @@ def render_frontier_fill_status() -> None:
     completion = load_json_dict("results/tables/frontier_execution_receipt_fill_execution_completion_summary.json")
     rows = load_json_list("results/tables/frontier_execution_receipt_fill_queue_status.json")
     handoff_rows = load_json_list("results/tables/frontier_execution_receipt_fill_execution_handoff.json")
+    operator_brief = load_json_dict("results/tables/frontier_execution_receipt_fill_execution_operator_brief.json")
     if not summary:
         st.warning("Frontier fill queue summary not found.")
         return
@@ -105,6 +106,13 @@ def render_frontier_fill_status() -> None:
                 "fill_status": [row.get("fill_status", "") for row in rows],
                 "execution_status": [row.get("execution_status", "") for row in rows],
             }
+        )
+    if operator_brief:
+        st.markdown("**Fill execution operator brief**")
+        st.write(operator_brief.get("operator_note", ""))
+        st.caption(
+            f"First target: `{operator_brief.get('operator_frontier', '')}` → "
+            f"`{operator_brief.get('operator_receipt', '')}`"
         )
     if handoff_rows:
         st.markdown("**Fill execution handoff actions**")
