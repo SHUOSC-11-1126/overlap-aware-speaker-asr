@@ -1,0 +1,9 @@
+{
+  "case_id": "HeavyOverlap",
+  "label": "experimental/frontier",
+  "scaffold_status": "scaffold_only",
+  "inspection_status": "segment_inspection_complete",
+  "reconciliation_target": "Speaker-attributed segment reconciliation for HeavyOverlap before any cpWER bridge advance.",
+  "expected_evidence": "results/tables/meeteval_hypothesis_segments.jsonl",
+  "scaffold_note": "Segment reconciliation scaffold only; no reconciled alignment or cpWER execution has been performed."
+}
