@@ -29,9 +29,12 @@ The frontier receipt-fill execution stack now has an operator brief and receipt 
 - MeetEval preflight batch: `results/figures/meeteval_cpwer_execution_preflight_batch.md`
 - MeetEval receipt batch scaffold: `results/figures/meeteval_cpwer_execution_receipt_batch_scaffold.md`
 - MeetEval execution status batch: `results/figures/meeteval_cpwer_execution_status_batch.md`
+- MeetEval batch completion summary: `results/figures/meeteval_cpwer_execution_status_batch_completion_summary.md`
+- MeetEval batch handoff: `results/figures/meeteval_cpwer_execution_status_batch_handoff.md`
+- MeetEval official execution: `results/figures/meeteval_cpwer_official_execution.md`
 - Frontier bridge: `results/figures/frontier_execution_receipt_fill_execution_frontier_bridge.md`
 
-MeetEval compatibility remains the recommended first fill target. Filling execution receipts is coordination-only until a real frontier run happens; no benchmark execution is claimed by the scaffold alone.
+MeetEval compatibility remains the recommended first fill target. The batch stack now extends through completion summary, batch handoff, and official cpWER narrow dry-run execution (`python -m src.meeteval_cpwer_official_execution --case preferred`). Official cpWER results are labeled `experimental/frontier` and do not constitute a full benchmark claim.
 
 ## Level 1: Documentation / Presentation
 

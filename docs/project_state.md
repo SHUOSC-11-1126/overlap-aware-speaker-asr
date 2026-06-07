@@ -1604,6 +1604,36 @@ MeetEval cpWER execution status batch bridge checklist:
 - `results/tables/meeteval_cpwer_execution_status_batch_bridge_checklist.csv`
 - This checklist connects the batch execution status to the official execution receipt target.
 
+MeetEval cpWER execution status batch completion summary:
+
+- `results/figures/meeteval_cpwer_execution_status_batch_completion_summary.md`
+- `results/tables/meeteval_cpwer_execution_status_batch_completion_summary.csv`
+- Rolls up batch execution-chain queue completion; official evaluation remains pending until narrow dry run.
+
+MeetEval cpWER execution status batch completion summary bridge checklist:
+
+- `results/figures/meeteval_cpwer_execution_status_batch_completion_summary_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_execution_status_batch_completion_summary_bridge_checklist.csv`
+- Connects the batch completion summary to the batch execution handoff.
+
+MeetEval cpWER execution status batch handoff:
+
+- `results/figures/meeteval_cpwer_execution_status_batch_handoff.md`
+- `results/tables/meeteval_cpwer_execution_status_batch_handoff.csv`
+- Per-case official cpWER execution handoff actions across all five verified gold cases.
+
+MeetEval cpWER execution status batch handoff bridge checklist:
+
+- `results/figures/meeteval_cpwer_execution_status_batch_handoff_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_execution_status_batch_handoff_bridge_checklist.csv`
+- Connects the batch handoff to the official cpWER execution module.
+
+MeetEval cpWER official execution:
+
+- `results/figures/meeteval_cpwer_official_execution.md`
+- `results/tables/meeteval_cpwer_official_execution.csv`
+- Narrow dry-run official MeetEval cpWER for the preferred gold case; receipt writeback on success.
+
 MeetEval compatibility skill card:
 
 - `docs/skills/skill_04_meeteval_compatibility.md`

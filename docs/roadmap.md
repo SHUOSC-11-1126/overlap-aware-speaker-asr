@@ -1397,6 +1397,26 @@ Update: the MeetEval execution layer now has a status batch bridge checklist.
 - Summary view: `results/figures/meeteval_cpwer_execution_status_batch_bridge_checklist.md`
 - Connects the batch execution status to the official execution receipt target.
 
+Update: `meeteval_compatibility` now also has a batch execution-chain completion summary.
+
+- Completion summary: `results/tables/meeteval_cpwer_execution_status_batch_completion_summary.csv`
+- Summary view: `results/figures/meeteval_cpwer_execution_status_batch_completion_summary.md`
+- `queue_status = queue_complete` when all five verified gold cases report `execution_chain_ready`; official cpWER remains pending until narrow dry run.
+
+Update: `meeteval_compatibility` now also has a batch execution handoff.
+
+- Batch handoff: `results/tables/meeteval_cpwer_execution_status_batch_handoff.csv`
+- Summary view: `results/figures/meeteval_cpwer_execution_status_batch_handoff.md`
+- This turns batch chain readiness into per-case official cpWER execution actions with a preferred first target.
+
+Update: `meeteval_compatibility` now also has an official cpWER narrow dry-run execution module.
+
+- Official execution: `results/tables/meeteval_cpwer_official_execution.csv`
+- Summary view: `results/figures/meeteval_cpwer_official_execution.md`
+- Script: `python -m src.meeteval_cpwer_official_execution --case preferred`
+- Optional dependency: `requirements-frontier.txt` (`pip install meeteval`)
+- On success, writes back to `results/tables/meeteval_cpwer_execution_receipt.json` for the executed case only; results remain `experimental/frontier`.
+
 Update: `demo_excellence` now has a lightweight Streamlit viewer scaffold.
 
 - Demo app: `demo/app.py`
