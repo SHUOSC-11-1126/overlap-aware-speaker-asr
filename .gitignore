@@ -55,6 +55,9 @@ results/synthetic_overlap_v2/
 !results/tables/meeteval_cpwer_bridge_receipt.json
 !results/tables/external_validation_checklist.csv
 !results/tables/external_validation_checklist.json
+!results/tables/external_validation_slice_mapping.csv
+!results/tables/external_validation_slice_mapping.json
+!results/tables/external_validation_slice_receipt.json
 !results/figures/cascade_benchmark_status.md
 !results/figures/meeteval_dry_run_checklist.md
 !results/figures/meeteval_dry_run_diagnostic.md
@@ -65,6 +68,8 @@ results/synthetic_overlap_v2/
 !results/figures/meeteval_cpwer_bridge_handoff.md
 !results/figures/meeteval_cpwer_bridge_receipt.md
 !results/figures/external_validation_checklist.md
+!results/figures/external_validation_slice_scaffold.md
+!results/figures/external_validation_slice_receipt.md
 
 # Large synthetic benchmark assets
 resources/synthetic_overlap_v2/audio/

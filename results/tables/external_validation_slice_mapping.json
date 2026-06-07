@@ -1,0 +1,17 @@
+{
+  "dataset_name": "AISHELL-4",
+  "label": "external/sanity-check",
+  "slice_id": "aishell4_meeting_excerpt_stub_001",
+  "license_status": "pending_confirmation",
+  "audio_path": "resources/external_sanity_check/aishell4/meeting_excerpt_stub_001.wav",
+  "reference_path": "resources/external_sanity_check/aishell4/meeting_excerpt_stub_001_reference.json",
+  "speaker_schema": {
+    "speaker_field": "speaker",
+    "start_field": "start",
+    "end_field": "end",
+    "text_field": "text"
+  },
+  "segments": [],
+  "mapping_status": "scaffold_only",
+  "scaffold_note": "Template-only mapping stub for the first AISHELL-4 slice. No external audio or reference has been staged yet."
+}
