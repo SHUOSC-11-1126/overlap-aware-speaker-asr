@@ -389,6 +389,11 @@ Current demo walkthrough receipt result:
 - `results/figures/demo_walkthrough_receipt.md` now materializes the expected evidence slot for that first walkthrough pass
 - This still does not claim a completed live demo or recording: it defines the walkthrough scope, expected inputs, expected outputs, and writeback note so the first presentation pass has a concrete receipt to fill
 
+Current demo walkthrough checklist result:
+
+- `results/figures/demo_walkthrough_checklist.md` now turns the walkthrough steps into an ordered presentation checklist
+- This checklist remains `qualitative/demo`: it helps a future contributor follow the script in order and keeps the receipt target explicit without claiming a completed live demo
+
 ## Core Findings
 
 - Speech separation is useful, but not universally beneficial.

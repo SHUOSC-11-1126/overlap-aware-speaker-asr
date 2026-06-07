@@ -613,6 +613,12 @@ Demo walkthrough receipt bridge:
 - `results/tables/demo_walkthrough_receipt.json`
 - This bridge now materializes the expected evidence slot for that walkthrough as a template-only receipt. It still does not claim any executed demo delivery; it simply defines what the first narrow presentation follow-up should write back once it actually happens.
 
+Demo walkthrough checklist bridge:
+
+- `results/figures/demo_walkthrough_checklist.md`
+- `results/tables/demo_walkthrough_checklist.csv`
+- This bridge now turns the walkthrough into an ordered presentation checklist. It stays explicitly `qualitative/demo`, keeps the receipt target visible, and helps a future agent follow the short demo script without implying that a live demo has already been completed.
+
 ## How to Resume Work
 
 Common commands:
