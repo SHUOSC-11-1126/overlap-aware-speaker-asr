@@ -475,6 +475,10 @@ results/synthetic_overlap_v2/
 !results/tables/speaker_profile_embedding_trial_execution_status.json
 !results/tables/speaker_profile_embedding_trial_handoff.csv
 !results/tables/speaker_profile_embedding_trial_handoff.json
+!results/tables/speaker_profile_text_proxy_trial_diagnostic.csv
+!results/tables/speaker_profile_text_proxy_trial_diagnostic.json
+!results/tables/speaker_profile_text_proxy_trial_diagnostic_summary.csv
+!results/tables/speaker_profile_text_proxy_trial_diagnostic_summary.json
 !results/tables/speaker_profile_embedding_trial_handoff_receipt.json
 !results/tables/speaker_profile_embedding_trial.csv
 !results/tables/speaker_profile_embedding_trial.json
@@ -753,6 +757,7 @@ results/synthetic_overlap_v2/
 !results/figures/speaker_profile_embedding_scaffold_receipt.md
 !results/figures/speaker_profile_embedding_scaffold_bridge_checklist.md
 !results/figures/speaker_profile_embedding_trial_handoff.md
+!results/figures/speaker_profile_text_proxy_trial_diagnostic.md
 !results/figures/speaker_profile_embedding_trial_handoff_receipt.md
 !results/figures/speaker_profile_embedding_trial.md
 !results/figures/speaker_profile_embedding_trial_receipt.md
