@@ -646,6 +646,12 @@ MeetEval cpWER alignment:
 - `results/tables/meeteval_cpwer_alignment.csv`
 - Cross-metric alignment reports `matched_count = 4/5` with `HeavyOverlap` as the only drift case against speaker_macro_cer.
 
+MeetEval cpWER alignment bridge checklist:
+
+- `results/figures/meeteval_cpwer_alignment_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_alignment_bridge_checklist.csv`
+- This checklist turns the alignment audit into an ordered bridge verification path between the alignment note and bridge handoff.
+
 MeetEval cpWER bridge handoff:
 
 - `results/figures/meeteval_cpwer_bridge_handoff.md`
@@ -712,6 +718,12 @@ LLM critic review pass bridge:
 - `results/tables/llm_critic_review_pass.csv`
 - The first qualitative pass on `HeavyOverlap` is `review_complete` without any verified transcript repair claim.
 
+LLM critic review pass bridge checklist:
+
+- `results/figures/llm_critic_review_pass_bridge_checklist.md`
+- `results/tables/llm_critic_review_pass_bridge_checklist.csv`
+- This checklist turns the review pass into an ordered bridge verification path between the pass note and receipt.
+
 LLM critic review bridge checklist:
 
 - `results/figures/llm_critic_review_bridge_checklist.md`
@@ -765,6 +777,12 @@ External validation slice manifest bridge:
 - `results/figures/external_validation_slice_manifest.md`
 - `results/tables/external_validation_slice_manifest.json`
 - The slice manifest records `staging_status = blocked_by_license_gate` for the first AISHELL-4 excerpt.
+
+External validation slice manifest bridge checklist:
+
+- `results/figures/external_validation_slice_manifest_bridge_checklist.md`
+- `results/tables/external_validation_slice_manifest_bridge_checklist.csv`
+- This checklist turns the slice manifest into an ordered bridge verification path between the manifest note and manifest receipt.
 
 External validation checklist bridge:
 
@@ -861,11 +879,14 @@ python -m src.export_meeteval_compatibility
 python -m src.meeteval_dry_run
 python -m src.meeteval_cpwer_bridge --case all
 python -m src.meeteval_cpwer_alignment
+python -m src.meeteval_cpwer_alignment_bridge_checklist
 python -m src.external_validation_slice_scaffold
 python -m src.external_validation_license_gate
 python -m src.external_validation_slice_manifest
+python -m src.external_validation_slice_manifest_bridge_checklist
 python -m src.speaker_profile_embedding_scaffold
 python -m src.llm_critic_review_pass
+python -m src.llm_critic_review_pass_bridge_checklist
 python -m src.project_harness
 ```
 
