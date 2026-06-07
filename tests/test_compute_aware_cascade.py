@@ -28,6 +28,8 @@ from src.compute_aware_cascade import (
     build_benchmark_completion_dashboard_rows,
     build_benchmark_evidence_receipt_lines,
     build_benchmark_evidence_receipt_rows,
+    build_benchmark_evidence_checklist_lines,
+    build_benchmark_evidence_checklist_rows,
     build_benchmark_receipt_bridge_lines,
     build_benchmark_receipt_bridge_rows,
     build_benchmark_frontier_bridge_lines,
@@ -1491,6 +1493,48 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertIn("Gold runtime foundation artifacts are rebuilt from controlled timing.", rendered)
         self.assertIn("write back the evidence payload", rendered)
 
+    def test_build_benchmark_evidence_checklist_rows_order_writeback_steps(self) -> None:
+        rows = build_benchmark_evidence_checklist_rows(
+            [
+                {
+                    "receipt_step": "phase1_gold_runtime_foundation",
+                    "receipt_action": "collect_controlled_runtime",
+                    "receipt_evidence": "hardware_label;device;repeat_count;warmup_count",
+                    "receipt_completion_signal": "Gold runtime foundation artifacts are rebuilt from controlled timing.",
+                    "receipt_followup": "collect_controlled_runtime -> Gold runtime foundation artifacts are rebuilt from controlled timing.",
+                    "receipt_note": "After phase1_gold_runtime_foundation, write back the evidence payload and confirm the foundation completion signal.",
+                }
+            ]
+        )
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["checklist_order"], "1")
+        self.assertEqual(rows[0]["receipt_step"], "phase1_gold_runtime_foundation")
+        self.assertEqual(rows[0]["expected_evidence"], "results/tables/cascade_benchmark_evidence_receipt.json")
+        self.assertIn("handoff packet", rows[0]["preflight_step"].lower())
+        self.assertIn("completion signal", rows[0]["next_gate"].lower())
+
+    def test_build_benchmark_evidence_checklist_lines_render_writeback_queue(self) -> None:
+        lines = build_benchmark_evidence_checklist_lines(
+            [
+                {
+                    "checklist_order": "1",
+                    "receipt_step": "phase1_gold_runtime_foundation",
+                    "receipt_action": "collect_controlled_runtime",
+                    "checklist_goal": "Gold runtime foundation artifacts are rebuilt from controlled timing.",
+                    "expected_evidence": "results/tables/cascade_benchmark_evidence_receipt.json",
+                    "preflight_step": "Open the handoff packet and verify the receipt payload before the benchmark writeback.",
+                    "next_gate": "Write back the evidence receipt and confirm the completion signal before the next step.",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+
+        self.assertIn("# Cascade Benchmark Evidence Checklist", rendered)
+        self.assertIn("phase1_gold_runtime_foundation", rendered)
+        self.assertIn("results/tables/cascade_benchmark_evidence_receipt.json", rendered)
+        self.assertIn("writeback path", rendered)
+
     def test_build_benchmark_receipt_bridge_rows_link_packet_to_receipt(self) -> None:
         runbook_rows = [
             {
@@ -1720,6 +1764,17 @@ class ComputeAwareCascadeTest(unittest.TestCase):
                 "receipt_note": "After phase1_gold_runtime_foundation, write back the evidence payload and confirm the foundation completion signal.",
             }
         ]
+        evidence_checklist_rows = [
+            {
+                "checklist_order": "1",
+                "receipt_step": "phase1_gold_runtime_foundation",
+                "receipt_action": "collect_controlled_runtime",
+                "checklist_goal": "Gold runtime foundation artifacts are rebuilt from controlled timing.",
+                "expected_evidence": "results/tables/cascade_benchmark_evidence_receipt.json",
+                "preflight_step": "Open the handoff packet and verify the receipt payload before the benchmark writeback.",
+                "next_gate": "Write back the evidence receipt and confirm the completion signal before the next step.",
+            }
+        ]
 
         lines = build_benchmark_packet_lines(
             readiness_rows,
@@ -1738,6 +1793,7 @@ class ComputeAwareCascadeTest(unittest.TestCase):
             completion_dashboard_rows,
             operator_brief_rows,
             evidence_receipt_rows,
+            evidence_checklist_rows,
         )
         rendered = "\n".join(lines)
 
@@ -1754,6 +1810,7 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertIn("## Completion Dashboard", rendered)
         self.assertIn("## Operator Brief", rendered)
         self.assertIn("## Evidence Receipt", rendered)
+        self.assertIn("## Evidence Checklist", rendered)
         self.assertIn("## Execution Status", rendered)
         self.assertIn("phase1_gold_runtime_foundation", rendered)
         self.assertIn("runtime_capture_missing", rendered)
@@ -1768,6 +1825,7 @@ class ComputeAwareCascadeTest(unittest.TestCase):
         self.assertIn("phase1_gold_runtime_foundation leads a 3-phase pending stack with dominant blocker runtime_capture_missing.", rendered)
         self.assertIn("Run phase1_gold_runtime_foundation now; it is blocked by runtime_capture_missing and carries high urgency.", rendered)
         self.assertIn("After phase1_gold_runtime_foundation, write back the evidence payload and confirm the foundation completion signal.", rendered)
+        self.assertIn("Write back the evidence receipt and confirm the completion signal before the next step.", rendered)
         self.assertIn("hardware_label;device;repeat_count;warmup_count", rendered)
         self.assertIn("Manifest template fields: hardware_label, device, repeat_count, warmup_count", rendered)
 

@@ -374,6 +374,16 @@ BENCHMARK_EVIDENCE_RECEIPT_COLUMNS = [
     "receipt_note",
 ]
 
+BENCHMARK_EVIDENCE_CHECKLIST_COLUMNS = [
+    "checklist_order",
+    "receipt_step",
+    "receipt_action",
+    "checklist_goal",
+    "expected_evidence",
+    "preflight_step",
+    "next_gate",
+]
+
 BENCHMARK_RECEIPT_BRIDGE_COLUMNS = [
     "benchmark_step",
     "prerequisite_artifact",
@@ -399,6 +409,7 @@ def build_benchmark_packet_lines(
     completion_dashboard_rows: list[dict[str, Any]],
     operator_brief_rows: list[dict[str, Any]],
     evidence_receipt_rows: list[dict[str, Any]],
+    evidence_checklist_rows: list[dict[str, Any]],
 ) -> list[str]:
     lines = [
         "# Cascade Benchmark Handoff Packet",
@@ -492,6 +503,13 @@ def build_benchmark_packet_lines(
             f"- step `{row.get('receipt_step', '')}` / action `{row.get('receipt_action', '')}` / "
             f"evidence `{row.get('receipt_evidence', '')}` / completion `{row.get('receipt_completion_signal', '')}` / "
             f"follow-up `{row.get('receipt_followup', '')}` / note `{row.get('receipt_note', '')}`"
+        )
+    lines.extend(["", "## Evidence Checklist", ""])
+    for row in evidence_checklist_rows:
+        lines.append(
+            f"- order `{row.get('checklist_order', '')}` / step `{row.get('receipt_step', '')}` / action `{row.get('receipt_action', '')}` / "
+            f"goal `{row.get('checklist_goal', '')}` / evidence `{row.get('expected_evidence', '')}` / "
+            f"preflight `{row.get('preflight_step', '')}` / next `{row.get('next_gate', '')}`"
         )
     lines.extend(["", "## Execution Status", ""])
     for row in status_rows:
@@ -1180,6 +1198,48 @@ def build_benchmark_evidence_receipt_lines(rows: list[dict[str, Any]]) -> list[s
     return lines
 
 
+def build_benchmark_evidence_checklist_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    if not rows:
+        return []
+
+    receipt = rows[0]
+    receipt_step = str(receipt.get("receipt_step", ""))
+    receipt_action = str(receipt.get("receipt_action", ""))
+    receipt_evidence = str(receipt.get("receipt_evidence", ""))
+    receipt_completion_signal = str(receipt.get("receipt_completion_signal", ""))
+    return [
+        {
+            "checklist_order": "1",
+            "receipt_step": receipt_step,
+            "receipt_action": receipt_action,
+            "checklist_goal": receipt_completion_signal or "Write back the benchmark evidence payload before advancing the stack.",
+            "expected_evidence": "results/tables/cascade_benchmark_evidence_receipt.json",
+            "preflight_step": (
+                "Open the handoff packet and verify the receipt payload before the benchmark writeback."
+                if receipt_evidence
+                else "Open the handoff packet before the benchmark writeback."
+            ),
+            "next_gate": "Write back the evidence receipt and confirm the completion signal before the next step.",
+        }
+    ]
+
+
+def build_benchmark_evidence_checklist_lines(rows: list[dict[str, Any]]) -> list[str]:
+    lines = [
+        "# Cascade Benchmark Evidence Checklist",
+        "",
+        "This generated checklist orders the benchmark evidence receipt into a narrow writeback path. It remains a coordination artifact and does not claim that the benchmark has already been executed.",
+        "",
+        "| checklist_order | receipt_step | receipt_action | checklist_goal | expected_evidence | preflight_step | next_gate |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['checklist_order']} | {row['receipt_step']} | {row['receipt_action']} | {row['checklist_goal']} | {row['expected_evidence']} | {row['preflight_step']} | {row['next_gate']} |"
+        )
+    return lines
+
+
 def build_benchmark_receipt_bridge_rows(
     runbook_rows: list[dict[str, Any]],
     receipt_rows: list[dict[str, Any]],
@@ -1223,6 +1283,17 @@ def write_benchmark_evidence_receipt_outputs(
     write_csv_json(rows, csv_path, json_path, BENCHMARK_EVIDENCE_RECEIPT_COLUMNS)
     summary_path.parent.mkdir(parents=True, exist_ok=True)
     summary_path.write_text("\n".join(build_benchmark_evidence_receipt_lines(rows)) + "\n", encoding="utf-8")
+
+
+def write_benchmark_evidence_checklist_outputs(
+    rows: list[dict[str, Any]],
+    csv_path: Path,
+    json_path: Path,
+    summary_path: Path,
+) -> None:
+    write_csv_json(rows, csv_path, json_path, BENCHMARK_EVIDENCE_CHECKLIST_COLUMNS)
+    summary_path.parent.mkdir(parents=True, exist_ok=True)
+    summary_path.write_text("\n".join(build_benchmark_evidence_checklist_lines(rows)) + "\n", encoding="utf-8")
 
 
 def write_benchmark_receipt_bridge_outputs(
@@ -1374,6 +1445,7 @@ def write_benchmark_packet_output(
     completion_dashboard_rows: list[dict[str, Any]],
     operator_brief_rows: list[dict[str, Any]],
     evidence_receipt_rows: list[dict[str, Any]],
+    evidence_checklist_rows: list[dict[str, Any]],
     output_path: Path,
 ) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -1396,6 +1468,7 @@ def write_benchmark_packet_output(
                 completion_dashboard_rows,
                 operator_brief_rows,
                 evidence_receipt_rows,
+                evidence_checklist_rows,
             )
         )
         + "\n",
@@ -3310,6 +3383,10 @@ def main() -> None:
     benchmark_evidence_receipt_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_evidence_receipt.csv"
     benchmark_evidence_receipt_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_evidence_receipt.json"
     benchmark_evidence_receipt_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_evidence_receipt.md"
+    benchmark_evidence_checklist_rows = build_benchmark_evidence_checklist_rows(benchmark_evidence_receipt_rows)
+    benchmark_evidence_checklist_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_evidence_checklist.csv"
+    benchmark_evidence_checklist_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_evidence_checklist.json"
+    benchmark_evidence_checklist_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_evidence_checklist.md"
     benchmark_receipt_bridge_rows = build_benchmark_receipt_bridge_rows(
         benchmark_runbook_card_rows,
         benchmark_evidence_receipt_rows,
@@ -3563,6 +3640,12 @@ def main() -> None:
             benchmark_evidence_receipt_json,
             benchmark_evidence_receipt_md,
         )
+        write_benchmark_evidence_checklist_outputs(
+            benchmark_evidence_checklist_rows,
+            benchmark_evidence_checklist_csv,
+            benchmark_evidence_checklist_json,
+            benchmark_evidence_checklist_md,
+        )
         write_benchmark_receipt_bridge_outputs(
             benchmark_receipt_bridge_rows,
             benchmark_receipt_bridge_csv,
@@ -3586,6 +3669,7 @@ def main() -> None:
             benchmark_completion_dashboard_rows,
             benchmark_operator_brief_rows,
             benchmark_evidence_receipt_rows,
+            benchmark_evidence_checklist_rows,
             benchmark_packet_md,
         )
         profile_playbook_rows = build_profile_playbook_rows(decision_matrix_rows)
@@ -3693,6 +3777,7 @@ def main() -> None:
     print(f"Wrote cascade benchmark operator brief: {benchmark_operator_brief_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark frontier bridge: {benchmark_frontier_bridge_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark evidence receipt: {benchmark_evidence_receipt_csv.relative_to(PROJECT_ROOT)}")
+    print(f"Wrote cascade benchmark evidence checklist: {benchmark_evidence_checklist_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark receipt bridge: {benchmark_receipt_bridge_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade benchmark handoff packet: {benchmark_packet_md.relative_to(PROJECT_ROOT)}")
     if wrote_profile_playbook:
