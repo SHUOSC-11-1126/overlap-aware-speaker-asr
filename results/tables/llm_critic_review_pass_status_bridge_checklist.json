@@ -1,0 +1,11 @@
+[
+  {
+    "checklist_order": "1",
+    "next_case_id": "MidOverlap",
+    "prerequisite_artifact": "results/figures/llm_critic_review_pass_status.md",
+    "receipt_target": "results/figures/llm_critic_review_pass_next_receipt.md",
+    "checklist_goal": "Verify the review pass status bridge before advancing the next qualitative pass for MidOverlap.",
+    "bridge_note": "Status rollup reports completed=2, pending=3; confirm queue state before opening the next pass receipt target.",
+    "next_gate": "Confirm this bridge before opening the critic review pass next receipt target."
+  }
+]

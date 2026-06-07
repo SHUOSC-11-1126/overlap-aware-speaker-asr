@@ -1,0 +1,7 @@
+# LLM Critic Review Pass Status Bridge Checklist
+
+This generated checklist turns the pass status rollup into a row-by-row bridge verification path. It remains qualitative/demo only and does not claim verified transcript repair.
+
+| checklist_order | next_case_id | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | MidOverlap | results/figures/llm_critic_review_pass_status.md | results/figures/llm_critic_review_pass_next_receipt.md | Verify the review pass status bridge before advancing the next qualitative pass for MidOverlap. | Status rollup reports completed=2, pending=3; confirm queue state before opening the next pass receipt target. | Confirm this bridge before opening the critic review pass next receipt target. |
