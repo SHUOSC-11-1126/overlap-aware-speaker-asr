@@ -1,0 +1,8 @@
+{
+  "scope": "frontier_execution_receipt_fill_coordination_queue",
+  "awaiting_fill_count": "3",
+  "total_frontier_count": "3",
+  "fill_complete_count": "0",
+  "combined_fill_status": "fill_queue_ready",
+  "observation": "Experimental/frontier receipt-fill coordination queue completion rollup; template-only receipts remain unfilled and no benchmark execution is claimed."
+}
