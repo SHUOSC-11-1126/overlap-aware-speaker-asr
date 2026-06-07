@@ -1550,6 +1550,18 @@ Frontier execution receipt fill execution execution receipt bridge checklist:
 - `results/tables/frontier_execution_receipt_fill_execution_execution_receipt_bridge_checklist.csv`
 - This checklist turns the execution receipt bridge into an ordered verification path.
 
+Frontier execution receipt fill execution phase checkpoint card:
+
+- `results/figures/frontier_execution_receipt_fill_execution_phase_checkpoint_card.md`
+- `results/tables/frontier_execution_receipt_fill_execution_phase_checkpoint_card.csv`
+- This checkpoint card shows the per-phase completion signal for the current fill execution step.
+
+Frontier execution receipt fill execution runbook bridge checklist:
+
+- `results/figures/frontier_execution_receipt_fill_execution_runbook_bridge_checklist.md`
+- `results/tables/frontier_execution_receipt_fill_execution_runbook_bridge_checklist.csv`
+- This checklist connects the runbook card to the evidence receipt target.
+
 MeetEval compatibility skill card:
 
 - `docs/skills/skill_04_meeteval_compatibility.md`
