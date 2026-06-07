@@ -1520,6 +1520,36 @@ Frontier execution receipt fill execution evidence receipt bridge checklist:
 - `results/tables/frontier_execution_receipt_fill_execution_evidence_receipt_bridge_checklist.csv`
 - This checklist connects the handoff packet to the evidence receipt without claiming benchmark execution.
 
+Frontier execution receipt fill execution runbook card:
+
+- `results/figures/frontier_execution_receipt_fill_execution_runbook_card.md`
+- `results/tables/frontier_execution_receipt_fill_execution_runbook_card.csv`
+- This runbook card condenses the first fill execution action into a one-page execution card.
+
+Frontier execution receipt fill execution completion dashboard:
+
+- `results/figures/frontier_execution_receipt_fill_execution_completion_dashboard.md`
+- `results/tables/frontier_execution_receipt_fill_execution_completion_dashboard.csv`
+- This dashboard summarizes the current fill execution queue state at a glance.
+
+Frontier execution receipt fill execution milestone card:
+
+- `results/figures/frontier_execution_receipt_fill_execution_milestone_card.md`
+- `results/tables/frontier_execution_receipt_fill_execution_milestone_card.csv`
+- This milestone card shows the immediate completion boundary for the fill execution queue.
+
+Frontier execution receipt fill execution execution receipt bridge:
+
+- `results/figures/frontier_execution_receipt_fill_execution_execution_receipt_bridge.md`
+- `results/tables/frontier_execution_receipt_fill_execution_execution_receipt_bridge.csv`
+- This bridge connects the evidence receipt to the JSON execution receipt target.
+
+Frontier execution receipt fill execution execution receipt bridge checklist:
+
+- `results/figures/frontier_execution_receipt_fill_execution_execution_receipt_bridge_checklist.md`
+- `results/tables/frontier_execution_receipt_fill_execution_execution_receipt_bridge_checklist.csv`
+- This checklist turns the execution receipt bridge into an ordered verification path.
+
 MeetEval compatibility skill card:
 
 - `docs/skills/skill_04_meeteval_compatibility.md`
@@ -1919,6 +1949,12 @@ python -m src.frontier_execution_receipt_fill_execution_receipt_bridge_checklist
 python -m src.frontier_execution_receipt_fill_execution_handoff_packet
 python -m src.frontier_execution_receipt_fill_execution_evidence_receipt
 python -m src.frontier_execution_receipt_fill_execution_evidence_receipt_bridge_checklist
+python -m src.frontier_execution_receipt_fill_execution_runbook_card
+python -m src.frontier_execution_receipt_fill_execution_completion_dashboard
+python -m src.frontier_execution_receipt_fill_execution_milestone_card
+python -m src.frontier_execution_receipt_fill_execution_execution_receipt_bridge
+python -m src.frontier_execution_receipt_fill_execution_execution_receipt_bridge_checklist
+python -m src.frontier_execution_receipt_fill_execution_handoff_packet
 python -m src.speaker_profile_embedding_trial_execution_handoff
 python -m src.speaker_profile_embedding_trial_execution_handoff_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_preflight

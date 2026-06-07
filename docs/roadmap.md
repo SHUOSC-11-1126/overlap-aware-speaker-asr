@@ -1313,6 +1313,36 @@ Update: the frontier receipt layer now has a fill execution evidence receipt bri
 - Summary view: `results/figures/frontier_execution_receipt_fill_execution_evidence_receipt_bridge_checklist.md`
 - Connects the handoff packet to the evidence receipt without claiming benchmark execution.
 
+Update: the frontier receipt layer now has a fill execution runbook card.
+
+- Runbook card: `results/tables/frontier_execution_receipt_fill_execution_runbook_card.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_runbook_card.md`
+- One-page first action card for the MeetEval fill execution target.
+
+Update: the frontier receipt layer now has a fill execution completion dashboard.
+
+- Completion dashboard: `results/tables/frontier_execution_receipt_fill_execution_completion_dashboard.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_completion_dashboard.md`
+- Top-level queue snapshot across all three frontiers.
+
+Update: the frontier receipt layer now has a fill execution milestone card.
+
+- Milestone card: `results/tables/frontier_execution_receipt_fill_execution_milestone_card.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_milestone_card.md`
+- Immediate completion boundary before advancing to the second frontier.
+
+Update: the frontier receipt layer now has a fill execution execution receipt bridge.
+
+- Execution receipt bridge: `results/tables/frontier_execution_receipt_fill_execution_execution_receipt_bridge.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_execution_receipt_bridge.md`
+- Connects the evidence receipt to the JSON execution receipt target.
+
+Update: the frontier receipt layer now has a fill execution execution receipt bridge checklist.
+
+- Execution receipt bridge checklist: `results/tables/frontier_execution_receipt_fill_execution_execution_receipt_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_execution_receipt_fill_execution_execution_receipt_bridge_checklist.md`
+- Ordered verification path before opening the JSON execution receipt.
+
 Update: `demo_excellence` now has a lightweight Streamlit viewer scaffold.
 
 - Demo app: `demo/app.py`
