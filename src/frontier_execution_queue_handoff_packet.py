@@ -131,6 +131,12 @@ PACKET_SECTIONS = [
         "results/figures/frontier_execution_queue_receipt_open_card.md",
         "One-page first receipt target card after the execution queue handoff bridge.",
     ),
+    (
+        "20",
+        "execution_queue_receipt_readiness_board",
+        "results/figures/frontier_execution_queue_receipt_readiness_board.md",
+        "One-glance receipt readiness split across frontier execution targets after handoff verification.",
+    ),
 ]
 
 
