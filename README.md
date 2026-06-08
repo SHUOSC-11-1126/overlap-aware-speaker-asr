@@ -464,6 +464,12 @@ Current frontier operator next-action status handoff completion dashboard bridge
 - `results/tables/frontier_operator_next_action_status_handoff_completion_dashboard_bridge_checklist.csv`
 - The bridge checklist turns that `status/handoff` dashboard into a verification gate before reopening the current runbook card target.
 
+Current frontier operator next-action status handoff status result:
+
+- `results/figures/frontier_operator_next_action_status_handoff_status.md`
+- `results/tables/frontier_operator_next_action_status_handoff_status.csv`
+- The status rollup compresses the current `status/handoff` queue, milestone, dashboard, and dashboard bridge into one machine-friendly coordination snapshot.
+
 Current frontier focus checklist result:
 
 - `results/figures/frontier_focus_card_checklist.md` now turns that focus card into a one-glance verification checklist

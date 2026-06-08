@@ -1391,6 +1391,13 @@ Update: the frontier now also has a top-level operator status handoff completion
 - Script: `python3 -m src.frontier_operator_next_action_status_handoff_completion_dashboard_bridge_checklist`
 - Current evidence requires verifying the new `status/handoff` dashboard snapshot before the current runbook card target is reopened.
 
+Update: the frontier now also has a top-level operator status handoff status rollup.
+
+- Frontier operator status handoff status: `results/tables/frontier_operator_next_action_status_handoff_status.csv`
+- Summary view: `results/figures/frontier_operator_next_action_status_handoff_status.md`
+- Script: `python3 -m src.frontier_operator_next_action_status_handoff_status`
+- Current evidence compresses the current `status/handoff` queue state, milestone, dashboard, and dashboard bridge into one machine-readable coordination snapshot.
+
 Update: the frontier now has a per-frontier execution handoff.
 
 - Frontier execution queue handoff: `results/tables/frontier_execution_queue_handoff.csv`

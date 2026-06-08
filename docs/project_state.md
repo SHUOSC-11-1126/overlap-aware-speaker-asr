@@ -1595,6 +1595,12 @@ Frontier operator next-action status handoff completion dashboard bridge checkli
 - `results/tables/frontier_operator_next_action_status_handoff_completion_dashboard_bridge_checklist.csv`
 - The bridge checklist verifies that `status/handoff` dashboard snapshot before the current runbook card is reopened, keeping the transition coordination-only.
 
+Frontier operator next-action status handoff status:
+
+- `results/figures/frontier_operator_next_action_status_handoff_status.md`
+- `results/tables/frontier_operator_next_action_status_handoff_status.csv`
+- The status rollup compresses the current `status/handoff` queue state, milestone, dashboard, and dashboard bridge into one machine-friendly coordination snapshot.
+
 Frontier execution queue completion summary bridge checklist:
 
 - `results/figures/frontier_execution_queue_completion_summary_bridge_checklist.md`
