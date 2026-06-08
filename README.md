@@ -420,7 +420,7 @@ Current frontier operator next-action status handoff packet result:
 
 - `results/figures/frontier_operator_next_action_status_handoff_packet.md`
 - `results/tables/frontier_operator_next_action_status_handoff_packet.csv`
-- The packet consolidates the whole top-level status/handoff subchain into one single-entry coordination artifact.
+- The packet now consolidates the whole top-level status/handoff subchain into one single-entry coordination artifact, including the newer `status_handoff_status` rollup and its bridge checklist.
 
 Current frontier operator next-action status handoff packet bridge checklist result:
 

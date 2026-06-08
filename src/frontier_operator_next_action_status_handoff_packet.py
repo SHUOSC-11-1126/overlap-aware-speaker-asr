@@ -48,6 +48,18 @@ PACKET_SECTIONS = [
         "results/figures/frontier_operator_next_action_status_handoff_completion_summary_bridge_checklist.md",
         "Verify queue-level handoff closure before reopening the lane-level handoff",
     ),
+    (
+        "7",
+        "status_handoff_status",
+        "results/figures/frontier_operator_next_action_status_handoff_status.md",
+        "Machine-readable status rollup for the current status/handoff queue state",
+    ),
+    (
+        "8",
+        "status_handoff_status_bridge_checklist",
+        "results/figures/frontier_operator_next_action_status_handoff_status_bridge_checklist.md",
+        "Verify the status/handoff status rollup before reopening the broader status/handoff packet target",
+    ),
 ]
 
 
