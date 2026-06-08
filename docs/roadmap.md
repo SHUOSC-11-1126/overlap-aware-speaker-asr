@@ -1509,6 +1509,13 @@ Update: the frontier now also has an execution queue milestone card.
 - Script: `python3 -m src.frontier_execution_queue_milestone_card`
 - Current evidence records what the current first execution-queue checkpoint unlocks next and how many visible execution fronts remain afterward.
 
+Update: the frontier now also has an execution queue milestone bridge checklist.
+
+- Frontier execution queue milestone bridge checklist: `results/tables/frontier_execution_queue_milestone_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_execution_queue_milestone_bridge_checklist.md`
+- Script: `python3 -m src.frontier_execution_queue_milestone_bridge_checklist`
+- Current evidence verifies the execution-queue milestone unlock path before reopening the completion dashboard.
+
 Update: the frontier now also has an execution queue completion dashboard.
 
 - Frontier execution queue completion dashboard: `results/tables/frontier_execution_queue_completion_dashboard.csv`

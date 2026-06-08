@@ -386,6 +386,12 @@ Current frontier execution queue milestone card result:
 - `results/tables/frontier_execution_queue_milestone_card.csv`
 - The milestone card shows what the current first execution-queue checkpoint unlocks next after the present target closes.
 
+Current frontier execution queue milestone bridge checklist result:
+
+- `results/figures/frontier_execution_queue_milestone_bridge_checklist.md`
+- `results/tables/frontier_execution_queue_milestone_bridge_checklist.csv`
+- The checklist verifies the execution-queue milestone unlock path before the completion dashboard is reopened.
+
 Current frontier execution queue completion dashboard result:
 
 - `results/figures/frontier_execution_queue_completion_dashboard.md`

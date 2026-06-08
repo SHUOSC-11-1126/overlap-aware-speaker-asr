@@ -494,6 +494,8 @@ results/synthetic_overlap_v2/
 !results/tables/frontier_execution_queue_phase_checkpoint_bridge_checklist.json
 !results/tables/frontier_execution_queue_milestone_card.csv
 !results/tables/frontier_execution_queue_milestone_card.json
+!results/tables/frontier_execution_queue_milestone_bridge_checklist.csv
+!results/tables/frontier_execution_queue_milestone_bridge_checklist.json
 !results/tables/frontier_execution_queue_completion_dashboard.csv
 !results/tables/frontier_execution_queue_completion_dashboard.json
 !results/tables/frontier_execution_queue_completion_dashboard_bridge_checklist.csv
@@ -932,6 +934,7 @@ results/synthetic_overlap_v2/
 !results/figures/frontier_execution_queue_phase_checkpoint_card.md
 !results/figures/frontier_execution_queue_phase_checkpoint_bridge_checklist.md
 !results/figures/frontier_execution_queue_milestone_card.md
+!results/figures/frontier_execution_queue_milestone_bridge_checklist.md
 !results/figures/frontier_execution_queue_completion_dashboard.md
 !results/figures/frontier_execution_queue_completion_dashboard_bridge_checklist.md
 !results/figures/frontier_execution_queue_handoff_bridge_checklist.md

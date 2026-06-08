@@ -1709,6 +1709,12 @@ Frontier execution queue milestone card:
 - `results/tables/frontier_execution_queue_milestone_card.csv`
 - This milestone card records what the current first execution-queue checkpoint unlocks next and how many visible execution fronts remain afterward.
 
+Frontier execution queue milestone bridge checklist:
+
+- `results/figures/frontier_execution_queue_milestone_bridge_checklist.md`
+- `results/tables/frontier_execution_queue_milestone_bridge_checklist.csv`
+- This checklist verifies the execution-queue milestone unlock path before the completion dashboard is reopened.
+
 Frontier execution queue completion dashboard:
 
 - `results/figures/frontier_execution_queue_completion_dashboard.md`
@@ -2522,6 +2528,7 @@ python -m src.frontier_execution_queue_runbook_bridge_checklist
 python -m src.frontier_execution_queue_phase_checkpoint_card
 python -m src.frontier_execution_queue_phase_checkpoint_bridge_checklist
 python -m src.frontier_execution_queue_milestone_card
+python -m src.frontier_execution_queue_milestone_bridge_checklist
 python -m src.frontier_execution_queue_completion_dashboard
 python -m src.frontier_execution_queue_completion_dashboard_bridge_checklist
 python -m src.frontier_execution_queue_handoff_bridge_checklist
