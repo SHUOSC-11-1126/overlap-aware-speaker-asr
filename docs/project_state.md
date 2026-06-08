@@ -1846,6 +1846,13 @@ Speaker profile embedding trial execution receipt operator brief:
 - `results/tables/speaker_profile_embedding_trial_execution_receipt_operator_brief.json`
 - This brief turns the handoff-packet bridge into one plain-language next action for `NoOverlap`, while staying explicitly coordination-only and not claiming any voiceprint success.
 
+Speaker profile embedding trial execution receipt operator brief bridge:
+
+- `results/figures/speaker_profile_embedding_trial_execution_receipt_operator_brief_bridge.md`
+- `results/tables/speaker_profile_embedding_trial_execution_receipt_operator_brief_bridge.csv`
+- `results/tables/speaker_profile_embedding_trial_execution_receipt_operator_brief_bridge.json`
+- This bridge connects the plain-language operator brief back to the current speaker-profile readiness target, still without filling the receipt or claiming voiceprint success.
+
 External validation slice staging handoff receipt readiness bridge checklist:
 
 - `results/figures/external_validation_slice_staging_handoff_receipt_readiness_bridge_checklist.md`
@@ -2826,6 +2833,7 @@ python -m src.speaker_profile_embedding_trial_execution_receipt_open_card_bridge
 python -m src.speaker_profile_embedding_trial_execution_receipt_handoff_packet
 python -m src.speaker_profile_embedding_trial_execution_receipt_handoff_packet_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_receipt_operator_brief
+python -m src.speaker_profile_embedding_trial_execution_receipt_operator_brief_bridge
 python -m src.external_validation_slice_staging_handoff_receipt_readiness
 python -m src.frontier_execution_receipt_queue_status
 python -m src.meeteval_cpwer_execution_receipt_readiness_bridge_checklist
