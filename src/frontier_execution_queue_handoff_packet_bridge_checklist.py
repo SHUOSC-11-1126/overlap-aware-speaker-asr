@@ -39,15 +39,15 @@ def build_bridge_checklist_rows(summary: dict[str, str]) -> list[dict[str, str]]
             "ready_chain_count": ready_count,
             "pending_chain_count": pending_count,
             "prerequisite_artifact": "results/figures/frontier_execution_queue_handoff_packet.md",
-            "receipt_target": "results/figures/frontier_execution_queue_status.md",
+            "receipt_target": "results/figures/frontier_execution_queue_operator_brief.md",
             "checklist_goal": (
-                "Verify the execution queue handoff packet before reopening the unified execution status rollup."
+                "Verify the execution queue handoff packet before reopening the execution queue operator brief."
             ),
             "bridge_note": (
                 f"Packet context reports queue_status={queue_status}, ready_chain_count={ready_count}, "
-                f"pending_chain_count={pending_count}; confirm packet context before reopening the unified execution status rollup."
+                f"pending_chain_count={pending_count}; confirm packet context before reopening the execution queue operator brief."
             ),
-            "next_gate": "Confirm this bridge before opening the frontier execution queue status target.",
+            "next_gate": "Confirm this bridge before opening the frontier execution queue operator brief target.",
         }
     ]
 

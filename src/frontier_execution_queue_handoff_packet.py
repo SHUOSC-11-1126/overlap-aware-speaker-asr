@@ -49,6 +49,12 @@ PACKET_SECTIONS = [
     ),
     (
         "6",
+        "execution_queue_operator_brief",
+        "results/figures/frontier_execution_queue_operator_brief.md",
+        "Plain-language operator summary for the current first execution-queue target.",
+    ),
+    (
+        "7",
         "execution_queue_handoff_bridge_checklist",
         "results/figures/frontier_execution_queue_handoff_bridge_checklist.md",
         "Verify each execution handoff before opening the receipt target for that frontier.",

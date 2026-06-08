@@ -6,7 +6,7 @@ from src.frontier_execution_queue_handoff_packet_bridge_checklist import build_b
 
 
 class FrontierExecutionQueueHandoffPacketBridgeChecklistTest(unittest.TestCase):
-    def test_build_bridge_checklist_rows_targets_status(self) -> None:
+    def test_build_bridge_checklist_rows_targets_operator_brief(self) -> None:
         rows = build_bridge_checklist_rows(
             {
                 "queue_status": "queue_complete",
@@ -17,7 +17,7 @@ class FrontierExecutionQueueHandoffPacketBridgeChecklistTest(unittest.TestCase):
 
         self.assertEqual(len(rows), 1)
         self.assertEqual(rows[0]["queue_status"], "queue_complete")
-        self.assertIn("frontier_execution_queue_status.md", rows[0]["receipt_target"])
+        self.assertIn("frontier_execution_queue_operator_brief.md", rows[0]["receipt_target"])
         self.assertIn("ready_chain_count=3", rows[0]["bridge_note"])
 
     def test_build_bridge_checklist_rows_defaults_queue_status(self) -> None:

@@ -342,13 +342,19 @@ Current frontier execution queue handoff packet result:
 
 - `results/figures/frontier_execution_queue_handoff_packet.md`
 - `results/tables/frontier_execution_queue_handoff_packet.csv`
-- The packet consolidates the execution queue status, queue summary, and per-frontier handoff layers into one single-entry coordination artifact.
+- The packet consolidates the execution queue status, queue summary, per-frontier handoff layers, and the new operator brief into one single-entry coordination artifact.
 
 Current frontier execution queue handoff packet bridge checklist result:
 
 - `results/figures/frontier_execution_queue_handoff_packet_bridge_checklist.md`
 - `results/tables/frontier_execution_queue_handoff_packet_bridge_checklist.csv`
-- The checklist verifies that execution queue handoff packet before the next contributor reopens the unified execution status rollup.
+- The checklist verifies that execution queue handoff packet before the next contributor reopens the plain-language execution queue operator brief.
+
+Current frontier execution queue operator brief result:
+
+- `results/figures/frontier_execution_queue_operator_brief.md`
+- `results/tables/frontier_execution_queue_operator_brief.csv`
+- The brief turns the first execution-queue handoff row into a plain-language next-step card for the current operator.
 
 Current frontier operator next-action frontier bridge checklist result:
 
