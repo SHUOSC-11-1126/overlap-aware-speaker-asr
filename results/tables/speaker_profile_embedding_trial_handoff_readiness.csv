@@ -1,0 +1,2 @@
+﻿scope,text_proxy_queue_status,handoff_status,trial_case_target,method_direction,readiness_status,readiness_note
+speaker_profile_embedding_trial_handoff,queue_complete,embedding_trial_handoff_ready,NoOverlap,embedding_or_voiceprint_baseline,handoff_ready,experimental/frontier embedding trial handoff readiness; voiceprint or embedding execution is not claimed.
