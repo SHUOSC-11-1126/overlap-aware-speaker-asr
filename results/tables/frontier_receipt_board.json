@@ -1,0 +1,47 @@
+[
+  {
+    "queue_order": "1",
+    "frontier_id": "meeteval_compatibility",
+    "pickup_artifact": "results/figures/meeteval_cpwer_bridge_handoff.md",
+    "receipt_target": "results/tables/meeteval_cpwer_bridge_receipt.json",
+    "board_status": "documented_skill",
+    "board_note": "Use this board as the single breadth-first receipt snapshot before moving to the next queue head.",
+    "board_scope": "Coordination-only board; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "2",
+    "frontier_id": "external_validation",
+    "pickup_artifact": "results/figures/external_validation_prioritization.md",
+    "receipt_target": "results/tables/external_validation_slice_receipt.json",
+    "board_status": "documented_skill",
+    "board_note": "Use this board as the single breadth-first receipt snapshot before moving to the next queue head.",
+    "board_scope": "Coordination-only board; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "3",
+    "frontier_id": "speaker_profile",
+    "pickup_artifact": "results/figures/speaker_profile_triage.md",
+    "receipt_target": "results/tables/speaker_profile_method_receipt.json",
+    "board_status": "documented_skill",
+    "board_note": "Use this board as the single breadth-first receipt snapshot before moving to the next queue head.",
+    "board_scope": "Coordination-only board; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "4",
+    "frontier_id": "llm_critic",
+    "pickup_artifact": "results/figures/llm_critic_review_queue.md",
+    "receipt_target": "results/tables/llm_critic_review_receipt.json",
+    "board_status": "documented_skill",
+    "board_note": "Use this board as the single breadth-first receipt snapshot before moving to the next queue head.",
+    "board_scope": "Coordination-only board; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "5",
+    "frontier_id": "demo_excellence",
+    "pickup_artifact": "results/figures/demo_walkthrough.md",
+    "receipt_target": "results/tables/demo_walkthrough_receipt.json",
+    "board_status": "documented_skill",
+    "board_note": "Use this board as the single breadth-first receipt snapshot before moving to the next queue head.",
+    "board_scope": "Coordination-only board; not a claim of completed frontier execution."
+  }
+]

@@ -1,0 +1,57 @@
+[
+  {
+    "checklist_order": "1",
+    "frontier_id": "speaker_profile",
+    "status": "documented_skill",
+    "evidence_path": "docs/skills/skill_03_speaker_profile_voiceprint.md",
+    "expected_output": "speaker profile triage card",
+    "next_step": "Use the triage card to justify a stronger profile method while keeping the signal scoped to risk detection.",
+    "checklist_goal": "Verify the frontier status entry for speaker_profile before it is converted into queue order.",
+    "status_note": "Read the evidence path first, then confirm the expected output and next step before advancing.",
+    "next_gate": "Confirm this status row before building the execution queue."
+  },
+  {
+    "checklist_order": "2",
+    "frontier_id": "meeteval_compatibility",
+    "status": "documented_skill",
+    "evidence_path": "docs/skills/skill_04_meeteval_compatibility.md",
+    "expected_output": "MeetEval readiness card",
+    "next_step": "Use the readiness card to stage one narrow dry run before claiming any benchmark bridge.",
+    "checklist_goal": "Verify the frontier status entry for meeteval_compatibility before it is converted into queue order.",
+    "status_note": "Read the evidence path first, then confirm the expected output and next step before advancing.",
+    "next_gate": "Confirm this status row before building the execution queue."
+  },
+  {
+    "checklist_order": "3",
+    "frontier_id": "llm_critic",
+    "status": "documented_skill",
+    "evidence_path": "docs/skills/skill_05_agentic_llm_critic.md",
+    "expected_output": "qualitative critic queue",
+    "next_step": "Use the review queue to decide which critic-style review queue item should be read first.",
+    "checklist_goal": "Verify the frontier status entry for llm_critic before it is converted into queue order.",
+    "status_note": "Read the evidence path first, then confirm the expected output and next step before advancing.",
+    "next_gate": "Confirm this status row before building the execution queue."
+  },
+  {
+    "checklist_order": "4",
+    "frontier_id": "external_validation",
+    "status": "documented_skill",
+    "evidence_path": "docs/ambitious_research_agenda.md",
+    "expected_output": "external sanity-check prioritization card",
+    "next_step": "Use the prioritization card to map one tiny sanity-check slice without claiming a completed benchmark.",
+    "checklist_goal": "Verify the frontier status entry for external_validation before it is converted into queue order.",
+    "status_note": "Read the evidence path first, then confirm the expected output and next step before advancing.",
+    "next_gate": "Confirm this status row before building the execution queue."
+  },
+  {
+    "checklist_order": "5",
+    "frontier_id": "demo_excellence",
+    "status": "documented_skill",
+    "evidence_path": "docs/skills/skill_06_github_demo_excellence.md",
+    "expected_output": "demo-facing storyboard or walkthrough",
+    "next_step": "Use the demo walkthrough to shape a short demo walk before any heavier app build.",
+    "checklist_goal": "Verify the frontier status entry for demo_excellence before it is converted into queue order.",
+    "status_note": "Read the evidence path first, then confirm the expected output and next step before advancing.",
+    "next_gate": "Confirm this status row before building the execution queue."
+  }
+]

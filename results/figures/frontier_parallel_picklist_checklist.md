@@ -1,0 +1,7 @@
+# Frontier Parallel Picklist Checklist
+
+This generated checklist turns the parallel picklist into an ordered pickup path. It remains coordination-only and does not claim that any frontier work has already been executed.
+
+| checklist_order | current_frontier | pickup_artifact | receipt_target | checklist_goal | parallelism_note | next_gate |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | meeteval_compatibility | results/figures/meeteval_cpwer_bridge_handoff.md | results/tables/meeteval_cpwer_bridge_receipt.json | Pick up meeteval_compatibility in parallel only after confirming queue order. | Check the queue head first, then open the pickup artifact before any parallel action. | Complete the pickup artifact and keep the receipt target visible for writeback. |

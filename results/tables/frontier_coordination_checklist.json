@@ -1,0 +1,12 @@
+[
+  {
+    "checklist_order": "1",
+    "frontier_id": "meeteval_compatibility",
+    "entry_artifact": "MeetEval readiness card",
+    "pickup_artifact": "results/figures/meeteval_cpwer_bridge_handoff.md",
+    "receipt_target": "results/tables/meeteval_cpwer_bridge_receipt.json",
+    "checklist_goal": "Use the coordination matrix to stage the next frontier pass for meeteval_compatibility.",
+    "coordination_note": "Open the entry artifact first, then keep the pickup artifact and receipt target visible for the next step.",
+    "next_gate": "Confirm the coordination matrix snapshot before advancing the queue."
+  }
+]
