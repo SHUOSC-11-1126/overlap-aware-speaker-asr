@@ -1965,6 +1965,20 @@ Frontier execution receipt queue receipt bridge checklist:
 - `results/tables/frontier_execution_receipt_queue_receipt_bridge_checklist.json`
 - This checklist turns the receipt bridge into an ordered verification gate before the current execution receipt is reopened.
 
+Frontier execution receipt queue evidence receipt:
+
+- `results/figures/frontier_execution_receipt_queue_evidence_receipt.md`
+- `results/tables/frontier_execution_receipt_queue_evidence_receipt.csv`
+- `results/tables/frontier_execution_receipt_queue_evidence_receipt.json`
+- This receipt records what evidence should be written back for the current receipt-queue frontier before the execution receipt JSON stops being template-only.
+
+Frontier execution receipt queue evidence receipt bridge checklist:
+
+- `results/figures/frontier_execution_receipt_queue_evidence_receipt_bridge_checklist.md`
+- `results/tables/frontier_execution_receipt_queue_evidence_receipt_bridge_checklist.csv`
+- `results/tables/frontier_execution_receipt_queue_evidence_receipt_bridge_checklist.json`
+- This checklist connects the receipt queue handoff packet to the evidence receipt before any execution receipt JSON is reopened.
+
 Frontier execution receipt fill queue status:
 
 - `results/figures/frontier_execution_receipt_fill_queue_status.md`
@@ -2723,6 +2737,8 @@ python -m src.frontier_execution_receipt_queue_frontier_bridge
 python -m src.frontier_execution_receipt_queue_frontier_bridge_checklist
 python -m src.frontier_execution_receipt_queue_receipt_bridge
 python -m src.frontier_execution_receipt_queue_receipt_bridge_checklist
+python -m src.frontier_execution_receipt_queue_evidence_receipt
+python -m src.frontier_execution_receipt_queue_evidence_receipt_bridge_checklist
 python -m src.frontier_execution_receipt_fill_queue_status
 python -m src.frontier_execution_receipt_fill_queue_status_bridge_checklist
 python -m src.frontier_execution_receipt_fill_queue_completion_summary
