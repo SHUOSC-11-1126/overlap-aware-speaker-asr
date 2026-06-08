@@ -470,6 +470,12 @@ Current frontier operator next-action status handoff status result:
 - `results/tables/frontier_operator_next_action_status_handoff_status.csv`
 - The status rollup compresses the current `status/handoff` queue, milestone, dashboard, and dashboard bridge into one machine-friendly coordination snapshot.
 
+Current frontier operator next-action status handoff status bridge checklist result:
+
+- `results/figures/frontier_operator_next_action_status_handoff_status_bridge_checklist.md`
+- `results/tables/frontier_operator_next_action_status_handoff_status_bridge_checklist.csv`
+- The bridge checklist turns that `status/handoff` status rollup into a verification gate before reopening the broader `status/handoff` packet.
+
 Current frontier focus checklist result:
 
 - `results/figures/frontier_focus_card_checklist.md` now turns that focus card into a one-glance verification checklist
