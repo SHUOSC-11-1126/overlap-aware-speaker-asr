@@ -1,0 +1,135 @@
+[
+  {
+    "packet_order": "1",
+    "section_name": "receipt_queue_status",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_status.md",
+    "section_role": "Unified frontier receipt-readiness rollup across MeetEval, speaker profile, and external staging.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "2",
+    "section_name": "receipt_queue_status_bridge_checklist",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_status_bridge_checklist.md",
+    "section_role": "Verify the unified receipt-readiness rollup before opening per-frontier receipt-fill paths.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "3",
+    "section_name": "receipt_queue_completion_summary",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_completion_summary.md",
+    "section_role": "Queue-level ready/pending count rollup for the unified receipt coordination chain.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "4",
+    "section_name": "receipt_queue_completion_summary_bridge_checklist",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_completion_summary_bridge_checklist.md",
+    "section_role": "Verify queue-level completion state before opening the unified receipt handoff.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "5",
+    "section_name": "receipt_queue_handoff",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_handoff.md",
+    "section_role": "Per-frontier receipt handoff actions for MeetEval, speaker profile, and external validation.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "6",
+    "section_name": "receipt_queue_handoff_bridge_checklist",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_handoff_bridge_checklist.md",
+    "section_role": "Verify each receipt handoff before opening the execution receipt target for that frontier.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "7",
+    "section_name": "receipt_queue_operator_brief",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_operator_brief.md",
+    "section_role": "Plain-language operator summary for the current first receipt-queue target.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "8",
+    "section_name": "receipt_queue_runbook_card",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_runbook_card.md",
+    "section_role": "One-page first-action receipt card for the current first receipt-queue target.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "9",
+    "section_name": "receipt_queue_runbook_bridge_checklist",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_runbook_bridge_checklist.md",
+    "section_role": "Verify the runbook card before opening the current receipt queue receipt target.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "10",
+    "section_name": "receipt_queue_phase_checkpoint_card",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_phase_checkpoint_card.md",
+    "section_role": "Narrow completion checkpoint for the current first receipt-queue action.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "11",
+    "section_name": "receipt_queue_phase_checkpoint_bridge_checklist",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_phase_checkpoint_bridge_checklist.md",
+    "section_role": "Verify the phase checkpoint card before reopening the current receipt queue milestone card.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "12",
+    "section_name": "receipt_queue_milestone_card",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_milestone_card.md",
+    "section_role": "Immediate milestone boundary and next unlock for the current first receipt-queue action.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "13",
+    "section_name": "receipt_queue_milestone_bridge_checklist",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_milestone_bridge_checklist.md",
+    "section_role": "Verify the milestone card before reopening the current receipt queue completion dashboard.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "14",
+    "section_name": "receipt_queue_completion_dashboard",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_completion_dashboard.md",
+    "section_role": "One-glance operator-facing dashboard for the current receipt queue state.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "15",
+    "section_name": "receipt_queue_completion_dashboard_bridge_checklist",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_completion_dashboard_bridge_checklist.md",
+    "section_role": "Verify the completion dashboard before reopening the current receipt queue runbook card.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "16",
+    "section_name": "receipt_queue_status_preflight_bridge_checklist",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_status_preflight_bridge_checklist.md",
+    "section_role": "Verify the completion-dashboard bridge before reopening the receipt queue status rollup.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "17",
+    "section_name": "receipt_queue_status_reentry_card",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_status_reentry_card.md",
+    "section_role": "One-page reentry instruction for reopening the receipt queue status rollup.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "18",
+    "section_name": "receipt_queue_status_reentry_bridge_checklist",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_status_reentry_bridge_checklist.md",
+    "section_role": "Verify the status reentry card before opening the receipt queue handoff bridge.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "19",
+    "section_name": "receipt_queue_receipt_open_card",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_receipt_open_card.md",
+    "section_role": "One-page first receipt target card after the receipt queue handoff bridge.",
+    "packet_note": "Receipt queue packet section while queue_status=queue_complete, ready_receipt_count=3, pending_receipt_count=0; no benchmark execution or external audio staging is claimed."
+  }
+]

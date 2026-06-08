@@ -1925,6 +1925,18 @@ Frontier execution receipt queue receipt open card:
 - `results/tables/frontier_execution_receipt_queue_receipt_open_card.csv`
 - This card gives the next contributor the first receipt target to open after the receipt queue handoff bridge is confirmed.
 
+Frontier execution receipt queue handoff packet:
+
+- `results/figures/frontier_execution_receipt_queue_handoff_packet.md`
+- `results/tables/frontier_execution_receipt_queue_handoff_packet.csv`
+- This packet consolidates the receipt queue status, queue summary, per-frontier handoff layers, the operator brief, the runbook card, the runbook bridge checklist, the phase checkpoint card, the phase checkpoint bridge checklist, the milestone card, the milestone bridge checklist, the completion dashboard, the completion-dashboard bridge checklist, the status preflight layer, the status reentry layer, and the first receipt target card into one single-entry coordination artifact.
+
+Frontier execution receipt queue handoff packet bridge checklist:
+
+- `results/figures/frontier_execution_receipt_queue_handoff_packet_bridge_checklist.md`
+- `results/tables/frontier_execution_receipt_queue_handoff_packet_bridge_checklist.csv`
+- This checklist verifies the receipt queue handoff packet before the receipt queue operator brief is reopened.
+
 Frontier execution receipt fill queue status:
 
 - `results/figures/frontier_execution_receipt_fill_queue_status.md`
@@ -2677,6 +2689,8 @@ python -m src.frontier_execution_receipt_queue_status_preflight_bridge_checklist
 python -m src.frontier_execution_receipt_queue_status_reentry_card
 python -m src.frontier_execution_receipt_queue_status_reentry_bridge_checklist
 python -m src.frontier_execution_receipt_queue_receipt_open_card
+python -m src.frontier_execution_receipt_queue_handoff_packet
+python -m src.frontier_execution_receipt_queue_handoff_packet_bridge_checklist
 python -m src.frontier_execution_receipt_fill_queue_status
 python -m src.frontier_execution_receipt_fill_queue_status_bridge_checklist
 python -m src.frontier_execution_receipt_fill_queue_completion_summary

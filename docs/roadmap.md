@@ -1696,6 +1696,20 @@ Update: the frontier receipt layer now has a receipt open card.
 - Script: `python3 -m src.frontier_execution_receipt_queue_receipt_open_card`
 - This gives the next contributor the first receipt target to open after the receipt queue handoff bridge is confirmed.
 
+Update: the frontier receipt layer now has a handoff packet.
+
+- Handoff packet: `results/tables/frontier_execution_receipt_queue_handoff_packet.csv`
+- Summary view: `results/figures/frontier_execution_receipt_queue_handoff_packet.md`
+- Script: `python3 -m src.frontier_execution_receipt_queue_handoff_packet`
+- This provides a single entrypoint for the full receipt queue coordination stack without claiming benchmark execution.
+
+Update: the frontier receipt layer now has a handoff packet bridge checklist.
+
+- Handoff packet bridge checklist: `results/tables/frontier_execution_receipt_queue_handoff_packet_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_execution_receipt_queue_handoff_packet_bridge_checklist.md`
+- Script: `python3 -m src.frontier_execution_receipt_queue_handoff_packet_bridge_checklist`
+- This verifies the packet layer before reopening the receipt queue operator brief.
+
 Update: the frontier receipt layer now has a fill queue status rollup.
 
 - Fill queue status: `results/tables/frontier_execution_receipt_fill_queue_status.csv`
