@@ -1,0 +1,37 @@
+[
+  {
+    "packet_order": "1",
+    "section_name": "receipt_queue_writeback_status",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_writeback_status.md",
+    "section_role": "Dynamic writeback rollup across the frontier execution receipts.",
+    "packet_note": "Writeback packet section while combined_writeback_status=writeback_queue_in_progress, awaiting_writeback_count=2, writeback_complete_count=1; no benchmark execution is claimed beyond receipt contents."
+  },
+  {
+    "packet_order": "2",
+    "section_name": "receipt_queue_writeback_handoff",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_writeback_handoff.md",
+    "section_role": "Per-frontier writeback next actions derived from the current mixed status state.",
+    "packet_note": "Writeback packet section while combined_writeback_status=writeback_queue_in_progress, awaiting_writeback_count=2, writeback_complete_count=1; no benchmark execution is claimed beyond receipt contents."
+  },
+  {
+    "packet_order": "3",
+    "section_name": "receipt_queue_writeback_handoff_bridge_checklist",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_writeback_handoff_bridge_checklist.md",
+    "section_role": "Row-by-row gate before reopening any frontier receipt for writeback.",
+    "packet_note": "Writeback packet section while combined_writeback_status=writeback_queue_in_progress, awaiting_writeback_count=2, writeback_complete_count=1; no benchmark execution is claimed beyond receipt contents."
+  },
+  {
+    "packet_order": "4",
+    "section_name": "receipt_queue_writeback_open_card",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_writeback_open_card.md",
+    "section_role": "Single current writeback target card, skipping already-complete receipts.",
+    "packet_note": "Writeback packet section while combined_writeback_status=writeback_queue_in_progress, awaiting_writeback_count=2, writeback_complete_count=1; no benchmark execution is claimed beyond receipt contents."
+  },
+  {
+    "packet_order": "5",
+    "section_name": "receipt_queue_writeback_open_card_bridge_checklist",
+    "artifact_path": "results/figures/frontier_execution_receipt_queue_writeback_open_card_bridge_checklist.md",
+    "section_role": "Gate before reopening the currently selected execution receipt target.",
+    "packet_note": "Writeback packet section while combined_writeback_status=writeback_queue_in_progress, awaiting_writeback_count=2, writeback_complete_count=1; no benchmark execution is claimed beyond receipt contents."
+  }
+]

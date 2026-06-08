@@ -1,0 +1,13 @@
+[
+  {
+    "checklist_order": "1",
+    "combined_writeback_status": "writeback_queue_in_progress",
+    "awaiting_writeback_count": "2",
+    "writeback_complete_count": "1",
+    "prerequisite_artifact": "results/figures/frontier_execution_receipt_queue_writeback_handoff_packet.md",
+    "receipt_target": "results/figures/frontier_execution_receipt_queue_writeback_status.md",
+    "checklist_goal": "Verify the receipt queue writeback handoff packet before opening the writeback status rollup.",
+    "bridge_note": "Writeback summary reports combined_writeback_status=writeback_queue_in_progress, awaiting_writeback_count=2, writeback_complete_count=1; confirm packet context before reopening the writeback status rollup.",
+    "next_gate": "Confirm this bridge before opening the frontier execution receipt queue writeback status target."
+  }
+]

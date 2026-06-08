@@ -1831,6 +1831,22 @@ Update: the frontier receipt layer now has a writeback open card bridge checklis
 - Script: `python3 -m src.frontier_execution_receipt_queue_writeback_open_card_bridge_checklist`
 - This turns that single current target card into an explicit verification gate before reopening the selected execution receipt.
 
+Update: the frontier receipt layer now has a writeback handoff packet.
+
+- Writeback handoff packet: `results/tables/frontier_execution_receipt_queue_writeback_handoff_packet.csv`
+- Writeback handoff packet JSON: `results/tables/frontier_execution_receipt_queue_writeback_handoff_packet.json`
+- Summary view: `results/figures/frontier_execution_receipt_queue_writeback_handoff_packet.md`
+- Script: `python3 -m src.frontier_execution_receipt_queue_writeback_handoff_packet`
+- This compresses the current writeback sub-stack into one compact entrypoint for status, handoff, open-card, and their gates.
+
+Update: the frontier receipt layer now has a writeback handoff packet bridge checklist.
+
+- Writeback handoff packet bridge checklist: `results/tables/frontier_execution_receipt_queue_writeback_handoff_packet_bridge_checklist.csv`
+- Writeback handoff packet bridge checklist JSON: `results/tables/frontier_execution_receipt_queue_writeback_handoff_packet_bridge_checklist.json`
+- Summary view: `results/figures/frontier_execution_receipt_queue_writeback_handoff_packet_bridge_checklist.md`
+- Script: `python3 -m src.frontier_execution_receipt_queue_writeback_handoff_packet_bridge_checklist`
+- This verifies that compact packet before reopening the writeback status rollup.
+
 Update: the frontier receipt layer now has a fill queue status rollup.
 
 - Fill queue status: `results/tables/frontier_execution_receipt_fill_queue_status.csv`
