@@ -404,6 +404,12 @@ Current frontier execution queue completion dashboard bridge checklist result:
 - `results/tables/frontier_execution_queue_completion_dashboard_bridge_checklist.csv`
 - The checklist turns that execution-queue dashboard into a pre-open verification step before the runbook card is reopened for the current first frontier.
 
+Current frontier execution queue status preflight bridge checklist result:
+
+- `results/figures/frontier_execution_queue_status_preflight_bridge_checklist.md`
+- `results/tables/frontier_execution_queue_status_preflight_bridge_checklist.csv`
+- The checklist verifies the completion-dashboard bridge before the execution-queue status rollup is reopened.
+
 Current frontier operator next-action frontier bridge checklist result:
 
 - `results/figures/frontier_operator_next_action_frontier_bridge_checklist.md`

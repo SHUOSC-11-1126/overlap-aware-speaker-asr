@@ -1530,6 +1530,13 @@ Update: the frontier now also has an execution queue completion dashboard bridge
 - Script: `python3 -m src.frontier_execution_queue_completion_dashboard_bridge_checklist`
 - Current evidence turns that execution queue dashboard into a verification step before reopening the runbook card for the current first frontier.
 
+Update: the frontier now also has an execution queue status preflight bridge checklist.
+
+- Frontier execution queue status preflight bridge checklist: `results/tables/frontier_execution_queue_status_preflight_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_execution_queue_status_preflight_bridge_checklist.md`
+- Script: `python3 -m src.frontier_execution_queue_status_preflight_bridge_checklist`
+- Current evidence verifies the completion-dashboard bridge before reopening the execution queue status rollup.
+
 Update: the frontier now has execution receipt readiness rollups.
 
 - MeetEval receipt readiness: `results/tables/meeteval_cpwer_execution_receipt_readiness.csv`

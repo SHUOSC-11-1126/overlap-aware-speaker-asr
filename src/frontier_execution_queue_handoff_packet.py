@@ -103,6 +103,12 @@ PACKET_SECTIONS = [
     ),
     (
         "15",
+        "execution_queue_status_preflight_bridge_checklist",
+        "results/figures/frontier_execution_queue_status_preflight_bridge_checklist.md",
+        "Verify the completion-dashboard bridge before reopening the execution queue status rollup.",
+    ),
+    (
+        "16",
         "execution_queue_handoff_bridge_checklist",
         "results/figures/frontier_execution_queue_handoff_bridge_checklist.md",
         "Verify each execution handoff before opening the receipt target for that frontier.",

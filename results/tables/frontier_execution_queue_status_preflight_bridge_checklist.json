@@ -1,0 +1,11 @@
+[
+  {
+    "checklist_order": "1",
+    "current_first_frontier": "meeteval_compatibility",
+    "prerequisite_artifact": "results/figures/frontier_execution_queue_completion_dashboard_bridge_checklist.md",
+    "receipt_target": "results/figures/frontier_execution_queue_status.md",
+    "checklist_goal": "Verify the execution queue completion-dashboard bridge for meeteval_compatibility before opening the status rollup.",
+    "bridge_note": "Dashboard bridge remains aligned to meeteval_compatibility; prior gate was: Confirm this bridge before opening the execution queue runbook card target. Confirm that bridge context before opening the machine-readable execution queue status rollup.",
+    "next_gate": "Confirm this bridge before opening the execution queue status rollup target."
+  }
+]

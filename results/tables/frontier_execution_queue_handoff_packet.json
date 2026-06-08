@@ -99,6 +99,13 @@
   },
   {
     "packet_order": "15",
+    "section_name": "execution_queue_status_preflight_bridge_checklist",
+    "artifact_path": "results/figures/frontier_execution_queue_status_preflight_bridge_checklist.md",
+    "section_role": "Verify the completion-dashboard bridge before reopening the execution queue status rollup.",
+    "packet_note": "Execution queue packet section while queue_status=queue_complete, ready_chain_count=3, pending_chain_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "16",
     "section_name": "execution_queue_handoff_bridge_checklist",
     "artifact_path": "results/figures/frontier_execution_queue_handoff_bridge_checklist.md",
     "section_role": "Verify each execution handoff before opening the receipt target for that frontier.",
