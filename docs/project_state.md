@@ -1547,6 +1547,12 @@ Frontier operator next-action status handoff completion summary bridge checklist
 - `results/tables/frontier_operator_next_action_status_handoff_completion_summary_bridge_checklist.csv`
 - The checklist verifies that queue-level top-level handoff summary before the lane-level handoff is reopened, keeping the transition coordination-only.
 
+Frontier operator next-action status handoff packet:
+
+- `results/figures/frontier_operator_next_action_status_handoff_packet.md`
+- `results/tables/frontier_operator_next_action_status_handoff_packet.csv`
+- The packet consolidates the top-level status snapshot, lane handoff, queue summary, and bridge checkpoints into one single-entry coordination artifact.
+
 Frontier execution queue completion summary bridge checklist:
 
 - `results/figures/frontier_execution_queue_completion_summary_bridge_checklist.md`

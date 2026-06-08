@@ -1,0 +1,44 @@
+[
+  {
+    "packet_order": "1",
+    "section_name": "status",
+    "artifact_path": "results/figures/frontier_operator_next_action_status.md",
+    "section_role": "Top-level operator status snapshot",
+    "packet_note": "Top-level operator status handoff packet section while queue_status=queue_complete, ready_lane_count=1, blocked_lane_count=1; no frontier execution is claimed."
+  },
+  {
+    "packet_order": "2",
+    "section_name": "status_bridge_checklist",
+    "artifact_path": "results/figures/frontier_operator_next_action_status_bridge_checklist.md",
+    "section_role": "Verify the status snapshot before opening the broader operator handoff packet",
+    "packet_note": "Top-level operator status handoff packet section while queue_status=queue_complete, ready_lane_count=1, blocked_lane_count=1; no frontier execution is claimed."
+  },
+  {
+    "packet_order": "3",
+    "section_name": "status_handoff",
+    "artifact_path": "results/figures/frontier_operator_next_action_status_handoff.md",
+    "section_role": "Lane-specific ready/block top-level operator actions",
+    "packet_note": "Top-level operator status handoff packet section while queue_status=queue_complete, ready_lane_count=1, blocked_lane_count=1; no frontier execution is claimed."
+  },
+  {
+    "packet_order": "4",
+    "section_name": "status_handoff_bridge_checklist",
+    "artifact_path": "results/figures/frontier_operator_next_action_status_handoff_bridge_checklist.md",
+    "section_role": "Verify each lane-specific handoff before opening its target artifact",
+    "packet_note": "Top-level operator status handoff packet section while queue_status=queue_complete, ready_lane_count=1, blocked_lane_count=1; no frontier execution is claimed."
+  },
+  {
+    "packet_order": "5",
+    "section_name": "status_handoff_completion_summary",
+    "artifact_path": "results/figures/frontier_operator_next_action_status_handoff_completion_summary.md",
+    "section_role": "Queue-level rollup of visible ready and blocked lanes",
+    "packet_note": "Top-level operator status handoff packet section while queue_status=queue_complete, ready_lane_count=1, blocked_lane_count=1; no frontier execution is claimed."
+  },
+  {
+    "packet_order": "6",
+    "section_name": "status_handoff_completion_summary_bridge_checklist",
+    "artifact_path": "results/figures/frontier_operator_next_action_status_handoff_completion_summary_bridge_checklist.md",
+    "section_role": "Verify queue-level handoff closure before reopening the lane-level handoff",
+    "packet_note": "Top-level operator status handoff packet section while queue_status=queue_complete, ready_lane_count=1, blocked_lane_count=1; no frontier execution is claimed."
+  }
+]
