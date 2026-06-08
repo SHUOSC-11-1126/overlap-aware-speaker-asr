@@ -2194,7 +2194,7 @@ Update: `meeteval_compatibility` now also has a batch execution-chain completion
 
 - Completion summary: `results/tables/meeteval_cpwer_execution_status_batch_completion_summary.csv`
 - Summary view: `results/figures/meeteval_cpwer_execution_status_batch_completion_summary.md`
-- `queue_status = queue_complete` when all five verified gold cases report `execution_chain_ready`; official cpWER remains pending until narrow dry run.
+- `queue_status = queue_complete` when all five verified gold cases have already reached `execution_chain_complete`; the batch status layer now distinguishes scaffold-ready cases from cases with recorded official narrow dry-run receipts.
 
 Update: `meeteval_compatibility` now also has a batch execution handoff.
 

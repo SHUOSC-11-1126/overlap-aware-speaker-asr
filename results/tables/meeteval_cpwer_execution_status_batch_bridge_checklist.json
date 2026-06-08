@@ -6,7 +6,7 @@
     "prerequisite_artifact": "results/figures/meeteval_cpwer_execution_status_batch.md",
     "receipt_target": "results/tables/meeteval_cpwer_execution_receipt.json",
     "checklist_goal": "Verify the batch execution chain status before opening the official cpWER execution receipt.",
-    "bridge_note": "Batch status reports 5/5 cases execution_chain_ready; confirm preflight and scaffold alignment before official cpWER execution.",
+    "bridge_note": "Batch status reports 5/5 cases at least execution-ready and 5/5 already execution-complete; confirm preflight, scaffold, and receipt alignment.",
     "next_gate": "Confirm this bridge before opening the official MeetEval cpWER execution receipt."
   }
 ]

@@ -4,8 +4,8 @@
     "case_id": "NoOverlap",
     "preflight_pass": "True",
     "receipt_scaffold_status": "receipt_batch_scaffold_only",
-    "execution_receipt_status": "template_only",
-    "execution_chain_status": "execution_chain_ready",
+    "execution_receipt_status": "official_cpwer_narrow_dry_run_complete",
+    "execution_chain_status": "execution_chain_complete",
     "status_note": "experimental/frontier batch execution-chain rollup for one verified gold case; official MeetEval cpWER evaluation is not claimed."
   },
   {
@@ -13,8 +13,8 @@
     "case_id": "LightOverlap",
     "preflight_pass": "True",
     "receipt_scaffold_status": "receipt_batch_scaffold_only",
-    "execution_receipt_status": "template_only",
-    "execution_chain_status": "execution_chain_ready",
+    "execution_receipt_status": "official_cpwer_narrow_dry_run_complete",
+    "execution_chain_status": "execution_chain_complete",
     "status_note": "experimental/frontier batch execution-chain rollup for one verified gold case; official MeetEval cpWER evaluation is not claimed."
   },
   {
@@ -22,8 +22,8 @@
     "case_id": "MidOverlap",
     "preflight_pass": "True",
     "receipt_scaffold_status": "receipt_batch_scaffold_only",
-    "execution_receipt_status": "template_only",
-    "execution_chain_status": "execution_chain_ready",
+    "execution_receipt_status": "official_cpwer_narrow_dry_run_complete",
+    "execution_chain_status": "execution_chain_complete",
     "status_note": "experimental/frontier batch execution-chain rollup for one verified gold case; official MeetEval cpWER evaluation is not claimed."
   },
   {
@@ -31,8 +31,8 @@
     "case_id": "HeavyOverlap",
     "preflight_pass": "True",
     "receipt_scaffold_status": "receipt_batch_scaffold_only",
-    "execution_receipt_status": "template_only",
-    "execution_chain_status": "execution_chain_ready",
+    "execution_receipt_status": "official_cpwer_narrow_dry_run_complete",
+    "execution_chain_status": "execution_chain_complete",
     "status_note": "experimental/frontier batch execution-chain rollup for one verified gold case; official MeetEval cpWER evaluation is not claimed."
   },
   {
@@ -40,8 +40,8 @@
     "case_id": "OppositeOverlap",
     "preflight_pass": "True",
     "receipt_scaffold_status": "receipt_batch_scaffold_only",
-    "execution_receipt_status": "template_only",
-    "execution_chain_status": "execution_chain_ready",
+    "execution_receipt_status": "official_cpwer_narrow_dry_run_complete",
+    "execution_chain_status": "execution_chain_complete",
     "status_note": "experimental/frontier batch execution-chain rollup for one verified gold case; official MeetEval cpWER evaluation is not claimed."
   }
 ]

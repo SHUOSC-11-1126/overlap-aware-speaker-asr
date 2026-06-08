@@ -2380,7 +2380,7 @@ MeetEval cpWER execution status batch:
 
 - `results/figures/meeteval_cpwer_execution_status_batch.md`
 - `results/tables/meeteval_cpwer_execution_status_batch.csv`
-- Rolls up execution-chain readiness across all five verified gold cases; official evaluation remains pending.
+- Now rolls up per-case execution receipt reality across all five verified gold cases: `execution_chain_complete` when the official narrow dry run is already recorded, otherwise `execution_chain_ready` or `execution_chain_in_progress`.
 
 MeetEval cpWER execution status batch bridge checklist:
 
@@ -2392,7 +2392,7 @@ MeetEval cpWER execution status batch completion summary:
 
 - `results/figures/meeteval_cpwer_execution_status_batch_completion_summary.md`
 - `results/tables/meeteval_cpwer_execution_status_batch_completion_summary.csv`
-- Rolls up batch execution-chain queue completion; official evaluation remains pending until narrow dry run.
+- Rolls up batch execution-chain queue completion using the stricter per-case status model, so `queue_complete` now means all five cases are already `execution_chain_complete`.
 
 MeetEval cpWER execution status batch completion summary bridge checklist:
 
