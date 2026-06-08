@@ -137,6 +137,12 @@ PACKET_SECTIONS = [
         "results/figures/frontier_execution_queue_receipt_readiness_board.md",
         "One-glance receipt readiness split across frontier execution targets after handoff verification.",
     ),
+    (
+        "21",
+        "execution_queue_receipt_readiness_bridge_checklist",
+        "results/figures/frontier_execution_queue_receipt_readiness_bridge_checklist.md",
+        "Verify the execution queue receipt readiness board before reopening the unified receipt queue status.",
+    ),
 ]
 
 
