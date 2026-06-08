@@ -4,8 +4,10 @@
   "method_direction": "embedding_or_voiceprint_baseline",
   "best_profile_alignment": "swapped",
   "profile_confidence_gap": "0.422118",
+  "combined_signal_status": "text_swapped_audio_weak",
   "profile_data_valid": true,
   "swapped_bias_detected": true,
   "preflight_pass": true,
-  "preflight_note": "Execution preflight for NoOverlap found valid text-profile proxy data with swapped_bias detected. Voiceprint or embedding execution remains pending; improved attribution is not claimed."
+  "preflight_recommendation": "Advance only to a narrow embedding baseline; attribution claims remain blocked.",
+  "preflight_note": "Execution preflight for NoOverlap found valid text-profile proxy data with swapped_bias detected. Advance only to a narrow embedding baseline; attribution claims remain blocked. Improved attribution is not claimed."
 }

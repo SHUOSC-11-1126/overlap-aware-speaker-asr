@@ -5,6 +5,7 @@
   "receipt_template_status": "template_only",
   "preflight_pass": "True",
   "swapped_bias_detected": "True",
+  "combined_signal_status": "text_swapped_audio_weak",
   "readiness_status": "receipt_ready_to_fill",
   "readiness_note": "experimental/frontier receipt readiness for one verified gold case; voiceprint or embedding model execution is not claimed."
 }

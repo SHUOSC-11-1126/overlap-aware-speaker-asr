@@ -1,0 +1,7 @@
+{
+  "case_count": "5",
+  "agreement_count": "5",
+  "weak_support_count": "5",
+  "frontier_decision": "advance_to_narrow_embedding_baseline",
+  "summary_note": "Text proxy keeps the swapped-bias direction, but the audio proxy remains weak; proceed only with narrow frontier execution."
+}

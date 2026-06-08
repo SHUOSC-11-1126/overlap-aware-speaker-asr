@@ -1,0 +1,72 @@
+[
+  {
+    "case_id": "NoOverlap",
+    "hypothesis_source": "separated_whisper",
+    "text_best_alignment": "swapped",
+    "audio_best_alignment": "swapped",
+    "text_confidence_gap": "0.422118",
+    "audio_confidence_gap": "0.000012",
+    "alignment_agreement": "agree",
+    "audio_support_level": "weak_support",
+    "combined_signal_status": "text_swapped_audio_weak",
+    "recommended_next_step": "Advance only to a narrow embedding baseline; attribution claims remain blocked.",
+    "result_label": "experimental/frontier",
+    "observation": "Multi-signal speaker-risk diagnostic only; this is not speaker identification."
+  },
+  {
+    "case_id": "LightOverlap",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "text_best_alignment": "swapped",
+    "audio_best_alignment": "swapped",
+    "text_confidence_gap": "0.418882",
+    "audio_confidence_gap": "0.000012",
+    "alignment_agreement": "agree",
+    "audio_support_level": "weak_support",
+    "combined_signal_status": "text_swapped_audio_weak",
+    "recommended_next_step": "Advance only to a narrow embedding baseline; attribution claims remain blocked.",
+    "result_label": "experimental/frontier",
+    "observation": "Multi-signal speaker-risk diagnostic only; this is not speaker identification."
+  },
+  {
+    "case_id": "MidOverlap",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "text_best_alignment": "swapped",
+    "audio_best_alignment": "swapped",
+    "text_confidence_gap": "0.406764",
+    "audio_confidence_gap": "0.000013",
+    "alignment_agreement": "agree",
+    "audio_support_level": "weak_support",
+    "combined_signal_status": "text_swapped_audio_weak",
+    "recommended_next_step": "Advance only to a narrow embedding baseline; attribution claims remain blocked.",
+    "result_label": "experimental/frontier",
+    "observation": "Multi-signal speaker-risk diagnostic only; this is not speaker identification."
+  },
+  {
+    "case_id": "HeavyOverlap",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "text_best_alignment": "swapped",
+    "audio_best_alignment": "swapped",
+    "text_confidence_gap": "0.411129",
+    "audio_confidence_gap": "0.000014",
+    "alignment_agreement": "agree",
+    "audio_support_level": "weak_support",
+    "combined_signal_status": "text_swapped_audio_weak",
+    "recommended_next_step": "Advance only to a narrow embedding baseline; attribution claims remain blocked.",
+    "result_label": "experimental/frontier",
+    "observation": "Multi-signal speaker-risk diagnostic only; this is not speaker identification."
+  },
+  {
+    "case_id": "OppositeOverlap",
+    "hypothesis_source": "separated_whisper_cleaned",
+    "text_best_alignment": "swapped",
+    "audio_best_alignment": "swapped",
+    "text_confidence_gap": "0.406764",
+    "audio_confidence_gap": "0.000015",
+    "alignment_agreement": "agree",
+    "audio_support_level": "weak_support",
+    "combined_signal_status": "text_swapped_audio_weak",
+    "recommended_next_step": "Advance only to a narrow embedding baseline; attribution claims remain blocked.",
+    "result_label": "experimental/frontier",
+    "observation": "Multi-signal speaker-risk diagnostic only; this is not speaker identification."
+  }
+]
