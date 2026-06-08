@@ -1286,6 +1286,13 @@ Update: the frontier now also has a top-level completion dashboard.
 - Script: `python3 -m src.frontier_operator_next_action_completion_dashboard`
 - Current evidence compresses the top-level operator state into one glance with `meeteval_compatibility` still first and `external_validation` still the dominant blocker.
 
+Update: the frontier now also has a top-level completion dashboard bridge checklist.
+
+- Frontier completion dashboard bridge checklist: `results/tables/frontier_operator_next_action_completion_dashboard_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_operator_next_action_completion_dashboard_bridge_checklist.md`
+- Script: `python3 -m src.frontier_operator_next_action_completion_dashboard_bridge_checklist`
+- Current evidence requires verifying the top-level dashboard before the top-level runbook card is reopened.
+
 Update: the frontier now has a per-frontier execution handoff.
 
 - Frontier execution queue handoff: `results/tables/frontier_execution_queue_handoff.csv`

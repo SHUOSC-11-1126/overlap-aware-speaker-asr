@@ -374,6 +374,12 @@ Current frontier operator next-action completion dashboard result:
 - `results/tables/frontier_operator_next_action_completion_dashboard.csv`
 - The dashboard compresses the current top-level operator state into one glance: `meeteval_compatibility` still leads, `external_validation` remains the dominant blocker, and the current milestone is still `ready_lane_checkpoint_complete`.
 
+Current frontier operator next-action completion dashboard bridge checklist result:
+
+- `results/figures/frontier_operator_next_action_completion_dashboard_bridge_checklist.md`
+- `results/tables/frontier_operator_next_action_completion_dashboard_bridge_checklist.csv`
+- The checklist turns that dashboard into a pre-open verification step so the next contributor confirms the top-level state summary before reopening the runbook card.
+
 Current frontier focus checklist result:
 
 - `results/figures/frontier_focus_card_checklist.md` now turns that focus card into a one-glance verification checklist

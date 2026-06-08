@@ -1505,6 +1505,12 @@ Frontier operator next-action completion dashboard:
 - `results/tables/frontier_operator_next_action_completion_dashboard.csv`
 - The dashboard summarizes the current first frontier, current blocker, next milestone, and remaining top-level frontier count in one operator-facing state view.
 
+Frontier operator next-action completion dashboard bridge checklist:
+
+- `results/figures/frontier_operator_next_action_completion_dashboard_bridge_checklist.md`
+- `results/tables/frontier_operator_next_action_completion_dashboard_bridge_checklist.csv`
+- The checklist verifies the dashboard before the top-level runbook card is reopened and keeps the transition coordination-only.
+
 Frontier execution queue completion summary bridge checklist:
 
 - `results/figures/frontier_execution_queue_completion_summary_bridge_checklist.md`
