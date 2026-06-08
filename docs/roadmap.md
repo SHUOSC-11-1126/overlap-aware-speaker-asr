@@ -1823,6 +1823,14 @@ Update: the frontier receipt layer now has a writeback open card.
 - Script: `python3 -m src.frontier_execution_receipt_queue_writeback_open_card`
 - This converts the bridged handoff into one immediate target card, correctly skipping the already-complete `meeteval` receipt and pointing next at `speaker_profile`.
 
+Update: the frontier receipt layer now has a writeback open card bridge checklist.
+
+- Writeback open card bridge checklist: `results/tables/frontier_execution_receipt_queue_writeback_open_card_bridge_checklist.csv`
+- Writeback open card bridge checklist JSON: `results/tables/frontier_execution_receipt_queue_writeback_open_card_bridge_checklist.json`
+- Summary view: `results/figures/frontier_execution_receipt_queue_writeback_open_card_bridge_checklist.md`
+- Script: `python3 -m src.frontier_execution_receipt_queue_writeback_open_card_bridge_checklist`
+- This turns that single current target card into an explicit verification gate before reopening the selected execution receipt.
+
 Update: the frontier receipt layer now has a fill queue status rollup.
 
 - Fill queue status: `results/tables/frontier_execution_receipt_fill_queue_status.csv`

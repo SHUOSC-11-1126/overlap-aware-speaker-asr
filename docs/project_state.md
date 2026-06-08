@@ -2036,6 +2036,13 @@ Frontier execution receipt queue writeback open card:
 - `results/tables/frontier_execution_receipt_queue_writeback_open_card.json`
 - This card selects the first still-pending writeback target after the handoff bridge, which currently prioritizes `speaker_profile` over the already-complete `meeteval` receipt.
 
+Frontier execution receipt queue writeback open card bridge checklist:
+
+- `results/figures/frontier_execution_receipt_queue_writeback_open_card_bridge_checklist.md`
+- `results/tables/frontier_execution_receipt_queue_writeback_open_card_bridge_checklist.csv`
+- `results/tables/frontier_execution_receipt_queue_writeback_open_card_bridge_checklist.json`
+- This checklist turns the current writeback open card into an ordered verification gate before the targeted execution receipt is reopened.
+
 Frontier execution receipt fill queue status:
 
 - `results/figures/frontier_execution_receipt_fill_queue_status.md`
@@ -2804,6 +2811,7 @@ python -m src.frontier_execution_receipt_queue_writeback_status
 python -m src.frontier_execution_receipt_queue_writeback_handoff
 python -m src.frontier_execution_receipt_queue_writeback_handoff_bridge_checklist
 python -m src.frontier_execution_receipt_queue_writeback_open_card
+python -m src.frontier_execution_receipt_queue_writeback_open_card_bridge_checklist
 python -m src.frontier_execution_receipt_fill_queue_status
 python -m src.frontier_execution_receipt_fill_queue_status_bridge_checklist
 python -m src.frontier_execution_receipt_fill_queue_completion_summary
