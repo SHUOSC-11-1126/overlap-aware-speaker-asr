@@ -1,0 +1,22 @@
+[
+  {
+    "handoff_order": "1",
+    "action_lane": "ready_lane",
+    "frontier_name": "meeteval_compatibility",
+    "combined_operator_status": "operator_status_mixed_ready",
+    "recommended_action": "If execution starts, use character-spaced cpWER and fill the official receipt with real evidence.",
+    "expected_inputs": "results/figures/frontier_operator_next_action_status.md; results/figures/frontier_operator_next_action_status_bridge_checklist.md",
+    "expected_outputs": "results/tables/meeteval_cpwer_execution_receipt.json",
+    "handoff_note": "Top-level operator handoff for meeteval_compatibility on ready_lane while combined_operator_status=operator_status_mixed_ready; no frontier execution is claimed."
+  },
+  {
+    "handoff_order": "2",
+    "action_lane": "blocked_lane",
+    "frontier_name": "external_validation",
+    "combined_operator_status": "operator_status_mixed_ready",
+    "recommended_action": "Record and write back the license confirmation decision before any external staging attempt. Keep broader frontier reopening paused until the blocker artifact is updated.",
+    "expected_inputs": "results/figures/frontier_operator_next_action_status.md; results/figures/frontier_operator_next_action_status_bridge_checklist.md",
+    "expected_outputs": "results/tables/external_validation_license_confirmation_receipt_bridge.json",
+    "handoff_note": "Top-level operator handoff for external_validation on blocked_lane while combined_operator_status=operator_status_mixed_ready; no frontier execution is claimed."
+  }
+]

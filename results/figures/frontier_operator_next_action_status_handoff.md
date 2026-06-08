@@ -1,0 +1,8 @@
+# Frontier Operator Next-Action Status Handoff
+
+This generated note turns the top-level operator status rollup into lane-specific handoff actions. It remains experimental/frontier coordination only and does not claim experiment completion.
+
+| handoff_order | action_lane | frontier_name | combined_operator_status | recommended_action | expected_inputs | expected_outputs | handoff_note |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | ready_lane | meeteval_compatibility | operator_status_mixed_ready | If execution starts, use character-spaced cpWER and fill the official receipt with real evidence. | results/figures/frontier_operator_next_action_status.md; results/figures/frontier_operator_next_action_status_bridge_checklist.md | results/tables/meeteval_cpwer_execution_receipt.json | Top-level operator handoff for meeteval_compatibility on ready_lane while combined_operator_status=operator_status_mixed_ready; no frontier execution is claimed. |
+| 2 | blocked_lane | external_validation | operator_status_mixed_ready | Record and write back the license confirmation decision before any external staging attempt. Keep broader frontier reopening paused until the blocker artifact is updated. | results/figures/frontier_operator_next_action_status.md; results/figures/frontier_operator_next_action_status_bridge_checklist.md | results/tables/external_validation_license_confirmation_receipt_bridge.json | Top-level operator handoff for external_validation on blocked_lane while combined_operator_status=operator_status_mixed_ready; no frontier execution is claimed. |
