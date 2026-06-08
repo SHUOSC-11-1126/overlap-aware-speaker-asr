@@ -2020,6 +2020,18 @@ Demo walkthrough review pass completion summary:
 - `results/tables/demo_walkthrough_review_pass_completion_summary.csv`
 - The completion summary reports `queue_status = queue_complete` with `completed_count = 5/5`; no live demo delivery is claimed.
 
+Demo go-no-go board:
+
+- `results/figures/demo_go_no_go_board.md`
+- `results/tables/demo_go_no_go_board.csv`
+- The board shows `4/6` checkpoints are ready for a narrow presentation writeback path.
+
+Demo go-no-go summary:
+
+- `results/figures/demo_go_no_go_summary.md`
+- `results/tables/demo_go_no_go_summary.csv`
+- `overall_state = presentation_writeback_ready` while `primary_boundary = live_demo_claims_still_blocked`.
+
 Demo walkthrough review pass completion summary bridge checklist:
 
 - `results/figures/demo_walkthrough_review_pass_completion_summary_bridge_checklist.md`

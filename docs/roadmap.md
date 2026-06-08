@@ -427,6 +427,14 @@ Update: a generated demo walkthrough receipt now creates the first evidence writ
 - Summary view: `results/figures/demo_walkthrough_receipt.md`
 - This stays on the same safe side of the line: it prepares the template-only receipt for a future walkthrough pass without implying that any real demo delivery has already happened.
 
+Update: `demo_excellence` now also has a go-no-go board.
+
+- Go-no-go board: `results/tables/demo_go_no_go_board.csv`
+- Summary view: `results/figures/demo_go_no_go_board.md`
+- Go-no-go summary: `results/tables/demo_go_no_go_summary.csv`
+- Script: `python3 -m src.demo_go_no_go_board`
+- Current evidence keeps the chain presentation-only: narrow writeback is ready, but live demo and recording claims remain blocked until evidence receipts are filled.
+
 Update: a generated MeetEval dry-run checklist now turns the first diagnostic handoff into an ordered case queue.
 
 - MeetEval dry-run checklist: `results/tables/meeteval_dry_run_checklist.csv`

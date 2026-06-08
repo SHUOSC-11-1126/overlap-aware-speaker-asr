@@ -671,6 +671,18 @@ Current demo walkthrough checklist result:
 - `results/figures/demo_walkthrough_checklist.md` now turns the walkthrough steps into an ordered presentation checklist
 - This checklist remains `qualitative/demo`: it helps a future contributor follow the script in order and keeps the receipt target explicit without claiming a completed live demo
 
+Current demo go-no-go board result:
+
+- `results/figures/demo_go_no_go_board.md`
+- `results/tables/demo_go_no_go_board.csv`
+- The board shows the demo chain is largely ready for a narrow presentation writeback path, while still blocking any live-delivery claim.
+
+Current demo go-no-go summary result:
+
+- `results/figures/demo_go_no_go_summary.md`
+- `results/tables/demo_go_no_go_summary.csv`
+- The summary records `overall_state = presentation_writeback_ready` together with `primary_boundary = live_demo_claims_still_blocked`, so any next step must stay explicitly in qualitative/demo scope.
+
 ## Core Findings
 
 - Speech separation is useful, but not universally beneficial.
