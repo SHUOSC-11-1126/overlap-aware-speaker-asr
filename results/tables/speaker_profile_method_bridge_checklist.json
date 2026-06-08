@@ -1,0 +1,11 @@
+[
+  {
+    "checklist_order": "1",
+    "dominant_pattern": "swapped_bias",
+    "prerequisite_artifact": "results/figures/speaker_profile_method_handoff.md",
+    "receipt_target": "results/figures/speaker_profile_method_receipt.md",
+    "checklist_goal": "Verify the stronger speaker-profile method bridge before any attribution claim is advanced.",
+    "bridge_note": "Open the method handoff first, then write back through the receipt target for swapped_bias.",
+    "next_gate": "Confirm this bridge before opening the method receipt target."
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "checklist_order": "1",
+    "dominant_pattern": "swapped_bias",
+    "checklist_goal": "Test a stronger profile method before any attribution claim.",
+    "expected_evidence": "results/tables/speaker_profile_method_receipt.json",
+    "preflight_step": "Confirm swapped-bias diagnostics before staging the stronger-profile baseline stub.",
+    "next_gate": "Verify one stronger profile method before any speaker-attribution claim."
+  }
+]
