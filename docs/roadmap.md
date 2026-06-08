@@ -1258,6 +1258,13 @@ Update: the frontier now also has a top-level handoff packet.
 - Script: `python3 -m src.frontier_operator_next_action_handoff_packet`
 - Current evidence consolidates the top-level operator card, checklists, brief, runbook, and bridge into one entrypoint with an explicit first-open sequence.
 
+Update: the frontier now also has a top-level handoff packet bridge checklist.
+
+- Frontier handoff packet bridge checklist: `results/tables/frontier_operator_next_action_handoff_packet_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_operator_next_action_handoff_packet_bridge_checklist.md`
+- Script: `python3 -m src.frontier_operator_next_action_handoff_packet_bridge_checklist`
+- Current evidence requires verifying the top-level handoff packet before the top-level operator card is reopened.
+
 Update: the frontier now has a per-frontier execution handoff.
 
 - Frontier execution queue handoff: `results/tables/frontier_execution_queue_handoff.csv`
