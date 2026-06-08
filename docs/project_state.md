@@ -1551,7 +1551,7 @@ Frontier operator next-action status handoff packet:
 
 - `results/figures/frontier_operator_next_action_status_handoff_packet.md`
 - `results/tables/frontier_operator_next_action_status_handoff_packet.csv`
-- The packet consolidates the top-level status snapshot, lane handoff, queue summary, bridge checkpoints, and the newer `status_handoff_status` rollup layer into one single-entry coordination artifact.
+- The packet consolidates the top-level status snapshot, lane handoff, queue summary, operator brief, runbook, checkpoint, milestone, completion dashboard, bridge checkpoints, and the newer `status_handoff_status` rollup layer into one single-entry coordination artifact.
 
 Frontier operator next-action status handoff packet bridge checklist:
 
