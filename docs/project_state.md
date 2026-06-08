@@ -1825,6 +1825,20 @@ Speaker profile embedding trial execution receipt open card bridge checklist:
 - `results/tables/speaker_profile_embedding_trial_execution_receipt_open_card_bridge_checklist.json`
 - This checklist turns the current speaker-profile execution receipt open card into an ordered verification gate before the targeted receipt is reopened.
 
+Speaker profile embedding trial execution receipt handoff packet:
+
+- `results/figures/speaker_profile_embedding_trial_execution_receipt_handoff_packet.md`
+- `results/tables/speaker_profile_embedding_trial_execution_receipt_handoff_packet.csv`
+- `results/tables/speaker_profile_embedding_trial_execution_receipt_handoff_packet.json`
+- This packet compresses the current speaker-profile receipt-readiness and receipt-open-card sub-stack into one coordination entrypoint for `NoOverlap`, while remaining explicitly experimental/frontier only.
+
+Speaker profile embedding trial execution receipt handoff packet bridge checklist:
+
+- `results/figures/speaker_profile_embedding_trial_execution_receipt_handoff_packet_bridge_checklist.md`
+- `results/tables/speaker_profile_embedding_trial_execution_receipt_handoff_packet_bridge_checklist.csv`
+- `results/tables/speaker_profile_embedding_trial_execution_receipt_handoff_packet_bridge_checklist.json`
+- This checklist turns that speaker-profile receipt handoff packet into a first-gate verification step before the readiness rollup is reopened.
+
 External validation slice staging handoff receipt readiness bridge checklist:
 
 - `results/figures/external_validation_slice_staging_handoff_receipt_readiness_bridge_checklist.md`
@@ -2802,6 +2816,8 @@ python -m src.meeteval_cpwer_execution_receipt_readiness
 python -m src.speaker_profile_embedding_trial_execution_receipt_readiness
 python -m src.speaker_profile_embedding_trial_execution_receipt_open_card
 python -m src.speaker_profile_embedding_trial_execution_receipt_open_card_bridge_checklist
+python -m src.speaker_profile_embedding_trial_execution_receipt_handoff_packet
+python -m src.speaker_profile_embedding_trial_execution_receipt_handoff_packet_bridge_checklist
 python -m src.external_validation_slice_staging_handoff_receipt_readiness
 python -m src.frontier_execution_receipt_queue_status
 python -m src.meeteval_cpwer_execution_receipt_readiness_bridge_checklist
