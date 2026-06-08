@@ -1218,6 +1218,14 @@ Update: `speaker_profile` now also has an execution receipt operator brief bridg
 - Script: `python3 -m src.speaker_profile_embedding_trial_execution_receipt_operator_brief_bridge_checklist`
 - This turns that operator brief bridge into an explicit verification gate before reopening the current speaker-profile readiness artifact, still without claiming voiceprint success.
 
+Update: `speaker_profile` now also has an execution receipt runbook card.
+
+- Execution receipt runbook card: `results/tables/speaker_profile_embedding_trial_execution_receipt_runbook_card.csv`
+- Execution receipt runbook card JSON: `results/tables/speaker_profile_embedding_trial_execution_receipt_runbook_card.json`
+- Summary view: `results/figures/speaker_profile_embedding_trial_execution_receipt_runbook_card.md`
+- Script: `python3 -m src.speaker_profile_embedding_trial_execution_receipt_runbook_card`
+- This condenses the current speaker-profile receipt reopening path into a one-page execution card for `NoOverlap`, still without filling the receipt or claiming voiceprint success.
+
 Update: `external_validation` now also has staging receipt scaffold bridge checklists and execution status.
 
 - Staging receipt scaffold bridge: `results/tables/external_validation_slice_staging_handoff_receipt_scaffold_bridge_checklist.csv`

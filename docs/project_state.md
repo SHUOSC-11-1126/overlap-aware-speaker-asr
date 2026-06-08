@@ -1860,6 +1860,13 @@ Speaker profile embedding trial execution receipt operator brief bridge checklis
 - `results/tables/speaker_profile_embedding_trial_execution_receipt_operator_brief_bridge_checklist.json`
 - This checklist turns the operator brief bridge into an explicit verification gate before the current speaker-profile readiness target is reopened.
 
+Speaker profile embedding trial execution receipt runbook card:
+
+- `results/figures/speaker_profile_embedding_trial_execution_receipt_runbook_card.md`
+- `results/tables/speaker_profile_embedding_trial_execution_receipt_runbook_card.csv`
+- `results/tables/speaker_profile_embedding_trial_execution_receipt_runbook_card.json`
+- This runbook card condenses the current speaker-profile receipt action for `NoOverlap` into a one-page execution card, while remaining explicitly coordination-only and not claiming voiceprint success.
+
 External validation slice staging handoff receipt readiness bridge checklist:
 
 - `results/figures/external_validation_slice_staging_handoff_receipt_readiness_bridge_checklist.md`
@@ -2842,6 +2849,7 @@ python -m src.speaker_profile_embedding_trial_execution_receipt_handoff_packet_b
 python -m src.speaker_profile_embedding_trial_execution_receipt_operator_brief
 python -m src.speaker_profile_embedding_trial_execution_receipt_operator_brief_bridge
 python -m src.speaker_profile_embedding_trial_execution_receipt_operator_brief_bridge_checklist
+python -m src.speaker_profile_embedding_trial_execution_receipt_runbook_card
 python -m src.external_validation_slice_staging_handoff_receipt_readiness
 python -m src.frontier_execution_receipt_queue_status
 python -m src.meeteval_cpwer_execution_receipt_readiness_bridge_checklist
