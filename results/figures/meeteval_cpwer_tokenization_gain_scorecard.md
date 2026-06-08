@@ -1,0 +1,13 @@
+# MeetEval cpWER Tokenization Gain Scorecard
+
+This generated scorecard compares raw official cpWER, character-spaced official cpWER, and bridge-lite evidence. It remains experimental/frontier and does not claim full MeetEval benchmark completion.
+
+Summary: `5/5` cases show positive adaptation gain and aligned character-level scores.
+
+| case_id | raw_official_cpwer | character_level_cpwer | cpwer_bridge_lite | raw_to_character_gain | character_to_bridge_delta | adaptation_status | recommendation |
+| --- | ---: | ---: | ---: | ---: | ---: | --- | --- |
+| HeavyOverlap | 3.5 | 0.163121 | 0.162827 | 3.336879 | 0.000294 | adapted_and_aligned | Default to character_spaced MeetEval for this CJK case. |
+| LightOverlap | 4.0 | 0.135714 | 0.135164 | 3.864286 | 0.00055 | adapted_and_aligned | Default to character_spaced MeetEval for this CJK case. |
+| MidOverlap | 4.0 | 0.168421 | 0.16862 | 3.831579 | -0.000199 | adapted_and_aligned | Default to character_spaced MeetEval for this CJK case. |
+| NoOverlap | 4.0 | 0.053957 | 0.054312 | 3.946043 | -0.000355 | adapted_and_aligned | Default to character_spaced MeetEval for this CJK case. |
+| OppositeOverlap | 3.5 | 0.083333 | 0.083193 | 3.416667 | 0.00014 | adapted_and_aligned | Default to character_spaced MeetEval for this CJK case. |

@@ -1,0 +1,52 @@
+[
+  {
+    "case_id": "HeavyOverlap",
+    "raw_official_cpwer": "3.5",
+    "character_level_cpwer": "0.163121",
+    "cpwer_bridge_lite": "0.162827",
+    "raw_to_character_gain": "3.336879",
+    "character_to_bridge_delta": "0.000294",
+    "adaptation_status": "adapted_and_aligned",
+    "recommendation": "Default to character_spaced MeetEval for this CJK case."
+  },
+  {
+    "case_id": "LightOverlap",
+    "raw_official_cpwer": "4.0",
+    "character_level_cpwer": "0.135714",
+    "cpwer_bridge_lite": "0.135164",
+    "raw_to_character_gain": "3.864286",
+    "character_to_bridge_delta": "0.00055",
+    "adaptation_status": "adapted_and_aligned",
+    "recommendation": "Default to character_spaced MeetEval for this CJK case."
+  },
+  {
+    "case_id": "MidOverlap",
+    "raw_official_cpwer": "4.0",
+    "character_level_cpwer": "0.168421",
+    "cpwer_bridge_lite": "0.16862",
+    "raw_to_character_gain": "3.831579",
+    "character_to_bridge_delta": "-0.000199",
+    "adaptation_status": "adapted_and_aligned",
+    "recommendation": "Default to character_spaced MeetEval for this CJK case."
+  },
+  {
+    "case_id": "NoOverlap",
+    "raw_official_cpwer": "4.0",
+    "character_level_cpwer": "0.053957",
+    "cpwer_bridge_lite": "0.054312",
+    "raw_to_character_gain": "3.946043",
+    "character_to_bridge_delta": "-0.000355",
+    "adaptation_status": "adapted_and_aligned",
+    "recommendation": "Default to character_spaced MeetEval for this CJK case."
+  },
+  {
+    "case_id": "OppositeOverlap",
+    "raw_official_cpwer": "3.5",
+    "character_level_cpwer": "0.083333",
+    "cpwer_bridge_lite": "0.083193",
+    "raw_to_character_gain": "3.416667",
+    "character_to_bridge_delta": "0.00014",
+    "adaptation_status": "adapted_and_aligned",
+    "recommendation": "Default to character_spaced MeetEval for this CJK case."
+  }
+]
