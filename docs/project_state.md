@@ -1916,6 +1916,13 @@ Speaker profile embedding trial execution receipt completion dashboard bridge ch
 - `results/tables/speaker_profile_embedding_trial_execution_receipt_completion_dashboard_bridge_checklist.json`
 - This checklist turns the speaker-profile completion dashboard into an explicit verification gate before the current readiness target is reopened.
 
+Speaker profile embedding trial execution receipt status preflight bridge checklist:
+
+- `results/figures/speaker_profile_embedding_trial_execution_receipt_status_preflight_bridge_checklist.md`
+- `results/tables/speaker_profile_embedding_trial_execution_receipt_status_preflight_bridge_checklist.csv`
+- `results/tables/speaker_profile_embedding_trial_execution_receipt_status_preflight_bridge_checklist.json`
+- This checklist verifies the completion-dashboard bridge before the machine-readable speaker-profile status rollup is reopened.
+
 External validation slice staging handoff receipt readiness bridge checklist:
 
 - `results/figures/external_validation_slice_staging_handoff_receipt_readiness_bridge_checklist.md`
@@ -2906,6 +2913,7 @@ python -m src.speaker_profile_embedding_trial_execution_receipt_milestone_card
 python -m src.speaker_profile_embedding_trial_execution_receipt_milestone_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_receipt_completion_dashboard
 python -m src.speaker_profile_embedding_trial_execution_receipt_completion_dashboard_bridge_checklist
+python -m src.speaker_profile_embedding_trial_execution_receipt_status_preflight_bridge_checklist
 python -m src.external_validation_slice_staging_handoff_receipt_readiness
 python -m src.frontier_execution_receipt_queue_status
 python -m src.meeteval_cpwer_execution_receipt_readiness_bridge_checklist

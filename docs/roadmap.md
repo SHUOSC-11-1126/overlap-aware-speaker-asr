@@ -1282,6 +1282,14 @@ Update: `speaker_profile` now also has an execution receipt completion dashboard
 - Script: `python3 -m src.speaker_profile_embedding_trial_execution_receipt_completion_dashboard_bridge_checklist`
 - This turns that completion dashboard into an explicit verification gate before reopening the current readiness artifact, still without claiming voiceprint success.
 
+Update: `speaker_profile` now also has an execution receipt status preflight bridge checklist.
+
+- Execution receipt status preflight bridge checklist: `results/tables/speaker_profile_embedding_trial_execution_receipt_status_preflight_bridge_checklist.csv`
+- Execution receipt status preflight bridge checklist JSON: `results/tables/speaker_profile_embedding_trial_execution_receipt_status_preflight_bridge_checklist.json`
+- Summary view: `results/figures/speaker_profile_embedding_trial_execution_receipt_status_preflight_bridge_checklist.md`
+- Script: `python3 -m src.speaker_profile_embedding_trial_execution_receipt_status_preflight_bridge_checklist`
+- This verifies the completion-dashboard bridge before reopening the machine-readable speaker-profile status rollup, still without claiming voiceprint success.
+
 Update: `external_validation` now also has staging receipt scaffold bridge checklists and execution status.
 
 - Staging receipt scaffold bridge: `results/tables/external_validation_slice_staging_handoff_receipt_scaffold_bridge_checklist.csv`
