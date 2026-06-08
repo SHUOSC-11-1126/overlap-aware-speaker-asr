@@ -398,6 +398,12 @@ Current frontier operator next-action status handoff result:
 - `results/tables/frontier_operator_next_action_status_handoff.csv`
 - The handoff splits that top-level status snapshot into one ready-lane action and one blocker-lane containment action.
 
+Current frontier operator next-action status handoff bridge checklist result:
+
+- `results/figures/frontier_operator_next_action_status_handoff_bridge_checklist.md`
+- `results/tables/frontier_operator_next_action_status_handoff_bridge_checklist.csv`
+- The checklist verifies each lane-specific top-level handoff before the next contributor opens the lane target artifact.
+
 Current frontier focus checklist result:
 
 - `results/figures/frontier_focus_card_checklist.md` now turns that focus card into a one-glance verification checklist

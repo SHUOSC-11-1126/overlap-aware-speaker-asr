@@ -1314,6 +1314,13 @@ Update: the frontier now also has a top-level operator status handoff.
 - Script: `python3 -m src.frontier_operator_next_action_status_handoff`
 - Current evidence turns the unified top-level status snapshot into one ready-lane action for `meeteval_compatibility` and one blocker-lane containment action for `external_validation`.
 
+Update: the frontier now also has a top-level operator status handoff bridge checklist.
+
+- Frontier operator status handoff bridge checklist: `results/tables/frontier_operator_next_action_status_handoff_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_operator_next_action_status_handoff_bridge_checklist.md`
+- Script: `python3 -m src.frontier_operator_next_action_status_handoff_bridge_checklist`
+- Current evidence requires verifying each lane-specific top-level handoff before its target artifact is opened.
+
 Update: the frontier now has a per-frontier execution handoff.
 
 - Frontier execution queue handoff: `results/tables/frontier_execution_queue_handoff.csv`

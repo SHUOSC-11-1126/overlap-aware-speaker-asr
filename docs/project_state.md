@@ -1529,6 +1529,12 @@ Frontier operator next-action status handoff:
 - `results/tables/frontier_operator_next_action_status_handoff.csv`
 - The handoff splits the unified top-level status snapshot into one ready-lane action for `meeteval_compatibility` and one blocker-lane containment action for `external_validation`.
 
+Frontier operator next-action status handoff bridge checklist:
+
+- `results/figures/frontier_operator_next_action_status_handoff_bridge_checklist.md`
+- `results/tables/frontier_operator_next_action_status_handoff_bridge_checklist.csv`
+- The checklist verifies each lane-specific top-level handoff before the lane target artifact is opened, keeping the transition coordination-only.
+
 Frontier execution queue completion summary bridge checklist:
 
 - `results/figures/frontier_execution_queue_completion_summary_bridge_checklist.md`
