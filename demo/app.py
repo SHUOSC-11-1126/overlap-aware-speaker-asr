@@ -184,6 +184,11 @@ def render_frontier_fill_status() -> None:
                 "status": [row.get("reconciliation_status", "") for row in reconciliation],
             }
         )
+    tokenization_handoff = load_json_dict("results/tables/meeteval_tokenization_adaptation_handoff.json")
+    if tokenization_handoff:
+        st.markdown("**Tokenization adaptation handoff**")
+        st.metric("Handoff status", tokenization_handoff.get("handoff_status", "unknown"))
+        st.caption(f"Target: `{tokenization_handoff.get('handoff_target', '')}`")
     if dashboard:
         st.markdown("**Fill execution dashboard**")
         st.write(dashboard.get("dashboard_note", ""))
@@ -241,6 +246,35 @@ def render_speaker_profile_status() -> None:
         st.markdown("**Diagnostic bridge checklist**")
         st.write(bridge[0].get("bridge_note", ""))
         st.caption(f"Next gate: {bridge[0].get('next_gate', '')}")
+    handoff_readiness = load_json_dict("results/tables/speaker_profile_embedding_trial_handoff_readiness.json")
+    handoff_completion = load_json_dict(
+        "results/tables/speaker_profile_embedding_trial_handoff_completion_summary.json"
+    )
+    embedding_handoff = load_json_dict("results/tables/speaker_profile_embedding_trial_handoff.json")
+    embedding_trial = load_json_dict("results/tables/speaker_profile_embedding_trial.json")
+    if handoff_readiness:
+        st.markdown("**Embedding trial handoff readiness**")
+        col_c, col_d = st.columns(2)
+        with col_c:
+            st.metric("Handoff readiness", handoff_readiness.get("readiness_status", "unknown"))
+        with col_d:
+            st.metric("Trial target", handoff_readiness.get("trial_case_target", "—"))
+    if handoff_completion:
+        st.caption(f"Handoff queue: `{handoff_completion.get('queue_status', '')}`")
+    if embedding_handoff:
+        st.markdown("**Embedding trial handoff**")
+        st.write(embedding_handoff.get("handoff_goal", ""))
+    if embedding_trial:
+        st.table(
+            {
+                "field": ["case_id", "trial_status", "profile_confidence_gap"],
+                "value": [
+                    embedding_trial.get("case_id", ""),
+                    embedding_trial.get("trial_status", ""),
+                    embedding_trial.get("profile_confidence_gap", ""),
+                ],
+            }
+        )
     st.info(
         "Text-profile proxy is a risk signal only — not deployment-ready speaker identification. "
         "All gold cases currently prefer swapped alignment."
