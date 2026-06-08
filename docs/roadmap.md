@@ -323,6 +323,14 @@ Update: `speaker_profile` now also has a multi-signal diagnostic bridge.
 - Summary card: `results/figures/speaker_profile_multisignal_summary.md`
 - Current evidence says the text and audio proxy branches agree on swapped-bias direction, but the audio side is still only `weak_support`, so the justified next step is a narrow embedding baseline rather than any attribution claim.
 
+Update: `speaker_profile` now also has a go-no-go board.
+
+- Go-no-go board: `results/tables/speaker_profile_go_no_go_board.csv`
+- Summary view: `results/figures/speaker_profile_go_no_go_board.md`
+- Go-no-go summary: `results/tables/speaker_profile_go_no_go_summary.csv`
+- Script: `python3 -m src.speaker_profile_go_no_go_board`
+- Current evidence keeps the chain narrow: `NoOverlap` is execution-ready for one embedding-baseline writeback, but attribution claims remain blocked by weak support.
+
 Update: `llm_critic` now has a first qualitative review pass.
 
 - Review pass table: `results/tables/llm_critic_review_pass.csv`

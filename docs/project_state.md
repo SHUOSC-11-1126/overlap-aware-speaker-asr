@@ -1439,6 +1439,18 @@ Speaker profile embedding trial execution receipt readiness:
 - `results/tables/speaker_profile_embedding_trial_execution_receipt_readiness.csv`
 - Receipt readiness reports `readiness_status = receipt_ready_to_fill` for `NoOverlap` with `swapped_bias_detected = true`; voiceprint execution remains pending.
 
+Speaker profile go-no-go board:
+
+- `results/figures/speaker_profile_go_no_go_board.md`
+- `results/tables/speaker_profile_go_no_go_board.csv`
+- The board shows `4/4` execution checkpoints are ready for a narrow `NoOverlap` embedding-baseline path.
+
+Speaker profile go-no-go summary:
+
+- `results/figures/speaker_profile_go_no_go_summary.md`
+- `results/tables/speaker_profile_go_no_go_summary.csv`
+- `overall_state = narrow_execution_ready` while `primary_boundary = attribution_claims_still_blocked_by_weak_support`.
+
 External validation slice staging handoff receipt readiness:
 
 - `results/figures/external_validation_slice_staging_handoff_receipt_readiness.md`
