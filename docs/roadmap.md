@@ -1790,6 +1790,15 @@ Update: the frontier receipt layer now has a writeback packet bridge checklist.
 - Script: `python3 -m src.frontier_execution_receipt_queue_writeback_packet_bridge_checklist`
 - This verifies the writeback packet before the current receipt-queue operator brief is reopened.
 
+Update: the frontier receipt layer now has a writeback status rollup.
+
+- Writeback status: `results/tables/frontier_execution_receipt_queue_writeback_status.csv`
+- Writeback status JSON: `results/tables/frontier_execution_receipt_queue_writeback_status.json`
+- Writeback summary: `results/tables/frontier_execution_receipt_queue_writeback_summary.json`
+- Summary view: `results/figures/frontier_execution_receipt_queue_writeback_status.md`
+- Script: `python3 -m src.frontier_execution_receipt_queue_writeback_status`
+- This makes the current writeback truth explicit: `meeteval` is already written back while the speaker-profile and external-staging receipts remain template-only, so the combined writeback state is still in progress.
+
 Update: the frontier receipt layer now has a fill queue status rollup.
 
 - Fill queue status: `results/tables/frontier_execution_receipt_fill_queue_status.csv`

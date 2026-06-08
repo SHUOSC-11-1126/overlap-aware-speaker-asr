@@ -2007,6 +2007,14 @@ Frontier execution receipt queue writeback packet bridge checklist:
 - `results/tables/frontier_execution_receipt_queue_writeback_packet_bridge_checklist.json`
 - This checklist verifies the writeback packet before the current receipt-queue operator brief is reopened.
 
+Frontier execution receipt queue writeback status:
+
+- `results/figures/frontier_execution_receipt_queue_writeback_status.md`
+- `results/tables/frontier_execution_receipt_queue_writeback_status.csv`
+- `results/tables/frontier_execution_receipt_queue_writeback_status.json`
+- `results/tables/frontier_execution_receipt_queue_writeback_summary.json`
+- This dynamic rollup records which receipt-queue execution receipts are already written back, which remain template-only, and whether the overall writeback stack is still in progress.
+
 Frontier execution receipt fill queue status:
 
 - `results/figures/frontier_execution_receipt_fill_queue_status.md`
@@ -2771,6 +2779,7 @@ python -m src.frontier_execution_receipt_queue_execution_receipt_bridge
 python -m src.frontier_execution_receipt_queue_execution_receipt_bridge_checklist
 python -m src.frontier_execution_receipt_queue_writeback_packet
 python -m src.frontier_execution_receipt_queue_writeback_packet_bridge_checklist
+python -m src.frontier_execution_receipt_queue_writeback_status
 python -m src.frontier_execution_receipt_fill_queue_status
 python -m src.frontier_execution_receipt_fill_queue_status_bridge_checklist
 python -m src.frontier_execution_receipt_fill_queue_completion_summary
