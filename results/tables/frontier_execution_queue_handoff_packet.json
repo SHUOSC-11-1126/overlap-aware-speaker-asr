@@ -113,6 +113,13 @@
   },
   {
     "packet_order": "17",
+    "section_name": "execution_queue_status_reentry_bridge_checklist",
+    "artifact_path": "results/figures/frontier_execution_queue_status_reentry_bridge_checklist.md",
+    "section_role": "Verify the status reentry card before opening the execution queue handoff bridge.",
+    "packet_note": "Execution queue packet section while queue_status=queue_complete, ready_chain_count=3, pending_chain_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "18",
     "section_name": "execution_queue_handoff_bridge_checklist",
     "artifact_path": "results/figures/frontier_execution_queue_handoff_bridge_checklist.md",
     "section_role": "Verify each execution handoff before opening the receipt target for that frontier.",

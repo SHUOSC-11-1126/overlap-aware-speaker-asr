@@ -115,6 +115,12 @@ PACKET_SECTIONS = [
     ),
     (
         "17",
+        "execution_queue_status_reentry_bridge_checklist",
+        "results/figures/frontier_execution_queue_status_reentry_bridge_checklist.md",
+        "Verify the status reentry card before opening the execution queue handoff bridge.",
+    ),
+    (
+        "18",
         "execution_queue_handoff_bridge_checklist",
         "results/figures/frontier_execution_queue_handoff_bridge_checklist.md",
         "Verify each execution handoff before opening the receipt target for that frontier.",
