@@ -1830,7 +1830,7 @@ Speaker profile embedding trial execution receipt handoff packet:
 - `results/figures/speaker_profile_embedding_trial_execution_receipt_handoff_packet.md`
 - `results/tables/speaker_profile_embedding_trial_execution_receipt_handoff_packet.csv`
 - `results/tables/speaker_profile_embedding_trial_execution_receipt_handoff_packet.json`
-- This packet compresses the current speaker-profile receipt-readiness and receipt-open-card sub-stack into one coordination entrypoint for `NoOverlap`, while remaining explicitly experimental/frontier only.
+- This packet consolidates the current speaker-profile receipt readiness, open-card, handoff, operator-brief, runbook, checkpoint, milestone, completion-dashboard, and status-reentry layers into one coordination entrypoint for `NoOverlap`, while remaining explicitly experimental/frontier only.
 
 Speaker profile embedding trial execution receipt handoff packet bridge checklist:
 

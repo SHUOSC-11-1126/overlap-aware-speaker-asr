@@ -1192,7 +1192,7 @@ Update: `speaker_profile` now also has an execution receipt handoff packet and p
 - Execution receipt handoff packet bridge checklist JSON: `results/tables/speaker_profile_embedding_trial_execution_receipt_handoff_packet_bridge_checklist.json`
 - Summary views: `results/figures/speaker_profile_embedding_trial_execution_receipt_handoff_packet.md`, `results/figures/speaker_profile_embedding_trial_execution_receipt_handoff_packet_bridge_checklist.md`
 - Scripts: `python3 -m src.speaker_profile_embedding_trial_execution_receipt_handoff_packet`, `python3 -m src.speaker_profile_embedding_trial_execution_receipt_handoff_packet_bridge_checklist`
-- This compresses the current receipt-readiness and receipt-open-card path into one reusable entry packet plus a first-gate bridge, still without claiming any voiceprint success.
+- This now consolidates the current receipt-readiness, receipt-open-card, handoff, operator-brief, runbook, checkpoint, milestone, completion-dashboard, and status-reentry path into one reusable entry packet plus a first-gate bridge, still without claiming any voiceprint success.
 
 Update: `speaker_profile` now also has an execution receipt operator brief.
 
