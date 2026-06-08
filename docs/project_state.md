@@ -1847,6 +1847,18 @@ Frontier execution receipt queue handoff bridge checklist:
 - `results/tables/frontier_execution_receipt_queue_handoff_bridge_checklist.csv`
 - This checklist connects the receipt-fill handoff to per-frontier execution receipts without claiming benchmark execution.
 
+Frontier execution receipt queue operator brief:
+
+- `results/figures/frontier_execution_receipt_queue_operator_brief.md`
+- `results/tables/frontier_execution_receipt_queue_operator_brief.csv`
+- This brief turns the first receipt-queue handoff row into a plain-language next-step card for the current operator.
+
+Frontier execution receipt queue runbook card:
+
+- `results/figures/frontier_execution_receipt_queue_runbook_card.md`
+- `results/tables/frontier_execution_receipt_queue_runbook_card.csv`
+- This runbook card turns the receipt queue operator brief into a one-page first-action execution card for the current first receipt-queue target.
+
 Frontier execution receipt fill queue status:
 
 - `results/figures/frontier_execution_receipt_fill_queue_status.md`
@@ -2586,6 +2598,8 @@ python -m src.frontier_execution_receipt_queue_completion_summary
 python -m src.frontier_execution_receipt_queue_completion_summary_bridge_checklist
 python -m src.frontier_execution_receipt_queue_handoff
 python -m src.frontier_execution_receipt_queue_handoff_bridge_checklist
+python -m src.frontier_execution_receipt_queue_operator_brief
+python -m src.frontier_execution_receipt_queue_runbook_card
 python -m src.frontier_execution_receipt_fill_queue_status
 python -m src.frontier_execution_receipt_fill_queue_status_bridge_checklist
 python -m src.frontier_execution_receipt_fill_queue_completion_summary

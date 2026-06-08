@@ -1605,6 +1605,20 @@ Update: the frontier receipt layer now has a handoff bridge checklist.
 - Summary view: `results/figures/frontier_execution_receipt_queue_handoff_bridge_checklist.md`
 - This connects the receipt-fill handoff to per-frontier execution receipts without claiming benchmark execution.
 
+Update: the frontier receipt layer now has an operator brief.
+
+- Operator brief: `results/tables/frontier_execution_receipt_queue_operator_brief.csv`
+- Summary view: `results/figures/frontier_execution_receipt_queue_operator_brief.md`
+- Script: `python3 -m src.frontier_execution_receipt_queue_operator_brief`
+- This turns the first receipt-fill handoff row into a plain-language operator card without claiming benchmark execution.
+
+Update: the frontier receipt layer now has a runbook card.
+
+- Runbook card: `results/tables/frontier_execution_receipt_queue_runbook_card.csv`
+- Summary view: `results/figures/frontier_execution_receipt_queue_runbook_card.md`
+- Script: `python3 -m src.frontier_execution_receipt_queue_runbook_card`
+- This condenses the first receipt-queue action into a one-page execution card while keeping the work explicitly coordination-only.
+
 Update: the frontier receipt layer now has a fill queue status rollup.
 
 - Fill queue status: `results/tables/frontier_execution_receipt_fill_queue_status.csv`
