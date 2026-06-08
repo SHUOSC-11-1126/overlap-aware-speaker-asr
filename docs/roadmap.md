@@ -1377,6 +1377,13 @@ Update: the frontier now also has a top-level operator status handoff runbook ca
 - Script: `python3 -m src.frontier_operator_next_action_status_handoff_runbook_card`
 - Current evidence condenses the current ready-lane action into a one-page execution card with a concrete completion signal tied to the ready target artifact.
 
+Update: the frontier now also has a top-level operator status handoff runbook bridge checklist.
+
+- Frontier operator status handoff runbook bridge checklist: `results/tables/frontier_operator_next_action_status_handoff_runbook_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_operator_next_action_status_handoff_runbook_bridge_checklist.md`
+- Script: `python3 -m src.frontier_operator_next_action_status_handoff_runbook_bridge_checklist`
+- Current evidence requires verifying that runbook card before the phase checkpoint card target is reopened.
+
 Update: the frontier now also has a top-level operator status handoff phase checkpoint card.
 
 - Frontier operator status handoff phase checkpoint card: `results/tables/frontier_operator_next_action_status_handoff_phase_checkpoint_card.csv`
