@@ -1,0 +1,6 @@
+{
+  "operator_frontier": "meeteval_compatibility",
+  "prerequisite_artifact": "results/figures/frontier_execution_receipt_queue_operator_brief.md",
+  "receipt_target": "results/tables/meeteval_cpwer_execution_receipt.json",
+  "bridge_note": "Open the receipt queue operator brief first, then write back through results/tables/meeteval_cpwer_execution_receipt.json after the real meeteval_compatibility frontier run. No benchmark execution is claimed by this bridge alone."
+}
