@@ -126,6 +126,10 @@ results/synthetic_overlap_v2/
 !results/tables/llm_critic_review_pass_final_receipt.json
 !results/tables/llm_critic_review_pass_completion_summary.csv
 !results/tables/llm_critic_review_pass_completion_summary.json
+!results/tables/llm_critic_go_no_go_board.csv
+!results/tables/llm_critic_go_no_go_board.json
+!results/tables/llm_critic_go_no_go_summary.csv
+!results/tables/llm_critic_go_no_go_summary.json
 !results/tables/llm_critic_review_pass_final_bridge_checklist.csv
 !results/tables/llm_critic_review_pass_final_bridge_checklist.json
 !results/tables/external_validation_slice_manifest.csv
@@ -870,6 +874,8 @@ results/synthetic_overlap_v2/
 !results/figures/llm_critic_review_pass_fifth.md
 !results/figures/llm_critic_review_pass_final_receipt.md
 !results/figures/llm_critic_review_pass_completion_summary.md
+!results/figures/llm_critic_go_no_go_board.md
+!results/figures/llm_critic_go_no_go_summary.md
 !results/figures/llm_critic_review_pass_final_bridge_checklist.md
 !results/figures/external_validation_slice_manifest.md
 !results/figures/external_validation_slice_manifest_receipt.md
