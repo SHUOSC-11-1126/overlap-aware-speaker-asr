@@ -1266,6 +1266,14 @@ Update: `speaker_profile` now also has an execution receipt milestone bridge che
 - Script: `python3 -m src.speaker_profile_embedding_trial_execution_receipt_milestone_bridge_checklist`
 - This turns that milestone card into an explicit verification gate before reopening the current readiness artifact, still without claiming voiceprint success.
 
+Update: `speaker_profile` now also has an execution receipt completion dashboard.
+
+- Execution receipt completion dashboard: `results/tables/speaker_profile_embedding_trial_execution_receipt_completion_dashboard.csv`
+- Execution receipt completion dashboard JSON: `results/tables/speaker_profile_embedding_trial_execution_receipt_completion_dashboard.json`
+- Summary view: `results/figures/speaker_profile_embedding_trial_execution_receipt_completion_dashboard.md`
+- Script: `python3 -m src.speaker_profile_embedding_trial_execution_receipt_completion_dashboard`
+- This compresses the current speaker-profile receipt state into one operator-facing dashboard, still without filling the receipt or claiming voiceprint success.
+
 Update: `external_validation` now also has staging receipt scaffold bridge checklists and execution status.
 
 - Staging receipt scaffold bridge: `results/tables/external_validation_slice_staging_handoff_receipt_scaffold_bridge_checklist.csv`

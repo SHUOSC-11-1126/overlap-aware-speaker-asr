@@ -1,0 +1,2 @@
+﻿current_case,next_milestone,remaining_gate_count,dominant_blocker,dashboard_note
+NoOverlap,speaker_profile_receipt_readiness_reopen_ready,0,receipt_template_fill_pending,NoOverlap remains in receipt_ready_to_fill while template-only execution receipts remain the dominant coordination blocker. This remains coordination-only and does not fill the receipt or claim voiceprint success.
