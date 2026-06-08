@@ -428,6 +428,12 @@ Current frontier operator next-action status handoff packet bridge checklist res
 - `results/tables/frontier_operator_next_action_status_handoff_packet_bridge_checklist.csv`
 - The checklist verifies that packet before the next contributor reopens the queue-level top-level handoff summary.
 
+Current frontier operator next-action status handoff operator brief result:
+
+- `results/figures/frontier_operator_next_action_status_handoff_operator_brief.md`
+- `results/tables/frontier_operator_next_action_status_handoff_operator_brief.csv`
+- The brief turns the queue-level status/handoff stack into one plain-language next-step card for the current operator.
+
 Current frontier focus checklist result:
 
 - `results/figures/frontier_focus_card_checklist.md` now turns that focus card into a one-glance verification checklist

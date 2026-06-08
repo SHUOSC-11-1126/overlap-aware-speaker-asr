@@ -1,0 +1,12 @@
+# Frontier Operator Next-Action Status Handoff Operator Brief
+
+This generated brief gives the current top-level operator a plain-language next step summary for the status/handoff subchain. It remains experimental/frontier coordination only and does not claim experiment completion.
+
+- Ready frontier: `meeteval_compatibility`
+- Ready action: `If execution starts, use character-spaced cpWER and fill the official receipt with real evidence.`
+- Ready target: `results/tables/meeteval_cpwer_execution_receipt.json`
+- Blocked frontier: `external_validation`
+- Blocked target: `results/tables/external_validation_license_confirmation_receipt_bridge.json`
+- Evidence path: `results/figures/frontier_operator_next_action_status_handoff.md; results/figures/frontier_operator_next_action_status_handoff_bridge_checklist.md`
+- Urgency: queue_status=queue_complete; ready_lane_count=1; blocked_lane_count=1
+- Operator note: Advance meeteval_compatibility first while keeping external_validation visible as the current unblock target. This remains coordination-only and does not claim frontier execution.

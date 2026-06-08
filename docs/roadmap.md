@@ -1349,6 +1349,13 @@ Update: the frontier now also has a top-level operator status handoff packet bri
 - Script: `python3 -m src.frontier_operator_next_action_status_handoff_packet_bridge_checklist`
 - Current evidence requires verifying that packet before the queue-level top-level handoff summary is reopened.
 
+Update: the frontier now also has a top-level operator status handoff operator brief.
+
+- Frontier operator status handoff operator brief: `results/tables/frontier_operator_next_action_status_handoff_operator_brief.csv`
+- Summary view: `results/figures/frontier_operator_next_action_status_handoff_operator_brief.md`
+- Script: `python3 -m src.frontier_operator_next_action_status_handoff_operator_brief`
+- Current evidence turns the queue-level status/handoff stack into a single plain-language next-step card for the current operator.
+
 Update: the frontier now has a per-frontier execution handoff.
 
 - Frontier execution queue handoff: `results/tables/frontier_execution_queue_handoff.csv`

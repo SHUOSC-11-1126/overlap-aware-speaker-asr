@@ -1559,6 +1559,12 @@ Frontier operator next-action status handoff packet bridge checklist:
 - `results/tables/frontier_operator_next_action_status_handoff_packet_bridge_checklist.csv`
 - The checklist verifies that packet before the queue-level top-level handoff summary is reopened, keeping the transition coordination-only.
 
+Frontier operator next-action status handoff operator brief:
+
+- `results/figures/frontier_operator_next_action_status_handoff_operator_brief.md`
+- `results/tables/frontier_operator_next_action_status_handoff_operator_brief.csv`
+- The brief turns the queue-level status/handoff stack into one plain-language next-step card with the current ready frontier, blocked frontier, and evidence path.
+
 Frontier execution queue completion summary bridge checklist:
 
 - `results/figures/frontier_execution_queue_completion_summary_bridge_checklist.md`
