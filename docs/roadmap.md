@@ -1210,6 +1210,14 @@ Update: `speaker_profile` now also has an execution receipt operator brief bridg
 - Script: `python3 -m src.speaker_profile_embedding_trial_execution_receipt_operator_brief_bridge`
 - This connects the plain-language operator brief back to the current speaker-profile readiness artifact, keeping the receipt flow explicit without claiming voiceprint success.
 
+Update: `speaker_profile` now also has an execution receipt operator brief bridge checklist.
+
+- Execution receipt operator brief bridge checklist: `results/tables/speaker_profile_embedding_trial_execution_receipt_operator_brief_bridge_checklist.csv`
+- Execution receipt operator brief bridge checklist JSON: `results/tables/speaker_profile_embedding_trial_execution_receipt_operator_brief_bridge_checklist.json`
+- Summary view: `results/figures/speaker_profile_embedding_trial_execution_receipt_operator_brief_bridge_checklist.md`
+- Script: `python3 -m src.speaker_profile_embedding_trial_execution_receipt_operator_brief_bridge_checklist`
+- This turns that operator brief bridge into an explicit verification gate before reopening the current speaker-profile readiness artifact, still without claiming voiceprint success.
+
 Update: `external_validation` now also has staging receipt scaffold bridge checklists and execution status.
 
 - Staging receipt scaffold bridge: `results/tables/external_validation_slice_staging_handoff_receipt_scaffold_bridge_checklist.csv`
