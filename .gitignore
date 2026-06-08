@@ -48,6 +48,8 @@ results/synthetic_overlap_v2/
 !results/tables/meeteval_dry_run_receipt_board.json
 !results/tables/meeteval_dry_run_receipt_map.csv
 !results/tables/meeteval_dry_run_receipt_map.json
+!results/tables/meeteval_dry_run_bridge_checklist.csv
+!results/tables/meeteval_dry_run_bridge_checklist.json
 !results/tables/meeteval_cpwer_bridge.csv
 !results/tables/meeteval_cpwer_bridge.json
 !results/tables/meeteval_cpwer_bridge_handoff.csv
@@ -480,6 +482,10 @@ results/synthetic_overlap_v2/
 !results/tables/speaker_profile_embedding_trial_execution_scaffold_receipt.json
 !results/tables/speaker_profile_embedding_trial_execution_scaffold_readiness.csv
 !results/tables/speaker_profile_embedding_trial_execution_scaffold_readiness.json
+!results/tables/speaker_profile_checklist.csv
+!results/tables/speaker_profile_checklist.json
+!results/tables/speaker_profile_method_bridge_checklist.csv
+!results/tables/speaker_profile_method_bridge_checklist.json
 !results/figures/speaker_profile_embedding_trial_execution_scaffold_readiness.md
 !results/tables/speaker_profile_embedding_trial_execution_scaffold_readiness_bridge_checklist.csv
 !results/tables/speaker_profile_embedding_trial_execution_scaffold_readiness_bridge_checklist.json
@@ -565,6 +571,7 @@ results/synthetic_overlap_v2/
 !results/figures/meeteval_dry_run_receipt_checklist.md
 !results/figures/meeteval_dry_run_receipt_board.md
 !results/figures/meeteval_dry_run_receipt_map.md
+!results/figures/meeteval_dry_run_bridge_checklist.md
 !results/figures/meeteval_cpwer_bridge.md
 !results/figures/meeteval_cpwer_bridge_handoff.md
 !results/figures/meeteval_cpwer_bridge_handoff_bridge_checklist.md
@@ -794,6 +801,8 @@ results/synthetic_overlap_v2/
 !results/figures/external_validation_slice_staging_readiness_handoff_receipt.md
 !results/figures/meeteval_cpwer_execution_scaffold.md
 !results/figures/meeteval_cpwer_execution_scaffold_receipt.md
+!results/figures/speaker_profile_checklist.md
+!results/figures/speaker_profile_method_bridge_checklist.md
 !results/figures/speaker_profile_embedding_trial_execution_scaffold.md
 !results/figures/speaker_profile_embedding_trial_execution_scaffold_receipt.md
 !results/figures/speaker_profile_embedding_trial_execution_handoff.md
