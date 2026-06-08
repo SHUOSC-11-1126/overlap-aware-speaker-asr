@@ -1363,6 +1363,13 @@ Update: the frontier now also has a top-level operator status handoff operator b
 - Script: `python3 -m src.frontier_operator_next_action_status_handoff_operator_brief_bridge`
 - Current evidence connects the plain-language operator brief to the current runbook card target.
 
+Update: the frontier now also has a top-level operator status handoff operator brief bridge checklist.
+
+- Frontier operator status handoff operator brief bridge checklist: `results/tables/frontier_operator_next_action_status_handoff_operator_brief_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_operator_next_action_status_handoff_operator_brief_bridge_checklist.md`
+- Script: `python3 -m src.frontier_operator_next_action_status_handoff_operator_brief_bridge_checklist`
+- Current evidence requires verifying that bridge before the current runbook card target is reopened.
+
 Update: the frontier now also has a top-level operator status handoff runbook card.
 
 - Frontier operator status handoff runbook card: `results/tables/frontier_operator_next_action_status_handoff_runbook_card.csv`

@@ -440,6 +440,12 @@ Current frontier operator next-action status handoff operator brief bridge resul
 - `results/tables/frontier_operator_next_action_status_handoff_operator_brief_bridge.csv`
 - The bridge connects the plain-language `status/handoff` operator brief to the current runbook card target.
 
+Current frontier operator next-action status handoff operator brief bridge checklist result:
+
+- `results/figures/frontier_operator_next_action_status_handoff_operator_brief_bridge_checklist.md`
+- `results/tables/frontier_operator_next_action_status_handoff_operator_brief_bridge_checklist.csv`
+- The checklist verifies that bridge before the next contributor opens the current runbook card target.
+
 Current frontier operator next-action status handoff runbook card result:
 
 - `results/figures/frontier_operator_next_action_status_handoff_runbook_card.md`
