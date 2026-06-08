@@ -1,0 +1,10 @@
+{
+  "scope": "frontier_operator_next_action_card",
+  "coordination_state": "mixed_ready_state",
+  "ready_frontier": "meeteval_compatibility",
+  "blocked_frontier": "external_validation",
+  "ready_action_lane": "ready_lane",
+  "blocked_action_lane": "blocked_lane",
+  "operator_sequence": "ready_lane:meeteval_compatibility -> blocked_lane:external_validation",
+  "observation": "Operator card only; it converts top-level frontier readiness into the next coordination actions without claiming experiment completion."
+}

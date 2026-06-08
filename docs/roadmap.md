@@ -1208,6 +1208,14 @@ Update: the frontier now also has a top-level go-no-go board.
 - Script: `python3 -m src.frontier_go_no_go_board`
 - Current evidence shows four frontier tracks are ready for narrow next steps, while `external_validation` remains the only blocked track because license confirmation is still pending.
 
+Update: the frontier now also has a top-level operator next-action card.
+
+- Frontier operator card: `results/tables/frontier_operator_next_action_card.csv`
+- Summary view: `results/figures/frontier_operator_next_action_card.md`
+- Frontier operator summary: `results/tables/frontier_operator_next_action_summary.csv`
+- Script: `python3 -m src.frontier_operator_next_action_card`
+- Current evidence turns the unified board into one ordered sequence: push `meeteval_compatibility` first as the ready lane, and separately clear `external_validation` as the only blocked lane.
+
 Update: the frontier now has a per-frontier execution handoff.
 
 - Frontier execution queue handoff: `results/tables/frontier_execution_queue_handoff.csv`

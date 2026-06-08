@@ -1,0 +1,8 @@
+# Frontier Operator Next-Action Card
+
+This generated card converts the unified frontier go/no-go board into explicit next actions. It remains coordination-only and does not claim that any frontier result has been achieved.
+
+| action_lane | frontier_name | go_no_go_state | current_state | operator_action | prerequisite_artifact | target_artifact | action_boundary |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ready_lane | meeteval_compatibility | go | receipt_ready_to_fill | If execution starts, use character-spaced cpWER and fill the official receipt with real evidence. | results/figures/meeteval_cpwer_tokenization_gain_scorecard_summary.md | results/tables/meeteval_cpwer_execution_receipt.json | official_benchmark_claims_still_blocked_until_receipt_fill |
+| blocked_lane | external_validation | no_go | blocked_by_license_confirmation | Record and write back the license confirmation decision before any external staging attempt. | results/figures/external_validation_go_no_go_summary.md | results/tables/external_validation_license_confirmation_receipt_bridge.json | license_confirmation_pending |

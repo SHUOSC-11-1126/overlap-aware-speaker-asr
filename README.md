@@ -302,6 +302,18 @@ Current frontier go-no-go summary result:
 - `results/tables/frontier_go_no_go_summary.csv`
 - The summary records `highest_priority_ready_frontier = meeteval_compatibility`, `highest_priority_blocked_frontier = external_validation`, and keeps the whole conclusion explicitly at the coordination layer rather than claiming frontier completion.
 
+Current frontier operator next-action card result:
+
+- `results/figures/frontier_operator_next_action_card.md`
+- `results/tables/frontier_operator_next_action_card.csv`
+- The card turns the top-level board into two explicit operator lanes: push the ready MeetEval receipt path first, and separately clear the external validation license blocker.
+
+Current frontier operator next-action summary result:
+
+- `results/figures/frontier_operator_next_action_summary.md`
+- `results/tables/frontier_operator_next_action_summary.csv`
+- The summary records the operator sequence `ready_lane:meeteval_compatibility -> blocked_lane:external_validation` without claiming either frontier has been completed.
+
 Current frontier focus checklist result:
 
 - `results/figures/frontier_focus_card_checklist.md` now turns that focus card into a one-glance verification checklist
