@@ -1665,7 +1665,7 @@ Frontier execution queue handoff packet:
 
 - `results/figures/frontier_execution_queue_handoff_packet.md`
 - `results/tables/frontier_execution_queue_handoff_packet.csv`
-- This packet consolidates the execution queue status, queue summary, per-frontier handoff layers, the operator brief, the runbook card, the runbook bridge checklist, the phase checkpoint card, and the new milestone card into one single-entry coordination artifact.
+- This packet consolidates the execution queue status, queue summary, per-frontier handoff layers, the operator brief, the runbook card, the runbook bridge checklist, the phase checkpoint card, the milestone card, and the new completion dashboard into one single-entry coordination artifact.
 
 Frontier execution queue handoff packet bridge checklist:
 
@@ -1702,6 +1702,12 @@ Frontier execution queue milestone card:
 - `results/figures/frontier_execution_queue_milestone_card.md`
 - `results/tables/frontier_execution_queue_milestone_card.csv`
 - This milestone card records what the current first execution-queue checkpoint unlocks next and how many visible execution fronts remain afterward.
+
+Frontier execution queue completion dashboard:
+
+- `results/figures/frontier_execution_queue_completion_dashboard.md`
+- `results/tables/frontier_execution_queue_completion_dashboard.csv`
+- This dashboard compresses the current execution queue state into one operator-facing view with the current first frontier, next milestone, remaining visible fronts, and the dominant coordination blocker.
 
 MeetEval cpWER execution receipt readiness:
 

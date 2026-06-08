@@ -342,7 +342,7 @@ Current frontier execution queue handoff packet result:
 
 - `results/figures/frontier_execution_queue_handoff_packet.md`
 - `results/tables/frontier_execution_queue_handoff_packet.csv`
-- The packet consolidates the execution queue status, queue summary, per-frontier handoff layers, the operator brief, the runbook card, the runbook bridge checklist, the phase checkpoint card, and the new milestone card into one single-entry coordination artifact.
+- The packet consolidates the execution queue status, queue summary, per-frontier handoff layers, the operator brief, the runbook card, the runbook bridge checklist, the phase checkpoint card, the milestone card, and the new completion dashboard into one single-entry coordination artifact.
 
 Current frontier execution queue handoff packet bridge checklist result:
 
@@ -379,6 +379,12 @@ Current frontier execution queue milestone card result:
 - `results/figures/frontier_execution_queue_milestone_card.md`
 - `results/tables/frontier_execution_queue_milestone_card.csv`
 - The milestone card shows what the current first execution-queue checkpoint unlocks next after the present target closes.
+
+Current frontier execution queue completion dashboard result:
+
+- `results/figures/frontier_execution_queue_completion_dashboard.md`
+- `results/tables/frontier_execution_queue_completion_dashboard.csv`
+- The dashboard compresses the current execution-queue state into one glance: current first frontier, next milestone, remaining visible fronts, and the dominant coordination blocker.
 
 Current frontier operator next-action frontier bridge checklist result:
 

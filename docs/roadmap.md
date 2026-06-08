@@ -1458,7 +1458,7 @@ Update: the frontier now also has an execution queue handoff packet.
 - Frontier execution queue handoff packet: `results/tables/frontier_execution_queue_handoff_packet.csv`
 - Summary view: `results/figures/frontier_execution_queue_handoff_packet.md`
 - Script: `python3 -m src.frontier_execution_queue_handoff_packet`
-- Current evidence consolidates the execution queue status, queue summary, per-frontier handoff layers, the operator brief, the runbook card, the runbook bridge checklist, the phase checkpoint card, and the new milestone card into one single-entry artifact.
+- Current evidence consolidates the execution queue status, queue summary, per-frontier handoff layers, the operator brief, the runbook card, the runbook bridge checklist, the phase checkpoint card, the milestone card, and the new completion dashboard into one single-entry artifact.
 
 Update: the frontier now also has an execution queue handoff packet bridge checklist.
 
@@ -1501,6 +1501,13 @@ Update: the frontier now also has an execution queue milestone card.
 - Summary view: `results/figures/frontier_execution_queue_milestone_card.md`
 - Script: `python3 -m src.frontier_execution_queue_milestone_card`
 - Current evidence records what the current first execution-queue checkpoint unlocks next and how many visible execution fronts remain afterward.
+
+Update: the frontier now also has an execution queue completion dashboard.
+
+- Frontier execution queue completion dashboard: `results/tables/frontier_execution_queue_completion_dashboard.csv`
+- Summary view: `results/figures/frontier_execution_queue_completion_dashboard.md`
+- Script: `python3 -m src.frontier_execution_queue_completion_dashboard`
+- Current evidence compresses the current execution queue state into one operator-facing view with the current first frontier, next milestone, remaining visible fronts, and the dominant coordination blocker.
 
 Update: the frontier now has execution receipt readiness rollups.
 

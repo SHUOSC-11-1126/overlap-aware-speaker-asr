@@ -79,6 +79,12 @@ PACKET_SECTIONS = [
     ),
     (
         "11",
+        "execution_queue_completion_dashboard",
+        "results/figures/frontier_execution_queue_completion_dashboard.md",
+        "One-glance operator-facing dashboard for the current execution queue state.",
+    ),
+    (
+        "12",
         "execution_queue_handoff_bridge_checklist",
         "results/figures/frontier_execution_queue_handoff_bridge_checklist.md",
         "Verify each execution handoff before opening the receipt target for that frontier.",
