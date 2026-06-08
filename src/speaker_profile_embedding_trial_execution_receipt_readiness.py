@@ -14,6 +14,7 @@ READINESS_COLUMNS = [
     "receipt_template_status",
     "preflight_pass",
     "swapped_bias_detected",
+    "combined_signal_status",
     "readiness_status",
     "readiness_note",
 ]
@@ -56,6 +57,7 @@ def build_readiness_row(status: dict[str, str], receipt: dict[str, str]) -> dict
         "receipt_template_status": receipt_status,
         "preflight_pass": preflight_pass,
         "swapped_bias_detected": swapped_bias,
+        "combined_signal_status": str(receipt.get("combined_signal_status", status.get("combined_signal_status", "signals_missing"))),
         "readiness_status": "receipt_ready_to_fill" if ready else "receipt_not_ready",
         "readiness_note": (
             "experimental/frontier receipt readiness for one verified gold case; "
@@ -71,11 +73,11 @@ def build_readiness_lines(row: dict[str, str]) -> list[str]:
         "This generated note records receipt-fill readiness for one verified gold case. "
         "It does not claim voiceprint success.",
         "",
-        "| scope | case_id | execution_chain_status | receipt_template_status | preflight_pass | swapped_bias_detected | readiness_status | readiness_note |",
-        "| --- | --- | --- | --- | --- | --- | --- | --- |",
+        "| scope | case_id | execution_chain_status | receipt_template_status | preflight_pass | swapped_bias_detected | combined_signal_status | readiness_status | readiness_note |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
         (
             f"| {row['scope']} | {row['case_id']} | {row['execution_chain_status']} | {row['receipt_template_status']} | "
-            f"{row['preflight_pass']} | {row['swapped_bias_detected']} | {row['readiness_status']} | {row['readiness_note']} |"
+            f"{row['preflight_pass']} | {row['swapped_bias_detected']} | {row['combined_signal_status']} | {row['readiness_status']} | {row['readiness_note']} |"
         ),
     ]
     return lines

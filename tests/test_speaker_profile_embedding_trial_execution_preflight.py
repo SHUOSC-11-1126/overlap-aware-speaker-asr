@@ -14,15 +14,29 @@ class SpeakerProfileEmbeddingTrialExecutionPreflightTest(unittest.TestCase):
                 "best_profile_alignment": "swapped",
                 "profile_confidence_gap": "0.42",
             },
+            {
+                "combined_signal_status": "text_swapped_audio_weak",
+                "recommended_next_step": "Advance only to a narrow embedding baseline; attribution claims remain blocked.",
+            },
         )
 
         self.assertTrue(row["preflight_pass"])
         self.assertTrue(row["swapped_bias_detected"])
+        self.assertEqual(row["combined_signal_status"], "text_swapped_audio_weak")
+        self.assertIn("narrow embedding baseline", row["preflight_recommendation"])
 
     def test_build_receipt_rows_marks_preflight_failed_when_data_missing(self) -> None:
-        rows = build_receipt_rows({"case_id": "NoOverlap", "preflight_pass": False, "method_direction": "test"})
+        rows = build_receipt_rows(
+            {
+                "case_id": "NoOverlap",
+                "preflight_pass": False,
+                "method_direction": "test",
+                "combined_signal_status": "signals_missing",
+            }
+        )
 
         self.assertEqual(rows[0]["execution_status"], "preflight_failed")
+        self.assertEqual(rows[0]["combined_signal_status"], "signals_missing")
 
 
 if __name__ == "__main__":

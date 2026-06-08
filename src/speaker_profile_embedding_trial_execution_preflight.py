@@ -14,9 +14,11 @@ PREFLIGHT_COLUMNS = [
     "method_direction",
     "best_profile_alignment",
     "profile_confidence_gap",
+    "combined_signal_status",
     "profile_data_valid",
     "swapped_bias_detected",
     "preflight_pass",
+    "preflight_recommendation",
     "preflight_note",
 ]
 
@@ -26,6 +28,7 @@ RECEIPT_COLUMNS = [
     "case_id",
     "method_direction",
     "preflight_pass",
+    "combined_signal_status",
     "writeback_note",
 ]
 
@@ -50,17 +53,41 @@ def load_profile_similarity_row(case_id: str) -> dict[str, str]:
     return {}
 
 
-def run_preflight(case_id: str, handoff: dict[str, Any], profile_row: dict[str, str]) -> dict[str, Any]:
+def load_multisignal_row(case_id: str) -> dict[str, str]:
+    path = PROJECT_ROOT / "results" / "tables" / "speaker_profile_multisignal_diagnostic.csv"
+    if not path.exists():
+        return {}
+    with path.open(encoding="utf-8-sig", newline="") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if str(row.get("case_id", "")) == case_id:
+                return {key: str(value) for key, value in row.items()}
+    return {}
+
+
+def run_preflight(
+    case_id: str,
+    handoff: dict[str, Any],
+    profile_row: dict[str, str],
+    multisignal_row: dict[str, str],
+) -> dict[str, Any]:
     profile_data_valid = bool(profile_row)
     best_alignment = str(profile_row.get("best_profile_alignment", ""))
     confidence_gap = str(profile_row.get("profile_confidence_gap", "0.0"))
     swapped_bias_detected = best_alignment == "swapped"
     preflight_pass = profile_data_valid and float(confidence_gap or 0.0) > 0.0
+    combined_signal_status = str(multisignal_row.get("combined_signal_status", "signals_missing"))
+    preflight_recommendation = str(
+        multisignal_row.get(
+            "recommended_next_step",
+            "Keep this as diagnostics only until a stronger speaker-profile baseline is available.",
+        )
+    )
 
     if preflight_pass and swapped_bias_detected:
         preflight_note = (
             f"Execution preflight for {case_id} found valid text-profile proxy data with swapped_bias detected. "
-            "Voiceprint or embedding execution remains pending; improved attribution is not claimed."
+            f"{preflight_recommendation} Improved attribution is not claimed."
         )
     elif preflight_pass:
         preflight_note = (
@@ -79,9 +106,11 @@ def run_preflight(case_id: str, handoff: dict[str, Any], profile_row: dict[str, 
         "method_direction": str(handoff.get("method_direction", "embedding_or_voiceprint_baseline")),
         "best_profile_alignment": best_alignment,
         "profile_confidence_gap": confidence_gap,
+        "combined_signal_status": combined_signal_status,
         "profile_data_valid": profile_data_valid,
         "swapped_bias_detected": swapped_bias_detected,
         "preflight_pass": preflight_pass,
+        "preflight_recommendation": preflight_recommendation,
         "preflight_note": preflight_note,
     }
 
@@ -94,12 +123,13 @@ def build_preflight_lines(row: dict[str, Any]) -> list[str]:
         "It does not claim voiceprint success or improved speaker attribution.",
         "",
         "| case_id | handoff_status | method_direction | best_profile_alignment | profile_confidence_gap | "
-        "profile_data_valid | swapped_bias_detected | preflight_pass | preflight_note |",
-        "| --- | --- | --- | --- | ---: | --- | --- | --- | --- |",
+        "combined_signal_status | profile_data_valid | swapped_bias_detected | preflight_pass | preflight_recommendation | preflight_note |",
+        "| --- | --- | --- | --- | ---: | --- | --- | --- | --- | --- | --- |",
         (
             f"| {row['case_id']} | {row['handoff_status']} | {row['method_direction']} | "
-            f"{row['best_profile_alignment']} | {row['profile_confidence_gap']} | {row['profile_data_valid']} | "
-            f"{row['swapped_bias_detected']} | {row['preflight_pass']} | {row['preflight_note']} |"
+            f"{row['best_profile_alignment']} | {row['profile_confidence_gap']} | {row['combined_signal_status']} | "
+            f"{row['profile_data_valid']} | {row['swapped_bias_detected']} | {row['preflight_pass']} | "
+            f"{row['preflight_recommendation']} | {row['preflight_note']} |"
         ),
     ]
     return lines
@@ -114,6 +144,7 @@ def build_receipt_rows(preflight_row: dict[str, Any]) -> list[dict[str, str]]:
             "case_id": str(preflight_row.get("case_id", "")),
             "method_direction": str(preflight_row.get("method_direction", "")),
             "preflight_pass": str(preflight_row.get("preflight_pass", False)),
+            "combined_signal_status": str(preflight_row.get("combined_signal_status", "signals_missing")),
             "writeback_note": (
                 "Embedding execution preflight documented; voiceprint or embedding model execution remains pending."
             ),
@@ -127,13 +158,13 @@ def build_receipt_lines(rows: list[dict[str, str]]) -> list[str]:
         "",
         "This receipt records the embedding execution preflight writeback. It does not claim voiceprint success.",
         "",
-        "| execution_status | run_scope | case_id | method_direction | preflight_pass | writeback_note |",
-        "| --- | --- | --- | --- | --- | --- |",
+        "| execution_status | run_scope | case_id | method_direction | preflight_pass | combined_signal_status | writeback_note |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
     ]
     for row in rows:
         lines.append(
             f"| {row['execution_status']} | {row['run_scope']} | {row['case_id']} | "
-            f"{row['method_direction']} | {row['preflight_pass']} | {row['writeback_note']} |"
+            f"{row['method_direction']} | {row['preflight_pass']} | {row['combined_signal_status']} | {row['writeback_note']} |"
         )
     return lines
 
@@ -168,7 +199,8 @@ def main() -> None:
     handoff = load_execution_handoff()
     case_id = str(handoff.get("case_id", "NoOverlap"))
     profile_row = load_profile_similarity_row(case_id)
-    preflight_row = run_preflight(case_id, handoff, profile_row)
+    multisignal_row = load_multisignal_row(case_id)
+    preflight_row = run_preflight(case_id, handoff, profile_row, multisignal_row)
     receipt_rows = build_receipt_rows(preflight_row)
     csv_path, json_path, md_path, receipt_json_path, receipt_md_path = write_outputs(
         preflight_row,

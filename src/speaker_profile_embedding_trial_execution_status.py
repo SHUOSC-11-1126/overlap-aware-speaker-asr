@@ -12,6 +12,7 @@ STATUS_COLUMNS = [
     "case_id",
     "preflight_pass",
     "swapped_bias_detected",
+    "combined_signal_status",
     "receipt_scaffold_status",
     "execution_receipt_status",
     "execution_chain_status",
@@ -55,6 +56,7 @@ def build_status_row(
         "case_id": case_id,
         "preflight_pass": str(preflight_pass),
         "swapped_bias_detected": str(swapped_bias),
+        "combined_signal_status": str(preflight.get("combined_signal_status", "signals_missing")),
         "receipt_scaffold_status": scaffold_status,
         "execution_receipt_status": execution_receipt_status,
         "execution_chain_status": chain_status,
@@ -72,11 +74,11 @@ def build_status_lines(row: dict[str, str]) -> list[str]:
         "This generated note rolls up the embedding execution chain status for one verified gold case. "
         "It does not claim voiceprint success or improved speaker attribution.",
         "",
-        "| scope | case_id | preflight_pass | swapped_bias_detected | receipt_scaffold_status | execution_receipt_status | execution_chain_status | status_note |",
-        "| --- | --- | --- | --- | --- | --- | --- | --- |",
+        "| scope | case_id | preflight_pass | swapped_bias_detected | combined_signal_status | receipt_scaffold_status | execution_receipt_status | execution_chain_status | status_note |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
         (
             f"| {row['scope']} | {row['case_id']} | {row['preflight_pass']} | {row['swapped_bias_detected']} | "
-            f"{row['receipt_scaffold_status']} | {row['execution_receipt_status']} | {row['execution_chain_status']} | "
+            f"{row['combined_signal_status']} | {row['receipt_scaffold_status']} | {row['execution_receipt_status']} | {row['execution_chain_status']} | "
             f"{row['status_note']} |"
         ),
     ]
