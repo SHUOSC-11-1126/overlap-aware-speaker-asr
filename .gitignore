@@ -508,6 +508,8 @@ results/synthetic_overlap_v2/
 !results/tables/frontier_execution_queue_status_reentry_bridge_checklist.json
 !results/tables/frontier_execution_queue_handoff_bridge_checklist.csv
 !results/tables/frontier_execution_queue_handoff_bridge_checklist.json
+!results/tables/frontier_execution_queue_receipt_open_card.csv
+!results/tables/frontier_execution_queue_receipt_open_card.json
 !results/tables/meeteval_cpwer_execution_receipt_readiness.csv
 !results/tables/meeteval_cpwer_execution_receipt_readiness.json
 !results/tables/speaker_profile_embedding_trial_execution_receipt_readiness.csv
@@ -947,6 +949,7 @@ results/synthetic_overlap_v2/
 !results/figures/frontier_execution_queue_status_reentry_card.md
 !results/figures/frontier_execution_queue_status_reentry_bridge_checklist.md
 !results/figures/frontier_execution_queue_handoff_bridge_checklist.md
+!results/figures/frontier_execution_queue_receipt_open_card.md
 !results/figures/meeteval_cpwer_execution_receipt_readiness.md
 !results/figures/speaker_profile_embedding_trial_execution_receipt_readiness.md
 !results/figures/external_validation_slice_staging_handoff_receipt_readiness.md

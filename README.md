@@ -422,6 +422,12 @@ Current frontier execution queue status reentry bridge checklist result:
 - `results/tables/frontier_execution_queue_status_reentry_bridge_checklist.csv`
 - The checklist verifies the status reentry card before the execution-queue handoff bridge is opened.
 
+Current frontier execution queue receipt open card result:
+
+- `results/figures/frontier_execution_queue_receipt_open_card.md`
+- `results/tables/frontier_execution_queue_receipt_open_card.csv`
+- The card gives the next contributor the first receipt target to open after the execution-queue handoff bridge is confirmed.
+
 Current frontier operator next-action frontier bridge checklist result:
 
 - `results/figures/frontier_operator_next_action_frontier_bridge_checklist.md`

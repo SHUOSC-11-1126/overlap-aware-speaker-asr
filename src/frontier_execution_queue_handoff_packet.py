@@ -125,6 +125,12 @@ PACKET_SECTIONS = [
         "results/figures/frontier_execution_queue_handoff_bridge_checklist.md",
         "Verify each execution handoff before opening the receipt target for that frontier.",
     ),
+    (
+        "19",
+        "execution_queue_receipt_open_card",
+        "results/figures/frontier_execution_queue_receipt_open_card.md",
+        "One-page first receipt target card after the execution queue handoff bridge.",
+    ),
 ]
 
 

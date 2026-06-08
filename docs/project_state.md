@@ -1745,6 +1745,12 @@ Frontier execution queue status reentry bridge checklist:
 - `results/tables/frontier_execution_queue_status_reentry_bridge_checklist.csv`
 - This checklist verifies the status reentry card before the execution queue handoff bridge is opened.
 
+Frontier execution queue receipt open card:
+
+- `results/figures/frontier_execution_queue_receipt_open_card.md`
+- `results/tables/frontier_execution_queue_receipt_open_card.csv`
+- This card gives the next contributor the first receipt target to open after the execution queue handoff bridge is confirmed.
+
 MeetEval cpWER execution receipt readiness:
 
 - `results/figures/meeteval_cpwer_execution_receipt_readiness.md`
@@ -2553,6 +2559,7 @@ python -m src.frontier_execution_queue_status_preflight_bridge_checklist
 python -m src.frontier_execution_queue_status_reentry_card
 python -m src.frontier_execution_queue_status_reentry_bridge_checklist
 python -m src.frontier_execution_queue_handoff_bridge_checklist
+python -m src.frontier_execution_queue_receipt_open_card
 python -m src.meeteval_cpwer_execution_receipt_readiness
 python -m src.speaker_profile_embedding_trial_execution_receipt_readiness
 python -m src.external_validation_slice_staging_handoff_receipt_readiness

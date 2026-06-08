@@ -1565,6 +1565,13 @@ Update: the frontier handoff now has a bridge checklist.
 - Summary view: `results/figures/frontier_execution_queue_handoff_bridge_checklist.md`
 - This connects the execution handoff to per-frontier receipt fill gates without claiming benchmark completion.
 
+Update: the frontier now also has an execution queue receipt open card.
+
+- Frontier execution queue receipt open card: `results/tables/frontier_execution_queue_receipt_open_card.csv`
+- Summary view: `results/figures/frontier_execution_queue_receipt_open_card.md`
+- Script: `python3 -m src.frontier_execution_queue_receipt_open_card`
+- Current evidence gives the next contributor the first receipt target to open after the execution queue handoff bridge is confirmed.
+
 Update: the frontier now has per-frontier receipt readiness bridge checklists.
 
 - MeetEval receipt readiness bridge: `results/tables/meeteval_cpwer_execution_receipt_readiness_bridge_checklist.csv`
