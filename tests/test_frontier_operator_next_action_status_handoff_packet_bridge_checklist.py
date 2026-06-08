@@ -8,7 +8,7 @@ from src.frontier_operator_next_action_status_handoff_packet_bridge_checklist im
 
 
 class FrontierOperatorNextActionStatusHandoffPacketBridgeChecklistTest(unittest.TestCase):
-    def test_build_bridge_checklist_rows_uses_operator_urgency_and_target(self) -> None:
+    def test_build_bridge_checklist_rows_uses_reentry_frontier_and_target(self) -> None:
         rows = build_bridge_checklist_rows(
             {
                 "ready_frontier": "meeteval_compatibility",
@@ -16,14 +16,14 @@ class FrontierOperatorNextActionStatusHandoffPacketBridgeChecklistTest(unittest.
             }
         )
 
-        self.assertEqual(rows[0]["ready_frontier"], "meeteval_compatibility")
+        self.assertEqual(rows[0]["reentry_frontier"], "meeteval_compatibility")
         self.assertIn("queue_status=queue_complete", rows[0]["bridge_note"])
         self.assertIn("status_handoff_operator_brief.md", rows[0]["receipt_target"])
 
     def test_build_bridge_checklist_rows_defaults_when_missing(self) -> None:
         rows = build_bridge_checklist_rows({})
 
-        self.assertEqual(rows[0]["ready_frontier"], "unknown")
+        self.assertEqual(rows[0]["reentry_frontier"], "unknown")
 
 
 if __name__ == "__main__":

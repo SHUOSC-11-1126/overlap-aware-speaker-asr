@@ -9,7 +9,7 @@ from .config import PROJECT_ROOT
 
 BRIDGE_CHECKLIST_COLUMNS = [
     "checklist_order",
-    "ready_frontier",
+    "reentry_frontier",
     "prerequisite_artifact",
     "receipt_target",
     "checklist_goal",
@@ -32,7 +32,7 @@ def build_bridge_checklist_rows(operator_brief: dict[str, str]) -> list[dict[str
     return [
         {
             "checklist_order": "1",
-            "ready_frontier": ready_frontier,
+            "reentry_frontier": ready_frontier,
             "prerequisite_artifact": "results/figures/frontier_operator_next_action_status_handoff_packet.md",
             "receipt_target": "results/figures/frontier_operator_next_action_status_handoff_operator_brief.md",
             "checklist_goal": (
@@ -55,12 +55,12 @@ def build_bridge_checklist_lines(rows: list[dict[str, str]]) -> list[str]:
         "This generated checklist turns the top-level operator status handoff packet into a bridge verification path. "
         "It remains experimental/frontier coordination only and does not claim experiment completion.",
         "",
-        "| checklist_order | ready_frontier | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |",
+        "| checklist_order | reentry_frontier | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |",
         "| --- | --- | --- | --- | --- | --- | --- |",
     ]
     for row in rows:
         lines.append(
-            f"| {row['checklist_order']} | {row['ready_frontier']} | "
+            f"| {row['checklist_order']} | {row['reentry_frontier']} | "
             f"{row['prerequisite_artifact']} | {row['receipt_target']} | "
             f"{row['checklist_goal']} | {row['bridge_note']} | {row['next_gate']} |"
         )
