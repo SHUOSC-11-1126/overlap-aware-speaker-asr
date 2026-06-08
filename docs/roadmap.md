@@ -1226,6 +1226,14 @@ Update: `speaker_profile` now also has an execution receipt runbook card.
 - Script: `python3 -m src.speaker_profile_embedding_trial_execution_receipt_runbook_card`
 - This condenses the current speaker-profile receipt reopening path into a one-page execution card for `NoOverlap`, still without filling the receipt or claiming voiceprint success.
 
+Update: `speaker_profile` now also has an execution receipt runbook bridge checklist.
+
+- Execution receipt runbook bridge checklist: `results/tables/speaker_profile_embedding_trial_execution_receipt_runbook_bridge_checklist.csv`
+- Execution receipt runbook bridge checklist JSON: `results/tables/speaker_profile_embedding_trial_execution_receipt_runbook_bridge_checklist.json`
+- Summary view: `results/figures/speaker_profile_embedding_trial_execution_receipt_runbook_bridge_checklist.md`
+- Script: `python3 -m src.speaker_profile_embedding_trial_execution_receipt_runbook_bridge_checklist`
+- This turns that speaker-profile runbook card into an explicit verification gate before reopening the current readiness artifact, still without claiming voiceprint success.
+
 Update: `external_validation` now also has staging receipt scaffold bridge checklists and execution status.
 
 - Staging receipt scaffold bridge: `results/tables/external_validation_slice_staging_handoff_receipt_scaffold_bridge_checklist.csv`
