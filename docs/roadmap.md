@@ -1572,6 +1572,13 @@ Update: the frontier now also has an execution queue receipt open card.
 - Script: `python3 -m src.frontier_execution_queue_receipt_open_card`
 - Current evidence gives the next contributor the first receipt target to open after the execution queue handoff bridge is confirmed.
 
+Update: the frontier handoff now also has a receipt readiness board.
+
+- Frontier execution queue receipt readiness board: `results/tables/frontier_execution_queue_receipt_readiness_board.csv`
+- Summary view: `results/figures/frontier_execution_queue_receipt_readiness_board.md`
+- Script: `python3 -m src.frontier_execution_queue_receipt_readiness_board`
+- Current evidence separates receipt targets that are ready to fill from those still waiting on bridge or scaffold work, without claiming benchmark execution.
+
 Update: the frontier now has per-frontier receipt readiness bridge checklists.
 
 - MeetEval receipt readiness bridge: `results/tables/meeteval_cpwer_execution_receipt_readiness_bridge_checklist.csv`

@@ -131,5 +131,12 @@
     "artifact_path": "results/figures/frontier_execution_queue_receipt_open_card.md",
     "section_role": "One-page first receipt target card after the execution queue handoff bridge.",
     "packet_note": "Execution queue packet section while queue_status=queue_complete, ready_chain_count=3, pending_chain_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "20",
+    "section_name": "execution_queue_receipt_readiness_board",
+    "artifact_path": "results/figures/frontier_execution_queue_receipt_readiness_board.md",
+    "section_role": "One-glance receipt readiness split across frontier execution targets after handoff verification.",
+    "packet_note": "Execution queue packet section while queue_status=queue_complete, ready_chain_count=3, pending_chain_count=0; no benchmark execution or external audio staging is claimed."
   }
 ]

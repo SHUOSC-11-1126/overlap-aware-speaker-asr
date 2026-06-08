@@ -1665,7 +1665,7 @@ Frontier execution queue handoff packet:
 
 - `results/figures/frontier_execution_queue_handoff_packet.md`
 - `results/tables/frontier_execution_queue_handoff_packet.csv`
-- This packet consolidates the execution queue status, queue summary, per-frontier handoff layers, the operator brief, the runbook card, the runbook bridge checklist, the phase checkpoint card, the milestone card, and the new completion dashboard into one single-entry coordination artifact.
+- This packet consolidates the execution queue status, queue summary, per-frontier handoff layers, the operator brief, the runbook card, the runbook bridge checklist, the phase checkpoint card, the phase checkpoint bridge checklist, the milestone card, the completion dashboard, and the receipt readiness board into one single-entry coordination artifact.
 
 Frontier execution queue handoff packet bridge checklist:
 
@@ -1701,7 +1701,7 @@ Frontier execution queue phase checkpoint bridge checklist:
 
 - `results/figures/frontier_execution_queue_phase_checkpoint_bridge_checklist.md`
 - `results/tables/frontier_execution_queue_phase_checkpoint_bridge_checklist.csv`
-- This checklist verifies the phase checkpoint card before the milestone card is reopened for the current first execution-queue target.
+- This checklist verifies the phase checkpoint card before the execution queue milestone card is reopened for the current first frontier.
 
 Frontier execution queue milestone card:
 
@@ -1750,6 +1750,12 @@ Frontier execution queue receipt open card:
 - `results/figures/frontier_execution_queue_receipt_open_card.md`
 - `results/tables/frontier_execution_queue_receipt_open_card.csv`
 - This card gives the next contributor the first receipt target to open after the execution queue handoff bridge is confirmed.
+
+Frontier execution queue receipt readiness board:
+
+- `results/figures/frontier_execution_queue_receipt_readiness_board.md`
+- `results/tables/frontier_execution_queue_receipt_readiness_board.csv`
+- This board splits the frontier receipts into `ready_for_receipt_fill` vs `bridge_or_scaffold_pending` after the execution handoff has already been verified.
 
 MeetEval cpWER execution receipt readiness:
 
@@ -2559,7 +2565,11 @@ python -m src.frontier_execution_queue_status_preflight_bridge_checklist
 python -m src.frontier_execution_queue_status_reentry_card
 python -m src.frontier_execution_queue_status_reentry_bridge_checklist
 python -m src.frontier_execution_queue_handoff_bridge_checklist
+<<<<<<< HEAD
 python -m src.frontier_execution_queue_receipt_open_card
+=======
+python -m src.frontier_execution_queue_receipt_readiness_board
+>>>>>>> c1366e8 (docs: record frontier execution receipt coordination artifacts)
 python -m src.meeteval_cpwer_execution_receipt_readiness
 python -m src.speaker_profile_embedding_trial_execution_receipt_readiness
 python -m src.external_validation_slice_staging_handoff_receipt_readiness
