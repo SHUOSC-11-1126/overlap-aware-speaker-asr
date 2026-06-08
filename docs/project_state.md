@@ -1469,6 +1469,12 @@ Frontier operator next-action frontier bridge:
 - `results/tables/frontier_operator_next_action_frontier_bridge.csv`
 - The bridge confirms that the runbook-ready frontier still matches the broader frontier queue head without claiming that any frontier execution has happened.
 
+Frontier operator next-action frontier bridge checklist:
+
+- `results/figures/frontier_operator_next_action_frontier_bridge_checklist.md`
+- `results/tables/frontier_operator_next_action_frontier_bridge_checklist.csv`
+- The checklist verifies top-level queue alignment before the runbook card is reopened and keeps the whole transition coordination-only.
+
 Frontier execution queue completion summary bridge checklist:
 
 - `results/figures/frontier_execution_queue_completion_summary_bridge_checklist.md`

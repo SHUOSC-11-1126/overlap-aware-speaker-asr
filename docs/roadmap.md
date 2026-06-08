@@ -1244,6 +1244,13 @@ Update: the frontier now also has a top-level frontier bridge.
 - Script: `python3 -m src.frontier_operator_next_action_frontier_bridge`
 - Current evidence confirms that the runbook card still points at the same ready frontier as the broader top-level go/no-go board.
 
+Update: the frontier now also has a top-level frontier bridge checklist.
+
+- Frontier bridge checklist: `results/tables/frontier_operator_next_action_frontier_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_operator_next_action_frontier_bridge_checklist.md`
+- Script: `python3 -m src.frontier_operator_next_action_frontier_bridge_checklist`
+- Current evidence requires verifying that top-level queue alignment before the runbook card is reopened.
+
 Update: the frontier now has a per-frontier execution handoff.
 
 - Frontier execution queue handoff: `results/tables/frontier_execution_queue_handoff.csv`

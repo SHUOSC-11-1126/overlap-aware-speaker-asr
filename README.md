@@ -338,6 +338,12 @@ Current frontier operator next-action frontier bridge result:
 - `results/tables/frontier_operator_next_action_frontier_bridge.csv`
 - The bridge confirms that the new top-level runbook card still aligns with the broader frontier ready queue head, keeping the first action tied back to the unified board.
 
+Current frontier operator next-action frontier bridge checklist result:
+
+- `results/figures/frontier_operator_next_action_frontier_bridge_checklist.md`
+- `results/tables/frontier_operator_next_action_frontier_bridge_checklist.csv`
+- The checklist turns that top-level frontier bridge into a pre-open verification step so the next contributor confirms queue alignment before reopening the runbook card.
+
 Current frontier focus checklist result:
 
 - `results/figures/frontier_focus_card_checklist.md` now turns that focus card into a one-glance verification checklist
