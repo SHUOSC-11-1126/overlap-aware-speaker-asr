@@ -1460,6 +1460,13 @@ Update: the frontier now also has an execution queue handoff packet.
 - Script: `python3 -m src.frontier_execution_queue_handoff_packet`
 - Current evidence consolidates the execution queue status, queue summary, and per-frontier handoff layers into one single-entry artifact.
 
+Update: the frontier now also has an execution queue handoff packet bridge checklist.
+
+- Frontier execution queue handoff packet bridge checklist: `results/tables/frontier_execution_queue_handoff_packet_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_execution_queue_handoff_packet_bridge_checklist.md`
+- Script: `python3 -m src.frontier_execution_queue_handoff_packet_bridge_checklist`
+- Current evidence requires verifying the execution queue handoff packet before the unified execution status rollup is reopened.
+
 Update: the frontier now has execution receipt readiness rollups.
 
 - MeetEval receipt readiness: `results/tables/meeteval_cpwer_execution_receipt_readiness.csv`

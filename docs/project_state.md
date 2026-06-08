@@ -1667,6 +1667,12 @@ Frontier execution queue handoff packet:
 - `results/tables/frontier_execution_queue_handoff_packet.csv`
 - This packet consolidates the execution queue status, queue summary, and per-frontier handoff layers into one single-entry coordination artifact.
 
+Frontier execution queue handoff packet bridge checklist:
+
+- `results/figures/frontier_execution_queue_handoff_packet_bridge_checklist.md`
+- `results/tables/frontier_execution_queue_handoff_packet_bridge_checklist.csv`
+- This checklist verifies that execution queue handoff packet before the unified execution status rollup is reopened.
+
 MeetEval cpWER execution receipt readiness:
 
 - `results/figures/meeteval_cpwer_execution_receipt_readiness.md`
