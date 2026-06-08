@@ -1,0 +1,11 @@
+{
+  "scope": "external_validation_go_no_go_board",
+  "dataset_name": "AISHELL-4",
+  "checkpoint_count": "5",
+  "go_count": "0",
+  "no_go_count": "5",
+  "overall_state": "blocked_by_license_confirmation",
+  "primary_blocker": "license_confirmation_pending",
+  "recommended_next_action": "Record and write back the license confirmation decision before any external staging attempt.",
+  "observation": "external/sanity-check coordination board only; it does not claim external audio download or benchmark execution."
+}

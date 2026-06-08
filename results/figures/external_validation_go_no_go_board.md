@@ -1,0 +1,13 @@
+# External Validation Go-No-Go Board
+
+This generated board compresses the first external validation slice chain into a go/no-go view. It remains external/sanity-check coordination only and does not claim any external download or benchmark run.
+
+Summary: `5/5` checkpoints are still `no_go` for the first AISHELL-4 slice.
+
+| checkpoint_name | dataset_name | current_status | blocker | go_no_go_state | next_action | evidence_artifact |
+| --- | --- | --- | --- | --- | --- | --- |
+| license_gate | AISHELL-4 | pending_confirmation | license_confirmation_pending | no_go | Record a concrete license confirmation decision before any audio staging. | results/figures/external_validation_license_gate.md |
+| license_confirmation | AISHELL-4 | template_only | license_confirmation_pending | no_go | Fill the confirmation scaffold with the recorded license decision. | results/figures/external_validation_license_confirmation_scaffold.md |
+| slice_manifest | AISHELL-4 | blocked_by_license_gate | blocked_by_license_gate | no_go | Keep the manifest narrow and blocked until license confirmation is recorded. | results/figures/external_validation_slice_manifest.md |
+| staging_readiness | AISHELL-4 | not_ready | license_confirmation_pending | no_go | Resolve the readiness blocker before any staging review. | results/figures/external_validation_slice_staging_readiness.md |
+| execution_chain | AISHELL-4 | template_only | license_confirmation_pending | no_go | Do not fill the execution receipt until the license blocker is cleared. | results/figures/external_validation_slice_staging_execution_status.md |
