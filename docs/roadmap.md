@@ -1200,6 +1200,14 @@ Update: the frontier now has a coordination queue completion summary.
 - Summary views: `results/figures/frontier_execution_queue_completion_summary.md`, `results/figures/frontier_execution_queue_completion_summary_bridge_checklist.md`
 - `queue_status = queue_complete` at `3/3` ready chains; no benchmark execution is claimed.
 
+Update: the frontier now also has a top-level go-no-go board.
+
+- Frontier go-no-go board: `results/tables/frontier_go_no_go_board.csv`
+- Summary view: `results/figures/frontier_go_no_go_board.md`
+- Frontier go-no-go summary: `results/tables/frontier_go_no_go_summary.csv`
+- Script: `python3 -m src.frontier_go_no_go_board`
+- Current evidence shows four frontier tracks are ready for narrow next steps, while `external_validation` remains the only blocked track because license confirmation is still pending.
+
 Update: the frontier now has a per-frontier execution handoff.
 
 - Frontier execution queue handoff: `results/tables/frontier_execution_queue_handoff.csv`

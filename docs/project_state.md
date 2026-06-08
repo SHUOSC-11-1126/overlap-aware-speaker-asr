@@ -1421,6 +1421,18 @@ Frontier execution queue completion summary:
 - `results/tables/frontier_execution_queue_completion_summary.csv`
 - The coordination queue rollup reports `queue_status = queue_complete` at `3/3` ready chains; no benchmark execution is claimed.
 
+Frontier go-no-go board:
+
+- `results/figures/frontier_go_no_go_board.md`
+- `results/tables/frontier_go_no_go_board.csv`
+- The board shows `4/5` frontier tracks are ready for narrow next-step execution in the current queue state.
+
+Frontier go-no-go summary:
+
+- `results/figures/frontier_go_no_go_summary.md`
+- `results/tables/frontier_go_no_go_summary.csv`
+- `highest_priority_ready_frontier = meeteval_compatibility`, `highest_priority_blocked_frontier = external_validation`, and `coordination_state = mixed_ready_state`.
+
 Frontier execution queue completion summary bridge checklist:
 
 - `results/figures/frontier_execution_queue_completion_summary_bridge_checklist.md`

@@ -290,6 +290,18 @@ Current frontier focus card result:
 - `results/figures/frontier_focus_card.md` now compresses that queue into a one-glance current priority card
 - This card is still only a coordination artifact: it highlights the current queue head so the next contributor can start faster without reading the full queue first
 
+Current frontier go-no-go board result:
+
+- `results/figures/frontier_go_no_go_board.md`
+- `results/tables/frontier_go_no_go_board.csv`
+- The board now compresses all five frontier tracks into one top-level view, showing four tracks ready for narrow next steps and `external_validation` still blocked by license confirmation.
+
+Current frontier go-no-go summary result:
+
+- `results/figures/frontier_go_no_go_summary.md`
+- `results/tables/frontier_go_no_go_summary.csv`
+- The summary records `highest_priority_ready_frontier = meeteval_compatibility`, `highest_priority_blocked_frontier = external_validation`, and keeps the whole conclusion explicitly at the coordination layer rather than claiming frontier completion.
+
 Current frontier focus checklist result:
 
 - `results/figures/frontier_focus_card_checklist.md` now turns that focus card into a one-glance verification checklist
