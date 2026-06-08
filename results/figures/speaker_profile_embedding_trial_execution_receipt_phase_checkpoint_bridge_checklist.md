@@ -1,0 +1,7 @@
+# Speaker Profile Embedding Trial Execution Receipt Phase Checkpoint Bridge Checklist
+
+This generated checklist turns the speaker-profile phase checkpoint card into an ordered verification path. It remains experimental/frontier coordination only and does not fill receipts or claim voiceprint success.
+
+| checklist_order | checkpoint_case | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | NoOverlap | results/figures/speaker_profile_embedding_trial_execution_receipt_phase_checkpoint_card.md | results/figures/speaker_profile_embedding_trial_execution_receipt_readiness.md | Verify the speaker-profile phase checkpoint card for NoOverlap before reopening the readiness target. | Phase checkpoint for NoOverlap: complete this action and confirm the completion signal before advancing the speaker-profile receipt stack. This remains coordination-only and does not fill the receipt or claim voiceprint success. | Confirm this bridge before opening results/figures/speaker_profile_embedding_trial_execution_receipt_readiness.md. |

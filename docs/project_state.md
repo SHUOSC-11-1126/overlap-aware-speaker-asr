@@ -1881,6 +1881,13 @@ Speaker profile embedding trial execution receipt phase checkpoint card:
 - `results/tables/speaker_profile_embedding_trial_execution_receipt_phase_checkpoint_card.json`
 - This checkpoint card narrows the current speaker-profile receipt runbook to one explicit completion signal for `NoOverlap`, while remaining coordination-only and not claiming voiceprint success.
 
+Speaker profile embedding trial execution receipt phase checkpoint bridge checklist:
+
+- `results/figures/speaker_profile_embedding_trial_execution_receipt_phase_checkpoint_bridge_checklist.md`
+- `results/tables/speaker_profile_embedding_trial_execution_receipt_phase_checkpoint_bridge_checklist.csv`
+- `results/tables/speaker_profile_embedding_trial_execution_receipt_phase_checkpoint_bridge_checklist.json`
+- This checklist turns the speaker-profile phase checkpoint card into an explicit verification gate before the current readiness target is reopened.
+
 External validation slice staging handoff receipt readiness bridge checklist:
 
 - `results/figures/external_validation_slice_staging_handoff_receipt_readiness_bridge_checklist.md`
@@ -2866,6 +2873,7 @@ python -m src.speaker_profile_embedding_trial_execution_receipt_operator_brief_b
 python -m src.speaker_profile_embedding_trial_execution_receipt_runbook_card
 python -m src.speaker_profile_embedding_trial_execution_receipt_runbook_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_receipt_phase_checkpoint_card
+python -m src.speaker_profile_embedding_trial_execution_receipt_phase_checkpoint_bridge_checklist
 python -m src.external_validation_slice_staging_handoff_receipt_readiness
 python -m src.frontier_execution_receipt_queue_status
 python -m src.meeteval_cpwer_execution_receipt_readiness_bridge_checklist
