@@ -1647,6 +1647,20 @@ Update: the frontier receipt layer now has a milestone card.
 - Script: `python3 -m src.frontier_execution_receipt_queue_milestone_card`
 - This records what the current first receipt-queue checkpoint unlocks next and how many visible receipt fronts remain afterward.
 
+Update: the frontier receipt layer now has a milestone bridge checklist.
+
+- Milestone bridge checklist: `results/tables/frontier_execution_receipt_queue_milestone_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_execution_receipt_queue_milestone_bridge_checklist.md`
+- Script: `python3 -m src.frontier_execution_receipt_queue_milestone_bridge_checklist`
+- This verifies the receipt-queue milestone unlock path before reopening the completion dashboard.
+
+Update: the frontier receipt layer now has a completion dashboard.
+
+- Completion dashboard: `results/tables/frontier_execution_receipt_queue_completion_dashboard.csv`
+- Summary view: `results/figures/frontier_execution_receipt_queue_completion_dashboard.md`
+- Script: `python3 -m src.frontier_execution_receipt_queue_completion_dashboard`
+- This compresses the current receipt queue state into one operator-facing dashboard while keeping the layer explicitly coordination-only.
+
 Update: the frontier receipt layer now has a fill queue status rollup.
 
 - Fill queue status: `results/tables/frontier_execution_receipt_fill_queue_status.csv`

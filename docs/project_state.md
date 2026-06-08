@@ -1883,6 +1883,18 @@ Frontier execution receipt queue milestone card:
 - `results/tables/frontier_execution_receipt_queue_milestone_card.csv`
 - This milestone card records what the current first receipt-queue checkpoint unlocks next and how many visible receipt fronts remain afterward.
 
+Frontier execution receipt queue milestone bridge checklist:
+
+- `results/figures/frontier_execution_receipt_queue_milestone_bridge_checklist.md`
+- `results/tables/frontier_execution_receipt_queue_milestone_bridge_checklist.csv`
+- This checklist verifies the receipt queue milestone unlock path before the completion dashboard is reopened.
+
+Frontier execution receipt queue completion dashboard:
+
+- `results/figures/frontier_execution_receipt_queue_completion_dashboard.md`
+- `results/tables/frontier_execution_receipt_queue_completion_dashboard.csv`
+- This dashboard compresses the current receipt queue state into one operator-facing view with the current first frontier, next milestone, remaining visible fronts, and the dominant coordination blocker.
+
 Frontier execution receipt fill queue status:
 
 - `results/figures/frontier_execution_receipt_fill_queue_status.md`
@@ -2628,6 +2640,8 @@ python -m src.frontier_execution_receipt_queue_runbook_bridge_checklist
 python -m src.frontier_execution_receipt_queue_phase_checkpoint_card
 python -m src.frontier_execution_receipt_queue_phase_checkpoint_bridge_checklist
 python -m src.frontier_execution_receipt_queue_milestone_card
+python -m src.frontier_execution_receipt_queue_milestone_bridge_checklist
+python -m src.frontier_execution_receipt_queue_completion_dashboard
 python -m src.frontier_execution_receipt_fill_queue_status
 python -m src.frontier_execution_receipt_fill_queue_status_bridge_checklist
 python -m src.frontier_execution_receipt_fill_queue_completion_summary
