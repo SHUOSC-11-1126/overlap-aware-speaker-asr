@@ -74,11 +74,11 @@ def write_outputs(row: dict[str, str]) -> tuple[Path, Path, Path]:
     json_path = tables_dir / "speaker_profile_audio_proxy_summary.json"
     md_path = figures_dir / "speaker_profile_audio_proxy_summary.md"
 
-    with csv_path.open("w", newline="", encoding="utf-8-sig") as f:
+    with csv_path.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=SUMMARY_COLUMNS)
         writer.writeheader()
         writer.writerow(row)
-    json_path.write_text(json.dumps(row, ensure_ascii=False, indent=2), encoding="utf-8")
+    json_path.write_text(json.dumps(row, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     md_path.write_text("\n".join(build_audio_proxy_summary_lines(row)) + "\n", encoding="utf-8")
     return csv_path, json_path, md_path
 

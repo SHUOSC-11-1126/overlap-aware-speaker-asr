@@ -158,11 +158,11 @@ def write_outputs(rows: list[dict[str, str]]) -> tuple[Path, Path, Path]:
     json_path = tables_dir / "speaker_profile_audio_proxy_trial.json"
     md_path = figures_dir / "speaker_profile_audio_proxy_trial.md"
 
-    with csv_path.open("w", newline="", encoding="utf-8-sig") as f:
+    with csv_path.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=AUDIO_PROXY_COLUMNS)
         writer.writeheader()
         writer.writerows(rows)
-    json_path.write_text(json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    json_path.write_text(json.dumps(rows, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     md_path.write_text("\n".join(build_audio_proxy_lines(rows)) + "\n", encoding="utf-8")
     return csv_path, json_path, md_path
 
