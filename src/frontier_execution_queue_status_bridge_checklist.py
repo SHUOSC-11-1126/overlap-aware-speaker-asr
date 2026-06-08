@@ -13,6 +13,8 @@ BRIDGE_CHECKLIST_COLUMNS = [
     "meeteval_chain_status",
     "speaker_profile_chain_status",
     "external_staging_chain_status",
+    "llm_critic_chain_status",
+    "demo_excellence_chain_status",
     "prerequisite_artifact",
     "receipt_target",
     "checklist_goal",
@@ -34,6 +36,8 @@ def build_bridge_checklist_rows(status_row: dict[str, str]) -> list[dict[str, st
     meeteval_status = str(status_row.get("meeteval_chain_status", "execution_chain_in_progress"))
     speaker_status = str(status_row.get("speaker_profile_chain_status", "execution_chain_in_progress"))
     external_status = str(status_row.get("external_staging_chain_status", "execution_chain_in_progress"))
+    llm_status = str(status_row.get("llm_critic_chain_status", "execution_chain_in_progress"))
+    demo_status = str(status_row.get("demo_excellence_chain_status", "execution_chain_in_progress"))
     return [
         {
             "checklist_order": "1",
@@ -41,6 +45,8 @@ def build_bridge_checklist_rows(status_row: dict[str, str]) -> list[dict[str, st
             "meeteval_chain_status": meeteval_status,
             "speaker_profile_chain_status": speaker_status,
             "external_staging_chain_status": external_status,
+            "llm_critic_chain_status": llm_status,
+            "demo_excellence_chain_status": demo_status,
             "prerequisite_artifact": "results/figures/frontier_execution_queue_status.md",
             "receipt_target": "results/figures/meeteval_cpwer_execution_status_bridge_checklist.md",
             "checklist_goal": (
@@ -48,7 +54,8 @@ def build_bridge_checklist_rows(status_row: dict[str, str]) -> list[dict[str, st
             ),
             "bridge_note": (
                 f"Combined rollup reports combined_chain_status={combined_status}; "
-                f"meeteval={meeteval_status}, speaker_profile={speaker_status}, external_staging={external_status}."
+                f"meeteval={meeteval_status}, speaker_profile={speaker_status}, external_staging={external_status}, "
+                f"llm_critic={llm_status}, demo_excellence={demo_status}."
             ),
             "next_gate": "Confirm this bridge before claiming any frontier benchmark execution.",
         }
@@ -62,13 +69,14 @@ def build_bridge_checklist_lines(rows: list[dict[str, str]]) -> list[str]:
         "This generated checklist turns the unified frontier execution-chain rollup into a row-by-row bridge verification path. "
         "It remains experimental/frontier coordination only and does not claim benchmark completion.",
         "",
-        "| checklist_order | combined_chain_status | meeteval_chain_status | speaker_profile_chain_status | external_staging_chain_status | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |",
-        "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+        "| checklist_order | combined_chain_status | meeteval_chain_status | speaker_profile_chain_status | external_staging_chain_status | llm_critic_chain_status | demo_excellence_chain_status | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
     for row in rows:
         lines.append(
             f"| {row['checklist_order']} | {row['combined_chain_status']} | {row['meeteval_chain_status']} | "
             f"{row['speaker_profile_chain_status']} | {row['external_staging_chain_status']} | "
+            f"{row['llm_critic_chain_status']} | {row['demo_excellence_chain_status']} | "
             f"{row['prerequisite_artifact']} | {row['receipt_target']} | {row['checklist_goal']} | "
             f"{row['bridge_note']} | {row['next_gate']} |"
         )

@@ -25,6 +25,8 @@ FRONTIER_CHAINS = [
         "external_staging_chain_status",
         "external_validation_slice_staging_handoff_receipt.json",
     ),
+    ("llm_critic", "llm_critic_chain_status", "llm_critic_review_receipt.json"),
+    ("demo_excellence", "demo_excellence_chain_status", "demo_walkthrough_receipt.json"),
 ]
 
 

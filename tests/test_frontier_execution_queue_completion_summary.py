@@ -12,11 +12,13 @@ class FrontierExecutionQueueCompletionSummaryTest(unittest.TestCase):
                 "meeteval_chain_status": "execution_chain_ready",
                 "speaker_profile_chain_status": "execution_chain_ready",
                 "external_staging_chain_status": "execution_chain_ready",
+                "llm_critic_chain_status": "execution_chain_ready",
+                "demo_excellence_chain_status": "execution_chain_ready",
             }
         )
 
         self.assertEqual(row["queue_status"], "queue_complete")
-        self.assertEqual(row["ready_chain_count"], "3")
+        self.assertEqual(row["ready_chain_count"], "5")
         self.assertEqual(row["pending_chain_count"], "0")
 
     def test_build_completion_summary_row_marks_queue_in_progress_when_one_pending(self) -> None:
@@ -25,6 +27,8 @@ class FrontierExecutionQueueCompletionSummaryTest(unittest.TestCase):
                 "meeteval_chain_status": "execution_chain_ready",
                 "speaker_profile_chain_status": "execution_chain_in_progress",
                 "external_staging_chain_status": "execution_chain_ready",
+                "llm_critic_chain_status": "execution_chain_ready",
+                "demo_excellence_chain_status": "execution_chain_ready",
             }
         )
 

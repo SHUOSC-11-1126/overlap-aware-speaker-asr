@@ -20,6 +20,8 @@ CHAIN_KEYS = [
     "meeteval_chain_status",
     "speaker_profile_chain_status",
     "external_staging_chain_status",
+    "llm_critic_chain_status",
+    "demo_excellence_chain_status",
 ]
 
 
