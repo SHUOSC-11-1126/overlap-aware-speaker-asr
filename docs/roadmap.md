@@ -1459,6 +1459,21 @@ Update: the Streamlit demo now surfaces speaker profile text-proxy diagnostic st
 - Tab: Speaker profile in `demo/app.py`
 - Shows swapped bias, per-case alignment, and bridge checklist note; qualitative/demo only.
 
+Update: `speaker_profile` now also has an embedding trial handoff readiness stack.
+
+- Handoff readiness: `results/tables/speaker_profile_embedding_trial_handoff_readiness.csv`
+- Readiness bridge checklist: `results/tables/speaker_profile_embedding_trial_handoff_readiness_bridge_checklist.csv`
+- Handoff completion summary: `results/tables/speaker_profile_embedding_trial_handoff_completion_summary.csv`
+- Completion summary bridge checklist: `results/tables/speaker_profile_embedding_trial_handoff_completion_summary_bridge_checklist.csv`
+- Scripts: `python -m src.speaker_profile_embedding_trial_handoff_readiness`, `python -m src.speaker_profile_embedding_trial_handoff_readiness_bridge_checklist`, `python -m src.speaker_profile_embedding_trial_handoff_completion_summary`, `python -m src.speaker_profile_embedding_trial_handoff_completion_summary_bridge_checklist`
+- `readiness_status = handoff_ready` links text-proxy completion to embedding trial; voiceprint execution remains pending.
+
+Update: `meeteval_compatibility` now also has a tokenization adaptation handoff.
+
+- Handoff: `results/tables/meeteval_tokenization_adaptation_handoff.csv`
+- Script: `python -m src.meeteval_tokenization_adaptation_handoff`
+- Turns reconciled character-spaced cpWER into a frontier fill execution handoff without claiming full MeetEval benchmark completion.
+
 ## Healthy Project Principles
 
 - New experiments should be isolated.

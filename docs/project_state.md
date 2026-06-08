@@ -995,6 +995,30 @@ Speaker profile text-proxy trial diagnostic completion summary bridge checklist:
 - `results/tables/speaker_profile_text_proxy_trial_diagnostic_completion_summary_bridge_checklist.csv`
 - This checklist connects the completion summary to the embedding trial handoff without claiming voiceprint success.
 
+Speaker profile embedding trial handoff readiness:
+
+- `results/figures/speaker_profile_embedding_trial_handoff_readiness.md`
+- `results/tables/speaker_profile_embedding_trial_handoff_readiness.csv`
+- `readiness_status = handoff_ready` when text-proxy diagnostic is `queue_complete` and handoff is ready; no voiceprint claim.
+
+Speaker profile embedding trial handoff readiness bridge checklist:
+
+- `results/figures/speaker_profile_embedding_trial_handoff_readiness_bridge_checklist.md`
+- `results/tables/speaker_profile_embedding_trial_handoff_readiness_bridge_checklist.csv`
+- This checklist connects handoff readiness to the embedding trial scaffold without claiming voiceprint success.
+
+Speaker profile embedding trial handoff completion summary:
+
+- `results/figures/speaker_profile_embedding_trial_handoff_completion_summary.md`
+- `results/tables/speaker_profile_embedding_trial_handoff_completion_summary.csv`
+- `queue_status = queue_complete` when handoff readiness is satisfied; execution scaffold remains next.
+
+Speaker profile embedding trial handoff completion summary bridge checklist:
+
+- `results/figures/speaker_profile_embedding_trial_handoff_completion_summary_bridge_checklist.md`
+- `results/tables/speaker_profile_embedding_trial_handoff_completion_summary_bridge_checklist.csv`
+- This checklist connects handoff completion to the embedding trial execution scaffold without claiming voiceprint success.
+
 Speaker profile embedding trial handoff bridge checklist:
 
 - `results/figures/speaker_profile_embedding_trial_handoff_bridge_checklist.md`
@@ -1705,6 +1729,12 @@ MeetEval cpWER tokenization adaptation completion summary bridge checklist:
 - `results/figures/meeteval_cpwer_tokenization_adaptation_completion_summary_bridge_checklist.md`
 - `results/tables/meeteval_cpwer_tokenization_adaptation_completion_summary_bridge_checklist.csv`
 - This checklist connects the tokenization adaptation completion summary to frontier fill execution without claiming benchmark completion.
+
+MeetEval cpWER tokenization adaptation handoff:
+
+- `results/figures/meeteval_tokenization_adaptation_handoff.md`
+- `results/tables/meeteval_tokenization_adaptation_handoff.csv`
+- `handoff_status = tokenization_adaptation_handoff_ready` at `5/5` reconciled cases; frontier fill execution remains coordination-only.
 
 MeetEval compatibility skill card:
 
