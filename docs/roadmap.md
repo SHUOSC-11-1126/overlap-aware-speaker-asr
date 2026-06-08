@@ -1265,6 +1265,13 @@ Update: the frontier now also has a top-level handoff packet bridge checklist.
 - Script: `python3 -m src.frontier_operator_next_action_handoff_packet_bridge_checklist`
 - Current evidence requires verifying the top-level handoff packet before the top-level operator card is reopened.
 
+Update: the frontier now also has a top-level phase checkpoint card.
+
+- Frontier phase checkpoint card: `results/tables/frontier_operator_next_action_phase_checkpoint_card.csv`
+- Summary view: `results/figures/frontier_operator_next_action_phase_checkpoint_card.md`
+- Script: `python3 -m src.frontier_operator_next_action_phase_checkpoint_card`
+- Current evidence isolates the current ready-lane completion signal so the top-level operator chain has a narrow checkpoint before advancing.
+
 Update: the frontier now has a per-frontier execution handoff.
 
 - Frontier execution queue handoff: `results/tables/frontier_execution_queue_handoff.csv`

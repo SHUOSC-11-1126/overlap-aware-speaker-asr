@@ -1,0 +1,6 @@
+{
+  "checkpoint_frontier": "meeteval_compatibility",
+  "checkpoint_action": "If execution starts, use character-spaced cpWER and fill the official receipt with real evidence.",
+  "completion_signal": "ready_lane verification is complete and the target artifact results/tables/meeteval_cpwer_execution_receipt.json is ready to open",
+  "checkpoint_note": "Phase checkpoint for meeteval_compatibility: complete this narrow coordination step and confirm the completion signal before advancing the top-level operator chain. No frontier execution is claimed."
+}

@@ -1487,6 +1487,12 @@ Frontier operator next-action handoff packet bridge checklist:
 - `results/tables/frontier_operator_next_action_handoff_packet_bridge_checklist.csv`
 - The checklist verifies the handoff packet before the top-level operator card is reopened and keeps the whole loop coordination-only.
 
+Frontier operator next-action phase checkpoint card:
+
+- `results/figures/frontier_operator_next_action_phase_checkpoint_card.md`
+- `results/tables/frontier_operator_next_action_phase_checkpoint_card.csv`
+- The checkpoint card isolates the current frontier, action, and narrow completion signal for the top-level ready lane.
+
 Frontier execution queue completion summary bridge checklist:
 
 - `results/figures/frontier_execution_queue_completion_summary_bridge_checklist.md`

@@ -356,6 +356,12 @@ Current frontier operator next-action handoff packet bridge checklist result:
 - `results/tables/frontier_operator_next_action_handoff_packet_bridge_checklist.csv`
 - The checklist turns that packet into a pre-open verification step so the next contributor confirms the packet context before reopening the top-level operator card.
 
+Current frontier operator next-action phase checkpoint card result:
+
+- `results/figures/frontier_operator_next_action_phase_checkpoint_card.md`
+- `results/tables/frontier_operator_next_action_phase_checkpoint_card.csv`
+- The checkpoint card isolates the current ready-lane completion signal so the next contributor can see exactly what must be true before the top-level operator chain should advance.
+
 Current frontier focus checklist result:
 
 - `results/figures/frontier_focus_card_checklist.md` now turns that focus card into a one-glance verification checklist
