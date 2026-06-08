@@ -380,6 +380,12 @@ Current frontier operator next-action completion dashboard bridge checklist resu
 - `results/tables/frontier_operator_next_action_completion_dashboard_bridge_checklist.csv`
 - The checklist turns that dashboard into a pre-open verification step so the next contributor confirms the top-level state summary before reopening the runbook card.
 
+Current frontier operator next-action status result:
+
+- `results/figures/frontier_operator_next_action_status.md`
+- `results/tables/frontier_operator_next_action_status.csv`
+- The status rollup compresses the ready lane, blocker lane, milestone, and dashboard bridge into one machine-friendly top-level coordination snapshot.
+
 Current frontier focus checklist result:
 
 - `results/figures/frontier_focus_card_checklist.md` now turns that focus card into a one-glance verification checklist

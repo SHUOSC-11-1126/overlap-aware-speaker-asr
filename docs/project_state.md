@@ -1511,6 +1511,12 @@ Frontier operator next-action completion dashboard bridge checklist:
 - `results/tables/frontier_operator_next_action_completion_dashboard_bridge_checklist.csv`
 - The checklist verifies the dashboard before the top-level runbook card is reopened and keeps the transition coordination-only.
 
+Frontier operator next-action status:
+
+- `results/figures/frontier_operator_next_action_status.md`
+- `results/tables/frontier_operator_next_action_status.csv`
+- The status rollup compresses the ready lane, blocker lane, milestone, and dashboard bridge into one machine-friendly top-level coordination snapshot, with the current combined state recorded as `operator_status_mixed_ready`.
+
 Frontier execution queue completion summary bridge checklist:
 
 - `results/figures/frontier_execution_queue_completion_summary_bridge_checklist.md`

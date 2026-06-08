@@ -1293,6 +1293,13 @@ Update: the frontier now also has a top-level completion dashboard bridge checkl
 - Script: `python3 -m src.frontier_operator_next_action_completion_dashboard_bridge_checklist`
 - Current evidence requires verifying the top-level dashboard before the top-level runbook card is reopened.
 
+Update: the frontier now also has a top-level operator status rollup.
+
+- Frontier operator status: `results/tables/frontier_operator_next_action_status.csv`
+- Summary view: `results/figures/frontier_operator_next_action_status.md`
+- Script: `python3 -m src.frontier_operator_next_action_status`
+- Current evidence compresses the ready lane, blocker lane, milestone, and dashboard bridge into one machine-readable snapshot with `operator_status_mixed_ready` as the present top-level coordination state.
+
 Update: the frontier now has a per-frontier execution handoff.
 
 - Frontier execution queue handoff: `results/tables/frontier_execution_queue_handoff.csv`
