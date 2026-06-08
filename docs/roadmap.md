@@ -1237,6 +1237,13 @@ Update: the frontier now also has a top-level runbook card.
 - Script: `python3 -m src.frontier_operator_next_action_runbook_card`
 - Current evidence condenses the ready lane into a one-page first-action card so the next contributor can open the MeetEval receipt path with the operator evidence chain already defined.
 
+Update: the frontier now also has a top-level frontier bridge.
+
+- Frontier bridge: `results/tables/frontier_operator_next_action_frontier_bridge.csv`
+- Summary view: `results/figures/frontier_operator_next_action_frontier_bridge.md`
+- Script: `python3 -m src.frontier_operator_next_action_frontier_bridge`
+- Current evidence confirms that the runbook card still points at the same ready frontier as the broader top-level go/no-go board.
+
 Update: the frontier now has a per-frontier execution handoff.
 
 - Frontier execution queue handoff: `results/tables/frontier_execution_queue_handoff.csv`

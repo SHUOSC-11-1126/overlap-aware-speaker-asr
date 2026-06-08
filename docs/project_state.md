@@ -1463,6 +1463,12 @@ Frontier operator next-action runbook card:
 - `results/tables/frontier_operator_next_action_runbook_card.csv`
 - The runbook card condenses the ready lane into a one-page execution card with the required evidence path and the narrow coordination completion signal.
 
+Frontier operator next-action frontier bridge:
+
+- `results/figures/frontier_operator_next_action_frontier_bridge.md`
+- `results/tables/frontier_operator_next_action_frontier_bridge.csv`
+- The bridge confirms that the runbook-ready frontier still matches the broader frontier queue head without claiming that any frontier execution has happened.
+
 Frontier execution queue completion summary bridge checklist:
 
 - `results/figures/frontier_execution_queue_completion_summary_bridge_checklist.md`
