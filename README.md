@@ -563,6 +563,18 @@ Current external validation checklist result:
 - `results/figures/external_validation_checklist.md` now turns the prioritized candidates into an execution checklist so the next contributor can walk the external sanity-check path in order
 - This stays labeled `external/sanity-check`: it sequences the preflight steps and still does not claim that any external validation run has been completed
 
+Current external validation go-no-go board result:
+
+- `results/figures/external_validation_go_no_go_board.md`
+- `results/tables/external_validation_go_no_go_board.csv`
+- The board shows `5/5` checkpoints still at `no_go` for the first AISHELL-4 slice and makes `license_confirmation_pending` the explicit top blocker before any staging attempt.
+
+Current external validation go-no-go summary result:
+
+- `results/figures/external_validation_go_no_go_summary.md`
+- `results/tables/external_validation_go_no_go_summary.csv`
+- The summary collapses the chain into `overall_state = blocked_by_license_confirmation`, keeping the conclusion in `external/sanity-check` scope rather than implying that any external benchmark has been run.
+
 Current external validation skill result:
 
 - `docs/skills/skill_07_external_validation.md` now provides a dedicated skill card for the external mini-validation frontier

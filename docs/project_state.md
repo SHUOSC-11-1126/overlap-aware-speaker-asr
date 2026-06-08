@@ -1829,6 +1829,18 @@ External validation checklist bridge:
 - `results/tables/external_validation_checklist.csv`
 - This bridge now turns the prioritized external candidates into an execution checklist. It still stays in `external/sanity-check` mode and does not claim that any external validation run has been completed.
 
+External validation go-no-go board:
+
+- `results/figures/external_validation_go_no_go_board.md`
+- `results/tables/external_validation_go_no_go_board.csv`
+- The board shows `5/5` checkpoints still at `no_go` for the first AISHELL-4 slice.
+
+External validation go-no-go summary:
+
+- `results/figures/external_validation_go_no_go_summary.md`
+- `results/tables/external_validation_go_no_go_summary.csv`
+- `overall_state = blocked_by_license_confirmation` with `primary_blocker = license_confirmation_pending`.
+
 External validation skill card:
 
 - `docs/skills/skill_07_external_validation.md`

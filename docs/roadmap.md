@@ -265,6 +265,14 @@ Update: `external_validation` now also has a slice staging readiness handoff.
 - Summary view: `results/figures/external_validation_slice_staging_readiness_handoff.md`
 - The handoff records `blocker = license_confirmation_pending` for AISHELL-4; external audio staging remains pending.
 
+Update: `external_validation` now also has a go-no-go board.
+
+- Go-no-go board: `results/tables/external_validation_go_no_go_board.csv`
+- Summary view: `results/figures/external_validation_go_no_go_board.md`
+- Go-no-go summary: `results/tables/external_validation_go_no_go_summary.csv`
+- Script: `python3 -m src.external_validation_go_no_go_board`
+- Current evidence keeps the first AISHELL-4 slice fully blocked (`5/5` checkpoints still `no_go`) until license confirmation is written back.
+
 Update: `speaker_profile` now also has an embedding scaffold.
 
 - Embedding scaffold: `results/tables/speaker_profile_embedding_scaffold.json`
