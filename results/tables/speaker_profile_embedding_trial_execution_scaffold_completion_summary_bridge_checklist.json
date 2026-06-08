@@ -1,0 +1,12 @@
+[
+  {
+    "checklist_order": "1",
+    "queue_status": "queue_complete",
+    "case_id": "NoOverlap",
+    "prerequisite_artifact": "results/figures/speaker_profile_embedding_trial_execution_scaffold_completion_summary.md",
+    "receipt_target": "results/figures/speaker_profile_embedding_trial_execution_handoff.md",
+    "checklist_goal": "Verify execution scaffold completion for NoOverlap before opening the execution handoff.",
+    "bridge_note": "Scaffold completion reports queue_status=queue_complete for case_id=NoOverlap; confirm before advancing to embedding execution handoff.",
+    "next_gate": "Confirm this bridge before opening the embedding trial execution handoff."
+  }
+]
