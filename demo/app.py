@@ -275,6 +275,13 @@ def render_speaker_profile_status() -> None:
                 ],
             }
         )
+    scaffold_readiness = load_json_dict(
+        "results/tables/speaker_profile_embedding_trial_execution_scaffold_readiness.json"
+    )
+    if scaffold_readiness:
+        st.markdown("**Execution scaffold readiness**")
+        st.metric("Scaffold readiness", scaffold_readiness.get("readiness_status", "unknown"))
+        st.caption(f"Case: `{scaffold_readiness.get('case_id', '')}`")
     st.info(
         "Text-profile proxy is a risk signal only — not deployment-ready speaker identification. "
         "All gold cases currently prefer swapped alignment."

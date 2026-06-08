@@ -1471,8 +1471,15 @@ Update: `speaker_profile` now also has an embedding trial handoff readiness stac
 Update: `meeteval_compatibility` now also has a tokenization adaptation handoff.
 
 - Handoff: `results/tables/meeteval_tokenization_adaptation_handoff.csv`
-- Script: `python -m src.meeteval_tokenization_adaptation_handoff`
+- Bridge checklist: `results/tables/meeteval_tokenization_adaptation_handoff_bridge_checklist.csv`
+- Scripts: `python -m src.meeteval_tokenization_adaptation_handoff`, `python -m src.meeteval_tokenization_adaptation_handoff_bridge_checklist`
 - Turns reconciled character-spaced cpWER into a frontier fill execution handoff without claiming full MeetEval benchmark completion.
+
+Update: `speaker_profile` now also has execution scaffold readiness.
+
+- Scaffold readiness: `results/tables/speaker_profile_embedding_trial_execution_scaffold_readiness.csv`
+- Script: `python -m src.speaker_profile_embedding_trial_execution_scaffold_readiness`
+- Links handoff completion to the existing execution scaffold for `NoOverlap`; voiceprint execution remains pending.
 
 ## Healthy Project Principles
 

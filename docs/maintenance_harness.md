@@ -104,6 +104,7 @@ python -m src.meeteval_cpwer_official_execution_reconciliation_audit_bridge_chec
 python -m src.meeteval_cpwer_tokenization_adaptation_completion_summary
 python -m src.meeteval_cpwer_tokenization_adaptation_completion_summary_bridge_checklist
 python -m src.meeteval_tokenization_adaptation_handoff
+python -m src.meeteval_tokenization_adaptation_handoff_bridge_checklist
 python -m src.speaker_profile_text_proxy_trial_diagnostic
 python -m src.speaker_profile_text_proxy_trial_diagnostic_bridge_checklist
 python -m src.speaker_profile_text_proxy_trial_diagnostic_completion_summary
@@ -112,6 +113,7 @@ python -m src.speaker_profile_embedding_trial_handoff_readiness
 python -m src.speaker_profile_embedding_trial_handoff_readiness_bridge_checklist
 python -m src.speaker_profile_embedding_trial_handoff_completion_summary
 python -m src.speaker_profile_embedding_trial_handoff_completion_summary_bridge_checklist
+python -m src.speaker_profile_embedding_trial_execution_scaffold_readiness
 python -m src.frontier_execution_receipt_fill_execution_handoff_bridge_checklist
 ```
 
