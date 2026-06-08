@@ -2435,6 +2435,12 @@ MeetEval cpWER official execution alignment audit:
 - The audit now explicitly ties the observed moderate drift to Chinese word-level tokenization mismatch when tokenization diagnostic and character-spaced reconciliation evidence are both present, instead of ambiguously blaming segment or speaker mapping.
 - Compares official cpWER against bridge-lite; all five gold cases currently report `moderate_drift`.
 
+MeetEval cpWER official execution alignment audit bridge checklist:
+
+- `results/figures/meeteval_cpwer_official_execution_alignment_audit_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_official_execution_alignment_audit_bridge_checklist.csv`
+- This checklist connects alignment drift findings to the tokenization diagnostic before escalating any mapping concern.
+
 MeetEval cpWER official execution completion summary bridge checklist:
 
 - `results/figures/meeteval_cpwer_official_execution_completion_summary_bridge_checklist.md`
@@ -2454,6 +2460,12 @@ MeetEval cpWER official execution reconciliation audit:
 
 - `results/figures/meeteval_cpwer_official_execution_reconciliation_audit.md`
 - After character tokenization, `5/5` cases align with bridge-lite within tolerance.
+
+MeetEval cpWER official execution reconciliation audit bridge checklist:
+
+- `results/figures/meeteval_cpwer_official_execution_reconciliation_audit_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_official_execution_reconciliation_audit_bridge_checklist.csv`
+- This checklist connects character-spaced reconciliation evidence to the character-level official execution path before promoting it as the preferred frontier metric.
 
 MeetEval cpWER tokenization adaptation completion summary:
 
@@ -2999,6 +3011,8 @@ python -m src.frontier_execution_receipt_fill_execution_milestone_card
 python -m src.frontier_execution_receipt_fill_execution_execution_receipt_bridge
 python -m src.frontier_execution_receipt_fill_execution_execution_receipt_bridge_checklist
 python -m src.frontier_execution_receipt_fill_execution_handoff_packet
+python -m src.meeteval_cpwer_official_execution_alignment_audit_bridge_checklist
+python -m src.meeteval_cpwer_official_execution_reconciliation_audit_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_handoff
 python -m src.speaker_profile_embedding_trial_execution_handoff_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_preflight

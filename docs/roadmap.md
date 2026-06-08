@@ -2215,6 +2215,7 @@ Update: `meeteval_compatibility` now also has an all-gold official cpWER executi
 - Bridge checklist: `results/tables/meeteval_cpwer_official_execution_bridge_checklist.csv`
 - Completion summary: `results/tables/meeteval_cpwer_official_execution_completion_summary.csv`
 - Alignment audit: `results/tables/meeteval_cpwer_official_execution_alignment_audit.csv`
+- Alignment audit bridge checklist: `results/tables/meeteval_cpwer_official_execution_alignment_audit_bridge_checklist.csv`
 - Completion summary bridge checklist: `results/tables/meeteval_cpwer_official_execution_completion_summary_bridge_checklist.csv`
 - All five gold cases report `queue_complete`; alignment audit now explicitly attributes the `moderate_drift` vs bridge-lite to Chinese word-level tokenization mismatch, while the character-spaced reconciliation audit shows the mapping path is already aligned.
 
@@ -2223,6 +2224,7 @@ Update: `meeteval_compatibility` now also has a character-level tokenization ada
 - Tokenization diagnostic: `results/tables/meeteval_cpwer_official_execution_tokenization_diagnostic.csv`
 - Character-level execution: `results/tables/meeteval_cpwer_character_level_official_execution.csv`
 - Reconciliation audit: `results/tables/meeteval_cpwer_official_execution_reconciliation_audit.csv`
+- Reconciliation audit bridge checklist: `results/tables/meeteval_cpwer_official_execution_reconciliation_audit_bridge_checklist.csv`
 - Script: `python -m src.meeteval_cpwer_character_level_official_execution --all`
 - Root cause: raw MeetEval word-level cpWER treats each speaker aggregate as one token without whitespace; character-spaced tokenization reconciles `5/5` cases with bridge-lite.
 
