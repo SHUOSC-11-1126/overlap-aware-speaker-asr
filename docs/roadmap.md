@@ -2274,8 +2274,9 @@ Update: `meeteval_compatibility` now also has a tokenization adaptation handoff.
 
 - Handoff: `results/tables/meeteval_tokenization_adaptation_handoff.csv`
 - Bridge checklist: `results/tables/meeteval_tokenization_adaptation_handoff_bridge_checklist.csv`
-- Scripts: `python -m src.meeteval_tokenization_adaptation_handoff`, `python -m src.meeteval_tokenization_adaptation_handoff_bridge_checklist`
-- Turns reconciled character-spaced cpWER into a frontier fill execution handoff without claiming full MeetEval benchmark completion.
+- Handoff packet: `results/tables/meeteval_tokenization_adaptation_handoff_packet.csv`
+- Scripts: `python -m src.meeteval_tokenization_adaptation_handoff`, `python -m src.meeteval_tokenization_adaptation_handoff_bridge_checklist`, `python -m src.meeteval_tokenization_adaptation_handoff_packet`
+- Turns reconciled character-spaced cpWER into a frontier fill execution handoff and compact coordination packet without claiming full MeetEval benchmark completion.
 
 Update: `speaker_profile` now also has execution scaffold readiness.
 

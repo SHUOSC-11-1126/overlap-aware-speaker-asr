@@ -1,0 +1,58 @@
+[
+  {
+    "packet_order": "1",
+    "section_name": "tokenization_diagnostic",
+    "artifact_path": "results/figures/meeteval_cpwer_official_execution_tokenization_diagnostic.md",
+    "section_role": "Root-cause diagnostic for raw official cpWER drift under CJK text tokenization.",
+    "packet_note": "MeetEval tokenization adaptation packet section while handoff_status=tokenization_adaptation_handoff_ready, aligned_count=5, total_count=5, queue_status=queue_complete; this remains experimental/frontier coordination and does not claim full benchmark completion."
+  },
+  {
+    "packet_order": "2",
+    "section_name": "character_level_official_execution",
+    "artifact_path": "results/figures/meeteval_cpwer_character_level_official_execution.md",
+    "section_role": "Character-spaced official cpWER execution used for bridge-lite comparable evidence.",
+    "packet_note": "MeetEval tokenization adaptation packet section while handoff_status=tokenization_adaptation_handoff_ready, aligned_count=5, total_count=5, queue_status=queue_complete; this remains experimental/frontier coordination and does not claim full benchmark completion."
+  },
+  {
+    "packet_order": "3",
+    "section_name": "reconciliation_audit",
+    "artifact_path": "results/figures/meeteval_cpwer_official_execution_reconciliation_audit.md",
+    "section_role": "Reconciliation audit comparing character-spaced official cpWER against bridge-lite.",
+    "packet_note": "MeetEval tokenization adaptation packet section while handoff_status=tokenization_adaptation_handoff_ready, aligned_count=5, total_count=5, queue_status=queue_complete; this remains experimental/frontier coordination and does not claim full benchmark completion."
+  },
+  {
+    "packet_order": "4",
+    "section_name": "tokenization_gain_scorecard",
+    "artifact_path": "results/figures/meeteval_cpwer_tokenization_gain_scorecard.md",
+    "section_role": "Per-case raw-to-character cpWER gain and preferred tokenization recommendation.",
+    "packet_note": "MeetEval tokenization adaptation packet section while handoff_status=tokenization_adaptation_handoff_ready, aligned_count=5, total_count=5, queue_status=queue_complete; this remains experimental/frontier coordination and does not claim full benchmark completion."
+  },
+  {
+    "packet_order": "5",
+    "section_name": "tokenization_adaptation_completion_summary",
+    "artifact_path": "results/figures/meeteval_cpwer_tokenization_adaptation_completion_summary.md",
+    "section_role": "Queue-level completion summary for reconciled tokenization adaptation evidence.",
+    "packet_note": "MeetEval tokenization adaptation packet section while handoff_status=tokenization_adaptation_handoff_ready, aligned_count=5, total_count=5, queue_status=queue_complete; this remains experimental/frontier coordination and does not claim full benchmark completion."
+  },
+  {
+    "packet_order": "6",
+    "section_name": "tokenization_adaptation_handoff",
+    "artifact_path": "results/figures/meeteval_tokenization_adaptation_handoff.md",
+    "section_role": "Handoff from reconciled tokenization adaptation evidence to frontier fill execution.",
+    "packet_note": "MeetEval tokenization adaptation packet section while handoff_status=tokenization_adaptation_handoff_ready, aligned_count=5, total_count=5, queue_status=queue_complete; this remains experimental/frontier coordination and does not claim full benchmark completion."
+  },
+  {
+    "packet_order": "7",
+    "section_name": "tokenization_adaptation_handoff_bridge_checklist",
+    "artifact_path": "results/figures/meeteval_tokenization_adaptation_handoff_bridge_checklist.md",
+    "section_role": "Verify the tokenization handoff before opening the frontier fill evidence receipt.",
+    "packet_note": "MeetEval tokenization adaptation packet section while handoff_status=tokenization_adaptation_handoff_ready, aligned_count=5, total_count=5, queue_status=queue_complete; this remains experimental/frontier coordination and does not claim full benchmark completion."
+  },
+  {
+    "packet_order": "8",
+    "section_name": "tokenization_adaptation_handoff_completion_summary",
+    "artifact_path": "results/figures/meeteval_tokenization_adaptation_handoff_completion_summary.md",
+    "section_role": "Completion rollup for the tokenization adaptation handoff path.",
+    "packet_note": "MeetEval tokenization adaptation packet section while handoff_status=tokenization_adaptation_handoff_ready, aligned_count=5, total_count=5, queue_status=queue_complete; this remains experimental/frontier coordination and does not claim full benchmark completion."
+  }
+]

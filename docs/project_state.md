@@ -2515,6 +2515,13 @@ MeetEval cpWER tokenization adaptation handoff completion summary bridge checkli
 - `results/tables/meeteval_tokenization_adaptation_handoff_completion_summary_bridge_checklist.csv`
 - This checklist connects handoff completion to the frontier fill runbook card without claiming benchmark completion.
 
+MeetEval cpWER tokenization adaptation handoff packet:
+
+- `results/figures/meeteval_tokenization_adaptation_handoff_packet.md`
+- `results/tables/meeteval_tokenization_adaptation_handoff_packet.csv`
+- `results/tables/meeteval_tokenization_adaptation_handoff_packet.json`
+- This packet consolidates the tokenization diagnostic, character-level execution, reconciliation audit, gain scorecard, completion summary, and handoff layers into one coordination entrypoint without claiming full benchmark completion.
+
 MeetEval compatibility skill card:
 
 - `docs/skills/skill_04_meeteval_compatibility.md`
@@ -3013,6 +3020,7 @@ python -m src.frontier_execution_receipt_fill_execution_execution_receipt_bridge
 python -m src.frontier_execution_receipt_fill_execution_handoff_packet
 python -m src.meeteval_cpwer_official_execution_alignment_audit_bridge_checklist
 python -m src.meeteval_cpwer_official_execution_reconciliation_audit_bridge_checklist
+python -m src.meeteval_tokenization_adaptation_handoff_packet
 python -m src.speaker_profile_embedding_trial_execution_handoff
 python -m src.speaker_profile_embedding_trial_execution_handoff_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_preflight
