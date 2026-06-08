@@ -1340,7 +1340,7 @@ Update: the frontier now also has a top-level operator status handoff packet.
 - Frontier operator status handoff packet: `results/tables/frontier_operator_next_action_status_handoff_packet.csv`
 - Summary view: `results/figures/frontier_operator_next_action_status_handoff_packet.md`
 - Script: `python3 -m src.frontier_operator_next_action_status_handoff_packet`
-- Current evidence consolidates the top-level status snapshot, lane handoff, queue summary, operator brief, operator-brief bridge, operator-brief bridge checklist, runbook, runbook bridge checklist, checkpoint, phase-checkpoint bridge checklist, milestone, completion dashboard, bridge checkpoints, and the newer `status_handoff_status` rollup layer into one single-entry artifact.
+- Current evidence consolidates the top-level status snapshot, lane handoff, queue summary, operator brief, operator-brief bridge, operator-brief bridge checklist, runbook, runbook bridge checklist, checkpoint, phase-checkpoint bridge checklist, milestone, milestone bridge checklist, completion dashboard, bridge checkpoints, and the newer `status_handoff_status` rollup layer into one single-entry artifact.
 
 Update: the frontier now also has a top-level operator status handoff packet bridge checklist.
 
@@ -1404,6 +1404,13 @@ Update: the frontier now also has a top-level operator status handoff milestone 
 - Summary view: `results/figures/frontier_operator_next_action_status_handoff_milestone_card.md`
 - Script: `python3 -m src.frontier_operator_next_action_status_handoff_milestone_card`
 - Current evidence records what the current ready-lane checkpoint unlocks next inside the `status/handoff` subchain and how many visible top-level lanes remain after that checkpoint closes.
+
+Update: the frontier now also has a top-level operator status handoff milestone bridge checklist.
+
+- Frontier operator status handoff milestone bridge checklist: `results/tables/frontier_operator_next_action_status_handoff_milestone_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_operator_next_action_status_handoff_milestone_bridge_checklist.md`
+- Script: `python3 -m src.frontier_operator_next_action_status_handoff_milestone_bridge_checklist`
+- Current evidence requires verifying that milestone card before the completion dashboard target is reopened.
 
 Update: the frontier now also has a top-level operator status handoff completion dashboard.
 

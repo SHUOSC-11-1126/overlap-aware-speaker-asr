@@ -98,24 +98,30 @@ PACKET_SECTIONS = [
     ),
     (
         "15",
+        "status_handoff_milestone_bridge_checklist",
+        "results/figures/frontier_operator_next_action_status_handoff_milestone_bridge_checklist.md",
+        "Verify the milestone card before reopening the completion dashboard target",
+    ),
+    (
+        "16",
         "status_handoff_completion_dashboard",
         "results/figures/frontier_operator_next_action_status_handoff_completion_dashboard.md",
         "One-glance operator-facing dashboard for the current status/handoff state",
     ),
     (
-        "16",
+        "17",
         "status_handoff_completion_dashboard_bridge_checklist",
         "results/figures/frontier_operator_next_action_status_handoff_completion_dashboard_bridge_checklist.md",
         "Verify the completion dashboard before reopening the current runbook card target",
     ),
     (
-        "17",
+        "18",
         "status_handoff_status",
         "results/figures/frontier_operator_next_action_status_handoff_status.md",
         "Machine-readable status rollup for the current status/handoff queue state",
     ),
     (
-        "18",
+        "19",
         "status_handoff_status_bridge_checklist",
         "results/figures/frontier_operator_next_action_status_handoff_status_bridge_checklist.md",
         "Verify the status/handoff status rollup before reopening the broader status/handoff packet target",

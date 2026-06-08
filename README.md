@@ -420,7 +420,7 @@ Current frontier operator next-action status handoff packet result:
 
 - `results/figures/frontier_operator_next_action_status_handoff_packet.md`
 - `results/tables/frontier_operator_next_action_status_handoff_packet.csv`
-- The packet now consolidates the whole top-level status/handoff subchain into one single-entry coordination artifact, including the operator brief, operator-brief bridge, operator-brief bridge checklist, runbook, runbook bridge checklist, checkpoint, phase-checkpoint bridge checklist, milestone, completion dashboard, and the newer `status_handoff_status` rollup layers.
+- The packet now consolidates the whole top-level status/handoff subchain into one single-entry coordination artifact, including the operator brief, operator-brief bridge, operator-brief bridge checklist, runbook, runbook bridge checklist, checkpoint, phase-checkpoint bridge checklist, milestone, milestone bridge checklist, completion dashboard, and the newer `status_handoff_status` rollup layers.
 
 Current frontier operator next-action status handoff packet bridge checklist result:
 
@@ -475,6 +475,12 @@ Current frontier operator next-action status handoff milestone card result:
 - `results/figures/frontier_operator_next_action_status_handoff_milestone_card.md`
 - `results/tables/frontier_operator_next_action_status_handoff_milestone_card.csv`
 - The milestone card shows what the current ready-lane checkpoint unlocks next inside the `status/handoff` subchain, with `external_validation` kept explicit as the next visible coordination target after the ready lane closes.
+
+Current frontier operator next-action status handoff milestone bridge checklist result:
+
+- `results/figures/frontier_operator_next_action_status_handoff_milestone_bridge_checklist.md`
+- `results/tables/frontier_operator_next_action_status_handoff_milestone_bridge_checklist.csv`
+- The checklist verifies that milestone card before the next contributor opens the completion dashboard target.
 
 Current frontier operator next-action status handoff completion dashboard result:
 

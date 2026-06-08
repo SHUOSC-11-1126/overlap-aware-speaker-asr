@@ -1551,7 +1551,7 @@ Frontier operator next-action status handoff packet:
 
 - `results/figures/frontier_operator_next_action_status_handoff_packet.md`
 - `results/tables/frontier_operator_next_action_status_handoff_packet.csv`
-- The packet consolidates the top-level status snapshot, lane handoff, queue summary, operator brief, operator-brief bridge, operator-brief bridge checklist, runbook, runbook bridge checklist, checkpoint, phase-checkpoint bridge checklist, milestone, completion dashboard, bridge checkpoints, and the newer `status_handoff_status` rollup layer into one single-entry coordination artifact.
+- The packet consolidates the top-level status snapshot, lane handoff, queue summary, operator brief, operator-brief bridge, operator-brief bridge checklist, runbook, runbook bridge checklist, checkpoint, phase-checkpoint bridge checklist, milestone, milestone bridge checklist, completion dashboard, bridge checkpoints, and the newer `status_handoff_status` rollup layer into one single-entry coordination artifact.
 
 Frontier operator next-action status handoff packet bridge checklist:
 
@@ -1606,6 +1606,12 @@ Frontier operator next-action status handoff milestone card:
 - `results/figures/frontier_operator_next_action_status_handoff_milestone_card.md`
 - `results/tables/frontier_operator_next_action_status_handoff_milestone_card.csv`
 - The milestone card records the immediate unlock boundary after the current ready-lane checkpoint closes, keeping `external_validation` visible as the next explicit coordination target inside the `status/handoff` subchain.
+
+Frontier operator next-action status handoff milestone bridge checklist:
+
+- `results/figures/frontier_operator_next_action_status_handoff_milestone_bridge_checklist.md`
+- `results/tables/frontier_operator_next_action_status_handoff_milestone_bridge_checklist.csv`
+- The checklist verifies that milestone card before the completion dashboard is reopened, keeping the transition coordination-only.
 
 Frontier operator next-action status handoff completion dashboard:
 
