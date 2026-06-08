@@ -1571,6 +1571,12 @@ Frontier operator next-action status handoff runbook card:
 - `results/tables/frontier_operator_next_action_status_handoff_runbook_card.csv`
 - The runbook card condenses the current ready-lane action into a one-page execution card with a concrete completion signal tied to the ready target artifact.
 
+Frontier operator next-action status handoff phase checkpoint card:
+
+- `results/figures/frontier_operator_next_action_status_handoff_phase_checkpoint_card.md`
+- `results/tables/frontier_operator_next_action_status_handoff_phase_checkpoint_card.csv`
+- The phase checkpoint card narrows that runbook to the exact completion signal that should be satisfied before the `status/handoff` subchain advances.
+
 Frontier execution queue completion summary bridge checklist:
 
 - `results/figures/frontier_execution_queue_completion_summary_bridge_checklist.md`

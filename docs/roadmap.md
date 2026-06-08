@@ -1363,6 +1363,13 @@ Update: the frontier now also has a top-level operator status handoff runbook ca
 - Script: `python3 -m src.frontier_operator_next_action_status_handoff_runbook_card`
 - Current evidence condenses the current ready-lane action into a one-page execution card with a concrete completion signal tied to the ready target artifact.
 
+Update: the frontier now also has a top-level operator status handoff phase checkpoint card.
+
+- Frontier operator status handoff phase checkpoint card: `results/tables/frontier_operator_next_action_status_handoff_phase_checkpoint_card.csv`
+- Summary view: `results/figures/frontier_operator_next_action_status_handoff_phase_checkpoint_card.md`
+- Script: `python3 -m src.frontier_operator_next_action_status_handoff_phase_checkpoint_card`
+- Current evidence narrows the runbook to the exact completion signal that should be satisfied before the `status/handoff` subchain advances.
+
 Update: the frontier now has a per-frontier execution handoff.
 
 - Frontier execution queue handoff: `results/tables/frontier_execution_queue_handoff.csv`

@@ -440,6 +440,12 @@ Current frontier operator next-action status handoff runbook card result:
 - `results/tables/frontier_operator_next_action_status_handoff_runbook_card.csv`
 - The runbook card condenses the current ready-lane action into one one-page execution card.
 
+Current frontier operator next-action status handoff phase checkpoint card result:
+
+- `results/figures/frontier_operator_next_action_status_handoff_phase_checkpoint_card.md`
+- `results/tables/frontier_operator_next_action_status_handoff_phase_checkpoint_card.csv`
+- The phase checkpoint card narrows that runbook to the exact completion signal for the current step.
+
 Current frontier focus checklist result:
 
 - `results/figures/frontier_focus_card_checklist.md` now turns that focus card into a one-glance verification checklist
