@@ -1370,6 +1370,13 @@ Update: the frontier now also has a top-level operator status handoff phase chec
 - Script: `python3 -m src.frontier_operator_next_action_status_handoff_phase_checkpoint_card`
 - Current evidence narrows the runbook to the exact completion signal that should be satisfied before the `status/handoff` subchain advances.
 
+Update: the frontier now also has a top-level operator status handoff milestone card.
+
+- Frontier operator status handoff milestone card: `results/tables/frontier_operator_next_action_status_handoff_milestone_card.csv`
+- Summary view: `results/figures/frontier_operator_next_action_status_handoff_milestone_card.md`
+- Script: `python3 -m src.frontier_operator_next_action_status_handoff_milestone_card`
+- Current evidence records what the current ready-lane checkpoint unlocks next inside the `status/handoff` subchain and how many visible top-level lanes remain after that checkpoint closes.
+
 Update: the frontier now has a per-frontier execution handoff.
 
 - Frontier execution queue handoff: `results/tables/frontier_execution_queue_handoff.csv`

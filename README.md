@@ -446,6 +446,12 @@ Current frontier operator next-action status handoff phase checkpoint card resul
 - `results/tables/frontier_operator_next_action_status_handoff_phase_checkpoint_card.csv`
 - The phase checkpoint card narrows that runbook to the exact completion signal for the current step.
 
+Current frontier operator next-action status handoff milestone card result:
+
+- `results/figures/frontier_operator_next_action_status_handoff_milestone_card.md`
+- `results/tables/frontier_operator_next_action_status_handoff_milestone_card.csv`
+- The milestone card shows what the current ready-lane checkpoint unlocks next inside the `status/handoff` subchain, with `external_validation` kept explicit as the next visible coordination target after the ready lane closes.
+
 Current frontier focus checklist result:
 
 - `results/figures/frontier_focus_card_checklist.md` now turns that focus card into a one-glance verification checklist

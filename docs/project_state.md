@@ -1577,6 +1577,12 @@ Frontier operator next-action status handoff phase checkpoint card:
 - `results/tables/frontier_operator_next_action_status_handoff_phase_checkpoint_card.csv`
 - The phase checkpoint card narrows that runbook to the exact completion signal that should be satisfied before the `status/handoff` subchain advances.
 
+Frontier operator next-action status handoff milestone card:
+
+- `results/figures/frontier_operator_next_action_status_handoff_milestone_card.md`
+- `results/tables/frontier_operator_next_action_status_handoff_milestone_card.csv`
+- The milestone card records the immediate unlock boundary after the current ready-lane checkpoint closes, keeping `external_validation` visible as the next explicit coordination target inside the `status/handoff` subchain.
+
 Frontier execution queue completion summary bridge checklist:
 
 - `results/figures/frontier_execution_queue_completion_summary_bridge_checklist.md`
