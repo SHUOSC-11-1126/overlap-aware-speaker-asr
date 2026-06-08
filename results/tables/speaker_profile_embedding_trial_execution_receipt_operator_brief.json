@@ -1,0 +1,8 @@
+{
+  "operator_case": "NoOverlap",
+  "operator_status": "receipt_ready_to_fill",
+  "operator_target": "results/figures/speaker_profile_embedding_trial_execution_receipt_readiness.md",
+  "operator_evidence": "results/figures/speaker_profile_embedding_trial_execution_receipt_handoff_packet.md; results/figures/speaker_profile_embedding_trial_execution_receipt_handoff_packet_bridge_checklist.md",
+  "operator_action": "Reopen results/figures/speaker_profile_embedding_trial_execution_receipt_readiness.md for NoOverlap after confirming the receipt handoff packet bridge.",
+  "operator_note": "Speaker-profile receipt coordination for NoOverlap reports readiness_status=receipt_ready_to_fill with receipt_template_status=template_only. This remains experimental/frontier only, and does not fill the receipt or claim voiceprint success."
+}

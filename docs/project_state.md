@@ -1839,6 +1839,13 @@ Speaker profile embedding trial execution receipt handoff packet bridge checklis
 - `results/tables/speaker_profile_embedding_trial_execution_receipt_handoff_packet_bridge_checklist.json`
 - This checklist turns that speaker-profile receipt handoff packet into a first-gate verification step before the readiness rollup is reopened.
 
+Speaker profile embedding trial execution receipt operator brief:
+
+- `results/figures/speaker_profile_embedding_trial_execution_receipt_operator_brief.md`
+- `results/tables/speaker_profile_embedding_trial_execution_receipt_operator_brief.csv`
+- `results/tables/speaker_profile_embedding_trial_execution_receipt_operator_brief.json`
+- This brief turns the handoff-packet bridge into one plain-language next action for `NoOverlap`, while staying explicitly coordination-only and not claiming any voiceprint success.
+
 External validation slice staging handoff receipt readiness bridge checklist:
 
 - `results/figures/external_validation_slice_staging_handoff_receipt_readiness_bridge_checklist.md`
@@ -2818,6 +2825,7 @@ python -m src.speaker_profile_embedding_trial_execution_receipt_open_card
 python -m src.speaker_profile_embedding_trial_execution_receipt_open_card_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_receipt_handoff_packet
 python -m src.speaker_profile_embedding_trial_execution_receipt_handoff_packet_bridge_checklist
+python -m src.speaker_profile_embedding_trial_execution_receipt_operator_brief
 python -m src.external_validation_slice_staging_handoff_receipt_readiness
 python -m src.frontier_execution_receipt_queue_status
 python -m src.meeteval_cpwer_execution_receipt_readiness_bridge_checklist
