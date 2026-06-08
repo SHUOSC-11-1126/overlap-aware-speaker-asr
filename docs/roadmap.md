@@ -1495,6 +1495,13 @@ Update: the frontier now also has an execution queue phase checkpoint card.
 - Script: `python3 -m src.frontier_execution_queue_phase_checkpoint_card`
 - Current evidence narrows the execution queue runbook to the exact completion signal that should be satisfied before the current first execution-queue step is treated as advanced.
 
+Update: the frontier now also has an execution queue phase checkpoint bridge checklist.
+
+- Frontier execution queue phase checkpoint bridge checklist: `results/tables/frontier_execution_queue_phase_checkpoint_bridge_checklist.csv`
+- Summary view: `results/figures/frontier_execution_queue_phase_checkpoint_bridge_checklist.md`
+- Script: `python3 -m src.frontier_execution_queue_phase_checkpoint_bridge_checklist`
+- Current evidence verifies that phase checkpoint card before reopening the milestone card for the current first execution-queue target.
+
 Update: the frontier now also has an execution queue milestone card.
 
 - Frontier execution queue milestone card: `results/tables/frontier_execution_queue_milestone_card.csv`

@@ -374,6 +374,12 @@ Current frontier execution queue phase checkpoint card result:
 - `results/tables/frontier_execution_queue_phase_checkpoint_card.csv`
 - The checkpoint card narrows that execution-queue runbook to the exact completion signal for the current first target.
 
+Current frontier execution queue phase checkpoint bridge checklist result:
+
+- `results/figures/frontier_execution_queue_phase_checkpoint_bridge_checklist.md`
+- `results/tables/frontier_execution_queue_phase_checkpoint_bridge_checklist.csv`
+- The checklist verifies the phase checkpoint card before the milestone card is reopened for the current first target.
+
 Current frontier execution queue milestone card result:
 
 - `results/figures/frontier_execution_queue_milestone_card.md`

@@ -1697,6 +1697,12 @@ Frontier execution queue phase checkpoint card:
 - `results/tables/frontier_execution_queue_phase_checkpoint_card.csv`
 - This checkpoint card narrows the execution queue runbook to the exact completion signal for the current first execution-queue target.
 
+Frontier execution queue phase checkpoint bridge checklist:
+
+- `results/figures/frontier_execution_queue_phase_checkpoint_bridge_checklist.md`
+- `results/tables/frontier_execution_queue_phase_checkpoint_bridge_checklist.csv`
+- This checklist verifies the phase checkpoint card before the milestone card is reopened for the current first execution-queue target.
+
 Frontier execution queue milestone card:
 
 - `results/figures/frontier_execution_queue_milestone_card.md`
@@ -2514,6 +2520,7 @@ python -m src.frontier_execution_queue_operator_brief
 python -m src.frontier_execution_queue_runbook_card
 python -m src.frontier_execution_queue_runbook_bridge_checklist
 python -m src.frontier_execution_queue_phase_checkpoint_card
+python -m src.frontier_execution_queue_phase_checkpoint_bridge_checklist
 python -m src.frontier_execution_queue_milestone_card
 python -m src.frontier_execution_queue_completion_dashboard
 python -m src.frontier_execution_queue_completion_dashboard_bridge_checklist

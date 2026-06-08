@@ -73,24 +73,30 @@ PACKET_SECTIONS = [
     ),
     (
         "10",
+        "execution_queue_phase_checkpoint_bridge_checklist",
+        "results/figures/frontier_execution_queue_phase_checkpoint_bridge_checklist.md",
+        "Verify the phase checkpoint card before reopening the current execution queue milestone card.",
+    ),
+    (
+        "11",
         "execution_queue_milestone_card",
         "results/figures/frontier_execution_queue_milestone_card.md",
         "Immediate milestone boundary and next unlock for the current first execution-queue action.",
     ),
     (
-        "11",
+        "12",
         "execution_queue_completion_dashboard",
         "results/figures/frontier_execution_queue_completion_dashboard.md",
         "One-glance operator-facing dashboard for the current execution queue state.",
     ),
     (
-        "12",
+        "13",
         "execution_queue_completion_dashboard_bridge_checklist",
         "results/figures/frontier_execution_queue_completion_dashboard_bridge_checklist.md",
         "Verify the completion dashboard before reopening the current execution queue runbook card.",
     ),
     (
-        "13",
+        "14",
         "execution_queue_handoff_bridge_checklist",
         "results/figures/frontier_execution_queue_handoff_bridge_checklist.md",
         "Verify each execution handoff before opening the receipt target for that frontier.",

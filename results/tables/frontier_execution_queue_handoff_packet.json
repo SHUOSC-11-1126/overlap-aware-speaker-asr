@@ -64,27 +64,34 @@
   },
   {
     "packet_order": "10",
+    "section_name": "execution_queue_phase_checkpoint_bridge_checklist",
+    "artifact_path": "results/figures/frontier_execution_queue_phase_checkpoint_bridge_checklist.md",
+    "section_role": "Verify the phase checkpoint card before reopening the current execution queue milestone card.",
+    "packet_note": "Execution queue packet section while queue_status=queue_complete, ready_chain_count=3, pending_chain_count=0; no benchmark execution or external audio staging is claimed."
+  },
+  {
+    "packet_order": "11",
     "section_name": "execution_queue_milestone_card",
     "artifact_path": "results/figures/frontier_execution_queue_milestone_card.md",
     "section_role": "Immediate milestone boundary and next unlock for the current first execution-queue action.",
     "packet_note": "Execution queue packet section while queue_status=queue_complete, ready_chain_count=3, pending_chain_count=0; no benchmark execution or external audio staging is claimed."
   },
   {
-    "packet_order": "11",
+    "packet_order": "12",
     "section_name": "execution_queue_completion_dashboard",
     "artifact_path": "results/figures/frontier_execution_queue_completion_dashboard.md",
     "section_role": "One-glance operator-facing dashboard for the current execution queue state.",
     "packet_note": "Execution queue packet section while queue_status=queue_complete, ready_chain_count=3, pending_chain_count=0; no benchmark execution or external audio staging is claimed."
   },
   {
-    "packet_order": "12",
+    "packet_order": "13",
     "section_name": "execution_queue_completion_dashboard_bridge_checklist",
     "artifact_path": "results/figures/frontier_execution_queue_completion_dashboard_bridge_checklist.md",
     "section_role": "Verify the completion dashboard before reopening the current execution queue runbook card.",
     "packet_note": "Execution queue packet section while queue_status=queue_complete, ready_chain_count=3, pending_chain_count=0; no benchmark execution or external audio staging is claimed."
   },
   {
-    "packet_order": "13",
+    "packet_order": "14",
     "section_name": "execution_queue_handoff_bridge_checklist",
     "artifact_path": "results/figures/frontier_execution_queue_handoff_bridge_checklist.md",
     "section_role": "Verify each execution handoff before opening the receipt target for that frontier.",
