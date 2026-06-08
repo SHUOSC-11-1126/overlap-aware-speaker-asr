@@ -2022,6 +2022,13 @@ Frontier execution receipt queue writeback handoff:
 - `results/tables/frontier_execution_receipt_queue_writeback_handoff.json`
 - This handoff turns the dynamic writeback status into per-frontier next actions, correctly separating `meeteval` review/archive from the still-pending `speaker_profile` and `external_validation` writeback paths.
 
+Frontier execution receipt queue writeback handoff bridge checklist:
+
+- `results/figures/frontier_execution_receipt_queue_writeback_handoff_bridge_checklist.md`
+- `results/tables/frontier_execution_receipt_queue_writeback_handoff_bridge_checklist.csv`
+- `results/tables/frontier_execution_receipt_queue_writeback_handoff_bridge_checklist.json`
+- This checklist turns the writeback handoff into a row-by-row verification gate before any frontier receipt is reopened for writeback.
+
 Frontier execution receipt fill queue status:
 
 - `results/figures/frontier_execution_receipt_fill_queue_status.md`
@@ -2788,6 +2795,7 @@ python -m src.frontier_execution_receipt_queue_writeback_packet
 python -m src.frontier_execution_receipt_queue_writeback_packet_bridge_checklist
 python -m src.frontier_execution_receipt_queue_writeback_status
 python -m src.frontier_execution_receipt_queue_writeback_handoff
+python -m src.frontier_execution_receipt_queue_writeback_handoff_bridge_checklist
 python -m src.frontier_execution_receipt_fill_queue_status
 python -m src.frontier_execution_receipt_fill_queue_status_bridge_checklist
 python -m src.frontier_execution_receipt_fill_queue_completion_summary

@@ -1807,6 +1807,14 @@ Update: the frontier receipt layer now has a writeback handoff.
 - Script: `python3 -m src.frontier_execution_receipt_queue_writeback_handoff`
 - This turns that mixed writeback state into concrete next actions: review/archive the already-written `meeteval` receipt, while `speaker_profile` and `external_validation` still need real writeback execution.
 
+Update: the frontier receipt layer now has a writeback handoff bridge checklist.
+
+- Writeback handoff bridge checklist: `results/tables/frontier_execution_receipt_queue_writeback_handoff_bridge_checklist.csv`
+- Writeback handoff bridge checklist JSON: `results/tables/frontier_execution_receipt_queue_writeback_handoff_bridge_checklist.json`
+- Summary view: `results/figures/frontier_execution_receipt_queue_writeback_handoff_bridge_checklist.md`
+- Script: `python3 -m src.frontier_execution_receipt_queue_writeback_handoff_bridge_checklist`
+- This turns the mixed writeback handoff into a row-by-row verification gate before any frontier receipt is reopened for writeback.
+
 Update: the frontier receipt layer now has a fill queue status rollup.
 
 - Fill queue status: `results/tables/frontier_execution_receipt_fill_queue_status.csv`
