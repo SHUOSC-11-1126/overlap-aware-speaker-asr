@@ -307,6 +307,14 @@ Update: `speaker_profile` now also has an embedding trial execution scaffold bri
 - Summary view: `results/figures/speaker_profile_embedding_trial_execution_scaffold_bridge_checklist.md`
 - This connects the execution scaffold to voiceprint execution without claiming attribution success.
 
+Update: `speaker_profile` now also has a multi-signal diagnostic bridge.
+
+- Multi-signal diagnostic: `results/tables/speaker_profile_multisignal_diagnostic.csv`
+- Summary view: `results/figures/speaker_profile_multisignal_diagnostic.md`
+- Multi-signal summary: `results/tables/speaker_profile_multisignal_summary.csv`
+- Summary card: `results/figures/speaker_profile_multisignal_summary.md`
+- Current evidence says the text and audio proxy branches agree on swapped-bias direction, but the audio side is still only `weak_support`, so the justified next step is a narrow embedding baseline rather than any attribution claim.
+
 Update: `llm_critic` now has a first qualitative review pass.
 
 - Review pass table: `results/tables/llm_critic_review_pass.csv`

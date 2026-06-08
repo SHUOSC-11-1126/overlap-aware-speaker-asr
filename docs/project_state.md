@@ -961,6 +961,14 @@ Speaker profile audio proxy bridge:
 - `results/tables/speaker_profile_audio_proxy_summary.csv`
 - The first narrow audio-profile proxy trial now exists as a real acoustic-side experiment rather than a text-only scaffold. It still argues for caution, not confidence: all five gold cases remain `swapped_bias`, but the average confidence gap is only `0.000013`, so the lightweight proxy currently looks too weak for attribution claims and is best treated as diagnostic-only frontier evidence.
 
+Speaker profile multi-signal diagnostic:
+
+- `results/figures/speaker_profile_multisignal_diagnostic.md`
+- `results/tables/speaker_profile_multisignal_diagnostic.csv`
+- `results/figures/speaker_profile_multisignal_summary.md`
+- `results/tables/speaker_profile_multisignal_summary.csv`
+- The text-profile and audio-profile proxy branches now agree on swapped-bias direction for all five gold cases, but the acoustic side remains `weak_support` throughout. This is useful frontier evidence for advancing to a narrow embedding baseline, not for making attribution claims.
+
 Speaker profile embedding scaffold bridge checklist:
 
 - `results/figures/speaker_profile_embedding_scaffold_bridge_checklist.md`
@@ -1097,7 +1105,7 @@ Speaker profile embedding trial execution preflight:
 
 - `results/figures/speaker_profile_embedding_trial_execution_preflight.md`
 - `results/tables/speaker_profile_embedding_trial_execution_preflight.csv`
-- The first narrow execution preflight on `NoOverlap` reports `preflight_pass = true` with `swapped_bias_detected = true`; voiceprint execution remains pending.
+- The first narrow execution preflight on `NoOverlap` reports `preflight_pass = true` with `swapped_bias_detected = true` and `combined_signal_status = text_swapped_audio_weak`; voiceprint execution remains pending and attribution claims remain blocked.
 
 Speaker profile embedding trial execution receipt scaffold:
 
@@ -1122,7 +1130,7 @@ Speaker profile embedding trial execution status:
 
 - `results/figures/speaker_profile_embedding_trial_execution_status.md`
 - `results/tables/speaker_profile_embedding_trial_execution_status.csv`
-- The execution-chain rollup reports `execution_chain_status = execution_chain_ready` for `NoOverlap` with `swapped_bias_detected = true`; voiceprint execution remains pending.
+- The execution-chain rollup reports `execution_chain_status = execution_chain_ready` for `NoOverlap` with `swapped_bias_detected = true` and `combined_signal_status = text_swapped_audio_weak`; voiceprint execution remains pending.
 
 Speaker profile embedding trial execution status bridge checklist:
 
