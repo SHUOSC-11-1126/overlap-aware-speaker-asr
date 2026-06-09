@@ -1,0 +1,10 @@
+{
+  "handoff_status": "tokenization_gain_handoff_ready",
+  "recommended_default_mode": "character_spaced",
+  "adapted_and_aligned_count": "5",
+  "case_count": "5",
+  "handoff_target": "results/figures/meeteval_cpwer_tokenization_adaptation_completion_summary.md",
+  "handoff_goal": "Advance tokenization adaptation completion after the gain scorecard confirms character-spaced cpWER.",
+  "expected_evidence": "results/tables/meeteval_cpwer_tokenization_adaptation_completion_summary.csv",
+  "handoff_note": "experimental/frontier tokenization gain handoff only; full MeetEval benchmark completion is not claimed."
+}
