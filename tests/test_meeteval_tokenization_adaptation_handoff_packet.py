@@ -16,7 +16,7 @@ class MeetEvalTokenizationAdaptationHandoffPacketTest(unittest.TestCase):
             }
         )
 
-        self.assertEqual(len(rows), 12)
+        self.assertEqual(len(rows), 14)
         self.assertEqual(rows[0]["section_name"], "tokenization_diagnostic")
         self.assertEqual(rows[1]["section_name"], "character_level_official_execution")
         self.assertEqual(rows[2]["section_name"], "reconciliation_audit")
@@ -29,6 +29,8 @@ class MeetEvalTokenizationAdaptationHandoffPacketTest(unittest.TestCase):
         self.assertEqual(rows[9]["section_name"], "tokenization_adaptation_handoff")
         self.assertEqual(rows[10]["section_name"], "tokenization_adaptation_handoff_bridge_checklist")
         self.assertEqual(rows[11]["section_name"], "tokenization_adaptation_handoff_completion_summary")
+        self.assertEqual(rows[12]["section_name"], "tokenization_gain_to_frontier_fill_handoff")
+        self.assertEqual(rows[13]["section_name"], "tokenization_gain_to_frontier_fill_handoff_bridge_checklist")
         self.assertIn("tokenization_adaptation_handoff_ready", rows[0]["packet_note"])
 
 
