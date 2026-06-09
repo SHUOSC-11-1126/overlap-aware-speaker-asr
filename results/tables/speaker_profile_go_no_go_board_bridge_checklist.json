@@ -1,0 +1,14 @@
+[
+  {
+    "checklist_order": "1",
+    "overall_state": "narrow_execution_ready",
+    "go_count": "4",
+    "checkpoint_count": "4",
+    "case_scope": "NoOverlap",
+    "prerequisite_artifact": "results/figures/speaker_profile_go_no_go_summary.md",
+    "receipt_target": "results/figures/speaker_profile_embedding_trial_execution_preflight_readiness.md",
+    "checklist_goal": "Verify the speaker-profile go-no-go board before reopening the embedding trial execution preflight.",
+    "bridge_note": "Go-no-go summary reports overall_state=narrow_execution_ready with 4/4 go checkpoints for NoOverlap; attribution claims remain blocked.",
+    "next_gate": "Confirm this bridge before opening the speaker profile embedding trial execution preflight."
+  }
+]
