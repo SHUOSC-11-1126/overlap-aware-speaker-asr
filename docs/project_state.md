@@ -1787,6 +1787,12 @@ Speaker profile go-no-go summary:
 - `results/tables/speaker_profile_go_no_go_summary.csv`
 - `overall_state = narrow_execution_ready` while `primary_boundary = attribution_claims_still_blocked_by_weak_support`.
 
+Speaker profile go-no-go board bridge checklist:
+
+- `results/figures/speaker_profile_go_no_go_board_bridge_checklist.md`
+- `results/tables/speaker_profile_go_no_go_board_bridge_checklist.csv`
+- This checklist connects the go-no-go board to the embedding trial execution preflight without claiming speaker identification success.
+
 External validation slice staging handoff receipt readiness:
 
 - `results/figures/external_validation_slice_staging_handoff_receipt_readiness.md`
@@ -2515,6 +2521,18 @@ MeetEval cpWER tokenization gain scorecard handoff bridge checklist:
 - `results/tables/meeteval_cpwer_tokenization_gain_scorecard_handoff_bridge_checklist.csv`
 - This checklist connects the gain handoff to the tokenization adaptation handoff without claiming benchmark completion.
 
+MeetEval cpWER tokenization gain scorecard handoff completion summary:
+
+- `results/figures/meeteval_cpwer_tokenization_gain_scorecard_handoff_completion_summary.md`
+- `results/tables/meeteval_cpwer_tokenization_gain_scorecard_handoff_completion_summary.csv`
+- `queue_status = queue_complete` at `5/5` adapted-and-aligned cases; tokenization adaptation handoff remains next.
+
+MeetEval cpWER tokenization gain scorecard handoff completion summary bridge checklist:
+
+- `results/figures/meeteval_cpwer_tokenization_gain_scorecard_handoff_completion_summary_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_tokenization_gain_scorecard_handoff_completion_summary_bridge_checklist.csv`
+- This checklist verifies gain handoff completion before advancing the tokenization adaptation handoff.
+
 MeetEval cpWER tokenization adaptation completion summary bridge checklist:
 
 - `results/figures/meeteval_cpwer_tokenization_adaptation_completion_summary_bridge_checklist.md`
@@ -2550,7 +2568,7 @@ MeetEval cpWER tokenization adaptation handoff packet:
 - `results/figures/meeteval_tokenization_adaptation_handoff_packet.md`
 - `results/tables/meeteval_tokenization_adaptation_handoff_packet.csv`
 - `results/tables/meeteval_tokenization_adaptation_handoff_packet.json`
-- This packet consolidates the tokenization diagnostic, character-level execution, reconciliation audit, gain scorecard, gain scorecard bridge, gain scorecard handoff, completion summary, and handoff layers into one coordination entrypoint without claiming full benchmark completion.
+- This packet consolidates the tokenization diagnostic, character-level execution, reconciliation audit, gain scorecard, gain scorecard bridge, gain scorecard handoff, gain handoff completion, completion summary, and handoff layers into one coordination entrypoint without claiming full benchmark completion.
 
 MeetEval compatibility skill card:
 

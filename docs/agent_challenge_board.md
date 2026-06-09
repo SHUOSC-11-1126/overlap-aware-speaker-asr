@@ -51,10 +51,12 @@ The frontier receipt-fill execution stack now has an operator brief and receipt 
 - Speaker profile multi-signal summary: `results/figures/speaker_profile_multisignal_summary.md`
 - MeetEval tokenization adaptation handoff: `results/figures/meeteval_tokenization_adaptation_handoff.md`
 - MeetEval tokenization handoff completion: `results/figures/meeteval_tokenization_adaptation_handoff_completion_summary.md`
+- MeetEval tokenization gain scorecard handoff completion summary: `results/figures/meeteval_cpwer_tokenization_gain_scorecard_handoff_completion_summary.md`
+- Speaker profile go-no-go board bridge checklist: `results/figures/speaker_profile_go_no_go_board_bridge_checklist.md`
 - Speaker profile scaffold completion: `results/figures/speaker_profile_embedding_trial_execution_scaffold_completion_summary.md`
 - Speaker profile preflight readiness: `results/figures/speaker_profile_embedding_trial_execution_preflight_readiness.md`
 
-MeetEval compatibility remains the recommended first fill target. Character-spaced official cpWER (`python -m src.meeteval_cpwer_character_level_official_execution --all`) reconciles `5/5` gold cases with bridge-lite. Tokenization handoff completion is `queue_complete`; next coordination step is the frontier fill runbook card.
+MeetEval compatibility remains the recommended first fill target. Character-spaced official cpWER (`python -m src.meeteval_cpwer_character_level_official_execution --all`) reconciles `5/5` gold cases with bridge-lite. Tokenization gain handoff completion is `queue_complete`; next coordination step is the tokenization adaptation handoff and frontier fill runbook card.
 
 Speaker profile execution scaffold completion is `queue_complete` for `NoOverlap`; preflight readiness tracks swapped-bias proxy data before any voiceprint execution — still diagnostic-only. The lightweight audio-profile proxy trial reproduces the swapped-bias pattern, but with only a near-tie confidence gap. The new multi-signal diagnostic now makes that boundary explicit: text and audio agree on direction, yet audio remains only `weak_support`, so the next justified move is a narrow embedding baseline rather than any attribution claim.
 
