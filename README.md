@@ -763,6 +763,18 @@ Current MeetEval cpWER tokenization gain summary result:
 - `results/tables/meeteval_cpwer_tokenization_gain_scorecard_summary.csv`
 - The summary reports `average_raw_to_character_gain = 3.679091`, `max_gain_case = NoOverlap`, and keeps the conclusion explicitly in `experimental/frontier` scope rather than claiming a finished benchmark.
 
+Current MeetEval cpWER tokenization gain scorecard bridge checklist result:
+
+- `results/figures/meeteval_cpwer_tokenization_gain_scorecard_bridge_checklist.md`
+- `results/tables/meeteval_cpwer_tokenization_gain_scorecard_bridge_checklist.csv`
+- This checklist verifies the gain scorecard before advancing to the tokenization adaptation completion summary.
+
+Current MeetEval cpWER tokenization gain scorecard handoff result:
+
+- `results/figures/meeteval_cpwer_tokenization_gain_scorecard_handoff.md`
+- `results/tables/meeteval_cpwer_tokenization_gain_scorecard_handoff.csv`
+- `handoff_status = tokenization_gain_handoff_ready` at `5/5` adapted-and-aligned cases; adaptation completion remains coordination-only.
+
 Current speaker profile result:
 
 - `results/figures/speaker_profile_risk_summary.md` now provides a lightweight text-profile overlap report that compares direct vs swapped alignment and currently exposes a useful failure mode rather than a speaker-ID success claim
@@ -1042,6 +1054,9 @@ python -m src.meeteval_dry_run
 python -m src.meeteval_cpwer_bridge --case all
 python -m src.meeteval_cpwer_alignment
 python -m src.meeteval_cpwer_tokenization_gain_scorecard
+python -m src.meeteval_cpwer_tokenization_gain_scorecard_bridge_checklist
+python -m src.meeteval_cpwer_tokenization_gain_scorecard_handoff
+python -m src.meeteval_cpwer_execution_status_batch_handoff_completion_summary
 python -m src.external_validation_slice_scaffold
 python -m src.external_validation_license_gate
 python -m src.external_validation_slice_manifest

@@ -2200,6 +2200,7 @@ Update: `meeteval_compatibility` now also has a batch execution handoff.
 
 - Batch handoff: `results/tables/meeteval_cpwer_execution_status_batch_handoff.csv`
 - Summary view: `results/figures/meeteval_cpwer_execution_status_batch_handoff.md`
+- Handoff completion summary: `results/tables/meeteval_cpwer_execution_status_batch_handoff_completion_summary.csv`
 - This turns batch chain readiness into per-case official cpWER execution actions with a preferred first target.
 
 Update: `meeteval_compatibility` now also has an official cpWER narrow dry-run execution module.
@@ -2246,6 +2247,8 @@ Update: `meeteval_compatibility` now also has a tokenization gain scorecard.
 - Scorecard: `results/tables/meeteval_cpwer_tokenization_gain_scorecard.csv`
 - Summary: `results/tables/meeteval_cpwer_tokenization_gain_scorecard_summary.csv`
 - Script: `python -m src.meeteval_cpwer_tokenization_gain_scorecard`
+- Bridge checklist: `results/tables/meeteval_cpwer_tokenization_gain_scorecard_bridge_checklist.csv`
+- Handoff: `results/tables/meeteval_cpwer_tokenization_gain_scorecard_handoff.csv`
 - Current evidence shows positive raw-to-character gain on all five gold cases and supports `character_spaced` as the default MeetEval mode for this CJK gold benchmark family.
 
 Update: `speaker_profile` now also has a text-proxy diagnostic completion stack.
