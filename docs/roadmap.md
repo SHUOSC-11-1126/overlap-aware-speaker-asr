@@ -2314,6 +2314,16 @@ Update: `meeteval_compatibility` now also has a tokenization handoff completion 
 - Scripts: `python -m src.meeteval_tokenization_adaptation_handoff_completion_summary`, `python -m src.meeteval_tokenization_adaptation_handoff_completion_summary_bridge_checklist`
 - `queue_status = queue_complete` at `5/5` reconciled cases; frontier fill runbook remains coordination-only.
 
+Update: `meeteval_compatibility` now also has a tokenization gain frontier fill execution receipt stack.
+
+- Runbook card: `results/tables/meeteval_tokenization_gain_frontier_fill_runbook_card.csv`
+- Runbook bridge checklist: `results/tables/meeteval_tokenization_gain_frontier_fill_runbook_bridge_checklist.csv`
+- Execution receipt bridge: `results/tables/meeteval_tokenization_gain_frontier_fill_execution_receipt_bridge.csv`
+- Execution receipt bridge checklist: `results/tables/meeteval_tokenization_gain_frontier_fill_execution_receipt_bridge_checklist.csv`
+- Operator brief: `results/tables/meeteval_tokenization_gain_frontier_fill_operator_brief.csv`
+- Scripts: `python -m src.meeteval_tokenization_gain_frontier_fill_runbook_card`, `python -m src.meeteval_tokenization_gain_frontier_fill_runbook_bridge_checklist`, `python -m src.meeteval_tokenization_gain_frontier_fill_execution_receipt_bridge`, `python -m src.meeteval_tokenization_gain_frontier_fill_execution_receipt_bridge_checklist`, `python -m src.meeteval_tokenization_gain_frontier_fill_operator_brief`
+- `runbook_status = tokenization_gain_frontier_fill_runbook_ready` at `5/5` adapted cases; receipt fill remains coordination-only until real evidence is written back.
+
 ## Healthy Project Principles
 
 - New experiments should be isolated.
