@@ -2585,6 +2585,36 @@ MeetEval tokenization gain to frontier fill handoff bridge checklist:
 - `results/tables/meeteval_tokenization_gain_to_frontier_fill_handoff_bridge_checklist.csv`
 - This checklist connects tokenization-to-fill handoff to the frontier fill operator brief without claiming benchmark completion.
 
+MeetEval tokenization gain frontier fill runbook card:
+
+- `results/figures/meeteval_tokenization_gain_frontier_fill_runbook_card.md`
+- `results/tables/meeteval_tokenization_gain_frontier_fill_runbook_card.csv`
+- `runbook_status = tokenization_gain_frontier_fill_runbook_ready` at `5/5` adapted cases; MeetEval receipt fill remains coordination-only.
+
+MeetEval tokenization gain frontier fill runbook bridge checklist:
+
+- `results/figures/meeteval_tokenization_gain_frontier_fill_runbook_bridge_checklist.md`
+- `results/tables/meeteval_tokenization_gain_frontier_fill_runbook_bridge_checklist.csv`
+- This checklist connects the runbook card to the MeetEval execution receipt JSON without claiming benchmark completion.
+
+MeetEval tokenization gain frontier fill execution receipt bridge:
+
+- `results/figures/meeteval_tokenization_gain_frontier_fill_execution_receipt_bridge.md`
+- `results/tables/meeteval_tokenization_gain_frontier_fill_execution_receipt_bridge.csv`
+- Bridges the runbook bridge checklist to `results/tables/meeteval_cpwer_execution_receipt.json`.
+
+MeetEval tokenization gain frontier fill execution receipt bridge checklist:
+
+- `results/figures/meeteval_tokenization_gain_frontier_fill_execution_receipt_bridge_checklist.md`
+- `results/tables/meeteval_tokenization_gain_frontier_fill_execution_receipt_bridge_checklist.csv`
+- Ordered verification path before updating the MeetEval execution receipt.
+
+MeetEval tokenization gain frontier fill operator brief:
+
+- `results/figures/meeteval_tokenization_gain_frontier_fill_operator_brief.md`
+- `results/tables/meeteval_tokenization_gain_frontier_fill_operator_brief.csv`
+- Plain-language operator action for character-spaced cpWER receipt writeback.
+
 MeetEval cpWER tokenization adaptation completion summary bridge checklist:
 
 - `results/figures/meeteval_cpwer_tokenization_adaptation_completion_summary_bridge_checklist.md`
@@ -3121,6 +3151,11 @@ python -m src.frontier_execution_receipt_fill_execution_handoff_packet
 python -m src.meeteval_cpwer_official_execution_alignment_audit_bridge_checklist
 python -m src.meeteval_cpwer_official_execution_reconciliation_audit_bridge_checklist
 python -m src.meeteval_tokenization_adaptation_handoff_packet
+python -m src.meeteval_tokenization_gain_frontier_fill_runbook_card
+python -m src.meeteval_tokenization_gain_frontier_fill_runbook_bridge_checklist
+python -m src.meeteval_tokenization_gain_frontier_fill_execution_receipt_bridge
+python -m src.meeteval_tokenization_gain_frontier_fill_execution_receipt_bridge_checklist
+python -m src.meeteval_tokenization_gain_frontier_fill_operator_brief
 python -m src.speaker_profile_embedding_trial_execution_handoff
 python -m src.speaker_profile_embedding_trial_execution_handoff_bridge_checklist
 python -m src.speaker_profile_embedding_trial_execution_preflight
