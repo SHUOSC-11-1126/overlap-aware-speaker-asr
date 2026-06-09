@@ -1799,6 +1799,11 @@ Speaker profile go-no-go board handoff:
 - `results/tables/speaker_profile_go_no_go_board_handoff.csv`
 - `handoff_status = speaker_profile_go_handoff_ready` for `NoOverlap`; narrow embedding preflight remains coordination-only.
 
+Speaker profile go-no-go board handoff bridge checklist:
+
+- `results/figures/speaker_profile_go_no_go_board_handoff_bridge_checklist.md`
+- `results/tables/speaker_profile_go_no_go_board_handoff_bridge_checklist.csv`
+
 External validation slice staging handoff receipt readiness:
 
 - `results/figures/external_validation_slice_staging_handoff_receipt_readiness.md`

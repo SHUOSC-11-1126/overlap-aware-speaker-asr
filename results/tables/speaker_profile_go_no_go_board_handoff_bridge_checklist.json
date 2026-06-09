@@ -1,0 +1,13 @@
+[
+  {
+    "checklist_order": "1",
+    "handoff_status": "speaker_profile_go_handoff_ready",
+    "overall_state": "narrow_execution_ready",
+    "case_scope": "NoOverlap",
+    "prerequisite_artifact": "results/figures/speaker_profile_go_no_go_board_handoff.md",
+    "receipt_target": "results/figures/speaker_profile_embedding_trial_execution_scaffold_readiness.md",
+    "checklist_goal": "Verify the speaker-profile go-no-go handoff before reopening the embedding trial execution scaffold.",
+    "bridge_note": "Go-no-go handoff reports handoff_status=speaker_profile_go_handoff_ready with overall_state=narrow_execution_ready for NoOverlap; attribution claims remain blocked.",
+    "next_gate": "Confirm this bridge before opening the speaker profile embedding trial execution scaffold readiness."
+  }
+]
