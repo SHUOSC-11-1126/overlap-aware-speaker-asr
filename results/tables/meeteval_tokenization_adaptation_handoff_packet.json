@@ -110,5 +110,26 @@
     "artifact_path": "results/figures/meeteval_tokenization_gain_frontier_fill_runbook_bridge_checklist.md",
     "section_role": "Verify the tokenization gain runbook before updating the MeetEval execution receipt.",
     "packet_note": "MeetEval tokenization adaptation packet section while handoff_status=tokenization_adaptation_handoff_ready, aligned_count=5, total_count=5, queue_status=queue_complete; this remains experimental/frontier coordination and does not claim full benchmark completion."
+  },
+  {
+    "packet_order": "17",
+    "section_name": "tokenization_gain_frontier_fill_execution_receipt_bridge",
+    "artifact_path": "results/figures/meeteval_tokenization_gain_frontier_fill_execution_receipt_bridge.md",
+    "section_role": "Bridge from the tokenization gain runbook checklist to the MeetEval execution receipt JSON.",
+    "packet_note": "MeetEval tokenization adaptation packet section while handoff_status=tokenization_adaptation_handoff_ready, aligned_count=5, total_count=5, queue_status=queue_complete; this remains experimental/frontier coordination and does not claim full benchmark completion."
+  },
+  {
+    "packet_order": "18",
+    "section_name": "tokenization_gain_frontier_fill_execution_receipt_bridge_checklist",
+    "artifact_path": "results/figures/meeteval_tokenization_gain_frontier_fill_execution_receipt_bridge_checklist.md",
+    "section_role": "Verify the execution receipt bridge before updating the MeetEval receipt.",
+    "packet_note": "MeetEval tokenization adaptation packet section while handoff_status=tokenization_adaptation_handoff_ready, aligned_count=5, total_count=5, queue_status=queue_complete; this remains experimental/frontier coordination and does not claim full benchmark completion."
+  },
+  {
+    "packet_order": "19",
+    "section_name": "tokenization_gain_frontier_fill_operator_brief",
+    "artifact_path": "results/figures/meeteval_tokenization_gain_frontier_fill_operator_brief.md",
+    "section_role": "Plain-language operator action for filling the MeetEval execution receipt.",
+    "packet_note": "MeetEval tokenization adaptation packet section while handoff_status=tokenization_adaptation_handoff_ready, aligned_count=5, total_count=5, queue_status=queue_complete; this remains experimental/frontier coordination and does not claim full benchmark completion."
   }
 ]
