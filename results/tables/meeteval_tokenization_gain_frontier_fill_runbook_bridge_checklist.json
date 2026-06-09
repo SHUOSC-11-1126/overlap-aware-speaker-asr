@@ -1,0 +1,13 @@
+[
+  {
+    "checklist_order": "1",
+    "runbook_status": "tokenization_gain_frontier_fill_runbook_ready",
+    "recommended_frontier": "meeteval_compatibility",
+    "prerequisite_artifact": "results/figures/meeteval_tokenization_gain_frontier_fill_runbook_card.md",
+    "execution_receipt_target": "results/tables/meeteval_cpwer_execution_receipt.json",
+    "checklist_goal": "Verify the tokenization gain frontier fill runbook for meeteval_compatibility before updating the execution receipt.",
+    "bridge_note": "Runbook status=tokenization_gain_frontier_fill_runbook_ready; adapted_case_ratio=5/5; completion_signal=execution_status in results/tables/meeteval_cpwer_execution_receipt.json is no longer template_only.",
+    "guardrail_note": "experimental/frontier tokenization-to-fill handoff only; full MeetEval benchmark completion is not claimed. Full MeetEval benchmark completion is not claimed by this runbook card.",
+    "next_gate": "Confirm this bridge only after real execution evidence is ready for the MeetEval receipt."
+  }
+]
