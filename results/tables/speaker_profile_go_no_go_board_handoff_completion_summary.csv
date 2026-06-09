@@ -1,0 +1,2 @@
+﻿scope,handoff_status,overall_state,go_count,checkpoint_count,case_scope,queue_status,observation
+speaker_profile_go_no_go_board_handoff,speaker_profile_go_handoff_ready,narrow_execution_ready,4,4,NoOverlap,queue_complete,Experimental/frontier speaker-profile go-no-go handoff completion rollup; embedding trial execution scaffold readiness remains the next coordination step.
