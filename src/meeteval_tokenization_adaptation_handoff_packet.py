@@ -113,6 +113,24 @@ PACKET_SECTIONS = [
         "results/figures/meeteval_tokenization_gain_frontier_fill_runbook_bridge_checklist.md",
         "Verify the tokenization gain runbook before updating the MeetEval execution receipt.",
     ),
+    (
+        "17",
+        "tokenization_gain_frontier_fill_execution_receipt_bridge",
+        "results/figures/meeteval_tokenization_gain_frontier_fill_execution_receipt_bridge.md",
+        "Bridge from the tokenization gain runbook checklist to the MeetEval execution receipt JSON.",
+    ),
+    (
+        "18",
+        "tokenization_gain_frontier_fill_execution_receipt_bridge_checklist",
+        "results/figures/meeteval_tokenization_gain_frontier_fill_execution_receipt_bridge_checklist.md",
+        "Verify the execution receipt bridge before updating the MeetEval receipt.",
+    ),
+    (
+        "19",
+        "tokenization_gain_frontier_fill_operator_brief",
+        "results/figures/meeteval_tokenization_gain_frontier_fill_operator_brief.md",
+        "Plain-language operator action for filling the MeetEval execution receipt.",
+    ),
 ]
 
 
