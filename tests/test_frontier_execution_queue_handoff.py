@@ -15,7 +15,7 @@ class FrontierExecutionQueueHandoffTest(unittest.TestCase):
             }
         )
 
-        self.assertEqual(len(rows), 3)
+        self.assertEqual(len(rows), 5)
         self.assertEqual(rows[0]["frontier_name"], "meeteval_compatibility")
         self.assertIn("Fill the execution receipt", rows[0]["recommended_action"])
 

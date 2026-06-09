@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import unittest
+from unittest.mock import patch
 
 from src.frontier_execution_receipt_fill_execution_status import (
     build_status_row,
@@ -13,7 +14,11 @@ class FrontierExecutionReceiptFillExecutionStatusTest(unittest.TestCase):
         self.assertEqual(derive_fill_execution_status("template_only"), "awaiting_fill")
 
     def test_build_status_row_reports_fill_execution_ready(self) -> None:
-        row = build_status_row()
+        with patch(
+            "src.frontier_execution_receipt_fill_execution_status.load_receipt_execution_status",
+            return_value="template_only",
+        ):
+            row = build_status_row()
 
         self.assertEqual(row["combined_fill_execution_status"], "fill_execution_ready")
         self.assertEqual(row["meeteval_fill_execution_status"], "awaiting_fill")
