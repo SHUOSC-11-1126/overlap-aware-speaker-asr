@@ -2,7 +2,8 @@ from __future__ import annotations
 
 import unittest
 
-from src.plot_results import grouped_cer_rows, to_float
+from src.config import load_config
+from src.plot_results import build_adaptive_rows, grouped_cer_rows, to_float
 
 
 class PlotResultsHelpersTest(unittest.TestCase):
@@ -22,6 +23,18 @@ class PlotResultsHelpersTest(unittest.TestCase):
         )
         self.assertEqual(grouped["NoOverlap"]["mixed_whisper"], 0.21)
         self.assertEqual(grouped["NoOverlap"]["separated_whisper"], 0.05)
+
+    def test_build_adaptive_rows_selects_lowest_cer_method(self) -> None:
+        grouped = {
+            "NoOverlap": {
+                "mixed_whisper": 0.21,
+                "separated_whisper": 0.05,
+            }
+        }
+        rows = build_adaptive_rows(grouped, load_config())
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["best_method"], "separated_whisper")
+        self.assertEqual(rows[0]["best_cer"], 0.05)
 
 
 if __name__ == "__main__":

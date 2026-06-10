@@ -1,8 +1,11 @@
 from __future__ import annotations
 
+import csv
+import tempfile
 import unittest
+from pathlib import Path
 
-from src.evaluate_synthetic_routing import dataset_paths, selected_method_v1, to_float, to_int
+from src.evaluate_synthetic_routing import dataset_paths, load_cer_lookup, selected_method_v1, to_float, to_int
 
 
 class EvaluateSyntheticRoutingHelpersTest(unittest.TestCase):
@@ -25,6 +28,17 @@ class EvaluateSyntheticRoutingHelpersTest(unittest.TestCase):
     def test_selected_method_v1_delegates_to_router_v1(self) -> None:
         method, _ = selected_method_v1(0)
         self.assertEqual(method, "separated_whisper")
+
+    def test_load_cer_lookup_indexes_sample_method_pairs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            csv_path = Path(tmp_dir) / "cer.csv"
+            with csv_path.open("w", encoding="utf-8-sig", newline="") as handle:
+                writer = csv.DictWriter(handle, fieldnames=["sample_id", "method", "cer"])
+                writer.writeheader()
+                writer.writerow({"sample_id": "s1", "method": "mixed_whisper", "cer": "0.12"})
+
+            lookup = load_cer_lookup(csv_path)
+            self.assertEqual(lookup[("s1", "mixed_whisper")], 0.12)
 
 
 if __name__ == "__main__":

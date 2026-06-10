@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from src.adaptive_router_v2 import choose_method_v2, is_unstable
+from src.adaptive_router_v2 import choose_method_v2, is_unstable, to_float, to_int
 
 
 class AdaptiveRouterV2HelpersTest(unittest.TestCase):
@@ -37,6 +37,12 @@ class AdaptiveRouterV2HelpersTest(unittest.TestCase):
             mixed_segments_count=3,
         )
         self.assertEqual(method, "separated_whisper")
+
+    def test_to_int_and_to_float_parse_numeric_strings(self) -> None:
+        self.assertEqual(to_int("4"), 4)
+        self.assertEqual(to_float("0.75"), 0.75)
+        self.assertEqual(to_int("bad"), 0)
+        self.assertEqual(to_float("bad"), 0.0)
 
 
 if __name__ == "__main__":

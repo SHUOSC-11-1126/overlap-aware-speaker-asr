@@ -7,6 +7,7 @@ from src.postprocess_transcript import (
     normalized_text,
     process_segments,
     should_remove_segment,
+    similarity,
 )
 
 
@@ -48,6 +49,10 @@ class PostprocessTranscriptTest(unittest.TestCase):
     def test_build_full_text_formats_speaker_labels(self) -> None:
         text = build_full_text([{"speaker": "S1", "text": "你好"}])
         self.assertEqual(text, "[S1] 你好")
+
+    def test_similarity_returns_high_score_for_near_duplicates(self) -> None:
+        self.assertGreaterEqual(similarity("你好世界", "你好世"), 0.8)
+        self.assertLess(similarity("你好", "再见"), 0.5)
 
 
 if __name__ == "__main__":

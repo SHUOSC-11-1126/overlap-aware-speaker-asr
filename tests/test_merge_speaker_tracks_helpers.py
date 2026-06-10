@@ -2,7 +2,8 @@ from __future__ import annotations
 
 import unittest
 
-from src.merge_speaker_tracks import build_full_text, speaker_segments
+from src.config import load_config
+from src.merge_speaker_tracks import build_full_text, find_case, speaker_segments
 
 
 class MergeSpeakerTracksHelpersTest(unittest.TestCase):
@@ -28,6 +29,11 @@ class MergeSpeakerTracksHelpersTest(unittest.TestCase):
             ]
         )
         self.assertEqual(text, "[SPEAKER_1] 第一句\n[SPEAKER_2] 第二句")
+
+    def test_find_case_returns_matching_audio_case(self) -> None:
+        config = load_config()
+        case = find_case(config, "LightOverlap")
+        self.assertEqual(case["id"], "LightOverlap")
 
 
 if __name__ == "__main__":

@@ -3,9 +3,12 @@ from __future__ import annotations
 import unittest
 
 from src.router_ablation import (
+    adjacent_repetition_from_segments,
     get_cleaned_closer_to_mixed,
     repetition_count_from_text,
     repetition_count_from_transcript,
+    select_base_by_overlap,
+    strategy_note,
 )
 
 
@@ -24,6 +27,19 @@ class RouterAblationHelpersTest(unittest.TestCase):
             [{"text": "重复句子"}, {"text": "重复句子"}],
         )
         self.assertGreaterEqual(count, 1)
+
+    def test_adjacent_repetition_from_segments_counts_duplicates(self) -> None:
+        count = adjacent_repetition_from_segments(
+            [{"text": "重复"}, {"text": "重复"}, {"text": "不同"}]
+        )
+        self.assertEqual(count, 1)
+
+    def test_select_base_by_overlap_matches_router_v1(self) -> None:
+        method, _ = select_base_by_overlap(0)
+        self.assertEqual(method, "separated_whisper")
+
+    def test_strategy_note_describes_known_strategies(self) -> None:
+        self.assertIn("Fixed baseline", strategy_note("fixed_mixed_whisper"))
 
 
 if __name__ == "__main__":

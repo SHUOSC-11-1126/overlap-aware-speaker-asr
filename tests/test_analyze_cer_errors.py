@@ -34,6 +34,12 @@ class AnalyzeCerErrorsTest(unittest.TestCase):
         clause_hits = [p for p in phrases if p["type"] == "repeated_clause"]
         self.assertTrue(any(p["phrase"] == "同意这个观点" and p["count"] >= 2 for p in clause_hits))
 
+    def test_find_repeated_phrases_detects_high_frequency_chunk(self) -> None:
+        text = "abcdefghabcdefghabcdefgh"
+        phrases = find_repeated_phrases(text)
+        chunk_hits = [p for p in phrases if p["type"] == "high_frequency_chunk"]
+        self.assertTrue(any(p["count"] >= 3 for p in chunk_hits))
+
 
 if __name__ == "__main__":
     unittest.main()
