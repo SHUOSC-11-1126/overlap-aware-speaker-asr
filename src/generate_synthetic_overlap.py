@@ -8,8 +8,6 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
-import soundfile as sf
-from scipy.signal import resample_poly
 
 from .config import PROJECT_ROOT, load_config
 
@@ -50,6 +48,9 @@ def parse_args() -> argparse.Namespace:
 
 
 def read_mono_audio(path: Path) -> AudioClip:
+    import soundfile as sf
+    from scipy.signal import resample_poly
+
     audio, sr = sf.read(path, always_2d=False)
     if audio.ndim > 1:
         audio = np.mean(audio, axis=1)
