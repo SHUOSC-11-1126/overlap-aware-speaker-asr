@@ -5,6 +5,7 @@ import unittest
 from src.postprocess_transcript import (
     build_full_text,
     get_case_ids,
+    load_cases,
     normalized_text,
     process_segments,
     should_remove_segment,
@@ -58,6 +59,11 @@ class PostprocessTranscriptTest(unittest.TestCase):
     def test_get_case_ids_returns_single_case_or_all(self) -> None:
         self.assertEqual(get_case_ids("NoOverlap"), ["NoOverlap"])
         self.assertIn("NoOverlap", get_case_ids("all"))
+
+    def test_load_cases_returns_configured_audio_cases(self) -> None:
+        cases = load_cases()
+        self.assertGreater(len(cases), 0)
+        self.assertTrue(all("id" in case for case in cases))
 
 
 if __name__ == "__main__":
