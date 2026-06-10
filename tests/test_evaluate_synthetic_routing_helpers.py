@@ -5,7 +5,14 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from src.evaluate_synthetic_routing import dataset_paths, load_cer_lookup, selected_method_v1, to_float, to_int
+from src.evaluate_synthetic_routing import (
+    compute_average,
+    dataset_paths,
+    load_cer_lookup,
+    selected_method_v1,
+    to_float,
+    to_int,
+)
 
 
 class EvaluateSyntheticRoutingHelpersTest(unittest.TestCase):
@@ -39,6 +46,16 @@ class EvaluateSyntheticRoutingHelpersTest(unittest.TestCase):
 
             lookup = load_cer_lookup(csv_path)
             self.assertEqual(lookup[("s1", "mixed_whisper")], 0.12)
+
+    def test_compute_average_averages_selected_method_cers(self) -> None:
+        cer_lookup = {
+            ("s1", "mixed_whisper"): 0.2,
+            ("s1", "separated_whisper"): 0.1,
+        }
+        selected_map = {("s1", "v1_overlap_only"): "separated_whisper"}
+        average, count = compute_average(cer_lookup, ["s1"], selected_map, "v1_overlap_only")
+        self.assertEqual(average, 0.1)
+        self.assertEqual(count, 1)
 
 
 if __name__ == "__main__":
