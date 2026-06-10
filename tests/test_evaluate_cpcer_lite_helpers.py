@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from src.evaluate_cpcer_lite import macro_cer_for_mapping, sanitize_rows
+from src.evaluate_cpcer_lite import aggregate_speaker_text, compute_cer, macro_cer_for_mapping, sanitize_rows
 
 
 class EvaluateCpcerLiteHelpersTest(unittest.TestCase):
@@ -34,6 +34,22 @@ class EvaluateCpcerLiteHelpersTest(unittest.TestCase):
         )
         self.assertEqual(len(rows), 1)
         self.assertEqual(rows[0]["case_id"], "Demo")
+
+    def test_aggregate_speaker_text_joins_matching_segments(self) -> None:
+        text = aggregate_speaker_text(
+            [
+                {"speaker": "SPEAKER_1", "text": "甲"},
+                {"speaker": "SPEAKER_2", "text": "乙"},
+                {"speaker": "SPEAKER_1", "text": "丙"},
+            ],
+            "SPEAKER_1",
+        )
+        self.assertEqual(text, "甲丙")
+
+    def test_compute_cer_returns_normalized_edit_metrics(self) -> None:
+        result = compute_cer("你好世界", "你好世")
+        self.assertEqual(result["cer"], 0.25)
+        self.assertEqual(result["edit_distance"], 1)
 
 
 if __name__ == "__main__":
