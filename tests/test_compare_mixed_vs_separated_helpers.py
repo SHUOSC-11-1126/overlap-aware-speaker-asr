@@ -2,7 +2,8 @@ from __future__ import annotations
 
 import unittest
 
-from src.compare_mixed_vs_separated import preview, upsert_row
+from src.compare_mixed_vs_separated import find_case, preview, select_cases, upsert_row
+from src.config import get_audio_cases, load_config
 
 
 class CompareMixedVsSeparatedHelpersTest(unittest.TestCase):
@@ -20,6 +21,21 @@ class CompareMixedVsSeparatedHelpersTest(unittest.TestCase):
         rows = [{"case_id": "A", "model": "whisper-base"}]
         updated = upsert_row(rows, {"case_id": "B", "model": "whisper-base"})
         self.assertEqual(len(updated), 2)
+
+    def test_find_case_returns_matching_case(self) -> None:
+        config = load_config()
+        case = find_case(config, "NoOverlap")
+        self.assertEqual(case["id"], "NoOverlap")
+
+    def test_find_case_raises_for_unknown_id(self) -> None:
+        config = load_config()
+        with self.assertRaises(ValueError):
+            find_case(config, "__missing_case__")
+
+    def test_select_cases_returns_all_when_requested(self) -> None:
+        config = load_config()
+        cases = select_cases(config, "all")
+        self.assertEqual(len(cases), len(get_audio_cases(config)))
 
 
 if __name__ == "__main__":

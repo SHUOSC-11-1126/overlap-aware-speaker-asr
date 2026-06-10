@@ -3,9 +3,11 @@ from __future__ import annotations
 import unittest
 
 from src.risk_aware_selector import (
+    adjacent_repeat_count,
     aggregate_speaker_text,
     classify_risk,
     repeat_phrase_count,
+    speaker_lengths_from_segments,
 )
 
 
@@ -39,6 +41,24 @@ class RiskAwareSelectorHelpersTest(unittest.TestCase):
         )
         self.assertEqual(risk_level, "low")
         self.assertEqual(reasons, ["low_risk"])
+
+    def test_adjacent_repeat_count_counts_consecutive_duplicates(self) -> None:
+        segments = [
+            {"text": "你好"},
+            {"text": "你好"},
+            {"text": "世界"},
+        ]
+        self.assertEqual(adjacent_repeat_count(segments), 1)
+
+    def test_speaker_lengths_from_segments_returns_per_speaker_lengths(self) -> None:
+        segments = [
+            {"speaker": "SPEAKER_1", "text": "你好"},
+            {"speaker": "SPEAKER_2", "text": "世界"},
+            {"speaker": "SPEAKER_1", "text": "再见"},
+        ]
+        s1_len, s2_len = speaker_lengths_from_segments(segments)
+        self.assertEqual(s1_len, 4)
+        self.assertEqual(s2_len, 2)
 
 
 if __name__ == "__main__":
