@@ -12,6 +12,7 @@ from src.risk_aware_selector import (
     classify_risk,
     load_case_ids,
     load_map,
+    load_table,
     repeat_phrase_count,
     speaker_lengths_from_segments,
 )
@@ -82,6 +83,18 @@ class RiskAwareSelectorHelpersTest(unittest.TestCase):
     def test_load_case_ids_returns_single_case_or_all(self) -> None:
         self.assertEqual(load_case_ids("LightOverlap"), ["LightOverlap"])
         self.assertIn("NoOverlap", load_case_ids("all"))
+
+    def test_load_table_reads_csv_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            csv_path = Path(tmp_dir) / "table.csv"
+            with csv_path.open("w", encoding="utf-8-sig", newline="") as handle:
+                writer = csv.DictWriter(handle, fieldnames=["case_id", "selected_method"])
+                writer.writeheader()
+                writer.writerow({"case_id": "NoOverlap", "selected_method": "mixed_whisper"})
+
+            rows = load_table(csv_path)
+            self.assertEqual(len(rows), 1)
+            self.assertEqual(rows[0]["case_id"], "NoOverlap")
 
     def test_load_map_indexes_rows_by_key_field(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
