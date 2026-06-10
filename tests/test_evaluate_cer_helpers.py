@@ -11,8 +11,11 @@ from src.evaluate_cer import (
     compute_cer,
     levenshtein_distance,
     list_verified_cases,
+    load_json,
+    load_reference,
     normalize_text,
     read_existing_rows,
+    rows_for_case,
     sanitize_existing_rows,
     upsert_row,
 )
@@ -74,6 +77,23 @@ class EvaluateCerHelpersTest(unittest.TestCase):
             json_path.write_text(json.dumps([{"case_id": "A", "method": "mixed_whisper"}]), encoding="utf-8")
             rows = read_existing_rows(json_path)
         self.assertEqual(len(rows), 1)
+
+    def test_load_reference_returns_verified_gold_case(self) -> None:
+        reference = load_reference("NoOverlap")
+        self.assertEqual(reference.get("status"), "verified_reference")
+        self.assertIn("full_text", reference)
+
+    def test_load_json_raises_for_missing_transcript(self) -> None:
+        missing = PROJECT_ROOT / "results" / "__missing_transcript__.json"
+        with self.assertRaises(FileNotFoundError):
+            load_json(missing)
+
+    def test_rows_for_case_includes_mixed_and_separated_methods(self) -> None:
+        rows = rows_for_case("NoOverlap")
+        methods = {row["method"] for row in rows}
+        self.assertIn("mixed_whisper", methods)
+        self.assertIn("separated_whisper", methods)
+        self.assertTrue(all(row["case_id"] == "NoOverlap" for row in rows))
 
 
 if __name__ == "__main__":
