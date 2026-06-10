@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from src.merge_speaker_tracks import speaker_segments
+from src.merge_speaker_tracks import build_full_text, speaker_segments
 
 
 class MergeSpeakerTracksSegmentExtractionTest(unittest.TestCase):
@@ -17,6 +17,15 @@ class MergeSpeakerTracksSegmentExtractionTest(unittest.TestCase):
         self.assertEqual(len(segments), 1)
         self.assertEqual(segments[0]["speaker"], "SPEAKER_1")
         self.assertEqual(segments[0]["text"], "hello")
+
+
+class MergeSpeakerTracksFullTextTest(unittest.TestCase):
+    def test_build_full_text_joins_speaker_lines(self) -> None:
+        segments = [
+            {"speaker": "SPEAKER_1", "text": "first"},
+            {"speaker": "SPEAKER_2", "text": "second"},
+        ]
+        self.assertEqual(build_full_text(segments), "[SPEAKER_1] first\n[SPEAKER_2] second")
 
 
 if __name__ == "__main__":
