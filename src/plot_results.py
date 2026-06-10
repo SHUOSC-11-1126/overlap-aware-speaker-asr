@@ -7,11 +7,6 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-import matplotlib
-
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-
 from .config import PROJECT_ROOT, load_config
 
 
@@ -55,6 +50,11 @@ def ensure_dir(path: Path) -> None:
 
 
 def plot_cer_by_case(grouped: dict[str, dict[str, float]], out_path: Path) -> None:
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
     cases = sorted(grouped.keys(), key=lambda x: x)
     x = range(len(cases))
     width = 0.25
@@ -76,6 +76,11 @@ def plot_cer_by_case(grouped: dict[str, dict[str, float]], out_path: Path) -> No
 
 
 def plot_cer_by_method_average(grouped: dict[str, dict[str, float]], out_path: Path) -> dict[str, float]:
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
     averages: dict[str, float] = {}
     for method in METHOD_ORDER:
         values = [methods[method] for methods in grouped.values() if method in methods]
