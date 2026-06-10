@@ -2,7 +2,12 @@ from __future__ import annotations
 
 import unittest
 
-from src.rag_repair import format_rag_context, retrieve_relevant_segments, simple_text_similarity
+from src.rag_repair import (
+    build_reference_knowledge_base,
+    format_rag_context,
+    retrieve_relevant_segments,
+    simple_text_similarity,
+)
 
 
 class RagRepairTest(unittest.TestCase):
@@ -22,6 +27,14 @@ class RagRepairTest(unittest.TestCase):
         self.assertEqual(len(hits), 1)
         self.assertEqual(hits[0]["case_id"], "case_a")
         self.assertGreater(hits[0]["similarity"], 0.5)
+
+    def test_build_reference_knowledge_base_includes_verified_cases(self) -> None:
+        kb = build_reference_knowledge_base()
+        self.assertIn("NoOverlap", kb)
+        self.assertGreater(len(kb["NoOverlap"]), 0)
+        segment = kb["NoOverlap"][0]
+        self.assertIn("speaker", segment)
+        self.assertIn("text", segment)
 
     def test_format_rag_context_includes_speaker_and_similarity(self) -> None:
         context = format_rag_context(
