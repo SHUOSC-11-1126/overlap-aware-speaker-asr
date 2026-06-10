@@ -2,7 +2,14 @@ from __future__ import annotations
 
 import unittest
 
-from src.build_synthetic_references import TIER_TO_LEVEL, build_turns, dataset_paths, snippet_transcript_path
+from src.build_synthetic_references import (
+    TIER_TO_LEVEL,
+    build_turns,
+    dataset_paths,
+    read_csv_rows,
+    read_json,
+    snippet_transcript_path,
+)
 from src.config import PROJECT_ROOT
 
 
@@ -29,6 +36,25 @@ class BuildSyntheticReferencesHelpersTest(unittest.TestCase):
         self.assertTrue(str(manifest).endswith("synthetic_split_manifest.csv"))
         self.assertEqual(label, "synthetic_overlap_v2")
         self.assertIn("synthetic_overlap_v2", reference_dir.as_posix())
+
+    def test_dataset_paths_returns_default_overlap_manifest(self) -> None:
+        manifest, _, label = dataset_paths("synthetic_overlap")
+        self.assertTrue(str(manifest).endswith("synthetic_manifest.csv"))
+        self.assertEqual(label, "synthetic_overlap")
+
+    def test_dataset_paths_rejects_unknown_dataset(self) -> None:
+        with self.assertRaises(ValueError):
+            dataset_paths("unknown_dataset")
+
+    def test_read_csv_rows_raises_for_missing_table(self) -> None:
+        missing = PROJECT_ROOT / "results" / "tables" / "__missing_manifest__.csv"
+        with self.assertRaises(FileNotFoundError):
+            read_csv_rows(missing)
+
+    def test_read_json_raises_for_missing_file(self) -> None:
+        missing = PROJECT_ROOT / "results" / "tables" / "__missing__.json"
+        with self.assertRaises(FileNotFoundError):
+            read_json(missing)
 
 
 if __name__ == "__main__":
