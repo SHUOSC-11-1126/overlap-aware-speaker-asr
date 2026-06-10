@@ -23,3 +23,6 @@ jobs:
 
       - name: Run unit tests
         run: python3 -m unittest discover -s tests -p 'test_*.py' -q
+
+      - name: Project harness smoke
+        run: python3 -m src.project_harness
