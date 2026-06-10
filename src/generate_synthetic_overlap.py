@@ -137,6 +137,8 @@ def build_mixture(
 
 
 def write_wav(path: Path, audio: np.ndarray, sr: int = TARGET_SR) -> None:
+    import soundfile as sf
+
     path.parent.mkdir(parents=True, exist_ok=True)
     sf.write(path, audio, sr, subtype="PCM_16")
 
