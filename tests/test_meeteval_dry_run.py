@@ -10,7 +10,9 @@ from src.meeteval_dry_run import (
     build_diagnostic_receipt_row,
     build_diagnostic_summary_lines,
     extract_speakers,
+    load_jsonl_segments,
     run_diagnostic,
+    select_preferred_case,
     time_ranges_valid,
 )
 
@@ -29,6 +31,31 @@ class MeetEvalDryRunTest(unittest.TestCase):
     def test_time_ranges_valid_rejects_inverted_bounds(self) -> None:
         self.assertTrue(time_ranges_valid([{"start_time": 0.0, "end_time": 1.0}]))
         self.assertFalse(time_ranges_valid([{"start_time": 2.0, "end_time": 1.0}]))
+
+    def test_time_ranges_valid_rejects_empty_segment_list(self) -> None:
+        self.assertFalse(time_ranges_valid([]))
+
+    def test_load_jsonl_segments_filters_by_session_id(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            jsonl_path = Path(tmp_dir) / "segments.jsonl"
+            jsonl_path.write_text(
+                "\n".join(
+                    [
+                        json.dumps({"session_id": "NoOverlap", "speaker": "SPEAKER_1", "text": "a"}),
+                        json.dumps({"session_id": "HeavyOverlap", "speaker": "SPEAKER_1", "text": "b"}),
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            segments = load_jsonl_segments(jsonl_path, "NoOverlap")
+        self.assertEqual(len(segments), 1)
+        self.assertEqual(segments[0]["speaker"], "SPEAKER_1")
+
+    def test_select_preferred_case_falls_back_to_no_overlap(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            missing = Path(tmp_dir) / "missing_checklist.csv"
+            self.assertEqual(select_preferred_case(missing), "NoOverlap")
 
     def test_build_diagnostic_receipt_row_marks_diagnostic_complete(self) -> None:
         row = build_diagnostic_receipt_row(
