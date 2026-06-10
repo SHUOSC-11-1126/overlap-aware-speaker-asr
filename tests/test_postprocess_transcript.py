@@ -29,6 +29,26 @@ class PostprocessTranscriptTest(unittest.TestCase):
         self.assertTrue(remove)
         self.assertEqual(reason, "exact_duplicate_adjacent")
 
+    def test_should_remove_segment_flags_near_duplicate_short_phrase(self) -> None:
+        kept = [{"text": "重复短语", "speaker": "S1"}]
+        remove, reason = should_remove_segment({"text": "重复短语吧", "speaker": "S1"}, kept, {})
+        self.assertTrue(remove)
+        self.assertEqual(reason, "near_duplicate_same_speaker")
+
+    def test_should_remove_segment_flags_repeated_same_speaker_window(self) -> None:
+        kept = [
+            {"text": "第一句", "speaker": "S1"},
+            {"text": "第二句", "speaker": "S1"},
+        ]
+        recent = {"S1": [{"text": "重复短语内容", "speaker": "S1"}]}
+        remove, reason = should_remove_segment(
+            {"text": "重复短语内容", "speaker": "S1"},
+            kept,
+            recent,
+        )
+        self.assertTrue(remove)
+        self.assertEqual(reason, "repeated_same_speaker_window")
+
     def test_process_segments_keeps_unique_segments(self) -> None:
         segments = [
             {"speaker": "S1", "text": "第一句"},
