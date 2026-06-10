@@ -5,7 +5,6 @@ import json
 from pathlib import Path
 from typing import Any
 
-import matplotlib.pyplot as plt
 import numpy as np
 
 from .config import PROJECT_ROOT
@@ -144,6 +143,9 @@ def compute_feature_importance() -> list[dict[str, Any]]:
 
 def plot_feature_importance(rows: list[dict[str, Any]]) -> Path:
     """Generate bar chart of feature importance."""
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Patch
+
     feature_names = [row["feature_name"] for row in rows]
     scores = [row["importance_score"] for row in rows]
     categories = [row["feature_category"] for row in rows]
@@ -169,7 +171,6 @@ def plot_feature_importance(rows: list[dict[str, Any]]) -> Path:
     ax.grid(axis="x", alpha=0.3)
     
     # 添加图例
-    from matplotlib.patches import Patch
     legend_elements = [
         Patch(facecolor=color_map["static"], alpha=0.8, label="Static"),
         Patch(facecolor=color_map["instability"], alpha=0.8, label="Instability"),
