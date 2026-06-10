@@ -6,6 +6,7 @@ from pathlib import Path
 from src.evaluate_synthetic_benchmark import (
     cleaned_transcript_path,
     dataset_paths,
+    output_columns,
     select_rows,
     speaker_transcript_path,
     transcript_path,
@@ -37,6 +38,12 @@ class EvaluateSyntheticBenchmarkHelpersTest(unittest.TestCase):
         self.assertEqual(select_rows(rows, "a"), [{"sample_id": "a"}])
         with self.assertRaises(ValueError):
             select_rows(rows, "missing")
+
+    def test_output_columns_includes_split_when_present(self) -> None:
+        base = output_columns([{"sample_id": "a"}])
+        with_split = output_columns([{"sample_id": "a", "split": "dev"}])
+        self.assertNotIn("split", base)
+        self.assertIn("split", with_split)
 
 
 if __name__ == "__main__":
