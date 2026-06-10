@@ -7,11 +7,6 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-import matplotlib
-
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-
 from .config import PROJECT_ROOT, load_config
 from .evaluate_cer import (
     levenshtein_distance,
@@ -230,6 +225,11 @@ def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path]:
 
 
 def plot_results(rows: list[dict[str, Any]]) -> Path:
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
     output_dir = PROJECT_ROOT / "results" / "figures"
     output_dir.mkdir(parents=True, exist_ok=True)
     png_path = output_dir / "speaker_cer_by_case.png"
