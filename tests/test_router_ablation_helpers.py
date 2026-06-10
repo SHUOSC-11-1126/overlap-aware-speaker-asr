@@ -2,9 +2,15 @@ from __future__ import annotations
 
 import unittest
 
+import csv
+import tempfile
+from pathlib import Path
+
 from src.router_ablation import (
     adjacent_repetition_from_segments,
+    choose_strategy,
     get_cleaned_closer_to_mixed,
+    load_cer_lookup,
     repetition_count_from_text,
     repetition_count_from_transcript,
     select_base_by_overlap,
@@ -40,6 +46,34 @@ class RouterAblationHelpersTest(unittest.TestCase):
 
     def test_strategy_note_describes_known_strategies(self) -> None:
         self.assertIn("Fixed baseline", strategy_note("fixed_mixed_whisper"))
+
+    def test_choose_strategy_length_ratio_only_falls_back_on_inflation(self) -> None:
+        method, rule = choose_strategy(
+            "length_ratio_only",
+            overlap_level=0,
+            mixed_text_len=100,
+            separated_text_len=200,
+            cleaned_text_len=0,
+            repetition_count=0,
+            duplicate_removed_count=0,
+            cleaned_exists=False,
+            cleaned_closer_to_mixed=False,
+            mixed_segments_count=3,
+            separated_runtime_ratio=1.0,
+        )
+        self.assertEqual(method, "mixed_whisper")
+        self.assertIn("length-inflated", rule)
+
+    def test_load_cer_lookup_indexes_case_method_pairs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            csv_path = Path(tmp_dir) / "cer.csv"
+            with csv_path.open("w", encoding="utf-8-sig", newline="") as handle:
+                writer = csv.DictWriter(handle, fieldnames=["case_id", "method", "cer"])
+                writer.writeheader()
+                writer.writerow({"case_id": "NoOverlap", "method": "mixed_whisper", "cer": "0.21"})
+
+            lookup = load_cer_lookup(csv_path, "case_id")
+            self.assertEqual(lookup[("NoOverlap", "mixed_whisper")], 0.21)
 
 
 if __name__ == "__main__":
