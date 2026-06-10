@@ -5,7 +5,6 @@ import json
 from pathlib import Path
 
 import numpy as np
-from scipy.io import wavfile
 
 from .config import PROJECT_ROOT, load_config
 
@@ -31,6 +30,8 @@ def cosine_similarity(left: np.ndarray, right: np.ndarray) -> float:
 
 
 def load_waveform(path: Path) -> tuple[int, np.ndarray]:
+    from scipy.io import wavfile
+
     sample_rate, waveform = wavfile.read(path)
     waveform = np.asarray(waveform, dtype=np.float64)
     if waveform.ndim > 1:
