@@ -4,6 +4,7 @@ import unittest
 
 from src.postprocess_transcript import (
     build_full_text,
+    get_case_ids,
     normalized_text,
     process_segments,
     should_remove_segment,
@@ -53,6 +54,10 @@ class PostprocessTranscriptTest(unittest.TestCase):
     def test_similarity_returns_high_score_for_near_duplicates(self) -> None:
         self.assertGreaterEqual(similarity("你好世界", "你好世"), 0.8)
         self.assertLess(similarity("你好", "再见"), 0.5)
+
+    def test_get_case_ids_returns_single_case_or_all(self) -> None:
+        self.assertEqual(get_case_ids("NoOverlap"), ["NoOverlap"])
+        self.assertIn("NoOverlap", get_case_ids("all"))
 
 
 if __name__ == "__main__":
