@@ -3,8 +3,10 @@ from __future__ import annotations
 import unittest
 import unittest.mock
 
+from src.adaptive_router import parse_args as adaptive_router_parse_args
 from src.analyze_cer_errors import parse_args as analyze_cer_parse_args
 from src.evaluate_cer import parse_args as evaluate_cer_parse_args
+from src.generate_synthetic_overlap import parse_args as generate_synthetic_overlap_parse_args
 from src.evaluate_cpcer_lite import parse_args as evaluate_cpcer_parse_args
 from src.evaluate_error_types import parse_args as evaluate_error_types_parse_args
 from src.evaluate_speaker_cer import parse_args as evaluate_speaker_cer_parse_args
@@ -50,6 +52,10 @@ class ModuleParseArgsSmokeTest(unittest.TestCase):
     def test_plot_results_parse_args(self) -> None:
         with unittest.mock.patch("sys.argv", ["plot_results"]):
             self.assertIsNotNone(plot_results_parse_args())
+
+    def test_adaptive_router_parse_args(self) -> None:
+        with unittest.mock.patch("sys.argv", ["adaptive_router"]):
+            self.assertIsNotNone(adaptive_router_parse_args())
 
 
 if __name__ == "__main__":
