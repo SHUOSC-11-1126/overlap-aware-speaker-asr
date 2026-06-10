@@ -63,6 +63,20 @@ class ModuleParseArgsSmokeTest(unittest.TestCase):
         with unittest.mock.patch("sys.argv", ["generate_synthetic_overlap", "--num-per-tier", "3"]):
             self.assertEqual(generate_synthetic_overlap_parse_args().num_per_tier, 3)
 
+    def test_generate_synthetic_split_parse_args(self) -> None:
+        with unittest.mock.patch("sys.argv", ["generate_synthetic_split", "--num-per-tier", "12"]):
+            self.assertEqual(generate_synthetic_split_parse_args().num_per_tier, 12)
+
+    def test_postprocess_transcript_parse_args(self) -> None:
+        with unittest.mock.patch(
+            "sys.argv",
+            ["postprocess_transcript", "--case", "NoOverlap", "--method", "duplicate_suppression"],
+        ):
+            args = postprocess_transcript_parse_args()
+            self.assertEqual(args.case, "NoOverlap")
+            self.assertEqual(args.method, "duplicate_suppression")
+            self.assertFalse(args.overwrite)
+
 
 if __name__ == "__main__":
     unittest.main()
