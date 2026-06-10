@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from src.router_ablation_split import dataset_paths, repetition_count, to_float, to_int
+from src.router_ablation_split import choose_strategy, dataset_paths, repetition_count, to_float, to_int
 
 
 class RouterAblationSplitHelpersTest(unittest.TestCase):
@@ -22,6 +22,23 @@ class RouterAblationSplitHelpersTest(unittest.TestCase):
         self.assertEqual(to_float("0.25"), 0.25)
         self.assertEqual(to_int("bad"), 0)
         self.assertEqual(to_float("bad"), 0.0)
+
+    def test_choose_strategy_returns_fixed_baselines(self) -> None:
+        entry = {
+            "overlap_level": 1,
+            "mixed_text_length": 100,
+            "separated_text_length": 120,
+            "cleaned_text_length": 110,
+            "repetition_count": 0,
+            "duplicate_removed_count": 0,
+            "runtime_ratio": 1.0,
+            "cleaned_closer_to_mixed": True,
+            "mixed_segments_count": 3,
+            "text_length_ratio": 1.2,
+        }
+        method, rule = choose_strategy(entry, "fixed_mixed_whisper")
+        self.assertEqual(method, "mixed_whisper")
+        self.assertIn("fixed baseline", rule)
 
 
 if __name__ == "__main__":
