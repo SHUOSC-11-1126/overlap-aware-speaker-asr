@@ -8,6 +8,7 @@ import numpy as np
 from scipy.io import wavfile
 
 from src.speaker_profile_audio_proxy_trial import (
+    average_profile_vector,
     build_audio_proxy_row,
     cosine_similarity,
     extract_audio_profile_vector,
@@ -32,6 +33,17 @@ class SpeakerProfileAudioProxyTrialTest(unittest.TestCase):
 
         self.assertEqual(vector.shape, (9,))
         self.assertTrue(np.isfinite(vector).all())
+
+    def test_extract_audio_profile_vector_returns_nine_dims_for_empty_waveform(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            audio_path = Path(tmpdir) / "empty.wav"
+            wavfile.write(audio_path, 16000, np.array([], dtype=np.int16))
+            vector = extract_audio_profile_vector(audio_path)
+        self.assertEqual(vector.shape, (9,))
+
+    def test_average_profile_vector_returns_nine_dims_for_missing_paths(self) -> None:
+        vector = average_profile_vector([Path("/tmp/__missing_audio_profile__.wav")])
+        self.assertEqual(vector.shape, (9,))
 
     def test_build_audio_proxy_row_prefers_direct_alignment_for_matching_profiles(self) -> None:
         row = build_audio_proxy_row(

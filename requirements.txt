@@ -1,5 +1,4 @@
 PyYAML
-pandas
 numpy
 scipy
 soundfile

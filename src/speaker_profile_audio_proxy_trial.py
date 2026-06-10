@@ -44,7 +44,7 @@ def load_waveform(path: Path) -> tuple[int, np.ndarray]:
 def extract_audio_profile_vector(path: Path) -> np.ndarray:
     sample_rate, waveform = load_waveform(path)
     if waveform.size == 0:
-        return np.zeros(8, dtype=np.float64)
+        return np.zeros(9, dtype=np.float64)
 
     duration = waveform.size / float(sample_rate)
     rms = float(np.sqrt(np.mean(np.square(waveform))))
@@ -87,7 +87,7 @@ def extract_audio_profile_vector(path: Path) -> np.ndarray:
 def average_profile_vector(paths: list[Path]) -> np.ndarray:
     vectors = [extract_audio_profile_vector(path) for path in paths if path.exists()]
     if not vectors:
-        return np.zeros(8, dtype=np.float64)
+        return np.zeros(9, dtype=np.float64)
     return np.mean(np.stack(vectors, axis=0), axis=0)
 
 

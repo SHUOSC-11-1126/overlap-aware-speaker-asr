@@ -5,7 +5,8 @@ import unittest
 import wave
 from pathlib import Path
 
-from src.audio_manifest import add_audio_row, read_wav_info, write_manifest
+from src.audio_manifest import add_audio_row, build_manifest, read_wav_info, write_manifest
+from src.config import load_config
 
 
 class AudioManifestHelpersTest(unittest.TestCase):
@@ -43,6 +44,15 @@ class AudioManifestHelpersTest(unittest.TestCase):
             content = output_path.read_text(encoding="utf-8")
             self.assertIn("case_id", content)
             self.assertIn("Demo", content)
+
+    def test_build_manifest_includes_gold_case_audio_rows(self) -> None:
+        config = load_config()
+        rows = build_manifest(config)
+        case_ids = {row["case_id"] for row in rows}
+        self.assertIn("NoOverlap", case_ids)
+        audio_types = {row["audio_type"] for row in rows if row["case_id"] == "NoOverlap"}
+        self.assertIn("mixed", audio_types)
+        self.assertIn("separated_spk1", audio_types)
 
     def test_add_audio_row_appends_manifest_entry_from_wav(self) -> None:
         from src.config import PROJECT_ROOT

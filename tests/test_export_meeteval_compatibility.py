@@ -4,6 +4,8 @@ import json
 import unittest
 
 from src.export_meeteval_compatibility import (
+    load_hypothesis_payload,
+    load_reference_payload,
     build_meeteval_compatibility_lines,
     build_meeteval_compatibility_rows,
     build_meeteval_dry_run_handoff_lines,
@@ -436,6 +438,17 @@ class MeetEvalCompatibilityTest(unittest.TestCase):
         self.assertIn("# MeetEval Dry Run Checklist", rendered)
         self.assertIn("preferred", rendered)
         self.assertIn("meeteval_dry_run_receipt.json", rendered)
+
+    def test_load_reference_payload_returns_segment_list(self) -> None:
+        payload = load_reference_payload("NoOverlap")
+        self.assertIn("segments", payload)
+        self.assertGreater(len(payload["segments"]), 0)
+
+    def test_load_hypothesis_payload_prefers_raw_separated_transcript(self) -> None:
+        payload = load_hypothesis_payload("NoOverlap")
+        self.assertIn("segments", payload)
+        self.assertEqual(payload.get("hypothesis_source"), "separated_whisper")
+        self.assertGreater(len(payload["segments"]), 0)
 
 
 if __name__ == "__main__":
