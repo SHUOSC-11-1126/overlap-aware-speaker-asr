@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from src.evaluate_cer import compute_cer, list_verified_cases, normalize_text
+from src.evaluate_cer import compute_cer, levenshtein_distance, list_verified_cases, normalize_text
 
 
 class EvaluateCerHelpersTest(unittest.TestCase):
@@ -19,6 +19,10 @@ class EvaluateCerHelpersTest(unittest.TestCase):
         cases = list_verified_cases()
         self.assertEqual(len(cases), 5)
         self.assertIn("NoOverlap", cases)
+
+    def test_levenshtein_distance_counts_minimum_edits(self) -> None:
+        self.assertEqual(levenshtein_distance("你好世界", "你好世"), 1)
+        self.assertEqual(levenshtein_distance("", "abc"), 3)
 
 
 if __name__ == "__main__":
