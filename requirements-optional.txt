@@ -1,0 +1,4 @@
+# Optional dependencies for experimental/frontier modules.
+# Install with: pip install -r requirements-optional.txt
+
+openai
