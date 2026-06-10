@@ -6,6 +6,8 @@ from src.evaluate_error_types import (
     detect_repetition,
     dominant_error_type,
     levenshtein_alignment_counts,
+    load_case_ids,
+    observation_for,
     segment_texts,
     transcript_text,
 )
@@ -41,6 +43,14 @@ class EvaluateErrorTypesHelpersTest(unittest.TestCase):
         subs, dels, ins, total = levenshtein_alignment_counts("你好世界", "你好世")
         self.assertEqual(total, 1)
         self.assertEqual(subs + dels + ins, 1)
+
+    def test_load_case_ids_returns_single_case_or_all(self) -> None:
+        self.assertEqual(load_case_ids("NoOverlap"), ["NoOverlap"])
+        self.assertIn("NoOverlap", load_case_ids("all"))
+
+    def test_observation_for_describes_mixed_baseline(self) -> None:
+        note = observation_for("NoOverlap", "mixed_whisper", {}, {}, {})
+        self.assertIn("Mixed baseline", note)
 
 
 if __name__ == "__main__":
