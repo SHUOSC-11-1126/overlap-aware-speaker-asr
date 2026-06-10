@@ -4,6 +4,7 @@ import unittest
 from unittest.mock import patch
 
 from src.meeteval_cpwer_character_level_official_execution import (
+    build_execution_lines,
     build_tokenized_speaker_text_lists,
     extract_speakers,
     resolve_case_ids,
@@ -47,6 +48,28 @@ class MeetEvalCharacterLevelHelpersTest(unittest.TestCase):
         case_ids = resolve_case_ids("all", False)
         self.assertEqual(len(case_ids), 5)
         self.assertIn("NoOverlap", case_ids)
+
+    def test_build_execution_lines_renders_markdown_table(self) -> None:
+        lines = build_execution_lines(
+            [
+                {
+                    "case_id": "NoOverlap",
+                    "hypothesis_source": "separated_whisper",
+                    "execution_status": "character_level_cpwer_narrow_dry_run_complete",
+                    "official_cpwer": "0.12",
+                    "official_cpwer_raw": "0.15",
+                    "cpwer_tool": "meeteval",
+                    "speaker_count": "2",
+                    "tokenization_mode": "character_spaced",
+                    "result_label": "experimental/frontier",
+                    "execution_note": "dry run complete",
+                }
+            ]
+        )
+        rendered = "\n".join(lines)
+        self.assertIn("NoOverlap", rendered)
+        self.assertIn("character_spaced", rendered)
+        self.assertIn("experimental/frontier", rendered)
 
 
 if __name__ == "__main__":
