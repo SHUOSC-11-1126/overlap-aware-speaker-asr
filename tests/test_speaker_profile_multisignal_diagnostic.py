@@ -5,10 +5,15 @@ import unittest
 from src.speaker_profile_multisignal_diagnostic import (
     build_multisignal_row,
     build_multisignal_summary_row,
+    classify_audio_support_level,
 )
 
 
 class SpeakerProfileMultisignalDiagnosticTest(unittest.TestCase):
+    def test_classify_audio_support_level_uses_threshold_at_one_percent(self) -> None:
+        self.assertEqual(classify_audio_support_level(0.009), "weak_support")
+        self.assertEqual(classify_audio_support_level(0.01), "separable_support")
+
     def test_build_multisignal_row_marks_weak_audio_support_when_audio_gap_is_tiny(self) -> None:
         row = build_multisignal_row(
             {
