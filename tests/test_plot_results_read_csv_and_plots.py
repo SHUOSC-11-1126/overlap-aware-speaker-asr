@@ -1,11 +1,14 @@
 from __future__ import annotations
 
 import csv
+import importlib.util
 import tempfile
 import unittest
 from pathlib import Path
 
 from src.plot_results import plot_cer_by_case, plot_cer_by_method_average, read_csv_rows
+
+HAS_MATPLOTLIB = importlib.util.find_spec("matplotlib") is not None
 
 
 class PlotResultsReadCsvAndPlotsTest(unittest.TestCase):
@@ -29,6 +32,7 @@ class PlotResultsReadCsvAndPlotsTest(unittest.TestCase):
         with self.assertRaises(FileNotFoundError):
             read_csv_rows(missing)
 
+    @unittest.skipUnless(HAS_MATPLOTLIB, "matplotlib not installed")
     def test_plot_cer_by_case_writes_png(self) -> None:
         grouped = {
             "NoOverlap": {"mixed_whisper": 0.21, "separated_whisper": 0.05},
@@ -39,6 +43,7 @@ class PlotResultsReadCsvAndPlotsTest(unittest.TestCase):
             self.assertTrue(out_path.is_file())
             self.assertGreater(out_path.stat().st_size, 0)
 
+    @unittest.skipUnless(HAS_MATPLOTLIB, "matplotlib not installed")
     def test_plot_cer_by_method_average_returns_averages(self) -> None:
         grouped = {
             "NoOverlap": {"mixed_whisper": 0.20, "separated_whisper": 0.10},
