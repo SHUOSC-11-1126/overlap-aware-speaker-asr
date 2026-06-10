@@ -3,7 +3,7 @@ from __future__ import annotations
 import unittest
 from typing import Any
 
-from src.risk_aware_selector import choose_final_method
+from src.risk_aware_selector import choose_final_method, classify_risk
 
 
 def _features(**overrides: Any) -> dict[str, Any]:
@@ -17,6 +17,43 @@ def _features(**overrides: Any) -> dict[str, Any]:
     }
     base.update(overrides)
     return base
+
+
+def _risk_features(**overrides: Any) -> dict[str, Any]:
+    base: dict[str, Any] = {
+        "repetition_count": 0,
+        "text_length_ratio": 1.0,
+        "speaker_length_imbalance": 0.0,
+        "duplicate_removed_count": 0,
+        "cleaned_text": "",
+        "cleaned_to_separated_ratio": 1.0,
+        "method_disagreement_score": 0.0,
+    }
+    base.update(overrides)
+    return base
+
+
+class RiskAwareSelectorClassifyRiskTest(unittest.TestCase):
+    def test_classify_risk_returns_low_when_no_signals(self) -> None:
+        level, reasons = classify_risk(_risk_features())
+        self.assertEqual(level, "low")
+        self.assertEqual(reasons, ["low_risk"])
+
+    def test_classify_risk_returns_medium_for_single_signal(self) -> None:
+        level, reasons = classify_risk(_risk_features(repetition_count=4))
+        self.assertEqual(level, "medium")
+        self.assertIn("repetition_hallucination_risk", reasons)
+
+    def test_classify_risk_returns_high_for_multiple_signals(self) -> None:
+        level, reasons = classify_risk(
+            _risk_features(
+                repetition_count=6,
+                text_length_ratio=3.0,
+                speaker_length_imbalance=0.5,
+            )
+        )
+        self.assertEqual(level, "high")
+        self.assertGreaterEqual(len(reasons), 3)
 
 
 class RiskAwareSelectorSeparatedBaseTest(unittest.TestCase):
