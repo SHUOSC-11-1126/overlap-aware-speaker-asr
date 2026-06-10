@@ -1,8 +1,11 @@
 from __future__ import annotations
 
+import io
 import unittest
+from contextlib import redirect_stdout
 from pathlib import Path
 
+from src import config as config_module
 from src.config import PROJECT_ROOT, get_audio_cases, load_config, resolve_path
 
 
@@ -26,6 +29,14 @@ class ConfigTest(unittest.TestCase):
         config = load_config()
         cases = get_audio_cases(config)
         self.assertTrue(all("id" in case for case in cases))
+
+    def test_main_prints_configured_audio_cases(self) -> None:
+        buffer = io.StringIO()
+        with redirect_stdout(buffer):
+            config_module.main()
+        output = buffer.getvalue()
+        self.assertIn("NoOverlap", output)
+        self.assertIn("overlap_level=", output)
 
 
 if __name__ == "__main__":
