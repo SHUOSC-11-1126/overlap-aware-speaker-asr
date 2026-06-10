@@ -15,6 +15,7 @@ from src.evaluate_speaker_cer import parse_args as evaluate_speaker_cer_parse_ar
 from src.plot_results import parse_args as plot_results_parse_args
 from src.router_ablation import parse_args as router_ablation_parse_args
 from src.risk_aware_selector import parse_args as risk_aware_parse_args
+from src.transcribe_whisper import parse_args as transcribe_whisper_parse_args
 
 
 class ModuleParseArgsSmokeTest(unittest.TestCase):
@@ -76,6 +77,16 @@ class ModuleParseArgsSmokeTest(unittest.TestCase):
             self.assertEqual(args.case, "NoOverlap")
             self.assertEqual(args.method, "duplicate_suppression")
             self.assertFalse(args.overwrite)
+
+    def test_transcribe_whisper_parse_args(self) -> None:
+        with unittest.mock.patch(
+            "sys.argv",
+            ["transcribe_whisper", "--case", "NoOverlap", "--mode", "mixed", "--overwrite"],
+        ):
+            args = transcribe_whisper_parse_args()
+            self.assertEqual(args.case, "NoOverlap")
+            self.assertEqual(args.mode, "mixed")
+            self.assertTrue(args.overwrite)
 
 
 if __name__ == "__main__":
