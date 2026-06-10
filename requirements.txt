@@ -1,3 +1,5 @@
 PyYAML
 pandas
+numpy
+scipy
 openai-whisper
