@@ -1148,3 +1148,6 @@ chat_upload/
 
 # Local backups
 backups/
+
+# Repo evolver runtime state (see docs/repo_evolver.md)
+.claude/repo-evolver.local.md
