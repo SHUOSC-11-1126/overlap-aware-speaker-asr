@@ -40,6 +40,23 @@ class RouterAblationSplitHelpersTest(unittest.TestCase):
         self.assertEqual(method, "mixed_whisper")
         self.assertIn("fixed baseline", rule)
 
+    def test_choose_strategy_repetition_only_falls_back_to_mixed(self) -> None:
+        entry = {
+            "overlap_level": 1,
+            "mixed_text_length": 100,
+            "separated_text_length": 120,
+            "cleaned_text_length": 0,
+            "repetition_count": 5,
+            "duplicate_removed_count": 0,
+            "runtime_ratio": 1.0,
+            "cleaned_closer_to_mixed": False,
+            "mixed_segments_count": 3,
+            "text_length_ratio": 1.2,
+        }
+        method, rule = choose_strategy(entry, "repetition_only")
+        self.assertEqual(method, "mixed_whisper")
+        self.assertIn("repetition", rule)
+
 
 if __name__ == "__main__":
     unittest.main()
