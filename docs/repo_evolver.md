@@ -31,7 +31,7 @@ python3 -m unittest discover -s tests -p 'test_*.py' -q
 grep -rn "TODO\|FIXME\|HACK" --include="*.py" src/ tests/ | head -50
 
 # Optional: project harness smoke
-python -m src.project_harness
+python3 -m src.project_harness
 ```
 
 Score findings using the repo-evolver scan rubric (`references/scan-rubric.md` in the skill). Adapt TypeScript-specific signals to Python (import errors, unittest failures, missing deps).
