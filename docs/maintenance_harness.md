@@ -51,6 +51,14 @@ Agents are encouraged to attempt difficult extensions. A failed but well-documen
 - Do not promote exploratory results directly into a final claim.
 - If contribution records, handoff notes, or backup plans are added, link them from `docs/README.md` and `README.md`.
 
+## Test Discipline
+
+Core unit tests should run without optional frontier plotting dependencies:
+
+```bash
+python3 -m unittest discover -s tests -p 'test_*.py' -q
+```
+
 ## Recommended Command Discipline
 
 ```powershell
