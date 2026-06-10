@@ -2,10 +2,10 @@ from __future__ import annotations
 
 import csv
 import json
+import wave
 from pathlib import Path
 
 import numpy as np
-from scipy.io import wavfile
 
 from .config import PROJECT_ROOT, load_config
 
@@ -31,8 +31,21 @@ def cosine_similarity(left: np.ndarray, right: np.ndarray) -> float:
 
 
 def load_waveform(path: Path) -> tuple[int, np.ndarray]:
-    sample_rate, waveform = wavfile.read(path)
-    waveform = np.asarray(waveform, dtype=np.float64)
+    with wave.open(str(path), "rb") as wav_file:
+        sample_rate = wav_file.getframerate()
+        sample_width = wav_file.getsampwidth()
+        frame_count = wav_file.getnframes()
+        raw_frames = wav_file.readframes(frame_count)
+
+    if sample_width == 1:
+        waveform = np.frombuffer(raw_frames, dtype=np.uint8).astype(np.float64)
+        waveform = (waveform - 128.0) / 128.0
+    elif sample_width == 2:
+        waveform = np.frombuffer(raw_frames, dtype=np.int16).astype(np.float64) / 32768.0
+    elif sample_width == 4:
+        waveform = np.frombuffer(raw_frames, dtype=np.int32).astype(np.float64) / 2147483648.0
+    else:
+        raise ValueError(f"Unsupported WAV sample width: {sample_width}")
     if waveform.ndim > 1:
         waveform = waveform.mean(axis=1)
     peak = float(np.max(np.abs(waveform))) if waveform.size else 0.0
