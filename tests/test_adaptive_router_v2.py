@@ -45,5 +45,35 @@ class AdaptiveRouterV2NoOverlapDecisionTest(unittest.TestCase):
         self.assertEqual(method, "separated_whisper")
 
 
+class AdaptiveRouterV2OverlapLevelDecisionTest(unittest.TestCase):
+    def test_choose_method_v2_prefers_mixed_for_light_overlap(self) -> None:
+        method, rule, _ = choose_method_v2(
+            overlap_level=1,
+            mixed_len=100,
+            separated_len=100,
+            cleaned_len=0,
+            duplicate_removed_count=0,
+            runtime_ratio=1.0,
+            cleaned_exists=False,
+            mixed_segments_count=4,
+        )
+        self.assertEqual(method, "mixed_whisper")
+        self.assertIn("overlap_level in [1,2]", rule)
+
+    def test_choose_method_v2_prefers_separated_for_heavy_overlap(self) -> None:
+        method, rule, _ = choose_method_v2(
+            overlap_level=3,
+            mixed_len=100,
+            separated_len=100,
+            cleaned_len=0,
+            duplicate_removed_count=0,
+            runtime_ratio=1.0,
+            cleaned_exists=False,
+            mixed_segments_count=4,
+        )
+        self.assertEqual(method, "separated_whisper")
+        self.assertIn("overlap_level>=3", rule)
+
+
 if __name__ == "__main__":
     unittest.main()
