@@ -4,8 +4,9 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import importlib.util
+
 import numpy as np
-from scipy.io import wavfile
 
 from src.speaker_profile_audio_proxy_trial import (
     average_profile_vector,
@@ -14,13 +15,18 @@ from src.speaker_profile_audio_proxy_trial import (
     extract_audio_profile_vector,
 )
 
+HAS_SCIPY = importlib.util.find_spec("scipy") is not None
+
 
 class SpeakerProfileAudioProxyTrialTest(unittest.TestCase):
     def test_cosine_similarity_is_high_for_matching_vectors(self) -> None:
         score = cosine_similarity(np.array([1.0, 0.0]), np.array([1.0, 0.0]))
         self.assertAlmostEqual(score, 1.0, places=6)
 
+    @unittest.skipUnless(HAS_SCIPY, "scipy not installed")
     def test_extract_audio_profile_vector_returns_stable_shape(self) -> None:
+        from scipy.io import wavfile
+
         with tempfile.TemporaryDirectory() as tmpdir:
             audio_path = Path(tmpdir) / "tone.wav"
             sample_rate = 16000
@@ -34,7 +40,10 @@ class SpeakerProfileAudioProxyTrialTest(unittest.TestCase):
         self.assertEqual(vector.shape, (9,))
         self.assertTrue(np.isfinite(vector).all())
 
+    @unittest.skipUnless(HAS_SCIPY, "scipy not installed")
     def test_extract_audio_profile_vector_returns_nine_dims_for_empty_waveform(self) -> None:
+        from scipy.io import wavfile
+
         with tempfile.TemporaryDirectory() as tmpdir:
             audio_path = Path(tmpdir) / "empty.wav"
             wavfile.write(audio_path, 16000, np.array([], dtype=np.int16))
