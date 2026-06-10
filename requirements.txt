@@ -2,4 +2,5 @@ PyYAML
 pandas
 numpy
 scipy
+matplotlib
 openai-whisper
