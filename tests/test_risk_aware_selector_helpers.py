@@ -1,12 +1,17 @@
 from __future__ import annotations
 
+import csv
+import tempfile
 import unittest
+from pathlib import Path
 
 from src.risk_aware_selector import (
     adjacent_repeat_count,
     aggregate_speaker_text,
     choose_final_method,
     classify_risk,
+    load_case_ids,
+    load_map,
     repeat_phrase_count,
     speaker_lengths_from_segments,
 )
@@ -73,6 +78,21 @@ class RiskAwareSelectorHelpersTest(unittest.TestCase):
         method, action = choose_final_method(features, "low", ["low_risk"])
         self.assertEqual(method, "separated_whisper")
         self.assertIn("stable", action)
+
+    def test_load_case_ids_returns_single_case_or_all(self) -> None:
+        self.assertEqual(load_case_ids("LightOverlap"), ["LightOverlap"])
+        self.assertIn("NoOverlap", load_case_ids("all"))
+
+    def test_load_map_indexes_rows_by_key_field(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            csv_path = Path(tmp_dir) / "rows.csv"
+            with csv_path.open("w", encoding="utf-8-sig", newline="") as handle:
+                writer = csv.DictWriter(handle, fieldnames=["case_id", "selected_method"])
+                writer.writeheader()
+                writer.writerow({"case_id": "NoOverlap", "selected_method": "separated_whisper"})
+
+            mapping = load_map(csv_path, "case_id")
+            self.assertEqual(mapping["NoOverlap"]["selected_method"], "separated_whisper")
 
 
 if __name__ == "__main__":
