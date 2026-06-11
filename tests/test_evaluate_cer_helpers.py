@@ -3,9 +3,11 @@ from __future__ import annotations
 import json
 import tempfile
 import unittest
+import unittest.mock
 from pathlib import Path
 
 from src.config import PROJECT_ROOT
+from src import evaluate_cer as evaluate_cer_module
 from src.evaluate_cer import (
     build_row,
     compute_cer,
@@ -77,6 +79,19 @@ class EvaluateCerHelpersTest(unittest.TestCase):
             json_path.write_text(json.dumps([{"case_id": "A", "method": "mixed_whisper"}]), encoding="utf-8")
             rows = read_existing_rows(json_path)
         self.assertEqual(len(rows), 1)
+
+    def test_load_reference_supports_nested_cases_layout(self) -> None:
+        nested_cases = {
+            "NestedCase": {
+                "status": "verified_reference",
+                "full_text": "示例文本",
+            }
+        }
+        with unittest.mock.patch.object(evaluate_cer_module, "_load_reference_cases", return_value=nested_cases):
+            reference = load_reference("NestedCase")
+            self.assertEqual(reference.get("status"), "verified_reference")
+            cases = list_verified_cases()
+            self.assertEqual(cases, ["NestedCase"])
 
     def test_load_reference_returns_verified_gold_case(self) -> None:
         reference = load_reference("NoOverlap")
