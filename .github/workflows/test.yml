@@ -2,9 +2,10 @@ name: Tests
 
 on:
   push:
-    branches: [main]
+    branches: [main, cursor/**]
   pull_request:
-    branches: [main]
+    branches: [main, cursor/**]
+  workflow_dispatch:
 
 jobs:
   unittest:
