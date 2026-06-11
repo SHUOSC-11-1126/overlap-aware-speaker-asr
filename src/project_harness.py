@@ -87,6 +87,75 @@ FRONTIER_SKILLS = [
     },
 ]
 
+WAVE_FRONTIER_MODULES = [
+    {
+        "frontier_id": "wave1_separation_phase_diagram",
+        "module_path": "src/separation_phase_diagram.py",
+        "expected_output": "results/figures/separation_phase_diagram.md",
+        "next_step": "Run python -m src.separation_phase_diagram to refresh experimental/frontier phase outputs.",
+    },
+    {
+        "frontier_id": "wave1_router_boundary_alignment",
+        "module_path": "src/router_boundary_alignment.py",
+        "expected_output": "results/figures/router_boundary_alignment.md",
+        "next_step": "Run python -m src.router_boundary_alignment to audit router v2 against gold phase boundaries.",
+    },
+    {
+        "frontier_id": "wave1_error_type_boundary_report",
+        "module_path": "src/error_type_boundary_report.py",
+        "expected_output": "results/figures/error_type_boundary_report.md",
+        "next_step": "Run python -m src.error_type_boundary_report to explain separation harm via error types.",
+    },
+    {
+        "frontier_id": "wave1_speaker_profile_spectral_baseline",
+        "module_path": "src/speaker_profile_spectral_embedding_baseline.py",
+        "expected_output": "results/figures/speaker_profile_spectral_embedding_baseline.md",
+        "next_step": "Run python -m src.speaker_profile_spectral_embedding_baseline for the NoOverlap narrow baseline.",
+    },
+    {
+        "frontier_id": "wave1_frontier_boundary_consolidated_report",
+        "module_path": "src/frontier_boundary_consolidated_report.py",
+        "expected_output": "results/figures/frontier_boundary_consolidated_report.md",
+        "next_step": "Run python -m src.frontier_boundary_consolidated_report to merge Wave1 boundary findings.",
+    },
+    {
+        "frontier_id": "wave2_meeteval_gold_cer_cpwer_reconciliation",
+        "module_path": "src/meeteval_gold_cer_cpwer_reconciliation.py",
+        "expected_output": "results/figures/meeteval_gold_cer_cpwer_reconciliation.md",
+        "next_step": "Run python -m src.meeteval_gold_cer_cpwer_reconciliation to compare gold CER and cpWER.",
+    },
+    {
+        "frontier_id": "wave2_synthetic_router_boundary_alignment",
+        "module_path": "src/synthetic_router_boundary_alignment.py",
+        "expected_output": "results/figures/synthetic_router_boundary_alignment.md",
+        "next_step": "Run python -m src.synthetic_router_boundary_alignment for held-out synthetic router audit.",
+    },
+    {
+        "frontier_id": "wave2_risk_aware_boundary_audit",
+        "module_path": "src/risk_aware_boundary_audit.py",
+        "expected_output": "results/figures/risk_aware_boundary_audit.md",
+        "next_step": "Run python -m src.risk_aware_boundary_audit to audit the risk-aware selector.",
+    },
+    {
+        "frontier_id": "wave2_cascade_boundary_bridge",
+        "module_path": "src/cascade_boundary_bridge.py",
+        "expected_output": "results/figures/cascade_boundary_bridge.md",
+        "next_step": "Run python -m src.cascade_boundary_bridge to bridge cascade strategies to phase boundaries.",
+    },
+    {
+        "frontier_id": "wave2_speaker_profile_multisignal_gold_sweep",
+        "module_path": "src/speaker_profile_multisignal_gold_sweep.py",
+        "expected_output": "results/figures/speaker_profile_multisignal_gold_sweep.md",
+        "next_step": "Run python -m src.speaker_profile_multisignal_gold_sweep for all-gold multisignal sweep.",
+    },
+    {
+        "frontier_id": "wave2_llm_critic_qualitative_brief_light_mid",
+        "module_path": "src/llm_critic_qualitative_brief_light_mid.py",
+        "expected_output": "results/figures/llm_critic_qualitative_brief_light_mid.md",
+        "next_step": "Run python -m src.llm_critic_qualitative_brief_light_mid for qualitative/demo Light/Mid brief.",
+    },
+]
+
 
 def exists(rel_path: str) -> bool:
     return (PROJECT_ROOT / rel_path).exists()
@@ -126,6 +195,31 @@ def inspect_synthetic_separation() -> dict[str, str]:
     return {"status": "missing"}
 
 
+def module_delivery_status(module_path: str, output_path: str) -> str:
+    if not exists(module_path):
+        return "module_missing"
+    if exists(output_path):
+        return "module_delivered"
+    return "module_present"
+
+
+def build_wave_frontier_status_rows() -> list[dict[str, str]]:
+    rows: list[dict[str, str]] = []
+    for module in WAVE_FRONTIER_MODULES:
+        module_path = str(module["module_path"])
+        output_path = str(module["expected_output"])
+        rows.append(
+            {
+                "frontier_id": str(module["frontier_id"]),
+                "status": module_delivery_status(module_path, output_path),
+                "evidence_path": module_path,
+                "expected_output": output_path,
+                "next_step": str(module["next_step"]),
+            }
+        )
+    return rows
+
+
 def build_frontier_status_rows() -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
     for frontier in FRONTIER_SKILLS:
@@ -139,10 +233,15 @@ def build_frontier_status_rows() -> list[dict[str, str]]:
                 "next_step": str(frontier["next_step"]),
             }
         )
+    rows.extend(build_wave_frontier_status_rows())
     return rows
 
 
 def frontier_priority(frontier_id: str) -> int:
+    if frontier_id.startswith("wave1_"):
+        return 60
+    if frontier_id.startswith("wave2_"):
+        return 61
     priority_order = {
         "meeteval_compatibility": 1,
         "external_validation": 2,
@@ -1062,7 +1161,7 @@ def write_report(report: dict[str, object]) -> tuple[Path, Path]:
         "",
         "- The repository keeps gold references and synthetic resources separate.",
         "- The core maintenance files are in place for future agents.",
-        "- The frontier status table makes breadth-first experimental directions visible before new code lands.",
+        "- The frontier status table makes breadth-first experimental directions visible, including delivered Wave1/Wave2 frontier modules.",
     ]
     md_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     return json_path, md_path
