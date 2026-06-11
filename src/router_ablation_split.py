@@ -105,7 +105,11 @@ def load_cleaned_rows() -> dict[str, dict[str, Any]]:
         try:
             payload = read_json(path)
         except Exception as exc:
-            print(f"warning: failed to read cleaned transcript {path.relative_to(PROJECT_ROOT)}: {exc}")
+            try:
+                display_path = path.relative_to(PROJECT_ROOT)
+            except ValueError:
+                display_path = path
+            print(f"warning: failed to read cleaned transcript {display_path}: {exc}")
             continue
         sample_id = str(payload.get("sample_id", "")).strip()
         if sample_id:
