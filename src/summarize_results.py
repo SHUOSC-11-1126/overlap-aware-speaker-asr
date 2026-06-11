@@ -131,8 +131,13 @@ def write_outputs(rows: list[dict[str, Any]]) -> tuple[Path, Path, Path]:
     return csv_path, json_path, md_path
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Summarize current CER results")
+    return parser.parse_args()
+
+
 def main() -> None:
-    _ = argparse.ArgumentParser(description="Summarize current CER results").parse_args()
+    _ = parse_args()
     rows = build_summary()
     csv_path, json_path, md_path = write_outputs(rows)
     print(f"Wrote summary CSV: {csv_path.relative_to(PROJECT_ROOT)}")
