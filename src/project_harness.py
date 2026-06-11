@@ -154,6 +154,18 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/figures/llm_critic_qualitative_brief_light_mid.md",
         "next_step": "Run python -m src.llm_critic_qualitative_brief_light_mid for qualitative/demo Light/Mid brief.",
     },
+    {
+        "frontier_id": "wave3_external_validation_license_confirmation",
+        "module_path": "src/external_validation_license_confirmation.py",
+        "expected_output": "results/figures/external_validation_license_confirmation.md",
+        "next_step": "Run python -m src.external_validation_license_confirmation to record AISHELL-4 CC BY-SA research confirmation.",
+    },
+    {
+        "frontier_id": "wave3_external_validation_mini_sanity_check",
+        "module_path": "src/external_validation_mini_sanity_check.py",
+        "expected_output": "results/figures/external_validation_mini_sanity_check.md",
+        "next_step": "Run python -m src.external_validation_mini_sanity_check after license confirmation.",
+    },
 ]
 
 
@@ -242,6 +254,8 @@ def frontier_priority(frontier_id: str) -> int:
         return 60
     if frontier_id.startswith("wave2_"):
         return 61
+    if frontier_id.startswith("wave3_"):
+        return 62
     priority_order = {
         "meeteval_compatibility": 1,
         "external_validation": 2,
