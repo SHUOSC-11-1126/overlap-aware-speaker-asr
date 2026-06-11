@@ -48,6 +48,11 @@ def classify_go_no_go_state(current_status: str) -> str:
     return "go"
 
 
+def license_is_confirmed(license_status: str, confirmation_status: str) -> bool:
+    lowered = f"{license_status} {confirmation_status}".lower()
+    return "confirmed" in lowered and "pending" not in lowered
+
+
 def normalize_first_status(payload: dict | list, preferred_keys: list[str]) -> str:
     if isinstance(payload, dict):
         for key in preferred_keys:
@@ -67,10 +72,15 @@ def normalize_first_status(payload: dict | list, preferred_keys: list[str]) -> s
 
 def build_checkpoint_rows() -> list[dict[str, str]]:
     license_gate = load_json_payload("results/tables/external_validation_license_gate.json")
-    license_confirmation = load_json_payload("results/tables/external_validation_license_confirmation_scaffold.json")
+    license_confirmation = load_json_payload("results/tables/external_validation_license_confirmation.json")
+    if not license_confirmation:
+        license_confirmation = load_json_payload(
+            "results/tables/external_validation_license_confirmation_scaffold.json"
+        )
     manifest = load_json_payload("results/tables/external_validation_slice_manifest.json")
     readiness = load_json_payload("results/tables/external_validation_slice_staging_readiness.json")
     execution_status = load_json_payload("results/tables/external_validation_slice_staging_execution_status.json")
+    mini_check = load_json_payload("results/tables/external_validation_mini_sanity_check.json")
 
     dataset_name = str(
         (manifest if isinstance(manifest, dict) else {}).get(
@@ -78,30 +88,62 @@ def build_checkpoint_rows() -> list[dict[str, str]]:
             (readiness if isinstance(readiness, dict) else {}).get("dataset_name", "AISHELL-4"),
         )
     )
+    license_status = str(
+        (manifest if isinstance(manifest, dict) else {}).get(
+            "license_status",
+            normalize_first_status(license_confirmation, ["license_status"]),
+        )
+    )
+    confirmation_status = normalize_first_status(license_confirmation, ["confirmation_status"])
+    confirmed = license_is_confirmed(license_status, confirmation_status)
 
     rows = [
         {
             "checkpoint_name": "license_gate",
             "dataset_name": dataset_name,
-            "current_status": normalize_first_status(license_gate, ["license_status"]),
-            "blocker": "license_confirmation_pending",
-            "next_action": "Record a concrete license confirmation decision before any audio staging.",
-            "evidence_artifact": "results/figures/external_validation_license_gate.md",
+            "current_status": license_status or normalize_first_status(license_gate, ["license_status"]),
+            "blocker": "none_documented" if confirmed else "license_confirmation_pending",
+            "next_action": (
+                "License documented under external/sanity-check; optional audio staging may proceed."
+                if confirmed
+                else "Record a concrete license confirmation decision before any audio staging."
+            ),
+            "evidence_artifact": (
+                "results/figures/external_validation_license_confirmation.md"
+                if confirmed
+                else "results/figures/external_validation_license_gate.md"
+            ),
         },
         {
             "checkpoint_name": "license_confirmation",
             "dataset_name": dataset_name,
-            "current_status": normalize_first_status(license_confirmation, ["confirmation_status"]),
-            "blocker": "license_confirmation_pending",
-            "next_action": "Fill the confirmation scaffold with the recorded license decision.",
-            "evidence_artifact": "results/figures/external_validation_license_confirmation_scaffold.md",
+            "current_status": confirmation_status or normalize_first_status(license_confirmation, ["confirmation_status"]),
+            "blocker": "none_documented" if confirmed else "license_confirmation_pending",
+            "next_action": (
+                "License confirmation recorded; keep attribution visible in external artifacts."
+                if confirmed
+                else "Fill the confirmation scaffold with the recorded license decision."
+            ),
+            "evidence_artifact": (
+                "results/figures/external_validation_license_confirmation.md"
+                if confirmed
+                else "results/figures/external_validation_license_confirmation_scaffold.md"
+            ),
         },
         {
             "checkpoint_name": "slice_manifest",
             "dataset_name": dataset_name,
             "current_status": normalize_first_status(manifest, ["staging_status", "license_status"]),
-            "blocker": str((manifest if isinstance(manifest, dict) else {}).get("staging_status", "")),
-            "next_action": "Keep the manifest narrow and blocked until license confirmation is recorded.",
+            "blocker": (
+                "none_documented"
+                if confirmed and str((manifest if isinstance(manifest, dict) else {}).get("staging_status", "")) == "ready_for_staging"
+                else str((manifest if isinstance(manifest, dict) else {}).get("staging_status", "blocked_by_license_gate"))
+            ),
+            "next_action": (
+                "Manifest ready for optional AISHELL-4 excerpt staging."
+                if confirmed
+                else "Keep the manifest narrow and blocked until license confirmation is recorded."
+            ),
             "evidence_artifact": "results/figures/external_validation_slice_manifest.md",
         },
         {
@@ -109,15 +151,44 @@ def build_checkpoint_rows() -> list[dict[str, str]]:
             "dataset_name": dataset_name,
             "current_status": normalize_first_status(readiness, ["readiness_status"]),
             "blocker": str((readiness if isinstance(readiness, dict) else {}).get("blocker", "")),
-            "next_action": "Resolve the readiness blocker before any staging review.",
+            "next_action": (
+                "Readiness review may proceed; audio download remains optional."
+                if confirmed
+                else "Resolve the readiness blocker before any staging review."
+            ),
             "evidence_artifact": "results/figures/external_validation_slice_staging_readiness.md",
+        },
+        {
+            "checkpoint_name": "mini_sanity_check",
+            "dataset_name": dataset_name,
+            "current_status": normalize_first_status(mini_check, ["validation_status"]),
+            "blocker": (
+                "audio_staging_pending"
+                if isinstance(mini_check, dict)
+                and str(mini_check.get("validation_status", "")) == "metadata_only_pass"
+                else str((mini_check if isinstance(mini_check, dict) else {}).get("validation_status", "missing"))
+            ),
+            "next_action": (
+                "Metadata-only pass recorded; stage one excerpt before claiming audio eval."
+                if isinstance(mini_check, dict)
+                else "Run python -m src.external_validation_mini_sanity_check after license confirmation."
+            ),
+            "evidence_artifact": "results/figures/external_validation_mini_sanity_check.md",
         },
         {
             "checkpoint_name": "execution_chain",
             "dataset_name": dataset_name,
             "current_status": normalize_first_status(execution_status, ["execution_receipt_status", "execution_chain_status"]),
-            "blocker": str((execution_status if isinstance(execution_status, dict) else {}).get("blocker", "")),
-            "next_action": "Do not fill the execution receipt until the license blocker is cleared.",
+            "blocker": (
+                "audio_staging_pending"
+                if confirmed
+                else str((execution_status if isinstance(execution_status, dict) else {}).get("blocker", "license_confirmation_pending"))
+            ),
+            "next_action": (
+                "Fill execution receipt only after optional audio excerpt is staged."
+                if confirmed
+                else "Do not fill the execution receipt until the license blocker is cleared."
+            ),
             "evidence_artifact": "results/figures/external_validation_slice_staging_execution_status.md",
         },
     ]
@@ -132,14 +203,24 @@ def build_summary_row(rows: list[dict[str, str]]) -> dict[str, str]:
     no_go_count = len(rows) - go_count
     dataset_name = rows[0]["dataset_name"] if rows else "AISHELL-4"
 
-    primary_blocker = "license_confirmation_pending"
+    primary_blocker = "none_documented"
     for row in rows:
         blocker = str(row.get("blocker", "")).strip()
-        if blocker and blocker != "none_documented":
+        if blocker and blocker not in {"none_documented", ""}:
             primary_blocker = blocker
             break
 
-    overall_state = "blocked_by_license_confirmation" if "license" in primary_blocker else "not_ready_for_staging"
+    if primary_blocker in {"none_documented", "audio_staging_pending"}:
+        overall_state = "ready_for_optional_audio_staging"
+        recommended_next_action = "Optionally stage one AISHELL-4 excerpt; do not claim gold benchmark results."
+    elif "license" in primary_blocker:
+        overall_state = "blocked_by_license_confirmation"
+        recommended_next_action = (
+            "Record and write back the license confirmation decision before any external staging attempt."
+        )
+    else:
+        overall_state = "not_ready_for_staging"
+        recommended_next_action = "Resolve the primary blocker before any external audio staging attempt."
     return {
         "scope": "external_validation_go_no_go_board",
         "dataset_name": dataset_name,
@@ -148,7 +229,7 @@ def build_summary_row(rows: list[dict[str, str]]) -> dict[str, str]:
         "no_go_count": str(no_go_count),
         "overall_state": overall_state,
         "primary_blocker": primary_blocker,
-        "recommended_next_action": "Record and write back the license confirmation decision before any external staging attempt.",
+        "recommended_next_action": recommended_next_action,
         "observation": (
             "external/sanity-check coordination board only; it does not claim external audio download "
             "or benchmark execution."
