@@ -22,30 +22,37 @@ CSV_COLUMNS = [
 ]
 
 
-def load_reference(case_id: str) -> dict[str, Any]:
+def _load_reference_cases() -> dict[str, Any]:
     path = PROJECT_ROOT / "references" / "reference_transcripts.json"
     if not path.exists():
         raise FileNotFoundError(f"Missing reference file: {path.relative_to(PROJECT_ROOT)}")
     data = json.loads(path.read_text(encoding="utf-8-sig"))
-    if case_id not in data:
+    if not isinstance(data, dict):
+        raise ValueError("reference_transcripts.json must contain a top-level object")
+    cases = data.get("cases", {})
+    if isinstance(cases, dict) and cases:
+        return cases
+    return data
+
+
+def load_reference(case_id: str) -> dict[str, Any]:
+    cases = _load_reference_cases()
+    if case_id not in cases:
         raise KeyError(
             f"Missing verified reference for case '{case_id}' in references/reference_transcripts.json"
         )
-    reference = data[case_id]
+    reference = cases[case_id]
     if reference.get("status") != "verified_reference":
         raise ValueError(f"Reference for case '{case_id}' is not marked as verified_reference")
     return reference
 
 
 def list_verified_cases() -> list[str]:
-    path = PROJECT_ROOT / "references" / "reference_transcripts.json"
-    if not path.exists():
-        raise FileNotFoundError(f"Missing reference file: {path.relative_to(PROJECT_ROOT)}")
-    data = json.loads(path.read_text(encoding="utf-8-sig"))
+    cases = _load_reference_cases()
     return [
         case_id
-        for case_id, reference in data.items()
-        if reference.get("status") == "verified_reference"
+        for case_id, reference in cases.items()
+        if isinstance(reference, dict) and reference.get("status") == "verified_reference"
     ]
 
 
