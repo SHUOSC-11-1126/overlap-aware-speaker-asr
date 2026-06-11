@@ -11,6 +11,7 @@ from src.compute_aware_cascade import parse_args as compute_aware_cascade_parse_
 from src.evaluate_cer import parse_args as evaluate_cer_parse_args
 from src.evaluate_synthetic_benchmark import parse_args as evaluate_synthetic_benchmark_parse_args
 from src.evaluate_synthetic_routing import parse_args as evaluate_synthetic_routing_parse_args
+from src.meeteval_cpwer_bridge import parse_args as meeteval_cpwer_bridge_parse_args
 from src.merge_speaker_tracks import parse_args as merge_speaker_tracks_parse_args
 from src.prepare_reference_bundle import parse_args as prepare_reference_bundle_parse_args
 from src.generate_synthetic_overlap import parse_args as generate_synthetic_overlap_parse_args
@@ -144,6 +145,10 @@ class ModuleParseArgsSmokeTest(unittest.TestCase):
     def test_summarize_results_parse_args(self) -> None:
         with unittest.mock.patch("sys.argv", ["summarize_results"]):
             self.assertIsNotNone(summarize_results_parse_args())
+
+    def test_meeteval_cpwer_bridge_parse_args(self) -> None:
+        with unittest.mock.patch("sys.argv", ["meeteval_cpwer_bridge", "--case", "all"]):
+            self.assertEqual(meeteval_cpwer_bridge_parse_args().case, "all")
 
 
 if __name__ == "__main__":
