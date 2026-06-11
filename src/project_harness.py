@@ -20,6 +20,7 @@ CORE_FILES = [
     "docs/technical_implementation_plan_v2.md",
     "docs/roadmap.md",
     "docs/maintenance_harness.md",
+    "docs/repo_evolver.md",
     "docs/markdown_audit.md",
     "docs/contribution.md",
     "docs/experiment_notes.md",
