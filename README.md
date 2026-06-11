@@ -1070,6 +1070,10 @@ python -m src.evaluate_cpcer_lite --case all
 python -m src.risk_aware_selector --case all
 python -m src.compute_aware_cascade
 python -m src.compute_aware_cascade --dataset synthetic_split
+python -m src.evaluate_synthetic_benchmark --case all --dataset synthetic_overlap
+python -m src.evaluate_synthetic_routing --dataset synthetic_overlap
+python -m src.evaluate_synthetic_benchmark --case all --dataset synthetic_overlap_v2
+python -m src.evaluate_synthetic_routing --dataset synthetic_overlap_v2
 python -m src.router_ablation
 python -m src.router_ablation_split
 python -m src.export_meeteval_compatibility
