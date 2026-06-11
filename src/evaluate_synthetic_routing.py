@@ -170,12 +170,8 @@ def build_decision_row(
 
     mixed = read_json(dirs["raw_dir"] / f"{sample_id}_mixed_whisper.json")
 
-    if dataset == "synthetic_overlap":
-        separated_path = dirs["speaker_dir"] / f"{sample_id}_separated_speaker_transcript.json"
-        cleaned_path = dirs["cleaned_dir"] / f"{sample_id}_separated_speaker_transcript_cleaned.json"
-    else:
-        separated_path = dirs["speaker_dir"] / f"{sample_id}_separated_speaker_transcript.json"
-        cleaned_path = dirs["cleaned_dir"] / f"{sample_id}_separated_speaker_transcript_cleaned.json"
+    separated_path = dirs["speaker_dir"] / f"{sample_id}_separated_speaker_transcript.json"
+    cleaned_path = dirs["cleaned_dir"] / f"{sample_id}_separated_speaker_transcript_cleaned.json"
     separated = read_json(separated_path)
     cleaned = cleaned_rows.get(sample_id, read_json(cleaned_path) if cleaned_path.exists() else {})
 
