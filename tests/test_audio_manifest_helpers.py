@@ -74,6 +74,12 @@ class AudioManifestHelpersTest(unittest.TestCase):
             self.assertEqual(rows[0]["case_id"], "Demo")
             self.assertEqual(rows[0]["duration_sec"], 0.5)
 
+    def test_add_audio_row_raises_for_missing_file(self) -> None:
+        rows: list[dict] = []
+        with self.assertRaises(FileNotFoundError):
+            add_audio_row(rows, "Demo", "mixed", Path("nonexistent/demo.wav"), overlap_level=0)
+        self.assertEqual(rows, [])
+
 
 if __name__ == "__main__":
     unittest.main()
