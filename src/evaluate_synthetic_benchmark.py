@@ -74,11 +74,15 @@ def cleaned_transcript_path(sample_id: str, directory: Path) -> Path:
     return directory / f"{sample_id}_separated_speaker_transcript_cleaned.json"
 
 
-def _display_path(path: Path) -> str:
+def _repo_relative_path(path: Path) -> str:
     try:
-        return str(path.relative_to(PROJECT_ROOT))
+        return path.relative_to(PROJECT_ROOT).as_posix()
     except ValueError:
-        return str(path)
+        return path.as_posix()
+
+
+def _display_path(path: Path) -> str:
+    return _repo_relative_path(path)
 
 
 def read_or_transcribe(
@@ -113,7 +117,7 @@ def build_raw_payload(
     payload: dict[str, Any] = {
         "sample_id": sample_id,
         "tier": tier,
-        "audio_path": audio_path.relative_to(PROJECT_ROOT).as_posix(),
+        "audio_path": _repo_relative_path(audio_path),
         "mode": mode,
         "model": f"whisper-{model_name}",
         "language": language,
@@ -170,7 +174,7 @@ def build_cleaned_payload(
         "sample_id": sample_id,
         "tier": tier,
         "method": "duplicate_suppression",
-        "source_path": source_path.relative_to(PROJECT_ROOT).as_posix(),
+        "source_path": _repo_relative_path(source_path),
         "cleaned_segments": cleaned_segments,
         "cleaned_full_text": cleaned_full_text,
         "removed_segments": removed_segments,
@@ -242,20 +246,20 @@ def evaluate_sample(
     )
 
     if speaker_output.exists() and not overwrite:
-        print(f"skip existing speaker transcript: {speaker_output.relative_to(PROJECT_ROOT)}")
+        print(f"skip existing speaker transcript: {_display_path(speaker_output)}")
         speaker_payload = read_json(speaker_output)
     else:
         speaker_payload = build_speaker_payload(sample_id, tier, model_name, language, spk1_payload, spk2_payload, split)
         write_transcript(speaker_output, speaker_payload)
-        print(f"Wrote speaker transcript: {speaker_output.relative_to(PROJECT_ROOT)}")
+        print(f"Wrote speaker transcript: {_display_path(speaker_output)}")
 
     if cleaned_output.exists() and not overwrite:
-        print(f"skip existing cleaned transcript: {cleaned_output.relative_to(PROJECT_ROOT)}")
+        print(f"skip existing cleaned transcript: {_display_path(cleaned_output)}")
         cleaned_payload = read_json(cleaned_output)
     else:
         cleaned_payload = build_cleaned_payload(sample_id, tier, speaker_payload, speaker_output, split)
         write_transcript(cleaned_output, cleaned_payload)
-        print(f"Wrote cleaned transcript: {cleaned_output.relative_to(PROJECT_ROOT)}")
+        print(f"Wrote cleaned transcript: {_display_path(cleaned_output)}")
 
     def metric_row(method: str, hypothesis: str, hypothesis_path: Path) -> dict[str, Any]:
         metrics = compute_cer(reference_text, hypothesis)
@@ -265,8 +269,8 @@ def evaluate_sample(
             "split": split or "",
             "overlap_level": row.get("overlap_level_numeric", row.get("overlap_level", "")),
             "method": method,
-            "reference_path": reference_path.relative_to(PROJECT_ROOT).as_posix(),
-            "hypothesis_path": hypothesis_path.relative_to(PROJECT_ROOT).as_posix(),
+            "reference_path": _repo_relative_path(reference_path),
+            "hypothesis_path": _repo_relative_path(hypothesis_path),
             "reference_length": metrics["reference_length"],
             "hypothesis_length": metrics["hypothesis_length"],
             "edit_distance": metrics["edit_distance"],
