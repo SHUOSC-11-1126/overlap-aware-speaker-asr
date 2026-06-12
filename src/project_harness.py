@@ -646,6 +646,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/demo_wave24_presentation_writeback.json",
         "next_step": "Run python -m src.demo_wave24_presentation_writeback after Wave24 closure writeback.",
     },
+    {
+        "frontier_id": "wave24_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+        "module_path": "src/wave24_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback.py",
+        "expected_output": "results/tables/wave24_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback.json",
+        "next_step": "Run python -m src.wave24_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback after demo wave24.",
+    },
 ]
 
 
