@@ -250,6 +250,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/cascade_benchmark_readiness_coordination_writeback.json",
         "next_step": "Run python -m src.cascade_benchmark_readiness_coordination_writeback after Wave6 closure.",
     },
+    {
+        "frontier_id": "wave6_demo_presentation_writeback",
+        "module_path": "src/demo_wave6_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave6_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave6_presentation_writeback after benchmark coordination writeback.",
+    },
 ]
 
 
