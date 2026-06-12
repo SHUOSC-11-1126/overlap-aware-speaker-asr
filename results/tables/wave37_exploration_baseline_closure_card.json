@@ -1,0 +1,37 @@
+[
+  {
+    "section_id": "wave36_rollup",
+    "headline": "Wave36 closed: MidOverlap diagnostic refresh + demo + exploration closure",
+    "artifact_anchor": "results/figures/wave36_exploration_baseline_closure_card.md",
+    "coordination_note": "experimental/frontier coordination only; gold baseline untouched.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "midoverlap_coordination",
+    "headline": "MidOverlap separation-harm diagnostic refresh coordinated after Wave36 closure",
+    "artifact_anchor": "results/figures/wave36_speaker_profile_midoverlap_diagnostic_coordination_card.md",
+    "coordination_note": "Diagnostic scope only; attribution claims still blocked.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "demo_wave36",
+    "headline": "Demo presentation polish extended to 37 sections under qualitative/demo labeling",
+    "artifact_anchor": "results/figures/demo_wave36_presentation_writeback.md",
+    "coordination_note": "No live demo or benchmark timing claims.",
+    "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_board",
+    "headline": "Frontier go/no-go board remains all_ready after Wave36 chain",
+    "artifact_anchor": "results/tables/frontier_go_no_go_summary.json",
+    "coordination_note": "Coordination receipts only; no deployable routing claims.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "wave37_boundary",
+    "headline": "External validation narrow slice refresh is the next open experimental coordination gate",
+    "artifact_anchor": "results/tables/external_validation_status.json",
+    "coordination_note": "Wave37 closure does not record external benchmark execution sessions.",
+    "result_label": "external/sanity-check"
+  }
+]
