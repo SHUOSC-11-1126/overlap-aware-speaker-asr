@@ -1264,6 +1264,24 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave58_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback.json",
         "next_step": "Run python -m src.wave58_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback after demo wave58.",
     },
+    {
+        "frontier_id": "wave59_exploration_baseline_closure_writeback",
+        "module_path": "src/wave59_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave59_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave59_exploration_baseline_closure_writeback after Wave58 chain.",
+    },
+    {
+        "frontier_id": "wave59_demo_presentation_writeback",
+        "module_path": "src/demo_wave59_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave59_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave59_presentation_writeback after Wave59 closure writeback.",
+    },
+    {
+        "frontier_id": "wave59_external_validation_narrow_slice_coordination_writeback",
+        "module_path": "src/wave59_external_validation_narrow_slice_coordination_writeback.py",
+        "expected_output": "results/tables/wave59_external_validation_narrow_slice_coordination_writeback.json",
+        "next_step": "Run python -m src.wave59_external_validation_narrow_slice_coordination_writeback after demo wave59.",
+    },
 ]
 
 
