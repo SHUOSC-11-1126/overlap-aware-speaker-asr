@@ -298,6 +298,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/speaker_profile_lightoverlap_diagnostic_coordination_writeback.json",
         "next_step": "Run python -m src.speaker_profile_lightoverlap_diagnostic_coordination_writeback after Wave8 closure.",
     },
+    {
+        "frontier_id": "wave8_cascade_benchmark_evidence_receipt_coordination_writeback",
+        "module_path": "src/cascade_benchmark_evidence_receipt_coordination_writeback.py",
+        "expected_output": "results/tables/cascade_benchmark_evidence_receipt_coordination_writeback.json",
+        "next_step": "Run python -m src.cascade_benchmark_evidence_receipt_coordination_writeback after LightOverlap coordination.",
+    },
 ]
 
 
