@@ -100,6 +100,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "wave36_exploration_baseline_closure_complete",
         "wave37_exploration_baseline_closure_complete",
         "wave38_exploration_baseline_closure_complete",
+        "wave39_exploration_baseline_closure_complete",
         "wave19_speaker_profile_oppositeoverlap_diagnostic_coordination_complete",
         "wave24_speaker_profile_oppositeoverlap_diagnostic_coordination_complete",
         "wave18_speaker_profile_heavyoverlap_diagnostic_coordination_complete",
