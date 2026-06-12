@@ -734,6 +734,11 @@ results/synthetic_overlap_v2/
 !results/tables/wave77_external_validation_narrow_slice_coordination_writeback.csv
 !results/tables/wave77_external_validation_narrow_slice_coordination_writeback.json
 !results/tables/wave77_external_validation_narrow_slice_coordination_receipt.json
+!results/tables/wave83_external_validation_narrow_slice_coordination_card.csv
+!results/tables/wave83_external_validation_narrow_slice_coordination_card.json
+!results/tables/wave83_external_validation_narrow_slice_coordination_writeback.csv
+!results/tables/wave83_external_validation_narrow_slice_coordination_writeback.json
+!results/tables/wave83_external_validation_narrow_slice_coordination_receipt.json
 !results/tables/wave66_exploration_baseline_closure_card.csv
 !results/tables/wave66_exploration_baseline_closure_card.json
 !results/tables/wave66_exploration_baseline_closure_writeback.csv
@@ -885,6 +890,8 @@ results/synthetic_overlap_v2/
 !results/tables/demo_wave81_presentation_writeback.json
 !results/tables/demo_wave82_presentation_writeback.csv
 !results/tables/demo_wave82_presentation_writeback.json
+!results/tables/demo_wave83_presentation_writeback.csv
+!results/tables/demo_wave83_presentation_writeback.json
 !results/tables/wave61_exploration_baseline_closure_card.csv
 !results/tables/wave61_exploration_baseline_closure_card.json
 !results/tables/wave61_exploration_baseline_closure_writeback.csv
@@ -2178,6 +2185,7 @@ results/synthetic_overlap_v2/
 !results/figures/demo_wave80_presentation_writeback.md
 !results/figures/demo_wave81_presentation_writeback.md
 !results/figures/demo_wave82_presentation_writeback.md
+!results/figures/demo_wave83_presentation_writeback.md
 !results/figures/demo_wave75_presentation_writeback.md
 !results/figures/wave75_speaker_profile_heavyoverlap_diagnostic_coordination_card.md
 !results/figures/wave75_speaker_profile_heavyoverlap_diagnostic_coordination_writeback.md
