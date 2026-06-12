@@ -71,6 +71,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "speaker_profile_case_scope_coordination_complete",
         "speaker_profile_lightoverlap_diagnostic_coordination_complete",
         "speaker_profile_midoverlap_diagnostic_coordination_complete",
+        "speaker_profile_heavyoverlap_diagnostic_coordination_complete",
         "cascade_benchmark_evidence_receipt_coordination_complete",
         "cascade_benchmark_phase1_gate_coordination_complete",
         "cascade_benchmark_phase2_gate_coordination_complete",
