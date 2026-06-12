@@ -2512,6 +2512,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave128_exploration_baseline_closure_writeback.json",
         "next_step": "Run python -m src.wave128_exploration_baseline_closure_writeback after Wave127 LightOverlap chain.",
     },
+    {
+        "frontier_id": "wave128_demo_presentation_writeback",
+        "module_path": "src/demo_wave128_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave128_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave128_presentation_writeback after Wave128 closure writeback.",
+    },
 ]
 
 
