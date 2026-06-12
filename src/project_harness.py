@@ -2368,6 +2368,18 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave120_exploration_baseline_closure_writeback.json",
         "next_step": "Run python -m src.wave120_exploration_baseline_closure_writeback after Wave119 chain.",
     },
+    {
+        "frontier_id": "wave120_demo_presentation_writeback",
+        "module_path": "src/demo_wave120_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave120_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave120_presentation_writeback after Wave120 closure writeback.",
+    },
+    {
+        "frontier_id": "wave120_meeteval_official_narrow_dry_run_coordination_writeback",
+        "module_path": "src/wave120_meeteval_official_narrow_dry_run_coordination_writeback.py",
+        "expected_output": "results/tables/wave120_meeteval_official_narrow_dry_run_coordination_writeback.json",
+        "next_step": "Run python -m src.wave120_meeteval_official_narrow_dry_run_coordination_writeback after demo wave120.",
+    },
 ]
 
 
