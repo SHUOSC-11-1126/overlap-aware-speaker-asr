@@ -53,6 +53,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "qualitative_writeback_ready",
         "presentation_writeback_ready",
         "presentation_polish_complete",
+        "character_level_receipt_fill_complete",
         "ready_for_narrow_audio_eval",
     }
     if lowered in ready_markers:
@@ -70,11 +71,12 @@ def build_frontier_rows() -> list[dict[str, str]]:
 
     meeteval_receipt_status = str((meeteval_receipt if isinstance(meeteval_receipt, dict) else {}).get("readiness_status", ""))
     meeteval_token_status = str((meeteval_token if isinstance(meeteval_token, dict) else {}).get("queue_status", ""))
-    meeteval_state = (
-        "receipt_ready_to_fill"
-        if meeteval_receipt_status == "receipt_ready_to_fill" and meeteval_token_status == "queue_complete"
-        else "meeteval_not_ready"
-    )
+    if meeteval_receipt_status == "character_level_receipt_fill_complete" and meeteval_token_status == "queue_complete":
+        meeteval_state = "character_level_receipt_fill_complete"
+    elif meeteval_receipt_status == "receipt_ready_to_fill" and meeteval_token_status == "queue_complete":
+        meeteval_state = "receipt_ready_to_fill"
+    else:
+        meeteval_state = "meeteval_not_ready"
 
     rows = [
         {
