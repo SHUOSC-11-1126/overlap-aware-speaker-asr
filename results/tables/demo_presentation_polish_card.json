@@ -75,5 +75,12 @@
     "artifact_anchor": "results/figures/wave10_exploration_baseline_closure_card.md",
     "presentation_note": "Show Wave10 closure card only; MeetEval dry-run and benchmark phase2 gate remain experimental/frontier — qualitative/demo labeling required.",
     "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave11",
+    "headline": "Wave11 exploration+baseline closure and controlled benchmark timing boundary",
+    "artifact_anchor": "results/figures/wave11_exploration_baseline_closure_card.md",
+    "presentation_note": "Show Wave11 closure card only; phase2 gate and MeetEval dry-run remain experimental/frontier — qualitative/demo labeling required.",
+    "result_label": "qualitative/demo"
   }
 ]
