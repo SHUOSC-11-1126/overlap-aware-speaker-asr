@@ -532,6 +532,8 @@ results/synthetic_overlap_v2/
 !results/tables/demo_wave30_presentation_writeback.json
 !results/tables/demo_wave31_presentation_writeback.csv
 !results/tables/demo_wave31_presentation_writeback.json
+!results/tables/demo_wave32_presentation_writeback.csv
+!results/tables/demo_wave32_presentation_writeback.json
 !results/tables/wave30_meeteval_official_narrow_dry_run_coordination_card.csv
 !results/tables/wave30_meeteval_official_narrow_dry_run_coordination_card.json
 !results/tables/wave30_meeteval_official_narrow_dry_run_coordination_writeback.csv
@@ -1337,6 +1339,7 @@ results/synthetic_overlap_v2/
 !results/figures/wave30_exploration_baseline_closure_receipt.md
 !results/figures/demo_wave30_presentation_writeback.md
 !results/figures/demo_wave31_presentation_writeback.md
+!results/figures/demo_wave32_presentation_writeback.md
 !results/figures/wave30_meeteval_official_narrow_dry_run_coordination_card.md
 !results/figures/wave30_meeteval_official_narrow_dry_run_coordination_writeback.md
 !results/figures/wave30_meeteval_official_narrow_dry_run_coordination_receipt.md
