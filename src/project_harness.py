@@ -280,6 +280,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/cascade_benchmark_manifest_coordination_writeback.json",
         "next_step": "Run python -m src.cascade_benchmark_manifest_coordination_writeback after speaker profile case-scope.",
     },
+    {
+        "frontier_id": "wave8_exploration_baseline_closure_writeback",
+        "module_path": "src/wave8_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave8_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave8_exploration_baseline_closure_writeback after Wave7 chain.",
+    },
 ]
 
 
@@ -378,6 +384,8 @@ def frontier_priority(frontier_id: str) -> int:
         return 65
     if frontier_id.startswith("wave7_"):
         return 66
+    if frontier_id.startswith("wave8_"):
+        return 67
     priority_order = {
         "meeteval_compatibility": 1,
         "external_validation": 2,

@@ -59,6 +59,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "presentation_wave7_extension_complete",
         "wave6_coordination_closure_complete",
         "wave7_exploration_baseline_closure_complete",
+        "wave8_exploration_baseline_closure_complete",
         "speaker_profile_case_scope_coordination_complete",
         "ready_for_narrow_audio_eval",
     }
