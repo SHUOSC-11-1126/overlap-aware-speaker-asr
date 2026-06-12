@@ -1,0 +1,17 @@
+# Wave18 LLM Critic Narrow Dry-Run Coordination Card (qualitative/demo)
+
+Narrow dry-run refresh boundary coordination — not a verified repair completion claim.
+
+| section_id | headline | artifact_anchor | result_label |
+| --- | --- | --- | --- |
+| review_pass_queue | Qualitative review pass queue dry-run remains complete on 5/5 gold cases | results/tables/llm_critic_review_pass_status.json | qualitative/demo |
+| qualitative_brief_boundary | Light/Mid overlap qualitative brief documents critic hypotheses only | results/figures/llm_critic_qualitative_brief_light_mid.md | qualitative/demo |
+| heavyoverlap_prior | Wave18 HeavyOverlap diagnostic coordination precedes critic narrow dry-run refresh | results/figures/wave18_speaker_profile_heavyoverlap_diagnostic_coordination_card.md | experimental/frontier |
+| wave18_boundary | Wave18 closure keeps LLM critic dry-run separate from gold baseline CER | results/figures/wave18_exploration_baseline_closure_card.md | experimental/frontier |
+| verified_repair_boundary | Narrow dry-run refresh does not upgrade qualitative notes to verified repair | results/figures/llm_critic_go_no_go_summary.md | qualitative/demo |
+
+- **review_pass_queue**: qualitative/demo dry-run only; not verified transcript repair.
+- **qualitative_brief_boundary**: Separation-harm hypotheses; does not claim verified correction.
+- **heavyoverlap_prior**: experimental/frontier diagnostic chain provides slice context only.
+- **wave18_boundary**: Coordination writeback only; stable gold CER tables unchanged.
+- **verified_repair_boundary**: README mentions must keep qualitative/demo labeling.

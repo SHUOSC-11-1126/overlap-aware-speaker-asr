@@ -1,0 +1,2 @@
+﻿fill_status,writeback_scope,coordination_section_count,narrow_dry_run_case_count,execution_receipt_status,blocker,fill_note
+writeback_filled,wave18_llm_critic_narrow_dry_run_coordination_card,5,5,wave18_llm_critic_narrow_dry_run_coordination_complete,verified_repair_claims_still_blocked,Documented LLM critic narrow dry-run refresh boundary after Wave18 HeavyOverlap chain; verified repair claims remain blocked.

@@ -122,6 +122,14 @@ class FrontierGoNoGoBoardTest(unittest.TestCase):
             "go",
         )
 
+    def test_classify_go_no_go_state_marks_wave18_llm_critic_narrow_dry_run_coordination_complete_as_go(
+        self,
+    ) -> None:
+        self.assertEqual(
+            classify_go_no_go_state("wave18_llm_critic_narrow_dry_run_coordination_complete"),
+            "go",
+        )
+
     def test_classify_go_no_go_state_marks_speaker_profile_case_scope_coordination_complete_as_go(self) -> None:
         self.assertEqual(classify_go_no_go_state("speaker_profile_case_scope_coordination_complete"), "go")
 
