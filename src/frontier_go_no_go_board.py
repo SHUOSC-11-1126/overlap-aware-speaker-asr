@@ -54,6 +54,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "presentation_writeback_ready",
         "presentation_polish_complete",
         "character_level_receipt_fill_complete",
+        "meeteval_cpwer_narrow_dry_run_coordination_complete",
         "presentation_wave5_extension_complete",
         "presentation_wave6_extension_complete",
         "presentation_wave7_extension_complete",
@@ -89,7 +90,11 @@ def build_frontier_rows() -> list[dict[str, str]]:
     meeteval_token_status = str((meeteval_token if isinstance(meeteval_token, dict) else {}).get("queue_status", ""))
     wave6_closure = load_json_payload("results/tables/wave6_frontier_coordination_closure_receipt.json")
     wave6_closure_status = str((wave6_closure if isinstance(wave6_closure, dict) else {}).get("execution_status", ""))
-    if wave6_closure_status == "wave6_coordination_closure_complete" and meeteval_token_status == "queue_complete":
+    narrow_coord = load_json_payload("results/tables/meeteval_cpwer_narrow_dry_run_coordination_receipt.json")
+    narrow_coord_status = str((narrow_coord if isinstance(narrow_coord, dict) else {}).get("execution_status", ""))
+    if narrow_coord_status == "meeteval_cpwer_narrow_dry_run_coordination_complete" and meeteval_token_status == "queue_complete":
+        meeteval_state = "meeteval_cpwer_narrow_dry_run_coordination_complete"
+    elif wave6_closure_status == "wave6_coordination_closure_complete" and meeteval_token_status == "queue_complete":
         meeteval_state = "wave6_coordination_closure_complete"
     elif meeteval_receipt_status == "character_level_receipt_fill_complete" and meeteval_token_status == "queue_complete":
         meeteval_state = "character_level_receipt_fill_complete"
