@@ -1,0 +1,5 @@
+﻿metric,value,label
+target_case_count,2,stable/gold
+separation_harm_rate,1.0,qualitative/demo
+insertion_driven_harm_count,2,qualitative/demo
+critic_scope,"LightOverlap,MidOverlap",qualitative/demo

@@ -2,12 +2,12 @@
 
 This generated board compresses the current LLM-critic chain into a go/no-go view. It remains qualitative/demo and does not claim verified transcript correction.
 
-Summary: `4/5` checkpoints are ready for a narrow qualitative writeback path, while verified repair claims remain blocked.
+Summary: `5/5` checkpoints are ready for a narrow qualitative writeback path, while verified repair claims remain blocked.
 
 | checkpoint_name | scope | current_status | claim_boundary | go_no_go_state | next_action | evidence_artifact |
 | --- | --- | --- | --- | --- | --- | --- |
 | qualitative_critic_note | gold_queue | review_complete | qualitative_only_not_verified_repair | go | Treat the qualitative critic note as prioritization context, not as verified correction. | results/figures/llm_critic_qualitative_note.md |
 | review_queue | gold_queue_first_case=HeavyOverlap | queue_complete | queue_ready_not_repair_ready | go | Use the queue only to order narrow qualitative writebacks. | results/figures/llm_critic_review_queue.md |
-| review_status_rollup | gold_queue | queue_in_progress | queue_complete_not_verified_fix | no_go | Use queue completion as evidence that qualitative coverage is done, not that repair is verified. | results/figures/llm_critic_review_pass_status.md |
+| review_status_rollup | gold_queue | queue_complete | queue_complete_not_verified_fix | go | Use queue completion as evidence that qualitative coverage is done, not that repair is verified. | results/figures/llm_critic_review_pass_status.md |
 | completion_summary | gold_queue | queue_complete | completion_ready_for_writeback_only | go | If a next step is taken, keep it to a narrow qualitative writeback. | results/figures/llm_critic_review_pass_completion_summary.md |
 | review_receipt | single_qualitative_pass | review_complete | receipt_template_only_blocks_verified_claims | go | Do not claim verified repair until a real writeback fills the receipt with checked evidence. | results/figures/llm_critic_review_receipt.md |

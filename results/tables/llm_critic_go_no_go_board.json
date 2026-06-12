@@ -20,9 +20,9 @@
   {
     "checkpoint_name": "review_status_rollup",
     "scope": "gold_queue",
-    "current_status": "queue_in_progress",
+    "current_status": "queue_complete",
     "claim_boundary": "queue_complete_not_verified_fix",
-    "go_no_go_state": "no_go",
+    "go_no_go_state": "go",
     "next_action": "Use queue completion as evidence that qualitative coverage is done, not that repair is verified.",
     "evidence_artifact": "results/figures/llm_critic_review_pass_status.md"
   },

@@ -1,7 +1,5 @@
-# LLM Critic Review Receipt
+# LLM Critic Review Receipt (Qualitative Writeback)
 
-This receipt records the first qualitative critic pass writeback. It does not claim verified transcript correction.
-
-| execution_status | review_scope | case_id | review_outcome | expected_inputs | writeback_note |
-| --- | --- | --- | --- | --- | --- |
-| review_complete | single_verified_case | HeavyOverlap | Qualitative critic pass recorded for HeavyOverlap; no verified transcript repair was applied. | Critic review queue head plus qualitative summary row. | Qualitative critic pass complete; no verified repair claim was made. |
+| execution_status | review_scope | case_id | brief_artifact | writeback_note |
+| --- | --- | --- | --- | --- |
+| qualitative_writeback_complete | light_mid_qualitative_brief | LightOverlap, MidOverlap | results/figures/llm_critic_qualitative_brief_light_mid.md | Heuristic qualitative brief only; does not claim LLM runtime execution or verified correction. |

@@ -1,0 +1,22 @@
+[
+  {
+    "metric": "target_case_count",
+    "value": "2",
+    "label": "stable/gold"
+  },
+  {
+    "metric": "separation_harm_rate",
+    "value": "1.0",
+    "label": "qualitative/demo"
+  },
+  {
+    "metric": "insertion_driven_harm_count",
+    "value": "2",
+    "label": "qualitative/demo"
+  },
+  {
+    "metric": "critic_scope",
+    "value": "LightOverlap,MidOverlap",
+    "label": "qualitative/demo"
+  }
+]

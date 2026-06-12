@@ -1,0 +1,30 @@
+[
+  {
+    "case_id": "LightOverlap",
+    "overlap_ratio_anchor": "0.15",
+    "mixed_cer": "0.210714",
+    "separated_cer": "0.475",
+    "separated_cleaned_cer": "0.382143",
+    "dominant_error_mixed": "insertion",
+    "dominant_error_separated": "insertion",
+    "separation_harm_observed": "True",
+    "critic_hypothesis": "Separation likely triggers insertion-heavy ASR hallucination (insertions=54, repetitions=38) in the harmful overlap band.",
+    "candidate_repair": "Prefer mixed_whisper or apply keep mixed output because separated looks risky; do not treat separated output as authoritative.",
+    "uncertainty_note": "Qualitative heuristic critic only; no LLM runtime or verified transcript repair was applied.",
+    "result_label": "qualitative/demo"
+  },
+  {
+    "case_id": "MidOverlap",
+    "overlap_ratio_anchor": "0.375",
+    "mixed_cer": "0.178947",
+    "separated_cer": "0.273684",
+    "separated_cleaned_cer": "0.207018",
+    "dominant_error_mixed": "deletion",
+    "dominant_error_separated": "insertion",
+    "separation_harm_observed": "True",
+    "critic_hypothesis": "Separation likely triggers insertion-heavy ASR hallucination (insertions=26, repetitions=59) in the harmful overlap band.",
+    "candidate_repair": "Prefer mixed_whisper or apply keep mixed output because separated looks risky; do not treat separated output as authoritative.",
+    "uncertainty_note": "Qualitative heuristic critic only; no LLM runtime or verified transcript repair was applied.",
+    "result_label": "qualitative/demo"
+  }
+]
