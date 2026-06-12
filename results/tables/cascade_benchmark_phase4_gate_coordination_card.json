@@ -1,0 +1,37 @@
+[
+  {
+    "section_id": "phase4_synthetic_surface_gate",
+    "headline": "phase4_synthetic_surface_refresh is the synthetic surface artifact refresh entry gate",
+    "artifact_anchor": "results/tables/cascade_benchmark_status.csv",
+    "coordination_note": "Follows phase3 gold surface gate; timing-backed refresh not executed.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "phase3_prerequisite",
+    "headline": "Phase3 gold surface refresh gate coordinated in prior wave",
+    "artifact_anchor": "results/figures/cascade_benchmark_phase3_gate_coordination_card.md",
+    "coordination_note": "phase3_gold_surface_refresh template_only; refresh not captured.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "oppositeoverlap_boundary",
+    "headline": "OppositeOverlap diagnostic coordination precedes synthetic surface refresh gate",
+    "artifact_anchor": "results/figures/speaker_profile_oppositeoverlap_diagnostic_coordination_card.md",
+    "coordination_note": "All gold-case diagnostic boundaries documented; attribution still blocked.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "wave13_boundary",
+    "headline": "Wave13 closure keeps phase4 gate separate from verified gold baseline CER",
+    "artifact_anchor": "results/figures/wave13_exploration_baseline_closure_card.md",
+    "coordination_note": "Coordination writeback only; no controlled benchmark session claimed.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "timing_dependency",
+    "headline": "Synthetic surface refresh waits for phase2_synthetic_runtime_foundation timing evidence",
+    "artifact_anchor": "results/tables/cascade_benchmark_manifest_template.csv",
+    "coordination_note": "artifact_refresh_missing until controlled timing manifest is filled.",
+    "result_label": "experimental/frontier"
+  }
+]

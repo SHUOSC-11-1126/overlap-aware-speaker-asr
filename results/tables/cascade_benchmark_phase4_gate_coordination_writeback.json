@@ -1,0 +1,9 @@
+{
+  "fill_status": "writeback_filled",
+  "writeback_scope": "cascade_benchmark_phase4_gate_coordination_card",
+  "coordination_section_count": "5",
+  "phase4_gate_id": "phase4_synthetic_surface_refresh",
+  "execution_receipt_status": "cascade_benchmark_phase4_gate_coordination_complete",
+  "blocker": "controlled_benchmark_timing_pending",
+  "fill_note": "Filled phase4 gate coordination card after Wave13 OppositeOverlap chain; synthetic surface refresh not executed."
+}
