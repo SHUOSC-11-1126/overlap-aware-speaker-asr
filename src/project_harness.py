@@ -226,6 +226,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/cascade_frontier_coordination_writeback.json",
         "next_step": "Run python -m src.cascade_frontier_coordination_writeback after MeetEval character-level receipt fill.",
     },
+    {
+        "frontier_id": "wave5_separation_phase_coordination_writeback",
+        "module_path": "src/separation_phase_coordination_writeback.py",
+        "expected_output": "results/tables/separation_phase_coordination_writeback.json",
+        "next_step": "Run python -m src.separation_phase_coordination_writeback after cascade coordination writeback.",
+    },
 ]
 
 
