@@ -73,6 +73,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "cascade_benchmark_evidence_receipt_coordination_complete",
         "cascade_benchmark_phase1_gate_coordination_complete",
         "cascade_benchmark_phase2_gate_coordination_complete",
+        "external_validation_narrow_slice_coordination_complete",
         "ready_for_narrow_audio_eval",
     }
     if lowered in ready_markers:
@@ -84,6 +85,8 @@ def build_frontier_rows() -> list[dict[str, str]]:
     meeteval_receipt = load_json_payload("results/tables/meeteval_cpwer_execution_receipt_readiness.json")
     meeteval_token = load_json_payload("results/tables/meeteval_cpwer_tokenization_adaptation_completion_summary.json")
     external_summary = load_json_payload("results/tables/external_validation_go_no_go_summary.json")
+    external_coord = load_json_payload("results/tables/external_validation_narrow_slice_coordination_receipt.json")
+    external_coord_status = str((external_coord if isinstance(external_coord, dict) else {}).get("execution_status", ""))
     speaker_summary = load_json_payload("results/tables/speaker_profile_go_no_go_summary.json")
     llm_summary = load_json_payload("results/tables/llm_critic_go_no_go_summary.json")
     demo_summary = load_json_payload("results/tables/demo_go_no_go_summary.json")
@@ -116,10 +119,26 @@ def build_frontier_rows() -> list[dict[str, str]]:
         },
         {
             "frontier_name": "external_validation",
-            "current_state": str((external_summary if isinstance(external_summary, dict) else {}).get("overall_state", "")),
-            "primary_boundary": str((external_summary if isinstance(external_summary, dict) else {}).get("primary_blocker", "license_confirmation_pending")),
-            "go_no_go_state": classify_go_no_go_state(str((external_summary if isinstance(external_summary, dict) else {}).get("overall_state", ""))),
-            "recommended_next_action": str((external_summary if isinstance(external_summary, dict) else {}).get("recommended_next_action", "")),
+            "current_state": (
+                "external_validation_narrow_slice_coordination_complete"
+                if external_coord_status == "external_validation_narrow_slice_coordination_complete"
+                else str((external_summary if isinstance(external_summary, dict) else {}).get("overall_state", ""))
+            ),
+            "primary_boundary": (
+                "gold_benchmark_claims_still_blocked"
+                if external_coord_status == "external_validation_narrow_slice_coordination_complete"
+                else str((external_summary if isinstance(external_summary, dict) else {}).get("primary_blocker", "license_confirmation_pending"))
+            ),
+            "go_no_go_state": classify_go_no_go_state(
+                "external_validation_narrow_slice_coordination_complete"
+                if external_coord_status == "external_validation_narrow_slice_coordination_complete"
+                else str((external_summary if isinstance(external_summary, dict) else {}).get("overall_state", ""))
+            ),
+            "recommended_next_action": (
+                "Narrow slice coordination complete; any README mention stays external/sanity-check only."
+                if external_coord_status == "external_validation_narrow_slice_coordination_complete"
+                else str((external_summary if isinstance(external_summary, dict) else {}).get("recommended_next_action", ""))
+            ),
             "evidence_artifact": "results/figures/external_validation_go_no_go_summary.md",
         },
         {
