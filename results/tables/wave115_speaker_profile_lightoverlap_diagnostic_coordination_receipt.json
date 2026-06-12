@@ -1,0 +1,10 @@
+{
+  "execution_status": "wave115_speaker_profile_lightoverlap_diagnostic_coordination_complete",
+  "coordination_scope": "wave115_speaker_profile_lightoverlap_diagnostic",
+  "wave115_closure_status": "wave115_exploration_baseline_closure_complete",
+  "wave109_lightoverlap_refresh_status": "wave109_speaker_profile_lightoverlap_diagnostic_coordination_complete",
+  "lightoverlap_prior_coordination_status": "speaker_profile_lightoverlap_diagnostic_coordination_complete",
+  "separation_harm_signal": "separation_hurts_on_lightoverlap",
+  "expected_inputs": "Wave115 closure, demo wave115 writeback, Wave109 LightOverlap refresh, and Wave8 LightOverlap coordination.",
+  "writeback_note": "experimental/frontier coordination only; does not claim overlap-case embedding execution."
+}
