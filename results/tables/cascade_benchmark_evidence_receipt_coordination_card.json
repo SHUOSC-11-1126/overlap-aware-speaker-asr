@@ -1,0 +1,30 @@
+[
+  {
+    "section_id": "evidence_receipt_scaffold",
+    "headline": "Benchmark evidence receipt awaits phase1_gold_runtime_foundation fill",
+    "artifact_anchor": "results/tables/cascade_benchmark_evidence_receipt.json",
+    "coordination_note": "Template-only scaffold; controlled hardware metadata not recorded.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "manifest_link",
+    "headline": "Manifest template phase1 gate aligns with evidence receipt step",
+    "artifact_anchor": "results/tables/cascade_benchmark_manifest_template.csv",
+    "coordination_note": "Manifest TODO fields must be filled during controlled timing capture only.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "readiness_boundary",
+    "headline": "Wave6 readiness coordination defers timing claims to evidence boundary",
+    "artifact_anchor": "results/figures/cascade_benchmark_readiness_coordination_card.md",
+    "coordination_note": "repo_local_runtime_only — do not mix with stable gold CER tables.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "wave8_boundary",
+    "headline": "Wave8 closure keeps evidence coordination separate from gold baseline",
+    "artifact_anchor": "results/figures/wave8_exploration_baseline_closure_card.md",
+    "coordination_note": "Coordination writeback only; no benchmark session execution claimed.",
+    "result_label": "experimental/frontier"
+  }
+]
