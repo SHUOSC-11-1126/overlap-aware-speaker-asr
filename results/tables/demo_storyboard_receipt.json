@@ -1,9 +1,9 @@
 [
   {
-    "execution_status": "wave26_presentation_extension_complete",
-    "storyboard_scope": "wave26_storyboard_extension",
-    "expected_inputs": "Wave26 exploration+baseline closure card.",
-    "expected_outputs": "Wave26 storyboard extension under qualitative/demo labeling.",
-    "writeback_note": "Wave26 storyboard extension recorded; no live demo, recording, or benchmark timing claimed."
+    "execution_status": "wave27_presentation_extension_complete",
+    "storyboard_scope": "wave27_storyboard_extension",
+    "expected_inputs": "Wave27 exploration+baseline closure card.",
+    "expected_outputs": "Wave27 storyboard extension under qualitative/demo labeling.",
+    "writeback_note": "Wave27 storyboard extension recorded; no live demo, recording, or benchmark timing claimed."
   }
 ]
