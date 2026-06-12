@@ -172,6 +172,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/figures/external_validation_audio_excerpt_staging_plan.md",
         "next_step": "Run python -m src.external_validation_audio_excerpt_staging_plan before local AISHELL-4 download.",
     },
+    {
+        "frontier_id": "wave3_external_validation_aishell4_excerpt_fetch",
+        "module_path": "src/external_validation_aishell4_excerpt_fetch.py",
+        "expected_output": "resources/external_sanity_check/aishell4/meeting_excerpt_stub_001.wav",
+        "next_step": "Run python -m src.external_validation_aishell4_excerpt_fetch after license confirmation.",
+    },
 ]
 
 
