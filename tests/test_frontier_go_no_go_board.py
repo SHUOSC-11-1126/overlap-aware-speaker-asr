@@ -47,6 +47,14 @@ class FrontierGoNoGoBoardTest(unittest.TestCase):
             "go",
         )
 
+    def test_classify_go_no_go_state_marks_cascade_benchmark_phase3_gate_coordination_complete_as_go(
+        self,
+    ) -> None:
+        self.assertEqual(
+            classify_go_no_go_state("cascade_benchmark_phase3_gate_coordination_complete"),
+            "go",
+        )
+
     def test_classify_go_no_go_state_marks_speaker_profile_case_scope_coordination_complete_as_go(self) -> None:
         self.assertEqual(classify_go_no_go_state("speaker_profile_case_scope_coordination_complete"), "go")
 
