@@ -808,6 +808,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/demo_wave33_presentation_writeback.json",
         "next_step": "Run python -m src.demo_wave33_presentation_writeback after Wave33 closure writeback.",
     },
+    {
+        "frontier_id": "wave33_external_validation_narrow_slice_coordination_writeback",
+        "module_path": "src/wave33_external_validation_narrow_slice_coordination_writeback.py",
+        "expected_output": "results/tables/wave33_external_validation_narrow_slice_coordination_writeback.json",
+        "next_step": "Run python -m src.wave33_external_validation_narrow_slice_coordination_writeback after demo wave33.",
+    },
 ]
 
 
