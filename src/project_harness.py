@@ -2464,6 +2464,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/demo_wave125_presentation_writeback.json",
         "next_step": "Run python -m src.demo_wave125_presentation_writeback after Wave125 closure writeback.",
     },
+    {
+        "frontier_id": "wave125_external_validation_narrow_slice_coordination_writeback",
+        "module_path": "src/wave125_external_validation_narrow_slice_coordination_writeback.py",
+        "expected_output": "results/tables/wave125_external_validation_narrow_slice_coordination_writeback.json",
+        "next_step": "Run python -m src.wave125_external_validation_narrow_slice_coordination_writeback after demo wave125.",
+    },
 ]
 
 
