@@ -1978,6 +1978,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/demo_wave98_presentation_writeback.json",
         "next_step": "Run python -m src.demo_wave98_presentation_writeback after Wave98 closure writeback.",
     },
+    {
+        "frontier_id": "wave98_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+        "module_path": "src/wave98_speaker_profile_midoverlap_diagnostic_coordination_writeback.py",
+        "expected_output": "results/tables/wave98_speaker_profile_midoverlap_diagnostic_coordination_writeback.json",
+        "next_step": "Run python -m src.wave98_speaker_profile_midoverlap_diagnostic_coordination_writeback after demo wave98.",
+    },
 ]
 
 
