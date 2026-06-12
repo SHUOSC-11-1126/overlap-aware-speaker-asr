@@ -768,6 +768,11 @@ results/synthetic_overlap_v2/
 !results/tables/wave70_exploration_baseline_closure_writeback.csv
 !results/tables/wave70_exploration_baseline_closure_writeback.json
 !results/tables/wave70_exploration_baseline_closure_receipt.json
+!results/tables/wave71_exploration_baseline_closure_card.csv
+!results/tables/wave71_exploration_baseline_closure_card.json
+!results/tables/wave71_exploration_baseline_closure_writeback.csv
+!results/tables/wave71_exploration_baseline_closure_writeback.json
+!results/tables/wave71_exploration_baseline_closure_receipt.json
 !results/tables/demo_wave67_presentation_writeback.csv
 !results/tables/demo_wave67_presentation_writeback.json
 !results/tables/demo_wave68_presentation_writeback.csv
