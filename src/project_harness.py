@@ -490,6 +490,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave16_speaker_profile_lightoverlap_diagnostic_coordination_writeback.json",
         "next_step": "Run python -m src.wave16_speaker_profile_lightoverlap_diagnostic_coordination_writeback after demo wave16.",
     },
+    {
+        "frontier_id": "wave17_exploration_baseline_closure_writeback",
+        "module_path": "src/wave17_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave17_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave17_exploration_baseline_closure_writeback after Wave16 chain.",
+    },
 ]
 
 
@@ -606,6 +612,8 @@ def frontier_priority(frontier_id: str) -> int:
         return 74
     if frontier_id.startswith("wave16_"):
         return 75
+    if frontier_id.startswith("wave17_"):
+        return 76
     priority_order = {
         "meeteval_compatibility": 1,
         "external_validation": 2,
