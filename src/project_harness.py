@@ -214,6 +214,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/demo_presentation_writeback.json",
         "next_step": "Run python -m src.demo_presentation_writeback when presentation_writeback_ready.",
     },
+    {
+        "frontier_id": "wave5_meeteval_character_level_execution_receipt_fill",
+        "module_path": "src/meeteval_cpwer_character_level_execution_receipt_fill.py",
+        "expected_output": "results/tables/meeteval_cpwer_character_level_execution_receipt_fill.json",
+        "next_step": "Run python -m src.meeteval_cpwer_character_level_execution_receipt_fill after character-level cpWER execution.",
+    },
 ]
 
 
@@ -306,6 +312,8 @@ def frontier_priority(frontier_id: str) -> int:
         return 62
     if frontier_id.startswith("wave4_"):
         return 63
+    if frontier_id.startswith("wave5_"):
+        return 64
     priority_order = {
         "meeteval_compatibility": 1,
         "external_validation": 2,
