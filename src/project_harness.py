@@ -1396,6 +1396,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave66_exploration_baseline_closure_writeback.json",
         "next_step": "Run python -m src.wave66_exploration_baseline_closure_writeback after Wave65 chain.",
     },
+    {
+        "frontier_id": "wave66_demo_presentation_writeback",
+        "module_path": "src/demo_wave66_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave66_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave66_presentation_writeback after Wave66 closure writeback.",
+    },
 ]
 
 
