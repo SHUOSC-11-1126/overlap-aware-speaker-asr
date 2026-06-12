@@ -1,0 +1,11 @@
+{
+  "execution_status": "wave50_speaker_profile_midoverlap_diagnostic_coordination_complete",
+  "coordination_scope": "wave50_speaker_profile_midoverlap_diagnostic",
+  "wave50_closure_status": "wave50_exploration_baseline_closure_complete",
+  "midoverlap_prior_coordination_status": "speaker_profile_midoverlap_diagnostic_coordination_complete",
+  "wave44_refresh_status": "wave44_speaker_profile_midoverlap_diagnostic_coordination_complete",
+  "lightoverlap_refresh_status": "wave49_speaker_profile_lightoverlap_diagnostic_coordination_complete",
+  "separation_harm_signal": "separation_hurts_on_midoverlap",
+  "expected_inputs": "Wave50 closure, demo wave50, Wave9 MidOverlap, Wave44 refresh, and Wave49 LightOverlap refresh.",
+  "writeback_note": "experimental/frontier coordination only; does not claim overlap-case embedding execution."
+}
