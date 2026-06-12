@@ -1,0 +1,6 @@
+﻿section_id,headline,artifact_anchor,coordination_note,result_label
+lightoverlap_diagnostic_scope,LightOverlap separation-harm diagnostic scope refresh after Wave127 closure,results/figures/separation_phase_diagram.md,Separation harms ASR on this gold anchor; diagnostic-only — no attribution claim.,experimental/frontier
+lightoverlap_prior,Wave8 LightOverlap diagnostic coordination remains the prerequisite chain,results/figures/speaker_profile_lightoverlap_diagnostic_coordination_card.md,Wave85 refresh does not replace original LightOverlap boundary documentation.,experimental/frontier
+wave121_refresh,Wave121 LightOverlap diagnostic refresh precedes Wave127 refresh,results/figures/wave121_speaker_profile_lightoverlap_diagnostic_coordination_card.md,Prior wave refresh provides chain for cyclic overlap diagnostic coordination.,experimental/frontier
+wave127_boundary,Wave127 closure defers overlap embedding execution to diagnostic boundaries only,results/figures/wave127_exploration_baseline_closure_card.md,Gold baseline CER tables unchanged; attribution still blocked.,experimental/frontier
+attribution_boundary,LightOverlap refresh does not upgrade diagnostic scope to attribution claims,results/figures/speaker_profile_go_no_go_summary.md,Controlled benchmark timing required before separation-benefit attribution.,experimental/frontier
