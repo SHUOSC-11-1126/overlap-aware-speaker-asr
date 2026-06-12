@@ -2507,6 +2507,9 @@ results/synthetic_overlap_v2/
 !results/figures/demo_wave102_presentation_writeback.md
 !results/figures/demo_wave103_presentation_writeback.md
 !results/figures/demo_wave104_presentation_writeback.md
+!results/figures/demo_wave105_presentation_writeback.md
+!results/tables/demo_wave105_presentation_writeback.csv
+!results/tables/demo_wave105_presentation_writeback.json
 !results/tables/demo_wave104_presentation_writeback.csv
 !results/tables/demo_wave104_presentation_writeback.json
 !results/tables/demo_wave103_presentation_writeback.csv
