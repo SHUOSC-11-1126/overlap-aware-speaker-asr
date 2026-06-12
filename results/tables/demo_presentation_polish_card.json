@@ -138,5 +138,12 @@
     "artifact_anchor": "results/figures/wave19_exploration_baseline_closure_card.md",
     "presentation_note": "Show Wave19 closure card only; OppositeOverlap diagnostic and external validation refresh remain experimental/frontier — qualitative/demo labeling required.",
     "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave20",
+    "headline": "Wave20 exploration+baseline closure and MeetEval official dry-run refresh boundary",
+    "artifact_anchor": "results/figures/wave20_exploration_baseline_closure_card.md",
+    "presentation_note": "Show Wave20 closure card only; MeetEval official cpWER dry-run remains experimental/frontier — qualitative/demo labeling required.",
+    "result_label": "qualitative/demo"
   }
 ]
