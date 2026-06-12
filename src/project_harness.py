@@ -1210,6 +1210,24 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave55_speaker_profile_lightoverlap_diagnostic_coordination_writeback.json",
         "next_step": "Run python -m src.wave55_speaker_profile_lightoverlap_diagnostic_coordination_writeback after demo wave55.",
     },
+    {
+        "frontier_id": "wave56_exploration_baseline_closure_writeback",
+        "module_path": "src/wave56_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave56_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave56_exploration_baseline_closure_writeback after Wave55 chain.",
+    },
+    {
+        "frontier_id": "wave56_demo_presentation_writeback",
+        "module_path": "src/demo_wave56_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave56_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave56_presentation_writeback after Wave56 closure writeback.",
+    },
+    {
+        "frontier_id": "wave56_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+        "module_path": "src/wave56_speaker_profile_midoverlap_diagnostic_coordination_writeback.py",
+        "expected_output": "results/tables/wave56_speaker_profile_midoverlap_diagnostic_coordination_writeback.json",
+        "next_step": "Run python -m src.wave56_speaker_profile_midoverlap_diagnostic_coordination_writeback after demo wave56.",
+    },
 ]
 
 
