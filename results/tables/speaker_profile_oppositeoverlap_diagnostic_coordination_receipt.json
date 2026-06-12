@@ -1,0 +1,9 @@
+{
+  "execution_status": "speaker_profile_oppositeoverlap_diagnostic_coordination_complete",
+  "coordination_scope": "wave13_speaker_profile_oppositeoverlap_diagnostic",
+  "wave13_closure_status": "wave13_exploration_baseline_closure_complete",
+  "heavyoverlap_coordination_status": "speaker_profile_heavyoverlap_diagnostic_coordination_complete",
+  "separation_benefit_signal": "separation_helps_on_oppositeoverlap",
+  "expected_inputs": "Wave13 closure, demo wave13 writeback, HeavyOverlap diagnostic coordination, separation phase diagram.",
+  "writeback_note": "experimental/frontier diagnostic coordination only; does not record OppositeOverlap embedding execution."
+}

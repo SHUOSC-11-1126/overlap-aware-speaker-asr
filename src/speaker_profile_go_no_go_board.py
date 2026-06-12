@@ -108,6 +108,9 @@ def build_summary_row(rows: list[dict[str, str]]) -> dict[str, str]:
     no_go_count = len(rows) - go_count
     case_scope = rows[0]["case_scope"] if rows else "NoOverlap"
 
+    oppositeoverlap_receipt_path = (
+        PROJECT_ROOT / "results/tables/speaker_profile_oppositeoverlap_diagnostic_coordination_receipt.json"
+    )
     heavyoverlap_receipt_path = (
         PROJECT_ROOT / "results/tables/speaker_profile_heavyoverlap_diagnostic_coordination_receipt.json"
     )
@@ -118,10 +121,18 @@ def build_summary_row(rows: list[dict[str, str]]) -> dict[str, str]:
         PROJECT_ROOT / "results/tables/speaker_profile_lightoverlap_diagnostic_coordination_receipt.json"
     )
     case_scope_receipt_path = PROJECT_ROOT / "results/tables/speaker_profile_case_scope_coordination_receipt.json"
+    oppositeoverlap_complete = False
     heavyoverlap_complete = False
     midoverlap_complete = False
     lightoverlap_complete = False
     case_scope_complete = False
+    if oppositeoverlap_receipt_path.exists():
+        payload = json.loads(oppositeoverlap_receipt_path.read_text(encoding="utf-8"))
+        if isinstance(payload, dict):
+            oppositeoverlap_complete = (
+                str(payload.get("execution_status", ""))
+                == "speaker_profile_oppositeoverlap_diagnostic_coordination_complete"
+            )
     if heavyoverlap_receipt_path.exists():
         payload = json.loads(heavyoverlap_receipt_path.read_text(encoding="utf-8"))
         if isinstance(payload, dict):
@@ -150,7 +161,12 @@ def build_summary_row(rows: list[dict[str, str]]) -> dict[str, str]:
                 str(payload.get("execution_status", "")) == "speaker_profile_case_scope_coordination_complete"
             )
 
-    if rows and go_count == len(rows) and heavyoverlap_complete:
+    if rows and go_count == len(rows) and oppositeoverlap_complete:
+        overall_state = "speaker_profile_oppositeoverlap_diagnostic_coordination_complete"
+        recommended_next_action = (
+            "OppositeOverlap diagnostic scope coordinated; all gold-case diagnostic boundaries documented."
+        )
+    elif rows and go_count == len(rows) and heavyoverlap_complete:
         overall_state = "speaker_profile_heavyoverlap_diagnostic_coordination_complete"
         recommended_next_action = (
             "HeavyOverlap diagnostic scope coordinated; OppositeOverlap remains deferred diagnostic candidate only."
