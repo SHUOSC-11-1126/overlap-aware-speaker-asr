@@ -202,6 +202,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/speaker_profile_embedding_trial_execution_receipt_fill.json",
         "next_step": "Run python -m src.speaker_profile_embedding_trial_execution_receipt_fill after receipt readiness.",
     },
+    {
+        "frontier_id": "wave4_llm_critic_qualitative_writeback",
+        "module_path": "src/llm_critic_qualitative_writeback.py",
+        "expected_output": "results/tables/llm_critic_qualitative_writeback.json",
+        "next_step": "Run python -m src.llm_critic_qualitative_writeback when qualitative_writeback_ready.",
+    },
 ]
 
 
