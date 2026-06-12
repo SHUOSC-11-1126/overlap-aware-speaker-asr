@@ -123,6 +123,14 @@ class FrontierGoNoGoBoardTest(unittest.TestCase):
             "go",
         )
 
+    def test_classify_go_no_go_state_marks_meeteval_official_narrow_dry_run_coordination_complete_as_go(
+        self,
+    ) -> None:
+        self.assertEqual(
+            classify_go_no_go_state("meeteval_official_narrow_dry_run_coordination_complete"),
+            "go",
+        )
+
     def test_classify_go_no_go_state_marks_phase2_gate_coordination_complete_as_go(self) -> None:
         self.assertEqual(
             classify_go_no_go_state("cascade_benchmark_phase2_gate_coordination_complete"),
