@@ -108,7 +108,31 @@ def build_summary_row(rows: list[dict[str, str]]) -> dict[str, str]:
     no_go_count = len(rows) - go_count
     case_scope = rows[0]["case_scope"] if rows else "NoOverlap"
 
-    overall_state = "narrow_execution_ready" if rows and go_count == len(rows) else "execution_not_ready"
+    case_scope_receipt_path = PROJECT_ROOT / "results/tables/speaker_profile_case_scope_coordination_receipt.json"
+    case_scope_complete = False
+    if case_scope_receipt_path.exists():
+        payload = json.loads(case_scope_receipt_path.read_text(encoding="utf-8"))
+        if isinstance(payload, dict):
+            case_scope_complete = (
+                str(payload.get("execution_status", "")) == "speaker_profile_case_scope_coordination_complete"
+            )
+
+    if rows and go_count == len(rows) and case_scope_complete:
+        overall_state = "speaker_profile_case_scope_coordination_complete"
+        recommended_next_action = (
+            "Case-scope coordination documented; LightOverlap/MidOverlap remain diagnostic candidates only."
+        )
+    elif rows and go_count == len(rows):
+        overall_state = "narrow_execution_ready"
+        recommended_next_action = (
+            "Proceed only with one narrow embedding baseline writeback for the current verified case; "
+            "do not upgrade this into a broader attribution claim."
+        )
+    else:
+        overall_state = "execution_not_ready"
+        recommended_next_action = (
+            "Complete speaker profile checkpoints before any case-scope coordination writeback."
+        )
     return {
         "scope": "speaker_profile_go_no_go_board",
         "case_scope": case_scope,
@@ -117,10 +141,7 @@ def build_summary_row(rows: list[dict[str, str]]) -> dict[str, str]:
         "no_go_count": str(no_go_count),
         "overall_state": overall_state,
         "primary_boundary": "attribution_claims_still_blocked_by_weak_support",
-        "recommended_next_action": (
-            "Proceed only with one narrow embedding baseline writeback for the current verified case; "
-            "do not upgrade this into a broader attribution claim."
-        ),
+        "recommended_next_action": recommended_next_action,
         "observation": (
             "experimental/frontier coordination board only; it separates narrow execution readiness "
             "from blocked speaker-attribution claims."
