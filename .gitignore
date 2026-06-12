@@ -871,6 +871,8 @@ results/synthetic_overlap_v2/
 !results/tables/demo_wave79_presentation_writeback.json
 !results/tables/demo_wave80_presentation_writeback.csv
 !results/tables/demo_wave80_presentation_writeback.json
+!results/tables/demo_wave81_presentation_writeback.csv
+!results/tables/demo_wave81_presentation_writeback.json
 !results/tables/wave61_exploration_baseline_closure_card.csv
 !results/tables/wave61_exploration_baseline_closure_card.json
 !results/tables/wave61_exploration_baseline_closure_writeback.csv
