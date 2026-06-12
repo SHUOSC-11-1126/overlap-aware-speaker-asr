@@ -565,6 +565,8 @@ results/synthetic_overlap_v2/
 !results/tables/demo_wave44_presentation_writeback.json
 !results/tables/demo_wave45_presentation_writeback.csv
 !results/tables/demo_wave45_presentation_writeback.json
+!results/tables/demo_wave46_presentation_writeback.csv
+!results/tables/demo_wave46_presentation_writeback.json
 !results/tables/wave37_external_validation_narrow_slice_coordination_card.csv
 !results/tables/wave37_external_validation_narrow_slice_coordination_card.json
 !results/tables/wave37_external_validation_narrow_slice_coordination_writeback.csv
@@ -1522,6 +1524,7 @@ results/synthetic_overlap_v2/
 !results/figures/demo_wave43_presentation_writeback.md
 !results/figures/demo_wave44_presentation_writeback.md
 !results/figures/demo_wave45_presentation_writeback.md
+!results/figures/demo_wave46_presentation_writeback.md
 !results/figures/wave37_external_validation_narrow_slice_coordination_card.md
 !results/figures/wave37_external_validation_narrow_slice_coordination_writeback.md
 !results/figures/wave37_external_validation_narrow_slice_coordination_receipt.md
