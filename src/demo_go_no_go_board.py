@@ -39,7 +39,7 @@ def load_json_payload(path_rel: str) -> dict | list:
 
 def classify_go_no_go_state(current_status: str) -> str:
     lowered = current_status.strip().lower()
-    if lowered in {"queue_complete", "review_complete"}:
+    if lowered in {"queue_complete", "review_complete", "presentation_writeback_complete"}:
         return "go"
     return "no_go"
 
@@ -123,18 +123,31 @@ def build_checkpoint_rows() -> list[dict[str, str]]:
 def build_summary_row(rows: list[dict[str, str]]) -> dict[str, str]:
     go_count = sum(1 for row in rows if row.get("go_no_go_state") == "go")
     no_go_count = len(rows) - go_count
-    overall_state = "presentation_writeback_ready" if go_count >= 4 else "presentation_not_ready"
+    if no_go_count == 0:
+        overall_state = "presentation_polish_complete"
+        recommended_next_action = (
+            "Presentation writeback complete; any README or UI refresh remains qualitative/demo and must not claim live delivery."
+        )
+        primary_boundary = "none_documented"
+    elif go_count >= 4:
+        overall_state = "presentation_writeback_ready"
+        recommended_next_action = (
+            "Proceed only with a narrow presentation writeback or delivery mockup; "
+            "do not claim a live demo, recording, or public presentation without filled evidence receipts."
+        )
+        primary_boundary = "live_demo_claims_still_blocked"
+    else:
+        overall_state = "presentation_not_ready"
+        recommended_next_action = "Complete storyboard and walkthrough review queues before any presentation writeback."
+        primary_boundary = "live_demo_claims_still_blocked"
     return {
         "scope": "demo_go_no_go_board",
         "checkpoint_count": str(len(rows)),
         "go_count": str(go_count),
         "no_go_count": str(no_go_count),
         "overall_state": overall_state,
-        "primary_boundary": "live_demo_claims_still_blocked",
-        "recommended_next_action": (
-            "Proceed only with a narrow presentation writeback or delivery mockup; "
-            "do not claim a live demo, recording, or public presentation without filled evidence receipts."
-        ),
+        "primary_boundary": primary_boundary,
+        "recommended_next_action": recommended_next_action,
         "observation": (
             "qualitative/demo coordination board only; it separates presentation readiness "
             "from blocked live-delivery claims."
