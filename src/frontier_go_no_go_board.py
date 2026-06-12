@@ -62,6 +62,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "wave34_meeteval_official_narrow_dry_run_coordination_complete",
         "wave38_meeteval_official_narrow_dry_run_coordination_complete",
         "wave42_meeteval_official_narrow_dry_run_coordination_complete",
+        "wave48_meeteval_official_narrow_dry_run_coordination_complete",
         "presentation_wave5_extension_complete",
         "presentation_wave6_extension_complete",
         "presentation_wave7_extension_complete",
