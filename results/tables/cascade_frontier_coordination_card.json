@@ -1,0 +1,30 @@
+[
+  {
+    "section_id": "meeteval_closure",
+    "headline": "MeetEval character-level cpWER receipt fill complete (5/5 gold)",
+    "artifact_anchor": "results/tables/meeteval_cpwer_character_level_execution_receipt_fill.json",
+    "coordination_note": "experimental/frontier only — not a full benchmark claim.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "cascade_pareto",
+    "headline": "Gold Pareto frontier: router_v2_costed vs fixed_mixed_whisper trade-off",
+    "artifact_anchor": "results/figures/cascade_frontier_report.md",
+    "coordination_note": "Keep gold cascade evidence separate from synthetic/silver tables.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "frontier_all_ready",
+    "headline": "Top-level frontier board 5/5 go with combined execution chain ready",
+    "artifact_anchor": "results/tables/frontier_go_no_go_summary.json",
+    "coordination_note": "Coordination-only rollup; does not claim live demo or external benchmark completion.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "next_boundary",
+    "headline": "Next narrow steps stay qualitative or controlled-benchmark scoped",
+    "artifact_anchor": "results/figures/cascade_benchmark_readiness.md",
+    "coordination_note": "README/demo polish and benchmark timing remain qualitative/demo or experimental/frontier.",
+    "result_label": "qualitative/demo"
+  }
+]
