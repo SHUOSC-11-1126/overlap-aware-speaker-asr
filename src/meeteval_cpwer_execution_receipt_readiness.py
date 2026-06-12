@@ -42,18 +42,30 @@ def build_readiness_row(status: dict[str, str], receipt: dict[str, str]) -> dict
     chain_status = str(status.get("execution_chain_status", "execution_chain_in_progress"))
     receipt_status = str(receipt.get("execution_status", "missing"))
     preflight_pass = str(receipt.get("preflight_pass", status.get("preflight_pass", "False")))
-    ready = (
+    ready_for_template_fill = (
         chain_status == "execution_chain_ready"
         and receipt_status == "template_only"
         and preflight_pass in {"True", "true"}
     )
+    ready_for_character_fill = (
+        chain_status == "execution_chain_ready"
+        and receipt_status in {"official_cpwer_narrow_dry_run_complete", "template_only"}
+        and preflight_pass in {"True", "true"}
+    )
+    fill_complete = receipt_status == "character_level_cpwer_receipt_fill_complete"
+    if fill_complete:
+        readiness_status = "character_level_receipt_fill_complete"
+    elif ready_for_template_fill or ready_for_character_fill:
+        readiness_status = "receipt_ready_to_fill"
+    else:
+        readiness_status = "receipt_not_ready"
     return {
         "scope": "meeteval_cpwer_execution_receipt",
         "case_id": case_id,
         "execution_chain_status": chain_status,
         "receipt_template_status": receipt_status,
         "preflight_pass": preflight_pass,
-        "readiness_status": "receipt_ready_to_fill" if ready else "receipt_not_ready",
+        "readiness_status": readiness_status,
         "readiness_note": (
             "experimental/frontier receipt readiness for one verified gold case; "
             "official MeetEval cpWER evaluation is not claimed."
