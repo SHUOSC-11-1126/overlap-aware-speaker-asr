@@ -1117,6 +1117,11 @@ results/synthetic_overlap_v2/
 !results/tables/wave94_exploration_baseline_closure_writeback.csv
 !results/tables/wave94_exploration_baseline_closure_writeback.json
 !results/tables/wave94_exploration_baseline_closure_receipt.json
+!results/tables/wave95_exploration_baseline_closure_card.csv
+!results/tables/wave95_exploration_baseline_closure_card.json
+!results/tables/wave95_exploration_baseline_closure_writeback.csv
+!results/tables/wave95_exploration_baseline_closure_writeback.json
+!results/tables/wave95_exploration_baseline_closure_receipt.json
 !results/tables/wave80_speaker_profile_midoverlap_diagnostic_coordination_card.csv
 !results/tables/wave80_speaker_profile_midoverlap_diagnostic_coordination_card.json
 !results/tables/wave80_speaker_profile_midoverlap_diagnostic_coordination_writeback.csv
@@ -2336,6 +2341,9 @@ results/synthetic_overlap_v2/
 !results/figures/wave94_exploration_baseline_closure_card.md
 !results/figures/wave94_exploration_baseline_closure_receipt.md
 !results/figures/wave94_exploration_baseline_closure_writeback.md
+!results/figures/wave95_exploration_baseline_closure_card.md
+!results/figures/wave95_exploration_baseline_closure_receipt.md
+!results/figures/wave95_exploration_baseline_closure_writeback.md
 !results/figures/wave93_exploration_baseline_closure_writeback.md
 !results/figures/demo_wave77_presentation_writeback.md
 !results/figures/demo_wave78_presentation_writeback.md
