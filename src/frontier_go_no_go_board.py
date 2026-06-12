@@ -55,6 +55,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "presentation_polish_complete",
         "character_level_receipt_fill_complete",
         "presentation_wave5_extension_complete",
+        "wave6_coordination_closure_complete",
         "ready_for_narrow_audio_eval",
     }
     if lowered in ready_markers:
@@ -72,7 +73,11 @@ def build_frontier_rows() -> list[dict[str, str]]:
 
     meeteval_receipt_status = str((meeteval_receipt if isinstance(meeteval_receipt, dict) else {}).get("readiness_status", ""))
     meeteval_token_status = str((meeteval_token if isinstance(meeteval_token, dict) else {}).get("queue_status", ""))
-    if meeteval_receipt_status == "character_level_receipt_fill_complete" and meeteval_token_status == "queue_complete":
+    wave6_closure = load_json_payload("results/tables/wave6_frontier_coordination_closure_receipt.json")
+    wave6_closure_status = str((wave6_closure if isinstance(wave6_closure, dict) else {}).get("execution_status", ""))
+    if wave6_closure_status == "wave6_coordination_closure_complete" and meeteval_token_status == "queue_complete":
+        meeteval_state = "wave6_coordination_closure_complete"
+    elif meeteval_receipt_status == "character_level_receipt_fill_complete" and meeteval_token_status == "queue_complete":
         meeteval_state = "character_level_receipt_fill_complete"
     elif meeteval_receipt_status == "receipt_ready_to_fill" and meeteval_token_status == "queue_complete":
         meeteval_state = "receipt_ready_to_fill"
