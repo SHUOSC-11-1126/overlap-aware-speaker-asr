@@ -1,0 +1,10 @@
+{
+  "execution_status": "wave17_meeteval_cpwer_narrow_dry_run_coordination_complete",
+  "coordination_scope": "wave17_meeteval_cpwer_narrow_dry_run",
+  "wave17_closure_status": "wave17_exploration_baseline_closure_complete",
+  "midoverlap_coordination_status": "wave17_speaker_profile_midoverlap_diagnostic_coordination_complete",
+  "prior_meeteval_coordination_status": "meeteval_cpwer_narrow_dry_run_coordination_complete",
+  "character_level_dry_run_count": "5",
+  "expected_inputs": "Wave17 closure, MidOverlap diagnostic, demo wave17, Wave10 MeetEval narrow dry-run coordination.",
+  "writeback_note": "experimental/frontier coordination only; does not claim official MeetEval benchmark completion."
+}
