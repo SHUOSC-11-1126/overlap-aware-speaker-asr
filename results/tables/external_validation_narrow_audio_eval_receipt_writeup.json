@@ -1,0 +1,9 @@
+{
+  "receipt_status": "eval_receipt_filled",
+  "dataset_name": "AISHELL-4",
+  "slice_id": "aishell4_meeting_excerpt_stub_001",
+  "label": "external/sanity-check",
+  "eval_status": "narrow_asr_complete",
+  "blocker": "none_documented",
+  "receipt_note": "Writeback after narrow ASR eval; reference alignment and external benchmark claims remain out of scope."
+}

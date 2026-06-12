@@ -1,0 +1,2 @@
+﻿execution_status,run_scope,dataset_name,slice_id,label,model,eval_status,text_length,transcript_path,blocker,writeback_note
+narrow_asr_complete,single_external_slice_eval,AISHELL-4,aishell4_meeting_excerpt_stub_001,external/sanity-check,whisper-tiny,narrow_asr_complete,51,results/external_sanity_check/transcripts/aishell4_meeting_excerpt_stub_001_whisper.json,none_documented,Narrow external/sanity-check ASR receipt recorded; no gold CER or benchmark completion claimed.
