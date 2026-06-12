@@ -324,6 +324,8 @@ results/synthetic_overlap_v2/
 !results/tables/demo_wave21_presentation_writeback.json
 !results/tables/demo_wave22_presentation_writeback.csv
 !results/tables/demo_wave22_presentation_writeback.json
+!results/tables/demo_wave23_presentation_writeback.csv
+!results/tables/demo_wave23_presentation_writeback.json
 !results/tables/cascade_frontier_coordination_card.csv
 !results/tables/cascade_frontier_coordination_card.json
 !results/tables/cascade_frontier_coordination_writeback.csv
@@ -1106,6 +1108,7 @@ results/synthetic_overlap_v2/
 !results/figures/demo_wave20_presentation_writeback.md
 !results/figures/demo_wave21_presentation_writeback.md
 !results/figures/demo_wave22_presentation_writeback.md
+!results/figures/demo_wave23_presentation_writeback.md
 !results/figures/cascade_frontier_coordination_card.md
 !results/figures/cascade_frontier_coordination_writeback.md
 !results/figures/cascade_frontier_coordination_receipt.md
