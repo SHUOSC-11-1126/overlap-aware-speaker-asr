@@ -33,6 +33,8 @@ def current_state_to_chain_status(current_state: str) -> str:
         "narrow_execution_ready",
         "qualitative_writeback_ready",
         "presentation_writeback_ready",
+        "presentation_polish_complete",
+        "ready_for_narrow_audio_eval",
     }
     return "execution_chain_ready" if current_state in ready_states else "execution_chain_in_progress"
 
