@@ -1954,6 +1954,18 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave97_exploration_baseline_closure_writeback.json",
         "next_step": "Run python -m src.wave97_exploration_baseline_closure_writeback after Wave96 chain.",
     },
+    {
+        "frontier_id": "wave97_demo_presentation_writeback",
+        "module_path": "src/demo_wave97_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave97_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave97_presentation_writeback after Wave97 closure writeback.",
+    },
+    {
+        "frontier_id": "wave97_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+        "module_path": "src/wave97_speaker_profile_lightoverlap_diagnostic_coordination_writeback.py",
+        "expected_output": "results/tables/wave97_speaker_profile_lightoverlap_diagnostic_coordination_writeback.json",
+        "next_step": "Run python -m src.wave97_speaker_profile_lightoverlap_diagnostic_coordination_writeback after demo wave97.",
+    },
 ]
 
 
