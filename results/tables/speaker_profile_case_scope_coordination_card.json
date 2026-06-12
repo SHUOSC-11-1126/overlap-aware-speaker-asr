@@ -1,0 +1,30 @@
+[
+  {
+    "section_id": "nooverlap_complete",
+    "headline": "NoOverlap spectral embedding diagnostic complete",
+    "artifact_anchor": "results/tables/speaker_profile_embedding_trial_execution_receipt_fill.json",
+    "coordination_note": "Swapped-bias signal recorded; not speaker-ID or attribution.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "overlap_candidates",
+    "headline": "LightOverlap and MidOverlap are next diagnostic-only candidates",
+    "artifact_anchor": "results/figures/separation_phase_diagram.md",
+    "coordination_note": "Separation hurts on these gold anchors; any extension stays diagnostic-only.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "attribution_boundary",
+    "headline": "Attribution claims remain blocked by weak_support",
+    "artifact_anchor": "results/figures/speaker_profile_go_no_go_summary.md",
+    "coordination_note": "Do not upgrade embedding diagnostic into voiceprint identification.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "wave7_link",
+    "headline": "Wave7 exploration+baseline closure defers broader case rollout",
+    "artifact_anchor": "results/figures/wave7_exploration_baseline_closure_card.md",
+    "coordination_note": "Case-scope coordination only; gold baseline CER tables unchanged.",
+    "result_label": "experimental/frontier"
+  }
+]

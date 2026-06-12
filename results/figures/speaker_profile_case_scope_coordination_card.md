@@ -1,0 +1,15 @@
+# Speaker Profile Case-Scope Coordination Card (experimental/frontier)
+
+Diagnostic case-scope boundary — not multi-case embedding execution.
+
+| section_id | headline | artifact_anchor | result_label |
+| --- | --- | --- | --- |
+| nooverlap_complete | NoOverlap spectral embedding diagnostic complete | results/tables/speaker_profile_embedding_trial_execution_receipt_fill.json | experimental/frontier |
+| overlap_candidates | LightOverlap and MidOverlap are next diagnostic-only candidates | results/figures/separation_phase_diagram.md | experimental/frontier |
+| attribution_boundary | Attribution claims remain blocked by weak_support | results/figures/speaker_profile_go_no_go_summary.md | experimental/frontier |
+| wave7_link | Wave7 exploration+baseline closure defers broader case rollout | results/figures/wave7_exploration_baseline_closure_card.md | experimental/frontier |
+
+- **nooverlap_complete**: Swapped-bias signal recorded; not speaker-ID or attribution.
+- **overlap_candidates**: Separation hurts on these gold anchors; any extension stays diagnostic-only.
+- **attribution_boundary**: Do not upgrade embedding diagnostic into voiceprint identification.
+- **wave7_link**: Case-scope coordination only; gold baseline CER tables unchanged.

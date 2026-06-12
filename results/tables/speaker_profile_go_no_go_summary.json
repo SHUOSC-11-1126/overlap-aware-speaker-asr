@@ -4,8 +4,8 @@
   "checkpoint_count": "4",
   "go_count": "4",
   "no_go_count": "0",
-  "overall_state": "narrow_execution_ready",
+  "overall_state": "speaker_profile_case_scope_coordination_complete",
   "primary_boundary": "attribution_claims_still_blocked_by_weak_support",
-  "recommended_next_action": "Proceed only with one narrow embedding baseline writeback for the current verified case; do not upgrade this into a broader attribution claim.",
+  "recommended_next_action": "Case-scope coordination documented; LightOverlap/MidOverlap remain diagnostic candidates only.",
   "observation": "experimental/frontier coordination board only; it separates narrow execution readiness from blocked speaker-attribution claims."
 }
