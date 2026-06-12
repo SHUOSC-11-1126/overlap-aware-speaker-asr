@@ -1,0 +1,11 @@
+{
+  "execution_status": "wave113_external_validation_narrow_slice_coordination_complete",
+  "coordination_scope": "wave113_external_validation_narrow_slice",
+  "wave113_closure_status": "wave113_exploration_baseline_closure_complete",
+  "oppositeoverlap_coordination_status": "wave112_speaker_profile_oppositeoverlap_diagnostic_coordination_complete",
+  "wave107_refresh_status": "wave107_external_validation_narrow_slice_coordination_complete",
+  "narrow_asr_eval_status": "narrow_asr_complete",
+  "external_board_state": "ready_for_narrow_audio_eval",
+  "expected_inputs": "Wave113 closure, OppositeOverlap diagnostic, demo wave113, narrow ASR eval receipt, external board.",
+  "writeback_note": "external/sanity-check coordination only; does not claim gold CER or full external benchmark completion."
+}
