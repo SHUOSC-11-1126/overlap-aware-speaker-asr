@@ -110,5 +110,12 @@
     "artifact_anchor": "results/figures/wave15_exploration_baseline_closure_card.md",
     "presentation_note": "Show Wave15 closure card only; phase5 gate and MeetEval official dry-run remain experimental/frontier — qualitative/demo labeling required.",
     "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave16",
+    "headline": "Wave16 exploration+baseline closure and external validation refresh boundary",
+    "artifact_anchor": "results/figures/wave16_exploration_baseline_closure_card.md",
+    "presentation_note": "Show Wave16 closure card only; external validation and LLM critic dry-run remain experimental/frontier — qualitative/demo labeling required.",
+    "result_label": "qualitative/demo"
   }
 ]
