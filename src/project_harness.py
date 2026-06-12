@@ -208,6 +208,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/llm_critic_qualitative_writeback.json",
         "next_step": "Run python -m src.llm_critic_qualitative_writeback when qualitative_writeback_ready.",
     },
+    {
+        "frontier_id": "wave4_demo_presentation_writeback",
+        "module_path": "src/demo_presentation_writeback.py",
+        "expected_output": "results/tables/demo_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_presentation_writeback when presentation_writeback_ready.",
+    },
 ]
 
 

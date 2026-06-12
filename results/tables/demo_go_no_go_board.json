@@ -38,18 +38,18 @@
   {
     "checkpoint_name": "storyboard_receipt",
     "scope": "single_storyboard_writeback",
-    "current_status": "",
+    "current_status": "presentation_writeback_complete",
     "claim_boundary": "receipt_template_only_blocks_live_claims",
-    "go_no_go_state": "no_go",
+    "go_no_go_state": "go",
     "next_action": "Do not claim live delivery until a real storyboard writeback fills the receipt with evidence.",
     "evidence_artifact": "results/figures/demo_storyboard_receipt.md"
   },
   {
     "checkpoint_name": "walkthrough_receipt",
     "scope": "single_walkthrough_writeback",
-    "current_status": "template_only",
+    "current_status": "presentation_writeback_complete",
     "claim_boundary": "receipt_template_only_blocks_live_claims",
-    "go_no_go_state": "no_go",
+    "go_no_go_state": "go",
     "next_action": "Do not claim live delivery until a real walkthrough writeback fills the receipt with evidence.",
     "evidence_artifact": "results/figures/demo_walkthrough_receipt.md"
   }

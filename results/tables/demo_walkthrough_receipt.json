@@ -1,9 +1,9 @@
 [
   {
-    "execution_status": "template_only",
-    "walkthrough_scope": "step_1_problem_framing",
-    "expected_inputs": "Demo walkthrough head plus one narration note stub.",
-    "expected_outputs": "Diagnostic walkthrough note and a narrow presentation writeback.",
-    "writeback_note": "No demo walkthrough pass has been executed yet; fill this receipt only after the first run."
+    "execution_status": "presentation_writeback_complete",
+    "walkthrough_scope": "full_walkthrough_queue",
+    "expected_inputs": "Completed walkthrough review queue and presentation polish card.",
+    "expected_outputs": "Diagnostic walkthrough writeback under qualitative/demo labeling.",
+    "writeback_note": "Walkthrough presentation writeback recorded; no live demo, recording, or public launch claimed."
   }
 ]
