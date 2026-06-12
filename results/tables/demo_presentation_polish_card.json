@@ -229,5 +229,12 @@
     "artifact_anchor": "results/figures/wave32_exploration_baseline_closure_card.md",
     "presentation_note": "Show Wave32 closure card only; MidOverlap diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.",
     "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave33",
+    "headline": "Wave33 exploration+baseline closure and external validation narrow slice refresh boundary",
+    "artifact_anchor": "results/figures/wave33_exploration_baseline_closure_card.md",
+    "presentation_note": "Show Wave33 closure card only; external validation narrow slice refresh remains external/sanity-check — qualitative/demo labeling required.",
+    "result_label": "qualitative/demo"
   }
 ]
