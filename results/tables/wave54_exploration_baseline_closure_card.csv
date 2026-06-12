@@ -1,0 +1,6 @@
+﻿section_id,headline,artifact_anchor,coordination_note,result_label
+wave53_rollup,Wave53 closed: external validation narrow slice refresh + demo + exploration closure,results/figures/wave53_exploration_baseline_closure_card.md,experimental/frontier coordination only; gold baseline untouched.,experimental/frontier
+external_validation_coordination,External validation narrow slice refresh coordinated on AISHELL-4 stub boundary,results/figures/wave53_external_validation_narrow_slice_coordination_card.md,External/sanity-check scope only; gold benchmark claims still blocked.,external/sanity-check
+demo_wave53,Demo presentation polish extended to 48 sections under qualitative/demo labeling,results/figures/demo_wave53_presentation_writeback.md,No live demo or benchmark timing claims.,qualitative/demo
+frontier_board,Frontier go/no-go board remains all_ready after Wave53 chain,results/tables/frontier_go_no_go_summary.json,Coordination receipts only; no deployable routing claims.,experimental/frontier
+wave54_boundary,MeetEval official cpWER narrow dry-run refresh is the next open experimental coordination gate,results/tables/meeteval_official_status.json,Wave54 closure does not record MeetEval official benchmark execution sessions.,experimental/frontier

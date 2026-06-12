@@ -1174,6 +1174,24 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave53_external_validation_narrow_slice_coordination_writeback.json",
         "next_step": "Run python -m src.wave53_external_validation_narrow_slice_coordination_writeback after demo wave53.",
     },
+    {
+        "frontier_id": "wave54_exploration_baseline_closure_writeback",
+        "module_path": "src/wave54_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave54_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave54_exploration_baseline_closure_writeback after Wave53 chain.",
+    },
+    {
+        "frontier_id": "wave54_demo_presentation_writeback",
+        "module_path": "src/demo_wave54_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave54_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave54_presentation_writeback after Wave54 closure writeback.",
+    },
+    {
+        "frontier_id": "wave54_meeteval_official_narrow_dry_run_coordination_writeback",
+        "module_path": "src/wave54_meeteval_official_narrow_dry_run_coordination_writeback.py",
+        "expected_output": "results/tables/wave54_meeteval_official_narrow_dry_run_coordination_writeback.json",
+        "next_step": "Run python -m src.wave54_meeteval_official_narrow_dry_run_coordination_writeback after demo wave54.",
+    },
 ]
 
 
