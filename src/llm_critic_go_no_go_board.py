@@ -126,7 +126,20 @@ def build_checkpoint_rows() -> list[dict[str, str]]:
 def build_summary_row(rows: list[dict[str, str]]) -> dict[str, str]:
     go_count = sum(1 for row in rows if row.get("go_no_go_state") == "go")
     no_go_count = len(rows) - go_count
-    overall_state = "qualitative_writeback_ready" if go_count >= 4 else "writeback_not_ready"
+    narrow_coord_path = PROJECT_ROOT / "results/tables/llm_critic_narrow_dry_run_coordination_receipt.json"
+    narrow_coord_complete = False
+    if narrow_coord_path.exists():
+        payload = json.loads(narrow_coord_path.read_text(encoding="utf-8"))
+        if isinstance(payload, dict):
+            narrow_coord_complete = (
+                str(payload.get("execution_status", "")) == "llm_critic_narrow_dry_run_coordination_complete"
+            )
+    if rows and go_count == len(rows) and narrow_coord_complete:
+        overall_state = "llm_critic_narrow_dry_run_coordination_complete"
+    elif go_count >= 4:
+        overall_state = "qualitative_writeback_ready"
+    else:
+        overall_state = "writeback_not_ready"
     return {
         "scope": "llm_critic_go_no_go_board",
         "checkpoint_count": str(len(rows)),

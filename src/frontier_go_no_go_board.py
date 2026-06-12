@@ -77,6 +77,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "cascade_benchmark_phase2_gate_coordination_complete",
         "cascade_benchmark_phase3_gate_coordination_complete",
         "external_validation_narrow_slice_coordination_complete",
+        "llm_critic_narrow_dry_run_coordination_complete",
         "ready_for_narrow_audio_eval",
     }
     if lowered in ready_markers:
@@ -92,6 +93,8 @@ def build_frontier_rows() -> list[dict[str, str]]:
     external_coord_status = str((external_coord if isinstance(external_coord, dict) else {}).get("execution_status", ""))
     speaker_summary = load_json_payload("results/tables/speaker_profile_go_no_go_summary.json")
     llm_summary = load_json_payload("results/tables/llm_critic_go_no_go_summary.json")
+    llm_coord = load_json_payload("results/tables/llm_critic_narrow_dry_run_coordination_receipt.json")
+    llm_coord_status = str((llm_coord if isinstance(llm_coord, dict) else {}).get("execution_status", ""))
     demo_summary = load_json_payload("results/tables/demo_go_no_go_summary.json")
 
     meeteval_receipt_status = str((meeteval_receipt if isinstance(meeteval_receipt, dict) else {}).get("readiness_status", ""))
@@ -154,10 +157,26 @@ def build_frontier_rows() -> list[dict[str, str]]:
         },
         {
             "frontier_name": "llm_critic",
-            "current_state": str((llm_summary if isinstance(llm_summary, dict) else {}).get("overall_state", "")),
-            "primary_boundary": str((llm_summary if isinstance(llm_summary, dict) else {}).get("primary_boundary", "")),
-            "go_no_go_state": classify_go_no_go_state(str((llm_summary if isinstance(llm_summary, dict) else {}).get("overall_state", ""))),
-            "recommended_next_action": str((llm_summary if isinstance(llm_summary, dict) else {}).get("recommended_next_action", "")),
+            "current_state": (
+                "llm_critic_narrow_dry_run_coordination_complete"
+                if llm_coord_status == "llm_critic_narrow_dry_run_coordination_complete"
+                else str((llm_summary if isinstance(llm_summary, dict) else {}).get("overall_state", ""))
+            ),
+            "primary_boundary": (
+                "verified_repair_claims_still_blocked"
+                if llm_coord_status == "llm_critic_narrow_dry_run_coordination_complete"
+                else str((llm_summary if isinstance(llm_summary, dict) else {}).get("primary_boundary", ""))
+            ),
+            "go_no_go_state": classify_go_no_go_state(
+                "llm_critic_narrow_dry_run_coordination_complete"
+                if llm_coord_status == "llm_critic_narrow_dry_run_coordination_complete"
+                else str((llm_summary if isinstance(llm_summary, dict) else {}).get("overall_state", ""))
+            ),
+            "recommended_next_action": (
+                "Narrow dry-run coordination complete; any README mention stays qualitative/demo only."
+                if llm_coord_status == "llm_critic_narrow_dry_run_coordination_complete"
+                else str((llm_summary if isinstance(llm_summary, dict) else {}).get("recommended_next_action", ""))
+            ),
             "evidence_artifact": "results/figures/llm_critic_go_no_go_summary.md",
         },
         {
