@@ -2518,6 +2518,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/demo_wave128_presentation_writeback.json",
         "next_step": "Run python -m src.demo_wave128_presentation_writeback after Wave128 closure writeback.",
     },
+    {
+        "frontier_id": "wave128_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+        "module_path": "src/wave128_speaker_profile_midoverlap_diagnostic_coordination_writeback.py",
+        "expected_output": "results/tables/wave128_speaker_profile_midoverlap_diagnostic_coordination_writeback.json",
+        "next_step": "Run python -m src.wave128_speaker_profile_midoverlap_diagnostic_coordination_writeback after demo wave128.",
+    },
 ]
 
 
