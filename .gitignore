@@ -369,6 +369,10 @@ results/synthetic_overlap_v2/
 !results/tables/external_validation_go_no_go_board.json
 !results/tables/external_validation_go_no_go_summary.csv
 !results/tables/external_validation_go_no_go_summary.json
+!results/tables/external_validation_narrow_audio_eval.csv
+!results/tables/external_validation_narrow_audio_eval.json
+!results/tables/external_validation_narrow_audio_eval_summary.csv
+!results/tables/external_validation_narrow_audio_eval_summary.json
 !results/tables/frontier_status_checklist.csv
 !results/tables/frontier_status_checklist.json
 !results/tables/frontier_execution_queue_checklist.csv
@@ -944,6 +948,7 @@ results/synthetic_overlap_v2/
 !results/figures/external_validation_slice_staging_execution_status.md
 !results/figures/external_validation_go_no_go_board.md
 !results/figures/external_validation_go_no_go_summary.md
+!results/figures/external_validation_narrow_audio_eval.md
 !results/figures/frontier_status_checklist.md
 !results/figures/frontier_execution_queue_checklist.md
 !results/figures/frontier_focus_card_checklist.md
@@ -1136,6 +1141,7 @@ results/synthetic_overlap_v2/
 resources/synthetic_overlap_v2/audio/
 resources/external_sanity_check/**/*.wav
 resources/external_sanity_check/**/*.flac
+results/external_sanity_check/transcripts/
 .venv-external/
 
 # Large temporary files
