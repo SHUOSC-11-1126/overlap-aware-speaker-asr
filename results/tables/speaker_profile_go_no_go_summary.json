@@ -4,8 +4,8 @@
   "checkpoint_count": "4",
   "go_count": "4",
   "no_go_count": "0",
-  "overall_state": "speaker_profile_lightoverlap_diagnostic_coordination_complete",
+  "overall_state": "speaker_profile_midoverlap_diagnostic_coordination_complete",
   "primary_boundary": "attribution_claims_still_blocked_by_weak_support",
-  "recommended_next_action": "LightOverlap diagnostic scope coordinated; MidOverlap remains deferred diagnostic candidate only.",
+  "recommended_next_action": "MidOverlap diagnostic scope coordinated; all gold-case diagnostic boundaries documented.",
   "observation": "experimental/frontier coordination board only; it separates narrow execution readiness from blocked speaker-attribution claims."
 }
