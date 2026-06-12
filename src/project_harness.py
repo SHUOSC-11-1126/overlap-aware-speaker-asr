@@ -256,6 +256,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/demo_wave6_presentation_writeback.json",
         "next_step": "Run python -m src.demo_wave6_presentation_writeback after benchmark coordination writeback.",
     },
+    {
+        "frontier_id": "wave7_exploration_baseline_closure_writeback",
+        "module_path": "src/wave7_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave7_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave7_exploration_baseline_closure_writeback after Wave6 chain.",
+    },
 ]
 
 
@@ -352,6 +358,8 @@ def frontier_priority(frontier_id: str) -> int:
         return 64
     if frontier_id.startswith("wave6_"):
         return 65
+    if frontier_id.startswith("wave7_"):
+        return 66
     priority_order = {
         "meeteval_compatibility": 1,
         "external_validation": 2,
