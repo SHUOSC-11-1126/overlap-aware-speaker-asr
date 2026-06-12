@@ -1,0 +1,37 @@
+[
+  {
+    "section_id": "review_pass_queue",
+    "headline": "Qualitative review pass queue dry-run remains complete on 5/5 gold cases",
+    "artifact_anchor": "results/tables/llm_critic_review_pass_status.json",
+    "coordination_note": "qualitative/demo dry-run only; not verified transcript repair.",
+    "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "qualitative_brief_boundary",
+    "headline": "Light/Mid overlap qualitative brief documents critic hypotheses only",
+    "artifact_anchor": "results/figures/llm_critic_qualitative_brief_light_mid.md",
+    "coordination_note": "Separation-harm hypotheses; does not claim verified correction.",
+    "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "external_validation_prior",
+    "headline": "Wave15 external validation coordination precedes critic narrow dry-run refresh",
+    "artifact_anchor": "results/figures/wave15_external_validation_narrow_slice_coordination_card.md",
+    "coordination_note": "external/sanity-check chain provides slice context only.",
+    "result_label": "external/sanity-check"
+  },
+  {
+    "section_id": "wave15_boundary",
+    "headline": "Wave15 closure keeps LLM critic dry-run separate from gold baseline CER",
+    "artifact_anchor": "results/figures/wave15_exploration_baseline_closure_card.md",
+    "coordination_note": "Coordination writeback only; stable gold CER tables unchanged.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "verified_repair_boundary",
+    "headline": "Narrow dry-run refresh does not upgrade qualitative notes to verified repair",
+    "artifact_anchor": "results/figures/llm_critic_go_no_go_summary.md",
+    "coordination_note": "README mentions must keep qualitative/demo labeling.",
+    "result_label": "qualitative/demo"
+  }
+]
