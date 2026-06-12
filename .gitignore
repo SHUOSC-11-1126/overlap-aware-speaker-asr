@@ -136,6 +136,11 @@ results/synthetic_overlap_v2/
 !results/tables/llm_critic_qualitative_brief_light_mid.json
 !results/tables/llm_critic_qualitative_brief_light_mid_summary.csv
 !results/tables/llm_critic_qualitative_brief_light_mid_summary.json
+!results/tables/llm_critic_narrow_dry_run_coordination_card.csv
+!results/tables/llm_critic_narrow_dry_run_coordination_card.json
+!results/tables/llm_critic_narrow_dry_run_coordination_writeback.csv
+!results/tables/llm_critic_narrow_dry_run_coordination_writeback.json
+!results/tables/llm_critic_narrow_dry_run_coordination_receipt.json
 !results/tables/llm_critic_review_receipt.json
 !results/tables/llm_critic_review_pass_final_bridge_checklist.csv
 !results/tables/llm_critic_review_pass_final_bridge_checklist.json
@@ -1330,6 +1335,9 @@ results/synthetic_overlap_v2/
 !results/figures/llm_critic_go_no_go_summary.md
 !results/figures/llm_critic_qualitative_writeback.md
 !results/figures/llm_critic_qualitative_brief_light_mid.md
+!results/figures/llm_critic_narrow_dry_run_coordination_card.md
+!results/figures/llm_critic_narrow_dry_run_coordination_writeback.md
+!results/figures/llm_critic_narrow_dry_run_coordination_receipt.md
 !results/figures/llm_critic_review_receipt.md
 !results/figures/llm_critic_review_pass_final_bridge_checklist.md
 !results/figures/external_validation_slice_manifest.md
