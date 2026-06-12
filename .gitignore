@@ -818,6 +818,11 @@ results/synthetic_overlap_v2/
 !results/tables/wave77_exploration_baseline_closure_writeback.csv
 !results/tables/wave77_exploration_baseline_closure_writeback.json
 !results/tables/wave77_exploration_baseline_closure_receipt.json
+!results/tables/wave78_exploration_baseline_closure_card.csv
+!results/tables/wave78_exploration_baseline_closure_card.json
+!results/tables/wave78_exploration_baseline_closure_writeback.csv
+!results/tables/wave78_exploration_baseline_closure_writeback.json
+!results/tables/wave78_exploration_baseline_closure_receipt.json
 !results/tables/demo_wave67_presentation_writeback.csv
 !results/tables/demo_wave67_presentation_writeback.json
 !results/tables/demo_wave68_presentation_writeback.csv
@@ -2080,6 +2085,9 @@ results/synthetic_overlap_v2/
 !results/figures/wave77_exploration_baseline_closure_card.md
 !results/figures/wave77_exploration_baseline_closure_receipt.md
 !results/figures/wave77_exploration_baseline_closure_writeback.md
+!results/figures/wave78_exploration_baseline_closure_card.md
+!results/figures/wave78_exploration_baseline_closure_receipt.md
+!results/figures/wave78_exploration_baseline_closure_writeback.md
 !results/figures/demo_wave77_presentation_writeback.md
 !results/figures/demo_wave75_presentation_writeback.md
 !results/figures/wave75_speaker_profile_heavyoverlap_diagnostic_coordination_card.md
