@@ -52,6 +52,80 @@ Presentation writeback only — not a live demo or recording claim.
 | frontier_wave45 | Wave45 exploration+baseline closure and HeavyOverlap diagnostic refresh boundary | results/figures/wave45_exploration_baseline_closure_card.md | qualitative/demo |
 | frontier_wave46 | Wave46 exploration+baseline closure and OppositeOverlap diagnostic refresh boundary | results/figures/wave46_exploration_baseline_closure_card.md | qualitative/demo |
 | frontier_wave47 | Wave47 exploration+baseline closure and external validation narrow-slice boundary | results/figures/wave47_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave48 | Wave48 exploration+baseline closure and MeetEval official dry-run refresh boundary | results/figures/wave48_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave49 | Wave49 exploration+baseline closure and LightOverlap diagnostic refresh boundary | results/figures/wave49_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave50 | Wave50 exploration+baseline closure and MidOverlap diagnostic refresh boundary | results/figures/wave50_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave51 | Wave51 exploration+baseline closure and HeavyOverlap diagnostic refresh boundary | results/figures/wave51_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave52 | Wave52 exploration+baseline closure and OppositeOverlap diagnostic refresh boundary | results/figures/wave52_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave53 | Wave53 exploration+baseline closure and External validation diagnostic refresh boundary | results/figures/wave53_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave54 | Wave54 exploration+baseline closure and MeetEval official dry-run diagnostic refresh boundary | results/figures/wave54_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave55 | Wave55 exploration+baseline closure and LightOverlap diagnostic refresh boundary | results/figures/wave55_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave56 | Wave56 exploration+baseline closure and MidOverlap diagnostic refresh boundary | results/figures/wave56_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave57 | Wave57 exploration+baseline closure and HeavyOverlap diagnostic refresh boundary | results/figures/wave57_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave58 | Wave58 exploration+baseline closure and OppositeOverlap diagnostic refresh boundary | results/figures/wave58_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave59 | Wave59 exploration+baseline closure and External validation diagnostic refresh boundary | results/figures/wave59_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave60 | Wave60 exploration+baseline closure and MeetEval official cpWER narrow dry-run refresh boundary | results/figures/wave60_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave61 | Wave61 exploration+baseline closure and LightOverlap speaker-profile diagnostic refresh boundary | results/figures/wave61_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave62 | Wave62 exploration+baseline closure and MidOverlap speaker-profile diagnostic refresh boundary | results/figures/wave62_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave63 | Wave63 exploration+baseline closure and HeavyOverlap speaker-profile diagnostic refresh boundary | results/figures/wave63_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave64 | Wave64 exploration+baseline closure and OppositeOverlap speaker-profile diagnostic refresh boundary | results/figures/wave64_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave65 | Wave65 exploration+baseline closure and External validation narrow slice refresh boundary | results/figures/wave65_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave66 | Wave66 exploration+baseline closure and MeetEval official cpWER narrow dry-run refresh boundary | results/figures/wave66_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave67 | Wave67 exploration+baseline closure and LightOverlap speaker-profile diagnostic refresh boundary | results/figures/wave67_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave68 | Wave68 exploration+baseline closure and MidOverlap speaker-profile diagnostic refresh boundary | results/figures/wave68_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave69 | Wave69 exploration+baseline closure and HeavyOverlap speaker-profile diagnostic refresh boundary | results/figures/wave69_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave70 | Wave70 exploration+baseline closure and OppositeOverlap speaker-profile diagnostic refresh boundary | results/figures/wave70_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave71 | Wave71 exploration+baseline closure and External validation narrow slice coordination boundary | results/figures/wave71_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave72 | Wave72 exploration+baseline closure and MeetEval official narrow dry-run coordination boundary | results/figures/wave72_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave73 | Wave73 exploration+baseline closure and LightOverlap speaker-profile diagnostic refresh boundary | results/figures/wave73_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave74 | Wave74 exploration+baseline closure and MidOverlap speaker-profile diagnostic refresh boundary | results/figures/wave74_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave75 | Wave75 exploration+baseline closure and HeavyOverlap speaker-profile diagnostic refresh boundary | results/figures/wave75_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave76 | Wave76 exploration+baseline closure and OppositeOverlap speaker-profile diagnostic refresh boundary | results/figures/wave76_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave77 | Wave77 exploration+baseline closure and External validation narrow-slice coordination refresh boundary | results/figures/wave77_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave78 | Wave78 exploration+baseline closure and MeetEval official narrow dry-run coordination refresh boundary | results/figures/wave78_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave79 | Wave79 exploration+baseline closure and LightOverlap speaker-profile diagnostic refresh boundary | results/figures/wave79_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave80 | Wave80 exploration+baseline closure and MidOverlap speaker-profile diagnostic refresh boundary | results/figures/wave80_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave81 | Wave81 exploration+baseline closure and HeavyOverlap speaker-profile diagnostic refresh boundary | results/figures/wave81_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave82 | Wave82 exploration+baseline closure and OppositeOverlap speaker-profile diagnostic refresh boundary | results/figures/wave82_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave83 | Wave83 exploration+baseline closure and external validation narrow-slice speaker-profile diagnostic refresh boundary | results/figures/wave83_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave84 | Wave84 exploration+baseline closure and MeetEval official narrow dry-run speaker-profile diagnostic refresh boundary | results/figures/wave84_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave85 | Wave85 exploration+baseline closure and LightOverlap speaker-profile diagnostic refresh speaker-profile diagnostic refresh boundary | results/figures/wave85_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave86 | Wave86 exploration+baseline closure and MidOverlap speaker-profile diagnostic refresh speaker-profile diagnostic refresh boundary | results/figures/wave86_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave87 | Wave87 exploration+baseline closure and HeavyOverlap speaker-profile diagnostic refresh speaker-profile diagnostic refresh boundary | results/figures/wave87_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave88 | Wave88 exploration+baseline closure and OppositeOverlap speaker-profile diagnostic refresh speaker-profile diagnostic refresh boundary | results/figures/wave88_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave89 | Wave89 exploration+baseline closure and external validation speaker-profile diagnostic refresh speaker-profile diagnostic refresh boundary | results/figures/wave89_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave90 | Wave90 exploration+baseline closure and MeetEval speaker-profile diagnostic refresh speaker-profile diagnostic refresh boundary | results/figures/wave90_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave91 | Wave91 exploration+baseline closure and LightOverlap speaker-profile diagnostic refresh speaker-profile diagnostic refresh boundary | results/figures/wave91_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave92 | Wave92 exploration+baseline closure and MidOverlap speaker-profile diagnostic refresh speaker-profile diagnostic refresh boundary | results/figures/wave92_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave93 | Wave93 exploration+baseline closure and HeavyOverlap speaker-profile diagnostic refresh speaker-profile diagnostic refresh boundary | results/figures/wave93_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave94 | Wave94 exploration+baseline closure and OppositeOverlap speaker-profile diagnostic refresh speaker-profile diagnostic refresh boundary | results/figures/wave94_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave95 | Wave95 exploration+baseline closure and external validation speaker-profile diagnostic refresh speaker-profile diagnostic refresh boundary | results/figures/wave95_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave96 | Wave96 exploration+baseline closure after Wave95 external validation chain boundary | results/figures/wave96_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave97 | Wave97 exploration+baseline closure after Wave96 MeetEval chain (cycle restart) boundary | results/figures/wave97_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave98 | Wave98 exploration+baseline closure after Wave97 LightOverlap chain boundary | results/figures/wave98_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave99 | Wave99 exploration+baseline closure after Wave98 MidOverlap chain boundary | results/figures/wave99_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave100 | Wave100 exploration+baseline closure after Wave99 HeavyOverlap chain boundary | results/figures/wave100_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave101 | Wave101 exploration+baseline closure after Wave100 OppositeOverlap chain boundary | results/figures/wave101_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave102 | Wave102 exploration+baseline closure after Wave101 external validation chain boundary | results/figures/wave102_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave103 | Wave103 exploration+baseline closure after Wave102 MeetEval chain boundary | results/figures/wave103_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave104 | Wave104 exploration+baseline closure after Wave103 LightOverlap chain boundary | results/figures/wave104_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave105 | Wave105 exploration+baseline closure after Wave104 MidOverlap chain boundary | results/figures/wave105_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave106 | Wave106 exploration+baseline closure after Wave105 HeavyOverlap chain boundary | results/figures/wave106_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave107 | Wave107 exploration+baseline closure after Wave106 OppositeOverlap chain boundary | results/figures/wave107_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave108 | Wave108 exploration+baseline closure after Wave107 external validation chain boundary | results/figures/wave108_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave109 | Wave109 exploration+baseline closure after Wave108 MeetEval chain boundary | results/figures/wave109_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave110 | Wave110 exploration+baseline closure after Wave109 LightOverlap chain boundary | results/figures/wave110_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave111 | Wave110 exploration+baseline closure after Wave110 MidOverlap chain boundary | results/figures/wave111_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave112 | Wave112 exploration+baseline closure after Wave111 HeavyOverlap chain boundary | results/figures/wave112_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave113 | Wave113 exploration+baseline closure after Wave112 OppositeOverlap chain boundary | results/figures/wave113_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave114 | Wave113 exploration+baseline closure after Wave113 external validation chain boundary | results/figures/wave114_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave115 | Wave113 exploration+baseline closure after Wave114 MeetEval chain boundary | results/figures/wave115_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave116 | Wave115 exploration+baseline closure after Wave115 LightOverlap chain boundary | results/figures/wave116_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave117 | Wave116 exploration+baseline closure after Wave116 MidOverlap chain boundary | results/figures/wave117_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave118 | Wave117 exploration+baseline closure after Wave117 HeavyOverlap chain boundary | results/figures/wave118_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave119 | Wave118 exploration+baseline closure after Wave118 OppositeOverlap chain boundary | results/figures/wave119_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave120 | Wave119 exploration+baseline closure after Wave119 external validation chain boundary | results/figures/wave120_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave121 | Wave120 exploration+baseline closure after Wave120 MeetEval chain boundary | results/figures/wave121_exploration_baseline_closure_card.md | qualitative/demo |
 
 - **hero**: Lead with the stable gold baseline finding before any frontier claim.
 - **architecture**: Point visitors to the frontier status checklist for module map context.
@@ -101,3 +175,77 @@ Presentation writeback only — not a live demo or recording claim.
 - **frontier_wave45**: Show Wave45 closure card only; HeavyOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
 - **frontier_wave46**: Show Wave46 closure card only; OppositeOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
 - **frontier_wave47**: Show Wave47 closure card only; external validation narrow-slice refresh remains external/sanity-check — qualitative/demo labeling required.
+- **frontier_wave48**: Show Wave48 closure card only; MeetEval official cpWER narrow dry-run refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave49**: Show Wave49 closure card only; LightOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave50**: Show Wave50 closure card only; MidOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave51**: Show Wave51 closure card only; HeavyOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave52**: Show Wave52 closure card only; OppositeOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave53**: Show Wave53 closure card only; External validation speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave54**: Show Wave54 closure card only; MeetEval official dry-run speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave55**: Show Wave55 closure card only; LightOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave56**: Show Wave56 closure card only; MidOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave57**: Show Wave57 closure card only; HeavyOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave58**: Show Wave58 closure card only; OppositeOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave59**: Show Wave59 closure card only; External validation speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave60**: Show Wave60 closure card only; MeetEval official narrow dry-run refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave61**: Show Wave61 closure card only; LightOverlap diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave62**: Show Wave62 closure card only; MidOverlap diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave63**: Show Wave63 closure card only; HeavyOverlap diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave64**: Show Wave64 closure card only; OppositeOverlap diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave65**: Show Wave65 closure card only; External validation narrow slice refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave66**: Show Wave66 closure card only; MeetEval official cpWER narrow dry-run refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave67**: Show Wave67 closure card only; LightOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave68**: Show Wave68 closure card only; MidOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave69**: Show Wave69 closure card only; HeavyOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave70**: Show Wave70 closure card only; OppositeOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave71**: Show Wave71 closure card only; External validation narrow slice coordination remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave72**: Show Wave72 closure card only; MeetEval official narrow dry-run coordination remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave73**: Show Wave73 closure card only; LightOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave74**: Show Wave74 closure card only; MidOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave75**: Show Wave75 closure card only; HeavyOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave76**: Show Wave76 closure card only; OppositeOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave77**: Show Wave77 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave78**: Show Wave78 closure card only; MeetEval official narrow dry-run coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave79**: Show Wave79 closure card only; LightOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave80**: Show Wave80 closure card only; MidOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave81**: Show Wave81 closure card only; HeavyOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave82**: Show Wave81 closure card only; OppositeOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave83**: Show Wave81 closure card only; External validation narrow-slice coordination remains external/sanity-check — qualitative/demo labeling required.
+- **frontier_wave84**: Show Wave81 closure card only; MeetEval official narrow dry-run coordination remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave85**: Show Wave81 closure card only; LightOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave86**: Show Wave81 closure card only; MidOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave87**: Show Wave81 closure card only; HeavyOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave88**: Show Wave81 closure card only; OppositeOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave89**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave90**: Show Wave81 closure card only; MeetEval official narrow dry-run coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave91**: Show Wave81 closure card only; LightOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave92**: Show Wave81 closure card only; MidOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave93**: Show Wave81 closure card only; HeavyOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave94**: Show Wave81 closure card only; OppositeOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave95**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave96**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave97**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave98**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave99**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave100**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave101**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave102**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave103**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave104**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave105**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave106**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave107**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave108**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave109**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave110**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave111**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave112**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave113**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave114**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave115**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave116**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave117**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave118**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave119**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave120**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave121**: Show Wave81 closure card only; External validation narrow-slice coordination refresh remains experimental/frontier — qualitative/demo labeling required.
