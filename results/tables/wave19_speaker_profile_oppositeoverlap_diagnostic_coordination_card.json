@@ -1,0 +1,37 @@
+[
+  {
+    "section_id": "oppositeoverlap_diagnostic_scope",
+    "headline": "OppositeOverlap separation-benefit diagnostic scope refresh after Wave19 closure",
+    "artifact_anchor": "results/figures/separation_phase_diagram.md",
+    "coordination_note": "Separation helps ASR on this gold anchor; diagnostic-only — no attribution claim.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "oppositeoverlap_prior",
+    "headline": "Wave13 OppositeOverlap diagnostic coordination remains the prerequisite chain",
+    "artifact_anchor": "results/figures/speaker_profile_oppositeoverlap_diagnostic_coordination_card.md",
+    "coordination_note": "Wave19 refresh does not replace original OppositeOverlap boundary documentation.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "heavyoverlap_refresh",
+    "headline": "Wave18 HeavyOverlap diagnostic refresh precedes OppositeOverlap refresh",
+    "artifact_anchor": "results/figures/wave18_speaker_profile_heavyoverlap_diagnostic_coordination_card.md",
+    "coordination_note": "Overlap diagnostic chain completes with OppositeOverlap after separation-benefit cases.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "wave19_boundary",
+    "headline": "Wave19 closure defers overlap embedding execution to diagnostic boundaries only",
+    "artifact_anchor": "results/figures/wave19_exploration_baseline_closure_card.md",
+    "coordination_note": "Gold baseline CER tables unchanged; attribution still blocked.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "attribution_boundary",
+    "headline": "OppositeOverlap refresh does not upgrade diagnostic scope to attribution claims",
+    "artifact_anchor": "results/figures/speaker_profile_go_no_go_summary.md",
+    "coordination_note": "Controlled benchmark timing required before separation-benefit attribution.",
+    "result_label": "experimental/frontier"
+  }
+]
