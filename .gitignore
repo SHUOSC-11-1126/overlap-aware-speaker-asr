@@ -320,6 +320,11 @@ results/synthetic_overlap_v2/
 !results/tables/wave10_exploration_baseline_closure_writeback.csv
 !results/tables/wave10_exploration_baseline_closure_writeback.json
 !results/tables/wave10_exploration_baseline_closure_receipt.json
+!results/tables/wave11_exploration_baseline_closure_card.csv
+!results/tables/wave11_exploration_baseline_closure_card.json
+!results/tables/wave11_exploration_baseline_closure_writeback.csv
+!results/tables/wave11_exploration_baseline_closure_writeback.json
+!results/tables/wave11_exploration_baseline_closure_receipt.json
 !results/tables/cascade_benchmark_readiness_coordination_card.csv
 !results/tables/cascade_benchmark_readiness_coordination_card.json
 !results/tables/cascade_benchmark_readiness_coordination_writeback.csv
@@ -926,6 +931,9 @@ results/synthetic_overlap_v2/
 !results/figures/wave10_exploration_baseline_closure_card.md
 !results/figures/wave10_exploration_baseline_closure_writeback.md
 !results/figures/wave10_exploration_baseline_closure_receipt.md
+!results/figures/wave11_exploration_baseline_closure_card.md
+!results/figures/wave11_exploration_baseline_closure_writeback.md
+!results/figures/wave11_exploration_baseline_closure_receipt.md
 !results/figures/cascade_benchmark_readiness_coordination_card.md
 !results/figures/cascade_benchmark_readiness_coordination_writeback.md
 !results/figures/cascade_benchmark_readiness_coordination_receipt.md
