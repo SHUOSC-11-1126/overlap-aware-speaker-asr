@@ -764,6 +764,11 @@ results/synthetic_overlap_v2/
 !results/tables/wave113_external_validation_narrow_slice_coordination_writeback.csv
 !results/tables/wave113_external_validation_narrow_slice_coordination_writeback.json
 !results/tables/wave113_external_validation_narrow_slice_coordination_receipt.json
+!results/tables/wave119_external_validation_narrow_slice_coordination_card.csv
+!results/tables/wave119_external_validation_narrow_slice_coordination_card.json
+!results/tables/wave119_external_validation_narrow_slice_coordination_writeback.csv
+!results/tables/wave119_external_validation_narrow_slice_coordination_writeback.json
+!results/tables/wave119_external_validation_narrow_slice_coordination_receipt.json
 !results/tables/wave66_exploration_baseline_closure_card.csv
 !results/tables/wave66_exploration_baseline_closure_card.json
 !results/tables/wave66_exploration_baseline_closure_writeback.csv
@@ -2705,6 +2710,9 @@ results/synthetic_overlap_v2/
 !results/figures/demo_wave118_presentation_writeback.md
 !results/tables/demo_wave118_presentation_writeback.csv
 !results/tables/demo_wave118_presentation_writeback.json
+!results/figures/demo_wave119_presentation_writeback.md
+!results/tables/demo_wave119_presentation_writeback.csv
+!results/tables/demo_wave119_presentation_writeback.json
 !results/tables/demo_wave114_presentation_writeback.csv
 !results/tables/demo_wave114_presentation_writeback.json
 !results/tables/demo_wave113_presentation_writeback.csv
