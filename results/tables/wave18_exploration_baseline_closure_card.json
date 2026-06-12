@@ -1,0 +1,37 @@
+[
+  {
+    "section_id": "wave17_rollup",
+    "headline": "Wave17 closed: MidOverlap diagnostic refresh + MeetEval cpWER + demo + exploration closure",
+    "artifact_anchor": "results/figures/wave17_exploration_baseline_closure_card.md",
+    "coordination_note": "experimental/frontier coordination only; gold baseline untouched.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "midoverlap_diagnostic",
+    "headline": "MidOverlap separation-harm diagnostic refresh coordinated after Wave17 closure",
+    "artifact_anchor": "results/figures/wave17_speaker_profile_midoverlap_diagnostic_coordination_card.md",
+    "coordination_note": "Diagnostic scope only; attribution claims still blocked.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "meeteval_narrow_dry_run",
+    "headline": "MeetEval character-level cpWER narrow dry-run refresh coordinated on 5/5 gold cases",
+    "artifact_anchor": "results/figures/wave17_meeteval_cpwer_narrow_dry_run_coordination_card.md",
+    "coordination_note": "experimental/frontier dry-run only; official benchmark claims still blocked.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "demo_wave17",
+    "headline": "Demo presentation polish extended to 18 sections under qualitative/demo labeling",
+    "artifact_anchor": "results/figures/demo_wave17_presentation_writeback.md",
+    "coordination_note": "No live demo or benchmark timing claims.",
+    "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "wave18_boundary",
+    "headline": "Speaker profile HeavyOverlap diagnostic refresh is the next open experimental coordination gate",
+    "artifact_anchor": "results/tables/speaker_profile_status.json",
+    "coordination_note": "Wave18 closure does not record overlap-case embedding execution sessions.",
+    "result_label": "experimental/frontier"
+  }
+]
