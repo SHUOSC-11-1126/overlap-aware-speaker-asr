@@ -155,6 +155,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "wave54_meeteval_official_narrow_dry_run_coordination_complete",
         "wave60_meeteval_official_narrow_dry_run_coordination_complete",
         "wave66_meeteval_official_narrow_dry_run_coordination_complete",
+        "wave72_meeteval_official_narrow_dry_run_coordination_complete",
         "wave19_speaker_profile_oppositeoverlap_diagnostic_coordination_complete",
         "wave24_speaker_profile_oppositeoverlap_diagnostic_coordination_complete",
         "wave46_speaker_profile_oppositeoverlap_diagnostic_coordination_complete",
