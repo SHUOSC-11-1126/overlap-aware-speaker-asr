@@ -322,6 +322,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/speaker_profile_midoverlap_diagnostic_coordination_writeback.json",
         "next_step": "Run python -m src.speaker_profile_midoverlap_diagnostic_coordination_writeback after LightOverlap coordination.",
     },
+    {
+        "frontier_id": "wave9_cascade_benchmark_phase1_gate_coordination_writeback",
+        "module_path": "src/cascade_benchmark_phase1_gate_coordination_writeback.py",
+        "expected_output": "results/tables/cascade_benchmark_phase1_gate_coordination_writeback.json",
+        "next_step": "Run python -m src.cascade_benchmark_phase1_gate_coordination_writeback after MidOverlap coordination.",
+    },
 ]
 
 
