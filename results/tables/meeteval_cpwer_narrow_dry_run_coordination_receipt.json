@@ -1,0 +1,9 @@
+{
+  "execution_status": "meeteval_cpwer_narrow_dry_run_coordination_complete",
+  "coordination_scope": "wave10_meeteval_cpwer_narrow_dry_run",
+  "wave10_closure_status": "wave10_exploration_baseline_closure_complete",
+  "character_level_dry_run_count": "5",
+  "official_dry_run_count": "5",
+  "expected_inputs": "Character-level official execution, execution receipt, and Wave10 exploration baseline closure.",
+  "writeback_note": "experimental/frontier coordination only; does not claim official MeetEval benchmark completion."
+}
