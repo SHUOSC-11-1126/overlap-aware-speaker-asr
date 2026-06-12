@@ -22,6 +22,7 @@ Presentation writeback only — not a live demo or recording claim.
 | frontier_wave15 | Wave15 exploration+baseline closure and phase5 gate coordination boundary | results/figures/wave15_exploration_baseline_closure_card.md | qualitative/demo |
 | frontier_wave16 | Wave16 exploration+baseline closure and external validation refresh boundary | results/figures/wave16_exploration_baseline_closure_card.md | qualitative/demo |
 | frontier_wave17 | Wave17 exploration+baseline closure and MidOverlap diagnostic refresh boundary | results/figures/wave17_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave18 | Wave18 exploration+baseline closure and HeavyOverlap diagnostic refresh boundary | results/figures/wave18_exploration_baseline_closure_card.md | qualitative/demo |
 
 - **hero**: Lead with the stable gold baseline finding before any frontier claim.
 - **architecture**: Point visitors to the frontier status checklist for module map context.
@@ -41,3 +42,4 @@ Presentation writeback only — not a live demo or recording claim.
 - **frontier_wave15**: Show Wave15 closure card only; phase5 gate and MeetEval official dry-run remain experimental/frontier — qualitative/demo labeling required.
 - **frontier_wave16**: Show Wave16 closure card only; external validation and LLM critic dry-run remain experimental/frontier — qualitative/demo labeling required.
 - **frontier_wave17**: Show Wave17 closure card only; MidOverlap diagnostic and MeetEval cpWER dry-run remain experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave18**: Show Wave18 closure card only; HeavyOverlap diagnostic and LLM critic dry-run remain experimental/frontier — qualitative/demo labeling required.
