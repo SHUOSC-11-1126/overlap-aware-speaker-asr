@@ -1,0 +1,5 @@
+﻿section_id,headline,artifact_anchor,coordination_note,result_label
+lightoverlap_diagnostic_scope,LightOverlap is the next narrow embedding diagnostic scope,results/figures/separation_phase_diagram.md,Separation harms ASR on this gold anchor; diagnostic-only — no attribution claim.,experimental/frontier
+nooverlap_baseline,NoOverlap embedding diagnostic remains the completed baseline,results/tables/speaker_profile_embedding_trial_execution_receipt_fill.json,Swapped-bias signal recorded; do not extrapolate to overlap cases.,experimental/frontier
+midoverlap_deferred,MidOverlap stays a deferred diagnostic candidate,results/figures/speaker_profile_case_scope_coordination_card.md,Complete LightOverlap coordination before advancing MidOverlap scope.,experimental/frontier
+wave8_boundary,Wave8 closure defers overlap embedding execution to this diagnostic boundary,results/figures/wave8_exploration_baseline_closure_card.md,Coordination writeback only; gold baseline CER tables unchanged.,experimental/frontier
