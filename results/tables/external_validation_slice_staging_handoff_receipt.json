@@ -1,11 +1,14 @@
 [
   {
-    "execution_status": "template_only",
+    "execution_status": "audio_excerpt_staged",
     "run_scope": "single_external_slice_staging",
     "dataset_name": "AISHELL-4",
-    "blocker": "license_confirmation_pending",
-    "expected_inputs": "License confirmation note plus AISHELL-4 slice manifest and mapping artifact.",
-    "expected_outputs": "External slice staging note and mapping confirmation.",
-    "writeback_note": "External audio staging has not happened yet; fill this receipt only after license confirmation and slice staging."
+    "blocker": "none_documented",
+    "audio_path": "resources/external_sanity_check/aishell4/meeting_excerpt_stub_001.wav",
+    "reference_path": "resources/external_sanity_check/aishell4/meeting_excerpt_stub_001_reference.json",
+    "staging_status": "audio_excerpt_staged",
+    "expected_inputs": "AISHELL-4 excerpt wav, reference scaffold, license confirmation artifact.",
+    "expected_outputs": "Filled staging execution receipt under external/sanity-check labeling.",
+    "writeback_note": "Audio excerpt staged locally from HuggingFace AISHELL-4 test clip; narrow eval may proceed without claiming gold benchmark results."
   }
 ]

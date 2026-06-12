@@ -2,10 +2,10 @@
   "scope": "external_validation_go_no_go_board",
   "dataset_name": "AISHELL-4",
   "checkpoint_count": "6",
-  "go_count": "5",
-  "no_go_count": "1",
+  "go_count": "6",
+  "no_go_count": "0",
   "overall_state": "ready_for_narrow_audio_eval",
-  "primary_blocker": "execution_receipt_pending",
-  "recommended_next_action": "Audio excerpt staged; fill execution receipt before any external benchmark claim.",
+  "primary_blocker": "none_documented",
+  "recommended_next_action": "All checkpoints green; run narrow external/sanity-check ASR eval without claiming gold results.",
   "observation": "external/sanity-check coordination board only; it does not claim external audio download or benchmark execution."
 }

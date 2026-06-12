@@ -68,6 +68,22 @@ def mini_check_validation_status(mini_check: dict | list | None) -> str:
     return str(mini_check.get("validation_status", "")).strip()
 
 
+def execution_receipt_filled(path_rel: str = "results/tables/external_validation_slice_staging_handoff_receipt.json") -> bool:
+    path = PROJECT_ROOT / path_rel
+    if not path.exists():
+        return False
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, list) or not payload:
+        return False
+    first = payload[0]
+    if not isinstance(first, dict):
+        return False
+    return str(first.get("execution_status", "")).strip() in {
+        "audio_excerpt_staged",
+        "staging_fill_complete",
+    }
+
+
 def normalize_first_status(payload: dict | list, preferred_keys: list[str]) -> str:
     if isinstance(payload, dict):
         for key in preferred_keys:
@@ -207,18 +223,26 @@ def build_checkpoint_rows() -> list[dict[str, str]]:
                 str((execution_status if isinstance(execution_status, dict) else {}).get("blocker", "license_confirmation_pending"))
                 if not confirmed
                 else (
-                    "execution_receipt_pending"
-                    if mini_check_audio_ready(mini_check)
-                    else "audio_staging_pending"
+                    "none_documented"
+                    if mini_check_audio_ready(mini_check) and execution_receipt_filled()
+                    else (
+                        "execution_receipt_pending"
+                        if mini_check_audio_ready(mini_check)
+                        else "audio_staging_pending"
+                    )
                 )
             ),
             "next_action": (
                 "Do not fill the execution receipt until the license blocker is cleared."
                 if not confirmed
                 else (
-                    "Fill execution receipt before claiming any external benchmark run."
-                    if mini_check_audio_ready(mini_check)
-                    else "Fill execution receipt only after optional audio excerpt is staged."
+                    "Execution receipt filled; narrow external eval may proceed under external/sanity-check labeling."
+                    if mini_check_audio_ready(mini_check) and execution_receipt_filled()
+                    else (
+                        "Fill execution receipt before claiming any external benchmark run."
+                        if mini_check_audio_ready(mini_check)
+                        else "Fill execution receipt only after optional audio excerpt is staged."
+                    )
                 )
             ),
             "evidence_artifact": "results/figures/external_validation_slice_staging_execution_status.md",
@@ -246,6 +270,11 @@ def build_summary_row(rows: list[dict[str, str]]) -> dict[str, str]:
         overall_state = "ready_for_narrow_audio_eval"
         recommended_next_action = (
             "Audio excerpt staged; fill execution receipt before any external benchmark claim."
+        )
+    elif primary_blocker == "none_documented" and no_go_count == 0:
+        overall_state = "ready_for_narrow_audio_eval"
+        recommended_next_action = (
+            "All checkpoints green; run narrow external/sanity-check ASR eval without claiming gold results."
         )
     elif primary_blocker in {"none_documented", "audio_staging_pending"}:
         overall_state = "ready_for_optional_audio_staging"

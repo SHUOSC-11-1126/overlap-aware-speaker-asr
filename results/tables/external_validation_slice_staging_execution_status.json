@@ -4,7 +4,7 @@
   "handoff_status": "staging_handoff_ready",
   "blocker": "license_confirmation_pending",
   "receipt_scaffold_status": "receipt_scaffold_only",
-  "execution_receipt_status": "template_only",
+  "execution_receipt_status": "audio_excerpt_staged",
   "execution_chain_status": "execution_chain_ready",
   "status_note": "external/sanity-check staging execution-chain rollup for one narrow slice; external audio staging and benchmark evaluation are not claimed."
 }

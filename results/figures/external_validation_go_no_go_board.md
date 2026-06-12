@@ -2,7 +2,7 @@
 
 This generated board compresses the first external validation slice chain into a go/no-go view. It remains external/sanity-check coordination only and does not claim any external download or benchmark run.
 
-Summary: `1/6` checkpoints are still `no_go` for the first AISHELL-4 slice.
+Summary: `0/6` checkpoints are still `no_go` for the first AISHELL-4 slice.
 
 | checkpoint_name | dataset_name | current_status | blocker | go_no_go_state | next_action | evidence_artifact |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -11,4 +11,4 @@ Summary: `1/6` checkpoints are still `no_go` for the first AISHELL-4 slice.
 | slice_manifest | AISHELL-4 | ready_for_staging | none_documented | go | Manifest ready for optional AISHELL-4 excerpt staging. | results/figures/external_validation_slice_manifest.md |
 | staging_readiness | AISHELL-4 | ready_for_staging_review | none_documented | go | Readiness review may proceed; audio download remains optional. | results/figures/external_validation_slice_staging_readiness.md |
 | mini_sanity_check | AISHELL-4 | ready_for_narrow_audio_eval | none_documented | go | Narrow external audio eval may proceed under external/sanity-check labeling. | results/figures/external_validation_mini_sanity_check.md |
-| execution_chain | AISHELL-4 | template_only | execution_receipt_pending | no_go | Fill execution receipt before claiming any external benchmark run. | results/figures/external_validation_slice_staging_execution_status.md |
+| execution_chain | AISHELL-4 | audio_excerpt_staged | none_documented | go | Execution receipt filled; narrow external eval may proceed under external/sanity-check labeling. | results/figures/external_validation_slice_staging_execution_status.md |

@@ -47,10 +47,10 @@
   {
     "checkpoint_name": "execution_chain",
     "dataset_name": "AISHELL-4",
-    "current_status": "template_only",
-    "blocker": "execution_receipt_pending",
-    "next_action": "Fill execution receipt before claiming any external benchmark run.",
+    "current_status": "audio_excerpt_staged",
+    "blocker": "none_documented",
+    "next_action": "Execution receipt filled; narrow external eval may proceed under external/sanity-check labeling.",
     "evidence_artifact": "results/figures/external_validation_slice_staging_execution_status.md",
-    "go_no_go_state": "no_go"
+    "go_no_go_state": "go"
   }
 ]
