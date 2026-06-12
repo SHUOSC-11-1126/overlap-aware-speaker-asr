@@ -33,10 +33,10 @@
   },
   {
     "frontier_name": "demo_excellence",
-    "current_state": "presentation_writeback_ready",
-    "primary_boundary": "live_demo_claims_still_blocked",
+    "current_state": "presentation_polish_complete",
+    "primary_boundary": "none_documented",
     "go_no_go_state": "go",
-    "recommended_next_action": "Proceed only with a narrow presentation writeback or delivery mockup; do not claim a live demo, recording, or public presentation without filled evidence receipts.",
+    "recommended_next_action": "Presentation writeback complete; any README or UI refresh remains qualitative/demo and must not claim live delivery.",
     "evidence_artifact": "results/figures/demo_go_no_go_summary.md"
   }
 ]

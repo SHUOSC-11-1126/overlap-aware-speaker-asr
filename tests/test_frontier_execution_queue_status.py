@@ -28,6 +28,18 @@ class FrontierExecutionQueueStatusTest(unittest.TestCase):
 
         self.assertEqual(row["combined_chain_status"], "execution_chain_in_progress")
 
+    def test_build_status_row_marks_combined_ready_when_demo_polish_complete(self) -> None:
+        row = build_status_row(
+            {"execution_chain_status": "execution_chain_ready"},
+            {"execution_chain_status": "execution_chain_ready"},
+            {"execution_chain_status": "execution_chain_ready"},
+            {"overall_state": "qualitative_writeback_ready"},
+            {"overall_state": "presentation_polish_complete"},
+        )
+
+        self.assertEqual(row["demo_excellence_chain_status"], "execution_chain_ready")
+        self.assertEqual(row["combined_chain_status"], "execution_chain_ready")
+
     def test_build_status_row_marks_combined_in_progress_when_demo_lane_not_ready(self) -> None:
         row = build_status_row(
             {"execution_chain_status": "execution_chain_ready"},
