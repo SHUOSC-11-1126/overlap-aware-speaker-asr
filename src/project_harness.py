@@ -232,6 +232,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/separation_phase_coordination_writeback.json",
         "next_step": "Run python -m src.separation_phase_coordination_writeback after cascade coordination writeback.",
     },
+    {
+        "frontier_id": "wave5_demo_presentation_writeback",
+        "module_path": "src/demo_wave5_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave5_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave5_presentation_writeback after phase coordination writeback.",
+    },
 ]
 
 
