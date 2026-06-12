@@ -115,6 +115,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "wave15_external_validation_narrow_slice_coordination_complete",
         "wave19_external_validation_narrow_slice_coordination_complete",
         "wave25_external_validation_narrow_slice_coordination_complete",
+        "wave29_external_validation_narrow_slice_coordination_complete",
         "llm_critic_narrow_dry_run_coordination_complete",
         "wave15_llm_critic_narrow_dry_run_coordination_complete",
         "wave18_llm_critic_narrow_dry_run_coordination_complete",
