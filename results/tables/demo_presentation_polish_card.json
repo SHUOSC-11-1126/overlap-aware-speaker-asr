@@ -1,0 +1,37 @@
+[
+  {
+    "section_id": "hero",
+    "headline": "Overlap-aware speaker ASR: when separation helps and when it hurts",
+    "artifact_anchor": "README.md",
+    "presentation_note": "Lead with the stable gold baseline finding before any frontier claim.",
+    "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "architecture",
+    "headline": "Mixed → separated → cleaned ASR with risk-aware routing",
+    "artifact_anchor": "results/figures/frontier_status_checklist.md",
+    "presentation_note": "Point visitors to the frontier status checklist for module map context.",
+    "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "results",
+    "headline": "Verified gold CER tables and phase/boundary diagnostics",
+    "artifact_anchor": "results/tables/cer_results.csv",
+    "presentation_note": "Keep gold and experimental/frontier tables visually separated in any README refresh.",
+    "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave3",
+    "headline": "External AISHELL-4 sanity-check slice (not gold)",
+    "artifact_anchor": "results/figures/external_validation_narrow_audio_eval.md",
+    "presentation_note": "Label external validation as external/sanity-check only.",
+    "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave4",
+    "headline": "Receipt-fill frontier: speaker profile + LLM critic qualitative paths",
+    "artifact_anchor": "results/figures/frontier_execution_receipt_fill_execution_status.md",
+    "presentation_note": "Show unified receipt-fill completion without claiming live demo delivery.",
+    "result_label": "qualitative/demo"
+  }
+]

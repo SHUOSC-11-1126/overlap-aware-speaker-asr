@@ -4,4 +4,4 @@ This generated summary condenses the demo-excellence decision board into one act
 
 | scope | checkpoint_count | go_count | no_go_count | overall_state | primary_boundary | recommended_next_action | observation |
 | --- | ---: | ---: | ---: | --- | --- | --- | --- |
-| demo_go_no_go_board | 6 | 4 | 2 | presentation_writeback_ready | live_demo_claims_still_blocked | Proceed only with a narrow presentation writeback or delivery mockup; do not claim a live demo, recording, or public presentation without filled evidence receipts. | qualitative/demo coordination board only; it separates presentation readiness from blocked live-delivery claims. |
+| demo_go_no_go_board | 6 | 6 | 0 | presentation_polish_complete | none_documented | Presentation writeback complete; any README or UI refresh remains qualitative/demo and must not claim live delivery. | qualitative/demo coordination board only; it separates presentation readiness from blocked live-delivery claims. |
