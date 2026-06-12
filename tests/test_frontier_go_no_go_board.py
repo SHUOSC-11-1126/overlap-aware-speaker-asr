@@ -42,6 +42,12 @@ class FrontierGoNoGoBoardTest(unittest.TestCase):
             "go",
         )
 
+    def test_classify_go_no_go_state_marks_midoverlap_diagnostic_coordination_complete_as_go(self) -> None:
+        self.assertEqual(
+            classify_go_no_go_state("speaker_profile_midoverlap_diagnostic_coordination_complete"),
+            "go",
+        )
+
     def test_classify_go_no_go_state_marks_evidence_receipt_coordination_complete_as_go(self) -> None:
         self.assertEqual(
             classify_go_no_go_state("cascade_benchmark_evidence_receipt_coordination_complete"),

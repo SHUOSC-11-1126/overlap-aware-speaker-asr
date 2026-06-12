@@ -108,12 +108,23 @@ def build_summary_row(rows: list[dict[str, str]]) -> dict[str, str]:
     no_go_count = len(rows) - go_count
     case_scope = rows[0]["case_scope"] if rows else "NoOverlap"
 
+    midoverlap_receipt_path = (
+        PROJECT_ROOT / "results/tables/speaker_profile_midoverlap_diagnostic_coordination_receipt.json"
+    )
     lightoverlap_receipt_path = (
         PROJECT_ROOT / "results/tables/speaker_profile_lightoverlap_diagnostic_coordination_receipt.json"
     )
     case_scope_receipt_path = PROJECT_ROOT / "results/tables/speaker_profile_case_scope_coordination_receipt.json"
+    midoverlap_complete = False
     lightoverlap_complete = False
     case_scope_complete = False
+    if midoverlap_receipt_path.exists():
+        payload = json.loads(midoverlap_receipt_path.read_text(encoding="utf-8"))
+        if isinstance(payload, dict):
+            midoverlap_complete = (
+                str(payload.get("execution_status", ""))
+                == "speaker_profile_midoverlap_diagnostic_coordination_complete"
+            )
     if lightoverlap_receipt_path.exists():
         payload = json.loads(lightoverlap_receipt_path.read_text(encoding="utf-8"))
         if isinstance(payload, dict):
@@ -128,7 +139,12 @@ def build_summary_row(rows: list[dict[str, str]]) -> dict[str, str]:
                 str(payload.get("execution_status", "")) == "speaker_profile_case_scope_coordination_complete"
             )
 
-    if rows and go_count == len(rows) and lightoverlap_complete:
+    if rows and go_count == len(rows) and midoverlap_complete:
+        overall_state = "speaker_profile_midoverlap_diagnostic_coordination_complete"
+        recommended_next_action = (
+            "MidOverlap diagnostic scope coordinated; all gold-case diagnostic boundaries documented."
+        )
+    elif rows and go_count == len(rows) and lightoverlap_complete:
         overall_state = "speaker_profile_lightoverlap_diagnostic_coordination_complete"
         recommended_next_action = (
             "LightOverlap diagnostic scope coordinated; MidOverlap remains deferred diagnostic candidate only."
