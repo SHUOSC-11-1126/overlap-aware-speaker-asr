@@ -1,0 +1,6 @@
+﻿section_id,headline,artifact_anchor,coordination_note,result_label
+narrow_asr_receipt,AISHELL-4 stub slice narrow ASR eval receipt remains filled,results/tables/external_validation_narrow_audio_eval_receipt.json,external/sanity-check only; whisper-tiny on single excerpt stub.,external/sanity-check
+license_boundary,License confirmation scaffold gates any README external claim,results/figures/external_validation_license_confirmation.md,CC BY-SA research confirmation recorded; no gold benchmark upgrade.,external/sanity-check
+wave11_prior_coordination,Wave11 external validation narrow slice coordination remains the prerequisite chain,results/figures/external_validation_narrow_slice_coordination_card.md,Wave15 refresh does not replace Wave11 external/sanity-check boundary.,external/sanity-check
+wave15_boundary,Wave15 closure keeps external validation separate from gold baseline CER,results/figures/wave15_exploration_baseline_closure_card.md,Coordination writeback only; stable gold CER tables unchanged.,experimental/frontier
+gold_claim_boundary,Narrow slice refresh coordination does not upgrade external sanity-check to gold evaluation,results/figures/external_validation_narrow_audio_eval.md,README mentions must keep external/sanity-check labeling.,external/sanity-check
