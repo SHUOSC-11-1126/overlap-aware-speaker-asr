@@ -53,6 +53,21 @@ def license_is_confirmed(license_status: str, confirmation_status: str) -> bool:
     return "confirmed" in lowered and "pending" not in lowered
 
 
+def mini_check_audio_ready(mini_check: dict | list | None) -> bool:
+    if not isinstance(mini_check, dict):
+        return False
+    return (
+        str(mini_check.get("audio_staged", "")).strip().lower() == "true"
+        and str(mini_check.get("reference_staged", "")).strip().lower() == "true"
+    )
+
+
+def mini_check_validation_status(mini_check: dict | list | None) -> str:
+    if not isinstance(mini_check, dict):
+        return ""
+    return str(mini_check.get("validation_status", "")).strip()
+
+
 def normalize_first_status(payload: dict | list, preferred_keys: list[str]) -> str:
     if isinstance(payload, dict):
         for key in preferred_keys:
@@ -136,7 +151,9 @@ def build_checkpoint_rows() -> list[dict[str, str]]:
             "current_status": normalize_first_status(manifest, ["staging_status", "license_status"]),
             "blocker": (
                 "none_documented"
-                if confirmed and str((manifest if isinstance(manifest, dict) else {}).get("staging_status", "")) == "ready_for_staging"
+                if confirmed
+                and str((manifest if isinstance(manifest, dict) else {}).get("staging_status", ""))
+                in {"ready_for_staging", "audio_excerpt_staged", "audio_and_reference_staged"}
                 else str((manifest if isinstance(manifest, dict) else {}).get("staging_status", "blocked_by_license_gate"))
             ),
             "next_action": (
@@ -164,14 +181,21 @@ def build_checkpoint_rows() -> list[dict[str, str]]:
             "current_status": normalize_first_status(mini_check, ["validation_status"]),
             "blocker": (
                 "audio_staging_pending"
-                if isinstance(mini_check, dict)
-                and str(mini_check.get("validation_status", "")) == "metadata_only_pass"
-                else str((mini_check if isinstance(mini_check, dict) else {}).get("validation_status", "missing"))
+                if mini_check_validation_status(mini_check) == "metadata_only_pass"
+                else (
+                    "none_documented"
+                    if mini_check_validation_status(mini_check) == "ready_for_narrow_audio_eval"
+                    else mini_check_validation_status(mini_check) or "missing"
+                )
             ),
             "next_action": (
                 "Metadata-only pass recorded; stage one excerpt before claiming audio eval."
-                if isinstance(mini_check, dict)
-                else "Run python -m src.external_validation_mini_sanity_check after license confirmation."
+                if mini_check_validation_status(mini_check) == "metadata_only_pass"
+                else (
+                    "Narrow external audio eval may proceed under external/sanity-check labeling."
+                    if mini_check_validation_status(mini_check) == "ready_for_narrow_audio_eval"
+                    else "Run python -m src.external_validation_mini_sanity_check after license confirmation."
+                )
             ),
             "evidence_artifact": "results/figures/external_validation_mini_sanity_check.md",
         },
@@ -180,14 +204,22 @@ def build_checkpoint_rows() -> list[dict[str, str]]:
             "dataset_name": dataset_name,
             "current_status": normalize_first_status(execution_status, ["execution_receipt_status", "execution_chain_status"]),
             "blocker": (
-                "audio_staging_pending"
-                if confirmed
-                else str((execution_status if isinstance(execution_status, dict) else {}).get("blocker", "license_confirmation_pending"))
+                str((execution_status if isinstance(execution_status, dict) else {}).get("blocker", "license_confirmation_pending"))
+                if not confirmed
+                else (
+                    "execution_receipt_pending"
+                    if mini_check_audio_ready(mini_check)
+                    else "audio_staging_pending"
+                )
             ),
             "next_action": (
-                "Fill execution receipt only after optional audio excerpt is staged."
-                if confirmed
-                else "Do not fill the execution receipt until the license blocker is cleared."
+                "Do not fill the execution receipt until the license blocker is cleared."
+                if not confirmed
+                else (
+                    "Fill execution receipt before claiming any external benchmark run."
+                    if mini_check_audio_ready(mini_check)
+                    else "Fill execution receipt only after optional audio excerpt is staged."
+                )
             ),
             "evidence_artifact": "results/figures/external_validation_slice_staging_execution_status.md",
         },
@@ -210,7 +242,12 @@ def build_summary_row(rows: list[dict[str, str]]) -> dict[str, str]:
             primary_blocker = blocker
             break
 
-    if primary_blocker in {"none_documented", "audio_staging_pending"}:
+    if primary_blocker == "execution_receipt_pending":
+        overall_state = "ready_for_narrow_audio_eval"
+        recommended_next_action = (
+            "Audio excerpt staged; fill execution receipt before any external benchmark claim."
+        )
+    elif primary_blocker in {"none_documented", "audio_staging_pending"}:
         overall_state = "ready_for_optional_audio_staging"
         recommended_next_action = "Optionally stage one AISHELL-4 excerpt; do not claim gold benchmark results."
     elif "license" in primary_blocker:

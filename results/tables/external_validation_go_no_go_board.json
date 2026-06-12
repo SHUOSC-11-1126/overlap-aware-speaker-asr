@@ -2,45 +2,54 @@
   {
     "checkpoint_name": "license_gate",
     "dataset_name": "AISHELL-4",
-    "current_status": "pending_confirmation",
-    "blocker": "license_confirmation_pending",
-    "next_action": "Record a concrete license confirmation decision before any audio staging.",
-    "evidence_artifact": "results/figures/external_validation_license_gate.md",
-    "go_no_go_state": "no_go"
+    "current_status": "confirmed_research_cc_by_sa_4_0",
+    "blocker": "none_documented",
+    "next_action": "License documented under external/sanity-check; optional audio staging may proceed.",
+    "evidence_artifact": "results/figures/external_validation_license_confirmation.md",
+    "go_no_go_state": "go"
   },
   {
     "checkpoint_name": "license_confirmation",
     "dataset_name": "AISHELL-4",
-    "current_status": "template_only",
-    "blocker": "license_confirmation_pending",
-    "next_action": "Fill the confirmation scaffold with the recorded license decision.",
-    "evidence_artifact": "results/figures/external_validation_license_confirmation_scaffold.md",
-    "go_no_go_state": "no_go"
+    "current_status": "confirmed",
+    "blocker": "none_documented",
+    "next_action": "License confirmation recorded; keep attribution visible in external artifacts.",
+    "evidence_artifact": "results/figures/external_validation_license_confirmation.md",
+    "go_no_go_state": "go"
   },
   {
     "checkpoint_name": "slice_manifest",
     "dataset_name": "AISHELL-4",
-    "current_status": "blocked_by_license_gate",
-    "blocker": "blocked_by_license_gate",
-    "next_action": "Keep the manifest narrow and blocked until license confirmation is recorded.",
+    "current_status": "ready_for_staging",
+    "blocker": "none_documented",
+    "next_action": "Manifest ready for optional AISHELL-4 excerpt staging.",
     "evidence_artifact": "results/figures/external_validation_slice_manifest.md",
-    "go_no_go_state": "no_go"
+    "go_no_go_state": "go"
   },
   {
     "checkpoint_name": "staging_readiness",
     "dataset_name": "AISHELL-4",
-    "current_status": "not_ready",
-    "blocker": "license_confirmation_pending",
-    "next_action": "Resolve the readiness blocker before any staging review.",
+    "current_status": "ready_for_staging_review",
+    "blocker": "none_documented",
+    "next_action": "Readiness review may proceed; audio download remains optional.",
     "evidence_artifact": "results/figures/external_validation_slice_staging_readiness.md",
-    "go_no_go_state": "no_go"
+    "go_no_go_state": "go"
+  },
+  {
+    "checkpoint_name": "mini_sanity_check",
+    "dataset_name": "AISHELL-4",
+    "current_status": "ready_for_narrow_audio_eval",
+    "blocker": "none_documented",
+    "next_action": "Narrow external audio eval may proceed under external/sanity-check labeling.",
+    "evidence_artifact": "results/figures/external_validation_mini_sanity_check.md",
+    "go_no_go_state": "go"
   },
   {
     "checkpoint_name": "execution_chain",
     "dataset_name": "AISHELL-4",
     "current_status": "template_only",
-    "blocker": "license_confirmation_pending",
-    "next_action": "Do not fill the execution receipt until the license blocker is cleared.",
+    "blocker": "execution_receipt_pending",
+    "next_action": "Fill execution receipt before claiming any external benchmark run.",
     "evidence_artifact": "results/figures/external_validation_slice_staging_execution_status.md",
     "go_no_go_state": "no_go"
   }

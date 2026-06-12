@@ -31,6 +31,16 @@ class ExternalValidationGoNoGoBoardTest(unittest.TestCase):
         self.assertEqual(row["overall_state"], "blocked_by_license_confirmation")
         self.assertEqual(row["no_go_count"], "2")
 
+    def test_build_summary_row_marks_execution_receipt_after_audio_staged(self) -> None:
+        rows = [
+            {"dataset_name": "AISHELL-4", "go_no_go_state": "go", "blocker": "none_documented"},
+            {"dataset_name": "AISHELL-4", "go_no_go_state": "go", "blocker": "none_documented"},
+            {"dataset_name": "AISHELL-4", "go_no_go_state": "no_go", "blocker": "execution_receipt_pending"},
+        ]
+        row = build_summary_row(rows)
+        self.assertEqual(row["overall_state"], "ready_for_narrow_audio_eval")
+        self.assertEqual(row["primary_blocker"], "execution_receipt_pending")
+
     def test_build_summary_row_after_license_unblock(self) -> None:
         rows = [
             {

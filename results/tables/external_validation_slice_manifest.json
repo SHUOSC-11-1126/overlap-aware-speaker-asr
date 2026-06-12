@@ -2,10 +2,10 @@
   "dataset_name": "AISHELL-4",
   "slice_id": "aishell4_meeting_excerpt_stub_001",
   "label": "external/sanity-check",
-  "license_status": "pending_confirmation",
-  "mapping_status": "scaffold_only",
+  "license_status": "confirmed_research_cc_by_sa_4_0",
+  "mapping_status": "audio_and_reference_staged",
   "audio_path": "resources/external_sanity_check/aishell4/meeting_excerpt_stub_001.wav",
   "reference_path": "resources/external_sanity_check/aishell4/meeting_excerpt_stub_001_reference.json",
-  "staging_status": "blocked_by_license_gate",
+  "staging_status": "ready_for_staging",
   "manifest_note": "Manifest-only staging plan for the first external slice. No external audio has been downloaded or evaluated."
 }

@@ -1,0 +1,26 @@
+{
+  "slice_id": "aishell4_meeting_excerpt_stub_001",
+  "dataset_name": "AISHELL-4",
+  "label": "external/sanity-check",
+  "license_id": "CC BY-SA 4.0",
+  "source_path": "test/wav/S_R004S03C01.flac",
+  "source_url": "https://huggingface.co/datasets/AISHELL/AISHELL-4/resolve/main/test/wav/S_R004S03C01.flac",
+  "excerpt_seconds": 30,
+  "speaker_schema": {
+    "speaker_field": "speaker",
+    "start_field": "start",
+    "end_field": "end",
+    "text_field": "text"
+  },
+  "segments": [
+    {
+      "speaker": "meeting_mix",
+      "start": 0.0,
+      "end": 30.0,
+      "text": "",
+      "transcript_status": "pending_external_alignment"
+    }
+  ],
+  "staging_status": "audio_excerpt_staged",
+  "staging_note": "Real AISHELL-4 test-set excerpt staged from HuggingFace. Transcript alignment remains external/sanity-check only; not gold benchmark."
+}
