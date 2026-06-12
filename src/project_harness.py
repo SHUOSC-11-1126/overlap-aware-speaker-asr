@@ -442,6 +442,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/meeteval_official_narrow_dry_run_coordination_writeback.json",
         "next_step": "Run python -m src.meeteval_official_narrow_dry_run_coordination_writeback after demo wave14.",
     },
+    {
+        "frontier_id": "wave14_cascade_benchmark_phase5_gate_coordination_writeback",
+        "module_path": "src/cascade_benchmark_phase5_gate_coordination_writeback.py",
+        "expected_output": "results/tables/cascade_benchmark_phase5_gate_coordination_writeback.json",
+        "next_step": "Run python -m src.cascade_benchmark_phase5_gate_coordination_writeback after MeetEval official coordination.",
+    },
 ]
 
 
