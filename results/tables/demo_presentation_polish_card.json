@@ -47,5 +47,12 @@
     "artifact_anchor": "results/figures/wave6_frontier_coordination_closure_card.md",
     "presentation_note": "Show Wave6 closure and benchmark readiness cards only; controlled timing remains blocked — qualitative/demo labeling required.",
     "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave7",
+    "headline": "Wave7 exploration+baseline closure and next frontier gates",
+    "artifact_anchor": "results/figures/wave7_exploration_baseline_closure_card.md",
+    "presentation_note": "Show Wave7 closure card only; speaker profile and benchmark timing remain experimental/frontier — qualitative/demo labeling required.",
+    "result_label": "qualitative/demo"
   }
 ]
