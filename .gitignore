@@ -346,6 +346,11 @@ results/synthetic_overlap_v2/
 !results/tables/wave13_exploration_baseline_closure_writeback.csv
 !results/tables/wave13_exploration_baseline_closure_writeback.json
 !results/tables/wave13_exploration_baseline_closure_receipt.json
+!results/tables/wave14_exploration_baseline_closure_card.csv
+!results/tables/wave14_exploration_baseline_closure_card.json
+!results/tables/wave14_exploration_baseline_closure_writeback.csv
+!results/tables/wave14_exploration_baseline_closure_writeback.json
+!results/tables/wave14_exploration_baseline_closure_receipt.json
 !results/tables/external_validation_narrow_slice_coordination_card.csv
 !results/tables/external_validation_narrow_slice_coordination_card.json
 !results/tables/external_validation_narrow_slice_coordination_writeback.csv
@@ -989,6 +994,9 @@ results/synthetic_overlap_v2/
 !results/figures/wave13_exploration_baseline_closure_card.md
 !results/figures/wave13_exploration_baseline_closure_writeback.md
 !results/figures/wave13_exploration_baseline_closure_receipt.md
+!results/figures/wave14_exploration_baseline_closure_card.md
+!results/figures/wave14_exploration_baseline_closure_writeback.md
+!results/figures/wave14_exploration_baseline_closure_receipt.md
 !results/figures/external_validation_narrow_slice_coordination_card.md
 !results/figures/external_validation_narrow_slice_coordination_writeback.md
 !results/figures/external_validation_narrow_slice_coordination_receipt.md
