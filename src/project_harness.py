@@ -2032,6 +2032,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/demo_wave101_presentation_writeback.json",
         "next_step": "Run python -m src.demo_wave101_presentation_writeback after Wave101 closure writeback.",
     },
+    {
+        "frontier_id": "wave101_external_validation_narrow_slice_coordination_writeback",
+        "module_path": "src/wave101_external_validation_narrow_slice_coordination_writeback.py",
+        "expected_output": "results/tables/wave101_external_validation_narrow_slice_coordination_writeback.json",
+        "next_step": "Run python -m src.wave101_external_validation_narrow_slice_coordination_writeback after demo wave101.",
+    },
 ]
 
 
