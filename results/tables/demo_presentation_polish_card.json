@@ -54,5 +54,12 @@
     "artifact_anchor": "results/figures/wave7_exploration_baseline_closure_card.md",
     "presentation_note": "Show Wave7 closure card only; speaker profile and benchmark timing remain experimental/frontier — qualitative/demo labeling required.",
     "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave8",
+    "headline": "Wave8 exploration+baseline closure and manifest boundary rollup",
+    "artifact_anchor": "results/figures/wave8_exploration_baseline_closure_card.md",
+    "presentation_note": "Show Wave8 closure card only; speaker overlap diagnostics and benchmark timing remain experimental/frontier — qualitative/demo labeling required.",
+    "result_label": "qualitative/demo"
   }
 ]

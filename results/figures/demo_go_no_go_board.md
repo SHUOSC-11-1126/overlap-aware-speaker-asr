@@ -2,7 +2,7 @@
 
 This generated board compresses the current demo-excellence chain into a go/no-go view. It remains qualitative/demo and does not claim live demo or recording delivery.
 
-Summary: `6/6` checkpoints are ready for a narrow presentation writeback path, while live-delivery claims remain blocked.
+Summary: `4/6` checkpoints are ready for a narrow presentation writeback path, while live-delivery claims remain blocked.
 
 | checkpoint_name | scope | current_status | claim_boundary | go_no_go_state | next_action | evidence_artifact |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -10,5 +10,5 @@ Summary: `6/6` checkpoints are ready for a narrow presentation writeback path, w
 | storyboard_completion | storyboard_queue | queue_complete | storyboard_completion_not_live_delivery | go | If a next step is taken, keep it to a narrow storyboard writeback or polish pass. | results/figures/demo_storyboard_review_pass_completion_summary.md |
 | walkthrough_review_status | walkthrough_queue | queue_complete | walkthrough_ready_not_live_delivery | go | Use walkthrough completion as support for a narrow presentation writeback, not as live demo proof. | results/figures/demo_walkthrough_review_pass_status.md |
 | walkthrough_completion | walkthrough_queue | queue_complete | walkthrough_completion_not_live_delivery | go | If a next step is taken, keep it to a narrow walkthrough writeback or delivery mockup. | results/figures/demo_walkthrough_review_pass_completion_summary.md |
-| storyboard_receipt | single_storyboard_writeback | wave7_presentation_extension_complete | receipt_template_only_blocks_live_claims | go | Do not claim live delivery until a real storyboard writeback fills the receipt with evidence. | results/figures/demo_storyboard_receipt.md |
-| walkthrough_receipt | single_walkthrough_writeback | wave7_presentation_extension_complete | receipt_template_only_blocks_live_claims | go | Do not claim live delivery until a real walkthrough writeback fills the receipt with evidence. | results/figures/demo_walkthrough_receipt.md |
+| storyboard_receipt | single_storyboard_writeback | wave8_presentation_extension_complete | receipt_template_only_blocks_live_claims | no_go | Do not claim live delivery until a real storyboard writeback fills the receipt with evidence. | results/figures/demo_storyboard_receipt.md |
+| walkthrough_receipt | single_walkthrough_writeback | wave8_presentation_extension_complete | receipt_template_only_blocks_live_claims | no_go | Do not claim live delivery until a real walkthrough writeback fills the receipt with evidence. | results/figures/demo_walkthrough_receipt.md |
