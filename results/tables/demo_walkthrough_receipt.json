@@ -1,9 +1,9 @@
 [
   {
-    "execution_status": "presentation_writeback_complete",
-    "walkthrough_scope": "full_walkthrough_queue",
-    "expected_inputs": "Completed walkthrough review queue and presentation polish card.",
-    "expected_outputs": "Diagnostic walkthrough writeback under qualitative/demo labeling.",
-    "writeback_note": "Walkthrough presentation writeback recorded; no live demo, recording, or public launch claimed."
+    "execution_status": "wave5_presentation_extension_complete",
+    "walkthrough_scope": "wave5_walkthrough_extension",
+    "expected_inputs": "Wave5 coordination cards and completed base presentation polish.",
+    "expected_outputs": "Wave5 walkthrough extension under qualitative/demo labeling.",
+    "writeback_note": "Wave5 walkthrough extension recorded; no live demo, recording, or public launch claimed."
   }
 ]

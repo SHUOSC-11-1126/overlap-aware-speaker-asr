@@ -33,5 +33,12 @@
     "artifact_anchor": "results/figures/frontier_execution_receipt_fill_execution_status.md",
     "presentation_note": "Show unified receipt-fill completion without claiming live demo delivery.",
     "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave5",
+    "headline": "MeetEval + cascade + separation phase coordination chain",
+    "artifact_anchor": "results/figures/separation_phase_coordination_card.md",
+    "presentation_note": "Show Wave5 coordination cards only; label MeetEval as experimental/frontier and phase diagram as boundary evidence — not deployment proof.",
+    "result_label": "qualitative/demo"
   }
 ]
