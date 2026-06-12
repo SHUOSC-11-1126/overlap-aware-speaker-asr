@@ -39,6 +39,9 @@ class FrontierGoNoGoBoardTest(unittest.TestCase):
     def test_classify_go_no_go_state_marks_wave11_exploration_baseline_closure_complete_as_go(self) -> None:
         self.assertEqual(classify_go_no_go_state("wave11_exploration_baseline_closure_complete"), "go")
 
+    def test_classify_go_no_go_state_marks_wave12_exploration_baseline_closure_complete_as_go(self) -> None:
+        self.assertEqual(classify_go_no_go_state("wave12_exploration_baseline_closure_complete"), "go")
+
     def test_classify_go_no_go_state_marks_external_validation_narrow_slice_coordination_complete_as_go(
         self,
     ) -> None:
