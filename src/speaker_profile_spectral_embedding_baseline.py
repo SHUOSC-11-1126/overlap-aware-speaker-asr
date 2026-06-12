@@ -113,7 +113,6 @@ def build_nooverlap_baseline_row(config: dict[str, Any]) -> dict[str, str]:
         speaker_1_vector=speaker_1_vector,
         speaker_2_vector=speaker_2_vector,
     )
-    _ = direct_score, swapped_score
     return build_baseline_row(case_id, text_row, spectral_row)
 
 
