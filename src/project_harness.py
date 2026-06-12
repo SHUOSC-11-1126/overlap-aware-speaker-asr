@@ -514,6 +514,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave17_meeteval_cpwer_narrow_dry_run_coordination_writeback.json",
         "next_step": "Run python -m src.wave17_meeteval_cpwer_narrow_dry_run_coordination_writeback after MidOverlap coordination.",
     },
+    {
+        "frontier_id": "wave18_exploration_baseline_closure_writeback",
+        "module_path": "src/wave18_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave18_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave18_exploration_baseline_closure_writeback after Wave17 chain.",
+    },
 ]
 
 
