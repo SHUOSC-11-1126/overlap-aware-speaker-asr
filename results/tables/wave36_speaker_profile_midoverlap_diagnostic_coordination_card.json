@@ -1,0 +1,37 @@
+[
+  {
+    "section_id": "midoverlap_diagnostic_scope",
+    "headline": "MidOverlap separation-harm diagnostic scope refresh after Wave36 closure",
+    "artifact_anchor": "results/figures/separation_phase_diagram.md",
+    "coordination_note": "Separation harms ASR on this gold anchor; diagnostic-only — no attribution claim.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "midoverlap_prior",
+    "headline": "Wave9 MidOverlap diagnostic coordination remains the prerequisite chain",
+    "artifact_anchor": "results/figures/speaker_profile_midoverlap_diagnostic_coordination_card.md",
+    "coordination_note": "Wave36 refresh does not replace original MidOverlap boundary documentation.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "wave32_refresh",
+    "headline": "Wave32 MidOverlap diagnostic refresh precedes Wave36 refresh",
+    "artifact_anchor": "results/figures/wave32_speaker_profile_midoverlap_diagnostic_coordination_card.md",
+    "coordination_note": "Prior wave refresh provides chain for cyclic overlap diagnostic coordination.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "lightoverlap_refresh",
+    "headline": "Wave35 LightOverlap diagnostic refresh precedes MidOverlap refresh",
+    "artifact_anchor": "results/figures/wave35_speaker_profile_lightoverlap_diagnostic_coordination_card.md",
+    "coordination_note": "Overlap diagnostic chain progresses LightOverlap → MidOverlap through coordinated refreshes.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "wave36_boundary",
+    "headline": "Wave36 closure defers overlap embedding execution to diagnostic boundaries only",
+    "artifact_anchor": "results/figures/wave36_exploration_baseline_closure_card.md",
+    "coordination_note": "Gold baseline CER tables unchanged; attribution still blocked.",
+    "result_label": "experimental/frontier"
+  }
+]
