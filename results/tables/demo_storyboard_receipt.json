@@ -1,9 +1,9 @@
 [
   {
-    "execution_status": "wave5_presentation_extension_complete",
-    "storyboard_scope": "wave5_storyboard_extension",
-    "expected_inputs": "Wave5 coordination cards and completed base presentation polish.",
-    "expected_outputs": "Wave5 storyboard extension under qualitative/demo labeling.",
-    "writeback_note": "Wave5 storyboard extension recorded; no live demo, recording, or public launch claimed."
+    "execution_status": "wave6_presentation_extension_complete",
+    "storyboard_scope": "wave6_storyboard_extension",
+    "expected_inputs": "Wave6 closure and benchmark coordination cards.",
+    "expected_outputs": "Wave6 storyboard extension under qualitative/demo labeling.",
+    "writeback_note": "Wave6 storyboard extension recorded; no live demo, recording, or benchmark timing claimed."
   }
 ]

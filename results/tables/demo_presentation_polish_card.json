@@ -40,5 +40,12 @@
     "artifact_anchor": "results/figures/separation_phase_coordination_card.md",
     "presentation_note": "Show Wave5 coordination cards only; label MeetEval as experimental/frontier and phase diagram as boundary evidence — not deployment proof.",
     "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave6",
+    "headline": "Wave6 closure + cascade benchmark timing boundary",
+    "artifact_anchor": "results/figures/wave6_frontier_coordination_closure_card.md",
+    "presentation_note": "Show Wave6 closure and benchmark readiness cards only; controlled timing remains blocked — qualitative/demo labeling required.",
+    "result_label": "qualitative/demo"
   }
 ]
