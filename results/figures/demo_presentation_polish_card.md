@@ -49,6 +49,7 @@ Presentation writeback only — not a live demo or recording claim.
 | frontier_wave42 | Wave42 exploration+baseline closure and MeetEval official dry-run refresh boundary | results/figures/wave42_exploration_baseline_closure_card.md | qualitative/demo |
 | frontier_wave43 | Wave43 exploration+baseline closure and LightOverlap diagnostic refresh boundary | results/figures/wave43_exploration_baseline_closure_card.md | qualitative/demo |
 | frontier_wave44 | Wave44 exploration+baseline closure and MidOverlap diagnostic refresh boundary | results/figures/wave44_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave45 | Wave45 exploration+baseline closure and HeavyOverlap diagnostic refresh boundary | results/figures/wave45_exploration_baseline_closure_card.md | qualitative/demo |
 
 - **hero**: Lead with the stable gold baseline finding before any frontier claim.
 - **architecture**: Point visitors to the frontier status checklist for module map context.
@@ -95,3 +96,4 @@ Presentation writeback only — not a live demo or recording claim.
 - **frontier_wave42**: Show Wave42 closure card only; MeetEval official cpWER narrow dry-run refresh remains experimental/frontier — qualitative/demo labeling required.
 - **frontier_wave43**: Show Wave43 closure card only; LightOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
 - **frontier_wave44**: Show Wave44 closure card only; MidOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave45**: Show Wave45 closure card only; HeavyOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
