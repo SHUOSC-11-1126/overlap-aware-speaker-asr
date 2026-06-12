@@ -196,6 +196,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/external_validation_narrow_audio_eval_receipt.json",
         "next_step": "Run python -m src.external_validation_narrow_audio_eval_receipt after narrow ASR eval.",
     },
+    {
+        "frontier_id": "wave4_speaker_profile_embedding_trial_execution_receipt_fill",
+        "module_path": "src/speaker_profile_embedding_trial_execution_receipt_fill.py",
+        "expected_output": "results/tables/speaker_profile_embedding_trial_execution_receipt_fill.json",
+        "next_step": "Run python -m src.speaker_profile_embedding_trial_execution_receipt_fill after receipt readiness.",
+    },
 ]
 
 
@@ -286,6 +292,8 @@ def frontier_priority(frontier_id: str) -> int:
         return 61
     if frontier_id.startswith("wave3_"):
         return 62
+    if frontier_id.startswith("wave4_"):
+        return 63
     priority_order = {
         "meeteval_compatibility": 1,
         "external_validation": 2,
