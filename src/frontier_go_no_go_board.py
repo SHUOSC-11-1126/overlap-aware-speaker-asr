@@ -56,6 +56,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "character_level_receipt_fill_complete",
         "meeteval_cpwer_narrow_dry_run_coordination_complete",
         "meeteval_official_narrow_dry_run_coordination_complete",
+        "wave20_meeteval_official_narrow_dry_run_coordination_complete",
         "presentation_wave5_extension_complete",
         "presentation_wave6_extension_complete",
         "presentation_wave7_extension_complete",
