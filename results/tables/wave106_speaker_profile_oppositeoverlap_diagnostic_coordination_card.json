@@ -1,0 +1,37 @@
+[
+  {
+    "section_id": "oppositeoverlap_diagnostic_scope",
+    "headline": "OppositeOverlap separation-benefit diagnostic scope refresh after Wave106 closure",
+    "artifact_anchor": "results/figures/separation_phase_diagram.md",
+    "coordination_note": "Separation helps ASR on this gold anchor; diagnostic-only — no attribution claim.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "oppositeoverlap_prior",
+    "headline": "Wave13 OppositeOverlap diagnostic coordination remains the prerequisite chain",
+    "artifact_anchor": "results/figures/speaker_profile_oppositeoverlap_diagnostic_coordination_card.md",
+    "coordination_note": "Wave88 refresh does not replace original OppositeOverlap boundary documentation.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "wave100_refresh",
+    "headline": "Wave100 OppositeOverlap diagnostic refresh precedes Wave106 refresh",
+    "artifact_anchor": "results/figures/wave100_speaker_profile_oppositeoverlap_diagnostic_coordination_card.md",
+    "coordination_note": "Prior wave refresh provides chain for cyclic overlap diagnostic coordination.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "heavyoverlap_refresh",
+    "headline": "Wave105 HeavyOverlap diagnostic refresh precedes OppositeOverlap refresh",
+    "artifact_anchor": "results/figures/wave105_speaker_profile_heavyoverlap_diagnostic_coordination_card.md",
+    "coordination_note": "Overlap diagnostic chain completes with OppositeOverlap after separation-benefit cases.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "wave106_boundary",
+    "headline": "Wave106 closure defers overlap embedding execution to diagnostic boundaries only",
+    "artifact_anchor": "results/figures/wave106_exploration_baseline_closure_card.md",
+    "coordination_note": "Gold baseline CER tables unchanged; attribution still blocked.",
+    "result_label": "experimental/frontier"
+  }
+]
