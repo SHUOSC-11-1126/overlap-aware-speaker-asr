@@ -1,7 +1,7 @@
 [
   {
     "frontier_name": "meeteval_compatibility",
-    "current_state": "character_level_receipt_fill_complete",
+    "current_state": "wave6_coordination_closure_complete",
     "primary_boundary": "official_benchmark_claims_still_blocked_until_receipt_fill",
     "go_no_go_state": "go",
     "recommended_next_action": "If execution starts, use character-spaced cpWER and fill the official receipt with real evidence.",
