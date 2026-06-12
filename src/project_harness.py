@@ -592,6 +592,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/demo_wave21_presentation_writeback.json",
         "next_step": "Run python -m src.demo_wave21_presentation_writeback after Wave21 closure writeback.",
     },
+    {
+        "frontier_id": "wave21_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+        "module_path": "src/wave21_speaker_profile_lightoverlap_diagnostic_coordination_writeback.py",
+        "expected_output": "results/tables/wave21_speaker_profile_lightoverlap_diagnostic_coordination_writeback.json",
+        "next_step": "Run python -m src.wave21_speaker_profile_lightoverlap_diagnostic_coordination_writeback after demo wave21.",
+    },
 ]
 
 
