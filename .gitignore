@@ -278,6 +278,11 @@ results/synthetic_overlap_v2/
 !results/tables/cascade_frontier_coordination_writeback.csv
 !results/tables/cascade_frontier_coordination_writeback.json
 !results/tables/cascade_frontier_coordination_receipt.json
+!results/tables/separation_phase_coordination_card.csv
+!results/tables/separation_phase_coordination_card.json
+!results/tables/separation_phase_coordination_writeback.csv
+!results/tables/separation_phase_coordination_writeback.json
+!results/tables/separation_phase_coordination_receipt.json
 !results/tables/demo_storyboard_receipt.json
 !results/tables/demo_walkthrough_receipt.json
 !results/tables/demo_walkthrough_review_pass_final_bridge_checklist.csv
@@ -815,6 +820,9 @@ results/synthetic_overlap_v2/
 !results/figures/cascade_frontier_coordination_card.md
 !results/figures/cascade_frontier_coordination_writeback.md
 !results/figures/cascade_frontier_coordination_receipt.md
+!results/figures/separation_phase_coordination_card.md
+!results/figures/separation_phase_coordination_writeback.md
+!results/figures/separation_phase_coordination_receipt.md
 !results/figures/demo_walkthrough_review_pass_completion_summary_bridge_checklist.md
 !results/figures/demo_storyboard_review_pass.md
 !results/figures/demo_storyboard_review_pass_receipt.md
