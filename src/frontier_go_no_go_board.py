@@ -150,6 +150,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "wave53_external_validation_narrow_slice_coordination_complete",
         "wave59_external_validation_narrow_slice_coordination_complete",
         "wave65_external_validation_narrow_slice_coordination_complete",
+        "wave71_external_validation_narrow_slice_coordination_complete",
         "wave54_meeteval_official_narrow_dry_run_coordination_complete",
         "wave60_meeteval_official_narrow_dry_run_coordination_complete",
         "wave66_meeteval_official_narrow_dry_run_coordination_complete",
