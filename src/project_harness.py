@@ -220,6 +220,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/meeteval_cpwer_character_level_execution_receipt_fill.json",
         "next_step": "Run python -m src.meeteval_cpwer_character_level_execution_receipt_fill after character-level cpWER execution.",
     },
+    {
+        "frontier_id": "wave5_cascade_frontier_coordination_writeback",
+        "module_path": "src/cascade_frontier_coordination_writeback.py",
+        "expected_output": "results/tables/cascade_frontier_coordination_writeback.json",
+        "next_step": "Run python -m src.cascade_frontier_coordination_writeback after MeetEval character-level receipt fill.",
+    },
 ]
 
 
