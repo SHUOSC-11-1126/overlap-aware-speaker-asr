@@ -1,0 +1,9 @@
+{
+  "fill_status": "writeback_filled",
+  "writeback_scope": "cascade_benchmark_manifest_coordination_card",
+  "coordination_section_count": "4",
+  "manifest_step_count": "5",
+  "execution_receipt_status": "cascade_benchmark_manifest_coordination_complete",
+  "blocker": "controlled_benchmark_timing_pending",
+  "fill_note": "Filled cascade benchmark manifest coordination card after Wave7 speaker profile case-scope; manifest template remains unfilled for controlled timing."
+}
