@@ -2056,6 +2056,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave102_meeteval_official_narrow_dry_run_coordination_writeback.json",
         "next_step": "Run python -m src.wave102_meeteval_official_narrow_dry_run_coordination_writeback after demo wave102.",
     },
+    {
+        "frontier_id": "wave103_exploration_baseline_closure_writeback",
+        "module_path": "src/wave103_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave103_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave103_exploration_baseline_closure_writeback after Wave102 chain.",
+    },
 ]
 
 
