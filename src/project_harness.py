@@ -340,6 +340,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/demo_wave10_presentation_writeback.json",
         "next_step": "Run python -m src.demo_wave10_presentation_writeback after Wave10 closure writeback.",
     },
+    {
+        "frontier_id": "wave10_meeteval_cpwer_narrow_dry_run_coordination_writeback",
+        "module_path": "src/meeteval_cpwer_narrow_dry_run_coordination_writeback.py",
+        "expected_output": "results/tables/meeteval_cpwer_narrow_dry_run_coordination_writeback.json",
+        "next_step": "Run python -m src.meeteval_cpwer_narrow_dry_run_coordination_writeback after demo wave10.",
+    },
 ]
 
 
