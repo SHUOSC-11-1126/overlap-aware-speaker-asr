@@ -1,0 +1,4 @@
+﻿metric,value,label
+eval_status,narrow_asr_complete,external/sanity-check
+model,whisper-tiny,external/sanity-check
+text_length,51,external/sanity-check

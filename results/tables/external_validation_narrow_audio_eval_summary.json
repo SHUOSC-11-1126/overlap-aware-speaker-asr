@@ -1,0 +1,17 @@
+[
+  {
+    "metric": "eval_status",
+    "value": "narrow_asr_complete",
+    "label": "external/sanity-check"
+  },
+  {
+    "metric": "model",
+    "value": "whisper-tiny",
+    "label": "external/sanity-check"
+  },
+  {
+    "metric": "text_length",
+    "value": "51",
+    "label": "external/sanity-check"
+  }
+]
