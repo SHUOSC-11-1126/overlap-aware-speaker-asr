@@ -244,6 +244,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave6_frontier_coordination_closure_writeback.json",
         "next_step": "Run python -m src.wave6_frontier_coordination_closure_writeback after Wave5 coordination chain.",
     },
+    {
+        "frontier_id": "wave6_cascade_benchmark_readiness_coordination_writeback",
+        "module_path": "src/cascade_benchmark_readiness_coordination_writeback.py",
+        "expected_output": "results/tables/cascade_benchmark_readiness_coordination_writeback.json",
+        "next_step": "Run python -m src.cascade_benchmark_readiness_coordination_writeback after Wave6 closure.",
+    },
 ]
 
 
