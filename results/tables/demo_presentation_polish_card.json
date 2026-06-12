@@ -124,5 +124,12 @@
     "artifact_anchor": "results/figures/wave17_exploration_baseline_closure_card.md",
     "presentation_note": "Show Wave17 closure card only; MidOverlap diagnostic and MeetEval cpWER dry-run remain experimental/frontier — qualitative/demo labeling required.",
     "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave18",
+    "headline": "Wave18 exploration+baseline closure and HeavyOverlap diagnostic refresh boundary",
+    "artifact_anchor": "results/figures/wave18_exploration_baseline_closure_card.md",
+    "presentation_note": "Show Wave18 closure card only; HeavyOverlap diagnostic and LLM critic dry-run remain experimental/frontier — qualitative/demo labeling required.",
+    "result_label": "qualitative/demo"
   }
 ]
