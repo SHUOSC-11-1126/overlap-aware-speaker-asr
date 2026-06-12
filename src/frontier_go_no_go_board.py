@@ -67,6 +67,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "speaker_profile_lightoverlap_diagnostic_coordination_complete",
         "speaker_profile_midoverlap_diagnostic_coordination_complete",
         "cascade_benchmark_evidence_receipt_coordination_complete",
+        "cascade_benchmark_phase1_gate_coordination_complete",
         "ready_for_narrow_audio_eval",
     }
     if lowered in ready_markers:
