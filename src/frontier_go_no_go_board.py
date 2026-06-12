@@ -86,6 +86,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "external_validation_narrow_slice_coordination_complete",
         "wave15_external_validation_narrow_slice_coordination_complete",
         "llm_critic_narrow_dry_run_coordination_complete",
+        "wave15_llm_critic_narrow_dry_run_coordination_complete",
         "ready_for_narrow_audio_eval",
     }
     if lowered in ready_markers:
