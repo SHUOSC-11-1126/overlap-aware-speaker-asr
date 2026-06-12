@@ -82,5 +82,12 @@
     "artifact_anchor": "results/figures/wave11_exploration_baseline_closure_card.md",
     "presentation_note": "Show Wave11 closure card only; phase2 gate and MeetEval dry-run remain experimental/frontier — qualitative/demo labeling required.",
     "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave12",
+    "headline": "Wave12 exploration+baseline closure and phase3 gold surface refresh boundary",
+    "artifact_anchor": "results/figures/wave12_exploration_baseline_closure_card.md",
+    "presentation_note": "Show Wave12 closure card only; external validation and phase3 gate remain experimental/frontier — qualitative/demo labeling required.",
+    "result_label": "qualitative/demo"
   }
 ]
