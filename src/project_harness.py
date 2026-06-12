@@ -1816,6 +1816,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/demo_wave89_presentation_writeback.json",
         "next_step": "Run python -m src.demo_wave89_presentation_writeback after Wave89 closure writeback.",
     },
+    {
+        "frontier_id": "wave89_external_validation_narrow_slice_coordination_writeback",
+        "module_path": "src/wave89_external_validation_narrow_slice_coordination_writeback.py",
+        "expected_output": "results/tables/wave89_external_validation_narrow_slice_coordination_writeback.json",
+        "next_step": "Run python -m src.wave89_external_validation_narrow_slice_coordination_writeback after demo wave89.",
+    },
 ]
 
 
