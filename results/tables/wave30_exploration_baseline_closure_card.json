@@ -1,0 +1,37 @@
+[
+  {
+    "section_id": "wave29_rollup",
+    "headline": "Wave29 closed: external validation narrow slice refresh + demo + exploration closure",
+    "artifact_anchor": "results/figures/wave29_exploration_baseline_closure_card.md",
+    "coordination_note": "experimental/frontier coordination only; gold baseline untouched.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "external_validation_coordination",
+    "headline": "External validation narrow slice refresh coordinated on AISHELL-4 stub boundary",
+    "artifact_anchor": "results/figures/wave29_external_validation_narrow_slice_coordination_card.md",
+    "coordination_note": "External/sanity-check scope only; gold benchmark claims still blocked.",
+    "result_label": "external/sanity-check"
+  },
+  {
+    "section_id": "demo_wave29",
+    "headline": "Demo presentation polish extended to 30 sections under qualitative/demo labeling",
+    "artifact_anchor": "results/figures/demo_wave29_presentation_writeback.md",
+    "coordination_note": "No live demo or benchmark timing claims.",
+    "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_board",
+    "headline": "Frontier go/no-go board remains all_ready after Wave29 chain",
+    "artifact_anchor": "results/tables/frontier_go_no_go_summary.json",
+    "coordination_note": "Coordination receipts only; no deployable routing claims.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "wave30_boundary",
+    "headline": "MeetEval official cpWER narrow dry-run refresh is the next open experimental coordination gate",
+    "artifact_anchor": "results/tables/meeteval_official_status.json",
+    "coordination_note": "Wave30 closure does not record MeetEval official benchmark execution sessions.",
+    "result_label": "experimental/frontier"
+  }
+]
