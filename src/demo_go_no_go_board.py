@@ -131,7 +131,13 @@ def build_summary_row(rows: list[dict[str, str]]) -> dict[str, str]:
     go_count = sum(1 for row in rows if row.get("go_no_go_state") == "go")
     no_go_count = len(rows) - go_count
     receipt_statuses = {row.get("current_status", "") for row in rows if row.get("checkpoint_name", "").endswith("_receipt")}
-    if no_go_count == 0 and "wave51_presentation_extension_complete" in receipt_statuses:
+    if no_go_count == 0 and "wave52_presentation_extension_complete" in receipt_statuses:
+        overall_state = "presentation_wave52_extension_complete"
+        recommended_next_action = (
+            "Wave52 presentation extension complete; README/UI refresh remains qualitative/demo only."
+        )
+        primary_boundary = "none_documented"
+    elif no_go_count == 0 and "wave51_presentation_extension_complete" in receipt_statuses:
         overall_state = "presentation_wave51_extension_complete"
         recommended_next_action = (
             "Wave51 presentation extension complete; README/UI refresh remains qualitative/demo only."
