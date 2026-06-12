@@ -285,6 +285,11 @@ results/synthetic_overlap_v2/
 !results/tables/separation_phase_coordination_writeback.csv
 !results/tables/separation_phase_coordination_writeback.json
 !results/tables/separation_phase_coordination_receipt.json
+!results/tables/wave6_frontier_coordination_closure_card.csv
+!results/tables/wave6_frontier_coordination_closure_card.json
+!results/tables/wave6_frontier_coordination_closure_writeback.csv
+!results/tables/wave6_frontier_coordination_closure_writeback.json
+!results/tables/wave6_frontier_coordination_closure_receipt.json
 !results/tables/demo_storyboard_receipt.json
 !results/tables/demo_walkthrough_receipt.json
 !results/tables/demo_walkthrough_review_pass_final_bridge_checklist.csv
@@ -826,6 +831,9 @@ results/synthetic_overlap_v2/
 !results/figures/separation_phase_coordination_card.md
 !results/figures/separation_phase_coordination_writeback.md
 !results/figures/separation_phase_coordination_receipt.md
+!results/figures/wave6_frontier_coordination_closure_card.md
+!results/figures/wave6_frontier_coordination_closure_writeback.md
+!results/figures/wave6_frontier_coordination_closure_receipt.md
 !results/figures/demo_walkthrough_review_pass_completion_summary_bridge_checklist.md
 !results/figures/demo_storyboard_review_pass.md
 !results/figures/demo_storyboard_review_pass_receipt.md
