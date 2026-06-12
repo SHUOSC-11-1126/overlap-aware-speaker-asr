@@ -274,6 +274,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/speaker_profile_case_scope_coordination_writeback.json",
         "next_step": "Run python -m src.speaker_profile_case_scope_coordination_writeback after Wave7 closure.",
     },
+    {
+        "frontier_id": "wave7_cascade_benchmark_manifest_coordination_writeback",
+        "module_path": "src/cascade_benchmark_manifest_coordination_writeback.py",
+        "expected_output": "results/tables/cascade_benchmark_manifest_coordination_writeback.json",
+        "next_step": "Run python -m src.cascade_benchmark_manifest_coordination_writeback after speaker profile case-scope.",
+    },
 ]
 
 
