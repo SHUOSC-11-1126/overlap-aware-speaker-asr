@@ -418,6 +418,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/speaker_profile_oppositeoverlap_diagnostic_coordination_writeback.json",
         "next_step": "Run python -m src.speaker_profile_oppositeoverlap_diagnostic_coordination_writeback after demo wave13.",
     },
+    {
+        "frontier_id": "wave13_cascade_benchmark_phase4_gate_coordination_writeback",
+        "module_path": "src/cascade_benchmark_phase4_gate_coordination_writeback.py",
+        "expected_output": "results/tables/cascade_benchmark_phase4_gate_coordination_writeback.json",
+        "next_step": "Run python -m src.cascade_benchmark_phase4_gate_coordination_writeback after OppositeOverlap coordination.",
+    },
 ]
 
 
