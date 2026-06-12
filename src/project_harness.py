@@ -1078,6 +1078,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/demo_wave48_presentation_writeback.json",
         "next_step": "Run python -m src.demo_wave48_presentation_writeback after Wave48 closure writeback.",
     },
+    {
+        "frontier_id": "wave48_meeteval_official_narrow_dry_run_coordination_writeback",
+        "module_path": "src/wave48_meeteval_official_narrow_dry_run_coordination_writeback.py",
+        "expected_output": "results/tables/wave48_meeteval_official_narrow_dry_run_coordination_writeback.json",
+        "next_step": "Run python -m src.wave48_meeteval_official_narrow_dry_run_coordination_writeback after demo wave48.",
+    },
 ]
 
 
