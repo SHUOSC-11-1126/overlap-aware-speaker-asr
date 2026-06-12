@@ -562,6 +562,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave19_external_validation_narrow_slice_coordination_writeback.json",
         "next_step": "Run python -m src.wave19_external_validation_narrow_slice_coordination_writeback after OppositeOverlap coordination.",
     },
+    {
+        "frontier_id": "wave20_exploration_baseline_closure_writeback",
+        "module_path": "src/wave20_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave20_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave20_exploration_baseline_closure_writeback after Wave19 chain.",
+    },
 ]
 
 
