@@ -56,6 +56,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "character_level_receipt_fill_complete",
         "presentation_wave5_extension_complete",
         "presentation_wave6_extension_complete",
+        "presentation_wave7_extension_complete",
         "wave6_coordination_closure_complete",
         "wave7_exploration_baseline_closure_complete",
         "ready_for_narrow_audio_eval",
