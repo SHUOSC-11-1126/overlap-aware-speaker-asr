@@ -1,9 +1,9 @@
 [
   {
-    "execution_status": "wave8_presentation_extension_complete",
-    "walkthrough_scope": "wave8_walkthrough_extension",
-    "expected_inputs": "Wave8 exploration+baseline closure card.",
-    "expected_outputs": "Wave8 walkthrough extension under qualitative/demo labeling.",
-    "writeback_note": "Wave8 walkthrough extension recorded; no live demo, recording, or benchmark timing claimed."
+    "execution_status": "wave9_presentation_extension_complete",
+    "walkthrough_scope": "wave9_walkthrough_extension",
+    "expected_inputs": "Wave9 exploration+baseline closure card.",
+    "expected_outputs": "Wave9 walkthrough extension under qualitative/demo labeling.",
+    "writeback_note": "Wave9 walkthrough extension recorded; no live demo, recording, or benchmark timing claimed."
   }
 ]
