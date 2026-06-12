@@ -1,0 +1,11 @@
+{
+  "execution_status": "wave63_speaker_profile_heavyoverlap_diagnostic_coordination_complete",
+  "coordination_scope": "wave63_speaker_profile_heavyoverlap_diagnostic",
+  "wave63_closure_status": "wave63_exploration_baseline_closure_complete",
+  "heavyoverlap_prior_coordination_status": "speaker_profile_heavyoverlap_diagnostic_coordination_complete",
+  "wave57_refresh_status": "wave57_speaker_profile_heavyoverlap_diagnostic_coordination_complete",
+  "midoverlap_refresh_status": "wave62_speaker_profile_midoverlap_diagnostic_coordination_complete",
+  "separation_benefit_signal": "separation_helps_on_heavyoverlap",
+  "expected_inputs": "Wave63 closure, demo wave63, Wave12 HeavyOverlap, Wave57 refresh, and Wave62 MidOverlap refresh.",
+  "writeback_note": "experimental/frontier coordination only; does not claim overlap-case embedding execution."
+}
