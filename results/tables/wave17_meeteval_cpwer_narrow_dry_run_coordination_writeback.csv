@@ -1,0 +1,2 @@
+﻿fill_status,writeback_scope,coordination_section_count,narrow_dry_run_case_count,execution_receipt_status,blocker,fill_note
+writeback_filled,wave17_meeteval_cpwer_narrow_dry_run_coordination_card,5,5,wave17_meeteval_cpwer_narrow_dry_run_coordination_complete,official_benchmark_claims_still_blocked,Documented MeetEval character-level narrow dry-run refresh boundary after Wave17 MidOverlap chain; official benchmark claims remain blocked.
