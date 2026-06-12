@@ -269,6 +269,12 @@ results/synthetic_overlap_v2/
 !results/tables/demo_go_no_go_board.json
 !results/tables/demo_go_no_go_summary.csv
 !results/tables/demo_go_no_go_summary.json
+!results/tables/demo_presentation_polish_card.csv
+!results/tables/demo_presentation_polish_card.json
+!results/tables/demo_presentation_writeback.csv
+!results/tables/demo_presentation_writeback.json
+!results/tables/demo_storyboard_receipt.json
+!results/tables/demo_walkthrough_receipt.json
 !results/tables/demo_walkthrough_review_pass_final_bridge_checklist.csv
 !results/tables/demo_walkthrough_review_pass_final_bridge_checklist.json
 !results/tables/demo_walkthrough_review_pass_status_bridge_checklist.csv
@@ -800,6 +806,7 @@ results/synthetic_overlap_v2/
 !results/figures/demo_walkthrough_review_pass_completion_summary.md
 !results/figures/demo_go_no_go_board.md
 !results/figures/demo_go_no_go_summary.md
+!results/figures/demo_presentation_polish_card.md
 !results/figures/demo_walkthrough_review_pass_completion_summary_bridge_checklist.md
 !results/figures/demo_storyboard_review_pass.md
 !results/figures/demo_storyboard_review_pass_receipt.md
