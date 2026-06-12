@@ -610,6 +610,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/demo_wave22_presentation_writeback.json",
         "next_step": "Run python -m src.demo_wave22_presentation_writeback after Wave22 closure writeback.",
     },
+    {
+        "frontier_id": "wave22_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+        "module_path": "src/wave22_speaker_profile_midoverlap_diagnostic_coordination_writeback.py",
+        "expected_output": "results/tables/wave22_speaker_profile_midoverlap_diagnostic_coordination_writeback.json",
+        "next_step": "Run python -m src.wave22_speaker_profile_midoverlap_diagnostic_coordination_writeback after demo wave22.",
+    },
 ]
 
 
