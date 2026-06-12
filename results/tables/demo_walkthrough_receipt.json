@@ -1,9 +1,9 @@
 [
   {
-    "execution_status": "wave41_presentation_extension_complete",
-    "walkthrough_scope": "wave41_walkthrough_extension",
-    "expected_inputs": "Wave41 exploration+baseline closure card.",
-    "expected_outputs": "Wave41 walkthrough extension under qualitative/demo labeling.",
-    "writeback_note": "Wave41 walkthrough extension recorded; no live demo, recording, or benchmark timing claimed."
+    "execution_status": "wave42_presentation_extension_complete",
+    "walkthrough_scope": "wave42_walkthrough_extension",
+    "expected_inputs": "Wave42 exploration+baseline closure card.",
+    "expected_outputs": "Wave42 walkthrough extension under qualitative/demo labeling.",
+    "writeback_note": "Wave42 walkthrough extension recorded; no live demo, recording, or benchmark timing claimed."
   }
 ]
