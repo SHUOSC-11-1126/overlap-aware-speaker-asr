@@ -1,0 +1,6 @@
+﻿section_id,headline,artifact_anchor,coordination_note,result_label
+wave54_rollup,Wave54 closed: MeetEval official dry-run refresh + demo + exploration closure,results/figures/wave54_exploration_baseline_closure_card.md,experimental/frontier coordination only; gold baseline untouched.,experimental/frontier
+meeteval_coordination,MeetEval official cpWER narrow dry-run refresh coordinated on 5/5 gold boundary,results/figures/wave54_meeteval_official_narrow_dry_run_coordination_card.md,Official benchmark claims still blocked; dry-run coordination only.,experimental/frontier
+demo_wave54,Demo presentation polish extended to 55 sections under qualitative/demo labeling,results/figures/demo_wave54_presentation_writeback.md,No live demo or benchmark timing claims.,qualitative/demo
+frontier_board,Frontier go/no-go board remains all_ready after Wave54 chain,results/tables/frontier_go_no_go_summary.json,Coordination receipts only; no deployable routing claims.,experimental/frontier
+wave55_boundary,LightOverlap speaker-profile diagnostic narrow slice refresh is the next open coordination gate,results/figures/separation_phase_diagram.md,Wave55 closure does not record overlap-case embedding execution sessions.,experimental/frontier

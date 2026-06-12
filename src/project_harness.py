@@ -1192,6 +1192,24 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave54_meeteval_official_narrow_dry_run_coordination_writeback.json",
         "next_step": "Run python -m src.wave54_meeteval_official_narrow_dry_run_coordination_writeback after demo wave54.",
     },
+    {
+        "frontier_id": "wave55_exploration_baseline_closure_writeback",
+        "module_path": "src/wave55_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave55_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave55_exploration_baseline_closure_writeback after Wave54 chain.",
+    },
+    {
+        "frontier_id": "wave55_demo_presentation_writeback",
+        "module_path": "src/demo_wave55_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave55_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave55_presentation_writeback after Wave55 closure writeback.",
+    },
+    {
+        "frontier_id": "wave55_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+        "module_path": "src/wave55_speaker_profile_lightoverlap_diagnostic_coordination_writeback.py",
+        "expected_output": "results/tables/wave55_speaker_profile_lightoverlap_diagnostic_coordination_writeback.json",
+        "next_step": "Run python -m src.wave55_speaker_profile_lightoverlap_diagnostic_coordination_writeback after demo wave55.",
+    },
 ]
 
 
