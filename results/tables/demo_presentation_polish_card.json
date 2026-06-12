@@ -96,5 +96,12 @@
     "artifact_anchor": "results/figures/wave13_exploration_baseline_closure_card.md",
     "presentation_note": "Show Wave13 closure card only; HeavyOverlap diagnostic and LLM critic dry-run remain experimental/frontier — qualitative/demo labeling required.",
     "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave14",
+    "headline": "Wave14 exploration+baseline closure and phase4 gate coordination boundary",
+    "artifact_anchor": "results/figures/wave14_exploration_baseline_closure_card.md",
+    "presentation_note": "Show Wave14 closure card only; phase4 gate and OppositeOverlap diagnostic remain experimental/frontier — qualitative/demo labeling required.",
+    "result_label": "qualitative/demo"
   }
 ]
