@@ -1,8 +1,8 @@
 {
   "scope": "frontier_execution_receipt_fill_execution",
-  "meeteval_fill_execution_status": "awaiting_fill",
-  "speaker_profile_fill_execution_status": "awaiting_fill",
-  "external_staging_fill_execution_status": "awaiting_fill",
-  "combined_fill_execution_status": "fill_execution_ready",
+  "meeteval_fill_execution_status": "fill_complete",
+  "speaker_profile_fill_execution_status": "fill_complete",
+  "external_staging_fill_execution_status": "fill_complete",
+  "combined_fill_execution_status": "fill_execution_complete",
   "status_note": "Unified experimental/frontier receipt-fill execution rollup across MeetEval, speaker profile, and external staging; template-only receipts remain unfilled and no benchmark execution is claimed."
 }
