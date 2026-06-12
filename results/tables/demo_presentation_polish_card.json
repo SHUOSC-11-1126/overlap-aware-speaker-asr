@@ -180,5 +180,12 @@
     "artifact_anchor": "results/figures/wave25_exploration_baseline_closure_card.md",
     "presentation_note": "Show Wave25 closure card only; external validation narrow slice refresh remains external/sanity-check — qualitative/demo labeling required.",
     "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave26",
+    "headline": "Wave26 exploration+baseline closure and MeetEval official dry-run refresh boundary",
+    "artifact_anchor": "results/figures/wave26_exploration_baseline_closure_card.md",
+    "presentation_note": "Show Wave26 closure card only; MeetEval official cpWER narrow dry-run refresh remains experimental/frontier — qualitative/demo labeling required.",
+    "result_label": "qualitative/demo"
   }
 ]
