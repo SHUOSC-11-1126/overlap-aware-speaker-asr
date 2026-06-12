@@ -68,5 +68,12 @@
     "artifact_anchor": "results/figures/wave9_exploration_baseline_closure_card.md",
     "presentation_note": "Show Wave9 closure card only; MidOverlap diagnostics and benchmark phase1 gate remain experimental/frontier — qualitative/demo labeling required.",
     "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave10",
+    "headline": "Wave10 exploration+baseline closure and phase1 gate boundary rollup",
+    "artifact_anchor": "results/figures/wave10_exploration_baseline_closure_card.md",
+    "presentation_note": "Show Wave10 closure card only; MeetEval dry-run and benchmark phase2 gate remain experimental/frontier — qualitative/demo labeling required.",
+    "result_label": "qualitative/demo"
   }
 ]
