@@ -51,6 +51,7 @@ Presentation writeback only — not a live demo or recording claim.
 | frontier_wave44 | Wave44 exploration+baseline closure and MidOverlap diagnostic refresh boundary | results/figures/wave44_exploration_baseline_closure_card.md | qualitative/demo |
 | frontier_wave45 | Wave45 exploration+baseline closure and HeavyOverlap diagnostic refresh boundary | results/figures/wave45_exploration_baseline_closure_card.md | qualitative/demo |
 | frontier_wave46 | Wave46 exploration+baseline closure and OppositeOverlap diagnostic refresh boundary | results/figures/wave46_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave47 | Wave47 exploration+baseline closure and external validation narrow-slice boundary | results/figures/wave47_exploration_baseline_closure_card.md | qualitative/demo |
 
 - **hero**: Lead with the stable gold baseline finding before any frontier claim.
 - **architecture**: Point visitors to the frontier status checklist for module map context.
@@ -99,3 +100,4 @@ Presentation writeback only — not a live demo or recording claim.
 - **frontier_wave44**: Show Wave44 closure card only; MidOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
 - **frontier_wave45**: Show Wave45 closure card only; HeavyOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
 - **frontier_wave46**: Show Wave46 closure card only; OppositeOverlap speaker-profile diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave47**: Show Wave47 closure card only; external validation narrow-slice refresh remains external/sanity-check — qualitative/demo labeling required.
