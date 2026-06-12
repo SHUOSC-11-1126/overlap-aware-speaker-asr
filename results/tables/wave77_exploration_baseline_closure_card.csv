@@ -1,0 +1,6 @@
+﻿section_id,headline,artifact_anchor,coordination_note,result_label
+wave76_rollup,Wave76 closed: OppositeOverlap diagnostic refresh + demo + exploration closure,results/figures/wave76_exploration_baseline_closure_card.md,experimental/frontier coordination only; gold baseline untouched.,experimental/frontier
+oppositeoverlap_coordination,OppositeOverlap coordination refresh coordinated after Wave76 closure,results/figures/wave76_speaker_profile_oppositeoverlap_diagnostic_coordination_card.md,Diagnostic scope only; attribution claims still blocked.,experimental/frontier
+demo_wave76,Demo presentation polish extended to 77 sections under qualitative/demo labeling,results/figures/demo_wave76_presentation_writeback.md,No live demo or benchmark timing claims.,qualitative/demo
+frontier_board,Frontier go/no-go board remains all_ready after Wave76 chain,results/tables/frontier_go_no_go_summary.json,Coordination receipts only; no deployable routing claims.,experimental/frontier
+wave77_boundary,External validation narrow-slice coordination refresh is the next open coordination gate,results/figures/external_validation_license_confirmation.md,Wave77 closure does not record external benchmark execution sessions.,experimental/frontier
