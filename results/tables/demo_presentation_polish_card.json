@@ -103,5 +103,12 @@
     "artifact_anchor": "results/figures/wave14_exploration_baseline_closure_card.md",
     "presentation_note": "Show Wave14 closure card only; phase4 gate and OppositeOverlap diagnostic remain experimental/frontier — qualitative/demo labeling required.",
     "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave15",
+    "headline": "Wave15 exploration+baseline closure and phase5 gate coordination boundary",
+    "artifact_anchor": "results/figures/wave15_exploration_baseline_closure_card.md",
+    "presentation_note": "Show Wave15 closure card only; phase5 gate and MeetEval official dry-run remain experimental/frontier — qualitative/demo labeling required.",
+    "result_label": "qualitative/demo"
   }
 ]
