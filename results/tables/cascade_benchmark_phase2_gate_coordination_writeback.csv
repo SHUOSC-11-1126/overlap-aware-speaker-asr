@@ -1,0 +1,2 @@
+﻿fill_status,writeback_scope,coordination_section_count,phase2_gate_id,execution_receipt_status,blocker,fill_note
+writeback_filled,cascade_benchmark_phase2_gate_coordination_card,4,phase2_synthetic_runtime_foundation,cascade_benchmark_phase2_gate_coordination_complete,controlled_benchmark_timing_pending,Filled phase2 gate coordination card after Wave10 MeetEval coordination; synthetic-split controlled timing not executed.

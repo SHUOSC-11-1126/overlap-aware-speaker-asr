@@ -69,6 +69,12 @@ class FrontierGoNoGoBoardTest(unittest.TestCase):
             "go",
         )
 
+    def test_classify_go_no_go_state_marks_phase2_gate_coordination_complete_as_go(self) -> None:
+        self.assertEqual(
+            classify_go_no_go_state("cascade_benchmark_phase2_gate_coordination_complete"),
+            "go",
+        )
+
     def test_build_summary_row_uses_queue_priority(self) -> None:
         rows = [
             {"frontier_name": "demo_excellence", "go_no_go_state": "go"},
