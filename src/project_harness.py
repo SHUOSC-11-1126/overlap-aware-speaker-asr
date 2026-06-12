@@ -2398,6 +2398,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave121_speaker_profile_lightoverlap_diagnostic_coordination_writeback.json",
         "next_step": "Run python -m src.wave121_speaker_profile_lightoverlap_diagnostic_coordination_writeback after demo wave121.",
     },
+    {
+        "frontier_id": "wave122_exploration_baseline_closure_writeback",
+        "module_path": "src/wave122_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave122_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave122_exploration_baseline_closure_writeback after Wave121 chain.",
+    },
 ]
 
 
