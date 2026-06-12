@@ -1,0 +1,37 @@
+[
+  {
+    "section_id": "wave7_rollup",
+    "headline": "Wave7 closed: speaker case-scope + manifest + demo + exploration closure",
+    "artifact_anchor": "results/figures/wave7_exploration_baseline_closure_card.md",
+    "coordination_note": "experimental/frontier coordination only; gold baseline untouched.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "speaker_profile_case_scope",
+    "headline": "NoOverlap diagnostic complete; LightOverlap/MidOverlap remain candidates",
+    "artifact_anchor": "results/figures/speaker_profile_case_scope_coordination_card.md",
+    "coordination_note": "Attribution claims still blocked; overlap cases diagnostic-only.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "cascade_manifest_boundary",
+    "headline": "Benchmark manifest template coordinated; controlled timing not executed",
+    "artifact_anchor": "results/figures/cascade_benchmark_manifest_coordination_card.md",
+    "coordination_note": "Manifest fields remain TODO; repo_local_runtime_only boundary preserved.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "frontier_all_ready",
+    "headline": "Five-track frontier board remains 5/5 go",
+    "artifact_anchor": "results/tables/frontier_go_no_go_summary.json",
+    "coordination_note": "Coordination rollup; does not claim frontier execution completion.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "wave8_boundary",
+    "headline": "Controlled cascade benchmark timing remains the primary open experimental gate",
+    "artifact_anchor": "results/tables/cascade_benchmark_manifest_template.csv",
+    "coordination_note": "Wave8 closure does not record controlled hardware benchmark sessions.",
+    "result_label": "experimental/frontier"
+  }
+]
