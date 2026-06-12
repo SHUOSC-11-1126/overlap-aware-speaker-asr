@@ -116,6 +116,8 @@ def classify_go_no_go_state(current_state: str) -> str:
         "wave50_exploration_baseline_closure_complete",
         "wave51_exploration_baseline_closure_complete",
         "wave52_exploration_baseline_closure_complete",
+        "wave53_exploration_baseline_closure_complete",
+        "wave53_external_validation_narrow_slice_coordination_complete",
         "wave19_speaker_profile_oppositeoverlap_diagnostic_coordination_complete",
         "wave24_speaker_profile_oppositeoverlap_diagnostic_coordination_complete",
         "wave46_speaker_profile_oppositeoverlap_diagnostic_coordination_complete",
