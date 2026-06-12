@@ -1,0 +1,10 @@
+{
+  "fill_status": "writeback_filled",
+  "writeback_scope": "speaker_profile_heavyoverlap_diagnostic_coordination_card",
+  "coordination_section_count": "4",
+  "diagnostic_case_scope": "HeavyOverlap",
+  "candidate_case_scope": "OppositeOverlap",
+  "execution_receipt_status": "speaker_profile_heavyoverlap_diagnostic_coordination_complete",
+  "blocker": "attribution_claims_still_blocked",
+  "fill_note": "Documented HeavyOverlap as separation-benefit diagnostic scope after MidOverlap coordination; no overlap-case embedding execution claimed."
+}
