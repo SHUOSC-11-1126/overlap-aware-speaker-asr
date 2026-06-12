@@ -472,6 +472,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave15_llm_critic_narrow_dry_run_coordination_writeback.json",
         "next_step": "Run python -m src.wave15_llm_critic_narrow_dry_run_coordination_writeback after external validation coordination.",
     },
+    {
+        "frontier_id": "wave16_exploration_baseline_closure_writeback",
+        "module_path": "src/wave16_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave16_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave16_exploration_baseline_closure_writeback after Wave15 chain.",
+    },
 ]
 
 
@@ -586,6 +592,8 @@ def frontier_priority(frontier_id: str) -> int:
         return 73
     if frontier_id.startswith("wave15_"):
         return 74
+    if frontier_id.startswith("wave16_"):
+        return 75
     priority_order = {
         "meeteval_compatibility": 1,
         "external_validation": 2,
