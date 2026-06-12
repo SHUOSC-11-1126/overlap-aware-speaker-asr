@@ -61,5 +61,12 @@
     "artifact_anchor": "results/figures/wave8_exploration_baseline_closure_card.md",
     "presentation_note": "Show Wave8 closure card only; speaker overlap diagnostics and benchmark timing remain experimental/frontier — qualitative/demo labeling required.",
     "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave9",
+    "headline": "Wave9 exploration+baseline closure and evidence receipt boundary rollup",
+    "artifact_anchor": "results/figures/wave9_exploration_baseline_closure_card.md",
+    "presentation_note": "Show Wave9 closure card only; MidOverlap diagnostics and benchmark phase1 gate remain experimental/frontier — qualitative/demo labeling required.",
+    "result_label": "qualitative/demo"
   }
 ]

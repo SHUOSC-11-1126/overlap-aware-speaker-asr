@@ -13,6 +13,7 @@ Presentation writeback only — not a live demo or recording claim.
 | frontier_wave6 | Wave6 closure + cascade benchmark timing boundary | results/figures/wave6_frontier_coordination_closure_card.md | qualitative/demo |
 | frontier_wave7 | Wave7 exploration+baseline closure and next frontier gates | results/figures/wave7_exploration_baseline_closure_card.md | qualitative/demo |
 | frontier_wave8 | Wave8 exploration+baseline closure and manifest boundary rollup | results/figures/wave8_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave9 | Wave9 exploration+baseline closure and evidence receipt boundary rollup | results/figures/wave9_exploration_baseline_closure_card.md | qualitative/demo |
 
 - **hero**: Lead with the stable gold baseline finding before any frontier claim.
 - **architecture**: Point visitors to the frontier status checklist for module map context.
@@ -23,3 +24,4 @@ Presentation writeback only — not a live demo or recording claim.
 - **frontier_wave6**: Show Wave6 closure and benchmark readiness cards only; controlled timing remains blocked — qualitative/demo labeling required.
 - **frontier_wave7**: Show Wave7 closure card only; speaker profile and benchmark timing remain experimental/frontier — qualitative/demo labeling required.
 - **frontier_wave8**: Show Wave8 closure card only; speaker overlap diagnostics and benchmark timing remain experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave9**: Show Wave9 closure card only; MidOverlap diagnostics and benchmark phase1 gate remain experimental/frontier — qualitative/demo labeling required.
