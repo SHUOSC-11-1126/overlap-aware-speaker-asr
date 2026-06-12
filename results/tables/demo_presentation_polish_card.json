@@ -222,5 +222,12 @@
     "artifact_anchor": "results/figures/wave31_exploration_baseline_closure_card.md",
     "presentation_note": "Show Wave31 closure card only; LightOverlap diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.",
     "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave32",
+    "headline": "Wave32 exploration+baseline closure and MidOverlap diagnostic refresh boundary",
+    "artifact_anchor": "results/figures/wave32_exploration_baseline_closure_card.md",
+    "presentation_note": "Show Wave32 closure card only; MidOverlap diagnostic refresh remains experimental/frontier — qualitative/demo labeling required.",
+    "result_label": "qualitative/demo"
   }
 ]
