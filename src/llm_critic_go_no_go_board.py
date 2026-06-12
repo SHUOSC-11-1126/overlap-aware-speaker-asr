@@ -63,7 +63,7 @@ def build_checkpoint_rows() -> list[dict[str, str]]:
     qualitative_status = "review_complete" if qualitative_rows else "missing"
     queue_status = "queue_complete" if queue_rows else "missing"
     if isinstance(status, list):
-        completed_flags = [str(row.get("review_status", "")) == "review_complete" for row in status if isinstance(row, dict)]
+        completed_flags = [str(row.get("pass_status", "")) == "review_complete" for row in status if isinstance(row, dict)]
         status_queue = "queue_complete" if completed_flags and all(completed_flags) else "queue_in_progress"
     else:
         status_queue = str((status if isinstance(status, dict) else {}).get("queue_status", ""))
