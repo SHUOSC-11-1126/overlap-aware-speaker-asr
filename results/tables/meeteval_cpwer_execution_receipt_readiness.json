@@ -2,8 +2,8 @@
   "scope": "meeteval_cpwer_execution_receipt",
   "case_id": "NoOverlap",
   "execution_chain_status": "execution_chain_ready",
-  "receipt_template_status": "template_only",
+  "receipt_template_status": "character_level_cpwer_receipt_fill_complete",
   "preflight_pass": "True",
-  "readiness_status": "receipt_ready_to_fill",
+  "readiness_status": "character_level_receipt_fill_complete",
   "readiness_note": "experimental/frontier receipt readiness for one verified gold case; official MeetEval cpWER evaluation is not claimed."
 }
