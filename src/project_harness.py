@@ -1732,6 +1732,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave84_meeteval_official_narrow_dry_run_coordination_writeback.json",
         "next_step": "Run python -m src.wave84_meeteval_official_narrow_dry_run_coordination_writeback after demo wave84.",
     },
+    {
+        "frontier_id": "wave85_exploration_baseline_closure_writeback",
+        "module_path": "src/wave85_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave85_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave85_exploration_baseline_closure_writeback after Wave84 chain.",
+    },
 ]
 
 
