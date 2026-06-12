@@ -1307,6 +1307,11 @@ results/synthetic_overlap_v2/
 !results/tables/wave118_exploration_baseline_closure_writeback.csv
 !results/tables/wave118_exploration_baseline_closure_writeback.json
 !results/tables/wave118_exploration_baseline_closure_receipt.json
+!results/tables/wave119_exploration_baseline_closure_card.csv
+!results/tables/wave119_exploration_baseline_closure_card.json
+!results/tables/wave119_exploration_baseline_closure_writeback.csv
+!results/tables/wave119_exploration_baseline_closure_writeback.json
+!results/tables/wave119_exploration_baseline_closure_receipt.json
 !results/tables/wave109_exploration_baseline_closure_card.csv
 !results/tables/wave109_exploration_baseline_closure_card.json
 !results/tables/wave109_exploration_baseline_closure_writeback.csv
@@ -2643,6 +2648,9 @@ results/synthetic_overlap_v2/
 !results/figures/wave118_exploration_baseline_closure_card.md
 !results/figures/wave118_exploration_baseline_closure_receipt.md
 !results/figures/wave118_exploration_baseline_closure_writeback.md
+!results/figures/wave119_exploration_baseline_closure_card.md
+!results/figures/wave119_exploration_baseline_closure_receipt.md
+!results/figures/wave119_exploration_baseline_closure_writeback.md
 !results/figures/wave106_exploration_baseline_closure_card.md
 !results/figures/wave106_exploration_baseline_closure_receipt.md
 !results/figures/wave106_exploration_baseline_closure_writeback.md
