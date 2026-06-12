@@ -108,8 +108,19 @@ def build_summary_row(rows: list[dict[str, str]]) -> dict[str, str]:
     no_go_count = len(rows) - go_count
     case_scope = rows[0]["case_scope"] if rows else "NoOverlap"
 
+    lightoverlap_receipt_path = (
+        PROJECT_ROOT / "results/tables/speaker_profile_lightoverlap_diagnostic_coordination_receipt.json"
+    )
     case_scope_receipt_path = PROJECT_ROOT / "results/tables/speaker_profile_case_scope_coordination_receipt.json"
+    lightoverlap_complete = False
     case_scope_complete = False
+    if lightoverlap_receipt_path.exists():
+        payload = json.loads(lightoverlap_receipt_path.read_text(encoding="utf-8"))
+        if isinstance(payload, dict):
+            lightoverlap_complete = (
+                str(payload.get("execution_status", ""))
+                == "speaker_profile_lightoverlap_diagnostic_coordination_complete"
+            )
     if case_scope_receipt_path.exists():
         payload = json.loads(case_scope_receipt_path.read_text(encoding="utf-8"))
         if isinstance(payload, dict):
@@ -117,7 +128,12 @@ def build_summary_row(rows: list[dict[str, str]]) -> dict[str, str]:
                 str(payload.get("execution_status", "")) == "speaker_profile_case_scope_coordination_complete"
             )
 
-    if rows and go_count == len(rows) and case_scope_complete:
+    if rows and go_count == len(rows) and lightoverlap_complete:
+        overall_state = "speaker_profile_lightoverlap_diagnostic_coordination_complete"
+        recommended_next_action = (
+            "LightOverlap diagnostic scope coordinated; MidOverlap remains deferred diagnostic candidate only."
+        )
+    elif rows and go_count == len(rows) and case_scope_complete:
         overall_state = "speaker_profile_case_scope_coordination_complete"
         recommended_next_action = (
             "Case-scope coordination documented; LightOverlap/MidOverlap remain diagnostic candidates only."

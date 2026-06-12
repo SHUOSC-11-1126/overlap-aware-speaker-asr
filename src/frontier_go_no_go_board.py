@@ -62,6 +62,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "wave7_exploration_baseline_closure_complete",
         "wave8_exploration_baseline_closure_complete",
         "speaker_profile_case_scope_coordination_complete",
+        "speaker_profile_lightoverlap_diagnostic_coordination_complete",
         "ready_for_narrow_audio_eval",
     }
     if lowered in ready_markers:
