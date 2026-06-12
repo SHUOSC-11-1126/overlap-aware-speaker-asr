@@ -373,6 +373,10 @@ results/synthetic_overlap_v2/
 !results/tables/external_validation_narrow_audio_eval.json
 !results/tables/external_validation_narrow_audio_eval_summary.csv
 !results/tables/external_validation_narrow_audio_eval_summary.json
+!results/tables/external_validation_narrow_audio_eval_receipt.csv
+!results/tables/external_validation_narrow_audio_eval_receipt.json
+!results/tables/external_validation_narrow_audio_eval_receipt_writeup.csv
+!results/tables/external_validation_narrow_audio_eval_receipt_writeup.json
 !results/tables/frontier_status_checklist.csv
 !results/tables/frontier_status_checklist.json
 !results/tables/frontier_execution_queue_checklist.csv
@@ -949,6 +953,7 @@ results/synthetic_overlap_v2/
 !results/figures/external_validation_go_no_go_board.md
 !results/figures/external_validation_go_no_go_summary.md
 !results/figures/external_validation_narrow_audio_eval.md
+!results/figures/external_validation_narrow_audio_eval_receipt.md
 !results/figures/frontier_status_checklist.md
 !results/figures/frontier_execution_queue_checklist.md
 !results/figures/frontier_focus_card_checklist.md

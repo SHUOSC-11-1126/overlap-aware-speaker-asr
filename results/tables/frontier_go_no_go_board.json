@@ -9,10 +9,10 @@
   },
   {
     "frontier_name": "external_validation",
-    "current_state": "blocked_by_license_confirmation",
-    "primary_boundary": "license_confirmation_pending",
-    "go_no_go_state": "no_go",
-    "recommended_next_action": "Record and write back the license confirmation decision before any external staging attempt.",
+    "current_state": "ready_for_narrow_audio_eval",
+    "primary_boundary": "none_documented",
+    "go_no_go_state": "go",
+    "recommended_next_action": "All checkpoints green; run narrow external/sanity-check ASR eval without claiming gold results.",
     "evidence_artifact": "results/figures/external_validation_go_no_go_summary.md"
   },
   {

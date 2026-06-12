@@ -190,6 +190,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/external_validation_narrow_audio_eval.json",
         "next_step": "Run python -m src.external_validation_narrow_audio_eval after execution receipt fill.",
     },
+    {
+        "frontier_id": "wave3_external_validation_narrow_audio_eval_receipt",
+        "module_path": "src/external_validation_narrow_audio_eval_receipt.py",
+        "expected_output": "results/tables/external_validation_narrow_audio_eval_receipt.json",
+        "next_step": "Run python -m src.external_validation_narrow_audio_eval_receipt after narrow ASR eval.",
+    },
 ]
 
 
