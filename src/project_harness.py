@@ -1138,6 +1138,24 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave51_speaker_profile_heavyoverlap_diagnostic_coordination_writeback.json",
         "next_step": "Run python -m src.wave51_speaker_profile_heavyoverlap_diagnostic_coordination_writeback after demo wave51.",
     },
+    {
+        "frontier_id": "wave52_exploration_baseline_closure_writeback",
+        "module_path": "src/wave52_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave52_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave52_exploration_baseline_closure_writeback after Wave51 chain.",
+    },
+    {
+        "frontier_id": "wave52_demo_presentation_writeback",
+        "module_path": "src/demo_wave52_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave52_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave52_presentation_writeback after Wave52 closure writeback.",
+    },
+    {
+        "frontier_id": "wave52_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+        "module_path": "src/wave52_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback.py",
+        "expected_output": "results/tables/wave52_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback.json",
+        "next_step": "Run python -m src.wave52_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback after demo wave52.",
+    },
 ]
 
 
