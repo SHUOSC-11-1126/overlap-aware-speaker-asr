@@ -1,0 +1,30 @@
+[
+  {
+    "section_id": "phase1_gold_gate",
+    "headline": "phase1_gold_runtime_foundation is the controlled-timing entry gate",
+    "artifact_anchor": "results/tables/cascade_benchmark_manifest_template.csv",
+    "coordination_note": "Manifest hardware_label/device fields remain TODO; not executed.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "evidence_receipt_link",
+    "headline": "Evidence receipt scaffold aligns with phase1 capture metadata",
+    "artifact_anchor": "results/tables/cascade_benchmark_evidence_receipt.json",
+    "coordination_note": "collect_controlled_runtime action documented; no session fill claimed.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "wave9_rollup",
+    "headline": "Wave9 speaker diagnostic chain complete before benchmark gate",
+    "artifact_anchor": "results/figures/speaker_profile_midoverlap_diagnostic_coordination_card.md",
+    "coordination_note": "Diagnostic coordination only; gold CER tables unchanged.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "deployment_boundary",
+    "headline": "Controlled timing required before any deployment runtime claims",
+    "artifact_anchor": "results/figures/cascade_benchmark_readiness_coordination_card.md",
+    "coordination_note": "repo_local_runtime_only boundary preserved for README and demo.",
+    "result_label": "qualitative/demo"
+  }
+]

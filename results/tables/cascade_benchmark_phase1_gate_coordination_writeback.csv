@@ -1,0 +1,2 @@
+﻿fill_status,writeback_scope,coordination_section_count,phase1_gate_id,execution_receipt_status,blocker,fill_note
+writeback_filled,cascade_benchmark_phase1_gate_coordination_card,4,phase1_gold_runtime_foundation,cascade_benchmark_phase1_gate_coordination_complete,controlled_benchmark_timing_pending,Filled phase1 gate coordination card after Wave9 MidOverlap diagnostic chain; controlled hardware timing not executed.
