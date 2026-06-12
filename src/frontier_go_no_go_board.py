@@ -54,6 +54,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "presentation_writeback_ready",
         "presentation_polish_complete",
         "character_level_receipt_fill_complete",
+        "presentation_wave5_extension_complete",
         "ready_for_narrow_audio_eval",
     }
     if lowered in ready_markers:

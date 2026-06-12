@@ -39,7 +39,12 @@ def load_json_payload(path_rel: str) -> dict | list:
 
 def classify_go_no_go_state(current_status: str) -> str:
     lowered = current_status.strip().lower()
-    if lowered in {"queue_complete", "review_complete", "presentation_writeback_complete"}:
+    if lowered in {
+        "queue_complete",
+        "review_complete",
+        "presentation_writeback_complete",
+        "wave5_presentation_extension_complete",
+    }:
         return "go"
     return "no_go"
 
@@ -123,7 +128,14 @@ def build_checkpoint_rows() -> list[dict[str, str]]:
 def build_summary_row(rows: list[dict[str, str]]) -> dict[str, str]:
     go_count = sum(1 for row in rows if row.get("go_no_go_state") == "go")
     no_go_count = len(rows) - go_count
-    if no_go_count == 0:
+    receipt_statuses = {row.get("current_status", "") for row in rows if row.get("checkpoint_name", "").endswith("_receipt")}
+    if no_go_count == 0 and "wave5_presentation_extension_complete" in receipt_statuses:
+        overall_state = "presentation_wave5_extension_complete"
+        recommended_next_action = (
+            "Wave5 presentation extension complete; README/UI refresh remains qualitative/demo only."
+        )
+        primary_boundary = "none_documented"
+    elif no_go_count == 0:
         overall_state = "presentation_polish_complete"
         recommended_next_action = (
             "Presentation writeback complete; any README or UI refresh remains qualitative/demo and must not claim live delivery."

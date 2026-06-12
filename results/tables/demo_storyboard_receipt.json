@@ -1,9 +1,9 @@
 [
   {
-    "execution_status": "presentation_writeback_complete",
-    "storyboard_scope": "full_storyboard_queue",
-    "expected_inputs": "Completed storyboard review queue and presentation polish card.",
-    "expected_outputs": "Narrow storyboard narrative writeback under qualitative/demo labeling.",
-    "writeback_note": "Storyboard presentation writeback recorded; no live demo, recording, or public launch claimed."
+    "execution_status": "wave5_presentation_extension_complete",
+    "storyboard_scope": "wave5_storyboard_extension",
+    "expected_inputs": "Wave5 coordination cards and completed base presentation polish.",
+    "expected_outputs": "Wave5 storyboard extension under qualitative/demo labeling.",
+    "writeback_note": "Wave5 storyboard extension recorded; no live demo, recording, or public launch claimed."
   }
 ]
