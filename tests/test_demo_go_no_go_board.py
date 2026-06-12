@@ -15,6 +15,9 @@ class DemoGoNoGoBoardTest(unittest.TestCase):
     def test_classify_go_no_go_state_marks_presentation_writeback_complete_as_go(self) -> None:
         self.assertEqual(classify_go_no_go_state("presentation_writeback_complete"), "go")
 
+    def test_classify_go_no_go_state_marks_wave5_presentation_extension_complete_as_go(self) -> None:
+        self.assertEqual(classify_go_no_go_state("wave5_presentation_extension_complete"), "go")
+
     def test_build_summary_row_marks_presentation_writeback_ready(self) -> None:
         rows = [
             {"go_no_go_state": "go"},
