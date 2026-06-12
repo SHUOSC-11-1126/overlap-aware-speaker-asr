@@ -376,6 +376,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/cascade_benchmark_phase3_gate_coordination_writeback.json",
         "next_step": "Run python -m src.cascade_benchmark_phase3_gate_coordination_writeback after external validation coordination.",
     },
+    {
+        "frontier_id": "wave12_exploration_baseline_closure_writeback",
+        "module_path": "src/wave12_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave12_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave12_exploration_baseline_closure_writeback after Wave11 chain.",
+    },
 ]
 
 
@@ -482,6 +488,8 @@ def frontier_priority(frontier_id: str) -> int:
         return 69
     if frontier_id.startswith("wave11_"):
         return 70
+    if frontier_id.startswith("wave12_"):
+        return 71
     priority_order = {
         "meeteval_compatibility": 1,
         "external_validation": 2,
