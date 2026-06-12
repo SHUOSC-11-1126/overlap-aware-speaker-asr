@@ -61,6 +61,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "wave6_coordination_closure_complete",
         "wave7_exploration_baseline_closure_complete",
         "wave8_exploration_baseline_closure_complete",
+        "wave9_exploration_baseline_closure_complete",
         "speaker_profile_case_scope_coordination_complete",
         "speaker_profile_lightoverlap_diagnostic_coordination_complete",
         "cascade_benchmark_evidence_receipt_coordination_complete",
