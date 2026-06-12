@@ -131,5 +131,12 @@
     "artifact_anchor": "results/figures/wave18_exploration_baseline_closure_card.md",
     "presentation_note": "Show Wave18 closure card only; HeavyOverlap diagnostic and LLM critic dry-run remain experimental/frontier — qualitative/demo labeling required.",
     "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave19",
+    "headline": "Wave19 exploration+baseline closure and OppositeOverlap diagnostic refresh boundary",
+    "artifact_anchor": "results/figures/wave19_exploration_baseline_closure_card.md",
+    "presentation_note": "Show Wave19 closure card only; OppositeOverlap diagnostic and external validation refresh remain experimental/frontier — qualitative/demo labeling required.",
+    "result_label": "qualitative/demo"
   }
 ]
