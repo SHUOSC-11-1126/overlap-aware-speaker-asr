@@ -304,6 +304,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/cascade_benchmark_evidence_receipt_coordination_writeback.json",
         "next_step": "Run python -m src.cascade_benchmark_evidence_receipt_coordination_writeback after LightOverlap coordination.",
     },
+    {
+        "frontier_id": "wave9_exploration_baseline_closure_writeback",
+        "module_path": "src/wave9_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave9_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave9_exploration_baseline_closure_writeback after Wave8 chain.",
+    },
 ]
 
 
@@ -404,6 +410,8 @@ def frontier_priority(frontier_id: str) -> int:
         return 66
     if frontier_id.startswith("wave8_"):
         return 67
+    if frontier_id.startswith("wave9_"):
+        return 68
     priority_order = {
         "meeteval_compatibility": 1,
         "external_validation": 2,
