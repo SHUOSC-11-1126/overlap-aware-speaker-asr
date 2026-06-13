@@ -1,0 +1,37 @@
+[
+  {
+    "section_id": "official_dry_run",
+    "headline": "Official MeetEval cpWER narrow dry-run remains complete on 5/5 gold cases",
+    "artifact_anchor": "results/tables/meeteval_cpwer_official_execution.json",
+    "coordination_note": "experimental/frontier dry-run only; not a full external benchmark claim.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "bridge_checklist",
+    "headline": "Official execution bridge checklist documents per-case handoff boundaries",
+    "artifact_anchor": "results/tables/meeteval_cpwer_official_execution_bridge_checklist.json",
+    "coordination_note": "Bridge checklist complete; official benchmark completion still blocked.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "wave144_prior_coordination",
+    "headline": "Wave144 official MeetEval narrow dry-run refresh remains the prerequisite chain",
+    "artifact_anchor": "results/figures/wave144_meeteval_official_narrow_dry_run_coordination_card.md",
+    "coordination_note": "Wave150 refresh does not replace Wave144 official MeetEval boundary documentation.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "character_level_refresh",
+    "headline": "Wave17 character-level MeetEval narrow dry-run refresh precedes official refresh",
+    "artifact_anchor": "results/figures/wave17_meeteval_cpwer_narrow_dry_run_coordination_card.md",
+    "coordination_note": "Character-level coordination provides prerequisite chain for official refresh.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "wave150_boundary",
+    "headline": "Wave150 closure keeps official MeetEval coordination separate from gold baseline CER",
+    "artifact_anchor": "results/figures/wave150_exploration_baseline_closure_card.md",
+    "coordination_note": "Coordination writeback only; stable gold CER tables unchanged.",
+    "result_label": "experimental/frontier"
+  }
+]
