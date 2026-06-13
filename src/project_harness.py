@@ -3035,10 +3035,10 @@ WAVE_FRONTIER_MODULES = [
         "next_step": "Run python -m src.wave159_exploration_baseline_closure_writeback after Wave158 MidOverlap chain.",
     },
     {
-        "frontier_id": "wave158_demo_presentation_writeback",
-        "module_path": "src/demo_wave158_presentation_writeback.py",
-        "expected_output": "results/tables/demo_wave158_presentation_writeback.json",
-        "next_step": "Run python -m src.demo_wave158_presentation_writeback after Wave158 closure writeback.",
+        "frontier_id": "wave159_demo_presentation_writeback",
+        "module_path": "src/demo_wave159_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave159_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave159_presentation_writeback after Wave159 closure writeback.",
     },
     {
         "frontier_id": "wave158_speaker_profile_midoverlap_diagnostic_coordination_writeback",
