@@ -1568,7 +1568,7 @@ def compute_method_cost(method: str, runtime_row: dict[str, Any]) -> float:
     }.get(method)
     if runtime_field:
         observed = to_float(runtime_row.get(runtime_field))
-        if observed > 0:
+        if observed is not None and observed > 0:
             return observed
     return DEFAULT_COST_PROXY.get(method, DEFAULT_COST_PROXY["manual_review"])
 
@@ -1581,7 +1581,8 @@ def has_observed_runtime(method: str, runtime_row: dict[str, Any]) -> bool:
     }.get(method)
     if not runtime_field:
         return False
-    return to_float(runtime_row.get(runtime_field)) > 0
+    value = to_float(runtime_row.get(runtime_field))
+    return value is not None and value > 0
 
 
 def choose_budget_cascade_method(overlap_level: int, risk_level: str) -> str:

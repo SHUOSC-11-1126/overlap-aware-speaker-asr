@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import PROJECT_ROOT, load_config
+from .io_helpers import to_float
 
 
 RECONCILIATION_COLUMNS = [
@@ -35,17 +36,6 @@ def read_csv_rows(path: Path) -> list[dict[str, Any]]:
     with path.open("r", encoding="utf-8-sig", newline="") as handle:
         return list(csv.DictReader(handle))
 
-
-def to_float(value: Any) -> float | None:
-    if value is None:
-        return None
-    text = str(value).strip()
-    if not text:
-        return None
-    try:
-        return float(text)
-    except ValueError:
-        return None
 
 
 def build_cer_lookup() -> dict[tuple[str, str], float]:

@@ -8,7 +8,7 @@ from typing import Any
 import numpy as np
 
 from .config import PROJECT_ROOT
-from .io_helpers import read_csv_rows
+from .io_helpers import read_csv_rows, to_float
 
 
 CSV_COLUMNS = [
@@ -23,12 +23,6 @@ PERFORMANCE_COLUMNS = [
     "average_cer",
     "delta_vs_baseline",
 ]
-def to_float(value: Any) -> float:
-    try:
-        return float(str(value).strip())
-    except Exception:
-        return 0.0
-
 
 def compute_feature_importance() -> list[dict[str, Any]]:
     """Compute feature importance based on router ablation study."""

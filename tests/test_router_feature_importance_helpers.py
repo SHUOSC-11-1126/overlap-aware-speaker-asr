@@ -12,7 +12,7 @@ class RouterFeatureImportanceHelpersTest(unittest.TestCase):
         self.assertAlmostEqual(to_float(" 1.25 "), 1.25)
 
     def test_to_float_returns_zero_for_invalid_values(self) -> None:
-        self.assertEqual(to_float("not-a-number"), 0.0)
+        self.assertIsNone(to_float("not-a-number"))
 
     def test_read_csv_rows_loads_dict_rows(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

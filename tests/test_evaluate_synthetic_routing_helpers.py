@@ -29,7 +29,7 @@ class EvaluateSyntheticRoutingHelpersTest(unittest.TestCase):
     def test_to_float_and_to_int_parse_numeric_strings(self) -> None:
         self.assertEqual(to_float("0.5"), 0.5)
         self.assertEqual(to_int("3"), 3)
-        self.assertEqual(to_float("bad"), 0.0)
+        self.assertIsNone(to_float("bad"))
         self.assertEqual(to_int("bad"), 0)
 
     def test_selected_method_v1_delegates_to_router_v1(self) -> None:

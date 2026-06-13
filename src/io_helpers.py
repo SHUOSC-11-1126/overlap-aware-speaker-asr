@@ -13,11 +13,16 @@ def to_int(value: Any) -> int:
         return 0
 
 
-def to_float(value: Any) -> float:
+def to_float(value: Any) -> float | None:
+    if value is None:
+        return None
+    text = str(value).strip()
+    if not text:
+        return None
     try:
-        return float(str(value).strip())
-    except Exception:
-        return 0.0
+        return float(text)
+    except ValueError:
+        return None
 
 
 def read_csv_rows(path: Path, project_root: Path | None = None) -> list[dict[str, Any]]:
@@ -78,6 +83,13 @@ def build_fill_lines(row: dict[str, str], title: str) -> list[str]:
             f"{row['execution_receipt_status']} | {row['blocker']} |"
         ),
     ]
+
+
+def read_json(path: Path, project_root: Path | None = None) -> Any:
+    if not path.exists():
+        ref = path.relative_to(project_root) if project_root else path
+        raise FileNotFoundError(f"Missing file: {ref}")
+    return json.loads(path.read_text(encoding="utf-8-sig"))
 
 
 def load_json_dict(path_rel: str, project_root: Path | None = None) -> dict[str, Any]:
