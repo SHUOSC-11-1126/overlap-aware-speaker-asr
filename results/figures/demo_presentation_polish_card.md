@@ -135,6 +135,7 @@ Presentation writeback only — not a live demo or recording claim.
 | frontier_wave128 | Wave128 exploration+baseline closure after Wave127 LightOverlap chain boundary | results/figures/wave128_exploration_baseline_closure_card.md | qualitative/demo |
 | frontier_wave129 | Wave129 exploration+baseline closure after Wave128 MidOverlap chain boundary | results/figures/wave129_exploration_baseline_closure_card.md | qualitative/demo |
 | frontier_wave130 | Wave130 exploration+baseline closure after Wave129 HeavyOverlap chain boundary | results/figures/wave130_exploration_baseline_closure_card.md | qualitative/demo |
+| frontier_wave131 | Wave131 exploration+baseline closure after Wave130 OppositeOverlap chain boundary | results/figures/wave131_exploration_baseline_closure_card.md | qualitative/demo |
 
 - **hero**: Lead with the stable gold baseline finding before any frontier claim.
 - **architecture**: Point visitors to the frontier status checklist for module map context.
@@ -267,3 +268,4 @@ Presentation writeback only — not a live demo or recording claim.
 - **frontier_wave128**: Show Wave81 closure card only; LightOverlap diagnostic coordination refresh remains experimental/frontier — qualitative/demo labeling required.
 - **frontier_wave129**: Show Wave81 closure card only; MidOverlap diagnostic coordination refresh remains experimental/frontier — qualitative/demo labeling required.
 - **frontier_wave130**: Show Wave81 closure card only; HeavyOverlap diagnostic coordination refresh remains experimental/frontier — qualitative/demo labeling required.
+- **frontier_wave131**: Show Wave81 closure card only; OppositeOverlap diagnostic coordination refresh remains experimental/frontier — qualitative/demo labeling required.
