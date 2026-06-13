@@ -15,6 +15,7 @@ from .evaluate_cer import (
     load_json,
     load_reference,
     normalize_text,
+    repetition_count_from_text,
 )
 
 
@@ -44,24 +45,7 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def repeat_phrase_count(text: str) -> int:
-    normalized = normalize_text(text)
-    if not normalized:
-        return 0
-    count = 0
-    for size in range(4, 13):
-        i = 0
-        while i + 2 * size <= len(normalized):
-            chunk = normalized[i : i + size]
-            run = 1
-            while normalized[i + run * size : i + (run + 1) * size] == chunk:
-                run += 1
-            if run >= 2:
-                count += run - 1
-                i += run * size
-            else:
-                i += 1
-    return count
+repeat_phrase_count = repetition_count_from_text
 
 
 def adjacent_repeat_count(segments: list[dict[str, Any]]) -> int:
@@ -128,7 +112,7 @@ def compute_risk_features(
     text_length_ratio = round(len(separated_text) / len(mixed_text), 6) if mixed_text else 0.0
     cleaned_to_separated_ratio = round(len(cleaned_text) / len(separated_text), 6) if separated_text else 0.0
     duplicate_removed_count = int(float(str(cleaned.get("removed_count", 0) or 0)))
-    repetition_count = adjacent_repeat_count(separated_segments) + repeat_phrase_count(separated_text)
+    repetition_count = adjacent_repeat_count(separated_segments) + repetition_count_from_text(separated_text)
     speaker_length_imbalance = round(abs(s1_len - s2_len) / speaker_len_total, 6)
     method_disagreement_score = round(
         abs(len(separated_text) - len(mixed_text)) / max(len(separated_text), len(mixed_text), 1), 6

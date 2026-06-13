@@ -9,7 +9,7 @@ from typing import Any
 from .adaptive_router import select_method as v1_select_method
 from .adaptive_router_v2 import choose_method_v2 as v2_choose_method
 from .config import PROJECT_ROOT, load_config
-from .evaluate_cer import normalize_text
+from .evaluate_cer import normalize_text, repetition_count_from_text
 from .io_helpers import load_case_map, read_csv_rows, to_float, to_int, write_csv_json
 from .router_ablation_split import main as run_split_ablation
 
@@ -98,29 +98,6 @@ def read_json(path: Path) -> dict[str, Any]:
 
 def get_cleaned_closer_to_mixed(mixed_len: int, separated_len: int, cleaned_len: int) -> bool:
     return abs(cleaned_len - mixed_len) < abs(separated_len - mixed_len)
-
-
-def repetition_count_from_text(text: str) -> int:
-    normalized = normalize_text(text)
-    if not normalized:
-        return 0
-
-    count = 0
-    # Adjacent repeated chunks of 4 to 12 characters. This is intentionally
-    # lightweight: we only need a coarse instability signal for routing.
-    for size in range(4, 13):
-        i = 0
-        while i + 2 * size <= len(normalized):
-            chunk = normalized[i : i + size]
-            run = 1
-            while normalized[i + run * size : i + (run + 1) * size] == chunk:
-                run += 1
-            if run >= 2:
-                count += run - 1
-                i += run * size
-            else:
-                i += 1
-    return count
 
 
 def adjacent_repetition_from_segments(segments: list[dict[str, Any]]) -> int:

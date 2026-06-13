@@ -104,6 +104,26 @@ def levenshtein_distance(a: str, b: str) -> int:
     return prev[-1]
 
 
+def repetition_count_from_text(text: str) -> int:
+    normalized = normalize_text(text)
+    if not normalized:
+        return 0
+    count = 0
+    for size in range(4, 13):
+        i = 0
+        while i + 2 * size <= len(normalized):
+            chunk = normalized[i : i + size]
+            run = 1
+            while normalized[i + run * size : i + (run + 1) * size] == chunk:
+                run += 1
+            if run >= 2:
+                count += run - 1
+                i += run * size
+            else:
+                i += 1
+    return count
+
+
 def aggregate_speaker_text(segments: list[dict[str, Any]], speaker: str) -> str:
     texts: list[str] = []
     for segment in segments:
