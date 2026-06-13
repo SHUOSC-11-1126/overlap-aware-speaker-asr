@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import csv
-import json
 from pathlib import Path
 from typing import Any
 
@@ -17,6 +16,7 @@ from .evaluate_cer import (
     normalize_text,
     repetition_count_from_text,
 )
+from .io_helpers import write_csv_json
 
 
 CSV_COLUMNS = [
@@ -232,15 +232,6 @@ def build_selection_row(case_id: str, features: dict[str, Any]) -> dict[str, Any
         "notes": notes,
     }
 
-
-def write_csv_json(rows: list[dict[str, Any]], csv_path: Path, json_path: Path, fieldnames: list[str]) -> None:
-    csv_path.parent.mkdir(parents=True, exist_ok=True)
-    json_path.parent.mkdir(parents=True, exist_ok=True)
-    with csv_path.open("w", newline="", encoding="utf-8-sig") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)
-    json_path.write_text(json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def build_performance(rows: list[dict[str, Any]], cer_lookup: dict[tuple[str, str], float]) -> list[dict[str, Any]]:
