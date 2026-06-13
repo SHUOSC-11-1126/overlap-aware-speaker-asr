@@ -6,7 +6,6 @@ from pathlib import Path
 from typing import Any
 
 from .config import PROJECT_ROOT, load_config
-from .evaluate_cer import normalize_text
 
 
 CSV_COLUMNS = [
