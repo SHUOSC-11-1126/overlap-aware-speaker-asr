@@ -1,0 +1,37 @@
+[
+  {
+    "section_id": "wave163_rollup",
+    "headline": "Wave163 closed: LightOverlap diagnostic refresh + demo + exploration closure",
+    "artifact_anchor": "results/figures/wave163_exploration_baseline_closure_card.md",
+    "coordination_note": "experimental/frontier coordination only; gold baseline untouched.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "lightoverlap_coordination",
+    "headline": "LightOverlap coordination refresh coordinated after Wave163 closure",
+    "artifact_anchor": "results/figures/wave163_speaker_profile_lightoverlap_diagnostic_coordination_card.md",
+    "coordination_note": "Diagnostic scope only; attribution claims still blocked; gold benchmark claims still blocked.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "demo_wave163",
+    "headline": "Demo presentation polish extended to 164 sections under qualitative/demo labeling",
+    "artifact_anchor": "results/figures/demo_wave163_presentation_writeback.md",
+    "coordination_note": "No live demo or benchmark timing claims.",
+    "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_board",
+    "headline": "Frontier go/no-go board remains all_ready after Wave163 chain",
+    "artifact_anchor": "results/tables/frontier_go_no_go_summary.json",
+    "coordination_note": "Coordination receipts only; no deployable routing claims.",
+    "result_label": "experimental/frontier"
+  },
+  {
+    "section_id": "wave164_boundary",
+    "headline": "MidOverlap speaker-profile diagnostic narrow slice refresh is the next open coordination gate",
+    "artifact_anchor": "results/figures/separation_phase_diagram.md",
+    "coordination_note": "Wave164 closure does not record overlap-case embedding execution sessions.",
+    "result_label": "experimental/frontier"
+  }
+]

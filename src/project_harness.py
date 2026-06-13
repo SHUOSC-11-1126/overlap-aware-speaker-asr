@@ -3029,10 +3029,10 @@ WAVE_FRONTIER_MODULES = [
         "next_step": "Run python -m src.wave156_meeteval_official_narrow_dry_run_coordination_writeback after demo wave156.",
     },
     {
-        "frontier_id": "wave163_exploration_baseline_closure_writeback",
-        "module_path": "src/wave163_exploration_baseline_closure_writeback.py",
-        "expected_output": "results/tables/wave163_exploration_baseline_closure_writeback.json",
-        "next_step": "Run python -m src.wave163_exploration_baseline_closure_writeback after Wave162 MeetEval chain.",
+        "frontier_id": "wave164_exploration_baseline_closure_writeback",
+        "module_path": "src/wave164_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave164_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave164_exploration_baseline_closure_writeback after Wave163 LightOverlap chain.",
     },
     {
         "frontier_id": "wave163_demo_presentation_writeback",
