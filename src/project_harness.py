@@ -2740,6 +2740,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave140_speaker_profile_midoverlap_diagnostic_coordination_writeback.json",
         "next_step": "Run python -m src.wave140_speaker_profile_midoverlap_diagnostic_coordination_writeback after demo wave140.",
     },
+    {
+        "frontier_id": "wave141_exploration_baseline_closure_writeback",
+        "module_path": "src/wave141_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave141_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave141_exploration_baseline_closure_writeback after Wave140 MidOverlap chain.",
+    },
 ]
 
 
