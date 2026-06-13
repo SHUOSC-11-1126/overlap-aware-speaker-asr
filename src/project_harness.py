@@ -3041,10 +3041,10 @@ WAVE_FRONTIER_MODULES = [
         "next_step": "Run python -m src.demo_wave162_presentation_writeback after Wave162 closure writeback.",
     },
     {
-        "frontier_id": "wave161_external_validation_narrow_slice_coordination_writeback",
-        "module_path": "src/wave161_external_validation_narrow_slice_coordination_writeback.py",
-        "expected_output": "results/tables/wave161_external_validation_narrow_slice_coordination_writeback.json",
-        "next_step": "Run python -m src.wave161_external_validation_narrow_slice_coordination_writeback after demo wave161.",
+        "frontier_id": "wave162_meeteval_official_narrow_dry_run_coordination_writeback",
+        "module_path": "src/wave162_meeteval_official_narrow_dry_run_coordination_writeback.py",
+        "expected_output": "results/tables/wave162_meeteval_official_narrow_dry_run_coordination_writeback.json",
+        "next_step": "Run python -m src.wave162_meeteval_official_narrow_dry_run_coordination_writeback after demo wave162.",
     },
 ]
 
