@@ -2872,6 +2872,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave148_exploration_baseline_closure_writeback.json",
         "next_step": "Run python -m src.wave148_exploration_baseline_closure_writeback after Wave147 HeavyOverlap chain.",
     },
+    {
+        "frontier_id": "wave148_demo_presentation_writeback",
+        "module_path": "src/demo_wave148_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave148_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave148_presentation_writeback after Wave148 closure writeback.",
+    },
 ]
 
 
