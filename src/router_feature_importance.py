@@ -8,6 +8,7 @@ from typing import Any
 import numpy as np
 
 from .config import PROJECT_ROOT
+from .io_helpers import read_csv_rows
 
 
 CSV_COLUMNS = [
@@ -22,15 +23,6 @@ PERFORMANCE_COLUMNS = [
     "average_cer",
     "delta_vs_baseline",
 ]
-
-
-def read_csv_rows(path: Path) -> list[dict[str, Any]]:
-    if not path.exists():
-        raise FileNotFoundError(f"Missing table: {path.relative_to(PROJECT_ROOT)}")
-    with path.open("r", encoding="utf-8-sig", newline="") as f:
-        return [row for row in csv.DictReader(f) if isinstance(row, dict)]
-
-
 def to_float(value: Any) -> float:
     try:
         return float(str(value).strip())

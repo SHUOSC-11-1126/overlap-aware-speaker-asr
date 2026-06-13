@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import PROJECT_ROOT, load_config
+from .io_helpers import read_csv_rows
 
 
 MANIFEST_COLUMNS_EXTRA = [
@@ -35,15 +36,6 @@ def parse_args() -> argparse.Namespace:
         help="Synthetic benchmark dataset to process.",
     )
     return parser.parse_args()
-
-
-def read_csv_rows(path: Path) -> list[dict[str, Any]]:
-    if not path.exists():
-        raise FileNotFoundError(f"Missing table: {path.relative_to(PROJECT_ROOT)}")
-    with path.open("r", encoding="utf-8-sig", newline="") as f:
-        return [row for row in csv.DictReader(f) if isinstance(row, dict)]
-
-
 def read_json(path: Path) -> dict[str, Any]:
     if not path.exists():
         raise FileNotFoundError(f"Missing file: {path.relative_to(PROJECT_ROOT)}")

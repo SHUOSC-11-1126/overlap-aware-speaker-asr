@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import PROJECT_ROOT, load_config
+from .io_helpers import read_csv_rows
 
 
 METHOD_ORDER = ["mixed_whisper", "separated_whisper", "separated_whisper_cleaned"]
@@ -16,15 +17,6 @@ METHOD_LABELS = {
     "separated_whisper": "Separated",
     "separated_whisper_cleaned": "Separated + Cleaned",
 }
-
-
-def read_csv_rows(path: Path) -> list[dict[str, Any]]:
-    if not path.exists():
-        raise FileNotFoundError(f"Missing results table: {path.relative_to(PROJECT_ROOT)}")
-    with path.open("r", encoding="utf-8-sig", newline="") as f:
-        return list(csv.DictReader(f))
-
-
 def to_float(value: Any) -> float:
     if value is None:
         return 0.0
