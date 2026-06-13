@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import argparse
 import csv
 import json
 from pathlib import Path
@@ -274,13 +273,7 @@ def update_summary_md(decisions: list[dict[str, Any]], performance_rows: list[di
     return md_path
 
 
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Rule-based adaptive router for benchmark cases.")
-    return parser.parse_args()
-
-
 def main() -> None:
-    _ = parse_args()
     config = load_config()
     mixed_rows, separated_rows = load_benchmark_rows()
     cleaned_rows = load_cleaned_rows()

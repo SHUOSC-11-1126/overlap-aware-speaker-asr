@@ -103,63 +103,51 @@ def build_checkpoint_rows() -> list[dict[str, str]]:
     return rows
 
 
-def build_summary_row(rows: list[dict[str, str]]) -> dict[str, str]:
+def _load_receipt_completion(path: Path, expected_status: str) -> bool:
+    if not path.exists():
+        return False
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if isinstance(payload, dict):
+        return str(payload.get("execution_status", "")) == expected_status
+    return False
+
+
+def build_summary_row(
+    rows: list[dict[str, str]],
+    coordination_completion_flags: dict[str, bool] | None = None,
+) -> dict[str, str]:
     go_count = sum(1 for row in rows if row.get("go_no_go_state") == "go")
     no_go_count = len(rows) - go_count
     case_scope = rows[0]["case_scope"] if rows else "NoOverlap"
 
-    oppositeoverlap_receipt_path = (
-        PROJECT_ROOT / "results/tables/speaker_profile_oppositeoverlap_diagnostic_coordination_receipt.json"
-    )
-    heavyoverlap_receipt_path = (
-        PROJECT_ROOT / "results/tables/speaker_profile_heavyoverlap_diagnostic_coordination_receipt.json"
-    )
-    midoverlap_receipt_path = (
-        PROJECT_ROOT / "results/tables/speaker_profile_midoverlap_diagnostic_coordination_receipt.json"
-    )
-    lightoverlap_receipt_path = (
-        PROJECT_ROOT / "results/tables/speaker_profile_lightoverlap_diagnostic_coordination_receipt.json"
-    )
-    case_scope_receipt_path = PROJECT_ROOT / "results/tables/speaker_profile_case_scope_coordination_receipt.json"
-    oppositeoverlap_complete = False
-    heavyoverlap_complete = False
-    midoverlap_complete = False
-    lightoverlap_complete = False
-    case_scope_complete = False
-    if oppositeoverlap_receipt_path.exists():
-        payload = json.loads(oppositeoverlap_receipt_path.read_text(encoding="utf-8"))
-        if isinstance(payload, dict):
-            oppositeoverlap_complete = (
-                str(payload.get("execution_status", ""))
-                == "speaker_profile_oppositeoverlap_diagnostic_coordination_complete"
-            )
-    if heavyoverlap_receipt_path.exists():
-        payload = json.loads(heavyoverlap_receipt_path.read_text(encoding="utf-8"))
-        if isinstance(payload, dict):
-            heavyoverlap_complete = (
-                str(payload.get("execution_status", ""))
-                == "speaker_profile_heavyoverlap_diagnostic_coordination_complete"
-            )
-    if midoverlap_receipt_path.exists():
-        payload = json.loads(midoverlap_receipt_path.read_text(encoding="utf-8"))
-        if isinstance(payload, dict):
-            midoverlap_complete = (
-                str(payload.get("execution_status", ""))
-                == "speaker_profile_midoverlap_diagnostic_coordination_complete"
-            )
-    if lightoverlap_receipt_path.exists():
-        payload = json.loads(lightoverlap_receipt_path.read_text(encoding="utf-8"))
-        if isinstance(payload, dict):
-            lightoverlap_complete = (
-                str(payload.get("execution_status", ""))
-                == "speaker_profile_lightoverlap_diagnostic_coordination_complete"
-            )
-    if case_scope_receipt_path.exists():
-        payload = json.loads(case_scope_receipt_path.read_text(encoding="utf-8"))
-        if isinstance(payload, dict):
-            case_scope_complete = (
-                str(payload.get("execution_status", "")) == "speaker_profile_case_scope_coordination_complete"
-            )
+    if coordination_completion_flags is None:
+        coordination_completion_flags = {
+            "oppositeoverlap": _load_receipt_completion(
+                PROJECT_ROOT / "results/tables/speaker_profile_oppositeoverlap_diagnostic_coordination_receipt.json",
+                "speaker_profile_oppositeoverlap_diagnostic_coordination_complete",
+            ),
+            "heavyoverlap": _load_receipt_completion(
+                PROJECT_ROOT / "results/tables/speaker_profile_heavyoverlap_diagnostic_coordination_receipt.json",
+                "speaker_profile_heavyoverlap_diagnostic_coordination_complete",
+            ),
+            "midoverlap": _load_receipt_completion(
+                PROJECT_ROOT / "results/tables/speaker_profile_midoverlap_diagnostic_coordination_receipt.json",
+                "speaker_profile_midoverlap_diagnostic_coordination_complete",
+            ),
+            "lightoverlap": _load_receipt_completion(
+                PROJECT_ROOT / "results/tables/speaker_profile_lightoverlap_diagnostic_coordination_receipt.json",
+                "speaker_profile_lightoverlap_diagnostic_coordination_complete",
+            ),
+            "case_scope": _load_receipt_completion(
+                PROJECT_ROOT / "results/tables/speaker_profile_case_scope_coordination_receipt.json",
+                "speaker_profile_case_scope_coordination_complete",
+            ),
+        }
+    oppositeoverlap_complete = coordination_completion_flags.get("oppositeoverlap", False)
+    heavyoverlap_complete = coordination_completion_flags.get("heavyoverlap", False)
+    midoverlap_complete = coordination_completion_flags.get("midoverlap", False)
+    lightoverlap_complete = coordination_completion_flags.get("lightoverlap", False)
+    case_scope_complete = coordination_completion_flags.get("case_scope", False)
 
     if rows and go_count == len(rows) and oppositeoverlap_complete:
         overall_state = "speaker_profile_oppositeoverlap_diagnostic_coordination_complete"

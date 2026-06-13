@@ -3,7 +3,6 @@ from __future__ import annotations
 import unittest
 import unittest.mock
 
-from src.adaptive_router import parse_args as adaptive_router_parse_args
 from src.analyze_cer_errors import parse_args as analyze_cer_parse_args
 from src.build_synthetic_references import parse_args as build_synthetic_references_parse_args
 from src.compare_mixed_vs_separated import parse_args as compare_mixed_vs_separated_parse_args
@@ -66,10 +65,6 @@ class ModuleParseArgsSmokeTest(unittest.TestCase):
     def test_plot_results_parse_args(self) -> None:
         with unittest.mock.patch("sys.argv", ["plot_results"]):
             self.assertIsNotNone(plot_results_parse_args())
-
-    def test_adaptive_router_parse_args(self) -> None:
-        with unittest.mock.patch("sys.argv", ["adaptive_router"]):
-            self.assertIsNotNone(adaptive_router_parse_args())
 
     def test_generate_synthetic_overlap_parse_args(self) -> None:
         with unittest.mock.patch("sys.argv", ["generate_synthetic_overlap", "--num-per-tier", "3"]):

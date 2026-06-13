@@ -20,10 +20,47 @@ class SpeakerProfileGoNoGoBoardTest(unittest.TestCase):
             {"case_scope": "NoOverlap", "go_no_go_state": "go"},
         ]
 
-        row = build_summary_row(rows)
+        row = build_summary_row(
+            rows,
+            coordination_completion_flags={
+                "oppositeoverlap": False,
+                "heavyoverlap": False,
+                "midoverlap": False,
+                "lightoverlap": False,
+                "case_scope": False,
+            },
+        )
 
         self.assertEqual(row["overall_state"], "narrow_execution_ready")
         self.assertEqual(row["primary_boundary"], "attribution_claims_still_blocked_by_weak_support")
+
+    def test_build_summary_row_marks_oppositeoverlap_complete(self) -> None:
+        rows = [
+            {"case_scope": "NoOverlap", "go_no_go_state": "go"},
+            {"case_scope": "NoOverlap", "go_no_go_state": "go"},
+        ]
+
+        row = build_summary_row(
+            rows,
+            coordination_completion_flags={
+                "oppositeoverlap": True,
+                "heavyoverlap": True,
+                "midoverlap": True,
+                "lightoverlap": True,
+                "case_scope": True,
+            },
+        )
+
+        self.assertEqual(row["overall_state"], "speaker_profile_oppositeoverlap_diagnostic_coordination_complete")
+
+    def test_build_summary_row_marks_execution_not_ready(self) -> None:
+        rows = [
+            {"case_scope": "NoOverlap", "go_no_go_state": "no_go"},
+        ]
+
+        row = build_summary_row(rows)
+
+        self.assertEqual(row["overall_state"], "execution_not_ready")
 
 
 if __name__ == "__main__":
