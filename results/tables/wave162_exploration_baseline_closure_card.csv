@@ -1,0 +1,6 @@
+﻿section_id,headline,artifact_anchor,coordination_note,result_label
+wave161_rollup,Wave161 closed: External validation narrow-slice refresh + demo + exploration closure,results/figures/wave161_exploration_baseline_closure_card.md,experimental/frontier coordination only; gold baseline untouched.,experimental/frontier
+external_validation_coordination,External validation coordination refresh coordinated after Wave161 closure,results/figures/wave161_external_validation_narrow_slice_coordination_card.md,external/sanity-check scope only; gold benchmark claims still blocked.,external/sanity-check
+demo_wave161,Demo presentation polish extended to 162 sections under qualitative/demo labeling,results/figures/demo_wave161_presentation_writeback.md,No live demo or benchmark timing claims.,qualitative/demo
+frontier_board,Frontier go/no-go board remains all_ready after Wave161 chain,results/tables/frontier_go_no_go_summary.json,Coordination receipts only; no deployable routing claims.,experimental/frontier
+wave162_boundary,MeetEval official narrow dry-run coordination refresh is the next open coordination gate,results/tables/meeteval_cpwer_official_execution_bridge_checklist.json,Wave162 closure does not record MeetEval official benchmark completion sessions.,experimental/frontier
