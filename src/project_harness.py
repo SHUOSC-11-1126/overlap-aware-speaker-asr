@@ -2974,6 +2974,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave153_speaker_profile_heavyoverlap_diagnostic_coordination_writeback.json",
         "next_step": "Run python -m src.wave153_speaker_profile_heavyoverlap_diagnostic_coordination_writeback after demo wave153.",
     },
+    {
+        "frontier_id": "wave154_exploration_baseline_closure_writeback",
+        "module_path": "src/wave154_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave154_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave154_exploration_baseline_closure_writeback after Wave153 HeavyOverlap chain.",
+    },
 ]
 
 
