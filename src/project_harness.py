@@ -2644,6 +2644,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/demo_wave135_presentation_writeback.json",
         "next_step": "Run python -m src.demo_wave135_presentation_writeback after Wave135 closure writeback.",
     },
+    {
+        "frontier_id": "wave135_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+        "module_path": "src/wave135_speaker_profile_heavyoverlap_diagnostic_coordination_writeback.py",
+        "expected_output": "results/tables/wave135_speaker_profile_heavyoverlap_diagnostic_coordination_writeback.json",
+        "next_step": "Run python -m src.wave135_speaker_profile_heavyoverlap_diagnostic_coordination_writeback after demo wave135.",
+    },
 ]
 
 
