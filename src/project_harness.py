@@ -2680,6 +2680,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/demo_wave137_presentation_writeback.json",
         "next_step": "Run python -m src.demo_wave137_presentation_writeback after Wave137 closure writeback.",
     },
+    {
+        "frontier_id": "wave137_external_validation_narrow_slice_coordination_writeback",
+        "module_path": "src/wave137_external_validation_narrow_slice_coordination_writeback.py",
+        "expected_output": "results/tables/wave137_external_validation_narrow_slice_coordination_writeback.json",
+        "next_step": "Run python -m src.wave137_external_validation_narrow_slice_coordination_writeback after demo wave137.",
+    },
 ]
 
 
