@@ -3035,10 +3035,10 @@ WAVE_FRONTIER_MODULES = [
         "next_step": "Run python -m src.wave162_exploration_baseline_closure_writeback after Wave161 external validation chain.",
     },
     {
-        "frontier_id": "wave161_demo_presentation_writeback",
-        "module_path": "src/demo_wave161_presentation_writeback.py",
-        "expected_output": "results/tables/demo_wave161_presentation_writeback.json",
-        "next_step": "Run python -m src.demo_wave161_presentation_writeback after Wave161 closure writeback.",
+        "frontier_id": "wave162_demo_presentation_writeback",
+        "module_path": "src/demo_wave162_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave162_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave162_presentation_writeback after Wave162 closure writeback.",
     },
     {
         "frontier_id": "wave161_external_validation_narrow_slice_coordination_writeback",
