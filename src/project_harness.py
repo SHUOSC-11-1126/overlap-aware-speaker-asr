@@ -2566,6 +2566,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave131_exploration_baseline_closure_writeback.json",
         "next_step": "Run python -m src.wave131_exploration_baseline_closure_writeback after Wave130 OppositeOverlap chain.",
     },
+    {
+        "frontier_id": "wave131_demo_presentation_writeback",
+        "module_path": "src/demo_wave131_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave131_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave131_presentation_writeback after Wave131 closure writeback.",
+    },
 ]
 
 

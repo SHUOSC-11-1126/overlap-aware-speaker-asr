@@ -2851,6 +2851,7 @@ results/synthetic_overlap_v2/
 !results/figures/demo_wave128_presentation_writeback.md
 !results/figures/demo_wave129_presentation_writeback.md
 !results/figures/demo_wave130_presentation_writeback.md
+!results/figures/demo_wave131_presentation_writeback.md
 !results/tables/demo_wave126_presentation_writeback.csv
 !results/tables/demo_wave126_presentation_writeback.json
 !results/tables/demo_wave127_presentation_writeback.csv
@@ -2861,6 +2862,8 @@ results/synthetic_overlap_v2/
 !results/tables/demo_wave129_presentation_writeback.json
 !results/tables/demo_wave130_presentation_writeback.csv
 !results/tables/demo_wave130_presentation_writeback.json
+!results/tables/demo_wave131_presentation_writeback.csv
+!results/tables/demo_wave131_presentation_writeback.json
 !results/tables/demo_wave125_presentation_writeback.csv
 !results/tables/demo_wave125_presentation_writeback.json
 !results/tables/demo_wave123_presentation_writeback.csv
