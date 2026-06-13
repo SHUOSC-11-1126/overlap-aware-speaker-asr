@@ -1,0 +1,6 @@
+﻿section_id,headline,artifact_anchor,coordination_note,result_label
+wave131_rollup,Wave131 closed: External validation narrow-slice refresh + demo + exploration closure,results/figures/wave131_exploration_baseline_closure_card.md,experimental/frontier coordination only; gold baseline untouched.,experimental/frontier
+external_validation_coordination,External validation coordination refresh coordinated after Wave131 closure,results/figures/wave131_external_validation_narrow_slice_coordination_card.md,external/sanity-check scope only; gold benchmark claims still blocked.,external/sanity-check
+demo_wave131,Demo presentation polish extended to 132 sections under qualitative/demo labeling,results/figures/demo_wave131_presentation_writeback.md,No live demo or benchmark timing claims.,qualitative/demo
+frontier_board,Frontier go/no-go board remains all_ready after Wave131 chain,results/tables/frontier_go_no_go_summary.json,Coordination receipts only; no deployable routing claims.,experimental/frontier
+wave132_boundary,MeetEval official narrow dry-run coordination refresh is the next open coordination gate,results/tables/meeteval_cpwer_official_execution_bridge_checklist.json,Wave132 closure does not record MeetEval official benchmark completion sessions.,experimental/frontier
