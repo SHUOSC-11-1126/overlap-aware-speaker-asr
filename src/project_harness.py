@@ -2590,6 +2590,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/demo_wave132_presentation_writeback.json",
         "next_step": "Run python -m src.demo_wave132_presentation_writeback after Wave132 closure writeback.",
     },
+    {
+        "frontier_id": "wave132_meeteval_official_narrow_dry_run_coordination_writeback",
+        "module_path": "src/wave132_meeteval_official_narrow_dry_run_coordination_writeback.py",
+        "expected_output": "results/tables/wave132_meeteval_official_narrow_dry_run_coordination_writeback.json",
+        "next_step": "Run python -m src.wave132_meeteval_official_narrow_dry_run_coordination_writeback after demo wave132.",
+    },
 ]
 
 
