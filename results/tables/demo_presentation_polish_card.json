@@ -1055,5 +1055,12 @@
     "artifact_anchor": "results/figures/wave150_exploration_baseline_closure_card.md",
     "presentation_note": "Show Wave81 closure card only; LightOverlap diagnostic coordination refresh remains experimental/frontier — qualitative/demo labeling required.",
     "result_label": "qualitative/demo"
+  },
+  {
+    "section_id": "frontier_wave151",
+    "headline": "Wave151 exploration+baseline closure after Wave150 MeetEval chain boundary",
+    "artifact_anchor": "results/figures/wave151_exploration_baseline_closure_card.md",
+    "presentation_note": "Show Wave81 closure card only; LightOverlap diagnostic coordination refresh remains experimental/frontier — qualitative/demo labeling required.",
+    "result_label": "qualitative/demo"
   }
 ]
