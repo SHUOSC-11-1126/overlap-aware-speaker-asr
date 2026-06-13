@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import PROJECT_ROOT, load_config
+from .io_helpers import to_float
 from .separation_phase_diagram import GOLD_CASE_TIER_ANCHOR, compute_delta_cer
 
 
@@ -45,17 +46,6 @@ def to_int(value: Any) -> int:
     except ValueError:
         return 0
 
-
-def to_float(value: Any) -> float | None:
-    if value is None:
-        return None
-    text = str(value).strip()
-    if not text:
-        return None
-    try:
-        return float(text)
-    except ValueError:
-        return None
 
 
 def load_cer_by_case() -> dict[str, dict[str, float]]:

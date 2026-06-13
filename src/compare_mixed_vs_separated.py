@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import PROJECT_ROOT, get_audio_cases, load_config
+from .io_helpers import read_json
 
 
 CSV_COLUMNS = [
@@ -39,12 +40,6 @@ def select_cases(config: dict[str, Any], case_id: str) -> list[dict[str, Any]]:
     if case_id == "all":
         return get_audio_cases(config)
     return [find_case(config, case_id)]
-
-
-def read_json(path: Path) -> dict[str, Any]:
-    if not path.exists():
-        raise FileNotFoundError(f"Required file does not exist: {path.relative_to(PROJECT_ROOT)}")
-    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def preview(text: str, limit: int = 120) -> str:

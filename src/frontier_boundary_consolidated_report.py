@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import PROJECT_ROOT, load_config
+from .io_helpers import read_json
 
 
 SECTION_COLUMNS = [
@@ -31,12 +32,6 @@ def read_csv_rows(path: Path) -> list[dict[str, Any]]:
         return list(csv.DictReader(handle))
 
 
-def read_json(path: Path) -> Any:
-    if not path.exists():
-        return []
-    return json.loads(path.read_text(encoding="utf-8"))
-
-
 def metric_map(rows: list[dict[str, Any]]) -> dict[str, str]:
     return {str(row.get("metric", "")): str(row.get("value", "")) for row in rows}
 
@@ -49,7 +44,10 @@ def build_section_rows() -> list[dict[str, str]]:
     error_summary = metric_map(
         read_csv_rows(PROJECT_ROOT / "results" / "tables" / "error_type_boundary_report_summary.csv")
     )
-    phase_points = read_json(PROJECT_ROOT / "results" / "tables" / "separation_phase_diagram.json")
+    try:
+        phase_points = read_json(PROJECT_ROOT / "results" / "tables" / "separation_phase_diagram.json")
+    except FileNotFoundError:
+        phase_points = []
 
     rows: list[dict[str, str]] = []
     rows.append(

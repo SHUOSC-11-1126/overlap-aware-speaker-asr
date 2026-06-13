@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import PROJECT_ROOT, load_config
-from .io_helpers import read_csv_rows
+from .io_helpers import read_csv_rows, read_json
 
 
 MANIFEST_COLUMNS_EXTRA = [
@@ -36,12 +36,6 @@ def parse_args() -> argparse.Namespace:
         help="Synthetic benchmark dataset to process.",
     )
     return parser.parse_args()
-def read_json(path: Path) -> dict[str, Any]:
-    if not path.exists():
-        raise FileNotFoundError(f"Missing file: {path.relative_to(PROJECT_ROOT)}")
-    return json.loads(path.read_text(encoding="utf-8-sig"))
-
-
 def snippet_transcript_path(snippet_id: str) -> Path:
     return PROJECT_ROOT / "results" / "snippet_transcripts" / f"{snippet_id}_whisper.json"
 

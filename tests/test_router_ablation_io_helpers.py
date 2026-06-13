@@ -15,7 +15,7 @@ class RouterAblationIoHelpersTest(unittest.TestCase):
         self.assertEqual(to_int("3"), 3)
         self.assertAlmostEqual(to_float("0.5"), 0.5)
         self.assertEqual(to_int("bad"), 0)
-        self.assertEqual(to_float("bad"), 0.0)
+        self.assertIsNone(to_float("bad"))
 
     def test_read_csv_rows_raises_for_missing_file(self) -> None:
         missing = PROJECT_ROOT / "results" / "tables" / "__missing_router_ablation__.csv"

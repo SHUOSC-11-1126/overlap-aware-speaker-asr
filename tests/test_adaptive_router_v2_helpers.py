@@ -42,7 +42,7 @@ class AdaptiveRouterV2HelpersTest(unittest.TestCase):
         self.assertEqual(to_int("4"), 4)
         self.assertEqual(to_float("0.75"), 0.75)
         self.assertEqual(to_int("bad"), 0)
-        self.assertEqual(to_float("bad"), 0.0)
+        self.assertIsNone(to_float("bad"))
 
 
 if __name__ == "__main__":

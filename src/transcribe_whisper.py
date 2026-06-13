@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import PROJECT_ROOT, get_audio_cases, load_config
+from .io_helpers import read_json
 
 
 ALLOWED_LIGHTWEIGHT_MODELS = {"tiny", "base", "small"}
@@ -140,12 +141,6 @@ def transcript_path_for(case_id: str, mode: str) -> Path:
 
 def preview(text: str, limit: int = 120) -> str:
     return " ".join(text.split())[:limit]
-
-
-def read_json(path: Path) -> dict[str, Any]:
-    if not path.exists():
-        raise FileNotFoundError(f"Required transcript does not exist: {path.relative_to(PROJECT_ROOT)}")
-    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def load_whisper_model(model_name: str) -> Any:

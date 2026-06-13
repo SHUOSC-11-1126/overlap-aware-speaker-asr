@@ -11,10 +11,10 @@ from src.plot_results import build_adaptive_rows, ensure_dir, grouped_cer_rows, 
 class PlotResultsHelpersTest(unittest.TestCase):
     def test_to_float_parses_numeric_strings(self) -> None:
         self.assertEqual(to_float("0.25"), 0.25)
-        self.assertEqual(to_float(None), 0.0)
+        self.assertIsNone(to_float(None))
 
     def test_to_float_returns_zero_for_invalid_input(self) -> None:
-        self.assertEqual(to_float("not-a-number"), 0.0)
+        self.assertIsNone(to_float("not-a-number"))
 
     def test_grouped_cer_rows_groups_by_case_and_method(self) -> None:
         grouped = grouped_cer_rows(

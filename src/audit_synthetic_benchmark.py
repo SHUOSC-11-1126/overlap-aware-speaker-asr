@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import PROJECT_ROOT, load_config
-from .io_helpers import read_csv_rows
+from .io_helpers import read_csv_rows, read_json
 
 
 CSV_COLUMNS = [
@@ -25,12 +25,6 @@ CSV_COLUMNS = [
     "reference_preview",
     "suspected_issue",
 ]
-def read_json(path: Path) -> dict[str, Any]:
-    if not path.exists():
-        raise FileNotFoundError(f"Missing file: {path.relative_to(PROJECT_ROOT)}")
-    return json.loads(path.read_text(encoding="utf-8-sig"))
-
-
 def safe_preview(text: str, limit: int = 180) -> str:
     return " ".join(text.split())[:limit]
 

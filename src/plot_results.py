@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import PROJECT_ROOT, load_config
-from .io_helpers import read_csv_rows
+from .io_helpers import read_csv_rows, to_float
 
 
 METHOD_ORDER = ["mixed_whisper", "separated_whisper", "separated_whisper_cleaned"]
@@ -17,14 +17,6 @@ METHOD_LABELS = {
     "separated_whisper": "Separated",
     "separated_whisper_cleaned": "Separated + Cleaned",
 }
-def to_float(value: Any) -> float:
-    if value is None:
-        return 0.0
-    try:
-        return float(str(value).strip())
-    except ValueError:
-        return 0.0
-
 
 def grouped_cer_rows(rows: list[dict[str, Any]]) -> dict[str, dict[str, float]]:
     grouped: dict[str, dict[str, float]] = defaultdict(dict)

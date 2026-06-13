@@ -21,7 +21,7 @@ class RouterAblationSplitHelpersTest(unittest.TestCase):
         self.assertEqual(to_int("2"), 2)
         self.assertEqual(to_float("0.25"), 0.25)
         self.assertEqual(to_int("bad"), 0)
-        self.assertEqual(to_float("bad"), 0.0)
+        self.assertIsNone(to_float("bad"))
 
     def test_choose_strategy_returns_fixed_baselines(self) -> None:
         entry = {

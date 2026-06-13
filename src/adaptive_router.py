@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import PROJECT_ROOT, load_config
-from .io_helpers import load_case_map, read_csv_rows, to_float, to_int
+from .io_helpers import load_case_map, read_csv_rows, read_json, to_float, to_int
 
 
 DECISION_COLUMNS = [
@@ -29,12 +29,6 @@ DECISION_COLUMNS = [
 PERFORMANCE_COLUMNS = ["strategy", "average_cer"]
 
 METHODS = ["mixed_whisper", "separated_whisper", "separated_whisper_cleaned"]
-
-
-def read_json(path: Path) -> Any:
-    if not path.exists():
-        raise FileNotFoundError(f"Missing file: {path.relative_to(PROJECT_ROOT)}")
-    return json.loads(path.read_text(encoding="utf-8-sig"))
 
 
 def load_benchmark_rows() -> tuple[dict[str, dict[str, Any]], dict[str, dict[str, Any]]]:

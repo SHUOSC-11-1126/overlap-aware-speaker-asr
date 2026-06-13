@@ -10,7 +10,7 @@ from .adaptive_router import select_method as v1_select_method
 from .adaptive_router_v2 import choose_method_v2 as v2_choose_method
 from .config import PROJECT_ROOT, load_config
 from .evaluate_cer import normalize_text, repetition_count_from_text
-from .io_helpers import load_case_map, read_csv_rows, to_float, to_int, write_csv_json
+from .io_helpers import load_case_map, read_csv_rows, read_json, to_float, to_int, write_csv_json
 from .router_ablation_split import main as run_split_ablation
 
 
@@ -85,15 +85,6 @@ def parse_args() -> argparse.Namespace:
         help="Use 'synthetic_overlap_v2' for the held-out split benchmark.",
     )
     return parser.parse_args()
-
-
-def read_json(path: Path) -> dict[str, Any]:
-    if not path.exists():
-        raise FileNotFoundError(f"Missing file: {path.relative_to(PROJECT_ROOT)}")
-    payload = json.loads(path.read_text(encoding="utf-8-sig"))
-    if not isinstance(payload, dict):
-        raise ValueError(f"Expected dict JSON at {path.relative_to(PROJECT_ROOT)}")
-    return payload
 
 
 def get_cleaned_closer_to_mixed(mixed_len: int, separated_len: int, cleaned_len: int) -> bool:

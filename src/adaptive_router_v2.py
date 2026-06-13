@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import PROJECT_ROOT, load_config
-from .io_helpers import load_case_map, read_csv_rows, to_float, to_int, write_csv_json
+from .io_helpers import load_case_map, read_csv_rows, read_json, to_float, to_int, write_csv_json
 
 
 GOLD_DECISION_COLUMNS = [
@@ -71,12 +71,6 @@ TIER_TO_LEVEL = {
     "SyntheticHeavyOverlap": 3,
     "SyntheticOppositeOverlap": 4,
 }
-
-
-def read_json(path: Path) -> dict[str, Any]:
-    if not path.exists():
-        raise FileNotFoundError(f"Missing file: {path.relative_to(PROJECT_ROOT)}")
-    return json.loads(path.read_text(encoding="utf-8-sig"))
 
 
 def load_gold_inputs() -> tuple[
@@ -345,8 +339,7 @@ def compute_performance(
         if available:
             strategies["oracle_best"].append(min(available))
 
-        if include_tier is None:
-            pass
+
         selected_v2 = decision_map.get(item_id)
         if selected_v2 is not None:
             cer_v2 = cer_lookup.get((item_id, selected_v2))
@@ -572,10 +565,8 @@ def main() -> None:
             available = [v for v in available if v is not None]
             if available:
                 buckets["oracle_best"].append(min(available))
-            v1_method = None
             # Reuse the existing v1 synthetic rule decisions from the earlier benchmark results.
             # Those remain the comparison baseline for stability.
-            v1_method = None
         # Fill rule_router_v1 by reading the precomputed v1 routing decisions table.
         v1_decisions = {str(row.get("sample_id", "")).strip(): str(row.get("selected_method", "")).strip() for row in read_csv_rows(PROJECT_ROOT / "results" / "tables" / "synthetic_routing_decisions.csv")}
         for sample_id in ids:

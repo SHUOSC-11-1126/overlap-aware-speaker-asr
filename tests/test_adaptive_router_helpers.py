@@ -18,7 +18,7 @@ class AdaptiveRouterHelpersTest(unittest.TestCase):
 
     def test_to_int_and_to_float_return_defaults_for_invalid_input(self) -> None:
         self.assertEqual(to_int("bad"), 0)
-        self.assertEqual(to_float("bad"), 0.0)
+        self.assertIsNone(to_float("bad"))
 
     def test_load_case_map_indexes_cases_by_id(self) -> None:
         config = load_config()
