@@ -8,8 +8,6 @@ from contextlib import redirect_stdout
 
 PLACEHOLDER_MODULES = [
     "src.evaluate_summary",
-    "src.evaluate_speaker",
-    "src.evaluate_terms",
     "src.transcribe_funasr",
     "src.rag_retrieve",
 ]
