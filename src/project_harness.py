@@ -2902,6 +2902,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave149_external_validation_narrow_slice_coordination_writeback.json",
         "next_step": "Run python -m src.wave149_external_validation_narrow_slice_coordination_writeback after demo wave149.",
     },
+    {
+        "frontier_id": "wave150_exploration_baseline_closure_writeback",
+        "module_path": "src/wave150_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave150_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave150_exploration_baseline_closure_writeback after Wave149 external validation chain.",
+    },
 ]
 
 
