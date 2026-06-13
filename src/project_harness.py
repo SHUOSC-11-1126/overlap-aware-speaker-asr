@@ -3041,10 +3041,10 @@ WAVE_FRONTIER_MODULES = [
         "next_step": "Run python -m src.demo_wave158_presentation_writeback after Wave158 closure writeback.",
     },
     {
-        "frontier_id": "wave157_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
-        "module_path": "src/wave157_speaker_profile_lightoverlap_diagnostic_coordination_writeback.py",
-        "expected_output": "results/tables/wave157_speaker_profile_lightoverlap_diagnostic_coordination_writeback.json",
-        "next_step": "Run python -m src.wave157_speaker_profile_lightoverlap_diagnostic_coordination_writeback after demo wave157.",
+        "frontier_id": "wave158_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+        "module_path": "src/wave158_speaker_profile_midoverlap_diagnostic_coordination_writeback.py",
+        "expected_output": "results/tables/wave158_speaker_profile_midoverlap_diagnostic_coordination_writeback.json",
+        "next_step": "Run python -m src.wave158_speaker_profile_midoverlap_diagnostic_coordination_writeback after demo wave158.",
     },
 ]
 
