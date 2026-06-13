@@ -10,6 +10,7 @@ from .adaptive_router import select_method as v1_select_method
 from .adaptive_router_v2 import choose_method_v2 as v2_choose_method
 from .config import PROJECT_ROOT, load_config
 from .evaluate_cer import normalize_text
+from .io_helpers import load_case_map, read_csv_rows, to_float, to_int, write_csv_json
 from .router_ablation_split import main as run_split_ablation
 
 
@@ -86,17 +87,6 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def read_csv_rows(path: Path) -> list[dict[str, Any]]:
-    if not path.exists():
-        raise FileNotFoundError(f"Missing table: {path.relative_to(PROJECT_ROOT)}")
-    with path.open("r", encoding="utf-8-sig", newline="") as f:
-        try:
-            rows = list(csv.DictReader(f))
-        except csv.Error as exc:
-            raise ValueError(f"Failed to parse CSV {path.relative_to(PROJECT_ROOT)}: {exc}") from exc
-    return [row for row in rows if isinstance(row, dict)]
-
-
 def read_json(path: Path) -> dict[str, Any]:
     if not path.exists():
         raise FileNotFoundError(f"Missing file: {path.relative_to(PROJECT_ROOT)}")
@@ -104,34 +94,6 @@ def read_json(path: Path) -> dict[str, Any]:
     if not isinstance(payload, dict):
         raise ValueError(f"Expected dict JSON at {path.relative_to(PROJECT_ROOT)}")
     return payload
-
-
-def write_csv_json(rows: list[dict[str, Any]], csv_path: Path, json_path: Path, fieldnames: list[str]) -> None:
-    csv_path.parent.mkdir(parents=True, exist_ok=True)
-    json_path.parent.mkdir(parents=True, exist_ok=True)
-    with csv_path.open("w", newline="", encoding="utf-8-sig") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)
-    json_path.write_text(json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf-8")
-
-
-def to_int(value: Any) -> int:
-    try:
-        return int(float(str(value).strip()))
-    except Exception:
-        return 0
-
-
-def to_float(value: Any) -> float:
-    try:
-        return float(str(value).strip())
-    except Exception:
-        return 0.0
-
-
-def load_case_map(config: dict[str, Any]) -> dict[str, dict[str, Any]]:
-    return {case["id"]: case for case in config.get("audio_cases", [])}
 
 
 def get_cleaned_closer_to_mixed(mixed_len: int, separated_len: int, cleaned_len: int) -> bool:

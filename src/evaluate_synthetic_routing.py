@@ -11,6 +11,7 @@ from .adaptive_router import select_method as v1_select_method
 from .adaptive_router_v2 import choose_method_v2 as v2_choose_method
 from .build_synthetic_references import read_csv_rows, read_json
 from .config import PROJECT_ROOT
+from .io_helpers import to_float, to_int
 
 
 STRATEGIES = [
@@ -106,20 +107,6 @@ def dataset_paths(dataset: str) -> dict[str, Path]:
             "summary_md": PROJECT_ROOT / "results" / "figures" / "synthetic_split_routing_summary.md",
         }
     raise ValueError(f"Unsupported dataset: {dataset}")
-
-
-def to_float(value: Any) -> float:
-    try:
-        return float(str(value).strip())
-    except Exception:
-        return 0.0
-
-
-def to_int(value: Any) -> int:
-    try:
-        return int(float(str(value).strip()))
-    except Exception:
-        return 0
 
 
 def load_manifest(path: Path) -> list[dict[str, Any]]:

@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import PROJECT_ROOT, load_config
+from .io_helpers import load_case_map, read_csv_rows, to_float, to_int
 
 
 DECISION_COLUMNS = [
@@ -30,35 +31,10 @@ PERFORMANCE_COLUMNS = ["strategy", "average_cer"]
 METHODS = ["mixed_whisper", "separated_whisper", "separated_whisper_cleaned"]
 
 
-def read_csv_rows(path: Path) -> list[dict[str, Any]]:
-    if not path.exists():
-        raise FileNotFoundError(f"Missing table: {path.relative_to(PROJECT_ROOT)}")
-    with path.open("r", encoding="utf-8-sig", newline="") as f:
-        return list(csv.DictReader(f))
-
-
 def read_json(path: Path) -> Any:
     if not path.exists():
         raise FileNotFoundError(f"Missing file: {path.relative_to(PROJECT_ROOT)}")
     return json.loads(path.read_text(encoding="utf-8-sig"))
-
-
-def to_int(value: Any) -> int:
-    try:
-        return int(float(str(value).strip()))
-    except Exception:
-        return 0
-
-
-def to_float(value: Any) -> float:
-    try:
-        return float(str(value).strip())
-    except Exception:
-        return 0.0
-
-
-def load_case_map(config: dict[str, Any]) -> dict[str, dict[str, Any]]:
-    return {case["id"]: case for case in config.get("audio_cases", [])}
 
 
 def load_benchmark_rows() -> tuple[dict[str, dict[str, Any]], dict[str, dict[str, Any]]]:

@@ -10,6 +10,7 @@ from .adaptive_router_v2 import choose_method_v2 as v2_choose_method
 from .build_synthetic_references import read_csv_rows, read_json
 from .config import PROJECT_ROOT
 from .evaluate_cer import normalize_text
+from .io_helpers import to_float, to_int
 
 
 STRATEGIES = [
@@ -50,20 +51,6 @@ DECISION_COLUMNS = [
 ]
 
 PERFORMANCE_COLUMNS = ["scope", "strategy", "average_cer", "gap_to_oracle", "sample_count", "notes"]
-
-
-def to_int(value: Any) -> int:
-    try:
-        return int(float(str(value).strip()))
-    except Exception:
-        return 0
-
-
-def to_float(value: Any) -> float:
-    try:
-        return float(str(value).strip())
-    except Exception:
-        return 0.0
 
 
 def dataset_paths() -> dict[str, Path]:

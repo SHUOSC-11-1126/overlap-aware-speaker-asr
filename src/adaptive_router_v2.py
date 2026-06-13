@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import PROJECT_ROOT, load_config
+from .io_helpers import load_case_map, read_csv_rows, to_float, to_int, write_csv_json
 
 
 GOLD_DECISION_COLUMNS = [
@@ -72,35 +73,10 @@ TIER_TO_LEVEL = {
 }
 
 
-def to_int(value: Any) -> int:
-    try:
-        return int(float(str(value).strip()))
-    except Exception:
-        return 0
-
-
-def to_float(value: Any) -> float:
-    try:
-        return float(str(value).strip())
-    except Exception:
-        return 0.0
-
-
-def read_csv_rows(path: Path) -> list[dict[str, Any]]:
-    if not path.exists():
-        raise FileNotFoundError(f"Missing table: {path.relative_to(PROJECT_ROOT)}")
-    with path.open("r", encoding="utf-8-sig", newline="") as f:
-        return [row for row in csv.DictReader(f) if isinstance(row, dict)]
-
-
 def read_json(path: Path) -> dict[str, Any]:
     if not path.exists():
         raise FileNotFoundError(f"Missing file: {path.relative_to(PROJECT_ROOT)}")
     return json.loads(path.read_text(encoding="utf-8-sig"))
-
-
-def load_case_map(config: dict[str, Any]) -> dict[str, dict[str, Any]]:
-    return {case["id"]: case for case in config.get("audio_cases", [])}
 
 
 def load_gold_inputs() -> tuple[
@@ -387,15 +363,6 @@ def compute_performance(
         }
         for strategy, values in strategies.items()
     ]
-
-
-def write_csv_json(rows: list[dict[str, Any]], csv_path: Path, json_path: Path, fieldnames: list[str]) -> None:
-    csv_path.parent.mkdir(parents=True, exist_ok=True)
-    with csv_path.open("w", newline="", encoding="utf-8-sig") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)
-    json_path.write_text(json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def render_gold_md(performance_rows: list[dict[str, Any]]) -> Path:
