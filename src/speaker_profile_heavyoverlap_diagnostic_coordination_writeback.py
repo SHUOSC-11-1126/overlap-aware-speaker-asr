@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import PROJECT_ROOT
-from .io_helpers import load_json_dict
+from .io_helpers import build_card_lines as _build_card_lines, build_fill_lines as _build_fill_lines, load_json_dict
 
 
 CARD_COLUMNS = [
@@ -128,35 +128,11 @@ def build_receipt_row(
 
 
 def build_card_lines(rows: list[dict[str, str]]) -> list[str]:
-    lines = [
-        "# Speaker Profile HeavyOverlap Diagnostic Coordination Card (experimental/frontier)",
-        "",
-        "Diagnostic scope coordination — not overlap-case embedding execution.",
-        "",
-        "| section_id | headline | artifact_anchor | result_label |",
-        "| --- | --- | --- | --- |",
-    ]
-    for row in rows:
-        lines.append(
-            f"| {row['section_id']} | {row['headline']} | {row['artifact_anchor']} | {row['result_label']} |"
-        )
-    lines.append("")
-    for row in rows:
-        lines.append(f"- **{row['section_id']}**: {row['coordination_note']}")
-    return lines
+    return _build_card_lines(rows, "HeavyOverlap")
 
 
 def build_fill_lines(row: dict[str, str]) -> list[str]:
-    return [
-        "# Speaker Profile HeavyOverlap Diagnostic Coordination Writeback",
-        "",
-        "| fill_status | diagnostic_case_scope | candidate_case_scope | execution_receipt_status | blocker |",
-        "| --- | --- | --- | --- | --- |",
-        (
-            f"| {row['fill_status']} | {row['diagnostic_case_scope']} | {row['candidate_case_scope']} | "
-            f"{row['execution_receipt_status']} | {row['blocker']} |"
-        ),
-    ]
+    return _build_fill_lines(row, "HeavyOverlap")
 
 
 def build_receipt_lines(row: dict[str, str]) -> list[str]:

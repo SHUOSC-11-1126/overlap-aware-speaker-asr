@@ -48,6 +48,38 @@ def write_csv_json(
     json_path.write_text(json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+def build_card_lines(rows: list[dict[str, str]], title: str) -> list[str]:
+    lines = [
+        f"# Speaker Profile {title} Diagnostic Coordination Card (experimental/frontier)",
+        "",
+        "Diagnostic scope coordination — not overlap-case embedding execution.",
+        "",
+        "| section_id | headline | artifact_anchor | result_label |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['section_id']} | {row['headline']} | {row['artifact_anchor']} | {row['result_label']} |"
+        )
+    lines.append("")
+    for row in rows:
+        lines.append(f"- **{row['section_id']}**: {row['coordination_note']}")
+    return lines
+
+
+def build_fill_lines(row: dict[str, str], title: str) -> list[str]:
+    return [
+        f"# Speaker Profile {title} Diagnostic Coordination Writeback",
+        "",
+        "| fill_status | diagnostic_case_scope | candidate_case_scope | execution_receipt_status | blocker |",
+        "| --- | --- | --- | --- | --- |",
+        (
+            f"| {row['fill_status']} | {row['diagnostic_case_scope']} | {row['candidate_case_scope']} | "
+            f"{row['execution_receipt_status']} | {row['blocker']} |"
+        ),
+    ]
+
+
 def load_json_dict(path_rel: str, project_root: Path | None = None) -> dict[str, Any]:
     base = project_root or Path(__file__).resolve().parent.parent
     path = base / path_rel
