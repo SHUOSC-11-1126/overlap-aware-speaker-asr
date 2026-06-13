@@ -1,0 +1,11 @@
+{
+  "execution_status": "wave160_speaker_profile_oppositeoverlap_diagnostic_coordination_complete",
+  "coordination_scope": "wave160_speaker_profile_oppositeoverlap_diagnostic",
+  "wave160_closure_status": "wave160_exploration_baseline_closure_complete",
+  "oppositeoverlap_prior_coordination_status": "speaker_profile_oppositeoverlap_diagnostic_coordination_complete",
+  "wave154_refresh_status": "wave154_speaker_profile_oppositeoverlap_diagnostic_coordination_complete",
+  "heavyoverlap_refresh_status": "wave159_speaker_profile_heavyoverlap_diagnostic_coordination_complete",
+  "separation_benefit_signal": "separation_helps_on_oppositeoverlap",
+  "expected_inputs": "Wave160 closure, demo wave160, Wave13 OppositeOverlap, Wave154 refresh, and Wave159 HeavyOverlap refresh.",
+  "writeback_note": "experimental/frontier coordination only; does not claim overlap-case embedding execution."
+}
