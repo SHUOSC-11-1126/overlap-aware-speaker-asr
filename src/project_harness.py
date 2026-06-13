@@ -2884,6 +2884,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave148_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback.json",
         "next_step": "Run python -m src.wave148_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback after demo wave148.",
     },
+    {
+        "frontier_id": "wave149_exploration_baseline_closure_writeback",
+        "module_path": "src/wave149_exploration_baseline_closure_writeback.py",
+        "expected_output": "results/tables/wave149_exploration_baseline_closure_writeback.json",
+        "next_step": "Run python -m src.wave149_exploration_baseline_closure_writeback after Wave148 OppositeOverlap chain.",
+    },
 ]
 
 
