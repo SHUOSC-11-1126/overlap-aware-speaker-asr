@@ -3035,10 +3035,10 @@ WAVE_FRONTIER_MODULES = [
         "next_step": "Run python -m src.wave164_exploration_baseline_closure_writeback after Wave163 LightOverlap chain.",
     },
     {
-        "frontier_id": "wave163_demo_presentation_writeback",
-        "module_path": "src/demo_wave163_presentation_writeback.py",
-        "expected_output": "results/tables/demo_wave163_presentation_writeback.json",
-        "next_step": "Run python -m src.demo_wave163_presentation_writeback after Wave163 closure writeback.",
+        "frontier_id": "wave164_demo_presentation_writeback",
+        "module_path": "src/demo_wave164_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave164_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave164_presentation_writeback after Wave164 closure writeback.",
     },
     {
         "frontier_id": "wave163_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
