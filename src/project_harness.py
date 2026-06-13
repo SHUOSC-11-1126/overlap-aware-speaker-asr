@@ -2584,6 +2584,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave132_exploration_baseline_closure_writeback.json",
         "next_step": "Run python -m src.wave132_exploration_baseline_closure_writeback after Wave131 external validation chain.",
     },
+    {
+        "frontier_id": "wave132_demo_presentation_writeback",
+        "module_path": "src/demo_wave132_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave132_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave132_presentation_writeback after Wave132 closure writeback.",
+    },
 ]
 
 
