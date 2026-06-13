@@ -2854,6 +2854,12 @@ WAVE_FRONTIER_MODULES = [
         "expected_output": "results/tables/wave147_exploration_baseline_closure_writeback.json",
         "next_step": "Run python -m src.wave147_exploration_baseline_closure_writeback after Wave146 MidOverlap chain.",
     },
+    {
+        "frontier_id": "wave147_demo_presentation_writeback",
+        "module_path": "src/demo_wave147_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave147_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave147_presentation_writeback after Wave147 closure writeback.",
+    },
 ]
 
 
