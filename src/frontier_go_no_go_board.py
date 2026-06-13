@@ -262,6 +262,7 @@ def classify_go_no_go_state(current_state: str) -> str:
         "wave138_exploration_baseline_closure_complete",
         "wave138_meeteval_official_narrow_dry_run_coordination_complete",
         "wave139_exploration_baseline_closure_complete",
+        "wave139_speaker_profile_lightoverlap_diagnostic_coordination_complete",
         "wave57_speaker_profile_heavyoverlap_diagnostic_coordination_complete",
         "wave63_speaker_profile_heavyoverlap_diagnostic_coordination_complete",
         "wave69_speaker_profile_heavyoverlap_diagnostic_coordination_complete",
