@@ -1580,6 +1580,11 @@ results/synthetic_overlap_v2/
 !results/tables/wave150_exploration_baseline_closure_writeback.csv
 !results/tables/wave150_exploration_baseline_closure_writeback.json
 !results/tables/wave150_exploration_baseline_closure_receipt.json
+!results/tables/wave151_exploration_baseline_closure_card.csv
+!results/tables/wave151_exploration_baseline_closure_card.json
+!results/tables/wave151_exploration_baseline_closure_writeback.csv
+!results/tables/wave151_exploration_baseline_closure_writeback.json
+!results/tables/wave151_exploration_baseline_closure_receipt.json
 !results/tables/wave109_exploration_baseline_closure_card.csv
 !results/tables/wave109_exploration_baseline_closure_card.json
 !results/tables/wave109_exploration_baseline_closure_writeback.csv
