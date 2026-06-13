@@ -3035,10 +3035,10 @@ WAVE_FRONTIER_MODULES = [
         "next_step": "Run python -m src.wave161_exploration_baseline_closure_writeback after Wave160 OppositeOverlap chain.",
     },
     {
-        "frontier_id": "wave160_demo_presentation_writeback",
-        "module_path": "src/demo_wave160_presentation_writeback.py",
-        "expected_output": "results/tables/demo_wave160_presentation_writeback.json",
-        "next_step": "Run python -m src.demo_wave160_presentation_writeback after Wave160 closure writeback.",
+        "frontier_id": "wave161_demo_presentation_writeback",
+        "module_path": "src/demo_wave161_presentation_writeback.py",
+        "expected_output": "results/tables/demo_wave161_presentation_writeback.json",
+        "next_step": "Run python -m src.demo_wave161_presentation_writeback after Wave161 closure writeback.",
     },
     {
         "frontier_id": "wave160_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
