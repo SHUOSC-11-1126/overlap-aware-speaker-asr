@@ -17,7 +17,7 @@ jobs:
   guard:
     runs-on: ubuntu-latest
     steps:
-      - uses: ceilf6/repo-guard@main
+      - uses: ceilf6/repo-guard@19d57fc8646e567321f38f177816dabcb05ac48c # main
         with:
           provider: ${{ vars.LLM_PROVIDER || 'openai' }}
           model: ${{ vars.LLM_MODEL || 'gpt-4o' }}
