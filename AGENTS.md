@@ -15,6 +15,7 @@ This repo runs a development Harness adapted from `ref/code-tape`: Git hooks, a 
 3. Write code test-first. A change to critical code (`router-core`, `evaluation-core`, `harness`) must include its paired `tests/test_<module>*.py` in the same change, or the contract fails.
 4. `git commit` runs the fast test gate (`pre-commit`); `git push` runs the contract + full test gate (`pre-push`). Don't hand-run these first; `SKIP_QUALITY_HOOKS=1` bypasses locally in emergencies only.
 5. In a PR, fill the structured GitNexus impact summary (`.github/PULL_REQUEST_TEMPLATE.md`); CI's `Contract Guard` enforces it. Changing verified references or gold tables additionally requires a Result label.
+6. Work from an issue and reference it from the PR (`Closes #N`). After opening the PR, **wait for the review loop** — GitHub Actions (`Tests`, `Contract Guard`) and **repo-guard** CR comments (plus any other configured reviewer) — then read and **respond to every guard comment** (fix or justify, push a follow-up commit). Do not merge past unresolved guard findings. If a "needs CR to pass" status appears before review lands, that is expected — ignore it and wait for the comments. See `docs/harness/workflow_spec.md`.
 
 ## Stable Baseline vs Experimental Frontier
 

@@ -25,11 +25,18 @@ make quality-predev      # refresh the GitNexus index + contract (advisory) befo
 # ... edit code, write tests ...
 git commit               # pre-commit hook runs the fast test gate automatically
 git push                 # pre-push hook runs the contract + full test gate automatically
+# open a PR (Closes #N), then wait for repo-guard CR + CI and respond to every comment
 ```
 
 No npm here, so [`../../Makefile`](../../Makefile) is the ergonomic surface and
 [`scripts/harness/quality.py`](../../scripts/harness/quality.py) is the single
 source of truth that the hooks delegate to.
+
+The full loop — **issue → PR → repo-guard CR → respond → merge** — is the
+[development workflow](workflow_spec.md); it mirrors code-tape AGENTS.md item 8.
+The review loop is kept (an independent reviewer signs off, keeping generation
+and evaluation separate); only the training-camp scoring/auto-merge automation
+is omitted.
 
 ## Gate cadence
 

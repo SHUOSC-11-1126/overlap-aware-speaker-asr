@@ -2,7 +2,7 @@
 
 ## Summary
 
-<!-- What and why, in 1-3 sentences. Link the spec / ADR / issue this implements. -->
+<!-- What and why, in 1-3 sentences. Link the spec / ADR / issue this implements, e.g. "Closes #N". -->
 
 ## GitNexus Impact Summary
 
@@ -24,6 +24,8 @@ placeholders ("-", "无", "todo", "n/a").
 
 ## Checklist
 
+- [ ] This PR references its issue (`Closes #N`).
 - [ ] Critical code changes include their paired `tests/test_<module>*.py` in this PR.
 - [ ] Results are labeled; verified references / gold tables were not silently overwritten.
 - [ ] `git push` passed the pre-push gate (or I explain why it was bypassed).
+- [ ] I will respond to every repo-guard / reviewer comment before merge (fix or justify).
