@@ -31,7 +31,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import contract_rules as cr  # noqa: E402
 from install_hooks import install_hooks  # noqa: E402
 
-GITNEXUS_VERSION = os.environ.get("GITNEXUS_VERSION", "1.6.5")
+GITNEXUS_VERSION = os.environ.get("GITNEXUS_VERSION", "1.6.7")
 DEFAULT_LOCAL_ANALYZE_TIMEOUT_MS = 120_000
 DEFAULT_CI_ANALYZE_TIMEOUT_MS = 300_000
 
@@ -98,7 +98,7 @@ def run_gitnexus_analyze(mode):
         return _gitnexus_soft_fail(mode, "npx not found; cannot refresh the GitNexus index.")
 
     timeout_s = resolve_timeout_ms(mode) / 1000.0
-    args = ["npx", "--yes", "--prefer-offline", f"gitnexus@{GITNEXUS_VERSION}", "analyze", "--force", "--index-only"]
+    args = build_gitnexus_args()
     print(f"Running GitNexus {GITNEXUS_VERSION} analyze --force --index-only ({mode}, timeout {timeout_s:.0f}s)...")
     try:
         subprocess.run(args, check=True, cwd=str(REPO_ROOT), timeout=timeout_s)
@@ -111,6 +111,23 @@ def run_gitnexus_analyze(mode):
         )
     except subprocess.CalledProcessError as err:
         return _gitnexus_soft_fail(mode, f"GitNexus analyze failed (exit {err.returncode}).")
+
+
+def build_gitnexus_args():
+    """npx invocation for the GitNexus index build.
+
+    No --prefer-offline: on a cold/partial npm cache it raises ETARGET for
+    transitive deps (e.g. @ladybugdb/core), so we always let npx resolve
+    against the registry. GITNEXUS_VERSION overrides the pinned default.
+    """
+    return [
+        "npx",
+        "--yes",
+        f"gitnexus@{GITNEXUS_VERSION}",
+        "analyze",
+        "--force",
+        "--index-only",
+    ]
 
 
 def _gitnexus_soft_fail(mode, message):
