@@ -1,0 +1,19 @@
+{
+  "backend": "faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "因為你可以為了身體健康健康健康健康健康健康健康",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 5.0,
+      "text": "因為你可以為了身體健康健康健康健康健康健康健康"
+    }
+  ],
+  "status": "ok",
+  "runtime_sec": 0.4756,
+  "sample_id": "audio_depth_stress_v1_0008",
+  "route": "spk1",
+  "wav_path": "resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0008_spk1.wav",
+  "evidence_type": "real_whisper_asr"
+}

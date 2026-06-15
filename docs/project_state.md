@@ -136,6 +136,20 @@ Stage 24 adds a sampled real-ASR layer without replacing Stage 23 proxy evidence
 
 Interpretation: this sampled real-ASR run is a boundary finding rather than a win claim. It distinguishes Stage 23 proxy CER from Stage 24 real Whisper CER and shows that the proxy improvement does not automatically transfer on a small real-ASR slice.
 
+## Real-ASR Validation Gap Analysis
+
+Stage 25 audits the proxy-to-real gap before doing more router training.
+
+- Audit pack: `results/figures/audio_depth_real_asr_audit_pack.md`
+- Reference quality: `results/figures/audio_depth_real_asr_reference_quality.md`
+- Normalized summary: `results/figures/audio_depth_real_asr_normalized_summary.md`
+- Whisper config sweep: `results/figures/audio_depth_whisper_config_sweep_summary.md`
+- Stratified expansion: `results/figures/audio_depth_real_asr_stratified_summary.md`
+- Proxy-to-real gap: `results/figures/audio_depth_proxy_real_gap.md`
+- Route-gap subset: `results/figures/audio_depth_real_asr_route_gap_subset.md`
+
+Current conclusion: Stage 23 proxy evidence is strong, but Stage 24/25 real-ASR evidence does not yet transfer. Oracle real CER also improves only slightly, so the sampled slice may not provide enough route-choice contrast. This is a validation-pipeline finding, not a reason to erase the frontier experiment.
+
 ## Gold Benchmark Final CER Table
 
 ### NoOverlap

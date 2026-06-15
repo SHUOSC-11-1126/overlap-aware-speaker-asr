@@ -1,0 +1,49 @@
+config_id,model_size,beam_size,vad_filter,limit,initial_prompt,sample_count,average_mixed_cer,status,blocked,sample_id,mixed_cer,transcript_text,evidence_type
+base_beam1,base,1,False,10,,10,0.747664,complete,,,,,
+base_beam5,base,5,False,10,,10,0.77802,complete,,,,,
+base_vad,base,1,True,10,,10,0.779231,complete,,,,,
+base_prompt,base,5,False,10,中文辩论 对话 重叠语音 晚睡 晚起 空虚,10,1.290242,complete,,,,,
+small_beam5_partial,small,5,False,3,,0,,partial,True,,,,
+base_beam1,base,1,False,10,,,,ok,,audio_depth_stress_v1_0001,0.71875,他讓你在那個時間段裡擁有了自己,real_whisper_config_sweep
+base_beam1,base,1,False,10,,,,ok,,audio_depth_stress_v1_0002,0.692308,哪怕自己是一个刷倒音的自己,real_whisper_config_sweep
+base_beam1,base,1,False,10,,,,ok,,audio_depth_stress_v1_0003,0.75,"哦,我忘了离在稍微解釋一下哦,我忘了离在稍微解釋",real_whisper_config_sweep
+base_beam1,base,1,False,10,,,,ok,,audio_depth_stress_v1_0004,0.888889,其實部落非移入其實部落非移入,real_whisper_config_sweep
+base_beam1,base,1,False,10,,,,ok,,audio_depth_stress_v1_0005,0.68,光觉得晚睡晚起少夜,real_whisper_config_sweep
+base_beam1,base,1,False,10,,,,ok,,audio_depth_stress_v1_0006,0.904762,打吹早期也沒完,real_whisper_config_sweep
+base_beam1,base,1,False,10,,,,ok,,audio_depth_stress_v1_0007,0.5,因为你可以早睡早期因为你可以早睡早期,real_whisper_config_sweep
+base_beam1,base,1,False,10,,,,ok,,audio_depth_stress_v1_0008,0.6,因为你可以为了身体健康因为你可以为了身体健康,real_whisper_config_sweep
+base_beam1,base,1,False,10,,,,ok,,audio_depth_stress_v1_0009,1.0,怎麼會臉?怎麼會臉?,real_whisper_config_sweep
+base_beam1,base,1,False,10,,,,ok,,audio_depth_stress_v1_0010,0.741935,不太一致我可以跟你解釋,real_whisper_config_sweep
+base_beam5,base,5,False,10,,,,ok,,audio_depth_stress_v1_0001,0.71875,他讓你在那個時間段裡擁有了自己,real_whisper_config_sweep
+base_beam5,base,5,False,10,,,,ok,,audio_depth_stress_v1_0002,0.769231,哪怕这个自己是一个刷倒音的自己,real_whisper_config_sweep
+base_beam5,base,5,False,10,,,,ok,,audio_depth_stress_v1_0003,0.75,"喔,我忘了离在稍微解釋一下喔,我忘了离在稍微解釋",real_whisper_config_sweep
+base_beam5,base,5,False,10,,,,ok,,audio_depth_stress_v1_0004,0.777778,其实不落飞机其实不落飞机,real_whisper_config_sweep
+base_beam5,base,5,False,10,,,,ok,,audio_depth_stress_v1_0005,0.8,光絕到晚睡晚寫少夜,real_whisper_config_sweep
+base_beam5,base,5,False,10,,,,ok,,audio_depth_stress_v1_0006,0.904762,打吹早期也沒完,real_whisper_config_sweep
+base_beam5,base,5,False,10,,,,ok,,audio_depth_stress_v1_0007,0.5,因为你可以早睡早期因为你可以早睡早期,real_whisper_config_sweep
+base_beam5,base,5,False,10,,,,ok,,audio_depth_stress_v1_0008,0.85,因為你可以為了身體健康健康因為你可以為了身體健康,real_whisper_config_sweep
+base_beam5,base,5,False,10,,,,ok,,audio_depth_stress_v1_0009,1.0,咬碎碟咬碎碟,real_whisper_config_sweep
+base_beam5,base,5,False,10,,,,ok,,audio_depth_stress_v1_0010,0.709677,哦不太一致我可以跟你解釋,real_whisper_config_sweep
+base_vad,base,1,True,10,,,,ok,,audio_depth_stress_v1_0001,0.71875,他讓你在那個時間段裡擁有了自己,real_whisper_config_sweep
+base_vad,base,1,True,10,,,,ok,,audio_depth_stress_v1_0002,0.653846,哪怕自己是一个刷抖音的自己,real_whisper_config_sweep
+base_vad,base,1,True,10,,,,ok,,audio_depth_stress_v1_0003,1.0,夏天夏天夏天夏天,real_whisper_config_sweep
+base_vad,base,1,True,10,,,,ok,,audio_depth_stress_v1_0004,0.722222,其實不落分一隻其實不落分一隻,real_whisper_config_sweep
+base_vad,base,1,True,10,,,,ok,,audio_depth_stress_v1_0005,0.8,放雪到晚睡晚寫少夜,real_whisper_config_sweep
+base_vad,base,1,True,10,,,,ok,,audio_depth_stress_v1_0006,1.0,嘟嘟 嘟嘟 嘟嘟 嘟嘟 嘟嘟 嘟嘟,real_whisper_config_sweep
+base_vad,base,1,True,10,,,,ok,,audio_depth_stress_v1_0007,0.555556,因為你可以早睡早期因為你可以早睡早期,real_whisper_config_sweep
+base_vad,base,1,True,10,,,,ok,,audio_depth_stress_v1_0008,0.6,因为你可以为了身体健康因为你可以为了身体健康,real_whisper_config_sweep
+base_vad,base,1,True,10,,,,ok,,audio_depth_stress_v1_0009,1.0,怎麼會臉水怎麼會臉水,real_whisper_config_sweep
+base_vad,base,1,True,10,,,,ok,,audio_depth_stress_v1_0010,0.741935,不太一致我可以跟你解釋,real_whisper_config_sweep
+base_prompt,base,5,False,10,中文辩论 对话 重叠语音 晚睡 晚起 空虚,,,ok,,audio_depth_stress_v1_0001,0.53125,他让你在那个时间段里拥有了自己,real_whisper_config_sweep
+base_prompt,base,5,False,10,中文辩论 对话 重叠语音 晚睡 晚起 空虚,,,ok,,audio_depth_stress_v1_0002,0.769231,哪怕这个自己是一个刷倒音的自己,real_whisper_config_sweep
+base_prompt,base,5,False,10,中文辩论 对话 重叠语音 晚睡 晚起 空虚,,,ok,,audio_depth_stress_v1_0003,1.0,晚睡 晚睡 晚睡 晚睡 晚睡,real_whisper_config_sweep
+base_prompt,base,5,False,10,中文辩论 对话 重叠语音 晚睡 晚起 空虚,,,ok,,audio_depth_stress_v1_0004,6.277778,不露非一种 羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊羊,real_whisper_config_sweep
+base_prompt,base,5,False,10,中文辩论 对话 重叠语音 晚睡 晚起 空虚,,,ok,,audio_depth_stress_v1_0005,0.76,当觉到晚睡 晚起 少叶写东卷,real_whisper_config_sweep
+base_prompt,base,5,False,10,中文辩论 对话 重叠语音 晚睡 晚起 空虚,,,ok,,audio_depth_stress_v1_0006,0.809524,老吹 早起也没问题了,real_whisper_config_sweep
+base_prompt,base,5,False,10,中文辩论 对话 重叠语音 晚睡 晚起 空虚,,,ok,,audio_depth_stress_v1_0007,0.555556,因为你可以早睡早起 因为你可以早睡早起 可以支配,real_whisper_config_sweep
+base_prompt,base,5,False,10,中文辩论 对话 重叠语音 晚睡 晚起 空虚,,,ok,,audio_depth_stress_v1_0008,0.6,因为你可以为了身体健康 因为你可以为了身体健康,real_whisper_config_sweep
+base_prompt,base,5,False,10,中文辩论 对话 重叠语音 晚睡 晚起 空虚,,,ok,,audio_depth_stress_v1_0009,0.857143,早睡点睡 晚睡 晚睡 晚睡 晚睡 晚睡,real_whisper_config_sweep
+base_prompt,base,5,False,10,中文辩论 对话 重叠语音 晚睡 晚起 空虚,,,ok,,audio_depth_stress_v1_0010,0.741935,不太一致 我可以给你解释,real_whisper_config_sweep
+small_beam5_partial,small,5,False,3,,,,blocked_model_download_timeout,True,audio_depth_stress_v1_0001,,,real_whisper_config_sweep
+small_beam5_partial,small,5,False,3,,,,blocked_model_download_timeout,True,audio_depth_stress_v1_0002,,,real_whisper_config_sweep
+small_beam5_partial,small,5,False,3,,,,blocked_model_download_timeout,True,audio_depth_stress_v1_0003,,,real_whisper_config_sweep

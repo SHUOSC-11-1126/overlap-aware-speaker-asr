@@ -1,0 +1,12 @@
+{
+  "sample_id": "audio_depth_stress_v1_0031",
+  "route": "cleaned",
+  "backend": "merge:faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "你没有多两个小时但是你自己的什么人多了两个吗我可以给你解释你没有多两",
+  "segments": [],
+  "runtime_sec": 7.6853,
+  "status": "ok",
+  "evidence_type": "text_cleanup_from_real_whisper_separated"
+}

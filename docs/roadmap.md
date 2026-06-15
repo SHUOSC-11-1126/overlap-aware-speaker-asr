@@ -288,6 +288,14 @@ Update: sampled real Whisper ASR validation now exists for the AudioDepth stress
 - Current sampled result: `hybrid_late_fusion_v2` ties router_v2 at real Whisper CER `0.718965` on 10 synthetic/silver stress samples, with oracle at `0.713965`.
 - Next step: enlarge the real-ASR sample and add a small gold sanity subset.
 
+Update: the real-ASR gap audit is now available.
+
+- 10-sample audit: 7 cases have route gap `<0.01`; 8 cases have all-route CER above `0.65`.
+- Normalization: no material CER drop; hybrid remains `0.718965`.
+- Config sweep: `base_beam1` is the best tested mixed setting at CER `0.747664`; small model was blocked by model download time.
+- Stratified 20-sample expansion: router_v2 and `hybrid_late_fusion_v2` tie at CER `0.696410`; oracle is `0.674610`.
+- Roadmap implication: stop blind router training until reference quality, Whisper configuration, and route-gap subset reliability are improved.
+
 Update: `external_validation` now also has a slice staging readiness handoff.
 
 - Staging readiness handoff: `results/tables/external_validation_slice_staging_readiness_handoff.csv`

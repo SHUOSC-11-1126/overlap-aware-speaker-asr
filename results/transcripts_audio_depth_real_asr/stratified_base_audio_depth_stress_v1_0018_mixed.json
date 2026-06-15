@@ -1,0 +1,24 @@
+{
+  "backend": "faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "因為你可以早稅早期好 我去問你要晚稅晚期",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 1.56,
+      "text": "因為你可以早稅早期"
+    },
+    {
+      "start": 4.24,
+      "end": 6.0,
+      "text": "好 我去問你要晚稅晚期"
+    }
+  ],
+  "status": "ok",
+  "runtime_sec": 0.448,
+  "sample_id": "audio_depth_stress_v1_0018",
+  "route": "mixed",
+  "wav_path": "resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0018_mixed.wav",
+  "evidence_type": "real_whisper_asr"
+}

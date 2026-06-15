@@ -1,0 +1,19 @@
+{
+  "backend": "faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "哪怕这个自己是一个刷倒音的自己",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.88,
+      "text": "哪怕这个自己是一个刷倒音的自己"
+    }
+  ],
+  "status": "ok",
+  "runtime_sec": 0.3734,
+  "sample_id": "audio_depth_stress_v1_0013",
+  "route": "spk1",
+  "wav_path": "resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0013_spk1.wav",
+  "evidence_type": "real_whisper_asr"
+}

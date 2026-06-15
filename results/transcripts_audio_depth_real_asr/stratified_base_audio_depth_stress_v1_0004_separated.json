@@ -1,0 +1,12 @@
+{
+  "sample_id": "audio_depth_stress_v1_0004",
+  "route": "separated",
+  "backend": "merge:faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "[SPEAKER_1] 其实不落飞机其实不落飞机\n[SPEAKER_2]",
+  "segments": [],
+  "runtime_sec": 6.3491,
+  "status": "ok",
+  "evidence_type": "real_whisper_asr_merged_speakers"
+}

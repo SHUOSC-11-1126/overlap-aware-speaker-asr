@@ -1,0 +1,12 @@
+{
+  "sample_id": "audio_depth_stress_v1_0041",
+  "route": "separated",
+  "backend": "merge:faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "[SPEAKER_1] 他讓你在那個時間段裡擁有了自己他讓你在那個時間段裡擁有了自己他讓你在那個時間\n[SPEAKER_2]",
+  "segments": [],
+  "runtime_sec": 8.672,
+  "status": "ok",
+  "evidence_type": "real_whisper_asr_merged_speakers"
+}

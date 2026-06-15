@@ -34,3 +34,15 @@ A hybrid router will outperform fixed mixed, fixed separated, fixed cleaned, pur
 ## Important caution
 
 Synthetic stress results are not gold. Proxy CER is useful for controlled validation only when real ASR is unavailable, and simulated cost is not hardware timing evidence.
+
+## Real-ASR validation gap analysis
+
+Stage 25 adds the missing audit layer for the Stage 24 boundary finding.
+
+- Stage 23 proxy evidence is strong, but the Stage 24 real-ASR slice did not transfer to a router win.
+- Oracle real CER also barely improves, which means the sampled slice may not leave enough room for routing.
+- Reference quality is a limitation because the stress references are synthetic/silver rather than gold.
+- Conservative CER normalization does not materially lower CER, so the problem is not just punctuation or spacing.
+- A robust validation should run reference-quality audit, normalization, Whisper configuration sweep, stratified sample expansion, proxy-to-real gap analysis, and route-gap subset analysis before making any stable-routing claim.
+
+This is scientific exploration, not failure. It shows that system innovation needs a reliable evaluation pipeline, not only a stronger router.

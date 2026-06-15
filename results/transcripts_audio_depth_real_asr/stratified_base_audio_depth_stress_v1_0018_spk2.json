@@ -1,0 +1,19 @@
+{
+  "backend": "faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "好,我先聊完稍微玩",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 6.0,
+      "text": "好,我先聊完稍微玩"
+    }
+  ],
+  "status": "ok",
+  "runtime_sec": 0.3414,
+  "sample_id": "audio_depth_stress_v1_0018",
+  "route": "spk2",
+  "wav_path": "resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0018_spk2.wav",
+  "evidence_type": "real_whisper_asr"
+}

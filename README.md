@@ -126,12 +126,20 @@ Current systematic held-out result: `hybrid_late_fusion_v2` reaches routing CER 
 
 Stage 24 adds a sampled real Whisper ASR validation layer without overwriting the Stage 23 proxy files. The environment diagnosis selects `faster-whisper` `1.2.1` with model size `base`; the system `ffmpeg` command is still missing, but faster-whisper runs through PyAV. On the first 10 stress samples, `router_v2` and `hybrid_late_fusion_v2` both reach real Whisper CER `0.718965` against the synthetic/silver references, while oracle reaches `0.713965`. This is a boundary finding: the real-ASR sample does not yet show a systematic-router win over router_v2, and it is not gold evidence because the reference remains synthetic/silver.
 
+### Real-ASR Validation Gap Analysis
+
+Stage 25 audits why the Stage 23 proxy improvement did not transfer cleanly to real Whisper CER. The audit finds that 7 of the first 10 real-ASR cases have route gap `<0.01`, 8 of 10 have all-route CER above `0.65`, and all checked references are weak synthetic/silver references. Conservative CER normalization does not reduce the hybrid result (`0.718965` before and after normalization), so formatting alone does not explain the high CER.
+
+The Whisper config sweep shows `base_beam1` improves mixed CER to `0.747664` versus `base_beam5` at `0.778020`, while VAD and the prompt tested here do not help. A stratified 20-sample expansion reaches router_v2 CER `0.696410`, `hybrid_late_fusion_v2` CER `0.696410`, and oracle CER `0.674610`. Current real-ASR evidence therefore does not yet support AudioDepth beating router_v2; it supports a more useful conclusion: proxy labels are good for exploration but insufficient as final ASR evidence without reference-quality and route-gap checks.
+
 README-ready figures:
 
 - `results/figures/audio_depth_systematic_overview.png`
 - `results/figures/audio_depth_systematic_main_result_card.png`
 - `results/figures/audio_depth_systematic_pareto_card.png`
 - `results/figures/audio_depth_real_asr_summary.md`
+- `results/figures/audio_depth_real_asr_audit_pack.md`
+- `results/figures/audio_depth_proxy_real_gap.md`
 
 ## Project Map
 

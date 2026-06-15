@@ -1,0 +1,12 @@
+{
+  "sample_id": "audio_depth_stress_v1_0018",
+  "route": "cleaned",
+  "backend": "merge:faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "因为你可以早睡早期因为你可以早睡早期好,我先聊完稍微玩",
+  "segments": [],
+  "runtime_sec": 0.7324,
+  "status": "ok",
+  "evidence_type": "text_cleanup_from_real_whisper_separated"
+}

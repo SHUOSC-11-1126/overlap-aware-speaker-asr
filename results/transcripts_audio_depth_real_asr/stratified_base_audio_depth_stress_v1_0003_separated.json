@@ -1,0 +1,12 @@
+{
+  "sample_id": "audio_depth_stress_v1_0003",
+  "route": "separated",
+  "backend": "merge:faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "[SPEAKER_1] 哦 哇 这里在终于解释一下哦 哇 这里在终于解释\n[SPEAKER_2]",
+  "segments": [],
+  "runtime_sec": 6.9613,
+  "status": "ok",
+  "evidence_type": "real_whisper_asr_merged_speakers"
+}

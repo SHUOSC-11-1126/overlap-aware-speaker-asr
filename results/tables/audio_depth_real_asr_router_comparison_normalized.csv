@@ -1,0 +1,7 @@
+method,average_cer,sample_count
+oracle_normalized,0.713965,10
+router_v2_normalized,0.718965,10
+hybrid_late_fusion_v2_normalized,0.718965,10
+fixed_mixed_normalized,0.77802,10
+fixed_separated_normalized,0.790631,10
+fixed_cleaned_normalized,0.790631,10

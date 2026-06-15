@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 from pathlib import Path
 from typing import Any
 
@@ -11,43 +10,24 @@ import numpy as np
 from .audio_depth_router_common import PROJECT_ROOT, ROUTE_LABELS, read_csv, rel, write_csv
 from .audio_depth_systematic_common import STRESS_LABELS_CSV, STRESS_MANIFEST_CSV, build_stress_feature_row, rows_by_sample, safe_float
 from .evaluate_audio_depth_systematic_router import load_model_predict, router_v2_proxy
+from .text_normalization import cer, normalize_asr_text
 
 
-TRANSCRIPTS_CSV = PROJECT_ROOT / "results" / "tables" / "audio_depth_real_asr_transcripts.csv"
-REAL_CER_CSV = PROJECT_ROOT / "results" / "tables" / "audio_depth_real_asr_cer.csv"
-REAL_LABELS_CSV = PROJECT_ROOT / "results" / "tables" / "audio_depth_real_asr_route_labels.csv"
-REAL_COMPARISON_CSV = PROJECT_ROOT / "results" / "tables" / "audio_depth_real_asr_router_comparison.csv"
-SUMMARY_MD = PROJECT_ROOT / "results" / "figures" / "audio_depth_real_asr_summary.md"
+def table_path(stem: str, run_id: str) -> Path:
+    suffix = "" if run_id == "default" else f"_{run_id}"
+    return PROJECT_ROOT / "results" / "tables" / f"audio_depth_real_asr{suffix}_{stem}.csv"
+
+
+def figure_path(stem: str, run_id: str) -> Path:
+    suffix = "" if run_id == "default" else f"_{run_id}"
+    return PROJECT_ROOT / "results" / "figures" / f"audio_depth_real_asr{suffix}_{stem}.md"
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Evaluate real Whisper CER for AudioDepth stress validation.")
     parser.add_argument("--systematic-model", default="hybrid_late_fusion_v2")
+    parser.add_argument("--run-id", default="default")
     return parser.parse_args()
-
-
-def normalize_for_cer(text: str) -> str:
-    text = re.sub(r"\[SPEAKER_[12]\]", "", text or "")
-    chars = []
-    for char in text.lower():
-        if "\u4e00" <= char <= "\u9fff" or char.isalnum():
-            chars.append(char)
-    return "".join(chars)
-
-
-def cer(reference: str, hypothesis: str) -> float:
-    ref = normalize_for_cer(reference)
-    hyp = normalize_for_cer(hypothesis)
-    if not ref:
-        return 0.0 if not hyp else 1.0
-    prev = list(range(len(hyp) + 1))
-    for i, rc in enumerate(ref, start=1):
-        curr = [i]
-        for j, hc in enumerate(hyp, start=1):
-            cost = 0 if rc == hc else 1
-            curr.append(min(prev[j] + 1, curr[j - 1] + 1, prev[j - 1] + cost))
-        prev = curr
-    return round(prev[-1] / len(ref), 6)
 
 
 def source_reference_path(source_path: str) -> Path:
@@ -77,7 +57,7 @@ def route_texts(rows: list[dict[str, str]]) -> dict[str, str]:
     if "separated" not in by_route and "spk1" in by_route and "spk2" in by_route:
         by_route["separated"] = f"[SPEAKER_1] {by_route['spk1']}\n[SPEAKER_2] {by_route['spk2']}"
     if "cleaned" not in by_route and "separated" in by_route:
-        by_route["cleaned"] = normalize_for_cer(by_route["separated"])
+        by_route["cleaned"] = normalize_asr_text(by_route["separated"])
     return by_route
 
 
@@ -95,9 +75,14 @@ def mean_valid(values: list[float]) -> float:
 
 def main() -> None:
     args = parse_args()
+    transcripts_csv = table_path("transcripts", args.run_id)
+    real_cer_csv = table_path("cer", args.run_id)
+    real_labels_csv = table_path("route_labels", args.run_id)
+    real_comparison_csv = table_path("router_comparison", args.run_id)
+    summary_md = figure_path("summary", args.run_id)
     manifest = rows_by_sample(STRESS_MANIFEST_CSV)
     proxy_labels = rows_by_sample(STRESS_LABELS_CSV)
-    transcript_rows = read_csv(TRANSCRIPTS_CSV)
+    transcript_rows = read_csv(transcripts_csv)
     grouped: dict[str, list[dict[str, str]]] = {}
     for row in transcript_rows:
         grouped.setdefault(row["sample_id"], []).append(row)
@@ -158,16 +143,17 @@ def main() -> None:
     }
     for name, values in methods.items():
         comparison.append({"method": name, "average_cer_real": mean_valid(values), "sample_count": len([v for v in values if np.isfinite(v)]), "evidence_type": "real_whisper_asr_against_synthetic_silver_reference"})
-    write_csv(REAL_CER_CSV, cer_rows)
-    write_csv(REAL_LABELS_CSV, label_rows)
-    write_csv(REAL_COMPARISON_CSV, sorted(comparison, key=lambda row: safe_float(row["average_cer_real"], 99.0)))
+    write_csv(real_cer_csv, cer_rows)
+    write_csv(real_labels_csv, label_rows)
+    write_csv(real_comparison_csv, sorted(comparison, key=lambda row: safe_float(row["average_cer_real"], 99.0)))
     best = min(comparison, key=lambda row: safe_float(row["average_cer_real"], 99.0)) if comparison else {}
-    SUMMARY_MD.parent.mkdir(parents=True, exist_ok=True)
-    SUMMARY_MD.write_text(
+    summary_md.parent.mkdir(parents=True, exist_ok=True)
+    summary_md.write_text(
         "\n".join(
             [
                 "# AudioDepth Real Whisper ASR Summary",
                 "",
+                f"- Run id: `{args.run_id}`",
                 f"- Samples evaluated: `{len(cer_rows)}`",
                 f"- Reference: `synthetic/silver_reference`",
                 f"- Best aggregate row: `{best.get('method', '')}` CER `{best.get('average_cer_real', '')}`",
@@ -179,7 +165,7 @@ def main() -> None:
         + "\n",
         encoding="utf-8",
     )
-    print(f"Wrote real ASR CER comparison to {rel(REAL_COMPARISON_CSV)}")
+    print(f"Wrote real ASR CER comparison to {rel(real_comparison_csv)}")
 
 
 if __name__ == "__main__":

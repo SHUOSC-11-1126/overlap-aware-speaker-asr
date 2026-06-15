@@ -1,0 +1,12 @@
+{
+  "sample_id": "audio_depth_stress_v1_0003",
+  "route": "cleaned",
+  "backend": "merge:faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "哦哇这里在终于解释一下哦哇这里在终于解释",
+  "segments": [],
+  "runtime_sec": 6.9613,
+  "status": "ok",
+  "evidence_type": "text_cleanup_from_real_whisper_separated"
+}

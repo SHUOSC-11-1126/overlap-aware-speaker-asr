@@ -1,0 +1,24 @@
+{
+  "backend": "faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "因为你可以早睡早期因为你可以早睡早期",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.0,
+      "text": "因为你可以早睡早期"
+    },
+    {
+      "start": 4.0,
+      "end": 6.0,
+      "text": "因为你可以早睡早期"
+    }
+  ],
+  "status": "ok",
+  "runtime_sec": 0.4143,
+  "sample_id": "audio_depth_stress_v1_0007",
+  "route": "mixed",
+  "wav_path": "resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0007_mixed.wav",
+  "evidence_type": "real_whisper_asr"
+}

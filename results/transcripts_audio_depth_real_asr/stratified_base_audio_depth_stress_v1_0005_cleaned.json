@@ -1,0 +1,12 @@
+{
+  "sample_id": "audio_depth_stress_v1_0005",
+  "route": "cleaned",
+  "backend": "merge:faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "光絕到晚睡晚寫少夜",
+  "segments": [],
+  "runtime_sec": 6.5103,
+  "status": "ok",
+  "evidence_type": "text_cleanup_from_real_whisper_separated"
+}

@@ -1,0 +1,19 @@
+{
+  "backend": "faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "光絕到晚睡晚寫少夜",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.0,
+      "text": "光絕到晚睡晚寫少夜"
+    }
+  ],
+  "status": "ok",
+  "runtime_sec": 0.3789,
+  "sample_id": "audio_depth_stress_v1_0016",
+  "route": "mixed",
+  "wav_path": "resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0016_mixed.wav",
+  "evidence_type": "real_whisper_asr"
+}

@@ -1,0 +1,19 @@
+{
+  "backend": "faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "哇! 吹早期也沒問題了",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.0,
+      "text": "哇! 吹早期也沒問題了"
+    }
+  ],
+  "status": "ok",
+  "runtime_sec": 1.6455,
+  "sample_id": "audio_depth_stress_v1_0006",
+  "route": "spk1",
+  "wav_path": "resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0006_spk1.wav",
+  "evidence_type": "real_whisper_asr"
+}

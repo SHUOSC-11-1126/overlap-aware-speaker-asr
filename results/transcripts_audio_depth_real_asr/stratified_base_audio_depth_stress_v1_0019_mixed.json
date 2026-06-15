@@ -1,0 +1,24 @@
+{
+  "backend": "faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "因为你可以为了身体健康径你上班的时间对你有没有",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.0,
+      "text": "因为你可以为了身体健康径"
+    },
+    {
+      "start": 4.0,
+      "end": 6.0,
+      "text": "你上班的时间对你有没有"
+    }
+  ],
+  "status": "ok",
+  "runtime_sec": 1.0546,
+  "sample_id": "audio_depth_stress_v1_0019",
+  "route": "mixed",
+  "wav_path": "resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0019_mixed.wav",
+  "evidence_type": "real_whisper_asr"
+}

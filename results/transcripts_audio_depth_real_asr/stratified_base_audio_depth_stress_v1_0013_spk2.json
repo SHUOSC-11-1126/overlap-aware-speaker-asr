@@ -1,0 +1,13 @@
+{
+  "backend": "faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "",
+  "segments": [],
+  "status": "ok",
+  "runtime_sec": 5.7736,
+  "sample_id": "audio_depth_stress_v1_0013",
+  "route": "spk2",
+  "wav_path": "resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0013_spk2.wav",
+  "evidence_type": "real_whisper_asr"
+}

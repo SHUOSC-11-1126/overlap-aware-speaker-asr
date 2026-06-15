@@ -1,0 +1,24 @@
+{
+  "backend": "faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "咬碎碗碎咬碎碗碎",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 1.28,
+      "text": "咬碎碗碎"
+    },
+    {
+      "start": 3.08,
+      "end": 4.36,
+      "text": "咬碎碗碎"
+    }
+  ],
+  "status": "ok",
+  "runtime_sec": 0.4063,
+  "sample_id": "audio_depth_stress_v1_0009",
+  "route": "spk1",
+  "wav_path": "resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0009_spk1.wav",
+  "evidence_type": "real_whisper_asr"
+}

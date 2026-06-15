@@ -1,0 +1,12 @@
+{
+  "sample_id": "audio_depth_stress_v1_0001",
+  "route": "cleaned",
+  "backend": "merge:faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "他讓你在那個時間段裡擁有了自己",
+  "segments": [],
+  "runtime_sec": 5.03,
+  "status": "ok",
+  "evidence_type": "text_cleanup_from_real_whisper_separated"
+}

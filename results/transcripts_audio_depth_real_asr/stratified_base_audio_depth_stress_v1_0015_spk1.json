@@ -1,0 +1,24 @@
+{
+  "backend": "faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "其實部落分析其實部落分析",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.0,
+      "text": "其實部落分析"
+    },
+    {
+      "start": 4.0,
+      "end": 6.0,
+      "text": "其實部落分析"
+    }
+  ],
+  "status": "ok",
+  "runtime_sec": 0.4034,
+  "sample_id": "audio_depth_stress_v1_0015",
+  "route": "spk1",
+  "wav_path": "resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0015_spk1.wav",
+  "evidence_type": "real_whisper_asr"
+}

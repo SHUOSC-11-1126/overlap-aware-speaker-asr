@@ -1,0 +1,12 @@
+{
+  "sample_id": "audio_depth_stress_v1_0006",
+  "route": "cleaned",
+  "backend": "merge:faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "哇!吹早期也沒問題了",
+  "segments": [],
+  "runtime_sec": 6.8759,
+  "status": "ok",
+  "evidence_type": "text_cleanup_from_real_whisper_separated"
+}

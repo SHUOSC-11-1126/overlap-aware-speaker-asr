@@ -1,0 +1,11 @@
+sample_id,proxy_oracle_route,real_oracle_route,oracle_route_match,proxy_route_gap,real_route_gap,proxy_best_cer,real_best_cer,overlap_ratio
+audio_depth_stress_v1_0001,mixed,mixed,True,0.205,0.0,0.076,0.71875,0.0
+audio_depth_stress_v1_0002,mixed,mixed,True,0.099,0.0,0.134,0.769231,0.1
+audio_depth_stress_v1_0003,mixed,mixed,True,0.036,0.55,0.192,0.75,0.2
+audio_depth_stress_v1_0004,separated,mixed,False,0.029,0.0,0.208,0.777778,0.3
+audio_depth_stress_v1_0005,separated,mixed,False,0.04,0.0,0.198,0.8,0.4
+audio_depth_stress_v1_0006,separated,mixed,False,0.04,0.0,0.198,0.904762,0.5
+audio_depth_stress_v1_0007,separated,mixed,False,0.04,0.166667,0.198,0.5,0.6
+audio_depth_stress_v1_0008,separated,mixed,False,0.04,0.05,0.198,0.85,0.7
+audio_depth_stress_v1_0009,separated,separated,True,0.04,0.0,0.2016,0.714286,0.8
+audio_depth_stress_v1_0010,separated,separated,True,0.044,0.0,0.2196,0.354839,0.9

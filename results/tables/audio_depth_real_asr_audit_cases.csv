@@ -1,0 +1,31 @@
+sample_id,overlap_ratio,tier,audio_path,reference_text,mixed_transcript,separated_transcript,cleaned_transcript,mixed_cer_real,separated_cer_real,cleaned_cer_real,oracle_route_real,router_v2_route,hybrid_route,oracle_had_meaningful_route_gap,route_gap,error_notes
+audio_depth_stress_v1_0001,0.0,clean_turn_taking,resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0001_mixed.wav,"[SPEAKER_1] 他让你在那个时间段里拥有了自己
+[SPEAKER_2] 你方式要,那它是怎么缓解我们的空虚的",他讓你在那個時間段裡擁有了自己,"[SPEAKER_1] 他讓你在那個時間段裡擁有了自己
+[SPEAKER_2]",他讓你在那個時間段裡擁有了自己,0.71875,0.71875,0.71875,mixed,mixed,mixed,False,0.0,route_gap_tiny;all_routes_high_cer
+audio_depth_stress_v1_0002,0.1,clean_turn_taking,resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0002_mixed.wav,"[SPEAKER_1] 哪怕自己是刷抖音的自己
+[SPEAKER_2] 因為有一個前提性的問題沒有討論",哪怕这个自己是一个刷倒音的自己,"[SPEAKER_1] 哪怕这个自己是一个刷倒音的自己
+[SPEAKER_2]",哪怕这个自己是一个刷倒音的自己,0.769231,0.769231,0.769231,mixed,mixed,mixed,False,0.0,route_gap_tiny;all_routes_high_cer
+audio_depth_stress_v1_0003,0.2,clean_turn_taking,resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0003_mixed.wav,"[SPEAKER_1] 我往这里再稍微解释一下
+[SPEAKER_2] 好我先聊完 都帅玩起","喔,我忘了离在稍微解釋一下喔,我忘了离在稍微解釋","[SPEAKER_1] 哦,我忘了离在 show it is哦,我忘了离在 show it is
+[SPEAKER_2]","哦,我忘了离在showitis哦,我忘了离在showitis",0.75,1.3,1.3,mixed,mixed,mixed,True,0.55,all_routes_high_cer
+audio_depth_stress_v1_0004,0.3,clean_turn_taking,resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0004_mixed.wav,"[SPEAKER_1] 其实不落分也是一种
+[SPEAKER_2] 上班的時間必定也晚",其实不落飞机其实不落飞机,"[SPEAKER_1] 其实不落飞机其实不落飞机
+[SPEAKER_2]",其实不落飞机其实不落飞机,0.777778,0.777778,0.777778,mixed,mixed,mixed,False,0.0,route_gap_tiny;all_routes_high_cer
+audio_depth_stress_v1_0005,0.4,clean_turn_taking,resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0005_mixed.wav,"[SPEAKER_1] 刚觉得晚睡晚起少夜
+[SPEAKER_2] 那你个人的生活空间必定也就这么点",光絕到晚睡晚寫少夜,"[SPEAKER_1] 光絕到晚睡晚寫少夜
+[SPEAKER_2]",光絕到晚睡晚寫少夜,0.8,0.8,0.8,mixed,mixed,mixed,False,0.0,route_gap_tiny;all_routes_high_cer
+audio_depth_stress_v1_0006,0.5,clean_turn_taking,resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0006_mixed.wav,"[SPEAKER_1] 晚睡早起也算好夜了
+[SPEAKER_2] 我的意思是2点睡10点起",打吹早期也沒完,"[SPEAKER_1] 哇 吹早期也沒完
+[SPEAKER_2]",哇吹早期也沒完,0.904762,0.904762,0.904762,mixed,mixed,mixed,False,0.0,route_gap_tiny;all_routes_high_cer
+audio_depth_stress_v1_0007,0.6,clean_turn_taking,resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0007_mixed.wav,"[SPEAKER_1] 因为你可以早睡早起
+[SPEAKER_2] 我的个人可以支配的",因为你可以早睡早期因为你可以早睡早期,"[SPEAKER_1] 因为你可以走睡早期因为你可以走睡早期
+[SPEAKER_2] 可以支配",因为你可以走睡早期因为你可以走睡早期可以支配,0.5,0.666667,0.666667,mixed,mixed,mixed,True,0.166667,none
+audio_depth_stress_v1_0008,0.7,clean_turn_taking,resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0008_mixed.wav,"[SPEAKER_1] 因为你可以为了身体建立方式
+[SPEAKER_2] 我多了两个小时",因為你可以為了身體健康健康因為你可以為了身體健康,"[SPEAKER_1] 因為你可以為了身體健康健康健康健康健康健康健康
+[SPEAKER_2] 我多的两个小时",因為你可以為了身體健康健康健康健康健康健康健康我多的两个小时,0.85,0.9,0.9,mixed,separated,separated,True,0.05,all_routes_high_cer
+audio_depth_stress_v1_0009,0.8,clean_turn_taking,resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0009_mixed.wav,"[SPEAKER_1] 總睡晚睡
+[SPEAKER_2] 没问题没问题 先不着急",咬碎碟咬碎碟,"[SPEAKER_1] 咬碎碗碎咬碎碗碎
+[SPEAKER_2] 没有问题,你先不着急","咬碎碗碎咬碎碗碎没有问题,你先不着急",1.0,0.714286,0.714286,separated,separated,separated,False,0.0,route_gap_tiny;all_routes_high_cer
+audio_depth_stress_v1_0010,0.9,clean_turn_taking,resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0010_mixed.wav,"[SPEAKER_1] 哦不太一致我可以給你擠我
+[SPEAKER_2] 只在讲的熬夜所谓的熬夜就是晚睡晚起是吧",哦不太一致我可以跟你解釋,"[SPEAKER_1] 哦不太一致我可以跟你解釋
+[SPEAKER_2] 只在讲的熬夜嘴的熬夜就是",哦不太一致我可以跟你解釋只在讲的熬夜嘴的熬夜就是,0.709677,0.354839,0.354839,separated,separated,separated,False,0.0,route_gap_tiny

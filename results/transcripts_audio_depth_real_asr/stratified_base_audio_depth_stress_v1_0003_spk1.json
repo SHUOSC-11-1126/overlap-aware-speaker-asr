@@ -1,0 +1,24 @@
+{
+  "backend": "faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "哦 哇 这里在终于解释一下哦 哇 这里在终于解释",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.0,
+      "text": "哦 哇 这里在终于解释一下"
+    },
+    {
+      "start": 4.5,
+      "end": 6.5,
+      "text": "哦 哇 这里在终于解释"
+    }
+  ],
+  "status": "ok",
+  "runtime_sec": 0.9243,
+  "sample_id": "audio_depth_stress_v1_0003",
+  "route": "spk1",
+  "wav_path": "resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0003_spk1.wav",
+  "evidence_type": "real_whisper_asr"
+}

@@ -13,8 +13,11 @@ from .whisper_backend import transcribe_audio
 
 
 TRANSCRIPT_DIR = PROJECT_ROOT / "results" / "transcripts_audio_depth_real_asr"
-RUNTIME_CSV = PROJECT_ROOT / "results" / "tables" / "audio_depth_real_asr_runtime.csv"
-TRANSCRIPTS_CSV = PROJECT_ROOT / "results" / "tables" / "audio_depth_real_asr_transcripts.csv"
+
+
+def table_path(stem: str, run_id: str) -> Path:
+    suffix = "" if run_id == "default" else f"_{run_id}"
+    return PROJECT_ROOT / "results" / "tables" / f"audio_depth_real_asr{suffix}_{stem}.csv"
 
 
 def parse_args() -> argparse.Namespace:
@@ -23,6 +26,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--backend", default="auto")
     parser.add_argument("--model-size", default="small")
     parser.add_argument("--language", default="zh")
+    parser.add_argument("--sample-list", default="")
+    parser.add_argument("--run-id", default="default")
     return parser.parse_args()
 
 
@@ -32,9 +37,10 @@ def clean_text(text: str) -> str:
     return text.strip()
 
 
-def write_transcript(sample_id: str, route: str, payload: dict[str, Any]) -> str:
+def write_transcript(sample_id: str, route: str, payload: dict[str, Any], run_id: str) -> str:
     TRANSCRIPT_DIR.mkdir(parents=True, exist_ok=True)
-    path = TRANSCRIPT_DIR / f"{sample_id}_{route}.json"
+    prefix = "" if run_id == "default" else f"{run_id}_"
+    path = TRANSCRIPT_DIR / f"{prefix}{sample_id}_{route}.json"
     path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
     return rel(path)
 
@@ -43,7 +49,7 @@ def transcribe_route(sample: dict[str, str], route: str, wav_key: str, args: arg
     wav = PROJECT_ROOT / sample[wav_key]
     payload = transcribe_audio(str(wav), model_size=args.model_size, backend=args.backend, language=args.language)
     payload.update({"sample_id": sample["sample_id"], "route": route, "wav_path": sample[wav_key], "evidence_type": "real_whisper_asr"})
-    output_path = write_transcript(sample["sample_id"], route, payload)
+    output_path = write_transcript(sample["sample_id"], route, payload, args.run_id)
     return {
         "sample_id": sample["sample_id"],
         "route": route,
@@ -63,6 +69,9 @@ def transcribe_route(sample: dict[str, str], route: str, wav_key: str, args: arg
 def main() -> None:
     args = parse_args()
     manifest = read_csv(STRESS_MANIFEST_CSV)
+    if args.sample_list:
+        selected = {row["sample_id"] for row in read_csv(PROJECT_ROOT / args.sample_list)}
+        manifest = [row for row in manifest if row["sample_id"] in selected]
     if args.sample_limit:
         manifest = manifest[: args.sample_limit]
     transcript_rows: list[dict[str, Any]] = []
@@ -89,9 +98,9 @@ def main() -> None:
                 "status": "ok" if spk1.get("status") == "ok" and spk2.get("status") == "ok" else "failed",
                 "evidence_type": "real_whisper_asr_merged_speakers",
             }
-            separated_path = write_transcript(sample["sample_id"], "separated", separated_payload)
+            separated_path = write_transcript(sample["sample_id"], "separated", separated_payload, args.run_id)
             cleaned_payload = {**separated_payload, "route": "cleaned", "text": clean_text(separated_text), "evidence_type": "text_cleanup_from_real_whisper_separated"}
-            cleaned_path = write_transcript(sample["sample_id"], "cleaned", cleaned_payload)
+            cleaned_path = write_transcript(sample["sample_id"], "cleaned", cleaned_payload, args.run_id)
             transcript_rows.extend(
                 [
                     {**separated_payload, "wav_path": f"{sample['spk1_path']}|{sample['spk2_path']}", "transcript_path": separated_path, "error": ""},
@@ -135,9 +144,11 @@ def main() -> None:
             "routes_written": len(transcript_rows),
         }
     )
-    write_csv(TRANSCRIPTS_CSV, transcript_rows)
-    write_csv(RUNTIME_CSV, runtime_rows)
-    print(f"Wrote {len(transcript_rows)} transcript rows to {rel(TRANSCRIPTS_CSV)}")
+    transcripts_csv = table_path("transcripts", args.run_id)
+    runtime_csv = table_path("runtime", args.run_id)
+    write_csv(transcripts_csv, transcript_rows)
+    write_csv(runtime_csv, runtime_rows)
+    print(f"Wrote {len(transcript_rows)} transcript rows to {rel(transcripts_csv)}")
 
 
 if __name__ == "__main__":

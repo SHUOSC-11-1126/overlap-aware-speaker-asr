@@ -1,0 +1,24 @@
+{
+  "backend": "faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "你没有多两个小时但是你自己的什么人多了两个吗我可以给你解释",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.58,
+      "text": "你没有多两个小时但是你自己的什么人多了两个吗"
+    },
+    {
+      "start": 2.58,
+      "end": 3.58,
+      "text": "我可以给你解释"
+    }
+  ],
+  "status": "ok",
+  "runtime_sec": 0.4689,
+  "sample_id": "audio_depth_stress_v1_0011",
+  "route": "mixed",
+  "wav_path": "resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0011_mixed.wav",
+  "evidence_type": "real_whisper_asr"
+}

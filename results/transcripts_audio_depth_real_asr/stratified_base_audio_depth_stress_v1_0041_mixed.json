@@ -1,0 +1,29 @@
+{
+  "backend": "faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "他讓你在那個時間段裡擁有了自己他讓你在那個時間段裡擁有了自己他讓你在那個時間",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 4.0,
+      "text": "他讓你在那個時間段裡擁有了自己"
+    },
+    {
+      "start": 6.0,
+      "end": 10.0,
+      "text": "他讓你在那個時間段裡擁有了自己"
+    },
+    {
+      "start": 12.0,
+      "end": 14.0,
+      "text": "他讓你在那個時間"
+    }
+  ],
+  "status": "ok",
+  "runtime_sec": 0.5282,
+  "sample_id": "audio_depth_stress_v1_0041",
+  "route": "mixed",
+  "wav_path": "resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0041_mixed.wav",
+  "evidence_type": "real_whisper_asr"
+}

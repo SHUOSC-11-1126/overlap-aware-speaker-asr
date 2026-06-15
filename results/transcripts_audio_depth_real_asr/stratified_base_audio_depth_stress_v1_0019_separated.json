@@ -1,0 +1,12 @@
+{
+  "sample_id": "audio_depth_stress_v1_0019",
+  "route": "separated",
+  "backend": "merge:faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "[SPEAKER_1] 因为你可以为了身体健康径因为你可以为了身体健康径\n[SPEAKER_2] 你上班的時間必定也晚",
+  "segments": [],
+  "runtime_sec": 0.7989,
+  "status": "ok",
+  "evidence_type": "real_whisper_asr_merged_speakers"
+}
