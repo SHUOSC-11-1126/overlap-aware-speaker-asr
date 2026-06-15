@@ -1,0 +1,11 @@
+#!/bin/sh
+set -eu
+
+# Fast pre-commit quality gate. Mirrors code-tape's pre-commit -> quality:precommit.
+# Set SKIP_QUALITY_HOOKS=1 to bypass in an emergency (CI never honours this).
+if [ "${SKIP_QUALITY_HOOKS:-}" = "1" ]; then
+  echo "Skipping pre-commit quality gate because SKIP_QUALITY_HOOKS=1."
+  exit 0
+fi
+
+exec python3 scripts/harness/quality.py precommit
