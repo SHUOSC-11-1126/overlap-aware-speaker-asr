@@ -1,0 +1,24 @@
+{
+  "backend": "faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "喔,我忘了离在稍微解釋一下喔,我忘了离在稍微解釋",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.0,
+      "text": "喔,我忘了离在稍微解釋一下"
+    },
+    {
+      "start": 4.5,
+      "end": 6.0,
+      "text": "喔,我忘了离在稍微解釋"
+    }
+  ],
+  "status": "ok",
+  "runtime_sec": 0.9759,
+  "sample_id": "audio_depth_stress_v1_0003",
+  "route": "mixed",
+  "wav_path": "resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0003_mixed.wav",
+  "evidence_type": "real_whisper_asr"
+}

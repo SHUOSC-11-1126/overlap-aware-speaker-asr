@@ -1,0 +1,38 @@
+{
+  "python_version": "3.12.13 (main, Mar  3 2026, 15:35:03) [Clang 21.1.4 ]",
+  "python_executable": "/Users/ark/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "which_python": "/opt/homebrew/opt/python@3.14/libexec/bin/python",
+  "ffmpeg_path": null,
+  "ffmpeg_available": false,
+  "torch": {
+    "available": true,
+    "version": "2.12.0"
+  },
+  "openai_whisper": {
+    "available": false
+  },
+  "faster_whisper": {
+    "available": true,
+    "version": "1.2.1"
+  },
+  "soundfile": {
+    "available": true,
+    "version": "0.14.0"
+  },
+  "selected_backend": "faster-whisper",
+  "checks": {
+    "python_version": {
+      "returncode": 0,
+      "stdout": "Python 3.12.13",
+      "stderr": ""
+    },
+    "ffmpeg_version": {
+      "returncode": 127,
+      "stdout": "",
+      "stderr": "ffmpeg not found"
+    }
+  },
+  "missing_or_limitations": [
+    "system ffmpeg command is not available; faster-whisper can still use PyAV, openai-whisper usually needs ffmpeg"
+  ]
+}

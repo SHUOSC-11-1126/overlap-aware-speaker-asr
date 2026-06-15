@@ -278,6 +278,16 @@ Update: systematic AudioDepth-Hybrid validation now exists as an application-ori
 - README cards: `results/figures/audio_depth_systematic_overview.png`, `results/figures/audio_depth_systematic_main_result_card.png`, `results/figures/audio_depth_systematic_pareto_card.png`
 - Current best systematic frontier row is `hybrid_late_fusion_v2` with routing CER `0.249477`; this is promising but still `synthetic/silver_proxy` evidence.
 
+Update: sampled real Whisper ASR validation now exists for the AudioDepth stress benchmark.
+
+- Diagnosis: `results/figures/whisper_env_diagnosis.md`
+- Runtime table: `results/tables/audio_depth_real_asr_runtime.csv`
+- Transcript table: `results/tables/audio_depth_real_asr_transcripts.csv`
+- Real CER table: `results/tables/audio_depth_real_asr_cer.csv`
+- Router comparison: `results/tables/audio_depth_real_asr_router_comparison.csv`
+- Current sampled result: `hybrid_late_fusion_v2` ties router_v2 at real Whisper CER `0.718965` on 10 synthetic/silver stress samples, with oracle at `0.713965`.
+- Next step: enlarge the real-ASR sample and add a small gold sanity subset.
+
 Update: `external_validation` now also has a slice staging readiness handoff.
 
 - Staging readiness handoff: `results/tables/external_validation_slice_staging_readiness_handoff.csv`

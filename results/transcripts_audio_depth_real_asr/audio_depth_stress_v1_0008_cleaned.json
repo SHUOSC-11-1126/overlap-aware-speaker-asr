@@ -1,0 +1,12 @@
+{
+  "sample_id": "audio_depth_stress_v1_0008",
+  "route": "cleaned",
+  "backend": "merge:faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "因為你可以為了身體健康健康健康健康健康健康健康我多的两个小时",
+  "segments": [],
+  "runtime_sec": 0.7679,
+  "status": "ok",
+  "evidence_type": "text_cleanup_from_real_whisper_separated"
+}

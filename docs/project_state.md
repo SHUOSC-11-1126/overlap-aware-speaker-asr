@@ -118,6 +118,24 @@ Stage 23 extends AudioDepth-Hybrid from a model-zoo result into a system validat
 
 Important interpretation: this pass improves over the old router_v2 proxy row and the MVP-style separated route, but does not beat the Stage 22 model-zoo best result (`0.166381`) or the fixed-cleaned proxy row (`0.196876`). Stress CER is `synthetic/silver_proxy`, not real Whisper CER.
 
+## AudioDepth Real Whisper ASR Validation
+
+Stage 24 adds a sampled real-ASR layer without replacing Stage 23 proxy evidence.
+
+- Backend: `faster-whisper` `1.2.1`
+- Model size: `base`
+- System ffmpeg command: missing; faster-whisper/PyAV path used
+- Stress samples evaluated: `10`
+- Transcript rows: `50`
+- Reference type: `synthetic/silver_reference`
+- Gold sanity: not yet available for this stress subset
+- Best systematic router: `hybrid_late_fusion_v2`
+- Real Whisper CER, router_v2: `0.718965`
+- Real Whisper CER, best systematic router: `0.718965`
+- Real Whisper CER, oracle: `0.713965`
+
+Interpretation: this sampled real-ASR run is a boundary finding rather than a win claim. It distinguishes Stage 23 proxy CER from Stage 24 real Whisper CER and shows that the proxy improvement does not automatically transfer on a small real-ASR slice.
+
 ## Gold Benchmark Final CER Table
 
 ### NoOverlap

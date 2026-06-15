@@ -1,0 +1,12 @@
+{
+  "sample_id": "audio_depth_stress_v1_0003",
+  "route": "cleaned",
+  "backend": "merge:faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "哦,我忘了离在showitis哦,我忘了离在showitis",
+  "segments": [],
+  "runtime_sec": 5.7713,
+  "status": "ok",
+  "evidence_type": "text_cleanup_from_real_whisper_separated"
+}

@@ -124,11 +124,14 @@ Stage 23 turns the frontier into a small system validation pass: stress audio ge
 
 Current systematic held-out result: `hybrid_late_fusion_v2` reaches routing CER `0.249477` on 64 held-out systematic samples. This beats the old router_v2 proxy row (`0.355793`) and the AudioDepth MVP-style separated route (`0.392813`) in this validation, but it does not beat the earlier model-zoo best (`0.166381`) or the fixed-cleaned proxy row (`0.196876`). The stress route CER is labeled `synthetic/silver_proxy` because this runtime does not include Whisper; it should be re-run with real ASR before any stable deployment claim.
 
+Stage 24 adds a sampled real Whisper ASR validation layer without overwriting the Stage 23 proxy files. The environment diagnosis selects `faster-whisper` `1.2.1` with model size `base`; the system `ffmpeg` command is still missing, but faster-whisper runs through PyAV. On the first 10 stress samples, `router_v2` and `hybrid_late_fusion_v2` both reach real Whisper CER `0.718965` against the synthetic/silver references, while oracle reaches `0.713965`. This is a boundary finding: the real-ASR sample does not yet show a systematic-router win over router_v2, and it is not gold evidence because the reference remains synthetic/silver.
+
 README-ready figures:
 
 - `results/figures/audio_depth_systematic_overview.png`
 - `results/figures/audio_depth_systematic_main_result_card.png`
 - `results/figures/audio_depth_systematic_pareto_card.png`
+- `results/figures/audio_depth_real_asr_summary.md`
 
 ## Project Map
 

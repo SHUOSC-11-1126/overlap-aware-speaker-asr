@@ -32,19 +32,24 @@ torch_cache/
 results/transcripts_raw/*
 results/transcripts_speaker/*
 results/transcripts_corrected/*
+results/transcripts_audio_depth_real_asr/*
 results/summaries/*
 results/tables/*
 results/figures/*
 results/synthetic_overlap_v2/
 !results/tables/audio_depth_*.csv
 !results/tables/audio_depth_*.json
+!results/tables/whisper_env_diagnosis.json
 !results/figures/audio_depth_*.png
 !results/figures/audio_depth_*.md
+!results/figures/whisper_env_diagnosis.md
 
 # Keep result folders
 !results/transcripts_raw/.gitkeep
 !results/transcripts_speaker/.gitkeep
 !results/transcripts_corrected/.gitkeep
+!results/transcripts_audio_depth_real_asr/
+!results/transcripts_audio_depth_real_asr/*.json
 !results/summaries/.gitkeep
 !results/tables/.gitkeep
 !results/figures/.gitkeep

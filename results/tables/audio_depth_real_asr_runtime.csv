@@ -1,0 +1,12 @@
+sample_id,backend_request,model_size,language,sample_runtime_sec,routes_written
+audio_depth_stress_v1_0001,auto,base,zh,103.644,5
+audio_depth_stress_v1_0002,auto,base,zh,6.4908,5
+audio_depth_stress_v1_0003,auto,base,zh,6.7488,5
+audio_depth_stress_v1_0004,auto,base,zh,7.1359,5
+audio_depth_stress_v1_0005,auto,base,zh,5.4843,5
+audio_depth_stress_v1_0006,auto,base,zh,7.1252,5
+audio_depth_stress_v1_0007,auto,base,zh,4.1836,5
+audio_depth_stress_v1_0008,auto,base,zh,1.211,5
+audio_depth_stress_v1_0009,auto,base,zh,1.1496,5
+audio_depth_stress_v1_0010,auto,base,zh,1.1302,5
+__total__,auto,base,zh,144.3034,50

@@ -1,0 +1,19 @@
+{
+  "backend": "faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "可以支配",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 1.0,
+      "text": "可以支配"
+    }
+  ],
+  "status": "ok",
+  "runtime_sec": 3.4161,
+  "sample_id": "audio_depth_stress_v1_0007",
+  "route": "spk2",
+  "wav_path": "resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0007_spk2.wav",
+  "evidence_type": "real_whisper_asr"
+}

@@ -1,0 +1,24 @@
+{
+  "backend": "faster-whisper",
+  "model_size": "base",
+  "language": "zh",
+  "text": "其实不落飞机其实不落飞机",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 1.3800000000000001,
+      "text": "其实不落飞机"
+    },
+    {
+      "start": 4.46,
+      "end": 5.88,
+      "text": "其实不落飞机"
+    }
+  ],
+  "status": "ok",
+  "runtime_sec": 0.3524,
+  "sample_id": "audio_depth_stress_v1_0004",
+  "route": "spk1",
+  "wav_path": "resources/audio_depth_stress_v1/audio/audio_depth_stress_v1_0004_spk1.wav",
+  "evidence_type": "real_whisper_asr"
+}
