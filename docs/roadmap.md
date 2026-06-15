@@ -2324,6 +2324,20 @@ Update: `meeteval_compatibility` now also has a tokenization gain frontier fill 
 - Scripts: `python -m src.meeteval_tokenization_gain_frontier_fill_runbook_card`, `python -m src.meeteval_tokenization_gain_frontier_fill_runbook_bridge_checklist`, `python -m src.meeteval_tokenization_gain_frontier_fill_execution_receipt_bridge`, `python -m src.meeteval_tokenization_gain_frontier_fill_execution_receipt_bridge_checklist`, `python -m src.meeteval_tokenization_gain_frontier_fill_operator_brief`
 - `runbook_status = tokenization_gain_frontier_fill_runbook_ready` at `5/5` adapted cases; receipt fill remains coordination-only until real evidence is written back.
 
+## AudioDepth-Router Frontier
+
+Status: an initial `experimental/frontier` prototype exists.
+
+- Skill card: `docs/skills/skill_07_audio_depth_router.md`
+- Scripts: `python -m src.build_audio_depth_router_dataset`, `python -m src.audio_depth_map`, `python -m src.train_audio_depth_router`, `python -m src.evaluate_audio_depth_router`, `python -m src.audio_depth_router_ablation`
+- Tables: `results/tables/audio_depth_router_dataset.csv`, `results/tables/audio_depth_router_performance_deployable.csv`, `results/tables/audio_depth_router_ablation.csv`
+- Figures: `results/figures/audio_depth_map_examples.png`, `results/figures/audio_depth_router_cer_comparison.png`, `results/figures/audio_depth_router_confusion_matrix.png`
+- Summary: `results/figures/audio_depth_router_summary.md`
+
+AudioDepth-Router is inspired by RGB-D / depth-augmented image recognition. It treats overlapping speech as time-frequency occlusion and tests whether depth-like spectrogram channels help learned routing. Deployable mode uses only mixed audio; analysis-only mode uses separated tracks and should stay explicitly labeled `analysis_only`.
+
+Current deployable synthetic split TEST evidence is a negative/diagnostic result: AudioDepth-CNN routing CER is `0.436666`, worse than router_v2 (`0.335326`) and oracle (`0.115181`). This suggests text-level instability features remain important and synthetic results should not be promoted into gold claims.
+
 ## Healthy Project Principles
 
 - New experiments should be isolated.

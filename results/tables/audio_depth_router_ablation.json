@@ -1,0 +1,74 @@
+[
+  {
+    "strategy": "audio_depth_cnn_analysis",
+    "representation": "audio_depth",
+    "routing_average_cer": "0.436666",
+    "classification_accuracy": "0.72",
+    "label": "experimental/frontier",
+    "interpretation": "learned depth-augmented route"
+  },
+  {
+    "strategy": "fixed_mixed",
+    "representation": "baseline",
+    "routing_average_cer": "0.44473",
+    "classification_accuracy": "",
+    "label": "",
+    "interpretation": "fixed or oracle comparison"
+  },
+  {
+    "strategy": "fixed_separated",
+    "representation": "baseline",
+    "routing_average_cer": "0.436666",
+    "classification_accuracy": "",
+    "label": "",
+    "interpretation": "fixed or oracle comparison"
+  },
+  {
+    "strategy": "fixed_cleaned",
+    "representation": "baseline",
+    "routing_average_cer": "0.185238",
+    "classification_accuracy": "",
+    "label": "",
+    "interpretation": "fixed or oracle comparison"
+  },
+  {
+    "strategy": "oracle_best",
+    "representation": "baseline",
+    "routing_average_cer": "0.115181",
+    "classification_accuracy": "",
+    "label": "",
+    "interpretation": "fixed or oracle comparison"
+  },
+  {
+    "strategy": "v1_overlap_only",
+    "representation": "baseline",
+    "routing_average_cer": "0.36135",
+    "classification_accuracy": "",
+    "label": "",
+    "interpretation": "fixed or oracle comparison"
+  },
+  {
+    "strategy": "v2_full_features",
+    "representation": "baseline",
+    "routing_average_cer": "0.335326",
+    "classification_accuracy": "",
+    "label": "",
+    "interpretation": "fixed or oracle comparison"
+  },
+  {
+    "strategy": "audio_depth_cnn_deployable",
+    "representation": "audio_depth",
+    "routing_average_cer": "0.436666",
+    "classification_accuracy": "0.72",
+    "label": "experimental/frontier",
+    "interpretation": "learned depth-augmented route"
+  },
+  {
+    "strategy": "audio_depth_cnn_logmel",
+    "representation": "audio_depth",
+    "routing_average_cer": "0.436666",
+    "classification_accuracy": "0.72",
+    "label": "experimental/frontier",
+    "interpretation": "learned depth-augmented route"
+  }
+]

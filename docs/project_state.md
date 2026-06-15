@@ -45,6 +45,7 @@ This document is for future Codex / AI coding agents so they can resume work wit
 - challenge board
 - experiment proposal template
 - experimental compute-aware cascade analysis
+- AudioDepth-Router frontier prototype with deployable depth-augmented spectrogram maps
 
 ## Current Core Findings
 
@@ -58,6 +59,28 @@ This document is for future Codex / AI coding agents so they can resume work wit
 8. Synthetic benchmarks are silver robustness validation, not gold evaluation.
 9. LLM/RAG is optional future extension, not the current core quantitative contribution.
 10. The compute-aware cascade is an experimental/frontier cost analysis layer; it evaluates route cost after reference-free decisions are fixed and does not use CER as a routing input.
+11. AudioDepth-Router is an experimental/frontier learned-router probe, not a stable baseline. The first deployable synthetic split run underperforms router_v2, which is a useful negative finding about audio-only depth proxies.
+
+## AudioDepth-Router Frontier Finding
+
+Label: `experimental/frontier` plus `synthetic/silver`
+
+- Skill card: `docs/skills/skill_07_audio_depth_router.md`
+- Dataset manifest: `results/tables/audio_depth_router_dataset.csv`
+- Map metadata: `resources/audio_depth_maps/metadata_audio_depth_maps.csv`
+- Deployable model: `models/audio_depth_router_deployable.pt`
+- Summary: `results/figures/audio_depth_router_summary.md`
+- Ablation: `results/figures/audio_depth_router_ablation.md`
+
+AudioDepth-Router is inspired by RGB-D image recognition. It treats overlapping speech as time-frequency occlusion and augments a log-mel spectrogram with overlap/depth and uncertainty channels. Deployable mode uses only mixed audio. Analysis-only mode uses separated tracks and must not be claimed as deployable.
+
+Current deployable synthetic split TEST result:
+
+- `audio_depth_cnn_deployable`: accuracy `0.7200`, macro-F1 `0.2791`, routing CER `0.436666`
+- `router_v2 / v2_full_features`: routing CER `0.335326`
+- `oracle_best`: routing CER `0.115181`
+
+Interpretation: the first AudioDepth pass did not improve over router_v2. The likely failure modes are insufficient synthetic training size, weak overlap proxy channels, noisy oracle-style labels, and the missing text-level instability features that router_v2 already uses.
 
 ## Gold Benchmark Final CER Table
 

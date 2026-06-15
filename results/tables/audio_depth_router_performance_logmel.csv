@@ -1,0 +1,8 @@
+strategy,mode,classification_accuracy,macro_f1,routing_average_cer,sample_count,model_status,label
+audio_depth_cnn_logmel,logmel,0.72,0.27907,0.436666,50,cnn,experimental/frontier
+fixed_mixed,,,,0.44473,50,,
+fixed_separated,,,,0.436666,50,,
+fixed_cleaned,,,,0.185238,50,,
+oracle_best,,,,0.115181,50,,
+v1_overlap_only,,,,0.36135,50,,
+v2_full_features,,,,0.335326,50,,

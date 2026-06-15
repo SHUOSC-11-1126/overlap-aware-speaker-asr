@@ -29,6 +29,7 @@ This folder is the documentation entry point for the project.
 
 - [docs/skills/README.md](skills/README.md)
 - [docs/skills/skill_07_external_validation.md](skills/skill_07_external_validation.md)
+- [docs/skills/skill_07_audio_depth_router.md](skills/skill_07_audio_depth_router.md)
 
 ## Ambitious Exploration Docs
 
@@ -91,6 +92,9 @@ This folder is the documentation entry point for the project.
 - [results/figures/speaker_profile_audio_proxy_trial.md](../results/figures/speaker_profile_audio_proxy_trial.md)
 - [results/figures/speaker_profile_audio_proxy_summary.md](../results/figures/speaker_profile_audio_proxy_summary.md)
 - [results/figures/cpcer_lite_summary.md](../results/figures/cpcer_lite_summary.md)
+- [results/figures/audio_depth_router_summary.md](../results/figures/audio_depth_router_summary.md)
+- [results/figures/audio_depth_router_ablation.md](../results/figures/audio_depth_router_ablation.md)
+- [results/figures/audio_depth_map_examples.md](../results/figures/audio_depth_map_examples.md)
 
 ## Frontier Coordination
 

@@ -1,0 +1,42 @@
+[
+  {
+    "strategy": "audio_depth_cnn_analysis",
+    "mode": "analysis",
+    "classification_accuracy": 0.72,
+    "macro_f1": 0.27907,
+    "routing_average_cer": 0.436666,
+    "sample_count": 50,
+    "model_status": "cnn",
+    "label": "experimental/frontier"
+  },
+  {
+    "strategy": "fixed_mixed",
+    "routing_average_cer": 0.44473,
+    "sample_count": 50
+  },
+  {
+    "strategy": "fixed_separated",
+    "routing_average_cer": 0.436666,
+    "sample_count": 50
+  },
+  {
+    "strategy": "fixed_cleaned",
+    "routing_average_cer": 0.185238,
+    "sample_count": 50
+  },
+  {
+    "strategy": "oracle_best",
+    "routing_average_cer": 0.115181,
+    "sample_count": 50
+  },
+  {
+    "strategy": "v1_overlap_only",
+    "routing_average_cer": "0.36135",
+    "sample_count": "50"
+  },
+  {
+    "strategy": "v2_full_features",
+    "routing_average_cer": "0.335326",
+    "sample_count": "50"
+  }
+]

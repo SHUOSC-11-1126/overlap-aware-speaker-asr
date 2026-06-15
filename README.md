@@ -103,6 +103,17 @@ Current recommendation card result:
   - `cost_first`: `fixed_mixed_whisper`
   - `balanced`: `router_v2_synthetic_costed`
 
+### AudioDepth-Router Frontier
+
+Inspired by RGB-D image recognition, AudioDepth-Router encodes overlap and uncertainty maps as additional spectrogram channels to test whether a lightweight CNN can learn when speech separation helps or hurts ASR.
+
+This is an `experimental/frontier` result, not a stable baseline replacement. It treats overlapping speech as time-frequency occlusion and keeps two representation modes separate:
+
+- `deployable`: mixed-audio-only log-mel, overlap proxy, and uncertainty proxy channels.
+- `analysis_only`: separated-track-assisted simultaneous activity and speaker dominance channels.
+
+The current deployable synthetic split test result is intentionally reported as `synthetic/silver`: `classification_accuracy = 0.7200`, `routing_average_cer = 0.436666`. This underperforms `router_v2` on the matched synthetic split TEST scope (`0.335326`) and oracle (`0.115181`), so the first AudioDepth pass is best read as a useful negative/diagnostic finding: local audio-visual structure alone did not recover the text-level instability signals that make router_v2 stronger.
+
 ## Project Map
 
 The repository now has a stable baseline and a breadth-first frontier queue. The diagram below shows the main flow at a glance.

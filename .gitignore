@@ -22,6 +22,8 @@ checkpoints/
 .cache/
 huggingface/
 torch_cache/
+!models/
+!models/audio_depth_router_*.pt
 
 # Runtime outputs
 results/transcripts_raw/*
@@ -31,6 +33,10 @@ results/summaries/*
 results/tables/*
 results/figures/*
 results/synthetic_overlap_v2/
+!results/tables/audio_depth_*.csv
+!results/tables/audio_depth_*.json
+!results/figures/audio_depth_*.png
+!results/figures/audio_depth_*.md
 
 # Keep result folders
 !results/transcripts_raw/.gitkeep

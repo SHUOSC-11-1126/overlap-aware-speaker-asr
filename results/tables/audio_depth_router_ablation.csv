@@ -1,0 +1,10 @@
+strategy,representation,routing_average_cer,classification_accuracy,label,interpretation
+audio_depth_cnn_analysis,audio_depth,0.436666,0.72,experimental/frontier,learned depth-augmented route
+fixed_mixed,baseline,0.44473,,,fixed or oracle comparison
+fixed_separated,baseline,0.436666,,,fixed or oracle comparison
+fixed_cleaned,baseline,0.185238,,,fixed or oracle comparison
+oracle_best,baseline,0.115181,,,fixed or oracle comparison
+v1_overlap_only,baseline,0.36135,,,fixed or oracle comparison
+v2_full_features,baseline,0.335326,,,fixed or oracle comparison
+audio_depth_cnn_deployable,audio_depth,0.436666,0.72,experimental/frontier,learned depth-augmented route
+audio_depth_cnn_logmel,audio_depth,0.436666,0.72,experimental/frontier,learned depth-augmented route
