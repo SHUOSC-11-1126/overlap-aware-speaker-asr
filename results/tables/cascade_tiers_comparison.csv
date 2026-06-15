@@ -1,0 +1,6 @@
+﻿strategy,label,average_cer,average_compute_cost,automatic_coverage,selected_method_mix,notes
+fixed_mixed_whisper,experimental/frontier,0.302093,1.0,1.0,mixed_whisper:5,Fixed strategy — always uses the same ASR method.
+fixed_separated_whisper,experimental/frontier,0.191846,2.0,1.0,separated_whisper:5,Fixed strategy — always uses the same ASR method.
+fixed_separated_whisper_cleaned,experimental/frontier,0.181681,2.1,1.0,separated_whisper_cleaned:5,Fixed strategy — always uses the same ASR method.
+router_v2_baseline,experimental/frontier,0.120042,1.6,1.0,mixed_whisper:2;separated_whisper:3,Router v2 baseline — single-tier decision.
+tiered_cascade_v1,experimental/frontier,0.181134,1.92,1.0,mixed_whisper:1;separated_whisper:2;separated_whisper_cleaned:1;stronger_model:1,Three-tier cascade — escalates only on instability signals.

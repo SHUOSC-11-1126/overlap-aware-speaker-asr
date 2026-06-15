@@ -12,10 +12,12 @@ Covers:
 
 import unittest
 
+from src import cascade_tiers
 from src.cascade_tiers import (
     MODULE_LABEL,
     TIER_COST,
     TIER_STRATEGIES,
+    build_comparison_rows,
     build_coverage_stats,
     build_cost_aware_routing_table,
     build_tier_summary_rows,
@@ -339,6 +341,48 @@ class CascadeTiersUnitTest(unittest.TestCase):
         """Every strategy name reflects its frontier status."""
         for s in TIER_STRATEGIES:
             self.assertIn(s, TIER_STRATEGIES)
+
+
+    # ── Comparative tradeoff tests ──────────────────────────────────
+
+    def test_build_comparison_rows_includes_tiered_strategies(self):
+        """Comparison rows include tiered strategies alongside fixed baselines."""
+        tiered_results = [
+            {"case_id": "A", "tier": 1, "selected_method": "mixed_whisper",
+             "compute_cost": 1.0, "cer": 0.30, "instability_score": 0.0},
+            {"case_id": "B", "tier": 2, "selected_method": "separated_whisper_cleaned",
+             "compute_cost": 2.1, "cer": 0.10, "instability_score": 0.4},
+        ]
+        cer_lookup = {
+            ("A", "mixed_whisper"): 0.30, ("A", "separated_whisper"): 0.05,
+            ("A", "separated_whisper_cleaned"): 0.08,
+            ("B", "mixed_whisper"): 0.40, ("B", "separated_whisper"): 0.12,
+            ("B", "separated_whisper_cleaned"): 0.10,
+        }
+        rows = cascade_tiers.build_comparison_rows(tiered_results, cer_lookup)
+        self.assertGreater(len(rows), 2)  # more than just the tiered strategies
+        strategy_names = {r["strategy"] for r in rows}
+        self.assertIn("tiered_cascade_v1", strategy_names)
+        self.assertIn("fixed_mixed_whisper", strategy_names)
+        self.assertIn("fixed_separated_whisper", strategy_names)
+
+    def test_build_comparison_rows_computes_meaningful_metrics(self):
+        """Each comparison row has average_cer, average_cost, and coverage."""
+        tiered_results = [
+            {"case_id": "A", "tier": 1, "selected_method": "mixed_whisper",
+             "compute_cost": 1.0, "cer": 0.30},
+        ]
+        cer_lookup = {
+            ("A", "mixed_whisper"): 0.30, ("A", "separated_whisper"): 0.05,
+            ("A", "separated_whisper_cleaned"): 0.08,
+        }
+        rows = cascade_tiers.build_comparison_rows(tiered_results, cer_lookup)
+        for row in rows:
+            self.assertIn("strategy", row)
+            self.assertIn("average_cer", row)
+            self.assertIn("average_compute_cost", row)
+            self.assertIn("automatic_coverage", row)
+            self.assertIn("label", row)
 
 
 if __name__ == "__main__":

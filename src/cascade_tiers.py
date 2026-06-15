@@ -365,6 +365,234 @@ def build_cost_aware_routing_table(
     ]
 
 
+# ── Comparative analysis ────────────────────────────────────────────
+
+def build_comparison_rows(
+    pipeline_results: list[dict[str, Any]],
+    cer_lookup: dict[tuple[str, str], float],
+) -> list[dict[str, Any]]:
+    """Build strategy-level comparison rows for CER-runtime tradeoff analysis.
+
+    Combines the three-tier cascade results with fixed-strategy baselines
+    (mixed_whisper, separated_whisper, separated_whisper_cleaned) so the
+    tradeoff chart includes both the cascade and the fixed baselines.
+
+    Args:
+        pipeline_results: Output from ``run_three_tier_pipeline``.
+        cer_lookup: CER lookup keyed by ``(case_id, method)``.
+
+    Returns:
+        List of strategy rows with average_cer, average_compute_cost,
+        automatic_coverage, and selected_method_mix.
+    """
+    rows: list[dict[str, Any]] = []
+
+    # ── Fixed-strategy baselines ──────────────────────────────────
+    case_ids = sorted({r["case_id"] for r in pipeline_results})
+    for strategy, method in [
+        ("fixed_mixed_whisper", "mixed_whisper"),
+        ("fixed_separated_whisper", "separated_whisper"),
+        ("fixed_separated_whisper_cleaned", "separated_whisper_cleaned"),
+    ]:
+        cer_values: list[float] = []
+        costs: list[float] = []
+        for cid in case_ids:
+            costs.append(TIER_COST.get(method, 1.0))
+            cer = cer_lookup.get((cid, method))
+            if cer is not None:
+                cer_values.append(cer)
+        rows.append({
+            "strategy": strategy,
+            "label": "experimental/frontier",
+            "average_cer": round(sum(cer_values) / len(cer_values), 6) if cer_values else "",
+            "average_compute_cost": round(sum(costs) / len(costs), 6) if costs else 0.0,
+            "automatic_coverage": 1.0,
+            "selected_method_mix": f"{method}:{len(case_ids)}",
+            "notes": "Fixed strategy — always uses the same ASR method.",
+        })
+
+    # ── Router v2 baseline ────────────────────────────────────────
+    router_cer_values: list[float] = []
+    router_costs: list[float] = []
+    router_method_counts: dict[str, int] = {}
+    for r in pipeline_results:
+        t1 = r.get("tier1_method", "mixed_whisper")
+        router_method_counts[t1] = router_method_counts.get(t1, 0) + 1
+        router_costs.append(TIER_COST.get(t1, 1.0))
+        cer = cer_lookup.get((r["case_id"], t1))
+        if cer is not None:
+            router_cer_values.append(cer)
+    rows.append({
+        "strategy": "router_v2_baseline",
+        "label": "experimental/frontier",
+        "average_cer": round(sum(router_cer_values) / len(router_cer_values), 6) if router_cer_values else "",
+        "average_compute_cost": round(sum(router_costs) / len(router_costs), 6) if router_costs else 0.0,
+        "automatic_coverage": 1.0,
+        "selected_method_mix": ";".join(
+            f"{m}:{router_method_counts[m]}" for m in sorted(router_method_counts)
+        ),
+        "notes": "Router v2 baseline — single-tier decision.",
+    })
+
+    # ── Three-tier cascade ────────────────────────────────────────
+    tiered_cer_values: list[float] = []
+    tiered_costs: list[float] = []
+    tiered_method_counts: dict[str, int] = {}
+    manual_count = 0
+    for r in pipeline_results:
+        method = r.get("selected_method", "mixed_whisper")
+        tiered_method_counts[method] = tiered_method_counts.get(method, 0) + 1
+        tiered_costs.append(r.get("compute_cost", TIER_COST.get(method, 1.0)))
+        if method in ("manual_review", "llm_critic"):
+            manual_count += 1
+            continue
+        cer = r.get("cer") if "cer" in r else cer_lookup.get((r["case_id"], method))
+        if cer is not None:
+            tiered_cer_values.append(cer)
+    auto_cov = (len(pipeline_results) - manual_count) / len(pipeline_results) if pipeline_results else 1.0
+    rows.append({
+        "strategy": "tiered_cascade_v1",
+        "label": "experimental/frontier",
+        "average_cer": round(sum(tiered_cer_values) / len(tiered_cer_values), 6) if tiered_cer_values else "",
+        "average_compute_cost": round(sum(tiered_costs) / len(tiered_costs), 6) if tiered_costs else 0.0,
+        "automatic_coverage": round(auto_cov, 6),
+        "selected_method_mix": ";".join(
+            f"{m}:{tiered_method_counts[m]}" for m in sorted(tiered_method_counts)
+        ),
+        "notes": "Three-tier cascade — escalates only on instability signals.",
+    })
+
+    return rows
+
+
+def render_tiers_tradeoff_figure(
+    rows: list[dict[str, Any]],
+    output_path: Path,
+) -> None:
+    """Render a CER vs compute-cost tradeoff scatter plot.
+
+    Falls back to a minimal PNG when matplotlib is unavailable.
+    """
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+    except Exception:
+        _write_fallback_tradeoff_png(output_path, rows)
+        return
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    fig, ax = plt.subplots(figsize=(9, 5.5))
+    x_values = [to_float(row["average_compute_cost"]) for row in rows]
+    y_values = [to_float(row["average_cer"]) for row in rows]
+
+    colors = {
+        "tiered_cascade_v1": "#d45d00",
+        "router_v2_baseline": "#2f6f8f",
+        "fixed_mixed_whisper": "#6b8e23",
+        "fixed_separated_whisper": "#8b0000",
+        "fixed_separated_whisper_cleaned": "#8b008b",
+    }
+    point_colors = [colors.get(str(row.get("strategy", "")), "#666666") for row in rows]
+
+    ax.scatter(x_values, y_values, c=point_colors, s=100, edgecolors="#333333", linewidths=0.5)
+    for row, x_val, y_val in zip(rows, x_values, y_values):
+        label = str(row.get("strategy", "")).replace("_", "\n")
+        ax.annotate(label, (x_val, y_val), textcoords="offset points",
+                     xytext=(7, 5), fontsize=7, fontfamily="monospace")
+
+    ax.set_xlabel("Average compute cost (proxy units)")
+    ax.set_ylabel("Average CER")
+    ax.set_title("Three-Tier Cascade: CER vs Compute Cost Trade-off")
+    ax.grid(True, alpha=0.25)
+    fig.tight_layout()
+    fig.savefig(str(output_path), dpi=120)
+    plt.close(fig)
+
+
+def _write_fallback_tradeoff_png(path: Path, rows: list[dict[str, Any]]) -> None:
+    """Write a minimal PNG as fallback when matplotlib is unavailable."""
+    width, height = 900, 550
+    pixels = bytearray(b"\xff\xff\xff" * width * height)
+    left, right, top, bottom = 90, 40, 40, 80
+    plot_w = width - left - right
+    plot_h = height - top - bottom
+
+    def _set_px(x: int, y: int, r: int, g: int, b: int) -> None:
+        if 0 <= x < width and 0 <= y < height:
+            idx = (y * width + x) * 3
+            pixels[idx:idx + 3] = bytes([r, g, b])
+
+    def _draw_h_line(y: int, r: int, g: int, b: int) -> None:
+        for x2 in range(left, left + plot_w):
+            _set_px(x2, y, r, g, b)
+
+    def _draw_v_line(x: int, r: int, g: int, b: int) -> None:
+        for y2 in range(top, top + plot_h):
+            _set_px(x, y2, r, g, b)
+
+    axis_color = (45, 45, 45)
+    grid_color = (220, 220, 220)
+    point_color = (47, 111, 143)
+    highlight_color = (212, 93, 0)
+
+    _draw_h_line(top + plot_h, *axis_color)
+    _draw_v_line(left, *axis_color)
+    for tick in range(6):
+        x = left + round(plot_w * tick / 5)
+        y = top + round(plot_h * tick / 5)
+        _draw_v_line(x, *grid_color)
+        _draw_h_line(y, *grid_color)
+
+    x_values = [to_float(r["average_compute_cost"]) for r in rows]
+    y_values = [to_float(r["average_cer"]) for r in rows]
+    if not x_values or not y_values:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        _write_png_bytes(path, width, height, bytes(pixels))
+        return
+
+    x_min, x_max = min(x_values), max(x_values)
+    y_min, y_max = min(y_values), max(y_values)
+    if x_min == x_max:
+        x_min -= 1.0; x_max += 1.0
+    if y_min == y_max:
+        y_min -= 0.1; y_max += 0.1
+    x_pad = (x_max - x_min) * 0.08
+    y_pad = (y_max - y_min) * 0.08
+
+    for row, x_val, y_val in zip(rows, x_values, y_values):
+        is_tiered = str(row.get("strategy", "")) == "tiered_cascade_v1"
+        px = left + round((x_val - x_min + x_pad) / (x_max - x_min + 2 * x_pad) * plot_w)
+        py = top + round((y_max - y_val + y_pad) / (y_max - y_min + 2 * y_pad) * plot_h)
+        c = highlight_color if is_tiered else point_color
+        for dx in range(-4, 5):
+            for dy in range(-4, 5):
+                if dx * dx + dy * dy <= 16:
+                    _set_px(px + dx, py + dy, *c)
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    _write_png_bytes(path, width, height, bytes(pixels))
+
+
+def _write_png_bytes(path: Path, width: int, height: int, raw_rgb: bytes) -> None:
+    """Write a minimal PNG file from raw RGB pixels."""
+
+    def _chunk(chunk_type: bytes, data: bytes) -> bytes:
+        c = chunk_type + data
+        return struct.pack(">I", len(data)) + c + struct.pack(">I", zlib.crc32(c) & 0xFFFFFFFF)
+
+    raw = bytearray()
+    raw.extend(b"\x89PNG\r\n\x1a\n")
+    raw.extend(_chunk(b"IHDR", struct.pack(">IIBBBBB", width, height, 8, 2, 0, 0, 0)))
+    scanlines = bytearray()
+    for y in range(height):
+        scanlines.append(0)
+        scanlines.extend(raw_rgb[y * width * 3:(y + 1) * width * 3])
+    raw.extend(_chunk(b"IDAT", zlib.compress(bytes(scanlines))))
+    raw.extend(_chunk(b"IEND", b""))
+    path.write_bytes(bytes(raw))
+
+
 # ── Data loaders ─────────────────────────────────────────────────────
 
 def load_cases_with_signals() -> list[dict[str, Any]]:
@@ -535,6 +763,29 @@ def main() -> None:
     _write_tiers_summary_markdown(results, coverage, fig_dir)
     print(f"Wrote {fig_dir / 'cascade_tiers_summary.md'}")
 
+    # 5. Comparative tradeoff analysis
+    comparison_rows = build_comparison_rows(results, cer_lookup)
+    comparison_fields = [
+        "strategy", "label", "average_cer", "average_compute_cost",
+        "automatic_coverage", "selected_method_mix", "notes",
+    ]
+    write_csv_json(
+        comparison_rows,
+        out_dir / "cascade_tiers_comparison.csv",
+        out_dir / "cascade_tiers_comparison.json",
+        comparison_fields,
+    )
+    print(f"Wrote {out_dir / 'cascade_tiers_comparison.csv'}")
+
+    # 6. CER vs cost tradeoff chart
+    chart_path = fig_dir / "cascade_tiers_cer_cost_tradeoff.png"
+    render_tiers_tradeoff_figure(comparison_rows, chart_path)
+    print(f"Wrote {chart_path}")
+
+    # 7. Tradeoff comparison summary
+    _write_comparison_summary_markdown(comparison_rows, fig_dir)
+    print(f"Wrote {fig_dir / 'cascade_tiers_comparison_summary.md'}")
+
     print("\nMode B three-tier cascade evaluation complete.")
 
 
@@ -601,6 +852,55 @@ def _write_tiers_summary_markdown(
 
     fig_dir.mkdir(parents=True, exist_ok=True)
     (fig_dir / "cascade_tiers_summary.md").write_text("\n".join(lines), encoding="utf-8")
+
+
+def _write_comparison_summary_markdown(
+    rows: list[dict[str, Any]],
+    fig_dir: Path,
+) -> None:
+    """Write a comparison summary showing the tradeoff between strategies."""
+    lines = [
+        "# Three-Tier Cascade — Strategy Comparison",
+        "",
+        "**Label:** experimental/frontier",
+        "",
+        "## CER vs Compute Cost Trade-off",
+        "",
+        "| Strategy | Avg CER | Avg Cost | Auto Coverage | Method Mix |",
+        "|----------|---------|----------|---------------|------------|",
+    ]
+    for row in rows:
+        cer = f"{row['average_cer']:.4f}" if row.get("average_cer") != "" else "N/A"
+        cost = f"{row['average_compute_cost']:.2f}" if row.get("average_compute_cost") else "N/A"
+        cov = f"{row['automatic_coverage']:.1%}" if row.get("automatic_coverage") else "N/A"
+        mix = str(row.get("selected_method_mix", ""))[:60]
+        lines.append(f"| {row['strategy']} | {cer} | {cost} | {cov} | {mix} |")
+
+    lines.extend([
+        "",
+        "## Interpretation",
+        "",
+        "- **fixed_mixed_whisper**: Cheapest, worst CER. Baseline cost floor.",
+        "- **fixed_separated_whisper**: Better CER than mixed, 2× cost.",
+        "- **fixed_separated_whisper_cleaned**: Marginally better CER than raw separated.",
+        "- **router_v2_baseline**: Single-tier adaptive routing using overlap + instability signals.",
+        "- **tiered_cascade_v1** (highlighted in chart): Three-tier cascade —",
+        "  escalates only unstable samples to stronger processing.",
+        "",
+        "The goal is not the lowest possible CER but the best accuracy-cost balance.",
+        "The tiered cascade should ideally sit near the Pareto frontier —",
+        "meaningfully better CER than the cheap baseline without the full cost",
+        "of always running the expensive route.",
+        "",
+        "## Notes",
+        "",
+        "- All escalation decisions use ONLY reference-free observable signals.",
+        "- `stronger_model` represents a hypothetical larger ASR (e.g., whisper-medium).",
+        "- Manual review / LLM critic costs are modeled at 3.5–4.0× the cheap baseline.",
+    ])
+
+    fig_dir.mkdir(parents=True, exist_ok=True)
+    (fig_dir / "cascade_tiers_comparison_summary.md").write_text("\n".join(lines), encoding="utf-8")
 
 
 if __name__ == "__main__":

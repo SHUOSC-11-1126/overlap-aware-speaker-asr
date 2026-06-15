@@ -1,0 +1,47 @@
+[
+  {
+    "strategy": "fixed_mixed_whisper",
+    "label": "experimental/frontier",
+    "average_cer": 0.302093,
+    "average_compute_cost": 1.0,
+    "automatic_coverage": 1.0,
+    "selected_method_mix": "mixed_whisper:5",
+    "notes": "Fixed strategy — always uses the same ASR method."
+  },
+  {
+    "strategy": "fixed_separated_whisper",
+    "label": "experimental/frontier",
+    "average_cer": 0.191846,
+    "average_compute_cost": 2.0,
+    "automatic_coverage": 1.0,
+    "selected_method_mix": "separated_whisper:5",
+    "notes": "Fixed strategy — always uses the same ASR method."
+  },
+  {
+    "strategy": "fixed_separated_whisper_cleaned",
+    "label": "experimental/frontier",
+    "average_cer": 0.181681,
+    "average_compute_cost": 2.1,
+    "automatic_coverage": 1.0,
+    "selected_method_mix": "separated_whisper_cleaned:5",
+    "notes": "Fixed strategy — always uses the same ASR method."
+  },
+  {
+    "strategy": "router_v2_baseline",
+    "label": "experimental/frontier",
+    "average_cer": 0.120042,
+    "average_compute_cost": 1.6,
+    "automatic_coverage": 1.0,
+    "selected_method_mix": "mixed_whisper:2;separated_whisper:3",
+    "notes": "Router v2 baseline — single-tier decision."
+  },
+  {
+    "strategy": "tiered_cascade_v1",
+    "label": "experimental/frontier",
+    "average_cer": 0.181134,
+    "average_compute_cost": 1.92,
+    "automatic_coverage": 1.0,
+    "selected_method_mix": "mixed_whisper:1;separated_whisper:2;separated_whisper_cleaned:1;stronger_model:1",
+    "notes": "Three-tier cascade — escalates only on instability signals."
+  }
+]
