@@ -259,6 +259,15 @@ Update: `external_validation` now also has a slice staging readiness bridge chec
 - Summary view: `results/figures/external_validation_slice_staging_readiness_bridge_checklist.md`
 - This connects staging readiness to the slice manifest bridge checklist without claiming benchmark execution.
 
+Update: the AudioDepth frontier has been widened into a model-zoo and hybrid-routing exploration.
+
+- Skill card: `docs/skills/skill_08_audio_depth_model_zoo.md`
+- Hybrid features: `results/tables/audio_depth_zoo_hybrid_features.csv`
+- Training logs: `results/tables/audio_depth_zoo_training_log.csv`
+- Model status: `results/tables/audio_depth_zoo_model_status.csv`
+- Current synthetic/silver TEST best frontier result is `mlp_handcrafted` with routing CER `0.166381`; `hybrid_late_fusion` reaches `0.176381`; the best confidence cascade reaches `0.165545`.
+- This remains frontier exploration, not a stable baseline replacement, and it is meant to test whether stronger architectures or late fusion can do better than the MVP.
+
 Update: `external_validation` now also has a slice staging readiness handoff.
 
 - Staging readiness handoff: `results/tables/external_validation_slice_staging_readiness_handoff.csv`

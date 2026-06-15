@@ -1,0 +1,17 @@
+model_name,routing_average_cer,delta_vs_router_v2,macro_f1,delta_macro_f1_vs_router_v2,model_status
+oracle_best,0.115181,-0.220145,0.666667,0.324676,baseline
+mlp_handcrafted,0.166381,-0.168945,0.440831,0.09884,trained
+hybrid_late_fusion,0.176381,-0.158945,0.416667,0.074676,trained
+fixed_separated_whisper_cleaned,0.185238,-0.150088,0.0,-0.341991,baseline
+router_v2,0.335326,0.0,0.341991,0.0,baseline
+router_v1,0.36135,0.026024,0.339869,-0.002122,baseline
+cnn_depth_balanced,0.397777,0.062451,0.416667,0.074676,trained
+crnn_depth,0.436666,0.10134,0.27907,-0.062921,trained
+patch_transformer_depth,0.436666,0.10134,0.27907,-0.062921,trained
+fixed_separated_whisper,0.436666,0.10134,0.27907,-0.062921,baseline
+majority_route_baseline,0.436666,0.10134,0.27907,-0.062921,baseline
+cnn_depth,0.441111,0.105785,0.359556,0.017565,trained
+resnet_tiny_depth,0.441111,0.105785,0.319444,-0.022547,trained
+fixed_mixed_whisper,0.44473,0.109404,0.145833,-0.196158,baseline
+cnn_logmel,0.451666,0.11634,0.312308,-0.029683,trained
+analysis_upper_bound_cnn,0.494149,0.158823,0.317016,-0.024975,trained

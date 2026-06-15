@@ -60,6 +60,7 @@ This document is for future Codex / AI coding agents so they can resume work wit
 9. LLM/RAG is optional future extension, not the current core quantitative contribution.
 10. The compute-aware cascade is an experimental/frontier cost analysis layer; it evaluates route cost after reference-free decisions are fixed and does not use CER as a routing input.
 11. AudioDepth-Router is an experimental/frontier learned-router probe, not a stable baseline. The first deployable synthetic split run underperforms router_v2, which is a useful negative finding about audio-only depth proxies.
+12. The AudioDepth frontier has now been expanded into a model-zoo and hybrid-routing exploration scaffold. That broader sweep is designed to test whether richer architectures, class balancing, and transcript-instability features can recover more signal than the MVP.
 
 ## AudioDepth-Router Frontier Finding
 
@@ -81,6 +82,27 @@ Current deployable synthetic split TEST result:
 - `oracle_best`: routing CER `0.115181`
 
 Interpretation: the first AudioDepth pass did not improve over router_v2. The likely failure modes are insufficient synthetic training size, weak overlap proxy channels, noisy oracle-style labels, and the missing text-level instability features that router_v2 already uses.
+
+## AudioDepth Model Zoo Frontier
+
+The frontier has now been widened beyond the MVP into a model-zoo and hybrid feature exploration pass.
+
+- Skill card: `docs/skills/skill_08_audio_depth_model_zoo.md`
+- Hybrid feature table: `results/tables/audio_depth_zoo_hybrid_features.csv`
+- Training logs: `results/tables/audio_depth_zoo_training_log.csv`
+- Model status: `results/tables/audio_depth_zoo_model_status.csv`
+
+This phase is still an experimental/frontier study. It is meant to answer whether log-mel-only models, depth-augmented CNN variants, class balancing, late fusion, and confidence cascades can recover ground that the first MVP did not.
+
+Current synthetic split TEST results:
+
+- `mlp_handcrafted`: routing CER `0.166381`
+- `hybrid_late_fusion`: routing CER `0.176381`
+- best confidence cascade: routing CER `0.165545`
+- matched `router_v2`: routing CER `0.335326`
+- `oracle_best`: routing CER `0.115181`
+
+Interpretation: hybrid/text-risk features are doing most of the useful work in this run. Pure depth models improve the experiment matrix but do not yet explain the routing boundary as well as the handcrafted/hybrid rows.
 
 ## Gold Benchmark Final CER Table
 

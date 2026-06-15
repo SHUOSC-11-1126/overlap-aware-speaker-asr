@@ -96,3 +96,17 @@ Every ambitious experiment should explicitly state:
 ## 10. Guiding Principle
 
 The baseline is stable. The frontier should be bold, explicit, and well-labeled.
+
+## 11. AudioDepth Model Zoo and Hybrid Routing
+
+- Question: can richer audio-depth architectures or hybrid audio-text signals improve route selection?
+- Why now: the first AudioDepth MVP was informative but weak.
+- Outputs:
+  - `results/tables/audio_depth_zoo_hybrid_features.csv`
+  - `results/tables/audio_depth_zoo_training_log.csv`
+  - `results/tables/audio_depth_zoo_model_status.csv`
+  - `results/tables/audio_depth_zoo_performance.csv`
+  - `results/figures/audio_depth_zoo_summary.md`
+- Interpretation rule:
+  - if the zoo still does not beat router_v2, treat that as a boundary finding rather than a failure
+  - if a hybrid or cascade helps, treat it as frontier improvement, not a stable-baseline rewrite

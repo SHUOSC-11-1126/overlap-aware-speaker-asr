@@ -40,3 +40,4 @@ The current queue is coordination-only. It does not imply that any frontier step
 - [Skill 05: Agentic LLM Transcript Critic](skill_05_agentic_llm_critic.md)
 - [Skill 06: GitHub Demo Excellence](skill_06_github_demo_excellence.md)
 - [Skill 07: External Mini Validation](skill_07_external_validation.md)
+- [Skill 08: AudioDepth Model Zoo and Hybrid Routing Exploration](skill_08_audio_depth_model_zoo.md)

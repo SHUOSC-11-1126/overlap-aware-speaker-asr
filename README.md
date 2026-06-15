@@ -114,6 +114,10 @@ This is an `experimental/frontier` result, not a stable baseline replacement. It
 
 The current deployable synthetic split test result is intentionally reported as `synthetic/silver`: `classification_accuracy = 0.7200`, `routing_average_cer = 0.436666`. This underperforms `router_v2` on the matched synthetic split TEST scope (`0.335326`) and oracle (`0.115181`), so the first AudioDepth pass is best read as a useful negative/diagnostic finding: local audio-visual structure alone did not recover the text-level instability signals that make router_v2 stronger.
 
+The frontier has now been expanded into a model-zoo and hybrid-routing exploration pass. That follow-up tests whether log-mel-only models, stronger depth CNNs, class balancing, late fusion, and confidence cascades can do better than the tiny MVP without changing the stable baseline story.
+
+Current Stage 22 synthetic split TEST result: `mlp_handcrafted` reached routing CER `0.166381`, `hybrid_late_fusion` reached `0.176381`, and the best confidence cascade reached `0.165545`. These improve over the AudioDepth MVP (`0.436666`) and matched router_v2 (`0.335326`) on this synthetic/silver split, while oracle remains lower at `0.115181`.
+
 ## Project Map
 
 The repository now has a stable baseline and a breadth-first frontier queue. The diagram below shows the main flow at a glance.

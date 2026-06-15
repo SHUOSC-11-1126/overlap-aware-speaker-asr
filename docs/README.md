@@ -30,6 +30,7 @@ This folder is the documentation entry point for the project.
 - [docs/skills/README.md](skills/README.md)
 - [docs/skills/skill_07_external_validation.md](skills/skill_07_external_validation.md)
 - [docs/skills/skill_07_audio_depth_router.md](skills/skill_07_audio_depth_router.md)
+- [docs/skills/skill_08_audio_depth_model_zoo.md](skills/skill_08_audio_depth_model_zoo.md)
 
 ## Ambitious Exploration Docs
 

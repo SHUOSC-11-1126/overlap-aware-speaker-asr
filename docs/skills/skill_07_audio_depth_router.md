@@ -36,6 +36,8 @@ This mode depends on separated tracks and must be labeled `analysis_only`.
 
 This transfers a representation-learning idea from computer vision to multi-speaker ASR routing. Instead of only handcrafting text instability features, it asks whether a model can learn useful route boundaries from depth-augmented time-frequency structure.
 
+This first MVP is now the launch point for a broader model-zoo follow-up in `docs/skills/skill_08_audio_depth_model_zoo.md`.
+
 ## Minimum viable attempt
 
 Train a small CNN on the synthetic split and evaluate routing CER with:
@@ -61,4 +63,4 @@ Compare:
 
 If AudioDepth-Router fails, record whether the failure is caused by weak labels, synthetic data mismatch, insufficient training size, poor overlap proxy, local spectrogram pattern not being enough, or the need for text-level instability signals.
 
-Synthetic split evidence remains `synthetic/silver` plus `experimental/frontier`; do not promote it into the stable gold baseline.
+Synthetic split evidence remains `synthetic/silver` plus `experimental/frontier`; do not promote it into the stable gold baseline. If the later model zoo beats the MVP, treat that as a frontier improvement, not a reclassification of the original MVP.

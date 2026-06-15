@@ -24,6 +24,8 @@ huggingface/
 torch_cache/
 !models/
 !models/audio_depth_router_*.pt
+!models/audio_depth_zoo/
+!models/audio_depth_zoo/*.pt
 
 # Runtime outputs
 results/transcripts_raw/*

@@ -1,0 +1,17 @@
+model_name,classification_accuracy,macro_f1,routing_average_cer,sample_count,prediction_distribution,model_status,label
+oracle_best,1.0,0.666667,0.115181,50,"{""mixed"": 14, ""separated"": 36, ""cleaned"": 0}",baseline,baseline
+mlp_handcrafted,0.8,0.440831,0.166381,50,"{""mixed"": 4, ""separated"": 46, ""cleaned"": 0}",trained,experimental/frontier
+hybrid_late_fusion,0.76,0.416667,0.176381,50,"{""mixed"": 6, ""separated"": 44, ""cleaned"": 0}",trained,experimental/frontier
+fixed_separated_whisper_cleaned,0.0,0.0,0.185238,50,"{""mixed"": 0, ""separated"": 0, ""cleaned"": 50}",baseline,baseline
+router_v2,0.52,0.341991,0.335326,50,"{""mixed"": 30, ""separated"": 20, ""cleaned"": 0}",baseline,baseline
+router_v1,0.56,0.339869,0.36135,50,"{""mixed"": 20, ""separated"": 30, ""cleaned"": 0}",baseline,baseline
+cnn_depth_balanced,0.76,0.416667,0.397777,50,"{""mixed"": 6, ""separated"": 44, ""cleaned"": 0}",trained,experimental/frontier
+crnn_depth,0.72,0.27907,0.436666,50,"{""mixed"": 0, ""separated"": 50, ""cleaned"": 0}",trained,experimental/frontier
+patch_transformer_depth,0.72,0.27907,0.436666,50,"{""mixed"": 0, ""separated"": 50, ""cleaned"": 0}",trained,experimental/frontier
+fixed_separated_whisper,0.72,0.27907,0.436666,50,"{""mixed"": 0, ""separated"": 50, ""cleaned"": 0}",baseline,baseline
+majority_route_baseline,0.72,0.27907,0.436666,50,"{""mixed"": 0, ""separated"": 50, ""cleaned"": 0}",baseline,baseline
+cnn_depth,0.74,0.359556,0.441111,50,"{""mixed"": 3, ""separated"": 47, ""cleaned"": 0}",trained,experimental/frontier
+resnet_tiny_depth,0.72,0.319444,0.441111,50,"{""mixed"": 2, ""separated"": 48, ""cleaned"": 0}",trained,experimental/frontier
+fixed_mixed_whisper,0.28,0.145833,0.44473,50,"{""mixed"": 50, ""separated"": 0, ""cleaned"": 0}",baseline,baseline
+cnn_logmel,0.7,0.312308,0.451666,50,"{""mixed"": 3, ""separated"": 47, ""cleaned"": 0}",trained,experimental/frontier
+analysis_upper_bound_cnn,0.64,0.317016,0.494149,50,"{""mixed"": 8, ""separated"": 42, ""cleaned"": 0}",trained,experimental/frontier

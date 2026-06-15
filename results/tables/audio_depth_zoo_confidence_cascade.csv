@@ -1,0 +1,7 @@
+threshold,selected_model,coverage,fallback_rate,routing_average_cer,macro_f1_confident_subset,router_v2_average_cer,delta_vs_router_v2,confident_sample_count,fallback_sample_count
+0.4,mlp_handcrafted,1.0,0.0,0.166381,0.440831,0.335326,-0.168945,50,0
+0.5,mlp_handcrafted,1.0,0.0,0.166381,0.440831,0.335326,-0.168945,50,0
+0.6,mlp_handcrafted,1.0,0.0,0.166381,0.440831,0.335326,-0.168945,50,0
+0.7,mlp_handcrafted,0.96,0.04,0.176381,0.438746,0.335326,-0.158945,48,2
+0.8,mlp_handcrafted,0.82,0.18,0.192745,0.444042,0.335326,-0.142581,41,9
+0.9,mlp_handcrafted,0.68,0.32,0.165545,0.588506,0.335326,-0.169781,34,16
