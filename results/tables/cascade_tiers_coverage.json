@@ -1,0 +1,15 @@
+[
+  {
+    "total_cases": 5,
+    "tier1_count": 3,
+    "tier2_count": 2,
+    "tier3_count": 0,
+    "tier1_ratio": 0.6,
+    "tier2_ratio": 0.4,
+    "tier3_ratio": 0.0,
+    "average_cost": 1.92,
+    "automatic_coverage": 1.0,
+    "strong_model_call_count": 1,
+    "manual_review_count": 0
+  }
+]

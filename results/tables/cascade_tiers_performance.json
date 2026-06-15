@@ -1,0 +1,52 @@
+[
+  {
+    "case_id": "NoOverlap",
+    "tier": 1,
+    "selected_method": "separated_whisper",
+    "compute_cost": 2.0,
+    "instability_score": 0.0,
+    "risk_triggered": false,
+    "tier1_method": "separated_whisper",
+    "tier2_method": "separated_whisper"
+  },
+  {
+    "case_id": "LightOverlap",
+    "tier": 2,
+    "selected_method": "separated_whisper_cleaned",
+    "compute_cost": 2.1,
+    "instability_score": 0.337037,
+    "risk_triggered": true,
+    "tier1_method": "mixed_whisper",
+    "tier2_method": "separated_whisper_cleaned"
+  },
+  {
+    "case_id": "MidOverlap",
+    "tier": 1,
+    "selected_method": "mixed_whisper",
+    "compute_cost": 1.0,
+    "instability_score": 0.233573,
+    "risk_triggered": false,
+    "tier1_method": "mixed_whisper",
+    "tier2_method": "mixed_whisper"
+  },
+  {
+    "case_id": "HeavyOverlap",
+    "tier": 1,
+    "selected_method": "separated_whisper",
+    "compute_cost": 2.0,
+    "instability_score": 0.0,
+    "risk_triggered": false,
+    "tier1_method": "separated_whisper",
+    "tier2_method": "separated_whisper"
+  },
+  {
+    "case_id": "OppositeOverlap",
+    "tier": 2,
+    "selected_method": "stronger_model",
+    "compute_cost": 2.5,
+    "instability_score": 0.6,
+    "risk_triggered": true,
+    "tier1_method": "separated_whisper",
+    "tier2_method": "stronger_model"
+  }
+]

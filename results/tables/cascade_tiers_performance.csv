@@ -1,0 +1,6 @@
+﻿case_id,tier,selected_method,compute_cost,instability_score,risk_triggered,tier1_method,tier2_method
+NoOverlap,1,separated_whisper,2.0,0.0,False,separated_whisper,separated_whisper
+LightOverlap,2,separated_whisper_cleaned,2.1,0.337037,True,mixed_whisper,separated_whisper_cleaned
+MidOverlap,1,mixed_whisper,1.0,0.233573,False,mixed_whisper,mixed_whisper
+HeavyOverlap,1,separated_whisper,2.0,0.0,False,separated_whisper,separated_whisper
+OppositeOverlap,2,stronger_model,2.5,0.6,True,separated_whisper,stronger_model

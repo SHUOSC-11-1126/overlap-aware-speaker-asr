@@ -1,0 +1,6 @@
+﻿case_id,tier,recommended_route,compute_cost,instability_score,risk_triggered
+NoOverlap,1,separated_whisper,2.0,0.0,False
+LightOverlap,2,separated_whisper_cleaned,2.1,0.337037,True
+MidOverlap,1,mixed_whisper,1.0,0.233573,False
+HeavyOverlap,1,separated_whisper,2.0,0.0,False
+OppositeOverlap,2,stronger_model,2.5,0.6,True
