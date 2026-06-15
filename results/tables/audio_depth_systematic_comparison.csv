@@ -1,0 +1,12 @@
+model_name,routing_average_cer,classification_accuracy,macro_f1,expected_compute_cost,fallback_rate,sample_count,label,delta_vs_best_systematic
+oracle_best,0.127504,1.0,0.666667,1.4125,0.0,64,baseline,-0.121973
+fixed_cleaned,0.196876,0.0,0.0,1.8,0.0,64,baseline,-0.052601
+hybrid_late_fusion_v2,0.249477,0.765625,0.46252,1.478125,0.0,64,experimental/frontier,0.0
+calibrated_confidence_router,0.355793,0.484375,0.318755,1.121875,1.0,64,experimental/frontier,0.106316
+old_router_v2,0.355793,0.484375,0.318755,1.121875,0.0,64,baseline,0.106316
+hybrid_mlp_v2,0.384373,0.75,0.409251,1.54375,0.0,64,experimental/frontier,0.134896
+fixed_separated,0.392813,0.6875,0.271605,1.6,0.0,64,baseline,0.143336
+previous_audio_depth_mvp,0.392813,0.6875,0.271605,1.6,0.0,64,baseline,0.143336
+previous_model_zoo_best,0.392813,0.6875,0.271605,1.6,0.0,64,baseline,0.143336
+cost_aware_router,0.39543,0.65625,0.392203,1.43125,0.0,64,experimental/frontier,0.145953
+fixed_mixed,0.41332,0.3125,0.15873,1.0,0.0,64,baseline,0.163843

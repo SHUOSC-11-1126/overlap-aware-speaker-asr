@@ -1,0 +1,8 @@
+model_name,mean_cer,ci95_low,ci95_high,n_boot,sample_count
+old_router_v2,0.355984,0.289375,0.425755,500,64
+previous_model_zoo_best,0.395051,0.207705,0.624021,500,64
+hybrid_mlp_v2,0.387153,0.198248,0.608961,500,64
+hybrid_late_fusion_v2,0.251083,0.140321,0.387586,500,64
+calibrated_confidence_router,0.355984,0.289375,0.425755,500,64
+cost_aware_router,0.399597,0.201701,0.629335,500,64
+oracle_best,0.127656,0.095779,0.160191,500,64

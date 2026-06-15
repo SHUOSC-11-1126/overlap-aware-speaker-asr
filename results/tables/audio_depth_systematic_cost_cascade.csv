@@ -1,0 +1,6 @@
+policy,average_cer,average_cost,review_rate,saved_cost_vs_all_strong,evidence_type
+confidence_threshold_0.45,0.355793,3.421875,0.96875,-0.140625,simulated_cost_extension
+confidence_threshold_0.55,0.355793,3.109375,1.0,-0.036458,simulated_cost_extension
+confidence_threshold_0.65,0.355793,3.007812,1.0,-0.002604,simulated_cost_extension
+confidence_threshold_0.75,0.355793,3.0,1.0,0.0,simulated_cost_extension
+confidence_threshold_0.85,0.355793,3.0,1.0,0.0,simulated_cost_extension

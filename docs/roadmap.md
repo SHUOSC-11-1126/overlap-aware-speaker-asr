@@ -268,6 +268,16 @@ Update: the AudioDepth frontier has been widened into a model-zoo and hybrid-rou
 - Current synthetic/silver TEST best frontier result is `mlp_handcrafted` with routing CER `0.166381`; `hybrid_late_fusion` reaches `0.176381`; the best confidence cascade reaches `0.165545`.
 - This remains frontier exploration, not a stable baseline replacement, and it is meant to test whether stronger architectures or late fusion can do better than the MVP.
 
+Update: systematic AudioDepth-Hybrid validation now exists as an application-oriented frontier pass.
+
+- Stress manifest: `results/tables/audio_depth_systematic_stress_manifest.csv`
+- Systematic performance: `results/tables/audio_depth_systematic_performance.csv`
+- Bootstrap CI: `results/tables/audio_depth_systematic_bootstrap_ci.csv`
+- Cost cascade: `results/tables/audio_depth_systematic_cost_cascade.csv`
+- Case studies: `results/figures/audio_depth_systematic_case_studies.md`
+- README cards: `results/figures/audio_depth_systematic_overview.png`, `results/figures/audio_depth_systematic_main_result_card.png`, `results/figures/audio_depth_systematic_pareto_card.png`
+- Current best systematic frontier row is `hybrid_late_fusion_v2` with routing CER `0.249477`; this is promising but still `synthetic/silver_proxy` evidence.
+
 Update: `external_validation` now also has a slice staging readiness handoff.
 
 - Staging readiness handoff: `results/tables/external_validation_slice_staging_readiness_handoff.csv`

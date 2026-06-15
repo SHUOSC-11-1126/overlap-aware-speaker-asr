@@ -118,6 +118,18 @@ The frontier has now been expanded into a model-zoo and hybrid-routing explorati
 
 Current Stage 22 synthetic split TEST result: `mlp_handcrafted` reached routing CER `0.166381`, `hybrid_late_fusion` reached `0.176381`, and the best confidence cascade reached `0.165545`. These improve over the AudioDepth MVP (`0.436666`) and matched router_v2 (`0.335326`) on this synthetic/silver split, while oracle remains lower at `0.115181`.
 
+### Systematic AudioDepth-Hybrid Validation
+
+Stage 23 turns the frontier into a small system validation pass: stress audio generation, proxy route evaluation, systematic hybrid routers, bootstrap confidence intervals, simulated cost-aware cascade, LLM/review candidate selection, and case studies.
+
+Current systematic held-out result: `hybrid_late_fusion_v2` reaches routing CER `0.249477` on 64 held-out systematic samples. This beats the old router_v2 proxy row (`0.355793`) and the AudioDepth MVP-style separated route (`0.392813`) in this validation, but it does not beat the earlier model-zoo best (`0.166381`) or the fixed-cleaned proxy row (`0.196876`). The stress route CER is labeled `synthetic/silver_proxy` because this runtime does not include Whisper; it should be re-run with real ASR before any stable deployment claim.
+
+README-ready figures:
+
+- `results/figures/audio_depth_systematic_overview.png`
+- `results/figures/audio_depth_systematic_main_result_card.png`
+- `results/figures/audio_depth_systematic_pareto_card.png`
+
 ## Project Map
 
 The repository now has a stable baseline and a breadth-first frontier queue. The diagram below shows the main flow at a glance.

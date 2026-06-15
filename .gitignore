@@ -26,6 +26,7 @@ torch_cache/
 !models/audio_depth_router_*.pt
 !models/audio_depth_zoo/
 !models/audio_depth_zoo/*.pt
+!models/audio_depth_systematic_*.pt
 
 # Runtime outputs
 results/transcripts_raw/*

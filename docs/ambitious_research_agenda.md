@@ -110,3 +110,14 @@ The baseline is stable. The frontier should be bold, explicit, and well-labeled.
 - Interpretation rule:
   - if the zoo still does not beat router_v2, treat that as a boundary finding rather than a failure
   - if a hybrid or cascade helps, treat it as frontier improvement, not a stable-baseline rewrite
+
+## 12. Systematic AudioDepth-Hybrid Router
+
+- Question: can audio-depth, transcript-instability, confidence, and cost signals form a practical routing system?
+- Current evidence:
+  - generated `audio_depth_stress_v1`
+  - trained systematic hybrid routers
+  - added bootstrap CI, cost cascade, LLM/review selector, external blocked report, and case studies
+- Limitation:
+  - current stress route CER is proxy evidence because real Whisper inference is unavailable in this runtime
+  - simulated cost is not hardware timing evidence

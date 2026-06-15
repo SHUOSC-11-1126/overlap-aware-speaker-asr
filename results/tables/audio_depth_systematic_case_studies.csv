@@ -1,0 +1,3 @@
+sample_id,case_type,audio_tier,overlap_ratio,router_v2_route,hybrid_route,oracle_route,hybrid_confidence,hybrid_cer,router_v2_cer,explanation
+SyntheticHeavyOverlap_test_01,low_confidence,SyntheticHeavyOverlap,0.7,mixed,separated,mixed,0.446506,2.742857,0.342857,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.45
+SyntheticHeavyOverlap_test_02,low_confidence,SyntheticHeavyOverlap,0.7,separated,separated,mixed,0.353394,0.76,0.76,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.35

@@ -1,0 +1,6 @@
+model_name,status,best_epoch,best_dev_accuracy,checkpoint_path,train_samples,dev_samples,reason
+hybrid_mlp_v2,trained,3,0.636364,models/audio_depth_systematic_hybrid_mlp_v2.pt,94,22,
+hybrid_late_fusion_v2,trained,3,0.5,models/audio_depth_systematic_hybrid_late_fusion_v2.pt,94,22,
+gradient_boosted_router,skipped,,,,94,22,sklearn_unavailable
+calibrated_confidence_router,trained_calibrated_layer,3,0.636364,models/audio_depth_systematic_calibrated_confidence_router.pt,94,22,
+cost_aware_router,trained_calibrated_layer,3,0.636364,models/audio_depth_systematic_cost_aware_router.pt,94,22,

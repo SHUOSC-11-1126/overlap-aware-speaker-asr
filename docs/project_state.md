@@ -104,6 +104,20 @@ Current synthetic split TEST results:
 
 Interpretation: hybrid/text-risk features are doing most of the useful work in this run. Pure depth models improve the experiment matrix but do not yet explain the routing boundary as well as the handcrafted/hybrid rows.
 
+## Systematic AudioDepth-Hybrid Validation
+
+Stage 23 extends AudioDepth-Hybrid from a model-zoo result into a system validation pass.
+
+- Stress benchmark: `150` generated samples in `resources/audio_depth_stress_v1/`
+- Stress proxy route evaluation: `80` samples in `results/tables/audio_depth_systematic_stress_cer.csv`
+- Best systematic frontier model: `hybrid_late_fusion_v2`
+- Best systematic frontier CER: `0.249477` on `64` held-out systematic samples
+- Old router_v2 proxy row: `0.355793`
+- Previous model-zoo best row in this systematic table: `0.392813`
+- Oracle: `0.127504`
+
+Important interpretation: this pass improves over the old router_v2 proxy row and the MVP-style separated route, but does not beat the Stage 22 model-zoo best result (`0.166381`) or the fixed-cleaned proxy row (`0.196876`). Stress CER is `synthetic/silver_proxy`, not real Whisper CER.
+
 ## Gold Benchmark Final CER Table
 
 ### NoOverlap

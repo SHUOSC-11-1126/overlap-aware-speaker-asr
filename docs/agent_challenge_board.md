@@ -106,6 +106,7 @@ Speaker profile execution scaffold completion is `queue_complete` for `NoOverlap
 - voiceprint-assisted diarization correction
 - external dataset mini paper replication
 - AudioDepth model zoo and hybrid routing exploration
+- systematic AudioDepth-Hybrid validation with stress benchmark, bootstrap CI, cost cascade, and case studies
 
 ## Task Template
 

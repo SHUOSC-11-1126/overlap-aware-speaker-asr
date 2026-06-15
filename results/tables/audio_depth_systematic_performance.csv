@@ -1,0 +1,12 @@
+model_name,routing_average_cer,classification_accuracy,macro_f1,expected_compute_cost,fallback_rate,sample_count,label
+oracle_best,0.127504,1.0,0.666667,1.4125,0.0,64,baseline
+fixed_cleaned,0.196876,0.0,0.0,1.8,0.0,64,baseline
+hybrid_late_fusion_v2,0.249477,0.765625,0.46252,1.478125,0.0,64,experimental/frontier
+calibrated_confidence_router,0.355793,0.484375,0.318755,1.121875,1.0,64,experimental/frontier
+old_router_v2,0.355793,0.484375,0.318755,1.121875,0.0,64,baseline
+hybrid_mlp_v2,0.384373,0.75,0.409251,1.54375,0.0,64,experimental/frontier
+fixed_separated,0.392813,0.6875,0.271605,1.6,0.0,64,baseline
+previous_audio_depth_mvp,0.392813,0.6875,0.271605,1.6,0.0,64,baseline
+previous_model_zoo_best,0.392813,0.6875,0.271605,1.6,0.0,64,baseline
+cost_aware_router,0.39543,0.65625,0.392203,1.43125,0.0,64,experimental/frontier
+fixed_mixed,0.41332,0.3125,0.15873,1.0,0.0,64,baseline

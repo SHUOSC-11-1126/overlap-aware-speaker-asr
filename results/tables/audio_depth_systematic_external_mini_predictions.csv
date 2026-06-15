@@ -1,0 +1,2 @@
+status,needed_data,prediction_count,evidence_type
+blocked_no_external_audio,one or more external meeting-style WAV files plus optional transcript/reference metadata,0,external/sanity-check blocked

@@ -1,0 +1,705 @@
+sample_id,dataset,split,model_name,true_route_label,predicted_route_label,predicted_method,confidence,risk_level,fallback_strategy,predicted_cer,expected_cost,overlap_tier,overlap_ratio,explanation
+SyntheticHeavyOverlap_test_01,synthetic_split,test,hybrid_mlp_v2,mixed,separated,separated_whisper,0.446506,high,none,2.742857,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.45
+SyntheticHeavyOverlap_test_02,synthetic_split,test,hybrid_mlp_v2,mixed,separated,separated_whisper,0.353394,high,none,0.76,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.35
+SyntheticHeavyOverlap_test_03,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.377522,high,none,0.0,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.38
+SyntheticHeavyOverlap_test_04,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.409054,high,none,0.052632,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.41
+SyntheticHeavyOverlap_test_05,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.433042,high,none,0.0,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.43
+SyntheticHeavyOverlap_test_06,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.36448,high,none,0.038462,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.36
+SyntheticHeavyOverlap_test_07,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.397042,high,none,0.291667,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.40
+SyntheticHeavyOverlap_test_08,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.401049,high,none,0.0,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.40
+SyntheticHeavyOverlap_test_09,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.381552,high,none,0.090909,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.38
+SyntheticHeavyOverlap_test_10,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.388983,high,none,0.0,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.39
+SyntheticLightOverlap_test_01,synthetic_split,test,hybrid_mlp_v2,mixed,separated,separated_whisper,0.418913,high,none,4.085714,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.42
+SyntheticLightOverlap_test_02,synthetic_split,test,hybrid_mlp_v2,mixed,separated,separated_whisper,0.352264,high,none,0.76,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.35
+SyntheticLightOverlap_test_03,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.350759,high,none,0.0,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.35
+SyntheticLightOverlap_test_04,synthetic_split,test,hybrid_mlp_v2,mixed,separated,separated_whisper,0.374791,high,none,0.052632,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.37
+SyntheticLightOverlap_test_05,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.401378,high,none,0.2,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.40
+SyntheticLightOverlap_test_06,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.361075,high,none,0.038462,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.36
+SyntheticLightOverlap_test_07,synthetic_split,test,hybrid_mlp_v2,mixed,separated,separated_whisper,0.355677,high,none,0.291667,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.36
+SyntheticLightOverlap_test_08,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.38022,high,none,0.0,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.38
+SyntheticLightOverlap_test_09,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.367904,high,none,0.090909,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.37
+SyntheticLightOverlap_test_10,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.44178,high,none,0.0,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.44
+SyntheticMidOverlap_test_01,synthetic_split,test,hybrid_mlp_v2,mixed,separated,separated_whisper,0.443888,high,none,4.342857,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.44
+SyntheticMidOverlap_test_02,synthetic_split,test,hybrid_mlp_v2,mixed,separated,separated_whisper,0.353469,high,none,0.76,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.35
+SyntheticMidOverlap_test_03,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.34957,high,none,0.0,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.35
+SyntheticMidOverlap_test_04,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.381693,high,none,0.052632,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.38
+SyntheticMidOverlap_test_05,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.421794,high,none,0.0,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.42
+SyntheticMidOverlap_test_06,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.364299,high,none,0.038462,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.36
+SyntheticMidOverlap_test_07,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.380811,high,none,0.291667,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.38
+SyntheticMidOverlap_test_08,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.393913,high,none,0.222222,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.39
+SyntheticMidOverlap_test_09,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.365011,high,none,0.0,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.37
+SyntheticMidOverlap_test_10,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.452523,high,none,0.0,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.45
+SyntheticNoOverlap_test_01,synthetic_split,test,hybrid_mlp_v2,mixed,separated,separated_whisper,0.389902,high,none,3.142857,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.39
+SyntheticNoOverlap_test_02,synthetic_split,test,hybrid_mlp_v2,mixed,separated,separated_whisper,0.349727,high,none,0.8,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.35
+SyntheticNoOverlap_test_03,synthetic_split,test,hybrid_mlp_v2,separated,mixed,mixed_whisper,0.349818,high,none,0.266667,1.0,SyntheticNoOverlap,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=0.69 makes separation risky; confidence=0.35
+SyntheticNoOverlap_test_04,synthetic_split,test,hybrid_mlp_v2,mixed,separated,separated_whisper,0.374923,high,none,0.052632,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.37
+SyntheticNoOverlap_test_05,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.375536,high,none,0.2,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.38
+SyntheticNoOverlap_test_06,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.359218,high,none,0.038462,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.36
+SyntheticNoOverlap_test_07,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.36753,high,none,0.291667,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.37
+SyntheticNoOverlap_test_08,synthetic_split,test,hybrid_mlp_v2,mixed,separated,separated_whisper,0.371032,high,none,0.222222,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.37
+SyntheticNoOverlap_test_09,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.361724,high,none,0.090909,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.36
+SyntheticNoOverlap_test_10,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.52528,high,none,0.0,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.53
+SyntheticOppositeOverlap_test_01,synthetic_split,test,hybrid_mlp_v2,mixed,separated,separated_whisper,0.404373,high,none,0.457143,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.40
+SyntheticOppositeOverlap_test_02,synthetic_split,test,hybrid_mlp_v2,mixed,separated,separated_whisper,0.365092,high,none,0.76,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.37
+SyntheticOppositeOverlap_test_03,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.371524,high,none,0.066667,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.37
+SyntheticOppositeOverlap_test_04,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.398026,high,none,0.052632,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.40
+SyntheticOppositeOverlap_test_05,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.442551,high,none,0.0,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.44
+SyntheticOppositeOverlap_test_06,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.381439,high,none,0.038462,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.38
+SyntheticOppositeOverlap_test_07,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.393709,high,none,0.291667,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.39
+SyntheticOppositeOverlap_test_08,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.421917,high,none,0.0,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.42
+SyntheticOppositeOverlap_test_09,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.391154,high,none,0.090909,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.39
+SyntheticOppositeOverlap_test_10,synthetic_split,test,hybrid_mlp_v2,separated,separated,separated_whisper,0.383814,high,none,0.0,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.38
+audio_depth_stress_v1_0012,audio_depth_stress_v1,dev,hybrid_mlp_v2,mixed,mixed,mixed_whisper,0.363408,high,none,0.134,1.0,clean_turn_taking,0.1,mixed favored because overlap_ratio=0.10 or transcript repetition risk=0.63 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0014,audio_depth_stress_v1,train,hybrid_mlp_v2,separated,separated,separated_whisper,0.358407,high,none,0.208,1.6,clean_turn_taking,0.3,separated favored because overlap_ratio=0.30 suggests separation can reduce occlusion; confidence=0.36
+audio_depth_stress_v1_0015,audio_depth_stress_v1,train,hybrid_mlp_v2,separated,separated,separated_whisper,0.355488,high,none,0.198,1.6,clean_turn_taking,0.4,separated favored because overlap_ratio=0.40 suggests separation can reduce occlusion; confidence=0.36
+audio_depth_stress_v1_0018,audio_depth_stress_v1,train,hybrid_mlp_v2,separated,separated,separated_whisper,0.378563,high,none,0.198,1.6,clean_turn_taking,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.38
+audio_depth_stress_v1_0022,audio_depth_stress_v1,dev,hybrid_mlp_v2,mixed,separated,separated_whisper,0.364558,high,none,0.23,1.6,clean_turn_taking,0.1,separated favored because overlap_ratio=0.10 suggests separation can reduce occlusion; confidence=0.36
+audio_depth_stress_v1_0032,audio_depth_stress_v1,dev,hybrid_mlp_v2,mixed,mixed,mixed_whisper,0.364932,high,none,0.142,1.0,clean_turn_taking,0.1,mixed favored because overlap_ratio=0.10 or transcript repetition risk=0.67 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0035,audio_depth_stress_v1,train,hybrid_mlp_v2,separated,separated,separated_whisper,0.355611,high,none,0.202,1.6,clean_turn_taking,0.4,separated favored because overlap_ratio=0.40 suggests separation can reduce occlusion; confidence=0.36
+audio_depth_stress_v1_0039,audio_depth_stress_v1,train,hybrid_mlp_v2,separated,separated,separated_whisper,0.386005,high,none,0.2056,1.6,clean_turn_taking,0.8,separated favored because overlap_ratio=0.80 suggests separation can reduce occlusion; confidence=0.39
+audio_depth_stress_v1_0051,audio_depth_stress_v1,test,hybrid_mlp_v2,mixed,mixed,mixed_whisper,0.359371,high,none,0.086,1.0,clean_turn_taking,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=0.73 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0052,audio_depth_stress_v1,dev,hybrid_mlp_v2,mixed,mixed,mixed_whisper,0.380371,high,none,0.144,1.0,clean_turn_taking,0.1,mixed favored because overlap_ratio=0.10 or transcript repetition risk=0.63 makes separation risky; confidence=0.38
+audio_depth_stress_v1_0053,audio_depth_stress_v1,train,hybrid_mlp_v2,mixed,mixed,mixed_whisper,0.390381,high,none,0.202,1.0,clean_turn_taking,0.2,mixed favored because overlap_ratio=0.20 or transcript repetition risk=0.53 makes separation risky; confidence=0.39
+audio_depth_stress_v1_0059,audio_depth_stress_v1,train,hybrid_mlp_v2,separated,separated,separated_whisper,0.356888,high,none,0.2016,1.6,clean_turn_taking,0.8,separated favored because overlap_ratio=0.80 suggests separation can reduce occlusion; confidence=0.36
+audio_depth_stress_v1_0068,audio_depth_stress_v1,train,hybrid_mlp_v2,separated,separated,separated_whisper,0.354754,high,none,0.18,1.6,clean_turn_taking,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.35
+audio_depth_stress_v1_0078,audio_depth_stress_v1,train,hybrid_mlp_v2,separated,separated,separated_whisper,0.358076,high,none,0.202,1.6,clean_turn_taking,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.36
+SyntheticHeavyOverlap_test_01,synthetic_split,test,hybrid_late_fusion_v2,mixed,separated,separated_whisper,0.36015,high,none,2.742857,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.36
+SyntheticHeavyOverlap_test_02,synthetic_split,test,hybrid_late_fusion_v2,mixed,separated,separated_whisper,0.365724,high,none,0.76,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.37
+SyntheticHeavyOverlap_test_03,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.366637,high,none,0.0,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.37
+SyntheticHeavyOverlap_test_04,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.3783,high,none,0.052632,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.38
+SyntheticHeavyOverlap_test_05,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.388664,high,none,0.0,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.39
+SyntheticHeavyOverlap_test_06,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.359809,high,none,0.038462,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.36
+SyntheticHeavyOverlap_test_07,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.382242,high,none,0.291667,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.38
+SyntheticHeavyOverlap_test_08,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.374506,high,none,0.0,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.37
+SyntheticHeavyOverlap_test_09,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.376223,high,none,0.090909,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.38
+SyntheticHeavyOverlap_test_10,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.385398,high,none,0.0,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.39
+SyntheticLightOverlap_test_01,synthetic_split,test,hybrid_late_fusion_v2,mixed,mixed,mixed_whisper,0.371285,high,none,0.0,1.0,SyntheticLightOverlap,0.2,mixed favored because overlap_ratio=0.20 or transcript repetition risk=13.91 makes separation risky; confidence=0.37
+SyntheticLightOverlap_test_02,synthetic_split,test,hybrid_late_fusion_v2,mixed,separated,separated_whisper,0.352914,high,none,0.76,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.35
+SyntheticLightOverlap_test_03,synthetic_split,test,hybrid_late_fusion_v2,separated,mixed,mixed_whisper,0.350144,high,none,0.266667,1.0,SyntheticLightOverlap,0.2,mixed favored because overlap_ratio=0.20 or transcript repetition risk=0.72 makes separation risky; confidence=0.35
+SyntheticLightOverlap_test_04,synthetic_split,test,hybrid_late_fusion_v2,mixed,separated,separated_whisper,0.361112,high,none,0.052632,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.36
+SyntheticLightOverlap_test_05,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.364949,high,none,0.2,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.36
+SyntheticLightOverlap_test_06,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.354139,high,none,0.038462,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.35
+SyntheticLightOverlap_test_07,synthetic_split,test,hybrid_late_fusion_v2,mixed,separated,separated_whisper,0.351101,high,none,0.291667,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.35
+SyntheticLightOverlap_test_08,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.364276,high,none,0.0,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.36
+SyntheticLightOverlap_test_09,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.356745,high,none,0.090909,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.36
+SyntheticLightOverlap_test_10,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.374652,high,none,0.0,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.37
+SyntheticMidOverlap_test_01,synthetic_split,test,hybrid_late_fusion_v2,mixed,mixed,mixed_whisper,0.355757,high,none,0.228571,1.0,SyntheticMidOverlap,0.45,mixed favored because overlap_ratio=0.45 or transcript repetition risk=17.70 makes separation risky; confidence=0.36
+SyntheticMidOverlap_test_02,synthetic_split,test,hybrid_late_fusion_v2,mixed,separated,separated_whisper,0.360274,high,none,0.76,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.36
+SyntheticMidOverlap_test_03,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.35392,high,none,0.0,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.35
+SyntheticMidOverlap_test_04,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.366475,high,none,0.052632,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.37
+SyntheticMidOverlap_test_05,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.37853,high,none,0.0,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.38
+SyntheticMidOverlap_test_06,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.35506,high,none,0.038462,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.36
+SyntheticMidOverlap_test_07,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.366781,high,none,0.291667,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.37
+SyntheticMidOverlap_test_08,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.370549,high,none,0.222222,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.37
+SyntheticMidOverlap_test_09,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.364514,high,none,0.0,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.36
+SyntheticMidOverlap_test_10,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.391922,high,none,0.0,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.39
+SyntheticNoOverlap_test_01,synthetic_split,test,hybrid_late_fusion_v2,mixed,separated,separated_whisper,0.355752,high,none,3.142857,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.36
+SyntheticNoOverlap_test_02,synthetic_split,test,hybrid_late_fusion_v2,mixed,mixed,mixed_whisper,0.348113,high,none,0.08,1.0,SyntheticNoOverlap,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=1.00 makes separation risky; confidence=0.35
+SyntheticNoOverlap_test_03,synthetic_split,test,hybrid_late_fusion_v2,separated,mixed,mixed_whisper,0.362776,high,none,0.266667,1.0,SyntheticNoOverlap,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=0.69 makes separation risky; confidence=0.36
+SyntheticNoOverlap_test_04,synthetic_split,test,hybrid_late_fusion_v2,mixed,separated,separated_whisper,0.353814,high,none,0.052632,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.35
+SyntheticNoOverlap_test_05,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.357288,high,none,0.2,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.36
+SyntheticNoOverlap_test_06,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.341169,high,none,0.038462,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.34
+SyntheticNoOverlap_test_07,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.346842,high,none,0.291667,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.35
+SyntheticNoOverlap_test_08,synthetic_split,test,hybrid_late_fusion_v2,mixed,separated,separated_whisper,0.349209,high,none,0.222222,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.35
+SyntheticNoOverlap_test_09,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.342485,high,none,0.090909,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.34
+SyntheticNoOverlap_test_10,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.413738,high,none,0.0,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.41
+SyntheticOppositeOverlap_test_01,synthetic_split,test,hybrid_late_fusion_v2,mixed,separated,separated_whisper,0.384532,high,none,0.457143,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.38
+SyntheticOppositeOverlap_test_02,synthetic_split,test,hybrid_late_fusion_v2,mixed,separated,separated_whisper,0.366678,high,none,0.76,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.37
+SyntheticOppositeOverlap_test_03,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.369508,high,none,0.066667,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.37
+SyntheticOppositeOverlap_test_04,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.387835,high,none,0.052632,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.39
+SyntheticOppositeOverlap_test_05,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.399451,high,none,0.0,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.40
+SyntheticOppositeOverlap_test_06,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.369186,high,none,0.038462,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.37
+SyntheticOppositeOverlap_test_07,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.386062,high,none,0.291667,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.39
+SyntheticOppositeOverlap_test_08,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.39048,high,none,0.0,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.39
+SyntheticOppositeOverlap_test_09,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.371008,high,none,0.090909,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.37
+SyntheticOppositeOverlap_test_10,synthetic_split,test,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.385039,high,none,0.0,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.39
+audio_depth_stress_v1_0012,audio_depth_stress_v1,dev,hybrid_late_fusion_v2,mixed,mixed,mixed_whisper,0.435447,high,none,0.134,1.0,clean_turn_taking,0.1,mixed favored because overlap_ratio=0.10 or transcript repetition risk=0.63 makes separation risky; confidence=0.44
+audio_depth_stress_v1_0014,audio_depth_stress_v1,train,hybrid_late_fusion_v2,separated,mixed,mixed_whisper,0.414521,high,none,0.25,1.0,clean_turn_taking,0.3,mixed favored because overlap_ratio=0.30 or transcript repetition risk=0.43 makes separation risky; confidence=0.41
+audio_depth_stress_v1_0015,audio_depth_stress_v1,train,hybrid_late_fusion_v2,separated,mixed,mixed_whisper,0.364918,high,none,0.308,1.0,clean_turn_taking,0.4,mixed favored because overlap_ratio=0.40 or transcript repetition risk=0.33 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0018,audio_depth_stress_v1,train,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.353008,high,none,0.198,1.6,clean_turn_taking,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.35
+audio_depth_stress_v1_0022,audio_depth_stress_v1,dev,hybrid_late_fusion_v2,mixed,mixed,mixed_whisper,0.454306,high,none,0.098,1.0,clean_turn_taking,0.1,mixed favored because overlap_ratio=0.10 or transcript repetition risk=0.45 makes separation risky; confidence=0.45
+audio_depth_stress_v1_0032,audio_depth_stress_v1,dev,hybrid_late_fusion_v2,mixed,mixed,mixed_whisper,0.438849,high,none,0.142,1.0,clean_turn_taking,0.1,mixed favored because overlap_ratio=0.10 or transcript repetition risk=0.67 makes separation risky; confidence=0.44
+audio_depth_stress_v1_0035,audio_depth_stress_v1,train,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.345172,high,none,0.202,1.6,clean_turn_taking,0.4,separated favored because overlap_ratio=0.40 suggests separation can reduce occlusion; confidence=0.35
+audio_depth_stress_v1_0039,audio_depth_stress_v1,train,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.355726,high,none,0.2056,1.6,clean_turn_taking,0.8,separated favored because overlap_ratio=0.80 suggests separation can reduce occlusion; confidence=0.36
+audio_depth_stress_v1_0051,audio_depth_stress_v1,test,hybrid_late_fusion_v2,mixed,mixed,mixed_whisper,0.382946,high,none,0.086,1.0,clean_turn_taking,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=0.73 makes separation risky; confidence=0.38
+audio_depth_stress_v1_0052,audio_depth_stress_v1,dev,hybrid_late_fusion_v2,mixed,mixed,mixed_whisper,0.40472,high,none,0.144,1.0,clean_turn_taking,0.1,mixed favored because overlap_ratio=0.10 or transcript repetition risk=0.63 makes separation risky; confidence=0.40
+audio_depth_stress_v1_0053,audio_depth_stress_v1,train,hybrid_late_fusion_v2,mixed,mixed,mixed_whisper,0.435373,high,none,0.202,1.0,clean_turn_taking,0.2,mixed favored because overlap_ratio=0.20 or transcript repetition risk=0.53 makes separation risky; confidence=0.44
+audio_depth_stress_v1_0059,audio_depth_stress_v1,train,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.366062,high,none,0.2016,1.6,clean_turn_taking,0.8,separated favored because overlap_ratio=0.80 suggests separation can reduce occlusion; confidence=0.37
+audio_depth_stress_v1_0068,audio_depth_stress_v1,train,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.365243,high,none,0.18,1.6,clean_turn_taking,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.37
+audio_depth_stress_v1_0078,audio_depth_stress_v1,train,hybrid_late_fusion_v2,separated,separated,separated_whisper,0.362654,high,none,0.202,1.6,clean_turn_taking,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.36
+SyntheticHeavyOverlap_test_01,synthetic_split,test,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.446506,high,router_v2,0.342857,1.0,SyntheticHeavyOverlap,0.7,mixed favored because overlap_ratio=0.70 or transcript repetition risk=12.80 makes separation risky; confidence=0.45
+SyntheticHeavyOverlap_test_02,synthetic_split,test,calibrated_confidence_router,mixed,separated,separated_whisper,0.353394,high,router_v2,0.76,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.35
+SyntheticHeavyOverlap_test_03,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.377522,high,router_v2,0.8,1.0,SyntheticHeavyOverlap,0.7,mixed favored because overlap_ratio=0.70 or transcript repetition risk=4.00 makes separation risky; confidence=0.38
+SyntheticHeavyOverlap_test_04,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.409054,high,router_v2,0.736842,1.0,SyntheticHeavyOverlap,0.7,mixed favored because overlap_ratio=0.70 or transcript repetition risk=3.40 makes separation risky; confidence=0.41
+SyntheticHeavyOverlap_test_05,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.433042,high,router_v2,0.65,1.0,SyntheticHeavyOverlap,0.7,mixed favored because overlap_ratio=0.70 or transcript repetition risk=4.62 makes separation risky; confidence=0.43
+SyntheticHeavyOverlap_test_06,synthetic_split,test,calibrated_confidence_router,separated,separated,separated_whisper,0.36448,high,router_v2,0.038462,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.36
+SyntheticHeavyOverlap_test_07,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.397042,high,router_v2,0.833333,1.0,SyntheticHeavyOverlap,0.7,mixed favored because overlap_ratio=0.70 or transcript repetition risk=5.12 makes separation risky; confidence=0.40
+SyntheticHeavyOverlap_test_08,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.401049,high,router_v2,0.388889,1.0,SyntheticHeavyOverlap,0.7,mixed favored because overlap_ratio=0.70 or transcript repetition risk=2.14 makes separation risky; confidence=0.40
+SyntheticHeavyOverlap_test_09,synthetic_split,test,calibrated_confidence_router,separated,separated,separated_whisper,0.381552,high,router_v2,0.090909,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.38
+SyntheticHeavyOverlap_test_10,synthetic_split,test,calibrated_confidence_router,separated,separated,separated_whisper,0.388983,high,router_v2,0.0,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.39
+SyntheticLightOverlap_test_01,synthetic_split,test,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.418913,high,router_v2,0.0,1.0,SyntheticLightOverlap,0.2,mixed favored because overlap_ratio=0.20 or transcript repetition risk=13.91 makes separation risky; confidence=0.42
+SyntheticLightOverlap_test_02,synthetic_split,test,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.352264,high,router_v2,0.08,1.0,SyntheticLightOverlap,0.2,mixed favored because overlap_ratio=0.20 or transcript repetition risk=0.96 makes separation risky; confidence=0.35
+SyntheticLightOverlap_test_03,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.350759,high,router_v2,0.266667,1.0,SyntheticLightOverlap,0.2,mixed favored because overlap_ratio=0.20 or transcript repetition risk=0.72 makes separation risky; confidence=0.35
+SyntheticLightOverlap_test_04,synthetic_split,test,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.374791,high,router_v2,0.052632,1.0,SyntheticLightOverlap,0.2,mixed favored because overlap_ratio=0.20 or transcript repetition risk=1.32 makes separation risky; confidence=0.37
+SyntheticLightOverlap_test_05,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.401378,high,router_v2,0.55,1.0,SyntheticLightOverlap,0.2,mixed favored because overlap_ratio=0.20 or transcript repetition risk=3.50 makes separation risky; confidence=0.40
+SyntheticLightOverlap_test_06,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.361075,high,router_v2,0.153846,1.0,SyntheticLightOverlap,0.2,mixed favored because overlap_ratio=0.20 or transcript repetition risk=0.93 makes separation risky; confidence=0.36
+SyntheticLightOverlap_test_07,synthetic_split,test,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.355677,high,router_v2,0.291667,1.0,SyntheticLightOverlap,0.2,mixed favored because overlap_ratio=0.20 or transcript repetition risk=1.04 makes separation risky; confidence=0.36
+SyntheticLightOverlap_test_08,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.38022,high,router_v2,0.222222,1.0,SyntheticLightOverlap,0.2,mixed favored because overlap_ratio=0.20 or transcript repetition risk=1.93 makes separation risky; confidence=0.38
+SyntheticLightOverlap_test_09,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.367904,high,router_v2,0.409091,1.0,SyntheticLightOverlap,0.2,mixed favored because overlap_ratio=0.20 or transcript repetition risk=0.88 makes separation risky; confidence=0.37
+SyntheticLightOverlap_test_10,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.44178,high,router_v2,0.9,1.0,SyntheticLightOverlap,0.2,mixed favored because overlap_ratio=0.20 or transcript repetition risk=10.25 makes separation risky; confidence=0.44
+SyntheticMidOverlap_test_01,synthetic_split,test,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.443888,high,router_v2,0.228571,1.0,SyntheticMidOverlap,0.45,mixed favored because overlap_ratio=0.45 or transcript repetition risk=17.70 makes separation risky; confidence=0.44
+SyntheticMidOverlap_test_02,synthetic_split,test,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.353469,high,router_v2,0.12,1.0,SyntheticMidOverlap,0.45,mixed favored because overlap_ratio=0.45 or transcript repetition risk=1.04 makes separation risky; confidence=0.35
+SyntheticMidOverlap_test_03,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.34957,high,router_v2,0.4,1.0,SyntheticMidOverlap,0.45,mixed favored because overlap_ratio=0.45 or transcript repetition risk=0.77 makes separation risky; confidence=0.35
+SyntheticMidOverlap_test_04,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.381693,high,router_v2,0.368421,1.0,SyntheticMidOverlap,0.45,mixed favored because overlap_ratio=0.45 or transcript repetition risk=1.59 makes separation risky; confidence=0.38
+SyntheticMidOverlap_test_05,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.421794,high,router_v2,0.7,1.0,SyntheticMidOverlap,0.45,mixed favored because overlap_ratio=0.45 or transcript repetition risk=5.43 makes separation risky; confidence=0.42
+SyntheticMidOverlap_test_06,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.364299,high,router_v2,0.423077,1.0,SyntheticMidOverlap,0.45,mixed favored because overlap_ratio=0.45 or transcript repetition risk=2.06 makes separation risky; confidence=0.36
+SyntheticMidOverlap_test_07,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.380811,high,router_v2,0.708333,1.0,SyntheticMidOverlap,0.45,mixed favored because overlap_ratio=0.45 or transcript repetition risk=5.12 makes separation risky; confidence=0.38
+SyntheticMidOverlap_test_08,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.393913,high,router_v2,0.277778,1.0,SyntheticMidOverlap,0.45,mixed favored because overlap_ratio=0.45 or transcript repetition risk=1.05 makes separation risky; confidence=0.39
+SyntheticMidOverlap_test_09,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.365011,high,router_v2,0.409091,1.0,SyntheticMidOverlap,0.45,mixed favored because overlap_ratio=0.45 or transcript repetition risk=0.96 makes separation risky; confidence=0.37
+SyntheticMidOverlap_test_10,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.452523,high,router_v2,0.9,1.0,SyntheticMidOverlap,0.45,mixed favored because overlap_ratio=0.45 or transcript repetition risk=10.25 makes separation risky; confidence=0.45
+SyntheticNoOverlap_test_01,synthetic_split,test,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.389902,high,router_v2,0.228571,1.0,SyntheticNoOverlap,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=12.81 makes separation risky; confidence=0.39
+SyntheticNoOverlap_test_02,synthetic_split,test,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.349727,high,router_v2,0.08,1.0,SyntheticNoOverlap,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=1.00 makes separation risky; confidence=0.35
+SyntheticNoOverlap_test_03,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.349818,high,router_v2,0.266667,1.0,SyntheticNoOverlap,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=0.69 makes separation risky; confidence=0.35
+SyntheticNoOverlap_test_04,synthetic_split,test,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.374923,high,router_v2,0.052632,1.0,SyntheticNoOverlap,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=1.32 makes separation risky; confidence=0.37
+SyntheticNoOverlap_test_05,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.375536,high,router_v2,0.4,1.0,SyntheticNoOverlap,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=0.88 makes separation risky; confidence=0.38
+SyntheticNoOverlap_test_06,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.359218,high,router_v2,0.423077,1.0,SyntheticNoOverlap,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=1.89 makes separation risky; confidence=0.36
+SyntheticNoOverlap_test_07,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.36753,high,router_v2,0.625,1.0,SyntheticNoOverlap,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=4.44 makes separation risky; confidence=0.37
+SyntheticNoOverlap_test_08,synthetic_split,test,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.371032,high,router_v2,0.222222,1.0,SyntheticNoOverlap,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=1.29 makes separation risky; confidence=0.37
+SyntheticNoOverlap_test_09,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.361724,high,router_v2,0.272727,1.0,SyntheticNoOverlap,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=1.35 makes separation risky; confidence=0.36
+SyntheticNoOverlap_test_10,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.52528,high,router_v2,1.0,1.0,SyntheticNoOverlap,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=21.50 makes separation risky; confidence=0.53
+SyntheticOppositeOverlap_test_01,synthetic_split,test,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.404373,high,router_v2,0.457143,1.0,SyntheticOppositeOverlap,0.9,mixed favored because overlap_ratio=0.90 or transcript repetition risk=2.44 makes separation risky; confidence=0.40
+SyntheticOppositeOverlap_test_02,synthetic_split,test,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.365092,high,router_v2,0.56,1.0,SyntheticOppositeOverlap,0.9,mixed favored because overlap_ratio=0.90 or transcript repetition risk=2.06 makes separation risky; confidence=0.37
+SyntheticOppositeOverlap_test_03,synthetic_split,test,calibrated_confidence_router,separated,separated,separated_whisper,0.371524,high,router_v2,0.066667,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.37
+SyntheticOppositeOverlap_test_04,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.398026,high,router_v2,0.947368,1.0,SyntheticOppositeOverlap,0.9,mixed favored because overlap_ratio=0.90 or transcript repetition risk=2.67 makes separation risky; confidence=0.40
+SyntheticOppositeOverlap_test_05,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.442551,high,router_v2,0.7,1.0,SyntheticOppositeOverlap,0.9,mixed favored because overlap_ratio=0.90 or transcript repetition risk=3.09 makes separation risky; confidence=0.44
+SyntheticOppositeOverlap_test_06,synthetic_split,test,calibrated_confidence_router,separated,separated,separated_whisper,0.381439,high,router_v2,0.038462,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.38
+SyntheticOppositeOverlap_test_07,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.393709,high,router_v2,0.791667,1.0,SyntheticOppositeOverlap,0.9,mixed favored because overlap_ratio=0.90 or transcript repetition risk=2.27 makes separation risky; confidence=0.39
+SyntheticOppositeOverlap_test_08,synthetic_split,test,calibrated_confidence_router,separated,mixed,mixed_whisper,0.421917,high,router_v2,0.777778,1.0,SyntheticOppositeOverlap,0.9,mixed favored because overlap_ratio=0.90 or transcript repetition risk=4.50 makes separation risky; confidence=0.42
+SyntheticOppositeOverlap_test_09,synthetic_split,test,calibrated_confidence_router,separated,separated,separated_whisper,0.391154,high,router_v2,0.090909,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.39
+SyntheticOppositeOverlap_test_10,synthetic_split,test,calibrated_confidence_router,separated,separated,separated_whisper,0.383814,high,router_v2,0.0,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.38
+audio_depth_stress_v1_0012,audio_depth_stress_v1,dev,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.363408,high,router_v2,0.134,1.0,clean_turn_taking,0.1,mixed favored because overlap_ratio=0.10 or transcript repetition risk=0.63 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0014,audio_depth_stress_v1,train,calibrated_confidence_router,separated,mixed,mixed_whisper,0.358407,high,router_v2,0.25,1.0,clean_turn_taking,0.3,mixed favored because overlap_ratio=0.30 or transcript repetition risk=0.43 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0015,audio_depth_stress_v1,train,calibrated_confidence_router,separated,mixed,mixed_whisper,0.355488,high,router_v2,0.308,1.0,clean_turn_taking,0.4,mixed favored because overlap_ratio=0.40 or transcript repetition risk=0.33 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0018,audio_depth_stress_v1,train,calibrated_confidence_router,separated,separated,separated_whisper,0.378563,high,router_v2,0.198,1.6,clean_turn_taking,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.38
+audio_depth_stress_v1_0022,audio_depth_stress_v1,dev,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.364558,high,router_v2,0.098,1.0,clean_turn_taking,0.1,mixed favored because overlap_ratio=0.10 or transcript repetition risk=0.45 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0032,audio_depth_stress_v1,dev,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.364932,high,router_v2,0.142,1.0,clean_turn_taking,0.1,mixed favored because overlap_ratio=0.10 or transcript repetition risk=0.67 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0035,audio_depth_stress_v1,train,calibrated_confidence_router,separated,mixed,mixed_whisper,0.355611,high,router_v2,0.316,1.0,clean_turn_taking,0.4,mixed favored because overlap_ratio=0.40 or transcript repetition risk=0.37 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0039,audio_depth_stress_v1,train,calibrated_confidence_router,separated,separated,separated_whisper,0.386005,high,router_v2,0.2056,1.6,clean_turn_taking,0.8,separated favored because overlap_ratio=0.80 suggests separation can reduce occlusion; confidence=0.39
+audio_depth_stress_v1_0051,audio_depth_stress_v1,test,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.359371,high,router_v2,0.086,1.0,clean_turn_taking,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=0.73 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0052,audio_depth_stress_v1,dev,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.380371,high,router_v2,0.144,1.0,clean_turn_taking,0.1,mixed favored because overlap_ratio=0.10 or transcript repetition risk=0.63 makes separation risky; confidence=0.38
+audio_depth_stress_v1_0053,audio_depth_stress_v1,train,calibrated_confidence_router,mixed,mixed,mixed_whisper,0.390381,high,router_v2,0.202,1.0,clean_turn_taking,0.2,mixed favored because overlap_ratio=0.20 or transcript repetition risk=0.53 makes separation risky; confidence=0.39
+audio_depth_stress_v1_0059,audio_depth_stress_v1,train,calibrated_confidence_router,separated,separated,separated_whisper,0.356888,high,router_v2,0.2016,1.6,clean_turn_taking,0.8,separated favored because overlap_ratio=0.80 suggests separation can reduce occlusion; confidence=0.36
+audio_depth_stress_v1_0068,audio_depth_stress_v1,train,calibrated_confidence_router,separated,separated,separated_whisper,0.354754,high,router_v2,0.18,1.6,clean_turn_taking,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.35
+audio_depth_stress_v1_0078,audio_depth_stress_v1,train,calibrated_confidence_router,separated,separated,separated_whisper,0.358076,high,router_v2,0.202,1.6,clean_turn_taking,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.36
+SyntheticHeavyOverlap_test_01,synthetic_split,test,cost_aware_router,mixed,separated,separated_whisper,0.446506,high,none,2.742857,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.45
+SyntheticHeavyOverlap_test_02,synthetic_split,test,cost_aware_router,mixed,separated,separated_whisper,0.353394,high,none,0.76,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.35
+SyntheticHeavyOverlap_test_03,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.377522,high,none,0.0,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.38
+SyntheticHeavyOverlap_test_04,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.409054,high,none,0.052632,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.41
+SyntheticHeavyOverlap_test_05,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.433042,high,none,0.0,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.43
+SyntheticHeavyOverlap_test_06,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.36448,high,none,0.038462,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.36
+SyntheticHeavyOverlap_test_07,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.397042,high,none,0.291667,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.40
+SyntheticHeavyOverlap_test_08,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.401049,high,none,0.0,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.40
+SyntheticHeavyOverlap_test_09,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.381552,high,none,0.090909,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.38
+SyntheticHeavyOverlap_test_10,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.388983,high,none,0.0,1.6,SyntheticHeavyOverlap,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.39
+SyntheticLightOverlap_test_01,synthetic_split,test,cost_aware_router,mixed,separated,separated_whisper,0.418913,high,none,4.085714,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.42
+SyntheticLightOverlap_test_02,synthetic_split,test,cost_aware_router,mixed,mixed,mixed_whisper,0.352264,high,none,0.08,1.0,SyntheticLightOverlap,0.2,mixed favored because overlap_ratio=0.20 or transcript repetition risk=0.96 makes separation risky; confidence=0.35
+SyntheticLightOverlap_test_03,synthetic_split,test,cost_aware_router,separated,mixed,mixed_whisper,0.350759,high,none,0.266667,1.0,SyntheticLightOverlap,0.2,mixed favored because overlap_ratio=0.20 or transcript repetition risk=0.72 makes separation risky; confidence=0.35
+SyntheticLightOverlap_test_04,synthetic_split,test,cost_aware_router,mixed,separated,separated_whisper,0.374791,high,none,0.052632,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.37
+SyntheticLightOverlap_test_05,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.401378,high,none,0.2,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.40
+SyntheticLightOverlap_test_06,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.361075,high,none,0.038462,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.36
+SyntheticLightOverlap_test_07,synthetic_split,test,cost_aware_router,mixed,separated,separated_whisper,0.355677,high,none,0.291667,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.36
+SyntheticLightOverlap_test_08,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.38022,high,none,0.0,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.38
+SyntheticLightOverlap_test_09,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.367904,high,none,0.090909,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.37
+SyntheticLightOverlap_test_10,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.44178,high,none,0.0,1.6,SyntheticLightOverlap,0.2,separated favored because overlap_ratio=0.20 suggests separation can reduce occlusion; confidence=0.44
+SyntheticMidOverlap_test_01,synthetic_split,test,cost_aware_router,mixed,separated,separated_whisper,0.443888,high,none,4.342857,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.44
+SyntheticMidOverlap_test_02,synthetic_split,test,cost_aware_router,mixed,separated,separated_whisper,0.353469,high,none,0.76,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.35
+SyntheticMidOverlap_test_03,synthetic_split,test,cost_aware_router,separated,mixed,mixed_whisper,0.34957,high,none,0.4,1.0,SyntheticMidOverlap,0.45,mixed favored because overlap_ratio=0.45 or transcript repetition risk=0.77 makes separation risky; confidence=0.35
+SyntheticMidOverlap_test_04,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.381693,high,none,0.052632,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.38
+SyntheticMidOverlap_test_05,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.421794,high,none,0.0,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.42
+SyntheticMidOverlap_test_06,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.364299,high,none,0.038462,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.36
+SyntheticMidOverlap_test_07,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.380811,high,none,0.291667,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.38
+SyntheticMidOverlap_test_08,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.393913,high,none,0.222222,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.39
+SyntheticMidOverlap_test_09,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.365011,high,none,0.0,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.37
+SyntheticMidOverlap_test_10,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.452523,high,none,0.0,1.6,SyntheticMidOverlap,0.45,separated favored because overlap_ratio=0.45 suggests separation can reduce occlusion; confidence=0.45
+SyntheticNoOverlap_test_01,synthetic_split,test,cost_aware_router,mixed,separated,separated_whisper,0.389902,high,none,3.142857,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.39
+SyntheticNoOverlap_test_02,synthetic_split,test,cost_aware_router,mixed,mixed,mixed_whisper,0.349727,high,none,0.08,1.0,SyntheticNoOverlap,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=1.00 makes separation risky; confidence=0.35
+SyntheticNoOverlap_test_03,synthetic_split,test,cost_aware_router,separated,mixed,mixed_whisper,0.349818,high,none,0.266667,1.0,SyntheticNoOverlap,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=0.69 makes separation risky; confidence=0.35
+SyntheticNoOverlap_test_04,synthetic_split,test,cost_aware_router,mixed,separated,separated_whisper,0.374923,high,none,0.052632,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.37
+SyntheticNoOverlap_test_05,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.375536,high,none,0.2,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.38
+SyntheticNoOverlap_test_06,synthetic_split,test,cost_aware_router,separated,mixed,mixed_whisper,0.359218,high,none,0.423077,1.0,SyntheticNoOverlap,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=1.89 makes separation risky; confidence=0.36
+SyntheticNoOverlap_test_07,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.36753,high,none,0.291667,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.37
+SyntheticNoOverlap_test_08,synthetic_split,test,cost_aware_router,mixed,separated,separated_whisper,0.371032,high,none,0.222222,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.37
+SyntheticNoOverlap_test_09,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.361724,high,none,0.090909,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.36
+SyntheticNoOverlap_test_10,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.52528,high,none,0.0,1.6,SyntheticNoOverlap,0.0,separated favored because overlap_ratio=0.00 suggests separation can reduce occlusion; confidence=0.53
+SyntheticOppositeOverlap_test_01,synthetic_split,test,cost_aware_router,mixed,separated,separated_whisper,0.404373,high,none,0.457143,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.40
+SyntheticOppositeOverlap_test_02,synthetic_split,test,cost_aware_router,mixed,separated,separated_whisper,0.365092,high,none,0.76,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.37
+SyntheticOppositeOverlap_test_03,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.371524,high,none,0.066667,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.37
+SyntheticOppositeOverlap_test_04,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.398026,high,none,0.052632,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.40
+SyntheticOppositeOverlap_test_05,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.442551,high,none,0.0,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.44
+SyntheticOppositeOverlap_test_06,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.381439,high,none,0.038462,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.38
+SyntheticOppositeOverlap_test_07,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.393709,high,none,0.291667,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.39
+SyntheticOppositeOverlap_test_08,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.421917,high,none,0.0,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.42
+SyntheticOppositeOverlap_test_09,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.391154,high,none,0.090909,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.39
+SyntheticOppositeOverlap_test_10,synthetic_split,test,cost_aware_router,separated,separated,separated_whisper,0.383814,high,none,0.0,1.6,SyntheticOppositeOverlap,0.9,separated favored because overlap_ratio=0.90 suggests separation can reduce occlusion; confidence=0.38
+audio_depth_stress_v1_0012,audio_depth_stress_v1,dev,cost_aware_router,mixed,mixed,mixed_whisper,0.363408,high,none,0.134,1.0,clean_turn_taking,0.1,mixed favored because overlap_ratio=0.10 or transcript repetition risk=0.63 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0014,audio_depth_stress_v1,train,cost_aware_router,separated,mixed,mixed_whisper,0.358407,high,none,0.25,1.0,clean_turn_taking,0.3,mixed favored because overlap_ratio=0.30 or transcript repetition risk=0.43 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0015,audio_depth_stress_v1,train,cost_aware_router,separated,mixed,mixed_whisper,0.355488,high,none,0.308,1.0,clean_turn_taking,0.4,mixed favored because overlap_ratio=0.40 or transcript repetition risk=0.33 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0018,audio_depth_stress_v1,train,cost_aware_router,separated,separated,separated_whisper,0.378563,high,none,0.198,1.6,clean_turn_taking,0.7,separated favored because overlap_ratio=0.70 suggests separation can reduce occlusion; confidence=0.38
+audio_depth_stress_v1_0022,audio_depth_stress_v1,dev,cost_aware_router,mixed,mixed,mixed_whisper,0.364558,high,none,0.098,1.0,clean_turn_taking,0.1,mixed favored because overlap_ratio=0.10 or transcript repetition risk=0.45 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0032,audio_depth_stress_v1,dev,cost_aware_router,mixed,mixed,mixed_whisper,0.364932,high,none,0.142,1.0,clean_turn_taking,0.1,mixed favored because overlap_ratio=0.10 or transcript repetition risk=0.67 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0035,audio_depth_stress_v1,train,cost_aware_router,separated,mixed,mixed_whisper,0.355611,high,none,0.316,1.0,clean_turn_taking,0.4,mixed favored because overlap_ratio=0.40 or transcript repetition risk=0.37 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0039,audio_depth_stress_v1,train,cost_aware_router,separated,separated,separated_whisper,0.386005,high,none,0.2056,1.6,clean_turn_taking,0.8,separated favored because overlap_ratio=0.80 suggests separation can reduce occlusion; confidence=0.39
+audio_depth_stress_v1_0051,audio_depth_stress_v1,test,cost_aware_router,mixed,mixed,mixed_whisper,0.359371,high,none,0.086,1.0,clean_turn_taking,0.0,mixed favored because overlap_ratio=0.00 or transcript repetition risk=0.73 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0052,audio_depth_stress_v1,dev,cost_aware_router,mixed,mixed,mixed_whisper,0.380371,high,none,0.144,1.0,clean_turn_taking,0.1,mixed favored because overlap_ratio=0.10 or transcript repetition risk=0.63 makes separation risky; confidence=0.38
+audio_depth_stress_v1_0053,audio_depth_stress_v1,train,cost_aware_router,mixed,mixed,mixed_whisper,0.390381,high,none,0.202,1.0,clean_turn_taking,0.2,mixed favored because overlap_ratio=0.20 or transcript repetition risk=0.53 makes separation risky; confidence=0.39
+audio_depth_stress_v1_0059,audio_depth_stress_v1,train,cost_aware_router,separated,mixed,mixed_whisper,0.356888,high,none,0.55,1.0,clean_turn_taking,0.8,mixed favored because overlap_ratio=0.80 or transcript repetition risk=0.18 makes separation risky; confidence=0.36
+audio_depth_stress_v1_0068,audio_depth_stress_v1,train,cost_aware_router,separated,mixed,mixed_whisper,0.354754,high,none,0.456,1.0,clean_turn_taking,0.7,mixed favored because overlap_ratio=0.70 or transcript repetition risk=0.00 makes separation risky; confidence=0.35
+audio_depth_stress_v1_0078,audio_depth_stress_v1,train,cost_aware_router,separated,mixed,mixed_whisper,0.358076,high,none,0.5,1.0,clean_turn_taking,0.7,mixed favored because overlap_ratio=0.70 or transcript repetition risk=0.22 makes separation risky; confidence=0.36
+SyntheticHeavyOverlap_test_01,synthetic_split,test,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.342857,1.0,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_02,synthetic_split,test,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.44,1.0,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_03,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.8,1.0,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_04,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.736842,1.0,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_05,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.65,1.0,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_06,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.307692,1.0,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_07,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.833333,1.0,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_08,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.388889,1.0,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_09,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.318182,1.0,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_10,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.3,1.0,SyntheticHeavyOverlap,0.7,
+SyntheticLightOverlap_test_01,synthetic_split,test,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.0,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_02,synthetic_split,test,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.08,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_03,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.266667,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_04,synthetic_split,test,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.052632,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_05,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.55,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_06,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.153846,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_07,synthetic_split,test,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.291667,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_08,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.222222,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_09,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.409091,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_10,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.9,1.0,SyntheticLightOverlap,0.2,
+SyntheticMidOverlap_test_01,synthetic_split,test,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.228571,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_02,synthetic_split,test,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.12,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_03,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.4,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_04,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.368421,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_05,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.7,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_06,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.423077,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_07,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.708333,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_08,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.277778,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_09,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.409091,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_10,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.9,1.0,SyntheticMidOverlap,0.45,
+SyntheticNoOverlap_test_01,synthetic_split,test,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.228571,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_02,synthetic_split,test,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.08,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_03,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.266667,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_04,synthetic_split,test,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.052632,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_05,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.4,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_06,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.423077,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_07,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.625,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_08,synthetic_split,test,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.222222,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_09,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.272727,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_10,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,1.0,1.0,SyntheticNoOverlap,0.0,
+SyntheticOppositeOverlap_test_01,synthetic_split,test,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.457143,1.0,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_02,synthetic_split,test,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.56,1.0,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_03,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.5,1.0,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_04,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.947368,1.0,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_05,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.7,1.0,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_06,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.461538,1.0,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_07,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.791667,1.0,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_08,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.777778,1.0,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_09,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.590909,1.0,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_10,synthetic_split,test,fixed_mixed,separated,mixed,,1.0,baseline,none,0.3,1.0,SyntheticOppositeOverlap,0.9,
+audio_depth_stress_v1_0012,audio_depth_stress_v1,dev,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.134,1.0,clean_turn_taking,0.1,
+audio_depth_stress_v1_0014,audio_depth_stress_v1,train,fixed_mixed,separated,mixed,,1.0,baseline,none,0.25,1.0,clean_turn_taking,0.3,
+audio_depth_stress_v1_0015,audio_depth_stress_v1,train,fixed_mixed,separated,mixed,,1.0,baseline,none,0.308,1.0,clean_turn_taking,0.4,
+audio_depth_stress_v1_0018,audio_depth_stress_v1,train,fixed_mixed,separated,mixed,,1.0,baseline,none,0.482,1.0,clean_turn_taking,0.7,
+audio_depth_stress_v1_0022,audio_depth_stress_v1,dev,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.098,1.0,clean_turn_taking,0.1,
+audio_depth_stress_v1_0032,audio_depth_stress_v1,dev,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.142,1.0,clean_turn_taking,0.1,
+audio_depth_stress_v1_0035,audio_depth_stress_v1,train,fixed_mixed,separated,mixed,,1.0,baseline,none,0.316,1.0,clean_turn_taking,0.4,
+audio_depth_stress_v1_0039,audio_depth_stress_v1,train,fixed_mixed,separated,mixed,,1.0,baseline,none,0.548,1.0,clean_turn_taking,0.8,
+audio_depth_stress_v1_0051,audio_depth_stress_v1,test,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.086,1.0,clean_turn_taking,0.0,
+audio_depth_stress_v1_0052,audio_depth_stress_v1,dev,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.144,1.0,clean_turn_taking,0.1,
+audio_depth_stress_v1_0053,audio_depth_stress_v1,train,fixed_mixed,mixed,mixed,,1.0,baseline,none,0.202,1.0,clean_turn_taking,0.2,
+audio_depth_stress_v1_0059,audio_depth_stress_v1,train,fixed_mixed,separated,mixed,,1.0,baseline,none,0.55,1.0,clean_turn_taking,0.8,
+audio_depth_stress_v1_0068,audio_depth_stress_v1,train,fixed_mixed,separated,mixed,,1.0,baseline,none,0.456,1.0,clean_turn_taking,0.7,
+audio_depth_stress_v1_0078,audio_depth_stress_v1,train,fixed_mixed,separated,mixed,,1.0,baseline,none,0.5,1.0,clean_turn_taking,0.7,
+SyntheticHeavyOverlap_test_01,synthetic_split,test,fixed_separated,mixed,separated,,1.0,baseline,none,2.742857,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_02,synthetic_split,test,fixed_separated,mixed,separated,,1.0,baseline,none,0.76,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_03,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_04,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.052632,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_05,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_06,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_07,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.291667,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_08,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_09,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.090909,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_10,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticLightOverlap_test_01,synthetic_split,test,fixed_separated,mixed,separated,,1.0,baseline,none,4.085714,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_02,synthetic_split,test,fixed_separated,mixed,separated,,1.0,baseline,none,0.76,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_03,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_04,synthetic_split,test,fixed_separated,mixed,separated,,1.0,baseline,none,0.052632,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_05,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.2,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_06,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_07,synthetic_split,test,fixed_separated,mixed,separated,,1.0,baseline,none,0.291667,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_08,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_09,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.090909,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_10,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticLightOverlap,0.2,
+SyntheticMidOverlap_test_01,synthetic_split,test,fixed_separated,mixed,separated,,1.0,baseline,none,4.342857,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_02,synthetic_split,test,fixed_separated,mixed,separated,,1.0,baseline,none,0.76,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_03,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_04,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.052632,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_05,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_06,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_07,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.291667,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_08,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.222222,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_09,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_10,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticMidOverlap,0.45,
+SyntheticNoOverlap_test_01,synthetic_split,test,fixed_separated,mixed,separated,,1.0,baseline,none,3.142857,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_02,synthetic_split,test,fixed_separated,mixed,separated,,1.0,baseline,none,0.8,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_03,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.033333,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_04,synthetic_split,test,fixed_separated,mixed,separated,,1.0,baseline,none,0.052632,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_05,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.2,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_06,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_07,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.291667,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_08,synthetic_split,test,fixed_separated,mixed,separated,,1.0,baseline,none,0.222222,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_09,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.090909,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_10,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticNoOverlap,0.0,
+SyntheticOppositeOverlap_test_01,synthetic_split,test,fixed_separated,mixed,separated,,1.0,baseline,none,0.457143,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_02,synthetic_split,test,fixed_separated,mixed,separated,,1.0,baseline,none,0.76,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_03,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.066667,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_04,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.052632,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_05,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_06,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_07,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.291667,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_08,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_09,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.090909,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_10,synthetic_split,test,fixed_separated,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticOppositeOverlap,0.9,
+audio_depth_stress_v1_0012,audio_depth_stress_v1,dev,fixed_separated,mixed,separated,,1.0,baseline,none,0.248,1.6,clean_turn_taking,0.1,
+audio_depth_stress_v1_0014,audio_depth_stress_v1,train,fixed_separated,separated,separated,,1.0,baseline,none,0.208,1.6,clean_turn_taking,0.3,
+audio_depth_stress_v1_0015,audio_depth_stress_v1,train,fixed_separated,separated,separated,,1.0,baseline,none,0.198,1.6,clean_turn_taking,0.4,
+audio_depth_stress_v1_0018,audio_depth_stress_v1,train,fixed_separated,separated,separated,,1.0,baseline,none,0.198,1.6,clean_turn_taking,0.7,
+audio_depth_stress_v1_0022,audio_depth_stress_v1,dev,fixed_separated,mixed,separated,,1.0,baseline,none,0.23,1.6,clean_turn_taking,0.1,
+audio_depth_stress_v1_0032,audio_depth_stress_v1,dev,fixed_separated,mixed,separated,,1.0,baseline,none,0.252,1.6,clean_turn_taking,0.1,
+audio_depth_stress_v1_0035,audio_depth_stress_v1,train,fixed_separated,separated,separated,,1.0,baseline,none,0.202,1.6,clean_turn_taking,0.4,
+audio_depth_stress_v1_0039,audio_depth_stress_v1,train,fixed_separated,separated,separated,,1.0,baseline,none,0.2056,1.6,clean_turn_taking,0.8,
+audio_depth_stress_v1_0051,audio_depth_stress_v1,test,fixed_separated,mixed,separated,,1.0,baseline,none,0.5055,1.6,clean_turn_taking,0.0,
+audio_depth_stress_v1_0052,audio_depth_stress_v1,dev,fixed_separated,mixed,separated,,1.0,baseline,none,0.248,1.6,clean_turn_taking,0.1,
+audio_depth_stress_v1_0053,audio_depth_stress_v1,train,fixed_separated,mixed,separated,,1.0,baseline,none,0.228,1.6,clean_turn_taking,0.2,
+audio_depth_stress_v1_0059,audio_depth_stress_v1,train,fixed_separated,separated,separated,,1.0,baseline,none,0.2016,1.6,clean_turn_taking,0.8,
+audio_depth_stress_v1_0068,audio_depth_stress_v1,train,fixed_separated,separated,separated,,1.0,baseline,none,0.18,1.6,clean_turn_taking,0.7,
+audio_depth_stress_v1_0078,audio_depth_stress_v1,train,fixed_separated,separated,separated,,1.0,baseline,none,0.202,1.6,clean_turn_taking,0.7,
+SyntheticHeavyOverlap_test_01,synthetic_split,test,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.428571,1.8,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_02,synthetic_split,test,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.76,1.8,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_03,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.0,1.8,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_04,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.052632,1.8,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_05,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.0,1.8,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_06,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.038462,1.8,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_07,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.291667,1.8,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_08,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.0,1.8,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_09,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.090909,1.8,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_10,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.0,1.8,SyntheticHeavyOverlap,0.7,
+SyntheticLightOverlap_test_01,synthetic_split,test,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.428571,1.8,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_02,synthetic_split,test,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.76,1.8,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_03,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.0,1.8,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_04,synthetic_split,test,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.052632,1.8,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_05,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.2,1.8,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_06,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.038462,1.8,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_07,synthetic_split,test,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.291667,1.8,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_08,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.0,1.8,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_09,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.090909,1.8,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_10,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.0,1.8,SyntheticLightOverlap,0.2,
+SyntheticMidOverlap_test_01,synthetic_split,test,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.428571,1.8,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_02,synthetic_split,test,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.76,1.8,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_03,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.0,1.8,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_04,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.052632,1.8,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_05,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.0,1.8,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_06,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.038462,1.8,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_07,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.291667,1.8,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_08,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.222222,1.8,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_09,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.0,1.8,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_10,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.0,1.8,SyntheticMidOverlap,0.45,
+SyntheticNoOverlap_test_01,synthetic_split,test,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.457143,1.8,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_02,synthetic_split,test,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.8,1.8,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_03,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.033333,1.8,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_04,synthetic_split,test,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.052632,1.8,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_05,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.2,1.8,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_06,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.038462,1.8,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_07,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.291667,1.8,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_08,synthetic_split,test,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.222222,1.8,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_09,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.090909,1.8,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_10,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.0,1.8,SyntheticNoOverlap,0.0,
+SyntheticOppositeOverlap_test_01,synthetic_split,test,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.457143,1.8,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_02,synthetic_split,test,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.76,1.8,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_03,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.066667,1.8,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_04,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.052632,1.8,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_05,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.0,1.8,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_06,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.038462,1.8,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_07,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.291667,1.8,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_08,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.0,1.8,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_09,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.090909,1.8,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_10,synthetic_split,test,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.0,1.8,SyntheticOppositeOverlap,0.9,
+audio_depth_stress_v1_0012,audio_depth_stress_v1,dev,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.233,1.8,clean_turn_taking,0.1,
+audio_depth_stress_v1_0014,audio_depth_stress_v1,train,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.237,1.8,clean_turn_taking,0.3,
+audio_depth_stress_v1_0015,audio_depth_stress_v1,train,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.238,1.8,clean_turn_taking,0.4,
+audio_depth_stress_v1_0018,audio_depth_stress_v1,train,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.238,1.8,clean_turn_taking,0.7,
+audio_depth_stress_v1_0022,audio_depth_stress_v1,dev,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.215,1.8,clean_turn_taking,0.1,
+audio_depth_stress_v1_0032,audio_depth_stress_v1,dev,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.237,1.8,clean_turn_taking,0.1,
+audio_depth_stress_v1_0035,audio_depth_stress_v1,train,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.242,1.8,clean_turn_taking,0.4,
+audio_depth_stress_v1_0039,audio_depth_stress_v1,train,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.2456,1.8,clean_turn_taking,0.8,
+audio_depth_stress_v1_0051,audio_depth_stress_v1,test,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.281,1.8,clean_turn_taking,0.0,
+audio_depth_stress_v1_0052,audio_depth_stress_v1,dev,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.233,1.8,clean_turn_taking,0.1,
+audio_depth_stress_v1_0053,audio_depth_stress_v1,train,fixed_cleaned,mixed,cleaned,,1.0,baseline,none,0.235,1.8,clean_turn_taking,0.2,
+audio_depth_stress_v1_0059,audio_depth_stress_v1,train,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.2416,1.8,clean_turn_taking,0.8,
+audio_depth_stress_v1_0068,audio_depth_stress_v1,train,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.22,1.8,clean_turn_taking,0.7,
+audio_depth_stress_v1_0078,audio_depth_stress_v1,train,fixed_cleaned,separated,cleaned,,1.0,baseline,none,0.242,1.8,clean_turn_taking,0.7,
+SyntheticHeavyOverlap_test_01,synthetic_split,test,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,2.742857,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_02,synthetic_split,test,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,0.76,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_03,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_04,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.052632,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_05,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_06,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_07,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.291667,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_08,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_09,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.090909,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_10,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticLightOverlap_test_01,synthetic_split,test,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,4.085714,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_02,synthetic_split,test,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,0.76,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_03,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_04,synthetic_split,test,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,0.052632,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_05,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.2,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_06,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_07,synthetic_split,test,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,0.291667,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_08,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_09,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.090909,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_10,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticLightOverlap,0.2,
+SyntheticMidOverlap_test_01,synthetic_split,test,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,4.342857,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_02,synthetic_split,test,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,0.76,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_03,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_04,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.052632,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_05,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_06,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_07,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.291667,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_08,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.222222,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_09,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_10,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticMidOverlap,0.45,
+SyntheticNoOverlap_test_01,synthetic_split,test,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,3.142857,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_02,synthetic_split,test,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,0.8,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_03,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.033333,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_04,synthetic_split,test,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,0.052632,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_05,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.2,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_06,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_07,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.291667,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_08,synthetic_split,test,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,0.222222,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_09,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.090909,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_10,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticNoOverlap,0.0,
+SyntheticOppositeOverlap_test_01,synthetic_split,test,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,0.457143,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_02,synthetic_split,test,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,0.76,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_03,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.066667,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_04,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.052632,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_05,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_06,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_07,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.291667,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_08,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_09,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.090909,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_10,synthetic_split,test,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticOppositeOverlap,0.9,
+audio_depth_stress_v1_0012,audio_depth_stress_v1,dev,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,0.248,1.6,clean_turn_taking,0.1,
+audio_depth_stress_v1_0014,audio_depth_stress_v1,train,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.208,1.6,clean_turn_taking,0.3,
+audio_depth_stress_v1_0015,audio_depth_stress_v1,train,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.198,1.6,clean_turn_taking,0.4,
+audio_depth_stress_v1_0018,audio_depth_stress_v1,train,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.198,1.6,clean_turn_taking,0.7,
+audio_depth_stress_v1_0022,audio_depth_stress_v1,dev,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,0.23,1.6,clean_turn_taking,0.1,
+audio_depth_stress_v1_0032,audio_depth_stress_v1,dev,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,0.252,1.6,clean_turn_taking,0.1,
+audio_depth_stress_v1_0035,audio_depth_stress_v1,train,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.202,1.6,clean_turn_taking,0.4,
+audio_depth_stress_v1_0039,audio_depth_stress_v1,train,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.2056,1.6,clean_turn_taking,0.8,
+audio_depth_stress_v1_0051,audio_depth_stress_v1,test,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,0.5055,1.6,clean_turn_taking,0.0,
+audio_depth_stress_v1_0052,audio_depth_stress_v1,dev,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,0.248,1.6,clean_turn_taking,0.1,
+audio_depth_stress_v1_0053,audio_depth_stress_v1,train,previous_audio_depth_mvp,mixed,separated,,1.0,baseline,none,0.228,1.6,clean_turn_taking,0.2,
+audio_depth_stress_v1_0059,audio_depth_stress_v1,train,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.2016,1.6,clean_turn_taking,0.8,
+audio_depth_stress_v1_0068,audio_depth_stress_v1,train,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.18,1.6,clean_turn_taking,0.7,
+audio_depth_stress_v1_0078,audio_depth_stress_v1,train,previous_audio_depth_mvp,separated,separated,,1.0,baseline,none,0.202,1.6,clean_turn_taking,0.7,
+SyntheticHeavyOverlap_test_01,synthetic_split,test,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,2.742857,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_02,synthetic_split,test,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,0.76,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_03,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_04,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.052632,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_05,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_06,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_07,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.291667,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_08,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_09,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.090909,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_10,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticLightOverlap_test_01,synthetic_split,test,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,4.085714,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_02,synthetic_split,test,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,0.76,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_03,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_04,synthetic_split,test,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,0.052632,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_05,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.2,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_06,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_07,synthetic_split,test,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,0.291667,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_08,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_09,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.090909,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_10,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticLightOverlap,0.2,
+SyntheticMidOverlap_test_01,synthetic_split,test,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,4.342857,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_02,synthetic_split,test,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,0.76,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_03,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_04,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.052632,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_05,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_06,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_07,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.291667,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_08,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.222222,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_09,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_10,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticMidOverlap,0.45,
+SyntheticNoOverlap_test_01,synthetic_split,test,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,3.142857,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_02,synthetic_split,test,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,0.8,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_03,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.033333,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_04,synthetic_split,test,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,0.052632,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_05,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.2,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_06,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_07,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.291667,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_08,synthetic_split,test,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,0.222222,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_09,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.090909,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_10,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticNoOverlap,0.0,
+SyntheticOppositeOverlap_test_01,synthetic_split,test,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,0.457143,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_02,synthetic_split,test,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,0.76,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_03,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.066667,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_04,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.052632,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_05,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_06,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_07,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.291667,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_08,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_09,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.090909,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_10,synthetic_split,test,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticOppositeOverlap,0.9,
+audio_depth_stress_v1_0012,audio_depth_stress_v1,dev,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,0.248,1.6,clean_turn_taking,0.1,
+audio_depth_stress_v1_0014,audio_depth_stress_v1,train,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.208,1.6,clean_turn_taking,0.3,
+audio_depth_stress_v1_0015,audio_depth_stress_v1,train,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.198,1.6,clean_turn_taking,0.4,
+audio_depth_stress_v1_0018,audio_depth_stress_v1,train,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.198,1.6,clean_turn_taking,0.7,
+audio_depth_stress_v1_0022,audio_depth_stress_v1,dev,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,0.23,1.6,clean_turn_taking,0.1,
+audio_depth_stress_v1_0032,audio_depth_stress_v1,dev,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,0.252,1.6,clean_turn_taking,0.1,
+audio_depth_stress_v1_0035,audio_depth_stress_v1,train,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.202,1.6,clean_turn_taking,0.4,
+audio_depth_stress_v1_0039,audio_depth_stress_v1,train,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.2056,1.6,clean_turn_taking,0.8,
+audio_depth_stress_v1_0051,audio_depth_stress_v1,test,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,0.5055,1.6,clean_turn_taking,0.0,
+audio_depth_stress_v1_0052,audio_depth_stress_v1,dev,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,0.248,1.6,clean_turn_taking,0.1,
+audio_depth_stress_v1_0053,audio_depth_stress_v1,train,previous_model_zoo_best,mixed,separated,,1.0,baseline,none,0.228,1.6,clean_turn_taking,0.2,
+audio_depth_stress_v1_0059,audio_depth_stress_v1,train,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.2016,1.6,clean_turn_taking,0.8,
+audio_depth_stress_v1_0068,audio_depth_stress_v1,train,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.18,1.6,clean_turn_taking,0.7,
+audio_depth_stress_v1_0078,audio_depth_stress_v1,train,previous_model_zoo_best,separated,separated,,1.0,baseline,none,0.202,1.6,clean_turn_taking,0.7,
+SyntheticHeavyOverlap_test_01,synthetic_split,test,old_router_v2,mixed,mixed,,1.0,baseline,none,0.342857,1.0,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_02,synthetic_split,test,old_router_v2,mixed,separated,,1.0,baseline,none,0.76,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_03,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.8,1.0,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_04,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.736842,1.0,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_05,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.65,1.0,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_06,synthetic_split,test,old_router_v2,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_07,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.833333,1.0,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_08,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.388889,1.0,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_09,synthetic_split,test,old_router_v2,separated,separated,,1.0,baseline,none,0.090909,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_10,synthetic_split,test,old_router_v2,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticLightOverlap_test_01,synthetic_split,test,old_router_v2,mixed,mixed,,1.0,baseline,none,0.0,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_02,synthetic_split,test,old_router_v2,mixed,mixed,,1.0,baseline,none,0.08,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_03,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.266667,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_04,synthetic_split,test,old_router_v2,mixed,mixed,,1.0,baseline,none,0.052632,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_05,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.55,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_06,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.153846,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_07,synthetic_split,test,old_router_v2,mixed,mixed,,1.0,baseline,none,0.291667,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_08,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.222222,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_09,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.409091,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_10,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.9,1.0,SyntheticLightOverlap,0.2,
+SyntheticMidOverlap_test_01,synthetic_split,test,old_router_v2,mixed,mixed,,1.0,baseline,none,0.228571,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_02,synthetic_split,test,old_router_v2,mixed,mixed,,1.0,baseline,none,0.12,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_03,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.4,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_04,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.368421,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_05,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.7,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_06,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.423077,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_07,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.708333,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_08,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.277778,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_09,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.409091,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_10,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.9,1.0,SyntheticMidOverlap,0.45,
+SyntheticNoOverlap_test_01,synthetic_split,test,old_router_v2,mixed,mixed,,1.0,baseline,none,0.228571,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_02,synthetic_split,test,old_router_v2,mixed,mixed,,1.0,baseline,none,0.08,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_03,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.266667,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_04,synthetic_split,test,old_router_v2,mixed,mixed,,1.0,baseline,none,0.052632,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_05,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.4,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_06,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.423077,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_07,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.625,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_08,synthetic_split,test,old_router_v2,mixed,mixed,,1.0,baseline,none,0.222222,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_09,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.272727,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_10,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,1.0,1.0,SyntheticNoOverlap,0.0,
+SyntheticOppositeOverlap_test_01,synthetic_split,test,old_router_v2,mixed,mixed,,1.0,baseline,none,0.457143,1.0,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_02,synthetic_split,test,old_router_v2,mixed,mixed,,1.0,baseline,none,0.56,1.0,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_03,synthetic_split,test,old_router_v2,separated,separated,,1.0,baseline,none,0.066667,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_04,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.947368,1.0,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_05,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.7,1.0,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_06,synthetic_split,test,old_router_v2,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_07,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.791667,1.0,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_08,synthetic_split,test,old_router_v2,separated,mixed,,1.0,baseline,none,0.777778,1.0,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_09,synthetic_split,test,old_router_v2,separated,separated,,1.0,baseline,none,0.090909,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_10,synthetic_split,test,old_router_v2,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticOppositeOverlap,0.9,
+audio_depth_stress_v1_0012,audio_depth_stress_v1,dev,old_router_v2,mixed,mixed,,1.0,baseline,none,0.134,1.0,clean_turn_taking,0.1,
+audio_depth_stress_v1_0014,audio_depth_stress_v1,train,old_router_v2,separated,mixed,,1.0,baseline,none,0.25,1.0,clean_turn_taking,0.3,
+audio_depth_stress_v1_0015,audio_depth_stress_v1,train,old_router_v2,separated,mixed,,1.0,baseline,none,0.308,1.0,clean_turn_taking,0.4,
+audio_depth_stress_v1_0018,audio_depth_stress_v1,train,old_router_v2,separated,separated,,1.0,baseline,none,0.198,1.6,clean_turn_taking,0.7,
+audio_depth_stress_v1_0022,audio_depth_stress_v1,dev,old_router_v2,mixed,mixed,,1.0,baseline,none,0.098,1.0,clean_turn_taking,0.1,
+audio_depth_stress_v1_0032,audio_depth_stress_v1,dev,old_router_v2,mixed,mixed,,1.0,baseline,none,0.142,1.0,clean_turn_taking,0.1,
+audio_depth_stress_v1_0035,audio_depth_stress_v1,train,old_router_v2,separated,mixed,,1.0,baseline,none,0.316,1.0,clean_turn_taking,0.4,
+audio_depth_stress_v1_0039,audio_depth_stress_v1,train,old_router_v2,separated,separated,,1.0,baseline,none,0.2056,1.6,clean_turn_taking,0.8,
+audio_depth_stress_v1_0051,audio_depth_stress_v1,test,old_router_v2,mixed,mixed,,1.0,baseline,none,0.086,1.0,clean_turn_taking,0.0,
+audio_depth_stress_v1_0052,audio_depth_stress_v1,dev,old_router_v2,mixed,mixed,,1.0,baseline,none,0.144,1.0,clean_turn_taking,0.1,
+audio_depth_stress_v1_0053,audio_depth_stress_v1,train,old_router_v2,mixed,mixed,,1.0,baseline,none,0.202,1.0,clean_turn_taking,0.2,
+audio_depth_stress_v1_0059,audio_depth_stress_v1,train,old_router_v2,separated,separated,,1.0,baseline,none,0.2016,1.6,clean_turn_taking,0.8,
+audio_depth_stress_v1_0068,audio_depth_stress_v1,train,old_router_v2,separated,separated,,1.0,baseline,none,0.18,1.6,clean_turn_taking,0.7,
+audio_depth_stress_v1_0078,audio_depth_stress_v1,train,old_router_v2,separated,separated,,1.0,baseline,none,0.202,1.6,clean_turn_taking,0.7,
+SyntheticHeavyOverlap_test_01,synthetic_split,test,oracle_best,mixed,mixed,,1.0,baseline,none,0.342857,1.0,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_02,synthetic_split,test,oracle_best,mixed,mixed,,1.0,baseline,none,0.44,1.0,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_03,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_04,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.052632,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_05,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_06,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_07,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.291667,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_08,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_09,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.090909,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticHeavyOverlap_test_10,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticHeavyOverlap,0.7,
+SyntheticLightOverlap_test_01,synthetic_split,test,oracle_best,mixed,mixed,,1.0,baseline,none,0.0,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_02,synthetic_split,test,oracle_best,mixed,mixed,,1.0,baseline,none,0.08,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_03,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_04,synthetic_split,test,oracle_best,mixed,mixed,,1.0,baseline,none,0.052632,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_05,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.2,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_06,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_07,synthetic_split,test,oracle_best,mixed,mixed,,1.0,baseline,none,0.291667,1.0,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_08,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_09,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.090909,1.6,SyntheticLightOverlap,0.2,
+SyntheticLightOverlap_test_10,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticLightOverlap,0.2,
+SyntheticMidOverlap_test_01,synthetic_split,test,oracle_best,mixed,mixed,,1.0,baseline,none,0.228571,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_02,synthetic_split,test,oracle_best,mixed,mixed,,1.0,baseline,none,0.12,1.0,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_03,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_04,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.052632,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_05,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_06,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_07,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.291667,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_08,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.222222,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_09,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticMidOverlap,0.45,
+SyntheticMidOverlap_test_10,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticMidOverlap,0.45,
+SyntheticNoOverlap_test_01,synthetic_split,test,oracle_best,mixed,mixed,,1.0,baseline,none,0.228571,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_02,synthetic_split,test,oracle_best,mixed,mixed,,1.0,baseline,none,0.08,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_03,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.033333,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_04,synthetic_split,test,oracle_best,mixed,mixed,,1.0,baseline,none,0.052632,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_05,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.2,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_06,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_07,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.291667,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_08,synthetic_split,test,oracle_best,mixed,mixed,,1.0,baseline,none,0.222222,1.0,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_09,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.090909,1.6,SyntheticNoOverlap,0.0,
+SyntheticNoOverlap_test_10,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticNoOverlap,0.0,
+SyntheticOppositeOverlap_test_01,synthetic_split,test,oracle_best,mixed,mixed,,1.0,baseline,none,0.457143,1.0,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_02,synthetic_split,test,oracle_best,mixed,mixed,,1.0,baseline,none,0.56,1.0,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_03,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.066667,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_04,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.052632,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_05,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_06,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.038462,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_07,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.291667,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_08,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_09,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.090909,1.6,SyntheticOppositeOverlap,0.9,
+SyntheticOppositeOverlap_test_10,synthetic_split,test,oracle_best,separated,separated,,1.0,baseline,none,0.0,1.6,SyntheticOppositeOverlap,0.9,
+audio_depth_stress_v1_0012,audio_depth_stress_v1,dev,oracle_best,mixed,mixed,,1.0,baseline,none,0.134,1.0,clean_turn_taking,0.1,
+audio_depth_stress_v1_0014,audio_depth_stress_v1,train,oracle_best,separated,separated,,1.0,baseline,none,0.208,1.6,clean_turn_taking,0.3,
+audio_depth_stress_v1_0015,audio_depth_stress_v1,train,oracle_best,separated,separated,,1.0,baseline,none,0.198,1.6,clean_turn_taking,0.4,
+audio_depth_stress_v1_0018,audio_depth_stress_v1,train,oracle_best,separated,separated,,1.0,baseline,none,0.198,1.6,clean_turn_taking,0.7,
+audio_depth_stress_v1_0022,audio_depth_stress_v1,dev,oracle_best,mixed,mixed,,1.0,baseline,none,0.098,1.0,clean_turn_taking,0.1,
+audio_depth_stress_v1_0032,audio_depth_stress_v1,dev,oracle_best,mixed,mixed,,1.0,baseline,none,0.142,1.0,clean_turn_taking,0.1,
+audio_depth_stress_v1_0035,audio_depth_stress_v1,train,oracle_best,separated,separated,,1.0,baseline,none,0.202,1.6,clean_turn_taking,0.4,
+audio_depth_stress_v1_0039,audio_depth_stress_v1,train,oracle_best,separated,separated,,1.0,baseline,none,0.2056,1.6,clean_turn_taking,0.8,
+audio_depth_stress_v1_0051,audio_depth_stress_v1,test,oracle_best,mixed,mixed,,1.0,baseline,none,0.086,1.0,clean_turn_taking,0.0,
+audio_depth_stress_v1_0052,audio_depth_stress_v1,dev,oracle_best,mixed,mixed,,1.0,baseline,none,0.144,1.0,clean_turn_taking,0.1,
+audio_depth_stress_v1_0053,audio_depth_stress_v1,train,oracle_best,mixed,mixed,,1.0,baseline,none,0.202,1.0,clean_turn_taking,0.2,
+audio_depth_stress_v1_0059,audio_depth_stress_v1,train,oracle_best,separated,separated,,1.0,baseline,none,0.2016,1.6,clean_turn_taking,0.8,
+audio_depth_stress_v1_0068,audio_depth_stress_v1,train,oracle_best,separated,separated,,1.0,baseline,none,0.18,1.6,clean_turn_taking,0.7,
+audio_depth_stress_v1_0078,audio_depth_stress_v1,train,oracle_best,separated,separated,,1.0,baseline,none,0.202,1.6,clean_turn_taking,0.7,

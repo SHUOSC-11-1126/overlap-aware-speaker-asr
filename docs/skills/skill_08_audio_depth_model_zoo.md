@@ -31,3 +31,7 @@ A hybrid model or confidence cascade that improves over the pure AudioDepth MVP 
 ## Important caution
 
 Do not claim victory unless routing CER genuinely improves. Weak results are still useful if the ablation explains why.
+
+## Follow-up
+
+Stage 23 extends this model-zoo result into `skill_09_audio_depth_systematic_validation.md`, which adds stress validation, bootstrap confidence intervals, cost-aware cascade simulation, LLM review candidate selection, and case studies.
