@@ -6,6 +6,17 @@ This repository is now an ambitious agentic research workspace. The stable basel
 
 The stable baseline should remain preserved, but future work should not be reduced to maintenance only. The project is designed to support creative, boundary-pushing experimentation within clear research boundaries.
 
+## Harness Workflow (read before editing code)
+
+This repo runs a development Harness adapted from `ref/code-tape`: Git hooks, a GitNexus knowledge-base contract, SDD, and TDD. See `docs/harness/README.md`.
+
+1. Run `make agent-bootstrap` once per clone — installs git hooks via `core.hooksPath=.githooks`.
+2. Run `make quality-predev` before editing — refreshes the GitNexus index and runs the contract (advisory).
+3. Write code test-first. A change to critical code (`router-core`, `evaluation-core`, `harness`) must include its paired `tests/test_<module>*.py` in the same change, or the contract fails.
+4. `git commit` runs the fast test gate (`pre-commit`); `git push` runs the contract + full test gate (`pre-push`). Don't hand-run these first; `SKIP_QUALITY_HOOKS=1` bypasses locally in emergencies only.
+5. In a PR, fill the structured GitNexus impact summary (`.github/PULL_REQUEST_TEMPLATE.md`); CI's `Contract Guard` enforces it. Changing verified references or gold tables additionally requires a Result label.
+6. Work from an issue and reference it from the PR (`Closes #N`). After opening the PR, **wait for the review loop** — GitHub Actions (`Tests`, `Contract Guard`) and **repo-guard** CR comments (plus any other configured reviewer) — then read and **respond to every guard comment** (fix or justify, push a follow-up commit). Do not merge past unresolved guard findings. If a "needs CR to pass" status appears before review lands, that is expected — ignore it and wait for the comments. See `docs/harness/workflow_spec.md`.
+
 ## Stable Baseline vs Experimental Frontier
 
 ### Stable baseline
@@ -103,6 +114,7 @@ Recommended docs to read before making a new proposal:
 - `docs/project_state.md`
 - `docs/roadmap.md`
 - `docs/maintenance_harness.md`
+- `docs/harness/README.md`
 - `docs/README.md`
 - `docs/ambitious_research_agenda.md`
 - `docs/agent_challenge_board.md`

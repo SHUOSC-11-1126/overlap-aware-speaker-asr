@@ -1,0 +1,13 @@
+#!/bin/sh
+set -eu
+
+# Full pre-push quality gate. Mirrors code-tape's pre-push -> quality:local:
+# refresh the GitNexus knowledge-base index, evaluate the contract, then run
+# the full test suite. Set SKIP_QUALITY_HOOKS=1 to bypass in an emergency
+# (CI never honours this). GITNEXUS_SKIP=1 skips only the index refresh.
+if [ "${SKIP_QUALITY_HOOKS:-}" = "1" ]; then
+  echo "Skipping pre-push quality gate because SKIP_QUALITY_HOOKS=1."
+  exit 0
+fi
+
+exec python3 scripts/harness/quality.py local

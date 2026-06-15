@@ -2,6 +2,8 @@
 
 This document describes how to keep the project healthy while still encouraging ambitious experimentation.
 
+> **Development Harness:** the always-on guardrails (Git hooks, GitNexus knowledge-base contract, SDD, TDD) that mechanically enforce the policies below live in [`docs/harness/`](harness/README.md). Run `make agent-bootstrap` once per clone, then `make quality-predev` before editing.
+
 ## Result Labeling Policy
 
 - gold

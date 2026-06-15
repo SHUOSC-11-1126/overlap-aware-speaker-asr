@@ -1,0 +1,37 @@
+name: Contract Guard
+
+# Knowledge-base contract gate (Harness). Mirrors code-tape's
+# gitnexus-contract job, adapted to this Python repo. The deterministic
+# contract (paired-test gate + structured impact summary) is the real gate;
+# the GitNexus index refresh is best-effort here (GITNEXUS_OPTIONAL=1) so a
+# slow/failed index build cannot block a PR. Flip GITNEXUS_OPTIONAL off to make
+# the index build a hard requirement once it is reliably fast in CI.
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gitnexus-contract:
+    runs-on: ubuntu-latest
+    env:
+      GITNEXUS_OPTIONAL: "1"
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5.3.0
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: "20"
+
+      - name: Evaluate GitNexus knowledge-base contract
+        run: python3 scripts/harness/contract_check.py gitnexus
