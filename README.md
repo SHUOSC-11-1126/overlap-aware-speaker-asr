@@ -1,5 +1,7 @@
 # When Should We Separate? Boundary-aware, Compute-aware, Speaker-aware, and Agent-augmented ASR for Overlapping Speech
 
+> Developed the Harness loop with reference to [code-tape](https://github.com/ceilf6/code-tape)
+
 We study when speech separation helps or hurts multi-speaker ASR, and we build adaptive routing, risk-aware evaluation, and agent-friendly research infrastructure for speaker-attributed transcription.
 
 ## What This Project Is
@@ -23,36 +25,36 @@ We study when speech separation helps or hurts multi-speaker ASR, and we build a
 
 ### Gold Benchmark Averages
 
-| strategy | average CER |
-| --- | ---: |
-| fixed_mixed_whisper | 0.302093 |
-| fixed_separated_whisper | 0.191846 |
-| fixed_separated_whisper_cleaned | 0.181681 |
-| router_v2 | 0.120042 |
-| oracle_best | 0.120042 |
+| strategy                        | average CER |
+| ------------------------------- | ----------: |
+| fixed_mixed_whisper             |    0.302093 |
+| fixed_separated_whisper         |    0.191846 |
+| fixed_separated_whisper_cleaned |    0.181681 |
+| router_v2                       |    0.120042 |
+| oracle_best                     |    0.120042 |
 
 ### Synthetic Validation
 
-| setting | v1 | v2 | oracle |
-| --- | ---: | ---: | ---: |
-| original 25 | 0.350902 | 0.167553 | 0.082239 |
+| setting             |       v1 |       v2 |   oracle |
+| ------------------- | -------: | -------: | -------: |
+| original 25         | 0.350902 | 0.167553 | 0.082239 |
 | held-out split test | 0.361350 | 0.335326 | 0.115181 |
 
 ### Risk-Aware Selector
 
-| strategy | average CER |
-| --- | ---: |
-| risk_aware_selector | 0.134587 |
-| router_v2 | 0.120042 |
-| oracle_best | 0.120042 |
+| strategy            | average CER |
+| ------------------- | ----------: |
+| risk_aware_selector |    0.134587 |
+| router_v2           |    0.120042 |
+| oracle_best         |    0.120042 |
 
 ### Experimental Compute-aware Cascade
 
-| strategy | average CER | relative cost vs fixed separated |
-| --- | ---: | ---: |
-| router_v2_costed | 0.120042 | 0.929533 |
-| risk_aware_costed | 0.134587 | 0.929533 |
-| budget_cascade | 0.134587 | 0.929533 |
+| strategy          | average CER | relative cost vs fixed separated |
+| ----------------- | ----------: | -------------------------------: |
+| router_v2_costed  |    0.120042 |                         0.929533 |
+| risk_aware_costed |    0.134587 |                         0.929533 |
+| budget_cascade    |    0.134587 |                         0.929533 |
 
 This result is labeled `experimental/frontier`. It uses observed runtime fields when available and proxy costs otherwise; CER is used only after each route is fixed.
 
@@ -63,11 +65,11 @@ Current runtime provenance audit result:
 
 ### Synthetic Split Cascade Validation
 
-| strategy | average CER | relative cost vs fixed separated |
-| --- | ---: | ---: |
-| router_v2_synthetic_costed | 0.285187 | 0.704888 |
-| budget_cascade | 0.367582 | 0.854921 |
-| cleaned_preferred_cascade | 0.249877 | 0.945686 |
+| strategy                   | average CER | relative cost vs fixed separated |
+| -------------------------- | ----------: | -------------------------------: |
+| router_v2_synthetic_costed |    0.285187 |                         0.704888 |
+| budget_cascade             |    0.367582 |                         0.854921 |
+| cleaned_preferred_cascade  |    0.249877 |                         0.945686 |
 
 This result is labeled `synthetic/silver` plus `experimental/frontier`. It extends the cascade analysis onto the held-out synthetic split benchmark without promoting silver evidence into gold claims.
 
@@ -1207,7 +1209,6 @@ If you are continuing the project, read the docs above first, then inspect the c
 - `LLM` and `RAG` are now integrated as a collaborative repair loop (see below).
 - The current research focus is adaptive routing, error analysis, speaker-aware evaluation, stability checking, and ambitious frontier exploration.
 
-
 ## LLM-ASR Collaborative Repair
 
 ### Architecture
@@ -1220,11 +1221,11 @@ ASR Output → Risk Detection → RAG Retrieval → LLM Repair → CER Evaluatio
 
 ### Core Modules
 
-| Module | Description |
-|--------|-------------|
-| `src/llm_repair_loop.py` | Iterative LLM transcript correction, convergence detection (max 3 rounds), offline/online dual mode |
-| `src/rag_repair.py` | RAG retrieval using verified reference segments as knowledge base, character n-gram Jaccard similarity |
-| `src/router_feature_importance.py` | Per-feature contribution analysis for Router v2 + bar chart visualization |
+| Module                             | Description                                                                                            |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `src/llm_repair_loop.py`           | Iterative LLM transcript correction, convergence detection (max 3 rounds), offline/online dual mode    |
+| `src/rag_repair.py`                | RAG retrieval using verified reference segments as knowledge base, character n-gram Jaccard similarity |
+| `src/router_feature_importance.py` | Per-feature contribution analysis for Router v2 + bar chart visualization                              |
 
 ### Usage
 
@@ -1260,11 +1261,11 @@ python -m src.router_feature_importance
 
 ### Expected Results
 
-| Strategy | Avg CER (Gold) |
-| --- | ---: |
-| Router v2 (no repair) | 0.120 |
-| + Offline Oracle | ~0.100 |
-| + LLM Repair (with RAG) | TBD |
+| Strategy                | Avg CER (Gold) |
+| ----------------------- | -------------: |
+| Router v2 (no repair)   |          0.120 |
+| + Offline Oracle        |         ~0.100 |
+| + LLM Repair (with RAG) |            TBD |
 
 ## Team Contributions
 
