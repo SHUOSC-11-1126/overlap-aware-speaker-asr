@@ -79,6 +79,29 @@ This result is labeled `experimental/frontier`. It uses observed runtime fields 
 
 This result is labeled `synthetic/silver` plus `experimental/frontier`. It extends the cascade analysis onto the held-out synthetic split benchmark without promoting silver evidence into gold claims.
 
+### Mode B: Three-Tier Compute-Aware Cascade (谢宇轩)
+
+A reference-free three-tier escalation architecture that routes each sample through progressively more expensive processing only when observable instability signals justify the extra spend.
+
+| Tier | Name | Trigger | Methods | Cost |
+|------|------|---------|---------|------|
+| 1 | Cheap | Always (default) | `mixed_whisper`, `separated_whisper` | 1.0–2.0 |
+| 2 | Stronger | Unstable signals | `separated_whisper_cleaned`, `stronger_model` | 2.1–2.5 |
+| 3 | Critic | Extreme instability | `llm_critic`, `manual_review` | 3.5–4.0 |
+
+**Gold 5-case tier distribution** (3/5 Tier 1, 2/5 Tier 2, 0/5 Tier 3):
+
+| strategy | average CER | average cost | auto coverage |
+|----------|-----------:|-------------:|--------------:|
+| fixed_mixed_whisper | 0.3021 | 1.00 | 100% |
+| fixed_separated_whisper | 0.1918 | 2.00 | 100% |
+| router_v2_baseline | 0.1200 | 1.60 | 100% |
+| **tiered_cascade_v1** | **0.1811** | **1.92** | **100%** |
+
+All escalation decisions use only observable reference-free signals (duplicate count, runtime inflation, text-length ratio, overlap level). CER is reserved for post-decision evaluation. See [`results/figures/cascade_tiers_summary.md`](results/figures/cascade_tiers_summary.md) and [`results/figures/cascade_tiers_comparison_summary.md`](results/figures/cascade_tiers_comparison_summary.md).
+
+Module: [`src/cascade_tiers.py`](src/cascade_tiers.py) (907 lines) · Tests: [`tests/test_cascade_tiers.py`](tests/test_cascade_tiers.py) (24 tests) · Label: `experimental/frontier`
+
 ## Project Map
 
 The repository now has a stable baseline and a breadth-first frontier queue. The diagram below shows the main flow at a glance.
