@@ -1,0 +1,11 @@
+{
+  "n_cases": 5,
+  "mean_cer_sep": 0.957463,
+  "mean_cer_sep_trim": 0.963423,
+  "mean_cer_guard_gated_trim": 0.852816,
+  "mean_delta_trim": -0.00596,
+  "mean_delta_guard_gated": 0.104647,
+  "cases_trim_helped": 2,
+  "cases_guard_fired": 2,
+  "mean_silence_frac": 0.0531
+}
