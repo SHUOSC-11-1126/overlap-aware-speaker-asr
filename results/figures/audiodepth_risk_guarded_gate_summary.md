@@ -1,4 +1,4 @@
-# AudioDepth Risk-Guarded Gate
+# Risk-Guarded AudioDepth Gate
 
 - Stage 29 calibrated false-safe rate: `0.183333`
 - Stage 29 calibrated CER: `0.53316`

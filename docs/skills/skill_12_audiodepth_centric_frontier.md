@@ -56,13 +56,14 @@ This supports the AudioDepth-centric positioning more strongly: deployable Audio
 
 ## Risk-guarded gate follow-up
 
-The next pass adds a mixed-only risk guard on top of the calibrated gate. It uses uncertainty, overlap, and overlap-uncertainty product proxies from deployable AudioDepth v2 maps to override high-risk mixed fallback decisions.
+The next pass adds a mixed-only risk-guarded policy sweep on top of the calibrated gate. It uses uncertainty, overlap, and overlap-uncertainty product proxies from deployable AudioDepth v2 maps to block unsafe direct bypass decisions and send high-risk cases to Stage-2 text routing or review handling.
 
-- Selected confidence threshold: `0.30`
-- Selected risk quantile: `0.45`
-- Controlled_v2 CER: `0.525160`
-- Text-probe reduction: `0.716667`
-- False-safe rate: `0.050000`
-- Risk-guard overrides: `9`
+- Balanced controlled_v2 CER: `0.529082`
+- Balanced route accuracy: `0.833333`
+- Balanced direct-bypass false-safe rate: `0.000000`
+- Balanced text-probe reduction: `0.416667`
+- Aggressive controlled_v2 CER: `0.537082`
+- Aggressive text-probe reduction: `0.650000`
+- Selected mixed high-error cases after fallback/review handling: `12`
 
-Interpretation: this is the strongest deployable AudioDepth gate evidence so far. It lowers the calibrated sweep false-safe rate from `0.183333` to `0.050000` while slightly improving CER, but it remains an `experimental/frontier` result because the controlled_v2 references are still `silver_plus_unverified`.
+Interpretation: this is the strongest deployable AudioDepth gate evidence so far. It eliminates observed unsafe direct bypasses in the selected policies while preserving a CER advantage over router_v2, but it remains an `experimental/frontier` result because Stage-2 fallback/review policy still leaves high-error mixed selections and the controlled_v2 references are still `silver_plus_unverified`.

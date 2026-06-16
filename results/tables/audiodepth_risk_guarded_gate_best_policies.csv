@@ -1,2 +1,4 @@
 policy_tier,policy_name,confidence_threshold,risk_threshold,route_gap_threshold,min_route_cer_review_threshold,selected_route_CER,route_accuracy,false_safe_rate,text_probe_reduction_rate,direct_bypass_rate,fallback_rate,review_rate,mixed_bypass_count,separation_bypass_count,unsafe_bypass_count,selected_mixed_high_error_count,cost_score,sample_count,note
+aggressive,conf0.50_risk0.50_gap0.00_review0.60,0.5,0.5,0.0,0.6,0.537082,0.816667,0.0,0.65,0.65,0.35,0.316667,13,26,0,12,0.705833,60,safe_frontier_policy
 balanced,conf0.50_risk0.40_gap0.00_review0.60,0.5,0.4,0.0,0.6,0.529082,0.833333,0.0,0.416667,0.416667,0.583333,0.316667,13,12,0,12,0.834167,60,safe_frontier_policy
+conservative,conf0.50_risk0.40_gap0.00_review0.60,0.5,0.4,0.0,0.6,0.529082,0.833333,0.0,0.416667,0.416667,0.583333,0.316667,13,12,0,12,0.834167,60,safe_frontier_policy

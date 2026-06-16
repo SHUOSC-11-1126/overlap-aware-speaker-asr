@@ -1,0 +1,7 @@
+case_type,policy_tier,sample_id,selected_route,oracle_route,selected_cer,oracle_cer,route_accuracy_hit,stage2_text_probe_called,direct_bypass,review_candidate,guard_reason,risk_score,predicted_gate_label,confidence,route_gap,min_route_cer,false_safe,selected_mixed_high_error,unsafe_bypass,intended_family,expected_winner
+safe bypass success,balanced,controlled_route_sensitive_v2_0001,mixed,mixed,0.26087,0.26087,True,False,True,False,direct_easy_mixed_bypass,0.306948,easy_mixed,0.852704,0.695652,0.26087,False,False,False,mixed_win_anchor,mixed
+false-safe failure,aggressive,not_observed,,,,,,,,,no_matching_case_in_selected_policy,,,,,,,,,,
+conservative policy rescue,conservative,not_observed,,,,,,,,,no_matching_case_in_selected_policy,,,,,,,,,,
+high-risk fallback,balanced,controlled_route_sensitive_v2_0002,separated,separated,0.347826,0.347826,True,True,False,False,risk_guard_overrode_mixed_fallback,0.446113,likely_separation_helpful,0.990579,0.0,0.347826,False,False,False,separated_win_anchor,separated
+separation-helpful correct,balanced,controlled_route_sensitive_v2_0002,separated,separated,0.347826,0.347826,True,True,False,False,risk_guard_overrode_mixed_fallback,0.446113,likely_separation_helpful,0.990579,0.0,0.347826,False,False,False,separated_win_anchor,separated
+ambiguous sent to Stage-2,balanced,controlled_route_sensitive_v2_0004,mixed,mixed,1.0,1.0,True,True,False,True,review_candidate_stage2_fallback,0.428225,ambiguous_needs_text_probe,1.0,0.0,1.0,False,True,False,review_needed_anchor,review_needed

@@ -228,16 +228,17 @@ Interpretation: calibration turns AudioDepth from a mostly conservative risk det
 
 ## AudioDepth Risk-Guarded Gate Follow-up
 
-Stage 30 adds a mixed-only risk guard on top of the calibrated AudioDepth gate. The guard uses uncertainty, overlap, and overlap-uncertainty product proxies from deployable AudioDepth v2 maps to block high-risk mixed fallback decisions.
+Stage 30 adds a mixed-only risk-guarded policy sweep on top of the calibrated AudioDepth gate. The guard uses uncertainty, overlap, and overlap-uncertainty product proxies from deployable AudioDepth v2 maps to block unsafe direct bypass decisions and send high-risk cases to Stage-2 text routing or review handling.
 
-- selected confidence threshold: `0.30`
-- selected risk quantile: `0.45`
-- controlled_v2 CER: `0.525160`
-- text-probe reduction: `0.716667`
-- false-safe rate: `0.050000`
-- risk-guard overrides: `9`
+- balanced controlled_v2 CER: `0.529082`
+- balanced route accuracy: `0.833333`
+- balanced direct-bypass false-safe rate: `0.000000`
+- balanced text-probe reduction: `0.416667`
+- aggressive controlled_v2 CER: `0.537082`
+- aggressive text-probe reduction: `0.650000`
+- selected mixed high-error cases after fallback/review handling: `12`
 
-Interpretation: the risk guard fixes the main Stage 29 safety weakness by lowering false-safe rate from `0.183333` to `0.050000` while slightly improving CER. This strengthens AudioDepth's role as a deployable Stage-1 acoustic safety gate, but the result stays `experimental/frontier` because the controlled_v2 references are still `silver_plus_unverified`.
+Interpretation: the risk guard fixes the main Stage 29 acoustic-gate safety weakness by eliminating observed unsafe direct bypasses in the selected policies while preserving a CER advantage over router_v2. It does not make the whole system safe yet, because Stage-2 fallback can still choose mixed on high-error review-like samples. This strengthens AudioDepth's role as a deployable Stage-1 acoustic triage module, but the result stays `experimental/frontier` because the controlled_v2 references are still `silver_plus_unverified`.
 
 ## Gold Benchmark Final CER Table
 
