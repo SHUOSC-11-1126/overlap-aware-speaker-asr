@@ -13,5 +13,6 @@ and curated project documentation.
 
 See:
 
+- [王景宏 / WangJingHong (ceilf6) contribution record](WangJingHong.md)
 - [WUFANGZHOU contribution record](WUFANGZHOU.md)
 - [Team contribution template](TEAM_CONTRIBUTION_TEMPLATE.md)
