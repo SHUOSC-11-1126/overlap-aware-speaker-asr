@@ -1,0 +1,42 @@
+[
+  {
+    "cure": "greedy_baseline",
+    "n": 360,
+    "mean_cer": 0.766269,
+    "median_cer": 0.466667,
+    "tail_rate": 0.013889,
+    "max_cer": 24.25
+  },
+  {
+    "cure": "silence_trim",
+    "n": 360,
+    "mean_cer": 0.463781,
+    "median_cer": 0.455556,
+    "tail_rate": 0.0,
+    "max_cer": 1.0
+  },
+  {
+    "cure": "halluc_silence",
+    "n": 360,
+    "mean_cer": 0.503676,
+    "median_cer": 0.466667,
+    "tail_rate": 0.0,
+    "max_cer": 1.0
+  },
+  {
+    "cure": "halluc_silence_trim",
+    "n": 360,
+    "mean_cer": 0.463781,
+    "median_cer": 0.455556,
+    "tail_rate": 0.0,
+    "max_cer": 1.0
+  },
+  {
+    "cure": "beam5",
+    "n": 360,
+    "mean_cer": 0.506575,
+    "median_cer": 0.5,
+    "tail_rate": 0.002778,
+    "max_cer": 1.833333
+  }
+]

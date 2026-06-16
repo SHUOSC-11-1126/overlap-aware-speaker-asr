@@ -1,0 +1,42 @@
+[
+  {
+    "cure": "greedy_baseline",
+    "n_catastrophic_groups": 5,
+    "mean_cer_on_catastrophic": 19.843333,
+    "n_normal_groups": 355,
+    "mean_cer_on_normal": 0.497578,
+    "normal_delta_vs_greedy": 0.0
+  },
+  {
+    "cure": "silence_trim",
+    "n_catastrophic_groups": 5,
+    "mean_cer_on_catastrophic": 0.54,
+    "n_normal_groups": 355,
+    "mean_cer_on_normal": 0.462708,
+    "normal_delta_vs_greedy": -0.03487
+  },
+  {
+    "cure": "halluc_silence",
+    "n_catastrophic_groups": 5,
+    "mean_cer_on_catastrophic": 0.665,
+    "n_normal_groups": 355,
+    "mean_cer_on_normal": 0.501404,
+    "normal_delta_vs_greedy": 0.003826
+  },
+  {
+    "cure": "halluc_silence_trim",
+    "n_catastrophic_groups": 5,
+    "mean_cer_on_catastrophic": 0.54,
+    "n_normal_groups": 355,
+    "mean_cer_on_normal": 0.462708,
+    "normal_delta_vs_greedy": -0.03487
+  },
+  {
+    "cure": "beam5",
+    "n_catastrophic_groups": 5,
+    "mean_cer_on_catastrophic": 0.628333,
+    "n_normal_groups": 355,
+    "mean_cer_on_normal": 0.50486,
+    "normal_delta_vs_greedy": 0.007283
+  }
+]
