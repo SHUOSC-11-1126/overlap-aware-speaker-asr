@@ -120,3 +120,11 @@ For each challenge, write:
 ## Board Rule
 
 If a task does not answer a clear research question, it should stay out of the core pipeline and move into a skill card, a demo note, or future work.
+
+This rule now has a meter and an advisory guard. `src/research_entropy_audit.py`
+(`make entropy-audit`) measures how much of the `src/` surface is research
+substance vs self-referential ceremony, and `scripts/harness/entropy_guard.py`
+warns during `make quality-predev` when a change adds ceremony files with no
+accompanying substance. See `docs/frontier/agentic_research_entropy.md`. The
+current reading — ~89–95% of `src/*.py` is ceremony — is exactly why this rule
+exists: prefer adding a computed, falsifiable result over another status doc.

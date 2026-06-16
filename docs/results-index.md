@@ -55,6 +55,7 @@ results from generated historical records.
 | File | Purpose | Treat As |
 |---|---|---|
 | `docs/frontier/audio-depth-router.md` | AudioDepth router merge strategy and claim boundary | Frontier Branch Only / Exploratory Research; not a final result claim |
+| `docs/frontier/agentic_research_entropy.md` | Meta-analysis of substance-vs-ceremony collapse in this workspace (`results/entropy_audit/`) | experimental/frontier (analysis-only); not an ASR result |
 
 ## Historical Archive
 

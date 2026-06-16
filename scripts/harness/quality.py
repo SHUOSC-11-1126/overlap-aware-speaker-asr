@@ -66,9 +66,23 @@ def run_contract(mode):
     return contract_check.run_contract(mode)
 
 
+def run_entropy_guard():
+    """Advisory research-workspace hygiene signal. Warns (never fails) when the
+    working-tree diff adds ceremony files faster than research substance. Any
+    error here is swallowed so it can never block the pre-dev flow."""
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import entropy_guard  # noqa: E402
+
+        entropy_guard.run_guard()
+    except Exception as err:  # pragma: no cover - advisory must never block
+        print(f"research-entropy guard skipped: {err}")
+
+
 def cmd_predev():
     rc = contract_check.run_bootstrap()
     rc |= run_contract("local")
+    run_entropy_guard()  # advisory only; intentionally does not affect rc
     return rc
 
 

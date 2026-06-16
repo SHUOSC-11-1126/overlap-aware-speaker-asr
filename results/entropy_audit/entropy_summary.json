@@ -1,0 +1,122 @@
+{
+  "label": "experimental/frontier (meta-analysis / analysis-only)",
+  "universe": "src/*.py reachable from HEAD on the current branch",
+  "summary": {
+    "total": 893,
+    "counts": {
+      "substance": 94,
+      "ceremony": 795,
+      "support": 4
+    },
+    "ceremony_saturation": 0.894263,
+    "ceremony_saturation_content_upper": 0.949381,
+    "content": {
+      "ceremony_compute_import_rate": 0.0352,
+      "substance_compute_import_rate": 0.1702,
+      "ceremony_writes_doc_rate": 1.0,
+      "ceremony_mean_arith": 0.1119,
+      "substance_mean_arith": 4.0745,
+      "content_ceremony_count": 812,
+      "borderline_substance_count": 49,
+      "borderline_substance_examples": [
+        "src/analyze_cer_errors.py",
+        "src/audio_manifest.py",
+        "src/audit_synthetic_benchmark.py",
+        "src/build_synthetic_references.py",
+        "src/compare_mixed_vs_separated.py",
+        "src/error_type_boundary_report.py",
+        "src/export_meeteval_compatibility.py",
+        "src/external_validation_aishell4_excerpt_fetch.py",
+        "src/external_validation_audio_excerpt_staging_plan.py",
+        "src/external_validation_candidates.py",
+        "src/external_validation_license_confirmation.py",
+        "src/external_validation_license_gate.py"
+      ]
+    },
+    "disagreements": []
+  },
+  "self_reference": {
+    "ceremony_refs": 1252,
+    "total_refs": 2408,
+    "ratio": 0.519934
+  },
+  "timeline": {
+    "by_day": [
+      {
+        "date": "2026-06-02",
+        "ceremony": 0,
+        "substance": 35,
+        "cum_ceremony": 0,
+        "cum_substance": 35
+      },
+      {
+        "date": "2026-06-06",
+        "ceremony": 1,
+        "substance": 4,
+        "cum_ceremony": 1,
+        "cum_substance": 39
+      },
+      {
+        "date": "2026-06-07",
+        "ceremony": 154,
+        "substance": 34,
+        "cum_ceremony": 155,
+        "cum_substance": 73
+      },
+      {
+        "date": "2026-06-08",
+        "ceremony": 120,
+        "substance": 5,
+        "cum_ceremony": 275,
+        "cum_substance": 78
+      },
+      {
+        "date": "2026-06-09",
+        "ceremony": 22,
+        "substance": 3,
+        "cum_ceremony": 297,
+        "cum_substance": 81
+      },
+      {
+        "date": "2026-06-11",
+        "ceremony": 0,
+        "substance": 14,
+        "cum_ceremony": 297,
+        "cum_substance": 95
+      },
+      {
+        "date": "2026-06-12",
+        "ceremony": 250,
+        "substance": 2,
+        "cum_ceremony": 547,
+        "cum_substance": 97
+      },
+      {
+        "date": "2026-06-13",
+        "ceremony": 227,
+        "substance": 1,
+        "cum_ceremony": 774,
+        "cum_substance": 98
+      },
+      {
+        "date": "2026-06-14",
+        "ceremony": 21,
+        "substance": 0,
+        "cum_ceremony": 795,
+        "cum_substance": 98
+      },
+      {
+        "date": "2026-06-16",
+        "ceremony": 0,
+        "substance": 1,
+        "cum_ceremony": 795,
+        "cum_substance": 99
+      }
+    ],
+    "peak_ceremony_day": "2026-06-12",
+    "peak_ceremony_adds": 250,
+    "first_collapse_day": "2026-06-07",
+    "peak_daily_ratio": 227.0
+  },
+  "degeneration_index": 0.464958
+}

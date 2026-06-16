@@ -13,7 +13,7 @@ PYTHON ?= python3
 
 .PHONY: help hooks-install agent-bootstrap quality-predev quality-precommit \
         quality-ci quality-local contract-local contract-check \
-        contract-gitnexus test harness-smoke
+        contract-gitnexus test harness-smoke entropy-audit
 
 help:
 	@echo "Harness targets:"
@@ -26,6 +26,7 @@ help:
 	@echo "  make contract-gitnexus GitNexus index refresh + contract (CI / PR base)"
 	@echo "  make test              run the unittest suite"
 	@echo "  make harness-smoke     run python -m src.project_harness"
+	@echo "  make entropy-audit     run the agentic-research-entropy audit (analysis-only)"
 
 hooks-install:
 	$(PYTHON) scripts/harness/install_hooks.py
@@ -59,3 +60,8 @@ test:
 
 harness-smoke:
 	$(PYTHON) -m src.project_harness
+
+entropy-audit:
+	@PY=$$( [ -x .venv/bin/python3 ] && echo .venv/bin/python3 || echo $(PYTHON) ); \
+	echo "Running research-entropy audit with $$PY"; \
+	$$PY -m src.research_entropy_audit
