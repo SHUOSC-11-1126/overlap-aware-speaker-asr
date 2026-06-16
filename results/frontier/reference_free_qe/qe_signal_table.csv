@@ -1,0 +1,4 @@
+﻿signal,spearman_vs_cer,auc_cer>0.3,auc_cer>0.5,auc_cer>1.0
+compression_ratio,-0.1957,0.4821,0.4727,1.0
+repetition,0.1726,0.5071,0.5133,1.0
+no_speech_prob,0.1305,0.5516,0.5915,0.6083

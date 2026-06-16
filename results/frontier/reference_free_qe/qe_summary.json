@@ -1,0 +1,66 @@
+{
+  "n_separated_track_samples": 600,
+  "signals": {
+    "compression_ratio": {
+      "spearman_vs_cer": -0.1957,
+      "detection_auc": {
+        "0.3": 0.4821,
+        "0.5": 0.4727,
+        "1.0": 1.0
+      }
+    },
+    "repetition": {
+      "spearman_vs_cer": 0.1726,
+      "detection_auc": {
+        "0.3": 0.5071,
+        "0.5": 0.5133,
+        "1.0": 1.0
+      }
+    },
+    "no_speech_prob": {
+      "spearman_vs_cer": 0.1305,
+      "detection_auc": {
+        "0.3": 0.5516,
+        "0.5": 0.5915,
+        "1.0": 0.6083
+      }
+    }
+  },
+  "best_single_signal": "compression_ratio",
+  "calibration_best_signal": {
+    "signal": "compression_ratio",
+    "bins": [
+      {
+        "bin": 1,
+        "n": 120,
+        "mean_score": 0.6655,
+        "mean_cer": 0.6927
+      },
+      {
+        "bin": 2,
+        "n": 120,
+        "mean_score": 0.7121,
+        "mean_cer": 0.4755
+      },
+      {
+        "bin": 3,
+        "n": 120,
+        "mean_score": 0.742,
+        "mean_cer": 0.344
+      },
+      {
+        "bin": 4,
+        "n": 120,
+        "mean_score": 0.7946,
+        "mean_cer": 0.4939
+      },
+      {
+        "bin": 5,
+        "n": 120,
+        "mean_score": 1.61,
+        "mean_cer": 1.2121
+      }
+    ],
+    "monotone": false
+  }
+}
