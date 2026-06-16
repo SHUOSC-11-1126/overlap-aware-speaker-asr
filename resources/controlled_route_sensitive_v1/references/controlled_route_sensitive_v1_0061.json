@@ -1,0 +1,8 @@
+{
+  "sample_id": "controlled_route_sensitive_v1_0061",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 晚睡早起也算好夜了\n[SPEAKER_2] 既然你是晚睡晚起",
+  "reference_spk1": "晚睡早起也算好夜了",
+  "reference_spk2": "既然你是晚睡晚起",
+  "source_utterance_ids": "con_006|pro_006"
+}

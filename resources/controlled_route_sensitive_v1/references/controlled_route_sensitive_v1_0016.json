@@ -1,0 +1,8 @@
+{
+  "sample_id": "controlled_route_sensitive_v1_0016",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 刚觉得晚睡晚起少夜\n[SPEAKER_2] 没问题没问题 先不着急",
+  "reference_spk1": "刚觉得晚睡晚起少夜",
+  "reference_spk2": "没问题没问题 先不着急",
+  "source_utterance_ids": "con_005|pro_002"
+}

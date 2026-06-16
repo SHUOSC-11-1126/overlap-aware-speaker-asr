@@ -1,0 +1,8 @@
+{
+  "sample_id": "controlled_route_sensitive_v1_0004",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 其实不落分也是一种\n[SPEAKER_2] 只在讲的熬夜所谓的熬夜就是晚睡晚起是吧",
+  "reference_spk1": "其实不落分也是一种",
+  "reference_spk2": "只在讲的熬夜所谓的熬夜就是晚睡晚起是吧",
+  "source_utterance_ids": "con_004|pro_004"
+}

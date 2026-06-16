@@ -1,0 +1,8 @@
+{
+  "sample_id": "controlled_route_sensitive_v1_0068",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 哪怕自己是刷抖音的自己\n[SPEAKER_2] 日常時間是一致的沒錯吧",
+  "reference_spk1": "哪怕自己是刷抖音的自己",
+  "reference_spk2": "日常時間是一致的沒錯吧",
+  "source_utterance_ids": "con_002|pro_014"
+}

@@ -1,0 +1,17 @@
+model_name,epoch,train_accuracy
+hybrid_mlp_controlled,1,0.0
+hybrid_mlp_controlled,20,0.0
+hybrid_mlp_controlled,60,0.0
+hybrid_mlp_controlled,120,0.0
+hybrid_late_fusion_controlled,1,0.0
+hybrid_late_fusion_controlled,20,0.0
+hybrid_late_fusion_controlled,60,0.0
+hybrid_late_fusion_controlled,120,0.0
+calibrated_confidence_controlled,1,0.0
+calibrated_confidence_controlled,20,0.0
+calibrated_confidence_controlled,60,0.0
+calibrated_confidence_controlled,120,0.0
+cost_aware_controlled,1,0.0
+cost_aware_controlled,20,0.0
+cost_aware_controlled,60,0.0
+cost_aware_controlled,120,0.0

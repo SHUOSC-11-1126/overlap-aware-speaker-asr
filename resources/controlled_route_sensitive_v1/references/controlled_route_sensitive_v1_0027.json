@@ -1,0 +1,8 @@
+{
+  "sample_id": "controlled_route_sensitive_v1_0027",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 刚觉得晚睡晚起少夜\n[SPEAKER_2] 日常時間是一致的沒錯吧",
+  "reference_spk1": "刚觉得晚睡晚起少夜",
+  "reference_spk2": "日常時間是一致的沒錯吧",
+  "source_utterance_ids": "con_005|pro_014"
+}

@@ -1,0 +1,8 @@
+{
+  "sample_id": "controlled_route_sensitive_v1_0012",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 他让你在那个时间段里拥有了自己\n[SPEAKER_2] 我的个人可以支配的",
+  "reference_spk1": "他让你在那个时间段里拥有了自己",
+  "reference_spk2": "我的个人可以支配的",
+  "source_utterance_ids": "con_001|pro_013"
+}

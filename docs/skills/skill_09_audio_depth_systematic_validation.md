@@ -46,3 +46,7 @@ Stage 25 adds the missing audit layer for the Stage 24 boundary finding.
 - A robust validation should run reference-quality audit, normalization, Whisper configuration sweep, stratified sample expansion, proxy-to-real gap analysis, and route-gap subset analysis before making any stable-routing claim.
 
 This is scientific exploration, not failure. It shows that system innovation needs a reliable evaluation pipeline, not only a stronger router.
+
+## Controlled follow-up
+
+Stage 26 adds `skill_10_controlled_route_sensitive_benchmark.md` as the follow-up path. Use it when Stage 24/25 real-ASR slices are too weak or route-insensitive to evaluate a router fairly.

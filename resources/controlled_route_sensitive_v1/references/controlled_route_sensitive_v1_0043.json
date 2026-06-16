@@ -1,0 +1,8 @@
+{
+  "sample_id": "controlled_route_sensitive_v1_0043",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 哦不太一致我可以給你擠我\n[SPEAKER_2] 你方式要,那它是怎么缓解我们的空虚的",
+  "reference_spk1": "哦不太一致我可以給你擠我",
+  "reference_spk2": "你方式要,那它是怎么缓解我们的空虚的",
+  "source_utterance_ids": "con_010|pro_001"
+}

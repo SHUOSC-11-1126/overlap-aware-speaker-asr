@@ -132,6 +132,12 @@ Stage 25 audits why the Stage 23 proxy improvement did not transfer cleanly to r
 
 The Whisper config sweep shows `base_beam1` improves mixed CER to `0.747664` versus `base_beam5` at `0.778020`, while VAD and the prompt tested here do not help. A stratified 20-sample expansion reaches router_v2 CER `0.696410`, `hybrid_late_fusion_v2` CER `0.696410`, and oracle CER `0.674610`. Current real-ASR evidence therefore does not yet support AudioDepth beating router_v2; it supports a more useful conclusion: proxy labels are good for exploration but insufficient as final ASR evidence without reference-quality and route-gap checks.
 
+### Controlled Route-Sensitive Benchmark
+
+Stage 26 builds a controlled route-sensitive benchmark because Stage 24/25 showed that weak references and tiny route gaps make blind real-ASR validation inconclusive. The new benchmark uses 26 snippet utterances with Whisper-small candidate transcripts, exports a manual verification pack, then generates 80 controlled overlap samples with known source tracks. No manual verified transcripts are present yet, so the current reference type is `silver_plus_unverified`, not gold.
+
+The first real Whisper run evaluates 40 controlled samples with `faster-whisper` base. It gives fixed mixed CER `0.467818`, fixed separated/cleaned CER `0.260124`, oracle CER `0.255923`, router_v2 CER `0.383122`, and controlled hybrid/fusion router CER `0.256816`. This is the first real-ASR proof that a controlled AudioDepth-style router can beat router_v2 on a route-sensitive set, while the limitation is equally clear: fixed separated is already very strong, so the router mainly learns to avoid the few mixed-favored cases rather than discover a complex mixed/separated boundary.
+
 README-ready figures:
 
 - `results/figures/audio_depth_systematic_overview.png`
@@ -140,6 +146,9 @@ README-ready figures:
 - `results/figures/audio_depth_real_asr_summary.md`
 - `results/figures/audio_depth_real_asr_audit_pack.md`
 - `results/figures/audio_depth_proxy_real_gap.md`
+- `results/figures/controlled_benchmark_overview.png`
+- `results/figures/controlled_main_result_card.png`
+- `results/figures/controlled_separation_phase_card.png`
 
 ## Project Map
 

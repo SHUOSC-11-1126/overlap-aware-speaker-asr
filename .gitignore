@@ -27,6 +27,7 @@ torch_cache/
 !models/audio_depth_zoo/
 !models/audio_depth_zoo/*.pt
 !models/audio_depth_systematic_*.pt
+!models/audio_depth_controlled_*
 
 # Runtime outputs
 results/transcripts_raw/*
@@ -39,9 +40,11 @@ results/figures/*
 results/synthetic_overlap_v2/
 !results/tables/audio_depth_*.csv
 !results/tables/audio_depth_*.json
+!results/tables/controlled_*
 !results/tables/whisper_env_diagnosis.json
 !results/figures/audio_depth_*.png
 !results/figures/audio_depth_*.md
+!results/figures/controlled_*
 !results/figures/whisper_env_diagnosis.md
 
 # Keep result folders

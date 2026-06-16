@@ -1,0 +1,8 @@
+{
+  "sample_id": "controlled_route_sensitive_v1_0037",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 其实不落分也是一种\n[SPEAKER_2] 你是怎么多出额外的时间来过自己的生活的",
+  "reference_spk1": "其实不落分也是一种",
+  "reference_spk2": "你是怎么多出额外的时间来过自己的生活的",
+  "source_utterance_ids": "con_004|pro_010"
+}

@@ -1,0 +1,8 @@
+{
+  "sample_id": "controlled_route_sensitive_v1_0049",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 刚觉得晚睡晚起少夜\n[SPEAKER_2] 你下班的時間必定也晚",
+  "reference_spk1": "刚觉得晚睡晚起少夜",
+  "reference_spk2": "你下班的時間必定也晚",
+  "source_utterance_ids": "con_005|pro_008"
+}

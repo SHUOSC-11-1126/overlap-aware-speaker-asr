@@ -1,0 +1,8 @@
+{
+  "sample_id": "controlled_route_sensitive_v1_0034",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 他让你在那个时间段里拥有了自己\n[SPEAKER_2] 上班的時間必定也晚",
+  "reference_spk1": "他让你在那个时间段里拥有了自己",
+  "reference_spk2": "上班的時間必定也晚",
+  "source_utterance_ids": "con_001|pro_007"
+}

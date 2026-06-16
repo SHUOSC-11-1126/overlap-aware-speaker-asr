@@ -1,0 +1,8 @@
+{
+  "sample_id": "controlled_route_sensitive_v1_0021",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 哦不太一致我可以給你擠我\n[SPEAKER_2] 上班的時間必定也晚",
+  "reference_spk1": "哦不太一致我可以給你擠我",
+  "reference_spk2": "上班的時間必定也晚",
+  "source_utterance_ids": "con_010|pro_007"
+}

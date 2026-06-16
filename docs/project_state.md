@@ -150,6 +150,23 @@ Stage 25 audits the proxy-to-real gap before doing more router training.
 
 Current conclusion: Stage 23 proxy evidence is strong, but Stage 24/25 real-ASR evidence does not yet transfer. Oracle real CER also improves only slightly, so the sampled slice may not provide enough route-choice contrast. This is a validation-pipeline finding, not a reason to erase the frontier experiment.
 
+## Controlled Route-Sensitive Benchmark
+
+Stage 26 adds a controlled benchmark designed to make route choices matter.
+
+- Utterance inventory: `26` source snippets
+- Verification status: candidate Whisper-small transcripts only; no verified micro-gold yet
+- Controlled samples generated: `80`
+- Real Whisper evaluated: `40`
+- Reference type: `silver_plus_unverified`
+- Fixed mixed CER: `0.467818`
+- Fixed separated CER: `0.260124`
+- Oracle CER: `0.255923`
+- router_v2 CER: `0.383122`
+- controlled hybrid/fusion CER: `0.256816`
+
+Interpretation: controlled real-ASR evidence now supports a hybrid router beating router_v2, but the set is separation-dominant and not yet gold. The next improvement is manual verification plus more mixed-favored and cleaned-favored samples.
+
 ## Gold Benchmark Final CER Table
 
 ### NoOverlap

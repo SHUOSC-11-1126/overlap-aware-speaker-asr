@@ -296,6 +296,16 @@ Update: the real-ASR gap audit is now available.
 - Stratified 20-sample expansion: router_v2 and `hybrid_late_fusion_v2` tie at CER `0.696410`; oracle is `0.674610`.
 - Roadmap implication: stop blind router training until reference quality, Whisper configuration, and route-gap subset reliability are improved.
 
+Update: controlled route-sensitive validation now exists.
+
+- Inventory: `results/tables/controlled_utterance_inventory.csv`
+- Verification pack: `results/tables/controlled_verification_pack.csv`
+- Manifest: `results/tables/controlled_route_sensitive_manifest.csv`
+- Real route CER: `results/tables/controlled_real_whisper_cer.csv`
+- Router comparison: `results/tables/controlled_audio_depth_router_comparison.csv`
+- Current result: controlled hybrid/fusion CER `0.256816`, router_v2 CER `0.383122`, oracle CER `0.255923` on 40 real Whisper controlled samples.
+- Limitation: references are `silver_plus_unverified`; fixed separated is already strong, so future work should add verified and mixed-favored samples.
+
 Update: `external_validation` now also has a slice staging readiness handoff.
 
 - Staging readiness handoff: `results/tables/external_validation_slice_staging_readiness_handoff.csv`

@@ -1,0 +1,19 @@
+sample_id,style,overlap_ratio,reference,mixed_transcript,separated_transcript,cleaned_transcript,mixed_cer,separated_cer,cleaned_cer,oracle_route,router_v2_prediction,hybrid_prediction,explanation
+controlled_route_sensitive_v1_0029,short_backchannel,0.1,"[SPEAKER_1] 因为你可以早睡早起
+[SPEAKER_2] 你方式要,那它是怎么缓解我们的空虚的",因为你可以早睡早期你方是药那它是怎么环节我们的空虚的,"[SPEAKER_1] 因為你可以早睡早起
+[SPEAKER_2] 那它是怎么环节我们的空虚的",因為你可以早睡早起那它是怎么环节我们的空虚的,0.192308,0.269231,0.269231,mixed,mixed,mixed,route_gap=0.076923; separation_gain=0.076923
+controlled_route_sensitive_v1_0016,clean_turn_taking,0.6,"[SPEAKER_1] 刚觉得晚睡晚起少夜
+[SPEAKER_2] 没问题没问题 先不着急",冠决到晚睡没问题没问题心不着急,"[SPEAKER_1] 光觉得晚睡晚写少夜
+[SPEAKER_2] 沒問題沒問題先不著急",光觉得晚睡晚写少夜沒問題沒問題先不著急,0.421053,0.473684,0.473684,mixed,mixed,cleaned,route_gap=0.052631; separation_gain=0.052631
+controlled_route_sensitive_v1_0015,clean_turn_taking,0.5,"[SPEAKER_1] 其实不落分也是一种
+[SPEAKER_2] 你方式要,那它是怎么缓解我们的空虚的",其实不落分一些你方时了那它是怎么环节我们的空虚的,"[SPEAKER_1] 其实部落飞也是一种样的
+[SPEAKER_2] 你方是药,那它是怎么环节我们的空虚的",其实部落飞也是一种样的你方是药那它是怎么环节我们的空虚的,0.269231,0.307692,0.307692,mixed,mixed,cleaned,route_gap=0.038461; separation_gain=0.038461
+controlled_route_sensitive_v1_0001,clean_turn_taking,0.0,"[SPEAKER_1] 他让你在那个时间段里拥有了自己
+[SPEAKER_2] 你方式要,那它是怎么缓解我们的空虚的","他讓你在那個時間段裡擁有了自己你方是要,那他是怎麼緩解我們的空虛的","[SPEAKER_1] 他讓你在那個時間段裡擁有了自己
+[SPEAKER_2] 你方是藥,那它是怎么环节我们的空虚的",他讓你在那個時間段裡擁有了自己你方是藥那它是怎么环节我们的空虚的,0.375,0.3125,0.3125,separated,mixed,mixed,route_gap=0.0; separation_gain=-0.0625
+controlled_route_sensitive_v1_0007,clean_turn_taking,0.6,"[SPEAKER_1] 因为你可以早睡早起
+[SPEAKER_2] 上班的時間必定也晚",因为你可以早睡早晚的时间必定也晚,"[SPEAKER_1] 因为你可以走税走税
+[SPEAKER_2] 你上班的時間必定也晚",因为你可以走税走税你上班的時間必定也晚,0.277778,0.277778,0.277778,mixed,mixed,cleaned,route_gap=0.0; separation_gain=0.0
+controlled_route_sensitive_v1_0002,clean_turn_taking,0.1,"[SPEAKER_1] 哪怕自己是刷抖音的自己
+[SPEAKER_2] 没问题没问题 先不着急","哪怕自己是一个刷抖音的自己没问题,先不着急","[SPEAKER_1] 哪怕自己是一个刷抖音的自己
+[SPEAKER_2] 没问题 没问题 先不着急",哪怕自己是一个刷抖音的自己没问题没问题先不着急,0.238095,0.095238,0.095238,separated,mixed,mixed,route_gap=0.0; separation_gain=-0.142857

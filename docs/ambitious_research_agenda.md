@@ -121,3 +121,15 @@ The baseline is stable. The frontier should be bold, explicit, and well-labeled.
 - Limitation:
   - current stress route CER is proxy evidence because real Whisper inference is unavailable in this runtime
   - simulated cost is not hardware timing evidence
+
+## 13. Controlled Route-Sensitive Benchmark
+
+- Question: can a hybrid router prove value when the benchmark intentionally creates real route contrast?
+- Current evidence:
+  - 26 source snippet utterances inventoried
+  - 80 controlled samples generated
+  - 40 controlled samples evaluated with real faster-whisper base
+  - controlled hybrid/fusion router beats router_v2 and approaches oracle
+- Limitation:
+  - references are currently `silver_plus_unverified`
+  - the first controlled slice is separation-dominant, so future samples should add more mixed-favored and cleaned-favored cases

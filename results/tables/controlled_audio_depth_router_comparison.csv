@@ -1,0 +1,13 @@
+model_name,average_cer,accuracy_vs_oracle_route,sample_count,status
+oracle,0.255923,1.0,40,evaluated
+calibrated_confidence_controlled,0.256816,0.95,40,evaluated
+cost_aware_controlled,0.256816,0.95,40,evaluated
+hybrid_late_fusion_controlled,0.256816,0.95,40,evaluated
+hybrid_mlp_controlled,0.256816,0.95,40,evaluated
+fixed_cleaned,0.260124,0.0,40,evaluated
+fixed_separated,0.260124,0.825,40,evaluated
+stage22_model_zoo_best_blocked_feature_mismatch,0.260124,0.825,40,blocked_old_model_feature_mismatch
+stage23_systematic_heuristic,0.319713,0.3,40,evaluated
+router_v2,0.383122,0.375,40,evaluated
+confidence_cascade_controlled,0.385399,0.325,40,evaluated
+fixed_mixed,0.467818,0.175,40,evaluated

@@ -1,0 +1,27 @@
+utterance_id,speaker_id,wav_path,duration,transcript_candidate,transcript_source,verification_status,usable_for_benchmark
+con_001,con,resources/snippets/con_001.wav,3.7747,他让你在那个时间段里拥有了自己,results/snippet_transcripts/con_001_whisper.json,candidate_whisper_small,True
+con_002,con,resources/snippets/con_002.wav,2.9213,哪怕自己是刷抖音的自己,results/snippet_transcripts/con_002_whisper.json,candidate_whisper_small,True
+con_003,con,resources/snippets/con_003.wav,1.8973,我往这里再稍微解释一下,results/snippet_transcripts/con_003_whisper.json,candidate_whisper_small,True
+con_004,con,resources/snippets/con_004.wav,1.8973,其实不落分也是一种,results/snippet_transcripts/con_004_whisper.json,candidate_whisper_small,True
+con_005,con,resources/snippets/con_005.wav,2.1533,刚觉得晚睡晚起少夜,results/snippet_transcripts/con_005_whisper.json,candidate_whisper_small,True
+con_006,con,resources/snippets/con_006.wav,2.1533,晚睡早起也算好夜了,results/snippet_transcripts/con_006_whisper.json,candidate_whisper_small,True
+con_007,con,resources/snippets/con_007.wav,1.556,因为你可以早睡早起,results/snippet_transcripts/con_007_whisper.json,candidate_whisper_small,True
+con_008,con,resources/snippets/con_008.wav,1.6413,因为你可以为了身体建立方式,results/snippet_transcripts/con_008_whisper.json,candidate_whisper_small,True
+con_009,con,resources/snippets/con_009.wav,1.3853,總睡晚睡,results/snippet_transcripts/con_009_whisper.json,candidate_whisper_small,True
+con_010,con,resources/snippets/con_010.wav,2.4093,哦不太一致我可以給你擠我,results/snippet_transcripts/con_010_whisper.json,candidate_whisper_small,True
+con_011,con,resources/snippets/con_011.wav,3.604,你没有多两个小时但是你自己的是不是多两个我可以给你解释,results/snippet_transcripts/con_011_whisper.json,candidate_whisper_small,True
+pro_001,pro,resources/snippets/pro_001.wav,3.092,"你方式要,那它是怎么缓解我们的空虚的",results/snippet_transcripts/pro_001_whisper.json,candidate_whisper_small,True
+pro_002,pro,resources/snippets/pro_002.wav,1.3,没问题没问题 先不着急,results/snippet_transcripts/pro_002_whisper.json,candidate_whisper_small,True
+pro_003,pro,resources/snippets/pro_003.wav,2.58,因為有一個前提性的問題沒有討論,results/snippet_transcripts/pro_003_whisper.json,candidate_whisper_small,True
+pro_004,pro,resources/snippets/pro_004.wav,4.4573,只在讲的熬夜所谓的熬夜就是晚睡晚起是吧,results/snippet_transcripts/pro_004_whisper.json,candidate_whisper_small,True
+pro_005,pro,resources/snippets/pro_005.wav,2.324,好我先聊完 都帅玩起,results/snippet_transcripts/pro_005_whisper.json,candidate_whisper_small,True
+pro_006,pro,resources/snippets/pro_006.wav,2.068,既然你是晚睡晚起,results/snippet_transcripts/pro_006_whisper.json,candidate_whisper_small,True
+pro_007,pro,resources/snippets/pro_007.wav,2.58,上班的時間必定也晚,results/snippet_transcripts/pro_007_whisper.json,candidate_whisper_small,True
+pro_008,pro,resources/snippets/pro_008.wav,2.58,你下班的時間必定也晚,results/snippet_transcripts/pro_008_whisper.json,candidate_whisper_small,True
+pro_009,pro,resources/snippets/pro_009.wav,3.2627,那你个人的生活空间必定也就这么点,results/snippet_transcripts/pro_009_whisper.json,candidate_whisper_small,True
+pro_010,pro,resources/snippets/pro_010.wav,3.0067,你是怎么多出额外的时间来过自己的生活的,results/snippet_transcripts/pro_010_whisper.json,candidate_whisper_small,True
+pro_011,pro,resources/snippets/pro_011.wav,3.0067,我的意思是2点睡10点起,results/snippet_transcripts/pro_011_whisper.json,candidate_whisper_small,True
+pro_012,pro,resources/snippets/pro_012.wav,2.068,跟8点睡6点起午,results/snippet_transcripts/pro_012_whisper.json,candidate_whisper_small,True
+pro_013,pro,resources/snippets/pro_013.wav,2.068,我的个人可以支配的,results/snippet_transcripts/pro_013_whisper.json,candidate_whisper_small,True
+pro_014,pro,resources/snippets/pro_014.wav,1.7267,日常時間是一致的沒錯吧,results/snippet_transcripts/pro_014_whisper.json,candidate_whisper_small,True
+pro_015,pro,resources/snippets/pro_015.wav,1.2147,我多了两个小时,results/snippet_transcripts/pro_015_whisper.json,candidate_whisper_small,True

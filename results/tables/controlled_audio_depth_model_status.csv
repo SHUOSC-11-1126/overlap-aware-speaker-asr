@@ -1,0 +1,5 @@
+model_name,status,train_samples,test_samples,test_average_cer,test_route_accuracy,model_path
+hybrid_mlp_controlled,trained,26,14,0.25829,0.928571,models/audio_depth_controlled_hybrid_mlp_controlled.json
+hybrid_late_fusion_controlled,trained,26,14,0.25829,0.928571,models/audio_depth_controlled_hybrid_late_fusion_controlled.json
+calibrated_confidence_controlled,trained,26,14,0.25829,0.928571,models/audio_depth_controlled_calibrated_confidence_controlled.json
+cost_aware_controlled,trained,26,14,0.25829,0.928571,models/audio_depth_controlled_cost_aware_controlled.json
