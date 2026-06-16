@@ -44,3 +44,4 @@ The current queue is coordination-only. It does not imply that any frontier step
 - [Skill 09: Systematic AudioDepth-Hybrid Routing Validation](skill_09_audio_depth_systematic_validation.md)
 - [Skill 10: Controlled Route-Sensitive Benchmark](skill_10_controlled_route_sensitive_benchmark.md)
 - [Skill 11: Balanced Route-Sensitive Benchmark v2](skill_11_balanced_route_sensitive_benchmark.md)
+- [Skill 12: AudioDepth-Centric Routing Frontier](skill_12_audiodepth_centric_frontier.md)

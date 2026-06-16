@@ -1,0 +1,7 @@
+intended_family,sample_count,gate_accuracy,false_safe_count
+clean_turn_taking,27,0.888889,1
+cleaned_win_anchor,15,0.866667,0
+mixed_win_anchor,15,0.4,0
+review_needed_anchor,15,1.0,0
+separated_win_anchor,15,0.866667,0
+short_backchannel,13,0.923077,0

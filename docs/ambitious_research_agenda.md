@@ -146,3 +146,17 @@ The baseline is stable. The frontier should be bold, explicit, and well-labeled.
   - references remain `silver_plus_unverified`
   - cleaned oracle wins are `0`, so cleaned routing is a negative finding rather than a demonstrated win
   - AudioDepth v2 maps are `analysis_only_irm_proxy`, not deployable features
+
+## 15. AudioDepth-Centric Routing Frontier
+
+- Question: can AudioDepth represent overlapping speech as a depth/occlusion-like acoustic structure and provide a deployable pre-ASR gate?
+- Current evidence:
+  - 200 deployable mixed-only maps generated
+  - feature audit shows modest route and route-gap signal
+  - resnet embedding probe reaches oracle-route accuracy `0.655172`
+  - Stage-1 gate reaches held-out accuracy `0.758621`
+- Limitation:
+  - current gate is conservative and mostly detects ambiguous/review risk
+  - easy_mixed and separation_helpful recall are not yet useful
+  - two-stage cascade matches router_v2 rather than improving CER
+  - stronger learned overlap detection is likely needed

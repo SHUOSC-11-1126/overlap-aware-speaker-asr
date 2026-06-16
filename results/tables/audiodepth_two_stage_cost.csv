@@ -1,0 +1,8 @@
+model_name,selected_route_cer,route_accuracy,macro_f1,asr_text_probe_reduction_rate,separation_call_rate,false_safe_rate,review_rate,average_cost,sample_count
+oracle,0.502854,1.0,0.666667,1.0,0.433333,0.3,0.0,1.446667,60
+stage27_balanced_router_if_available,0.502854,0.983333,0.655402,1.0,0.45,0.3,0.0,1.46,60
+router_v2,0.64352,0.566667,0.341667,1.0,0.233333,0.4,0.0,1.286667,60
+audiodepth_stage1_only,0.64352,0.566667,0.341667,1.0,0.233333,0.4,0.266667,2.62,60
+audiodepth_stage1_plus_text_stage2,0.64352,0.566667,0.341667,0.016667,0.233333,0.4,0.266667,3.111667,60
+fixed_separated,0.667789,0.433333,0.20155,1.0,1.0,0.0,0.0,1.9,60
+fixed_mixed,0.726484,0.566667,0.241135,1.0,0.0,0.633333,0.0,1.1,60

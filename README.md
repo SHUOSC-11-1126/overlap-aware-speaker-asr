@@ -148,6 +148,16 @@ Real Whisper oracle distribution on the evaluated v2 slice is mixed `34`, separa
 
 The balanced route-winner router reaches CER `0.502854` with route accuracy `0.983333`, compared with router_v2 CER `0.643520`, fixed mixed `0.726484`, fixed separated/cleaned `0.667789`, and oracle `0.502854`. Its predictions are mixed `33`, separated `27`, cleaned `0`, so this does prove the v2 router is not blindly selecting separated. It does not yet prove cleaned routing; that remains a frontier gap.
 
+### AudioDepth-Centric Routing Frontier
+
+Stage 28 promotes AudioDepth into its own frontier line: AudioDepth is not intended to replace transcript-instability features. Instead, it provides a pre-ASR acoustic view of time-frequency occlusion, while text features provide post-ASR evidence of decoding instability.
+
+Deployable AudioDepth v2 now uses mixed audio only. The three channels are C1 mixed logmel, C2 mixed-only overlap proxy, and C3 mixed-only uncertainty proxy. The current run generated 200 deployable maps: 120 from controlled_v2 and 80 from controlled_v1. Source-track IRM remains excluded from the deployable result.
+
+The lightweight embedding probe shows measurable but incomplete structure. The best resnet oracle-route probe reaches accuracy `0.655172` and macro-F1 `0.618421`; target-family probes show strong separability, while route-gap buckets remain weak. The Stage-1 acoustic gate reaches held-out accuracy `0.758621` and macro-F1 `0.431525`, with high ambiguous/review recall `0.958333` but no reliable easy_mixed or separation_helpful recall yet.
+
+The two-stage AudioDepth gate plus text-router cascade reaches controlled_v2 CER `0.643520`, matching router_v2 rather than beating it, and reduces text probes by only `0.016667` under the current confidence threshold. This is an honest boundary finding: AudioDepth v2 has independent pre-ASR representation value, but the handcrafted mixed-only proxies are still too conservative for confident Stage-1 resolution.
+
 README-ready figures:
 
 - `results/figures/audio_depth_systematic_overview.png`
@@ -164,6 +174,12 @@ README-ready figures:
 - `results/figures/audio_depth_balanced_main_result_card.png`
 - `results/figures/audio_depth_balanced_case_grid.png`
 - `results/figures/audio_depth_v2_map_examples.png`
+- `results/figures/audiodepth_v2_examples.png`
+- `results/figures/audiodepth_v2_feature_audit.md`
+- `results/figures/audiodepth_centric_probe_summary.md`
+- `results/figures/audiodepth_gate_summary.md`
+- `results/figures/audiodepth_two_stage_summary.md`
+- `results/figures/audiodepth_decision_examples.png`
 
 ## Project Map
 

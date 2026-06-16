@@ -6,6 +6,8 @@ The core technical work is complete. The repository now has a stable baseline an
 
 Current frontier update: Stage 27 adds a balanced route-sensitive v2 benchmark. It is not a stable-baseline replacement. It evaluates 60 stratified real Whisper samples from a 120-sample v2 benchmark and shows a balanced router beating router_v2 while also exposing that cleaned-win cases are still not materializing under current Whisper/post-processing.
 
+Stage 28 adds the AudioDepth-centric line: deployable mixed-only AudioDepth v2 maps, feature audit, lightweight embedding probes, a conservative Stage-1 acoustic gate, and a two-stage AudioDepth + text cascade. Current evidence supports AudioDepth as a pre-ASR representation, but not yet as a high-confidence replacement for text instability routing.
+
 ## Phase 0: Stable Baseline Completed
 
 - Gold benchmark and references
@@ -31,6 +33,7 @@ Current frontier update: Stage 27 adds a balanced route-sensitive v2 benchmark. 
 - error boundary analysis
 - overlap regime exploration
 - balanced route-winner benchmark v2 with explicit mixed/separated/cleaned/review anchors
+- deployable AudioDepth v2 as a Stage-1 acoustic gate before text-instability routing
 
 ## Phase 3: Compute-aware Cascade
 

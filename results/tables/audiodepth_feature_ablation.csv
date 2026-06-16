@@ -1,0 +1,7 @@
+ablation_name,modality,selected_route_cer,route_accuracy,macro_f1,text_probe_reduction_rate,average_cost,interpretation
+AudioDepth-only,pre_asr_acoustic,0.64352,0.566667,0.341667,1.0,2.62,Stage-1 gate accuracy 0.758621; useful if it reduces probes without high false-safe risk.
+text-instability-only,post_asr_text_proxy,0.64352,0.566667,0.341667,1.0,1.286667,Text features remain the posterior stability checker and final route baseline.
+AudioDepth + text late fusion,hybrid_existing,0.502854,0.983333,0.655402,1.0,1.46,
+AudioDepth Stage-1 + text Stage-2,two_stage,0.64352,0.566667,0.341667,0.016667,3.111667,Tests whether acoustic triage before text probing is more interpretable than flat routing.
+text-first router,post_asr_text_proxy,0.64352,0.566667,0.341667,1.0,1.286667,
+oracle,upper_bound,0.502854,1.0,0.666667,1.0,1.446667,

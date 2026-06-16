@@ -1,0 +1,9 @@
+model_name,task,accuracy,macro_f1,route_separability_score,test_samples,model_path
+cnn,oracle_route,0.62069,0.589447,0.13937,29,models/audiodepth_centric_probe_cnn_oracle_route.pt
+cnn,target_family,0.482759,0.48095,0.689821,29,models/audiodepth_centric_probe_cnn_target_family.pt
+cnn,route_gap_bucket,0.689655,0.343578,-0.00442,29,models/audiodepth_centric_probe_cnn_route_gap_bucket.pt
+cnn,separation_helpful,0.62069,0.613333,0.032316,29,models/audiodepth_centric_probe_cnn_separation_helpful.pt
+resnet,oracle_route,0.655172,0.618421,0.228582,29,models/audiodepth_centric_probe_resnet_oracle_route.pt
+resnet,target_family,0.448276,0.447953,0.623217,29,models/audiodepth_centric_probe_resnet_target_family.pt
+resnet,route_gap_bucket,0.793103,0.404444,-0.075729,29,models/audiodepth_centric_probe_resnet_route_gap_bucket.pt
+resnet,separation_helpful,0.586207,0.560606,0.057599,29,models/audiodepth_centric_probe_resnet_separation_helpful.pt

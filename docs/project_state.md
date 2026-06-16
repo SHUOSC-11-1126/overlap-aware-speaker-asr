@@ -47,6 +47,7 @@ This document is for future Codex / AI coding agents so they can resume work wit
 - experimental compute-aware cascade analysis
 - AudioDepth-Router frontier prototype with deployable depth-augmented spectrogram maps
 - Balanced Route-Sensitive Benchmark v2 frontier validation
+- AudioDepth-centric deployable v2 and Stage-1 gate frontier validation
 
 ## Current Core Findings
 
@@ -190,6 +191,26 @@ Stage 27 creates a route-balanced frontier follow-up to Stage 26.
 Interpretation: this is more balanced than Stage 26 and proves the learned v2 router is not blindly selecting separated; it predicts mixed `33` and separated `27` on the 60-sample slice. It does not prove cleaned routing: cleaned wins `0` oracle cases, so cleaned remains a negative finding and review-target rather than a solved route.
 
 AudioDepth v2 maps were generated under `analysis_only_irm_proxy` for the 60 evaluated samples. They are inspired by RGB-D/depth-augmented image recognition and treat overlap as time-frequency occlusion, but they use source-track energy proxies and must not be described as deployable.
+
+## AudioDepth-Centric Routing Frontier
+
+Stage 28 upgrades AudioDepth from an auxiliary router feature into a deployable acoustic representation line.
+
+- Deployable maps: `200` total
+- Sources: `120` controlled_v2, `80` controlled_v1; synthetic_split skipped because no direct source manifest was available
+- Deployable channels: mixed logmel, mixed-only overlap proxy, mixed-only uncertainty proxy
+- Labelled audit rows: `100`
+- Best embedding probe: resnet oracle-route accuracy `0.655172`, macro-F1 `0.618421`
+- Stage-1 gate held-out accuracy: `0.758621`
+- Stage-1 gate macro-F1: `0.431525`
+- easy_mixed recall: `0.0`
+- separation_helpful recall: `0.0`
+- ambiguous/review recall: `0.958333`
+- false-safe rate: `0.034483`
+- controlled_v2 two-stage cascade CER: `0.643520`
+- text-probe reduction rate: `0.016667`
+
+Interpretation: AudioDepth is not intended to replace transcript-instability features. Instead, it provides a pre-ASR acoustic view of time-frequency occlusion, while text features provide post-ASR evidence of decoding instability. Current deployable proxies show independent representation structure but are too conservative for confident Stage-1 resolution.
 
 ## Gold Benchmark Final CER Table
 
