@@ -1,0 +1,2 @@
+model_name,gate_accuracy,macro_f1,easy_mixed_recall,separation_helpful_recall,ambiguous_recall,review_risk_recall,heldout_samples,prediction_rows
+audiodepth_stage1_gate_calibrated,0.724138,0.475,0.4,0.8,0.75,0.0,29,100

@@ -212,6 +212,20 @@ Stage 28 upgrades AudioDepth from an auxiliary router feature into a deployable 
 
 Interpretation: AudioDepth is not intended to replace transcript-instability features. Instead, it provides a pre-ASR acoustic view of time-frequency occlusion, while text features provide post-ASR evidence of decoding instability. Current deployable proxies show independent representation structure but are too conservative for confident Stage-1 resolution.
 
+## AudioDepth Gate Calibration Follow-up
+
+Stage 29 calibrates the Stage-1 gate labels by separating route-action labels from risk flags and using separation gain over mixed to recover `likely_separation_helpful` examples.
+
+- calibrated held-out accuracy: `0.724138`
+- calibrated macro-F1: `0.475000`
+- easy_mixed recall: `0.400000`
+- separation_helpful recall: `0.800000`
+- best controlled_v2 threshold CER: `0.533160`
+- text-probe reduction at best CER threshold: `0.716667`
+- false-safe rate in the threshold sweep: `0.183333`
+
+Interpretation: calibration turns AudioDepth from a mostly conservative risk detector into a useful pre-ASR gate. It improves over router_v2 on controlled_v2 but still trails the Stage 27 balanced router and oracle rows, so it is a promising frontier result rather than a stable replacement.
+
 ## Gold Benchmark Final CER Table
 
 ### NoOverlap

@@ -39,3 +39,17 @@ AudioDepth can capture pre-ASR acoustic occlusion structure that transcript-leve
 - Two-stage cascade CER on controlled_v2: `0.643520`, matching router_v2 rather than improving it.
 
 Interpretation: AudioDepth v2 already has measurable representation structure, especially for oracle-route and target-family probes, but the current mixed-only handcrafted proxies are too conservative for confident easy_mixed / separation_helpful routing. This is a useful frontier finding: AudioDepth has independent pre-ASR signal, but Stage-1 gate quality likely needs learned overlap detection or stronger deployable channels.
+
+## Calibrated gate follow-up
+
+The next pass separates route-action labels from review/risk flags. This avoids treating every high-CER separated-helpful sample as pure review risk.
+
+- Held-out accuracy: `0.724138`
+- Macro-F1: `0.475000`
+- easy_mixed recall: `0.400000`
+- separation_helpful recall: `0.800000`
+- Best controlled_v2 threshold-sweep CER: `0.533160`
+- Text-probe reduction at that setting: `0.716667`
+- False-safe rate: `0.183333`
+
+This supports the AudioDepth-centric positioning more strongly: deployable AudioDepth can act as a pre-ASR acoustic gate, but it still needs false-safe control before it can be treated as deployment-ready.

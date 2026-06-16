@@ -158,6 +158,8 @@ The lightweight embedding probe shows measurable but incomplete structure. The b
 
 The two-stage AudioDepth gate plus text-router cascade reaches controlled_v2 CER `0.643520`, matching router_v2 rather than beating it, and reduces text probes by only `0.016667` under the current confidence threshold. This is an honest boundary finding: AudioDepth v2 has independent pre-ASR representation value, but the handcrafted mixed-only proxies are still too conservative for confident Stage-1 resolution.
 
+A follow-up calibration pass separates route-action labels from risk flags and uses separation gain over mixed as the key signal for `likely_separation_helpful`. That calibrated AudioDepth gate reaches held-out accuracy `0.724138`, macro-F1 `0.475000`, easy_mixed recall `0.400000`, and separation_helpful recall `0.800000`. On controlled_v2, a threshold sweep finds CER `0.533160` with text-probe reduction `0.716667`, improving over router_v2 CER `0.643520` while still trailing the Stage 27 balanced router/oracle row `0.502854`.
+
 README-ready figures:
 
 - `results/figures/audio_depth_systematic_overview.png`

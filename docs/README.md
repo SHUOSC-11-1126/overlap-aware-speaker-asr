@@ -110,6 +110,7 @@ This folder is the documentation entry point for the project.
 - [results/figures/audiodepth_two_stage_summary.md](../results/figures/audiodepth_two_stage_summary.md)
 - [results/figures/audiodepth_feature_ablation.md](../results/figures/audiodepth_feature_ablation.md)
 - [results/figures/audiodepth_decision_examples.md](../results/figures/audiodepth_decision_examples.md)
+- [results/figures/audiodepth_gate_calibrated_summary.md](../results/figures/audiodepth_gate_calibrated_summary.md)
 
 ## Frontier Coordination
 

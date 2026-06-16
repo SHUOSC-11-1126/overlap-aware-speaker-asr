@@ -160,3 +160,5 @@ The baseline is stable. The frontier should be bold, explicit, and well-labeled.
   - easy_mixed and separation_helpful recall are not yet useful
   - two-stage cascade matches router_v2 rather than improving CER
   - stronger learned overlap detection is likely needed
+
+Update: the calibrated gate follow-up recovers some of that missing action signal. By separating route-action labels from risk flags, AudioDepth reaches easy_mixed recall `0.400000`, separation_helpful recall `0.800000`, and controlled_v2 threshold-sweep CER `0.533160` with text-probe reduction `0.716667`. The remaining risk is false-safe routing, currently `0.183333` in the sweep.
