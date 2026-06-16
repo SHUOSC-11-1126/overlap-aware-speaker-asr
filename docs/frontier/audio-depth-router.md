@@ -43,8 +43,8 @@ and reviewed.
 6. Confirm storage strategy for large artifacts.
 7. Open a PR with a focused diff.
 
-## Relation to Contribution Records
+## Relation to Contributions
 
 If this work is part of a member's contribution, link to
-`docs/contributions/`, but do not replace contribution records with technical
-research notes.
+[CONTRIBUTIONS.md](../../CONTRIBUTIONS.md), but do not replace contribution
+records with technical research notes.

@@ -51,13 +51,13 @@ Category summary:
 | `docs/project_state.md` | Long status ledger still useful for continuity |
 | `REPORT.md` | Review-facing narrative report remains at repository root |
 | `CONTRIBUTIONS.md` | Contributor details remain outside the slim README |
-| `docs/contributions/` | Protected active documentation for course final submission contribution records |
 | `docs/harness/` | Current governance documentation |
 | `docs/adr/` | Current decision record documentation |
 | `results/figures/*.png` | Figure assets were not part of this Markdown cleanup |
 | `src/` and `tests/` | Core code and tests were intentionally not moved |
 
-Protected active documentation: `docs/contributions/`.
+Contribution records were later centralized in `CONTRIBUTIONS.md`;
+`docs/contributions/` was removed after migration.
 
 ## Needs Maintainer Confirmation
 

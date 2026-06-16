@@ -17,9 +17,7 @@ This audit classifies the repository's Markdown files so future agents can tell 
 | `docs/ambitious_research_agenda.md` | current | keep as the ambitious frontier agenda |
 | `docs/agent_challenge_board.md` | current | keep as the challenge board |
 | `docs/experiment_proposal_template.md` | current | keep as the proposal template |
-| `docs/contributions/README.md` | current | keep as the contribution record index |
-| `docs/contributions/WUFANGZHOU.md` | current | keep as the core contribution record |
-| `docs/contributions/TEAM_CONTRIBUTION_TEMPLATE.md` | current | keep as the team template |
+| `CONTRIBUTIONS.md` | current | keep as the centralized contribution record |
 | `docs/handoff/WUFANGZHOU_HANDOFF.md` | current | keep as the handoff note |
 | `docs/backup_plan.md` | current | keep as the backup plan |
 | `docs/skills/README.md` | current | keep as the skill-card index |
