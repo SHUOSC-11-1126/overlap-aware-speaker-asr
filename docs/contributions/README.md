@@ -6,6 +6,11 @@ Before final submission, each member should add their own contribution statement
 
 GitHub commit history is also part of the evidence base, but it should be read together with the written contribution records rather than used in isolation.
 
+Some later exploratory work, including AudioDepth routing research, may be
+documented separately under `docs/frontier/`. These contribution records remain
+the course submission records and should be read together with commit history
+and curated project documentation.
+
 See:
 
 - [WUFANGZHOU contribution record](WUFANGZHOU.md)

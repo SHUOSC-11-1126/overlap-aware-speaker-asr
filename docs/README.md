@@ -1,103 +1,55 @@
-# Docs Index
+# Documentation Map
 
-This folder is the documentation entry point for the project.
+This directory contains curated documentation for setup, implementation status,
+results, branch hygiene, governance, and archived historical records.
 
-## Current Core Docs
+## Start Here
 
-- [AGENTS.md](../AGENTS.md)
-- [docs/project_state.md](project_state.md)
-- [docs/roadmap.md](roadmap.md)
-- [docs/maintenance_harness.md](maintenance_harness.md)
-- [docs/harness/README.md](harness/README.md)
-- [docs/repo_evolver.md](repo_evolver.md)
-- [docs/technical_implementation_plan_v2.md](technical_implementation_plan_v2.md)
-- [REPORT.md](../REPORT.md)
-- [README.md](../README.md)
+| Need | Read |
+|---|---|
+| Run the project locally | [quickstart.md](quickstart.md) |
+| Understand what is implemented | [implementation-status.md](implementation-status.md) |
+| Find core results | [results-index.md](results-index.md) |
+| Understand branch status | [branch-audit.md](branch-audit.md) |
+| Understand archive policy | [archive-plan.md](archive-plan.md) |
 
-## Experimental Stage Docs
+## For Reviewers
 
-### Current or still useful
+- [Project README](../README.md)
+- [Implementation status](implementation-status.md)
+- [Results index](results-index.md)
+- [Review report](../REPORT.md)
 
-- [docs/stage10_adaptive_router_plan.md](stage10_adaptive_router_plan.md)
-- [docs/stage13_synthetic_benchmark_plan.md](stage13_synthetic_benchmark_plan.md)
-- [docs/stage14_feature_router_v2_plan.md](stage14_feature_router_v2_plan.md)
+## For Developers
 
-### Historical
+- [Quickstart](quickstart.md)
+- [Harness](harness/README.md)
+- [ADRs](adr/README.md)
+- [Branch audit](branch-audit.md)
+- [Project state ledger](project_state.md)
 
-- [docs/technical_implementation_plan.md](technical_implementation_plan.md)
+## For Maintainers
 
-## Skills
+- [Archive plan](archive-plan.md)
+- [AudioDepth router frontier strategy](frontier/audio-depth-router.md)
+- [Readability cleanup baseline](readability-cleanup-baseline.md)
+- [Readability cleanup manifest](readability-cleanup-manifest.md)
+- [Moved-file TSV](readability-cleanup-moved-files.tsv)
+- [Maintenance harness](maintenance_harness.md)
 
-- [docs/skills/README.md](skills/README.md)
-- [docs/skills/skill_07_external_validation.md](skills/skill_07_external_validation.md)
+## Course Submission / Contributions
 
-## Ambitious Exploration Docs
+- [Contribution Records](contributions/README.md)
+- [Team Contribution Template](contributions/TEAM_CONTRIBUTION_TEMPLATE.md)
+- [WUFANGZHOU Contribution Record](contributions/WUFANGZHOU.md)
 
-- [docs/ambitious_research_agenda.md](ambitious_research_agenda.md)
-- [docs/agent_challenge_board.md](agent_challenge_board.md)
-- [docs/experiment_proposal_template.md](experiment_proposal_template.md)
-- [docs/superpowers/specs/2026-06-06-compute-aware-cascade-design.md](superpowers/specs/2026-06-06-compute-aware-cascade-design.md)
-- [docs/superpowers/plans/2026-06-06-compute-aware-cascade.md](superpowers/plans/2026-06-06-compute-aware-cascade.md)
-- [docs/superpowers/specs/2026-06-06-synthetic-split-cascade-validation-design.md](superpowers/specs/2026-06-06-synthetic-split-cascade-validation-design.md)
-- [docs/superpowers/plans/2026-06-06-synthetic-split-cascade-validation.md](superpowers/plans/2026-06-06-synthetic-split-cascade-validation.md)
-- [docs/skills/](skills/)
+## Historical Records
 
-## Contribution and Handoff
+- [Archive index](archive/README.md)
+- [Historical superpowers plans](archive/superpowers/)
+- [Old plans](archive/old-plans/)
+- [Old status ledgers](archive/old-status-ledgers/)
+- [Generated result archive](../results/figures/archive/)
 
-- [docs/contributions/README.md](contributions/README.md)
-- [docs/contributions/WUFANGZHOU.md](contributions/WUFANGZHOU.md)
-- [docs/contributions/TEAM_CONTRIBUTION_TEMPLATE.md](contributions/TEAM_CONTRIBUTION_TEMPLATE.md)
-- [docs/handoff/WUFANGZHOU_HANDOFF.md](handoff/WUFANGZHOU_HANDOFF.md)
-- [docs/backup_plan.md](backup_plan.md)
-
-## Results Interpretation
-
-- [results/figures/frontier_execution_queue.md](../results/figures/frontier_execution_queue.md)
-- [results/figures/project_harness_report.md](../results/figures/project_harness_report.md)
-- [results/figures/current_results_summary.md](../results/figures/current_results_summary.md)
-- [results/figures/router_ablation_summary.md](../results/figures/router_ablation_summary.md)
-- [results/figures/synthetic_routing_summary.md](../results/figures/synthetic_routing_summary.md)
-- [results/figures/synthetic_split_routing_summary.md](../results/figures/synthetic_split_routing_summary.md)
-- [results/figures/risk_aware_selection_summary.md](../results/figures/risk_aware_selection_summary.md)
-- [results/figures/compute_aware_cascade_summary.md](../results/figures/compute_aware_cascade_summary.md)
-- [results/figures/cer_runtime_tradeoff.png](../results/figures/cer_runtime_tradeoff.png)
-- [results/figures/cascade_runtime_audit.md](../results/figures/cascade_runtime_audit.md)
-- [results/figures/cascade_runtime_normalization.md](../results/figures/cascade_runtime_normalization.md)
-- [results/figures/cascade_pareto.md](../results/figures/cascade_pareto.md)
-- [results/figures/cascade_recommendations.md](../results/figures/cascade_recommendations.md)
-- [results/figures/cascade_robustness_gap.md](../results/figures/cascade_robustness_gap.md)
-- [results/figures/cascade_recommendation_stability.md](../results/figures/cascade_recommendation_stability.md)
-- [results/figures/cascade_recommendation_family_stability.md](../results/figures/cascade_recommendation_family_stability.md)
-- [results/figures/cascade_decision_matrix.md](../results/figures/cascade_decision_matrix.md)
-- [results/figures/cascade_frontier_report.md](../results/figures/cascade_frontier_report.md)
-- [results/figures/cascade_artifact_index.md](../results/figures/cascade_artifact_index.md)
-- [results/figures/cascade_benchmark_readiness.md](../results/figures/cascade_benchmark_readiness.md)
-- [results/figures/cascade_benchmark_plan.md](../results/figures/cascade_benchmark_plan.md)
-- [results/figures/cascade_profile_playbook.md](../results/figures/cascade_profile_playbook.md)
-- [results/figures/cascade_benchmark_checklist.md](../results/figures/cascade_benchmark_checklist.md)
-- [results/tables/cascade_benchmark_manifest_template.csv](../results/tables/cascade_benchmark_manifest_template.csv)
-- [results/figures/cascade_benchmark_status.md](../results/figures/cascade_benchmark_status.md)
-- [results/figures/cascade_benchmark_handoff_packet.md](../results/figures/cascade_benchmark_handoff_packet.md)
-- [results/figures/synthetic_split_cascade_summary.md](../results/figures/synthetic_split_cascade_summary.md)
-- [results/figures/synthetic_split_cer_runtime_tradeoff.png](../results/figures/synthetic_split_cer_runtime_tradeoff.png)
-- [results/figures/synthetic_split_cascade_runtime_audit.md](../results/figures/synthetic_split_cascade_runtime_audit.md)
-- [results/figures/synthetic_split_cascade_runtime_normalization.md](../results/figures/synthetic_split_cascade_runtime_normalization.md)
-- [results/figures/synthetic_split_cascade_pareto.md](../results/figures/synthetic_split_cascade_pareto.md)
-- [results/figures/synthetic_split_cascade_recommendations.md](../results/figures/synthetic_split_cascade_recommendations.md)
-- [results/figures/meeteval_compatibility_note.md](../results/figures/meeteval_compatibility_note.md)
-- [results/figures/meeteval_readiness.md](../results/figures/meeteval_readiness.md)
-- [results/figures/meeteval_dry_run_handoff.md](../results/figures/meeteval_dry_run_handoff.md)
-- [results/figures/meeteval_dry_run_receipt.md](../results/figures/meeteval_dry_run_receipt.md)
-- [results/figures/meeteval_dry_run_checklist.md](../results/figures/meeteval_dry_run_checklist.md)
-- [results/figures/speaker_profile_audio_proxy_trial.md](../results/figures/speaker_profile_audio_proxy_trial.md)
-- [results/figures/speaker_profile_audio_proxy_summary.md](../results/figures/speaker_profile_audio_proxy_summary.md)
-- [results/figures/cpcer_lite_summary.md](../results/figures/cpcer_lite_summary.md)
-
-## Frontier Coordination
-
-- [Frontier execution queue](../results/figures/frontier_execution_queue.md)
-- [Project harness report](../results/figures/project_harness_report.md)
-
-## New Contributor Rule
-
-New contributors should read AGENTS.md, docs/project_state.md, docs/ambitious_research_agenda.md, and docs/agent_challenge_board.md before proposing new experiments.
+Historical records are kept for traceability, but they are not the recommended
+starting point for new readers.
