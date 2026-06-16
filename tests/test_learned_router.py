@@ -6,6 +6,12 @@ import tempfile
 import unittest
 from pathlib import Path
 
+try:
+    import sklearn  # noqa: F401
+    _HAS_SKLEARN = True
+except ImportError:
+    _HAS_SKLEARN = False
+
 
 # ---------------------------------------------------------------------------
 # Helpers to create minimal CSV fixtures
@@ -159,6 +165,7 @@ class TestRouterDataset(_CSVFixtureMixin, unittest.TestCase):
         self.assertEqual(len(test.sample_ids), 10)
 
 
+@unittest.skipUnless(_HAS_SKLEARN, "scikit-learn not installed")
 class TestTrainRouter(_CSVFixtureMixin, unittest.TestCase):
     def _run_model(self, model_type):
         from src.learned_router import RouterDataset, train_router
@@ -196,6 +203,7 @@ class TestTrainRouter(_CSVFixtureMixin, unittest.TestCase):
         self.assertIn("test_accuracy", summary)
 
 
+@unittest.skipUnless(_HAS_SKLEARN, "scikit-learn not installed")
 class TestCERComparison(_CSVFixtureMixin, unittest.TestCase):
     def test_comparison_structure(self):
         from src.learned_router import (
