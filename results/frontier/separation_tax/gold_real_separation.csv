@@ -1,0 +1,6 @@
+﻿case_id,cer_sep,cer_sep_trim,cer_guard_gated_trim,delta_trim,max_cr,guard_would_fire,silence_frac_spk1,silence_frac_spk2
+NoOverlap,0.982014,0.823741,0.823741,0.158273,10.6,True,0.0653,0.0563
+LightOverlap,0.857143,1.160714,0.857143,-0.303571,1.5652,False,0.0637,0.0541
+MidOverlap,0.863158,1.101754,0.863158,-0.238596,1.6187,False,0.0612,0.0507
+HeavyOverlap,1.229927,0.864964,0.864964,0.364963,8.2714,True,0.0574,0.0455
+OppositeOverlap,0.855072,0.865942,0.855072,-0.01087,1.4872,False,0.0455,0.0315

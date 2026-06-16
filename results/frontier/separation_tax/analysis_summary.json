@@ -1,0 +1,49 @@
+{
+  "configs": {
+    "greedy": {
+      "crossover_mean": 0.173,
+      "crossover_median": 0.2,
+      "overall_mean_delta": 0.079191,
+      "overall_tail_rate_sep": 0.02
+    },
+    "fallback": {
+      "crossover_mean": 0.3304,
+      "crossover_median": 0.3695,
+      "overall_mean_delta": 0.030338,
+      "overall_tail_rate_sep": 0.07
+    }
+  },
+  "detector": {
+    "n_tracks": 600,
+    "n_catastrophic": 6,
+    "auc_compression_ratio": 1.0,
+    "auc_repetition": 1.0
+  },
+  "trim_cure": {
+    "mean_cer_sep_greedy": 0.618139,
+    "mean_cer_sep_greedy_trim": 0.439517,
+    "tail_rate_sep_greedy": 0.02,
+    "tail_rate_sep_greedy_trim": 0.0
+  },
+  "router": {
+    "n": 300,
+    "guard_threshold": 2.4,
+    "guard_fired_frac": 0.016667,
+    "mean_cer": {
+      "fixed_mixed": 0.697331,
+      "fixed_sep": 0.618139,
+      "always_trim": 0.439517,
+      "guard_to_mixed": 0.437066,
+      "guard_retry_trim": 0.464264,
+      "oracle": 0.378641
+    },
+    "regret_vs_oracle": {
+      "fixed_mixed": 0.31869,
+      "fixed_sep": 0.239498,
+      "always_trim": 0.060876,
+      "guard_to_mixed": 0.058425,
+      "guard_retry_trim": 0.085623
+    },
+    "best_deployable_policy": "guard_to_mixed"
+  }
+}

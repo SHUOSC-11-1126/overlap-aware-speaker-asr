@@ -1,0 +1,7 @@
+﻿policy,mean_cer,regret_vs_oracle,reference_free
+fixed_mixed,0.697331,0.31869,yes
+fixed_sep,0.618139,0.239498,yes
+always_trim,0.439517,0.060876,yes
+guard_to_mixed,0.437066,0.058425,yes
+guard_retry_trim,0.464264,0.085623,yes
+oracle,0.378641,0.0,no(oracle)
