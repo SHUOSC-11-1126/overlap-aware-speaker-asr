@@ -1,9 +1,0 @@
-[
-  {
-    "execution_status": "wave164_presentation_extension_complete",
-    "walkthrough_scope": "wave164_walkthrough_extension",
-    "expected_inputs": "Wave104 exploration+baseline closure card.",
-    "expected_outputs": "Wave82 walkthrough extension under qualitative/demo labeling.",
-    "writeback_note": "Wave82 walkthrough extension recorded; no live demo, recording, or benchmark timing claimed."
-  }
-]

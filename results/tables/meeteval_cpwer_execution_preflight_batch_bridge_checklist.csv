@@ -1,2 +1,0 @@
-﻿checklist_order,preflight_pass_count,preflight_total_count,prerequisite_artifact,receipt_target,checklist_goal,bridge_note,next_gate
-1,5,5,results/figures/meeteval_cpwer_execution_preflight_batch.md,results/tables/meeteval_cpwer_execution_receipt.json,Verify the batch execution preflight before opening the official cpWER execution receipt.,Batch preflight reports 5/5 cases passed; confirm segment-export readiness before official cpWER execution.,Confirm this bridge before opening the official MeetEval cpWER execution receipt.

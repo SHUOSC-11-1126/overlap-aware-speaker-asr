@@ -1,8 +1,0 @@
-{
-  "scope": "speaker_profile_embedding_trial_execution_scaffold",
-  "handoff_queue_status": "queue_complete",
-  "scaffold_status": "execution_scaffold_only",
-  "case_id": "NoOverlap",
-  "readiness_status": "scaffold_ready",
-  "readiness_note": "experimental/frontier execution scaffold readiness; voiceprint or embedding execution is not claimed."
-}

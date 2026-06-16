@@ -164,3 +164,22 @@ classifier, a git-history substance/ceremony timeline, and a non-blocking
 pre-dev guard. The phenomenon — agentic loops converting compute budget into
 self-referential documentation — is worth a name and a meter regardless of where
 exactly this repository's number falls in the [89%, 95%] band.
+
+## Update — the ceremony purge
+
+The diagnosis above (≈89% ceremony saturation, degeneration index 0.46) describes
+the repository *before* remediation. A subsequent cleanup removed the valueless
+ceremony wholesale: **803 ceremony `src/*.py`, 1,112 ceremony tests, ~4,360
+ceremony result artifacts**, and the ~4,400-line `WAVE_FRONTIER_MODULES` engine in
+`project_harness.py` (lean-rewritten to the genuine baseline smoke). The deletion
+set was the name-signal ceremony (verified to compute nothing) plus a small
+hand-audited set of pure status-emitter chains, made import-closure-safe so no
+kept module or test lost a dependency (3 load-bearing ceremony helpers were
+deliberately retained).
+
+After the purge the audit re-runs at **ceremony saturation 0.035 (down from
+0.894), degeneration index 0.000**, with the substance baseline fully intact (the
+full test suite drops from 3,304 to 825 tests, all green; gold cases 5/5, core
+files 18/18). The git add-history timeline is unchanged — the epidemic still
+happened — but the working tree no longer carries it. The advisory guard remains
+wired into `make quality-predev` to keep saturation from climbing again.

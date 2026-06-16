@@ -1,9 +1,0 @@
-{
-  "execution_status": "wave15_external_validation_narrow_slice_coordination_complete",
-  "coordination_scope": "wave15_external_validation_narrow_slice",
-  "wave15_closure_status": "wave15_exploration_baseline_closure_complete",
-  "narrow_asr_eval_status": "narrow_asr_complete",
-  "external_board_state": "ready_for_narrow_audio_eval",
-  "expected_inputs": "Wave15 closure, demo wave15 writeback, narrow ASR eval receipt, and external validation board.",
-  "writeback_note": "external/sanity-check coordination only; does not claim gold CER or full external benchmark completion."
-}

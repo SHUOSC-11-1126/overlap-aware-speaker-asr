@@ -1,6 +1,0 @@
-﻿section_id,headline,artifact_anchor,coordination_note,result_label
-wave147_rollup,Wave147 closed: HeavyOverlap diagnostic refresh + demo + exploration closure,results/figures/wave147_exploration_baseline_closure_card.md,experimental/frontier coordination only; gold baseline untouched.,experimental/frontier
-heavyoverlap_coordination,HeavyOverlap coordination refresh coordinated after Wave147 closure,results/figures/wave147_speaker_profile_heavyoverlap_diagnostic_coordination_card.md,Diagnostic scope only; attribution claims still blocked; gold benchmark claims still blocked.,experimental/frontier
-demo_wave147,Demo presentation polish extended to 148 sections under qualitative/demo labeling,results/figures/demo_wave147_presentation_writeback.md,No live demo or benchmark timing claims.,qualitative/demo
-frontier_board,Frontier go/no-go board remains all_ready after Wave147 chain,results/tables/frontier_go_no_go_summary.json,Coordination receipts only; no deployable routing claims.,experimental/frontier
-wave148_boundary,OppositeOverlap speaker-profile diagnostic narrow slice refresh is the next open coordination gate,results/figures/separation_phase_diagram.md,Wave148 closure does not record overlap-case embedding execution sessions.,experimental/frontier

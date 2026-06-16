@@ -1,9 +1,0 @@
-{
-  "execution_status": "speaker_profile_heavyoverlap_diagnostic_coordination_complete",
-  "coordination_scope": "wave12_speaker_profile_heavyoverlap_diagnostic",
-  "wave12_closure_status": "wave12_exploration_baseline_closure_complete",
-  "midoverlap_coordination_status": "speaker_profile_midoverlap_diagnostic_coordination_complete",
-  "separation_benefit_signal": "separation_helps_on_heavyoverlap",
-  "expected_inputs": "Wave12 closure, demo wave12 writeback, MidOverlap diagnostic coordination, separation phase diagram.",
-  "writeback_note": "experimental/frontier diagnostic coordination only; does not record HeavyOverlap embedding execution."
-}

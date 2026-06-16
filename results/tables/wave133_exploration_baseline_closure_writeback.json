@@ -1,8 +1,0 @@
-{
-  "fill_status": "writeback_filled",
-  "writeback_scope": "wave133_exploration_baseline_closure_card",
-  "coordination_section_count": "5",
-  "execution_receipt_status": "wave133_exploration_baseline_closure_complete",
-  "blocker": "controlled_benchmark_timing_pending",
-  "fill_note": "Wave133 exploration+baseline closure rollup after Wave132 chain (cycle restart); stable gold baseline preserved."
-}

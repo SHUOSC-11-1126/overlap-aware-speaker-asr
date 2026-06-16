@@ -1,9 +1,0 @@
-{
-  "execution_status": "speaker_profile_lightoverlap_diagnostic_coordination_complete",
-  "coordination_scope": "wave8_speaker_profile_lightoverlap_diagnostic",
-  "wave8_closure_status": "wave8_exploration_baseline_closure_complete",
-  "case_scope_coordination_status": "speaker_profile_case_scope_coordination_complete",
-  "separation_harm_signal": "separation_hurts_on_lightoverlap",
-  "expected_inputs": "Wave8 closure, case-scope coordination, and separation phase diagram.",
-  "writeback_note": "experimental/frontier diagnostic coordination only; does not record LightOverlap embedding execution."
-}

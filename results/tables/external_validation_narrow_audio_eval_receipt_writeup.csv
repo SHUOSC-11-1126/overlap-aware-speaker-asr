@@ -1,2 +1,0 @@
-﻿receipt_status,dataset_name,slice_id,label,eval_status,blocker,receipt_note
-eval_receipt_filled,AISHELL-4,aishell4_meeting_excerpt_stub_001,external/sanity-check,narrow_asr_complete,none_documented,Writeback after narrow ASR eval; reference alignment and external benchmark claims remain out of scope.

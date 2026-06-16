@@ -1,9 +1,0 @@
-[
-  {
-    "current_frontier": "meeteval_compatibility",
-    "prerequisite_artifact": "results/figures/meeteval_cpwer_bridge_handoff.md",
-    "receipt_target": "results/tables/meeteval_cpwer_bridge_receipt.json",
-    "execution_note": "Open the handoff first, then write back to the receipt target after the narrow next step.",
-    "packet_scope": "Coordination-only packet; not a claim of completed frontier execution."
-  }
-]

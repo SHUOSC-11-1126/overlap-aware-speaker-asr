@@ -1,8 +1,0 @@
-{
-  "scope": "meeteval_tokenization_adaptation_handoff",
-  "handoff_status": "tokenization_adaptation_handoff_ready",
-  "aligned_count": "5",
-  "total_count": "5",
-  "queue_status": "queue_complete",
-  "observation": "Experimental/frontier tokenization handoff completion rollup; frontier fill evidence receipt remains the next coordination step."
-}

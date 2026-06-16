@@ -1,6 +1,0 @@
-﻿section_id,headline,artifact_anchor,coordination_note,result_label
-wave18_rollup,Wave18 closed: HeavyOverlap diagnostic refresh + LLM critic + demo + exploration closure,results/figures/wave18_exploration_baseline_closure_card.md,experimental/frontier coordination only; gold baseline untouched.,experimental/frontier
-heavyoverlap_diagnostic,HeavyOverlap separation-benefit diagnostic refresh coordinated after Wave18 closure,results/figures/wave18_speaker_profile_heavyoverlap_diagnostic_coordination_card.md,Diagnostic scope only; attribution claims still blocked.,experimental/frontier
-llm_critic_narrow_dry_run,LLM critic narrow dry-run refresh coordinated on 5/5 gold cases,results/figures/wave18_llm_critic_narrow_dry_run_coordination_card.md,qualitative/demo dry-run only; verified repair claims still blocked.,qualitative/demo
-demo_wave18,Demo presentation polish extended to 19 sections under qualitative/demo labeling,results/figures/demo_wave18_presentation_writeback.md,No live demo or benchmark timing claims.,qualitative/demo
-wave19_boundary,Speaker profile OppositeOverlap diagnostic refresh is the next open experimental coordination gate,results/tables/speaker_profile_status.json,Wave19 closure does not record overlap-case embedding execution sessions.,experimental/frontier

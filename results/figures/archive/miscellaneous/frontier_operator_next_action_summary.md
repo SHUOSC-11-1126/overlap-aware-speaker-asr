@@ -1,7 +1,0 @@
-# Frontier Operator Next-Action Summary
-
-This generated summary condenses the operator card into one ordered coordination sequence.
-
-| scope | coordination_state | ready_frontier | blocked_frontier | ready_action_lane | blocked_action_lane | operator_sequence | observation |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| frontier_operator_next_action_card | mixed_ready_state | meeteval_compatibility | external_validation | ready_lane | blocked_lane | ready_lane:meeteval_compatibility -> blocked_lane:external_validation | Operator card only; it converts top-level frontier readiness into the next coordination actions without claiming experiment completion. |

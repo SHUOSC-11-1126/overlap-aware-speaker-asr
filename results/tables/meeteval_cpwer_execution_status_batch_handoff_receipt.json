@@ -1,8 +1,0 @@
-[
-  {
-    "execution_status": "batch_handoff_documented",
-    "handoff_scope": "all_gold_cpwer_execution",
-    "case_id": "NoOverlap",
-    "writeback_note": "Batch cpWER execution handoff documented for coordination; official MeetEval evaluation remains pending until receipt fill."
-  }
-]

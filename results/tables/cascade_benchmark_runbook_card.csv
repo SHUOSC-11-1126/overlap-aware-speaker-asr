@@ -1,2 +1,0 @@
-﻿recommended_start_step,recommended_action,session_type,required_evidence,completion_note,urgency,runbook_note
-phase1_gold_runtime_foundation,collect_controlled_runtime,timing_capture,hardware_label;device;repeat_count;warmup_count;batch_shape;timing_notes,collect_controlled_runtime -> Gold runtime foundation artifacts are rebuilt from controlled timing.,high,Start with phase1_gold_runtime_foundation because it is do_now and root.

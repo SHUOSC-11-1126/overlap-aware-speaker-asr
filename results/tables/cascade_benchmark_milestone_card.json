@@ -1,9 +1,0 @@
-[
-  {
-    "current_start_step": "phase1_gold_runtime_foundation",
-    "next_milestone_step": "phase2_synthetic_runtime_foundation",
-    "remaining_phase_count": 3,
-    "current_urgency": "high",
-    "milestone_note": "phase1_gold_runtime_foundation unlocks phase2_synthetic_runtime_foundation and leaves 3 pending phases."
-  }
-]

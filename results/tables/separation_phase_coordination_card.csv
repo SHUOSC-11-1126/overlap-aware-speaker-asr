@@ -1,5 +1,0 @@
-﻿section_id,headline,artifact_anchor,coordination_note,result_label
-phase_gold_anchors,Gold separation phase anchors: 3/5 cases separation helps,results/figures/separation_phase_diagram.md,experimental/frontier phase evidence; silver sweep is robustness-only.,experimental/frontier
-cascade_boundary_bridge,Cascade-to-phase bridge: router_v2_costed phase alignment on gold,results/figures/cascade_boundary_bridge.md,Links compute-aware cascade selections to separation boundary without gold overwrite.,experimental/frontier
-wave5_cascade_link,Wave5 cascade coordination card closes MeetEval + Pareto loop,results/figures/cascade_frontier_coordination_card.md,Prior wave5 writeback remains coordination-only.,experimental/frontier
-deployment_boundary,Deployment claims still require controlled benchmark timing evidence,results/figures/cascade_benchmark_readiness.md,Phase diagram does not justify runtime claims without benchmark receipt fill.,qualitative/demo

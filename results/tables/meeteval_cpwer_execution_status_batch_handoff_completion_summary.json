@@ -1,8 +1,0 @@
-{
-  "scope": "meeteval_cpwer_execution_status_batch_handoff",
-  "ready_handoff_count": "0",
-  "complete_handoff_count": "5",
-  "total_handoff_count": "5",
-  "queue_status": "queue_complete",
-  "observation": "Experimental/frontier batch cpWER execution handoff completion rollup; official MeetEval evaluation is not claimed."
-}

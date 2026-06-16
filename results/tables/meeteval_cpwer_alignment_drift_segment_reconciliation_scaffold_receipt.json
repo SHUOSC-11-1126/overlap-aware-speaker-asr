@@ -1,8 +1,0 @@
-[
-  {
-    "execution_status": "scaffold_documented",
-    "scaffold_scope": "single_drift_case_reconciliation",
-    "case_id": "HeavyOverlap",
-    "writeback_note": "Segment reconciliation scaffold documented; reconciled alignment and cpWER execution remain pending."
-  }
-]

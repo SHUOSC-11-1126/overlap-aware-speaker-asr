@@ -1,7 +1,0 @@
-# Speaker Profile Go-No-Go Board Bridge Checklist
-
-This generated checklist connects the speaker-profile go-no-go board to the embedding trial execution preflight. It does not claim speaker identification success.
-
-| checklist_order | overall_state | go_count | checkpoint_count | case_scope | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |
-| --- | --- | ---: | ---: | --- | --- | --- | --- | --- | --- |
-| 1 | narrow_execution_ready | 4 | 4 | NoOverlap | results/figures/speaker_profile_go_no_go_summary.md | results/figures/speaker_profile_embedding_trial_execution_preflight_readiness.md | Verify the speaker-profile go-no-go board before reopening the embedding trial execution preflight. | Go-no-go summary reports overall_state=narrow_execution_ready with 4/4 go checkpoints for NoOverlap; attribution claims remain blocked. | Confirm this bridge before opening the speaker profile embedding trial execution preflight. |

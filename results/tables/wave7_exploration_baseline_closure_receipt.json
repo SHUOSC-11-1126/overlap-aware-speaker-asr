@@ -1,9 +1,0 @@
-{
-  "execution_status": "wave7_exploration_baseline_closure_complete",
-  "coordination_scope": "wave7_exploration_baseline",
-  "wave6_closure_status": "wave6_coordination_closure_complete",
-  "demo_presentation_status": "wave6_presentation_extension_complete",
-  "frontier_go_count": "5",
-  "expected_inputs": "Wave6 closure, benchmark coordination, demo wave6 extension, frontier go-no-go summary.",
-  "writeback_note": "探索+基线 Wave7 closure writeback; qualitative/demo and experimental/frontier labels preserved."
-}

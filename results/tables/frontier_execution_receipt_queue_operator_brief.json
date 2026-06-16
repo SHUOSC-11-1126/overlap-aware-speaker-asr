@@ -1,8 +1,0 @@
-{
-  "operator_frontier": "meeteval_compatibility",
-  "operator_action": "Update execution_status in results/tables/meeteval_cpwer_execution_receipt.json after a real frontier run and bridge verification.",
-  "operator_receipt": "results/tables/meeteval_cpwer_execution_receipt.json",
-  "operator_evidence": "results/figures/frontier_execution_receipt_queue_handoff.md; results/figures/frontier_execution_receipt_queue_handoff_bridge_checklist.md",
-  "operator_urgency": "queue_status=queue_complete; ready_receipt_count=3; pending_receipt_count=0",
-  "operator_note": "Receipt queue reports meeteval_compatibility as the first coordinated receipt-fill target with readiness_status=receipt_ready_to_fill. No benchmark execution or external audio staging is claimed until the receipt itself is updated after a real run."
-}

@@ -1,7 +1,0 @@
-# Demo Go-No-Go Summary
-
-This generated summary condenses the demo-excellence decision board into one action line. It remains qualitative/demo and does not claim live delivery.
-
-| scope | checkpoint_count | go_count | no_go_count | overall_state | primary_boundary | recommended_next_action | observation |
-| --- | ---: | ---: | ---: | --- | --- | --- | --- |
-| demo_go_no_go_board | 6 | 4 | 2 | presentation_writeback_ready | live_demo_claims_still_blocked | Proceed only with a narrow presentation writeback or delivery mockup; do not claim a live demo, recording, or public presentation without filled evidence receipts. | qualitative/demo coordination board only; it separates presentation readiness from blocked live-delivery claims. |

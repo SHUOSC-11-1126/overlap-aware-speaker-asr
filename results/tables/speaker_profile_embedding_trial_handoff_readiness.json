@@ -1,9 +1,0 @@
-{
-  "scope": "speaker_profile_embedding_trial_handoff",
-  "text_proxy_queue_status": "queue_complete",
-  "handoff_status": "embedding_trial_handoff_ready",
-  "trial_case_target": "NoOverlap",
-  "method_direction": "embedding_or_voiceprint_baseline",
-  "readiness_status": "handoff_ready",
-  "readiness_note": "experimental/frontier embedding trial handoff readiness; voiceprint or embedding execution is not claimed."
-}

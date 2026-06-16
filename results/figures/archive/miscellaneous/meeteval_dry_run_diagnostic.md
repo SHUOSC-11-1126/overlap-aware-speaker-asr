@@ -1,7 +1,0 @@
-# MeetEval Dry Run Diagnostic
-
-This generated note records the first narrow diagnostic dry run on the preferred verified case. It does not claim a finished MeetEval or cpWER evaluation.
-
-| case_id | hypothesis_source | reference_segment_count | hypothesis_segment_count | speaker_set_match | time_range_valid | export_path_valid | diagnostic_pass | diagnostic_note |
-| --- | --- | ---: | ---: | --- | --- | --- | --- | --- |
-| NoOverlap | separated_whisper | 25 | 25 | True | True | True | True | Export path validated for NoOverlap; reference and hypothesis segments align on speakers and time ranges. cpWER has not been computed. |

@@ -1,8 +1,0 @@
-{
-  "scope": "speaker_profile_text_proxy_trial",
-  "swapped_count": "5",
-  "case_count": "5",
-  "average_confidence_gap": "0.413131",
-  "queue_status": "queue_complete",
-  "observation": "Experimental/frontier text-proxy diagnostic completion rollup; swapped bias confirms text profile is a warning sign, not deployment-ready attribution."
-}

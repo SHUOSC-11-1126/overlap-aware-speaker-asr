@@ -1,9 +1,0 @@
-{
-  "handoff_status": "embedding_trial_handoff_ready",
-  "dominant_pattern": "swapped_bias",
-  "method_direction": "embedding_or_voiceprint_baseline",
-  "trial_case_target": "NoOverlap",
-  "handoff_goal": "Run a narrow embedding-or-voiceprint diagnostic trial on one verified gold case without claiming improved speaker attribution.",
-  "expected_evidence": "results/tables/speaker_profile_embedding_trial_receipt.json",
-  "handoff_note": "experimental/frontier embedding trial handoff only; voiceprint success is not claimed."
-}

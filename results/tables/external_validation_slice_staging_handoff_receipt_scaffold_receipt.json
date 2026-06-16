@@ -1,9 +1,0 @@
-[
-  {
-    "execution_status": "receipt_scaffold_complete",
-    "scaffold_scope": "single_external_slice_staging",
-    "dataset_name": "AISHELL-4",
-    "blocker": "license_confirmation_pending",
-    "writeback_note": "External slice staging receipt scaffold documented; external audio staging and benchmark evaluation remain pending."
-  }
-]

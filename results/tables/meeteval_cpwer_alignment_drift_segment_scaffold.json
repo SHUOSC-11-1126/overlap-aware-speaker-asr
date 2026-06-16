@@ -1,9 +1,0 @@
-{
-  "case_id": "HeavyOverlap",
-  "label": "experimental/frontier",
-  "scaffold_status": "scaffold_only",
-  "hypothesis_source": "separated_whisper_cleaned",
-  "inspection_target": "Segment-level cleaned separated hypothesis export for HeavyOverlap before cpWER bridge reconciliation.",
-  "expected_evidence": "results/tables/meeteval_hypothesis_segments.jsonl",
-  "scaffold_note": "Segment inspection scaffold only; no segment-level reconciliation or cpWER execution has been performed."
-}

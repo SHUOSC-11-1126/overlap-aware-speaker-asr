@@ -1,2 +1,0 @@
-﻿checkpoint_frontier,checkpoint_action,completion_signal,checkpoint_note
-meeteval_compatibility,"Execute the real frontier run, then update execution_status in results/tables/meeteval_cpwer_execution_receipt.json and attach the fill evidence note.",execution_status in results/tables/meeteval_cpwer_execution_receipt.json is no longer template_only,Phase checkpoint for meeteval_compatibility: complete this action and confirm the completion signal before advancing the fill execution stack. No benchmark execution is claimed.

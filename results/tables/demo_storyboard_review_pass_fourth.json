@@ -1,8 +1,0 @@
-{
-  "review_order": "4",
-  "card_index": "4",
-  "card_title": "Frontier",
-  "review_status": "review_complete",
-  "review_note": "Qualitative storyboard review for card 4 (Frontier) complete; no live demo or recording is claimed.",
-  "expected_evidence": "results/tables/demo_storyboard_receipt.json"
-}

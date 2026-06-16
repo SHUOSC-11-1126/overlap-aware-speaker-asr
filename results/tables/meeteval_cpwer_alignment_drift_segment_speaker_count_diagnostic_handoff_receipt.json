@@ -1,8 +1,0 @@
-[
-  {
-    "execution_status": "handoff_documented",
-    "handoff_scope": "single_drift_case_speaker_count_to_timing",
-    "case_id": "HeavyOverlap",
-    "writeback_note": "Speaker count diagnostic handoff documented for coordination; per-speaker timing diagnostic and cpWER execution remain pending."
-  }
-]

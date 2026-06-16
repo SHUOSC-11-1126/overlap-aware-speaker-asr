@@ -1,8 +1,0 @@
-{
-  "recommended_frontier": "meeteval_compatibility",
-  "recommended_action": "Execute the real frontier run, then update execution_status in results/tables/meeteval_cpwer_execution_receipt.json and attach the fill evidence note.",
-  "required_evidence": "results/figures/frontier_execution_receipt_fill_execution_handoff.md; results/figures/frontier_execution_receipt_fill_execution_handoff_bridge_checklist.md",
-  "completion_signal": "execution_status in results/tables/meeteval_cpwer_execution_receipt.json is no longer template_only",
-  "urgency": "3/3 frontiers awaiting fill execution",
-  "runbook_note": "Start with meeteval_compatibility because it is handoff_order=1 and all receipts remain template_only. No benchmark execution is claimed until the execution receipt is filled."
-}

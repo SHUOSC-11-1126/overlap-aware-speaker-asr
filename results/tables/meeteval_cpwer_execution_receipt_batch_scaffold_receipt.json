@@ -1,9 +1,0 @@
-[
-  {
-    "execution_status": "receipt_batch_scaffold_complete",
-    "scaffold_scope": "all_gold_cpwer_execution_receipt",
-    "case_id": "ALL",
-    "preflight_pass": "True",
-    "writeback_note": "Batch official cpWER execution receipt scaffolds documented for 5/5 cases; MeetEval benchmark completion remains pending."
-  }
-]

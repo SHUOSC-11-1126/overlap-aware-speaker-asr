@@ -1,7 +1,0 @@
-# Speaker Profile Embedding Trial Execution Receipt Readiness
-
-This generated note records receipt-fill readiness for one verified gold case. It does not claim voiceprint success.
-
-| scope | case_id | execution_chain_status | receipt_template_status | preflight_pass | swapped_bias_detected | combined_signal_status | readiness_status | readiness_note |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| speaker_profile_embedding_execution_receipt | NoOverlap | execution_chain_ready | template_only | True | True | text_swapped_audio_weak | receipt_ready_to_fill | experimental/frontier receipt readiness for one verified gold case; voiceprint or embedding model execution is not claimed. |

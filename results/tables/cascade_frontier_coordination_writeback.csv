@@ -1,2 +1,0 @@
-﻿fill_status,writeback_scope,coordination_section_count,execution_receipt_status,blocker,fill_note
-writeback_filled,cascade_frontier_coordination_card,4,cascade_coordination_writeback_complete,none_documented,Filled cascade frontier coordination card after MeetEval character-level receipt fill and all_ready frontier rollup.

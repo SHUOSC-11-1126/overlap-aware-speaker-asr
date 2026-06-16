@@ -1,9 +1,0 @@
-[
-  {
-    "execution_status": "readiness_documented",
-    "readiness_scope": "single_short_meeting_excerpt",
-    "dataset_name": "AISHELL-4",
-    "readiness_status": "ready_for_staging_review",
-    "writeback_note": "Staging readiness documented; external audio staging remains blocked until license confirmation is recorded."
-  }
-]

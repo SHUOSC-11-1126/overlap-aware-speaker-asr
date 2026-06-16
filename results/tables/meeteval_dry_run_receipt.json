@@ -1,9 +1,0 @@
-[
-  {
-    "execution_status": "template_only",
-    "run_scope": "single_verified_case",
-    "expected_inputs": "results/tables/meeteval_reference_segments.jsonl; results/tables/meeteval_hypothesis_segments.jsonl",
-    "expected_outputs": "Diagnostic export-path confirmation and a narrow run note.",
-    "writeback_note": "MeetEval / cpWER has not been executed yet; fill this receipt only after the first dry run."
-  }
-]

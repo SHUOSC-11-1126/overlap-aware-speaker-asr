@@ -1,9 +1,0 @@
-[
-  {
-    "execution_status": "wave164_presentation_extension_complete",
-    "storyboard_scope": "wave164_storyboard_extension",
-    "expected_inputs": "Wave104 exploration+baseline closure card.",
-    "expected_outputs": "Wave82 storyboard extension under qualitative/demo labeling.",
-    "writeback_note": "Wave82 storyboard extension recorded; no live demo, recording, or benchmark timing claimed."
-  }
-]

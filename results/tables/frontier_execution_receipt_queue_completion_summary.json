@@ -1,8 +1,0 @@
-{
-  "scope": "frontier_execution_receipt_coordination_queue",
-  "ready_receipt_count": "3",
-  "total_receipt_count": "3",
-  "pending_receipt_count": "0",
-  "queue_status": "queue_complete",
-  "observation": "Experimental/frontier execution-receipt coordination queue completion rollup; no official benchmark execution or external audio staging is claimed."
-}

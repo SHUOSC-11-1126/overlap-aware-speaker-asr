@@ -1,9 +1,0 @@
-{
-  "fill_status": "writeback_filled",
-  "writeback_scope": "wave107_external_validation_narrow_slice_coordination_card",
-  "coordination_section_count": "5",
-  "narrow_slice_id": "aishell4_meeting_excerpt_stub_001",
-  "execution_receipt_status": "wave107_external_validation_narrow_slice_coordination_complete",
-  "blocker": "gold_benchmark_claims_still_blocked",
-  "fill_note": "Documented external validation narrow slice refresh boundary after Wave106 OppositeOverlap chain; gold benchmark claims remain blocked."
-}

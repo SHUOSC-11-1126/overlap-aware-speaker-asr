@@ -1,7 +1,0 @@
-# MeetEval cpWER Alignment Drift Segment Timing Diagnostic Bridge Checklist
-
-This generated checklist turns the per-speaker timing diagnostic into a row-by-row bridge verification path. It remains experimental/frontier coordination only and does not claim cpWER execution.
-
-| checklist_order | case_id | mismatched_speaker_count | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |
-| --- | --- | ---: | --- | --- | --- | --- | --- |
-| 1 | HeavyOverlap | 1 | results/figures/meeteval_cpwer_alignment_drift_segment_timing_diagnostic_summary.md | results/figures/meeteval_cpwer_alignment_drift_segment_speaker_count_diagnostic_handoff_bridge_checklist.md | Verify the timing diagnostic bridge for HeavyOverlap before reopening the speaker count handoff bridge. | mismatched_speaker_count=1 with dominant_blocker=SPEAKER_1 delta=-2.360s; confirm per-speaker timing drift before advancing the speaker count handoff bridge. | Confirm this bridge before opening the cpWER segment speaker count diagnostic handoff bridge checklist target. |

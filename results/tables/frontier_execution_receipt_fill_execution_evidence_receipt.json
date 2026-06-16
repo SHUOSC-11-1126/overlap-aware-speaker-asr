@@ -1,8 +1,0 @@
-{
-  "receipt_frontier": "meeteval_compatibility",
-  "receipt_action": "Execute the real frontier run, then update execution_status in results/tables/meeteval_cpwer_execution_receipt.json and attach the fill evidence note.",
-  "receipt_evidence": "results/figures/frontier_execution_receipt_fill_execution_handoff.md; results/figures/frontier_execution_receipt_fill_execution_handoff_bridge_checklist.md",
-  "receipt_completion_signal": "execution_status in results/tables/meeteval_cpwer_execution_receipt.json is no longer template_only",
-  "receipt_followup": "Archive the fill evidence note and advance to the next frontier receipt in the handoff table.",
-  "receipt_note": "After the real meeteval_compatibility run, write back the evidence payload through results/tables/meeteval_cpwer_execution_receipt.json. No benchmark execution is claimed until the receipt is filled."
-}

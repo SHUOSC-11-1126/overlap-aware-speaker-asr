@@ -1,9 +1,0 @@
-{
-  "execution_status": "cascade_benchmark_coordination_writeback_complete",
-  "coordination_scope": "wave6_cascade_benchmark_boundary",
-  "wave6_closure_status": "wave6_coordination_closure_complete",
-  "benchmark_status": "repo_local_runtime_only",
-  "high_priority_artifact_count": "8",
-  "expected_inputs": "Cascade benchmark readiness, evidence receipt scaffold, and Wave6 closure card.",
-  "writeback_note": "Coordination writeback only; does not record controlled benchmark session metadata or overwrite gold CER."
-}

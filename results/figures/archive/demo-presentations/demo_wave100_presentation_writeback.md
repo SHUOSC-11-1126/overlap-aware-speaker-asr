@@ -1,4 +1,0 @@
-# Demo Wave100 Presentation Writeback
-
-polish_section_count: 101
-execution_receipt_status: wave100_presentation_extension_complete

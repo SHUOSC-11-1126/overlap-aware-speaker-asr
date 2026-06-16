@@ -1,6 +1,0 @@
-{
-  "recommended_frontier": "meeteval_compatibility",
-  "prerequisite_artifact": "results/figures/meeteval_tokenization_gain_frontier_fill_runbook_bridge_checklist.md",
-  "execution_receipt_target": "results/tables/meeteval_cpwer_execution_receipt.json",
-  "bridge_note": "After verifying runbook_status=tokenization_gain_frontier_fill_runbook_ready for meeteval_compatibility, update execution_status in results/tables/meeteval_cpwer_execution_receipt.json. No full MeetEval benchmark completion is claimed by this bridge alone."
-}

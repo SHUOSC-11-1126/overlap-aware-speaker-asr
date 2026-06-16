@@ -1,8 +1,0 @@
-{
-  "review_order": "3",
-  "step_id": "3",
-  "focus": "Routing takeaway",
-  "review_status": "review_complete",
-  "review_note": "Qualitative walkthrough review for 3 complete; no live demo or recording is claimed.",
-  "expected_evidence": "results/tables/demo_walkthrough_receipt.json"
-}

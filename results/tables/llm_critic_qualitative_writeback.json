@@ -1,9 +1,0 @@
-{
-  "fill_status": "writeback_filled",
-  "writeback_scope": "light_mid_qualitative_brief",
-  "case_scope": "LightOverlap,MidOverlap",
-  "brief_case_count": "2",
-  "execution_receipt_status": "qualitative_writeback_complete",
-  "blocker": "none_documented",
-  "fill_note": "Filled qualitative writeback after Light/Mid brief generation."
-}

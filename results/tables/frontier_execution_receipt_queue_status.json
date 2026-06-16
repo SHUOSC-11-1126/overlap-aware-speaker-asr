@@ -1,8 +1,0 @@
-{
-  "scope": "frontier_execution_receipt_queues",
-  "meeteval_readiness_status": "receipt_ready_to_fill",
-  "speaker_profile_readiness_status": "receipt_ready_to_fill",
-  "external_staging_readiness_status": "receipt_ready_to_fill",
-  "combined_readiness_status": "receipt_ready_to_fill",
-  "status_note": "Unified experimental/frontier execution-receipt readiness rollup; no official benchmark execution or external audio staging is claimed."
-}

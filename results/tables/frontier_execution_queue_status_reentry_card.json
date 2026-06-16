@@ -1,7 +1,0 @@
-{
-  "current_first_frontier": "meeteval_compatibility",
-  "status_rollup_target": "results/figures/frontier_execution_queue_status.md",
-  "combined_chain_status": "execution_chain_ready",
-  "reentry_action": "After status preflight is confirmed, reopen results/figures/frontier_execution_queue_status.md and refresh the execution queue rollup.",
-  "reentry_note": "Status reentry for meeteval_compatibility while combined_chain_status=execution_chain_ready. This remains coordination-only and does not claim benchmark execution."
-}

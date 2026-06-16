@@ -1,9 +1,0 @@
-{
-  "dataset_name": "AISHELL-4",
-  "handoff_status": "staging_handoff_ready",
-  "blocker": "license_confirmation_pending",
-  "scaffold_status": "receipt_scaffold_only",
-  "expected_inputs": "License confirmation note plus AISHELL-4 slice manifest and mapping artifact.",
-  "expected_outputs": "External slice staging receipt documenting the first narrow sanity-check excerpt.",
-  "scaffold_note": "Template-only external slice staging receipt scaffold for AISHELL-4 while blocker=license_confirmation_pending. External audio staging and benchmark evaluation remain pending."
-}

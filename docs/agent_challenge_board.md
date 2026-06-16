@@ -16,54 +16,14 @@ This sequence is coordination guidance only. It does not claim that any frontier
 
 ## Current Coordination Focus
 
-The frontier receipt-fill execution stack now has an operator brief and receipt bridge:
-
-- Entry: `results/figures/frontier_execution_receipt_fill_execution_handoff_packet.md`
-- Runbook card: `results/figures/frontier_execution_receipt_fill_execution_runbook_card.md`
-- Dashboard: `results/figures/frontier_execution_receipt_fill_execution_completion_dashboard.md`
-- Operator brief: `results/figures/frontier_execution_receipt_fill_execution_operator_brief.md`
-- Receipt bridge: `results/figures/frontier_execution_receipt_fill_execution_receipt_bridge.md`
-- Bridge checklist: `results/figures/frontier_execution_receipt_fill_execution_receipt_bridge_checklist.md`
-- Evidence receipt: `results/figures/frontier_execution_receipt_fill_execution_evidence_receipt.md`
-- Execution receipt bridge: `results/figures/frontier_execution_receipt_fill_execution_execution_receipt_bridge.md`
-- MeetEval preflight batch: `results/figures/meeteval_cpwer_execution_preflight_batch.md`
-- MeetEval receipt batch scaffold: `results/figures/meeteval_cpwer_execution_receipt_batch_scaffold.md`
-- MeetEval execution status batch: `results/figures/meeteval_cpwer_execution_status_batch.md`
-- MeetEval batch completion summary: `results/figures/meeteval_cpwer_execution_status_batch_completion_summary.md`
-- MeetEval batch handoff: `results/figures/meeteval_cpwer_execution_status_batch_handoff.md`
-- MeetEval official execution: `results/figures/meeteval_cpwer_official_execution.md`
-- MeetEval official execution bridge checklist: `results/figures/meeteval_cpwer_official_execution_bridge_checklist.md`
-- MeetEval official execution completion summary: `results/figures/meeteval_cpwer_official_execution_completion_summary.md`
-- MeetEval official execution alignment audit: `results/figures/meeteval_cpwer_official_execution_alignment_audit.md`
-- MeetEval tokenization diagnostic: `results/figures/meeteval_cpwer_official_execution_tokenization_diagnostic.md`
-- MeetEval character-level official execution: `results/figures/meeteval_cpwer_character_level_official_execution.md`
-- MeetEval reconciliation audit: `results/figures/meeteval_cpwer_official_execution_reconciliation_audit.md`
-- MeetEval tokenization adaptation completion summary: `results/figures/meeteval_cpwer_tokenization_adaptation_completion_summary.md`
-- MeetEval tokenization adaptation bridge checklist: `results/figures/meeteval_cpwer_tokenization_adaptation_completion_summary_bridge_checklist.md`
-- Speaker profile text-proxy diagnostic bridge checklist: `results/figures/speaker_profile_text_proxy_trial_diagnostic_bridge_checklist.md`
-- Speaker profile text-proxy completion summary: `results/figures/speaker_profile_text_proxy_trial_diagnostic_completion_summary.md`
-- Speaker profile text-proxy completion bridge checklist: `results/figures/speaker_profile_text_proxy_trial_diagnostic_completion_summary_bridge_checklist.md`
-- Speaker profile embedding handoff readiness: `results/figures/speaker_profile_embedding_trial_handoff_readiness.md`
-- Speaker profile embedding handoff completion summary: `results/figures/speaker_profile_embedding_trial_handoff_completion_summary.md`
-- Speaker profile audio proxy trial: `results/figures/speaker_profile_audio_proxy_trial.md`
-- Speaker profile audio proxy summary: `results/figures/speaker_profile_audio_proxy_summary.md`
-- Speaker profile multi-signal diagnostic: `results/figures/speaker_profile_multisignal_diagnostic.md`
-- Speaker profile multi-signal summary: `results/figures/speaker_profile_multisignal_summary.md`
-- MeetEval tokenization adaptation handoff: `results/figures/meeteval_tokenization_adaptation_handoff.md`
-- MeetEval tokenization handoff completion: `results/figures/meeteval_tokenization_adaptation_handoff_completion_summary.md`
-- MeetEval tokenization gain scorecard handoff completion summary: `results/figures/meeteval_cpwer_tokenization_gain_scorecard_handoff_completion_summary.md`
-- MeetEval tokenization gain frontier fill runbook card: `results/figures/meeteval_tokenization_gain_frontier_fill_runbook_card.md`
-- MeetEval tokenization gain frontier fill runbook bridge checklist: `results/figures/meeteval_tokenization_gain_frontier_fill_runbook_bridge_checklist.md`
-- MeetEval tokenization gain frontier fill execution receipt bridge: `results/figures/meeteval_tokenization_gain_frontier_fill_execution_receipt_bridge.md`
-- MeetEval tokenization gain frontier fill execution receipt bridge checklist: `results/figures/meeteval_tokenization_gain_frontier_fill_execution_receipt_bridge_checklist.md`
-- MeetEval tokenization gain frontier fill operator brief: `results/figures/meeteval_tokenization_gain_frontier_fill_operator_brief.md`
-- Speaker profile go-no-go board bridge checklist: `results/figures/speaker_profile_go_no_go_board_bridge_checklist.md`
-- Speaker profile scaffold completion: `results/figures/speaker_profile_embedding_trial_execution_scaffold_completion_summary.md`
-- Speaker profile preflight readiness: `results/figures/speaker_profile_embedding_trial_execution_preflight_readiness.md`
-
-MeetEval compatibility remains the recommended first fill target. Character-spaced official cpWER (`python -m src.meeteval_cpwer_character_level_official_execution --all`) reconciles `5/5` gold cases with bridge-lite. Tokenization gain handoff completion is `queue_complete`; the tokenization gain frontier fill runbook card, bridge checklist, execution receipt bridge, and operator brief now record the ready receipt-fill path without claiming full benchmark completion.
-
-Speaker profile execution scaffold completion is `queue_complete` for `NoOverlap`; preflight readiness tracks swapped-bias proxy data before any voiceprint execution — still diagnostic-only. The lightweight audio-profile proxy trial reproduces the swapped-bias pattern, but with only a near-tie confidence gap. The new multi-signal diagnostic now makes that boundary explicit: text and audio agree on direction, yet audio remains only `weak_support`, so the next justified move is a narrow embedding baseline rather than any attribution claim.
+The frontier receipt-fill / handoff / coordination-writeback stack that once
+lived here was removed in the ceremony purge (it was self-referential
+scaffolding that computed nothing — see
+`docs/frontier/agentic_research_entropy.md`). Pick the next frontier item from
+the sequence above and produce a *computed, falsifiable* result for it; do not
+recreate status/handoff/receipt documents as a substitute for work. The
+advisory `make quality-predev` entropy guard will warn if a change adds
+ceremony files without substance.
 
 ## Level 1: Documentation / Presentation
 

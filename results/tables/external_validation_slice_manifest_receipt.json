@@ -1,9 +1,0 @@
-[
-  {
-    "execution_status": "manifest_complete",
-    "slice_scope": "single_short_meeting_excerpt",
-    "dataset_name": "AISHELL-4",
-    "staging_status": "ready_for_staging",
-    "writeback_note": "Slice manifest documented; external audio staging remains blocked until license confirmation is recorded."
-  }
-]

@@ -1,9 +1,0 @@
-{
-  "fill_status": "receipt_filled",
-  "case_scope": "all_gold",
-  "case_count": "5",
-  "execution_receipt_status": "character_level_cpwer_receipt_fill_complete",
-  "tokenization_mode": "character_spaced",
-  "blocker": "none_documented",
-  "fill_note": "Execution receipt filled with character-spaced MeetEval cpWER evidence for all verified gold cases."
-}

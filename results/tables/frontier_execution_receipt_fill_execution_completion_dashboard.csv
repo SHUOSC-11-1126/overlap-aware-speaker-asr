@@ -1,2 +1,0 @@
-﻿current_first_frontier,awaiting_fill_execution_count,total_frontier_count,combined_fill_execution_status,dominant_blocker,dashboard_note
-meeteval_compatibility,3,3,fill_execution_ready,template_only_execution_receipts,meeteval_compatibility leads the fill execution queue with 3/3 frontiers still awaiting fill; no benchmark execution is claimed until receipts are filled.

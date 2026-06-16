@@ -1,2 +1,0 @@
-﻿current_first_frontier,blocked_frontier,next_milestone,remaining_frontier_count,dominant_blocker,dashboard_note
-meeteval_compatibility,external_validation,ready_lane_checkpoint_complete,1,external_validation,meeteval_compatibility leads the status/handoff subchain while external_validation remains the dominant coordination blocker. This remains coordination-only and does not claim frontier execution.

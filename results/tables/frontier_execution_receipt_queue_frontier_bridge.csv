@@ -1,2 +1,0 @@
-﻿receipt_queue_frontier,frontier_queue_head,bridge_reason,bridge_note
-meeteval_compatibility,meeteval_compatibility,The receipt queue head aligns with the breadth-first frontier queue head for the current first frontier.,Receipt queue recommends meeteval_compatibility while the frontier queue head is meeteval_compatibility; no benchmark execution is claimed until receipts are updated after real runs.

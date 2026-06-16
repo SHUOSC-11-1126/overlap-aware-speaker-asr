@@ -1,7 +1,0 @@
-# External Validation Slice Staging Execution Status Bridge Checklist
-
-This generated checklist turns the external staging execution-chain status rollup into a row-by-row bridge verification path. It remains external/sanity-check coordination only and does not claim benchmark execution.
-
-| checklist_order | dataset_name | execution_chain_status | blocker | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | AISHELL-4 | execution_chain_ready | license_confirmation_pending | results/figures/external_validation_slice_staging_execution_status.md | results/tables/external_validation_slice_staging_handoff_receipt.json | Verify the external staging execution-chain status rollup for AISHELL-4 before any audio staging. | Status rollup reports execution_chain_status=execution_chain_ready with blocker=license_confirmation_pending; confirm chain readiness before filling the external slice staging receipt. | Confirm this bridge before claiming any external audio staging or benchmark execution. |

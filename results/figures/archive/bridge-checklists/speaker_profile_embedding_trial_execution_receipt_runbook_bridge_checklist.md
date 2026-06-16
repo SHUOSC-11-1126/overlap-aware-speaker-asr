@@ -1,7 +1,0 @@
-# Speaker Profile Embedding Trial Execution Receipt Runbook Bridge Checklist
-
-This generated checklist turns the speaker-profile runbook card into an ordered verification path. It remains experimental/frontier coordination only and does not fill receipts or claim voiceprint success.
-
-| checklist_order | recommended_case | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |
-| --- | --- | --- | --- | --- | --- | --- |
-| 1 | NoOverlap | results/figures/speaker_profile_embedding_trial_execution_receipt_runbook_card.md | results/figures/speaker_profile_embedding_trial_execution_receipt_readiness.md | Verify the speaker-profile runbook card for NoOverlap before reopening the readiness target. | Start with NoOverlap because readiness_status=receipt_ready_to_fill and checklist_order=1. This remains experimental/frontier coordination only and does not fill the receipt or claim voiceprint success. | Confirm this bridge before opening results/figures/speaker_profile_embedding_trial_execution_receipt_readiness.md. |

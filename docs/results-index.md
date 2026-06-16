@@ -59,30 +59,8 @@ results from generated historical records.
 
 ## Historical Archive
 
-Generated records have been moved to:
-
-| Category | Location | Treat As |
-|---|---|---|
-| Wave records | `results/figures/archive/waves/` | Historical trace |
-| Receipts | `results/figures/archive/receipts/` | Execution trace |
-| Writebacks | `results/figures/archive/writebacks/` | Agent writeback trace |
-| Bridge checklists | `results/figures/archive/bridge-checklists/` | Automation/checklist trace |
-| Demo presentation records | `results/figures/archive/demo-presentations/` | Demo history |
-| Miscellaneous generated coordination records | `results/figures/archive/miscellaneous/` | Historical coordination |
-
-## What Not To Treat As Final Claims
-
-- Coordination targets
-- Receipts
-- Writebacks
-- Bridge checklists
-- Frontier queues
-- AudioDepth exploratory branch notes before separate review
-- Demo presentation writebacks
-- Synthetic/silver validation when discussing gold benchmark results
-
-## Archive Policy
-
-Historical records are not deleted. They are moved out of the main reading path,
-indexed here, and tracked in [readability-cleanup-manifest.md](readability-cleanup-manifest.md)
-and [readability-cleanup-moved-files.tsv](readability-cleanup-moved-files.tsv).
+The generated wave / receipt / writeback / bridge-checklist archive that
+previously lived under `results/figures/archive/` was removed in the ceremony
+purge (see `docs/frontier/agentic_research_entropy.md`). It is recoverable from
+git history if ever needed, but it carried no research value and is no longer
+part of the repository.

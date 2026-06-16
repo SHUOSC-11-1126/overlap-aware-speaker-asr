@@ -1,9 +1,0 @@
-{
-  "scope": "frontier_execution_receipt_queue_writeback",
-  "total_frontier_count": "3",
-  "awaiting_writeback_count": "2",
-  "writeback_blocked_count": "0",
-  "writeback_complete_count": "1",
-  "combined_writeback_status": "writeback_queue_in_progress",
-  "writeback_note": "experimental/frontier receipt-queue writeback rollup; template-only receipts remain unfilled and filled receipts stay explicitly labeled."
-}
