@@ -1,0 +1,76 @@
+{
+  "n": 100,
+  "crossover_threshold": 0.17,
+  "guard_threshold": 2.4,
+  "by_split": {
+    "dev": {
+      "split": "dev",
+      "n": 50,
+      "mean_cer": {
+        "oracle": 0.410054,
+        "fixed_mixed": 1.012742,
+        "fixed_sep": 0.465209,
+        "fixed_sep_trim": 0.475248,
+        "halluc_2way": 0.50896,
+        "halluc_3way": 0.519548,
+        "overlap_router": 0.479744
+      },
+      "regret_vs_oracle": {
+        "fixed_mixed": 0.602688,
+        "fixed_sep": 0.055155,
+        "fixed_sep_trim": 0.065194,
+        "halluc_2way": 0.098906,
+        "halluc_3way": 0.109494,
+        "overlap_router": 0.06969
+      },
+      "best_reference_free": "fixed_sep",
+      "best_overall": "fixed_sep"
+    },
+    "test": {
+      "split": "test",
+      "n": 50,
+      "mean_cer": {
+        "oracle": 0.382164,
+        "fixed_mixed": 0.522058,
+        "fixed_sep": 0.718063,
+        "fixed_sep_trim": 0.423084,
+        "halluc_2way": 0.46486,
+        "halluc_3way": 0.478259,
+        "overlap_router": 0.421851
+      },
+      "regret_vs_oracle": {
+        "fixed_mixed": 0.139894,
+        "fixed_sep": 0.335899,
+        "fixed_sep_trim": 0.04092,
+        "halluc_2way": 0.082696,
+        "halluc_3way": 0.096095,
+        "overlap_router": 0.039687
+      },
+      "best_reference_free": "fixed_sep_trim",
+      "best_overall": "overlap_router"
+    }
+  },
+  "all": {
+    "split": "all",
+    "n": 100,
+    "mean_cer": {
+      "oracle": 0.396109,
+      "fixed_mixed": 0.7674,
+      "fixed_sep": 0.591636,
+      "fixed_sep_trim": 0.449166,
+      "halluc_2way": 0.48691,
+      "halluc_3way": 0.498903,
+      "overlap_router": 0.450798
+    },
+    "regret_vs_oracle": {
+      "fixed_mixed": 0.371291,
+      "fixed_sep": 0.195527,
+      "fixed_sep_trim": 0.053057,
+      "halluc_2way": 0.090801,
+      "halluc_3way": 0.102794,
+      "overlap_router": 0.054689
+    },
+    "best_reference_free": "fixed_sep_trim",
+    "best_overall": "fixed_sep_trim"
+  }
+}
