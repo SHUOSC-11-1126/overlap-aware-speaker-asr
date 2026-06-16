@@ -79,6 +79,29 @@ This result is labeled `experimental/frontier`. It uses observed runtime fields 
 
 This result is labeled `synthetic/silver` plus `experimental/frontier`. It extends the cascade analysis onto the held-out synthetic split benchmark without promoting silver evidence into gold claims.
 
+### Mode B: Three-Tier Compute-Aware Cascade (谢宇轩)
+
+A reference-free three-tier escalation architecture that routes each sample through progressively more expensive processing only when observable instability signals justify the extra spend.
+
+| Tier | Name | Trigger | Methods | Cost |
+|------|------|---------|---------|------|
+| 1 | Cheap | Always (default) | `mixed_whisper`, `separated_whisper` | 1.0–2.0 |
+| 2 | Stronger | Unstable signals | `separated_whisper_cleaned`, `stronger_model` | 2.1–2.5 |
+| 3 | Critic | Extreme instability | `llm_critic`, `manual_review` | 3.5–4.0 |
+
+**Gold 5-case tier distribution** (3/5 Tier 1, 2/5 Tier 2, 0/5 Tier 3):
+
+| strategy | average CER | average cost | auto coverage |
+|----------|-----------:|-------------:|--------------:|
+| fixed_mixed_whisper | 0.3021 | 1.00 | 100% |
+| fixed_separated_whisper | 0.1918 | 2.00 | 100% |
+| router_v2_baseline | 0.1200 | 1.60 | 100% |
+| **tiered_cascade_v1** | **0.1811** | **1.92** | **100%** |
+
+All escalation decisions use only observable reference-free signals (duplicate count, runtime inflation, text-length ratio, overlap level). CER is reserved for post-decision evaluation. See [`results/figures/cascade_tiers_summary.md`](results/figures/cascade_tiers_summary.md) and [`results/figures/cascade_tiers_comparison_summary.md`](results/figures/cascade_tiers_comparison_summary.md).
+
+Module: [`src/cascade_tiers.py`](src/cascade_tiers.py) (907 lines) · Tests: [`tests/test_cascade_tiers.py`](tests/test_cascade_tiers.py) (24 tests) · Label: `experimental/frontier`
+
 ## Project Map
 
 The repository now has a stable baseline and a breadth-first frontier queue. The diagram below shows the main flow at a glance.
@@ -313,4 +336,7 @@ python -m src.router_feature_importance
 
 | Contributor | GitHub | Contributions |
 | --- | --- | --- |
-| 王景宏 | [@ceilf6](https://github.com/ceilf6) | Lead contributor spanning both project lines. **Stable baseline:** CER evaluation, adaptive router v1/v2, risk-aware selector, speaker-aware CER, and cpCER-lite. **Frontier exploration:** compute-aware cascade, MeetEval/cpWER compatibility, speaker-profile / voiceprint risk, external mini-validation, LLM critic, and the demo. **Cross-cutting:** the `project_harness` coordination backbone tying baseline and frontier together. Secondary: repository maintenance and the development Harness (Git hooks / knowledge-base contract / SDD / TDD) with repo-guard CR. |
+| 王景宏 (ceilf6) | [@ceilf6](https://github.com/ceilf6) | Lead contributor spanning both project lines. **Stable baseline:** CER evaluation, adaptive router v1/v2, risk-aware selector, speaker-aware CER, and cpCER-lite. **Frontier exploration:** compute-aware cascade, MeetEval/cpWER compatibility, speaker-profile / voiceprint risk, external mini-validation, LLM critic, and the demo. **Cross-cutting:** the `project_harness` coordination backbone tying baseline and frontier together. Secondary: repository maintenance and the development Harness (Git hooks / knowledge-base contract / SDD / TDD) with repo-guard CR. |
+| 谢宇轩 (xyx12369) | [@xyx12369](https://github.com/xyx12369) | **Mode B — Three-Tier Compute-Aware Cascaded Recognition.** Designed and delivered a reference-free escalation architecture that routes each audio sample through progressively more expensive processing only when observable instability signals justify the extra cost. **Tier 1 (Cheap):** whisper-small + router_v2 baseline. **Tier 2 (Stronger):** risk-gated stronger ASR or cleaned post-processing triggered by duplicate count, runtime inflation, and overlap severity. **Tier 3 (Critic):** LLM critic or manual review gate for extreme-instability cases. Delivered `src/cascade_tiers.py` with a 24-unit-test TDD suite, CER-cost tradeoff scatter plot, per-case cost-aware routing table, tier coverage statistics, and strategy comparison analysis against fixed baselines and router_v2. All escalation decisions use only reference-free observable signals; CER is reserved for post-decision evaluation. Label: `experimental/frontier`. |
+
+Additional contributors will be recorded here. See [CONTRIBUTIONS.md](CONTRIBUTIONS.md) for the role/module breakdown.
