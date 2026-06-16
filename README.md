@@ -138,6 +138,16 @@ Stage 26 builds a controlled route-sensitive benchmark because Stage 24/25 showe
 
 The first real Whisper run evaluates 40 controlled samples with `faster-whisper` base. It gives fixed mixed CER `0.467818`, fixed separated/cleaned CER `0.260124`, oracle CER `0.255923`, router_v2 CER `0.383122`, and controlled hybrid/fusion router CER `0.256816`. This is the first real-ASR proof that a controlled AudioDepth-style router can beat router_v2 on a route-sensitive set, while the limitation is equally clear: fixed separated is already very strong, so the router mainly learns to avoid the few mixed-favored cases rather than discover a complex mixed/separated boundary.
 
+### Balanced Route-Sensitive Benchmark v2
+
+Stage 27 adds a more balanced controlled frontier experiment without changing the stable baseline or overwriting Stage 26. It builds a 240-candidate pool and a 120-sample final v2 benchmark with equal mixed-win, separated-win, cleaned-win, and review-needed anchor families, then evaluates 60 stratified samples with real `faster-whisper` base.
+
+This v2 pass is still `experimental/frontier` and `silver_plus_unverified`. It remains inspired by RGB-D / depth-augmented image recognition: overlapping speech is treated as time-frequency occlusion, and the new AudioDepth v2 maps are explicitly `analysis_only_irm_proxy` maps generated from mixed plus source-track energy proxies. They are not deployable mixed-audio-only features.
+
+Real Whisper oracle distribution on the evaluated v2 slice is mixed `34`, separated `26`, cleaned `0`; review-needed flags mark `57` of `60` samples. The cleaned route therefore remains a negative finding in this run: the cleaned-win anchors did not create real Whisper cases where cleaned became the oracle route.
+
+The balanced route-winner router reaches CER `0.502854` with route accuracy `0.983333`, compared with router_v2 CER `0.643520`, fixed mixed `0.726484`, fixed separated/cleaned `0.667789`, and oracle `0.502854`. Its predictions are mixed `33`, separated `27`, cleaned `0`, so this does prove the v2 router is not blindly selecting separated. It does not yet prove cleaned routing; that remains a frontier gap.
+
 README-ready figures:
 
 - `results/figures/audio_depth_systematic_overview.png`
@@ -149,6 +159,11 @@ README-ready figures:
 - `results/figures/controlled_benchmark_overview.png`
 - `results/figures/controlled_main_result_card.png`
 - `results/figures/controlled_separation_phase_card.png`
+- `results/figures/audio_depth_balanced_overview.png`
+- `results/figures/audio_depth_balanced_route_distribution_card.png`
+- `results/figures/audio_depth_balanced_main_result_card.png`
+- `results/figures/audio_depth_balanced_case_grid.png`
+- `results/figures/audio_depth_v2_map_examples.png`
 
 ## Project Map
 

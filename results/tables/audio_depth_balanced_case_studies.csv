@@ -1,0 +1,15 @@
+sample_id,intended_family,oracle_route,route_gap,mixed_cer,separated_cer,cleaned_cer,router_v2_prediction,balanced_router_prediction,review_candidate,mixed_transcript,separated_transcript,cleaned_transcript
+controlled_route_sensitive_v2_0021,mixed_win_anchor,mixed,0.863636,0.136364,1.0,1.0,mixed,mixed,True,哦不太一致我可以跟你解釋你下班的時間必定也晚,"[SPEAKER_1] 
+[SPEAKER_2] 搓碎搓碎搓碎",搓碎搓碎搓碎
+controlled_route_sensitive_v2_0041,mixed_win_anchor,mixed,0.862069,0.137931,1.0,1.0,mixed,mixed,True,因为你可以为了身体健康健康那你个人的生活空间必定也就这么点,"[SPEAKER_1] 
+[SPEAKER_2] ",
+controlled_route_sensitive_v2_0005,mixed_win_anchor,mixed,0.823529,0.117647,0.941176,0.941176,mixed,mixed,True,光觉得晚睡晚起少夜跟8点睡6点起,"[SPEAKER_1] 我覺得蠻廢玩的
+[SPEAKER_2] ",我覺得蠻廢玩的
+controlled_route_sensitive_v2_0002,separated_win_anchor,separated,0.0,1.0,0.347826,0.347826,mixed,separated,True,,"[SPEAKER_1] 哪怕这个自己是一个刷倒音的自己
+[SPEAKER_2] 意思是2点10点起",哪怕这个自己是一个刷倒音的自己意思是2点10点起
+controlled_route_sensitive_v2_0003,cleaned_win_anchor,separated,0.0,0.666667,0.52381,0.52381,mixed,separated,True,我那你再抽一集没问题 先不抽一集,"[SPEAKER_1] 我这里再稍微解释一下
+[SPEAKER_2] 沒問題沒問題先不著急不著急",我这里再稍微解释一下沒問題沒問題先不著急不著急
+controlled_route_sensitive_v2_0006,separated_win_anchor,separated,0.0,1.0,0.291667,0.291667,mixed,separated,True,,"[SPEAKER_1] 大臣早期也沒完
+[SPEAKER_2] 因為有一個前提性的問題沒有討論",大臣早期也沒完因為有一個前提性的問題沒有討論
+controlled_route_sensitive_v2_0004,review_needed_anchor,mixed,0.0,1.0,1.0,1.0,mixed,mixed,True,,"[SPEAKER_1] 
+[SPEAKER_2] ",

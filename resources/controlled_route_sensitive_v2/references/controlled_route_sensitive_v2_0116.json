@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0116",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 晚睡早起也算好夜了\n[SPEAKER_2] 只在讲的熬夜所谓的熬夜就是晚睡晚起是吧",
+  "reference_spk1": "晚睡早起也算好夜了",
+  "reference_spk2": "只在讲的熬夜所谓的熬夜就是晚睡晚起是吧",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0116",
+  "intended_family": "review_needed_anchor",
+  "expected_winner": "review_needed"
+}

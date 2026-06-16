@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0020",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 總睡晚睡\n[SPEAKER_2] 没问题没问题 先不着急",
+  "reference_spk1": "總睡晚睡",
+  "reference_spk2": "没问题没问题 先不着急",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0020",
+  "intended_family": "review_needed_anchor",
+  "expected_winner": "review_needed"
+}

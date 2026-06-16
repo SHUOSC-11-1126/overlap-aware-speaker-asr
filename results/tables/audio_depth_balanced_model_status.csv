@@ -1,0 +1,2 @@
+model_name,status,train_samples,heldout_samples,heldout_route_accuracy,model_path,evidence_label
+balanced_route_winner_router,trained,45,15,1.0,models/audio_depth_balanced_route_winner_router.json,frontier_real_whisper_silver_plus_unverified

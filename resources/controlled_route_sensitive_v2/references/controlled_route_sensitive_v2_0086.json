@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0086",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 總睡晚睡\n[SPEAKER_2] 那你个人的生活空间必定也就这么点",
+  "reference_spk1": "總睡晚睡",
+  "reference_spk2": "那你个人的生活空间必定也就这么点",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0086",
+  "intended_family": "separated_win_anchor",
+  "expected_winner": "separated"
+}

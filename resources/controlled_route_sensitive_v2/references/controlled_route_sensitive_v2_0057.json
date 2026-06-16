@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0057",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 哪怕自己是刷抖音的自己\n[SPEAKER_2] 好我先聊完 都帅玩起",
+  "reference_spk1": "哪怕自己是刷抖音的自己",
+  "reference_spk2": "好我先聊完 都帅玩起",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0057",
+  "intended_family": "mixed_win_anchor",
+  "expected_winner": "mixed"
+}

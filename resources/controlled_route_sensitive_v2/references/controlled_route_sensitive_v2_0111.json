@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0111",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 他让你在那个时间段里拥有了自己\n[SPEAKER_2] 你下班的時間必定也晚",
+  "reference_spk1": "他让你在那个时间段里拥有了自己",
+  "reference_spk2": "你下班的時間必定也晚",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0111",
+  "intended_family": "cleaned_win_anchor",
+  "expected_winner": "cleaned"
+}

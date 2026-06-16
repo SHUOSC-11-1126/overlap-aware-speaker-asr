@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0033",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 你没有多两个小时但是你自己的是不是多两个我可以给你解释\n[SPEAKER_2] 跟8点睡6点起午",
+  "reference_spk1": "你没有多两个小时但是你自己的是不是多两个我可以给你解释",
+  "reference_spk2": "跟8点睡6点起午",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0033",
+  "intended_family": "mixed_win_anchor",
+  "expected_winner": "mixed"
+}

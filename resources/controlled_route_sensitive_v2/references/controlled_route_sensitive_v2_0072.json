@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0072",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 晚睡早起也算好夜了\n[SPEAKER_2] 你是怎么多出额外的时间来过自己的生活的",
+  "reference_spk1": "晚睡早起也算好夜了",
+  "reference_spk2": "你是怎么多出额外的时间来过自己的生活的",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0072",
+  "intended_family": "review_needed_anchor",
+  "expected_winner": "review_needed"
+}

@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0024",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 哪怕自己是刷抖音的自己\n[SPEAKER_2] 那你个人的生活空间必定也就这么点",
+  "reference_spk1": "哪怕自己是刷抖音的自己",
+  "reference_spk2": "那你个人的生活空间必定也就这么点",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0024",
+  "intended_family": "review_needed_anchor",
+  "expected_winner": "review_needed"
+}

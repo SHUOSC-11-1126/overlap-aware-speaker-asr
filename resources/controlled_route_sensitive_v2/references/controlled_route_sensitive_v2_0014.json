@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0014",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 我往这里再稍微解释一下\n[SPEAKER_2] 我多了两个小时",
+  "reference_spk1": "我往这里再稍微解释一下",
+  "reference_spk2": "我多了两个小时",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0014",
+  "intended_family": "separated_win_anchor",
+  "expected_winner": "separated"
+}

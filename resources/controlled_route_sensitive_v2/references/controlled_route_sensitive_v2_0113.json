@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0113",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 我往这里再稍微解释一下\n[SPEAKER_2] 因為有一個前提性的問題沒有討論",
+  "reference_spk1": "我往这里再稍微解释一下",
+  "reference_spk2": "因為有一個前提性的問題沒有討論",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0113",
+  "intended_family": "mixed_win_anchor",
+  "expected_winner": "mixed"
+}

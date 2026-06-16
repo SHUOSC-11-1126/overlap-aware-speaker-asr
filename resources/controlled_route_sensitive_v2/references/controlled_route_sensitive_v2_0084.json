@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0084",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 因为你可以早睡早起\n[SPEAKER_2] 日常時間是一致的沒錯吧",
+  "reference_spk1": "因为你可以早睡早起",
+  "reference_spk2": "日常時間是一致的沒錯吧",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0084",
+  "intended_family": "review_needed_anchor",
+  "expected_winner": "review_needed"
+}

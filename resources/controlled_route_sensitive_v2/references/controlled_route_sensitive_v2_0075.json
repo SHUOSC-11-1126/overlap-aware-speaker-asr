@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0075",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 總睡晚睡\n[SPEAKER_2] 我的意思是2点睡10点起",
+  "reference_spk1": "總睡晚睡",
+  "reference_spk2": "我的意思是2点睡10点起",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0075",
+  "intended_family": "cleaned_win_anchor",
+  "expected_winner": "cleaned"
+}

@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0060",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 刚觉得晚睡晚起少夜\n[SPEAKER_2] 既然你是晚睡晚起",
+  "reference_spk1": "刚觉得晚睡晚起少夜",
+  "reference_spk2": "既然你是晚睡晚起",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0060",
+  "intended_family": "review_needed_anchor",
+  "expected_winner": "review_needed"
+}

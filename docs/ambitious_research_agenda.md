@@ -133,3 +133,16 @@ The baseline is stable. The frontier should be bold, explicit, and well-labeled.
 - Limitation:
   - references are currently `silver_plus_unverified`
   - the first controlled slice is separation-dominant, so future samples should add more mixed-favored and cleaned-favored cases
+
+## 14. Balanced Route-Sensitive Benchmark v2
+
+- Question: can a route-balanced benchmark prove that a frontier router is not simply selecting separated?
+- Current evidence:
+  - 240 candidate v2 samples generated
+  - 120 final v2 samples generated with equal anchor families
+  - 60 stratified samples evaluated with real faster-whisper base
+  - balanced router CER `0.502854` versus router_v2 `0.643520`
+- Limitation:
+  - references remain `silver_plus_unverified`
+  - cleaned oracle wins are `0`, so cleaned routing is a negative finding rather than a demonstrated win
+  - AudioDepth v2 maps are `analysis_only_irm_proxy`, not deployable features

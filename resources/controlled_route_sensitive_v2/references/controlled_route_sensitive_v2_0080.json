@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0080",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 我往这里再稍微解释一下\n[SPEAKER_2] 上班的時間必定也晚",
+  "reference_spk1": "我往这里再稍微解释一下",
+  "reference_spk2": "上班的時間必定也晚",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0080",
+  "intended_family": "review_needed_anchor",
+  "expected_winner": "review_needed"
+}

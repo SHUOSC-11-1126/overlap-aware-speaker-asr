@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0090",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 哪怕自己是刷抖音的自己\n[SPEAKER_2] 你方式要,那它是怎么缓解我们的空虚的",
+  "reference_spk1": "哪怕自己是刷抖音的自己",
+  "reference_spk2": "你方式要,那它是怎么缓解我们的空虚的",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0090",
+  "intended_family": "separated_win_anchor",
+  "expected_winner": "separated"
+}

@@ -1,0 +1,15 @@
+group,model_name,average_cer,sample_count
+mixed,audio_depth_balanced_route_winner_router,0.651093,34
+mixed,balanced_family_prior,0.661174,34
+mixed,fixed_cleaned,0.942155,34
+mixed,fixed_mixed,0.651093,34
+mixed,fixed_separated,0.942155,34
+mixed,oracle,0.651093,34
+mixed,router_v2,0.651093,34
+separated,audio_depth_balanced_route_winner_router,0.309003,26
+separated,balanced_family_prior,0.309003,26
+separated,fixed_cleaned,0.309003,26
+separated,fixed_mixed,0.825072,26
+separated,fixed_separated,0.309003,26
+separated,oracle,0.309003,26
+separated,router_v2,0.633616,26

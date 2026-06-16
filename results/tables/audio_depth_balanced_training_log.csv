@@ -1,0 +1,5 @@
+model_name,epoch,train_route_accuracy
+balanced_route_winner_router,1,0.6
+balanced_route_winner_router,25,0.911111
+balanced_route_winner_router,75,0.933333
+balanced_route_winner_router,150,0.977778

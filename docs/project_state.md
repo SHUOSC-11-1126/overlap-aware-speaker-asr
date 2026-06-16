@@ -46,6 +46,7 @@ This document is for future Codex / AI coding agents so they can resume work wit
 - experiment proposal template
 - experimental compute-aware cascade analysis
 - AudioDepth-Router frontier prototype with deployable depth-augmented spectrogram maps
+- Balanced Route-Sensitive Benchmark v2 frontier validation
 
 ## Current Core Findings
 
@@ -166,6 +167,29 @@ Stage 26 adds a controlled benchmark designed to make route choices matter.
 - controlled hybrid/fusion CER: `0.256816`
 
 Interpretation: controlled real-ASR evidence now supports a hybrid router beating router_v2, but the set is separation-dominant and not yet gold. The next improvement is manual verification plus more mixed-favored and cleaned-favored samples.
+
+## Balanced Route-Sensitive Benchmark v2
+
+Stage 27 creates a route-balanced frontier follow-up to Stage 26.
+
+- Candidate pool: `240`
+- Final v2 benchmark: `120`
+- Real Whisper evaluated: `60`
+- Evaluated anchor balance: `15` mixed-win, `15` separated-win, `15` cleaned-win, `15` review-needed
+- Reference type: `silver_plus_unverified`
+- Oracle route distribution: mixed `34`, separated `26`, cleaned `0`
+- Review-needed candidates: `57`
+- Fixed mixed CER: `0.726484`
+- Fixed separated CER: `0.667789`
+- Fixed cleaned CER: `0.667789`
+- router_v2 CER: `0.643520`
+- balanced route-winner router CER: `0.502854`
+- oracle CER: `0.502854`
+- balanced route-winner route accuracy: `0.983333`
+
+Interpretation: this is more balanced than Stage 26 and proves the learned v2 router is not blindly selecting separated; it predicts mixed `33` and separated `27` on the 60-sample slice. It does not prove cleaned routing: cleaned wins `0` oracle cases, so cleaned remains a negative finding and review-target rather than a solved route.
+
+AudioDepth v2 maps were generated under `analysis_only_irm_proxy` for the 60 evaluated samples. They are inspired by RGB-D/depth-augmented image recognition and treat overlap as time-frequency occlusion, but they use source-track energy proxies and must not be described as deployable.
 
 ## Gold Benchmark Final CER Table
 

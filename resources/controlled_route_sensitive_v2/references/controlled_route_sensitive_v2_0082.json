@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0082",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 刚觉得晚睡晚起少夜\n[SPEAKER_2] 因為有一個前提性的問題沒有討論",
+  "reference_spk1": "刚觉得晚睡晚起少夜",
+  "reference_spk2": "因為有一個前提性的問題沒有討論",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0082",
+  "intended_family": "separated_win_anchor",
+  "expected_winner": "separated"
+}

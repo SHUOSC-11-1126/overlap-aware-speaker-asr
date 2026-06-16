@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0003",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 我往这里再稍微解释一下\n[SPEAKER_2] 没问题没问题 先不着急",
+  "reference_spk1": "我往这里再稍微解释一下",
+  "reference_spk2": "没问题没问题 先不着急",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0003",
+  "intended_family": "cleaned_win_anchor",
+  "expected_winner": "cleaned"
+}

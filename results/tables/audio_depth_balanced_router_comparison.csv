@@ -1,0 +1,8 @@
+model_name,average_cer,accuracy_vs_oracle_route,sample_count,predicted_mixed_count,predicted_separated_count,predicted_cleaned_count
+audio_depth_balanced_route_winner_router,0.502854,0.983333,60,33,27,0
+oracle,0.502854,1.0,60,34,26,0
+balanced_family_prior,0.508567,0.633333,60,23,22,15
+router_v2,0.64352,0.566667,60,46,14,0
+fixed_cleaned,0.667789,0.0,60,0,0,60
+fixed_separated,0.667789,0.433333,60,0,60,0
+fixed_mixed,0.726484,0.566667,60,60,0,0

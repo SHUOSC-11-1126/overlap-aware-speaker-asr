@@ -1,0 +1,9 @@
+oracle_route,count,fraction
+mixed,34,0.566667
+separated,26,0.433333
+cleaned,0,0.0
+review_needed,45,0.75
+family:cleaned_win_anchor,15,0.25
+family:mixed_win_anchor,15,0.25
+family:review_needed_anchor,15,0.25
+family:separated_win_anchor,15,0.25

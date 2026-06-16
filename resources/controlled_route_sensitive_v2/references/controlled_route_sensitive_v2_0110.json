@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0110",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 你没有多两个小时但是你自己的是不是多两个我可以给你解释\n[SPEAKER_2] 没问题没问题 先不着急",
+  "reference_spk1": "你没有多两个小时但是你自己的是不是多两个我可以给你解释",
+  "reference_spk2": "没问题没问题 先不着急",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0110",
+  "intended_family": "separated_win_anchor",
+  "expected_winner": "separated"
+}

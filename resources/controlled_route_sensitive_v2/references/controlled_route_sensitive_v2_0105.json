@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0105",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 晚睡早起也算好夜了\n[SPEAKER_2] 既然你是晚睡晚起",
+  "reference_spk1": "晚睡早起也算好夜了",
+  "reference_spk2": "既然你是晚睡晚起",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0105",
+  "intended_family": "mixed_win_anchor",
+  "expected_winner": "mixed"
+}

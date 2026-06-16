@@ -33,6 +33,7 @@ This folder is the documentation entry point for the project.
 - [docs/skills/skill_08_audio_depth_model_zoo.md](skills/skill_08_audio_depth_model_zoo.md)
 - [docs/skills/skill_09_audio_depth_systematic_validation.md](skills/skill_09_audio_depth_systematic_validation.md)
 - [docs/skills/skill_10_controlled_route_sensitive_benchmark.md](skills/skill_10_controlled_route_sensitive_benchmark.md)
+- [docs/skills/skill_11_balanced_route_sensitive_benchmark.md](skills/skill_11_balanced_route_sensitive_benchmark.md)
 
 ## Ambitious Exploration Docs
 
@@ -98,6 +99,10 @@ This folder is the documentation entry point for the project.
 - [results/figures/audio_depth_router_summary.md](../results/figures/audio_depth_router_summary.md)
 - [results/figures/audio_depth_router_ablation.md](../results/figures/audio_depth_router_ablation.md)
 - [results/figures/audio_depth_map_examples.md](../results/figures/audio_depth_map_examples.md)
+- [results/figures/audio_depth_balanced_overview.png](../results/figures/audio_depth_balanced_overview.png)
+- [results/figures/audio_depth_balanced_main_result_card.png](../results/figures/audio_depth_balanced_main_result_card.png)
+- [results/figures/audio_depth_balanced_case_studies.md](../results/figures/audio_depth_balanced_case_studies.md)
+- [results/figures/route_winner_balanced_v2_summary.md](../results/figures/route_winner_balanced_v2_summary.md)
 
 ## Frontier Coordination
 

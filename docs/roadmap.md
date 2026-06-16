@@ -4,6 +4,8 @@
 
 The core technical work is complete. The repository now has a stable baseline and a clear path toward more ambitious agentic exploration.
 
+Current frontier update: Stage 27 adds a balanced route-sensitive v2 benchmark. It is not a stable-baseline replacement. It evaluates 60 stratified real Whisper samples from a 120-sample v2 benchmark and shows a balanced router beating router_v2 while also exposing that cleaned-win cases are still not materializing under current Whisper/post-processing.
+
 ## Phase 0: Stable Baseline Completed
 
 - Gold benchmark and references
@@ -28,6 +30,7 @@ The core technical work is complete. The repository now has a stable baseline an
 - Separation phase diagram
 - error boundary analysis
 - overlap regime exploration
+- balanced route-winner benchmark v2 with explicit mixed/separated/cleaned/review anchors
 
 ## Phase 3: Compute-aware Cascade
 

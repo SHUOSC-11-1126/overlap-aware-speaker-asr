@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0085",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 因为你可以为了身体建立方式\n[SPEAKER_2] 只在讲的熬夜所谓的熬夜就是晚睡晚起是吧",
+  "reference_spk1": "因为你可以为了身体建立方式",
+  "reference_spk2": "只在讲的熬夜所谓的熬夜就是晚睡晚起是吧",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0085",
+  "intended_family": "mixed_win_anchor",
+  "expected_winner": "mixed"
+}

@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0001",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 他让你在那个时间段里拥有了自己\n[SPEAKER_2] 既然你是晚睡晚起",
+  "reference_spk1": "他让你在那个时间段里拥有了自己",
+  "reference_spk2": "既然你是晚睡晚起",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0001",
+  "intended_family": "mixed_win_anchor",
+  "expected_winner": "mixed"
+}

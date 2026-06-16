@@ -1,0 +1,10 @@
+{
+  "sample_id": "controlled_route_sensitive_v2_0096",
+  "reference_type": "silver_plus_unverified",
+  "reference_text": "[SPEAKER_1] 因为你可以为了身体建立方式\n[SPEAKER_2] 因為有一個前提性的問題沒有討論",
+  "reference_spk1": "因为你可以为了身体建立方式",
+  "reference_spk2": "因為有一個前提性的問題沒有討論",
+  "candidate_id": "controlled_route_sensitive_v2_candidate_0096",
+  "intended_family": "review_needed_anchor",
+  "expected_winner": "review_needed"
+}
