@@ -160,6 +160,8 @@ The two-stage AudioDepth gate plus text-router cascade reaches controlled_v2 CER
 
 A follow-up calibration pass separates route-action labels from risk flags and uses separation gain over mixed as the key signal for `likely_separation_helpful`. That calibrated AudioDepth gate reaches held-out accuracy `0.724138`, macro-F1 `0.475000`, easy_mixed recall `0.400000`, and separation_helpful recall `0.800000`. On controlled_v2, a threshold sweep finds CER `0.533160` with text-probe reduction `0.716667`, improving over router_v2 CER `0.643520` while still trailing the Stage 27 balanced router/oracle row `0.502854`.
 
+Stage 30 adds a mixed-only AudioDepth risk guard on top of that calibrated gate. The guard blocks high-risk mixed fallback decisions using uncertainty, overlap, and overlap-uncertainty product proxies. The selected setting reaches controlled_v2 CER `0.525160`, keeps text-probe reduction at `0.716667`, and lowers false-safe rate from `0.183333` to `0.050000` with `9` mixed-fallback overrides. This strengthens AudioDepth as a deployable Stage-1 safety gate, but it remains `experimental/frontier`: references are still `silver_plus_unverified`, and the Stage 27 balanced router/oracle row remains lower at `0.502854`.
+
 README-ready figures:
 
 - `results/figures/audio_depth_systematic_overview.png`
@@ -182,6 +184,8 @@ README-ready figures:
 - `results/figures/audiodepth_gate_summary.md`
 - `results/figures/audiodepth_two_stage_summary.md`
 - `results/figures/audiodepth_decision_examples.png`
+- `results/figures/audiodepth_gate_calibrated_summary.md`
+- `results/figures/audiodepth_gate_risk_guarded_summary.md`
 
 ## Project Map
 

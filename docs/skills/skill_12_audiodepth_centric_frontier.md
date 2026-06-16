@@ -53,3 +53,16 @@ The next pass separates route-action labels from review/risk flags. This avoids 
 - False-safe rate: `0.183333`
 
 This supports the AudioDepth-centric positioning more strongly: deployable AudioDepth can act as a pre-ASR acoustic gate, but it still needs false-safe control before it can be treated as deployment-ready.
+
+## Risk-guarded gate follow-up
+
+The next pass adds a mixed-only risk guard on top of the calibrated gate. It uses uncertainty, overlap, and overlap-uncertainty product proxies from deployable AudioDepth v2 maps to override high-risk mixed fallback decisions.
+
+- Selected confidence threshold: `0.30`
+- Selected risk quantile: `0.45`
+- Controlled_v2 CER: `0.525160`
+- Text-probe reduction: `0.716667`
+- False-safe rate: `0.050000`
+- Risk-guard overrides: `9`
+
+Interpretation: this is the strongest deployable AudioDepth gate evidence so far. It lowers the calibrated sweep false-safe rate from `0.183333` to `0.050000` while slightly improving CER, but it remains an `experimental/frontier` result because the controlled_v2 references are still `silver_plus_unverified`.

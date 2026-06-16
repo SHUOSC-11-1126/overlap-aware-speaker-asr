@@ -1,0 +1,2 @@
+confidence,risk_quantile,risk_ceiling,selected_route_cer,route_accuracy,text_probe_reduction_rate,false_safe_rate,separation_call_rate,risk_guard_override_count,sample_count
+0.3,0.45,0.390112,0.52516,0.716667,0.716667,0.05,0.716667,9,60

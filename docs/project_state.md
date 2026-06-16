@@ -226,6 +226,19 @@ Stage 29 calibrates the Stage-1 gate labels by separating route-action labels fr
 
 Interpretation: calibration turns AudioDepth from a mostly conservative risk detector into a useful pre-ASR gate. It improves over router_v2 on controlled_v2 but still trails the Stage 27 balanced router and oracle rows, so it is a promising frontier result rather than a stable replacement.
 
+## AudioDepth Risk-Guarded Gate Follow-up
+
+Stage 30 adds a mixed-only risk guard on top of the calibrated AudioDepth gate. The guard uses uncertainty, overlap, and overlap-uncertainty product proxies from deployable AudioDepth v2 maps to block high-risk mixed fallback decisions.
+
+- selected confidence threshold: `0.30`
+- selected risk quantile: `0.45`
+- controlled_v2 CER: `0.525160`
+- text-probe reduction: `0.716667`
+- false-safe rate: `0.050000`
+- risk-guard overrides: `9`
+
+Interpretation: the risk guard fixes the main Stage 29 safety weakness by lowering false-safe rate from `0.183333` to `0.050000` while slightly improving CER. This strengthens AudioDepth's role as a deployable Stage-1 acoustic safety gate, but the result stays `experimental/frontier` because the controlled_v2 references are still `silver_plus_unverified`.
+
 ## Gold Benchmark Final CER Table
 
 ### NoOverlap
