@@ -164,1389 +164,136 @@ DECISION_MATRIX_COLUMNS = [
     "notes",
 ]
 
-ARTIFACT_INDEX_COLUMNS = [
-    "artifact_id",
-    "dataset",
-    "label",
-    "artifact_group",
-    "artifact_path",
-    "generator_command",
-    "intended_use",
-]
-
-BENCHMARK_READINESS_COLUMNS = [
-    "artifact_id",
-    "dataset",
-    "label",
-    "artifact_group",
-    "artifact_path",
-    "benchmark_priority",
-    "benchmark_priority_rank",
-    "benchmark_status",
-    "readiness_tier",
-    "next_evidence_step",
-]
-
-BENCHMARK_PLAN_COLUMNS = [
-    "plan_step_id",
-    "step_order",
-    "phase",
-    "dataset_scope",
-    "command",
-    "prerequisite_artifacts",
-    "refreshed_artifacts",
-    "success_signal",
-]
-
-PROFILE_PLAYBOOK_COLUMNS = [
-    "profile",
-    "default_role",
-    "family_strategy",
-    "gold_strategy",
-    "synthetic_strategy",
-    "when_to_use",
-    "avoid_when",
-    "tradeoff_summary",
-]
-
-BENCHMARK_CHECKLIST_COLUMNS = [
-    "plan_step_id",
-    "step_order",
-    "phase",
-    "dataset_scope",
-    "command",
-    "session_type",
-    "required_metadata",
-    "acceptance_check",
-]
-
-BENCHMARK_MANIFEST_TEMPLATE_COLUMNS = [
-    "plan_step_id",
-    "step_order",
-    "phase",
-    "dataset_scope",
-    "session_type",
-    "command",
-    "acceptance_check",
-    "hardware_label",
-    "device",
-    "repeat_count",
-    "warmup_count",
-    "batch_shape",
-    "timing_notes",
-    "source_timing_manifest",
-    "refresh_command",
-    "diff_review_notes",
-    "cross_dataset_scope",
-    "consistency_notes",
-]
-
-BENCHMARK_STATUS_COLUMNS = [
-    "plan_step_id",
-    "step_order",
-    "phase",
-    "dataset_scope",
-    "execution_status",
-    "readiness_signal",
-    "pending_field_count",
-    "blocking_category",
-    "next_action",
-    "missing_fields",
-    "acceptance_check",
-]
-
-BENCHMARK_EXECUTION_SUMMARY_COLUMNS = [
-    "phase",
-    "step_count",
-    "filled_step_count",
-    "template_only_step_count",
-    "total_pending_field_count",
-    "readiness_label",
-    "primary_blocking_category",
-    "recommended_next_action",
-    "covered_datasets",
-]
-
-BENCHMARK_EXECUTION_QUEUE_COLUMNS = [
-    "queue_rank",
-    "plan_step_id",
-    "phase",
-    "dataset_scope",
-    "priority_bucket",
-    "blocking_category",
-    "next_action",
-    "pending_field_count",
-    "queue_reason",
-]
-
-BENCHMARK_SESSION_LEDGER_COLUMNS = [
-    "queue_rank",
-    "plan_step_id",
-    "phase",
-    "dataset_scope",
-    "session_type",
-    "priority_bucket",
-    "evidence_anchor",
-    "todo_field_count",
-    "completion_note",
-]
-
-BENCHMARK_DEPENDENCY_GRAPH_COLUMNS = [
-    "plan_step_id",
-    "step_order",
-    "phase",
-    "dataset_scope",
-    "queue_rank",
-    "priority_bucket",
-    "depends_on_step",
-    "dependency_status",
-    "unlocks_step",
-    "dependency_note",
-]
-
-BENCHMARK_BLOCKER_MATRIX_COLUMNS = [
-    "plan_step_id",
-    "phase",
-    "dataset_scope",
-    "queue_rank",
-    "priority_bucket",
-    "blocking_category",
-    "dependency_status",
-    "pending_field_count",
-    "severity_band",
-    "matrix_note",
-]
-
-BENCHMARK_RUNBOOK_CARD_COLUMNS = [
-    "recommended_start_step",
-    "recommended_action",
-    "session_type",
-    "required_evidence",
-    "completion_note",
-    "urgency",
-    "runbook_note",
-]
-
-BENCHMARK_MILESTONE_CARD_COLUMNS = [
-    "current_start_step",
-    "next_milestone_step",
-    "remaining_phase_count",
-    "current_urgency",
-    "milestone_note",
-]
-
-BENCHMARK_PHASE_CHECKPOINT_CARD_COLUMNS = [
-    "phase",
-    "readiness_label",
-    "primary_blocking_category",
-    "checkpoint_action",
-    "completion_signal",
-]
-
-BENCHMARK_COMPLETION_DASHBOARD_COLUMNS = [
-    "current_start_step",
-    "pending_phase_count",
-    "dominant_blocker_family",
-    "current_urgency",
-    "dashboard_note",
-]
-
-BENCHMARK_OPERATOR_BRIEF_COLUMNS = [
-    "operator_step",
-    "operator_action",
-    "operator_session_type",
-    "operator_evidence",
-    "operator_note",
-]
-
-BENCHMARK_FRONTIER_BRIDGE_COLUMNS = [
-    "benchmark_operator_step",
-    "benchmark_operator_action",
-    "frontier_queue_head",
-    "bridge_reason",
-]
-
-BENCHMARK_EVIDENCE_RECEIPT_COLUMNS = [
-    "receipt_step",
-    "receipt_action",
-    "receipt_evidence",
-    "receipt_completion_signal",
-    "receipt_followup",
-    "receipt_note",
-]
-
-BENCHMARK_EVIDENCE_CHECKLIST_COLUMNS = [
-    "checklist_order",
-    "receipt_step",
-    "receipt_action",
-    "checklist_goal",
-    "expected_evidence",
-    "preflight_step",
-    "next_gate",
-]
-
-BENCHMARK_RECEIPT_BRIDGE_COLUMNS = [
-    "benchmark_step",
-    "prerequisite_artifact",
-    "receipt_target",
-    "bridge_note",
-]
-
-
-def build_benchmark_packet_lines(
-    readiness_rows: list[dict[str, Any]],
-    plan_rows: list[dict[str, Any]],
-    checklist_rows: list[dict[str, Any]],
-    manifest_rows: list[dict[str, Any]],
-    status_rows: list[dict[str, Any]],
-    execution_summary_rows: list[dict[str, Any]],
-    execution_queue_rows: list[dict[str, Any]],
-    session_ledger_rows: list[dict[str, Any]],
-    dependency_graph_rows: list[dict[str, Any]],
-    blocker_matrix_rows: list[dict[str, Any]],
-    runbook_card_rows: list[dict[str, Any]],
-    milestone_card_rows: list[dict[str, Any]],
-    phase_checkpoint_card_rows: list[dict[str, Any]],
-    completion_dashboard_rows: list[dict[str, Any]],
-    operator_brief_rows: list[dict[str, Any]],
-    frontier_bridge_checklist_rows: list[dict[str, Any]],
-    receipt_bridge_checklist_rows: list[dict[str, Any]],
-    evidence_receipt_rows: list[dict[str, Any]],
-    evidence_checklist_rows: list[dict[str, Any]],
-) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Handoff Packet",
-        "",
-        "This generated packet consolidates the benchmark readiness scaffold, staged plan, execution checklist, session manifest template, and execution-status board.",
-        "",
-        "## Readiness Snapshot",
-        "",
-        "| artifact_id | benchmark_priority | benchmark_status | next_evidence_step |",
-        "| --- | --- | --- | --- |",
-    ]
-    for row in readiness_rows[:5]:
-        lines.append(
-            f"| {row.get('artifact_id', '')} | {row.get('benchmark_priority', '')} | {row.get('benchmark_status', '')} | {row.get('next_evidence_step', '')} |"
-        )
-    lines.extend(["", "## Phase Order", ""])
-    for row in plan_rows:
-        lines.append(
-            f"- step {row.get('step_order', '')}: `{row.get('plan_step_id', '')}` / `{row.get('phase', '')}` / `{row.get('dataset_scope', '')}` / `{row.get('command', '')}`"
-        )
-    lines.extend(["", "## Metadata Capture", ""])
-    for row in checklist_rows:
-        lines.append(
-            f"- `{row.get('plan_step_id', '')}`: session `{row.get('session_type', '')}`, metadata `{row.get('required_metadata', '')}`, acceptance `{row.get('acceptance_check', '')}`"
-        )
-    lines.extend(["", "## Execution Summary", ""])
-    for row in execution_summary_rows:
-        lines.append(
-            f"- `{row.get('phase', '')}`: `{row.get('readiness_label', '')}` with "
-            f"`{row.get('template_only_step_count', '')}/{row.get('step_count', '')}` template-only steps, "
-            f"`{row.get('total_pending_field_count', '')}` pending fields, blocker `{row.get('primary_blocking_category', '')}`, "
-            f"next `{row.get('recommended_next_action', '')}`, datasets `{row.get('covered_datasets', '')}`"
-        )
-    lines.extend(["", "## Execution Queue", ""])
-    for row in execution_queue_rows:
-        lines.append(
-            f"- rank {row.get('queue_rank', '')}: `{row.get('plan_step_id', '')}` / `{row.get('priority_bucket', '')}` / "
-            f"blocker `{row.get('blocking_category', '')}` / next `{row.get('next_action', '')}` / reason `{row.get('queue_reason', '')}`"
-        )
-    lines.extend(["", "## Session Ledger", ""])
-    for row in session_ledger_rows:
-        lines.append(
-            f"- rank {row.get('queue_rank', '')}: `{row.get('plan_step_id', '')}` / session `{row.get('session_type', '')}` / "
-            f"evidence `{row.get('evidence_anchor', '')}` / completion `{row.get('completion_note', '')}`"
-        )
-    lines.extend(["", "## Dependency Graph", ""])
-    for row in dependency_graph_rows:
-        lines.append(
-            f"- `{row.get('plan_step_id', '')}` depends on `{row.get('depends_on_step', '')}` / status `{row.get('dependency_status', '')}` / "
-            f"unlocks `{row.get('unlocks_step', '')}` / note `{row.get('dependency_note', '')}`"
-        )
-    lines.extend(["", "## Blocker Matrix", ""])
-    for row in blocker_matrix_rows:
-        lines.append(
-            f"- `{row.get('plan_step_id', '')}` / blocker `{row.get('blocking_category', '')}` / priority `{row.get('priority_bucket', '')}` / "
-            f"dependency `{row.get('dependency_status', '')}` / severity `{row.get('severity_band', '')}` / note `{row.get('matrix_note', '')}`"
-        )
-    lines.extend(["", "## Runbook Card", ""])
-    for row in runbook_card_rows:
-        lines.append(
-            f"- start `{row.get('recommended_start_step', '')}` / action `{row.get('recommended_action', '')}` / session `{row.get('session_type', '')}` / "
-            f"evidence `{row.get('required_evidence', '')}` / urgency `{row.get('urgency', '')}` / note `{row.get('runbook_note', '')}`"
-        )
-    lines.extend(["", "## Milestone Card", ""])
-    for row in milestone_card_rows:
-        lines.append(
-            f"- current `{row.get('current_start_step', '')}` / next milestone `{row.get('next_milestone_step', '')}` / "
-            f"remaining phases `{row.get('remaining_phase_count', '')}` / urgency `{row.get('current_urgency', '')}` / note `{row.get('milestone_note', '')}`"
-        )
-    lines.extend(["", "## Phase Checkpoint Card", ""])
-    for row in phase_checkpoint_card_rows:
-        lines.append(
-            f"- phase `{row.get('phase', '')}` / readiness `{row.get('readiness_label', '')}` / blocker `{row.get('primary_blocking_category', '')}` / "
-            f"action `{row.get('checkpoint_action', '')}` / completion `{row.get('completion_signal', '')}`"
-        )
-    lines.extend(["", "## Completion Dashboard", ""])
-    for row in completion_dashboard_rows:
-        lines.append(
-            f"- start `{row.get('current_start_step', '')}` / pending phases `{row.get('pending_phase_count', '')}` / "
-            f"dominant blocker `{row.get('dominant_blocker_family', '')}` / urgency `{row.get('current_urgency', '')}` / note `{row.get('dashboard_note', '')}`"
-        )
-    lines.extend(["", "## Operator Brief", ""])
-    for row in operator_brief_rows:
-        lines.append(
-            f"- step `{row.get('operator_step', '')}` / action `{row.get('operator_action', '')}` / session `{row.get('operator_session_type', '')}` / "
-            f"evidence `{row.get('operator_evidence', '')}` / note `{row.get('operator_note', '')}`"
-        )
-    lines.extend(["", "## Frontier Bridge Checklist", ""])
-    for row in frontier_bridge_checklist_rows:
-        lines.append(
-            f"- order `{row.get('checklist_order', '')}` / operator `{row.get('benchmark_operator_step', '')}` / action `{row.get('benchmark_operator_action', '')}` / "
-            f"queue head `{row.get('frontier_queue_head', '')}` / goal `{row.get('checklist_goal', '')}` / reason `{row.get('bridge_reason', '')}` / next `{row.get('next_gate', '')}`"
-        )
-    lines.extend(["", "## Receipt Bridge Checklist", ""])
-    for row in receipt_bridge_checklist_rows:
-        lines.append(
-            f"- order `{row.get('checklist_order', '')}` / step `{row.get('benchmark_step', '')}` / prerequisite `{row.get('prerequisite_artifact', '')}` / "
-            f"receipt `{row.get('receipt_target', '')}` / goal `{row.get('checklist_goal', '')}` / note `{row.get('bridge_note', '')}` / next `{row.get('next_gate', '')}`"
-        )
-    lines.extend(["", "## Evidence Receipt", ""])
-    for row in evidence_receipt_rows:
-        lines.append(
-            f"- step `{row.get('receipt_step', '')}` / action `{row.get('receipt_action', '')}` / "
-            f"evidence `{row.get('receipt_evidence', '')}` / completion `{row.get('receipt_completion_signal', '')}` / "
-            f"follow-up `{row.get('receipt_followup', '')}` / note `{row.get('receipt_note', '')}`"
-        )
-    lines.extend(["", "## Evidence Checklist", ""])
-    for row in evidence_checklist_rows:
-        lines.append(
-            f"- order `{row.get('checklist_order', '')}` / step `{row.get('receipt_step', '')}` / action `{row.get('receipt_action', '')}` / "
-            f"goal `{row.get('checklist_goal', '')}` / evidence `{row.get('expected_evidence', '')}` / "
-            f"preflight `{row.get('preflight_step', '')}` / next `{row.get('next_gate', '')}`"
-        )
-    lines.extend(["", "## Execution Status", ""])
-    for row in status_rows:
-        lines.append(
-            f"- step {row.get('step_order', '')}: `{row.get('plan_step_id', '')}` is `{row.get('execution_status', '')}` / "
-            f"`{row.get('readiness_signal', '')}` with missing `{row.get('missing_fields', '')}`"
-        )
-    lines.extend(["", "## Manifest Template", ""])
-    if manifest_rows:
-        sample = manifest_rows[0]
-        fields = [key for key, value in sample.items() if str(value).strip() == "TODO"]
-        lines.append(f"Manifest template fields: {', '.join(fields)}")
-    return lines
-
-
-def build_benchmark_status_rows(manifest_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    tracked_fields = [
-        "hardware_label",
-        "device",
-        "repeat_count",
-        "warmup_count",
-        "batch_shape",
-        "timing_notes",
-        "source_timing_manifest",
-        "refresh_command",
-        "diff_review_notes",
-        "cross_dataset_scope",
-        "consistency_notes",
-    ]
-    rows: list[dict[str, Any]] = []
-    for row in manifest_rows:
-        missing = [field for field in tracked_fields if str(row.get(field, "")).strip() == "TODO"]
-        execution_status = "template_only" if missing else "filled"
-        readiness_signal = "pending_execution" if missing else "ready_for_review"
-        phase = str(row.get("phase", ""))
-        pending_field_count = len(missing)
-        if not missing:
-            blocking_category = "ready_for_review"
-            next_action = "review_completed_manifest"
-        elif phase == "foundation":
-            blocking_category = "runtime_capture_missing"
-            next_action = "collect_controlled_runtime"
-        elif phase == "surface":
-            blocking_category = "artifact_refresh_missing"
-            next_action = "refresh_timing_backed_artifacts"
-        else:
-            blocking_category = "derived_refresh_missing"
-            next_action = "refresh_cross_dataset_stack"
-        rows.append(
-            {
-                "plan_step_id": row.get("plan_step_id", ""),
-                "step_order": row.get("step_order", ""),
-                "phase": phase,
-                "dataset_scope": row.get("dataset_scope", ""),
-                "execution_status": execution_status,
-                "readiness_signal": readiness_signal,
-                "pending_field_count": pending_field_count,
-                "blocking_category": blocking_category,
-                "next_action": next_action,
-                "missing_fields": ";".join(missing),
-                "acceptance_check": row.get("acceptance_check", ""),
-            }
-        )
-    return sorted(rows, key=lambda row: to_int(row.get("step_order")))
-
-
-def build_benchmark_execution_summary_rows(status_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    grouped: dict[str, list[dict[str, Any]]] = {}
-    for row in status_rows:
-        grouped.setdefault(str(row.get("phase", "")), []).append(row)
-
-    rows: list[dict[str, Any]] = []
-    for phase in sorted(grouped, key=lambda value: min(to_int(row.get("step_order")) for row in grouped[value])):
-        entries = sorted(grouped[phase], key=lambda row: to_int(row.get("step_order")))
-        step_count = len(entries)
-        filled_step_count = sum(1 for row in entries if str(row.get("execution_status", "")) == "filled")
-        template_only_step_count = sum(1 for row in entries if str(row.get("execution_status", "")) == "template_only")
-        total_pending_field_count = sum(to_int(row.get("pending_field_count")) for row in entries)
-        blocking_counts: dict[str, int] = {}
-        action_counts: dict[str, int] = {}
-        datasets = sorted({str(row.get("dataset_scope", "")) for row in entries if str(row.get("dataset_scope", "")).strip()})
-        blocking_source_rows = [row for row in entries if to_int(row.get("pending_field_count")) > 0] or entries
-        action_source_rows = [row for row in entries if to_int(row.get("pending_field_count")) > 0] or entries
-        for row in blocking_source_rows:
-            blocking = str(row.get("blocking_category", ""))
-            blocking_counts[blocking] = blocking_counts.get(blocking, 0) + 1
-        for row in action_source_rows:
-            action = str(row.get("next_action", ""))
-            action_counts[action] = action_counts.get(action, 0) + 1
-        primary_blocking_category = min(blocking_counts, key=lambda key: (-blocking_counts[key], key))
-        recommended_next_action = min(action_counts, key=lambda key: (-action_counts[key], key))
-        readiness_label = "ready_for_review" if total_pending_field_count == 0 else "pending_execution"
-        rows.append(
-            {
-                "phase": phase,
-                "step_count": step_count,
-                "filled_step_count": filled_step_count,
-                "template_only_step_count": template_only_step_count,
-                "total_pending_field_count": total_pending_field_count,
-                "readiness_label": readiness_label,
-                "primary_blocking_category": primary_blocking_category,
-                "recommended_next_action": recommended_next_action,
-                "covered_datasets": ";".join(datasets),
-            }
-        )
-    return rows
-
-
-def build_benchmark_execution_summary_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Execution Summary",
-        "",
-        "This generated summary condenses the phase-by-phase benchmark board into execution-ready blocker totals and next actions.",
-        "",
-        "| phase | step_count | filled_step_count | template_only_step_count | total_pending_field_count | readiness_label | primary_blocking_category | recommended_next_action | covered_datasets |",
-        "| --- | ---: | ---: | ---: | ---: | --- | --- | --- | --- |",
-    ]
-    for row in rows:
-        lines.append(
-            f"| {row['phase']} | {row['step_count']} | {row['filled_step_count']} | {row['template_only_step_count']} | "
-            f"{row['total_pending_field_count']} | {row['readiness_label']} | {row['primary_blocking_category']} | "
-            f"{row['recommended_next_action']} | {row['covered_datasets']} |"
-        )
-    return lines
-
-
-def build_benchmark_execution_queue_rows(status_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    priority_rank = {
-        "do_now": 0,
-        "next_after_runtime": 1,
-        "ready_for_review": 2,
-    }
-
-    queue_rows: list[dict[str, Any]] = []
-    for row in status_rows:
-        blocking_category = str(row.get("blocking_category", ""))
-        pending_field_count = to_int(row.get("pending_field_count"))
-        execution_status = str(row.get("execution_status", ""))
-        if execution_status == "filled":
-            priority_bucket = "ready_for_review"
-        elif blocking_category == "runtime_capture_missing":
-            priority_bucket = "do_now"
-        else:
-            priority_bucket = "next_after_runtime"
-        queue_rows.append(
-            {
-                "queue_rank": 0,
-                "plan_step_id": row.get("plan_step_id", ""),
-                "phase": row.get("phase", ""),
-                "dataset_scope": row.get("dataset_scope", ""),
-                "priority_bucket": priority_bucket,
-                "blocking_category": blocking_category,
-                "next_action": row.get("next_action", ""),
-                "pending_field_count": pending_field_count,
-                "queue_reason": f"{blocking_category} with {pending_field_count} pending fields",
-                "step_order": to_int(row.get("step_order")),
-            }
-        )
-    sorted_rows = sorted(
-        queue_rows,
-        key=lambda row: (
-            priority_rank.get(str(row["priority_bucket"]), 99),
-            to_int(row["step_order"]),
-            -to_int(row["pending_field_count"]),
-            str(row["plan_step_id"]),
-        ),
-    )
-    for index, row in enumerate(sorted_rows, start=1):
-        row["queue_rank"] = index
-        row.pop("step_order", None)
-    return sorted_rows
-
-
-def build_benchmark_execution_queue_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Execution Queue",
-        "",
-        "This generated queue turns the benchmark status stack into an ordered next-run list.",
-        "",
-        "| queue_rank | plan_step_id | phase | dataset_scope | priority_bucket | blocking_category | next_action | pending_field_count | queue_reason |",
-        "| ---: | --- | --- | --- | --- | --- | --- | ---: | --- |",
-    ]
-    for row in rows:
-        lines.append(
-            f"| {row['queue_rank']} | {row['plan_step_id']} | {row['phase']} | {row['dataset_scope']} | {row['priority_bucket']} | "
-            f"{row['blocking_category']} | {row['next_action']} | {row['pending_field_count']} | {row['queue_reason']} |"
-        )
-    return lines
-
-
-def build_benchmark_session_ledger_rows(
-    queue_rows: list[dict[str, Any]],
-    manifest_rows: list[dict[str, Any]],
-) -> list[dict[str, Any]]:
-    tracked_fields = [
-        "hardware_label",
-        "device",
-        "repeat_count",
-        "warmup_count",
-        "batch_shape",
-        "timing_notes",
-        "source_timing_manifest",
-        "refresh_command",
-        "diff_review_notes",
-        "cross_dataset_scope",
-        "consistency_notes",
-    ]
-    manifest_lookup = {
-        str(row.get("plan_step_id", "")): row
-        for row in manifest_rows
-    }
-    rows: list[dict[str, Any]] = []
-    for queue_row in queue_rows:
-        plan_step_id = str(queue_row.get("plan_step_id", ""))
-        manifest_row = manifest_lookup.get(plan_step_id, {})
-        todo_fields = [
-            field
-            for field in tracked_fields
-            if str(manifest_row.get(field, "")).strip() == "TODO"
-        ]
-        rows.append(
-            {
-                "queue_rank": queue_row.get("queue_rank", ""),
-                "plan_step_id": plan_step_id,
-                "phase": queue_row.get("phase", ""),
-                "dataset_scope": queue_row.get("dataset_scope", ""),
-                "session_type": manifest_row.get("session_type", ""),
-                "priority_bucket": queue_row.get("priority_bucket", ""),
-                "evidence_anchor": ";".join(todo_fields),
-                "todo_field_count": len(todo_fields),
-                "completion_note": f"{queue_row.get('next_action', '')} -> {manifest_row.get('acceptance_check', '')}",
-            }
-        )
-    return sorted(rows, key=lambda row: to_int(row.get("queue_rank")))
-
-
-def build_benchmark_session_ledger_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Session Ledger",
-        "",
-        "This generated ledger connects the ordered execution queue to the evidence that each benchmark session must leave behind.",
-        "",
-        "| queue_rank | plan_step_id | phase | dataset_scope | session_type | priority_bucket | evidence_anchor | todo_field_count | completion_note |",
-        "| ---: | --- | --- | --- | --- | --- | --- | ---: | --- |",
-    ]
-    for row in rows:
-        lines.append(
-            f"| {row['queue_rank']} | {row['plan_step_id']} | {row['phase']} | {row['dataset_scope']} | {row['session_type']} | "
-            f"{row['priority_bucket']} | {row['evidence_anchor']} | {row['todo_field_count']} | {row['completion_note']} |"
-        )
-    return lines
-
-
-def build_benchmark_dependency_graph_rows(
-    plan_rows: list[dict[str, Any]],
-    queue_rows: list[dict[str, Any]],
-) -> list[dict[str, Any]]:
-    queue_lookup = {str(row.get("plan_step_id", "")): row for row in queue_rows}
-    sorted_plan_rows = sorted(plan_rows, key=lambda row: to_int(row.get("step_order")))
-    rows: list[dict[str, Any]] = []
-    for index, plan_row in enumerate(sorted_plan_rows):
-        plan_step_id = str(plan_row.get("plan_step_id", ""))
-        previous = sorted_plan_rows[index - 1] if index > 0 else {}
-        next_row = sorted_plan_rows[index + 1] if index + 1 < len(sorted_plan_rows) else {}
-        depends_on_step = str(previous.get("plan_step_id", ""))
-        current_phase = str(plan_row.get("phase", ""))
-        dependency_status = "root" if not depends_on_step else "blocked_by_predecessor"
-        queue_row = queue_lookup.get(plan_step_id, {})
-        if not depends_on_step:
-            dependency_note = f"{plan_step_id} starts the benchmark chain for the {current_phase} phase."
-        else:
-            phase_descriptor = "surface outputs" if current_phase == "surface" else f"{current_phase} outputs"
-            dependency_note = f"Wait for {depends_on_step} before {plan_step_id} can produce timing-backed {phase_descriptor}."
-        rows.append(
-            {
-                "plan_step_id": plan_step_id,
-                "step_order": plan_row.get("step_order", ""),
-                "phase": current_phase,
-                "dataset_scope": plan_row.get("dataset_scope", ""),
-                "queue_rank": queue_row.get("queue_rank", ""),
-                "priority_bucket": queue_row.get("priority_bucket", ""),
-                "depends_on_step": depends_on_step,
-                "dependency_status": dependency_status,
-                "unlocks_step": str(next_row.get("plan_step_id", "")),
-                "dependency_note": dependency_note,
-            }
-        )
-    return rows
-
-
-def build_benchmark_dependency_graph_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Dependency Graph",
-        "",
-        "This generated dependency graph shows which benchmark step unlocks which downstream step.",
-        "",
-        "| plan_step_id | step_order | phase | dataset_scope | queue_rank | priority_bucket | depends_on_step | dependency_status | unlocks_step | dependency_note |",
-        "| --- | ---: | --- | --- | ---: | --- | --- | --- | --- | --- |",
-    ]
-    for row in rows:
-        lines.append(
-            f"| {row['plan_step_id']} | {row['step_order']} | {row['phase']} | {row['dataset_scope']} | {row['queue_rank']} | "
-            f"{row['priority_bucket']} | {row['depends_on_step']} | {row['dependency_status']} | {row['unlocks_step']} | {row['dependency_note']} |"
-        )
-    return lines
-
-
-def build_benchmark_blocker_matrix_rows(
-    status_rows: list[dict[str, Any]],
-    queue_rows: list[dict[str, Any]],
-    dependency_rows: list[dict[str, Any]],
-) -> list[dict[str, Any]]:
-    queue_lookup = {str(row.get("plan_step_id", "")): row for row in queue_rows}
-    dependency_lookup = {str(row.get("plan_step_id", "")): row for row in dependency_rows}
-    rows: list[dict[str, Any]] = []
-    for status_row in status_rows:
-        plan_step_id = str(status_row.get("plan_step_id", ""))
-        queue_row = queue_lookup.get(plan_step_id, {})
-        dependency_row = dependency_lookup.get(plan_step_id, {})
-        pending_field_count = to_int(status_row.get("pending_field_count"))
-        priority_bucket = str(queue_row.get("priority_bucket", ""))
-        if priority_bucket == "do_now" or pending_field_count >= 4:
-            severity_band = "high"
-        elif pending_field_count >= 2:
-            severity_band = "medium"
-        else:
-            severity_band = "low"
-        dependency_status = str(dependency_row.get("dependency_status", ""))
-        rows.append(
-            {
-                "plan_step_id": plan_step_id,
-                "phase": status_row.get("phase", ""),
-                "dataset_scope": status_row.get("dataset_scope", ""),
-                "queue_rank": queue_row.get("queue_rank", ""),
-                "priority_bucket": priority_bucket,
-                "blocking_category": status_row.get("blocking_category", ""),
-                "dependency_status": dependency_status,
-                "pending_field_count": pending_field_count,
-                "severity_band": severity_band,
-                "matrix_note": f"{priority_bucket} / {dependency_status} / {pending_field_count} pending fields",
-            }
-        )
-    return sorted(rows, key=lambda row: (to_int(row.get("queue_rank")), str(row.get("plan_step_id", ""))))
-
-
-def build_benchmark_blocker_matrix_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Blocker Matrix",
-        "",
-        "This generated blocker matrix consolidates blocker type, queue priority, dependency state, and pending-field scale.",
-        "",
-        "| plan_step_id | phase | dataset_scope | queue_rank | priority_bucket | blocking_category | dependency_status | pending_field_count | severity_band | matrix_note |",
-        "| --- | --- | --- | ---: | --- | --- | --- | ---: | --- | --- |",
-    ]
-    for row in rows:
-        lines.append(
-            f"| {row['plan_step_id']} | {row['phase']} | {row['dataset_scope']} | {row['queue_rank']} | {row['priority_bucket']} | "
-            f"{row['blocking_category']} | {row['dependency_status']} | {row['pending_field_count']} | {row['severity_band']} | {row['matrix_note']} |"
-        )
-    return lines
-
-
-def build_benchmark_runbook_card_rows(
-    blocker_rows: list[dict[str, Any]],
-    queue_rows: list[dict[str, Any]],
-    ledger_rows: list[dict[str, Any]],
-) -> list[dict[str, Any]]:
-    if not blocker_rows:
-        return []
-    queue_lookup = {str(row.get("plan_step_id", "")): row for row in queue_rows}
-    ledger_lookup = {str(row.get("plan_step_id", "")): row for row in ledger_rows}
-    start_row = min(
-        blocker_rows,
-        key=lambda row: (to_int(row.get("queue_rank")), str(row.get("plan_step_id", ""))),
-    )
-    plan_step_id = str(start_row.get("plan_step_id", ""))
-    queue_row = queue_lookup.get(plan_step_id, {})
-    ledger_row = ledger_lookup.get(plan_step_id, {})
-    priority_bucket = str(start_row.get("priority_bucket", ""))
-    dependency_status = str(start_row.get("dependency_status", ""))
-    return [
-        {
-            "recommended_start_step": plan_step_id,
-            "recommended_action": queue_row.get("next_action", ""),
-            "session_type": ledger_row.get("session_type", ""),
-            "required_evidence": ledger_row.get("evidence_anchor", ""),
-            "completion_note": ledger_row.get("completion_note", ""),
-            "urgency": start_row.get("severity_band", ""),
-            "runbook_note": f"Start with {plan_step_id} because it is {priority_bucket} and {dependency_status}.",
-        }
-    ]
-
-
-def build_benchmark_runbook_card_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Runbook Card",
-        "",
-        "This generated runbook card condenses the first benchmark action into a one-page execution card.",
-        "",
-    ]
-    for row in rows:
-        lines.extend(
-            [
-                f"- Recommended start step: `{row['recommended_start_step']}`",
-                f"- Recommended action: `{row['recommended_action']}`",
-                f"- Session type: `{row['session_type']}`",
-                f"- Required evidence: `{row['required_evidence']}`",
-                f"- Completion note: `{row['completion_note']}`",
-                f"- Urgency: `{row['urgency']}`",
-                f"- Runbook note: {row['runbook_note']}",
-            ]
-        )
-    return lines
-
-
-def build_benchmark_milestone_card_rows(
-    runbook_rows: list[dict[str, Any]],
-    dependency_rows: list[dict[str, Any]],
-    summary_rows: list[dict[str, Any]],
-) -> list[dict[str, Any]]:
-    if not runbook_rows:
-        return []
-    start_row = runbook_rows[0]
-    current_start_step = str(start_row.get("recommended_start_step", ""))
-    next_milestone_step = ""
-    for row in dependency_rows:
-        if str(row.get("plan_step_id", "")) == current_start_step:
-            next_milestone_step = str(row.get("unlocks_step", ""))
-            break
-    remaining_phase_count = len([row for row in summary_rows if str(row.get("readiness_label", "")) == "pending_execution"])
-    return [
-        {
-            "current_start_step": current_start_step,
-            "next_milestone_step": next_milestone_step,
-            "remaining_phase_count": remaining_phase_count,
-            "current_urgency": start_row.get("urgency", ""),
-            "milestone_note": f"{current_start_step} unlocks {next_milestone_step} and leaves {remaining_phase_count} pending phases.",
-        }
-    ]
-
-
-def build_benchmark_milestone_card_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Milestone Card",
-        "",
-        "This generated milestone card summarizes the next milestone boundary and remaining benchmark path.",
-        "",
-    ]
-    for row in rows:
-        lines.extend(
-            [
-                f"- Current start step: `{row['current_start_step']}`",
-                f"- Next milestone step: `{row['next_milestone_step']}`",
-                f"- Remaining phase count: `{row['remaining_phase_count']}`",
-                f"- Current urgency: `{row['current_urgency']}`",
-                f"- Milestone note: {row['milestone_note']}",
-            ]
-        )
-    return lines
-
-
-def build_benchmark_phase_checkpoint_card_rows(
-    summary_rows: list[dict[str, Any]],
-    plan_rows: list[dict[str, Any]],
-) -> list[dict[str, Any]]:
-    completion_by_phase: dict[str, str] = {}
-    for row in plan_rows:
-        phase = str(row.get("phase", ""))
-        if phase and phase not in completion_by_phase:
-            completion_by_phase[phase] = str(row.get("success_signal", ""))
-    rows: list[dict[str, Any]] = []
-    for row in summary_rows:
-        phase = str(row.get("phase", ""))
-        rows.append(
-            {
-                "phase": phase,
-                "readiness_label": row.get("readiness_label", ""),
-                "primary_blocking_category": row.get("primary_blocking_category", ""),
-                "checkpoint_action": row.get("recommended_next_action", ""),
-                "completion_signal": completion_by_phase.get(phase, ""),
-            }
-        )
-    return rows
-
-
-def build_benchmark_phase_checkpoint_card_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Phase Checkpoint Card",
-        "",
-        "This generated card summarizes each benchmark phase's current blocker and completion signal.",
-        "",
-    ]
-    for row in rows:
-        lines.extend(
-            [
-                f"## {row['phase']}",
-                "",
-                f"- readiness: `{row['readiness_label']}`",
-                f"- blocker: `{row['primary_blocking_category']}`",
-                f"- action: `{row['checkpoint_action']}`",
-                f"- completion: {row['completion_signal']}",
-                "",
-            ]
-        )
-    return lines
-
-
-def build_benchmark_completion_dashboard_rows(
-    summary_rows: list[dict[str, Any]],
-    runbook_rows: list[dict[str, Any]],
-    milestone_rows: list[dict[str, Any]],
-) -> list[dict[str, Any]]:
-    if not runbook_rows:
-        return []
-    current_start_step = str(runbook_rows[0].get("recommended_start_step", ""))
-    pending_phase_count = to_int(milestone_rows[0].get("remaining_phase_count")) if milestone_rows else 0
-    dominant_blocker_family = str(summary_rows[0].get("primary_blocking_category", "")) if summary_rows else ""
-    current_urgency = str(runbook_rows[0].get("urgency", ""))
-    return [
-        {
-            "current_start_step": current_start_step,
-            "pending_phase_count": pending_phase_count,
-            "dominant_blocker_family": dominant_blocker_family,
-            "current_urgency": current_urgency,
-            "dashboard_note": f"{current_start_step} leads a {pending_phase_count}-phase pending stack with dominant blocker {dominant_blocker_family}.",
-        }
-    ]
-
-
-def build_benchmark_completion_dashboard_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Completion Dashboard",
-        "",
-        "This generated dashboard summarizes the current start step and overall pending benchmark state.",
-        "",
-    ]
-    for row in rows:
-        lines.extend(
-            [
-                f"- Current start step: `{row['current_start_step']}`",
-                f"- Pending phase count: `{row['pending_phase_count']}`",
-                f"- Dominant blocker family: `{row['dominant_blocker_family']}`",
-                f"- Current urgency: `{row['current_urgency']}`",
-                f"- Dashboard note: {row['dashboard_note']}",
-            ]
-        )
-    return lines
-
-
-def build_benchmark_operator_brief_rows(
-    dashboard_rows: list[dict[str, Any]],
-    runbook_rows: list[dict[str, Any]],
-    ledger_rows: list[dict[str, Any]],
-) -> list[dict[str, Any]]:
-    if not dashboard_rows or not runbook_rows:
-        return []
-    dashboard = dashboard_rows[0]
-    runbook = runbook_rows[0]
-    operator_step = str(dashboard.get("current_start_step", ""))
-    ledger_row = next((row for row in ledger_rows if str(row.get("plan_step_id", "")) == operator_step), {})
-    blocker = str(dashboard.get("dominant_blocker_family", ""))
-    urgency = str(dashboard.get("current_urgency", ""))
-    return [
-        {
-            "operator_step": operator_step,
-            "operator_action": runbook.get("recommended_action", ""),
-            "operator_session_type": ledger_row.get("session_type", ""),
-            "operator_evidence": ledger_row.get("evidence_anchor", ""),
-            "operator_note": f"Run {operator_step} now; it is blocked by {blocker} and carries {urgency} urgency.",
-        }
-    ]
-
-
-def build_benchmark_operator_brief_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Operator Brief",
-        "",
-        "This generated brief gives the current benchmark operator a plain-language next step summary.",
-        "",
-    ]
-    for row in rows:
-        lines.extend(
-            [
-                f"- Operator step: `{row['operator_step']}`",
-                f"- Operator action: `{row['operator_action']}`",
-                f"- Session type: `{row['operator_session_type']}`",
-                f"- Evidence to collect: `{row['operator_evidence']}`",
-                f"- Operator note: {row['operator_note']}",
-            ]
-        )
-    return lines
-
-
-def build_benchmark_frontier_bridge_rows(
-    operator_rows: list[dict[str, Any]],
-    frontier_queue_rows: list[dict[str, Any]],
-) -> list[dict[str, Any]]:
-    if not operator_rows or not frontier_queue_rows:
-        return []
-    operator = operator_rows[0]
-    frontier_head = frontier_queue_rows[0]
-    return [
-        {
-            "benchmark_operator_step": str(operator.get("operator_step", "")),
-            "benchmark_operator_action": str(operator.get("operator_action", "")),
-            "frontier_queue_head": str(frontier_head.get("frontier_id", "")),
-            "bridge_reason": "The benchmark runtime foundation still matters because it is the strongest shared evidence layer before narrower frontier follow-ups.",
-        }
-    ]
-
-
-def build_benchmark_frontier_bridge_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Frontier Bridge",
-        "",
-        "This generated bridge connects the current benchmark operator step to the broader breadth-first frontier queue. It is a coordination artifact, not a new benchmark result.",
-        "",
-        "| benchmark_operator_step | benchmark_operator_action | frontier_queue_head | bridge_reason |",
-        "| --- | --- | --- | --- |",
-    ]
-    for row in rows:
-        lines.append(
-            f"| {row['benchmark_operator_step']} | {row['benchmark_operator_action']} | {row['frontier_queue_head']} | {row['bridge_reason']} |"
-        )
-    return lines
-
-
-BENCHMARK_FRONTIER_BRIDGE_CHECKLIST_COLUMNS = [
-    "checklist_order",
-    "benchmark_operator_step",
-    "benchmark_operator_action",
-    "frontier_queue_head",
-    "checklist_goal",
-    "bridge_reason",
-    "next_gate",
-]
-
-
-def build_benchmark_frontier_bridge_checklist_rows(
-    operator_rows: list[dict[str, Any]],
-    frontier_queue_rows: list[dict[str, Any]],
-) -> list[dict[str, Any]]:
-    if not operator_rows or not frontier_queue_rows:
-        return []
-    operator = operator_rows[0]
-    frontier_head = frontier_queue_rows[0]
-    operator_step = str(operator.get("operator_step", ""))
-    frontier_queue_head = str(frontier_head.get("frontier_id", ""))
-    return [
-        {
-            "checklist_order": "1",
-            "benchmark_operator_step": operator_step,
-            "benchmark_operator_action": str(operator.get("operator_action", "")),
-            "frontier_queue_head": frontier_queue_head,
-            "checklist_goal": f"Verify the frontier bridge for {operator_step} before advancing the benchmark stack.",
-            "bridge_reason": "The benchmark runtime foundation still matters because it is the strongest shared evidence layer before narrower frontier follow-ups.",
-            "next_gate": "Confirm this bridge before opening the frontier queue head.",
-        }
-    ]
-
-
-def build_benchmark_frontier_bridge_checklist_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Frontier Bridge Checklist",
-        "",
-        "This generated checklist turns the bridge card into an ordered verification path. It remains a coordination artifact and does not claim that any benchmark has already been executed.",
-        "",
-        "| checklist_order | benchmark_operator_step | benchmark_operator_action | frontier_queue_head | checklist_goal | bridge_reason | next_gate |",
-        "| --- | --- | --- | --- | --- | --- | --- |",
-    ]
-    for row in rows:
-        lines.append(
-            f"| {row['checklist_order']} | {row['benchmark_operator_step']} | {row['benchmark_operator_action']} | {row['frontier_queue_head']} | {row['checklist_goal']} | {row['bridge_reason']} | {row['next_gate']} |"
-        )
-    return lines
-
-
-def load_frontier_execution_queue_rows() -> list[dict[str, Any]]:
-    path = PROJECT_ROOT / "results" / "tables" / "frontier_execution_queue.json"
-    if not path.exists():
-        return []
-    try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        return []
-    return [row for row in data if isinstance(row, dict)]
-
-
-def build_benchmark_evidence_receipt_rows(
-    dashboard_rows: list[dict[str, Any]],
-    operator_brief_rows: list[dict[str, Any]],
-    ledger_rows: list[dict[str, Any]],
-    phase_checkpoint_rows: list[dict[str, Any]],
-) -> list[dict[str, Any]]:
-    if not dashboard_rows or not operator_brief_rows:
-        return []
-    dashboard = dashboard_rows[0]
-    operator_brief = operator_brief_rows[0]
-    receipt_step = str(operator_brief.get("operator_step", "")) or str(dashboard.get("current_start_step", ""))
-    receipt_action = str(operator_brief.get("operator_action", ""))
-    receipt_evidence = str(operator_brief.get("operator_evidence", ""))
-    ledger_row = next((row for row in ledger_rows if str(row.get("plan_step_id", "")) == receipt_step), {})
-    checkpoint_row = next((row for row in phase_checkpoint_rows if str(row.get("checkpoint_action", "")) == receipt_action), {})
-    completion_signal = str(checkpoint_row.get("completion_signal", ""))
-    followup = str(ledger_row.get("completion_note", ""))
-    return [
-        {
-            "receipt_step": receipt_step,
-            "receipt_action": receipt_action,
-            "receipt_evidence": receipt_evidence,
-            "receipt_completion_signal": completion_signal,
-            "receipt_followup": followup,
-            "receipt_note": f"After {receipt_step}, write back the evidence payload and confirm the foundation completion signal.",
-        }
-    ]
-
-
-def build_benchmark_evidence_receipt_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Evidence Receipt",
-        "",
-        "This generated receipt shows what the current benchmark run must write back before the next contributor advances the stack.",
-        "",
-    ]
-    for row in rows:
-        lines.extend(
-            [
-                f"- Receipt step: `{row['receipt_step']}`",
-                f"- Receipt action: `{row['receipt_action']}`",
-                f"- Receipt evidence: `{row['receipt_evidence']}`",
-                f"- Completion signal: `{row['receipt_completion_signal']}`",
-                f"- Follow-up: `{row['receipt_followup']}`",
-                f"- Receipt note: {row['receipt_note']}",
-            ]
-        )
-    return lines
-
-
-def build_benchmark_evidence_checklist_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    if not rows:
-        return []
-
-    receipt = rows[0]
-    receipt_step = str(receipt.get("receipt_step", ""))
-    receipt_action = str(receipt.get("receipt_action", ""))
-    receipt_evidence = str(receipt.get("receipt_evidence", ""))
-    receipt_completion_signal = str(receipt.get("receipt_completion_signal", ""))
-    return [
-        {
-            "checklist_order": "1",
-            "receipt_step": receipt_step,
-            "receipt_action": receipt_action,
-            "checklist_goal": receipt_completion_signal or "Write back the benchmark evidence payload before advancing the stack.",
-            "expected_evidence": "results/tables/cascade_benchmark_evidence_receipt.json",
-            "preflight_step": (
-                "Open the handoff packet and verify the receipt payload before the benchmark writeback."
-                if receipt_evidence
-                else "Open the handoff packet before the benchmark writeback."
-            ),
-            "next_gate": "Write back the evidence receipt and confirm the completion signal before the next step.",
-        }
-    ]
-
-
-def build_benchmark_evidence_checklist_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Evidence Checklist",
-        "",
-        "This generated checklist orders the benchmark evidence receipt into a narrow writeback path. It remains a coordination artifact and does not claim that the benchmark has already been executed.",
-        "",
-        "| checklist_order | receipt_step | receipt_action | checklist_goal | expected_evidence | preflight_step | next_gate |",
-        "| --- | --- | --- | --- | --- | --- | --- |",
-    ]
-    for row in rows:
-        lines.append(
-            f"| {row['checklist_order']} | {row['receipt_step']} | {row['receipt_action']} | {row['checklist_goal']} | {row['expected_evidence']} | {row['preflight_step']} | {row['next_gate']} |"
-        )
-    return lines
-
-
-def build_benchmark_receipt_bridge_rows(
-    runbook_rows: list[dict[str, Any]],
-    receipt_rows: list[dict[str, Any]],
-) -> list[dict[str, Any]]:
-    if not runbook_rows or not receipt_rows:
-        return []
-    runbook = runbook_rows[0]
-    receipt = receipt_rows[0]
-    return [
-        {
-            "benchmark_step": str(runbook.get("recommended_start_step", "")) or str(receipt.get("receipt_step", "")),
-            "prerequisite_artifact": "results/figures/cascade_benchmark_handoff_packet.md",
-            "receipt_target": "results/figures/cascade_benchmark_evidence_receipt.md",
-            "bridge_note": "Open the handoff packet first, then write back through the evidence receipt after the current benchmark step.",
-        }
-    ]
-
-
-def build_benchmark_receipt_bridge_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Receipt Bridge",
-        "",
-        "This generated bridge connects the benchmark handoff packet to the current evidence receipt target. It is a coordination artifact, not a benchmark execution claim.",
-        "",
-        "| benchmark_step | prerequisite_artifact | receipt_target | bridge_note |",
-        "| --- | --- | --- | --- |",
-    ]
-    for row in rows:
-        lines.append(
-            f"| {row['benchmark_step']} | {row['prerequisite_artifact']} | {row['receipt_target']} | {row['bridge_note']} |"
-        )
-    return lines
-
-
-BENCHMARK_RECEIPT_BRIDGE_CHECKLIST_COLUMNS = [
-    "checklist_order",
-    "benchmark_step",
-    "prerequisite_artifact",
-    "receipt_target",
-    "checklist_goal",
-    "bridge_note",
-    "next_gate",
-]
-
-
-def build_benchmark_receipt_bridge_checklist_rows(
-    runbook_rows: list[dict[str, Any]],
-    receipt_rows: list[dict[str, Any]],
-) -> list[dict[str, Any]]:
-    if not runbook_rows or not receipt_rows:
-        return []
-    runbook = runbook_rows[0]
-    receipt = receipt_rows[0]
-    benchmark_step = str(runbook.get("recommended_start_step", "")) or str(receipt.get("receipt_step", ""))
-    return [
-        {
-            "checklist_order": "1",
-            "benchmark_step": benchmark_step,
-            "prerequisite_artifact": "results/figures/cascade_benchmark_handoff_packet.md",
-            "receipt_target": "results/figures/cascade_benchmark_evidence_receipt.md",
-            "checklist_goal": f"Verify the receipt bridge for {benchmark_step} before the benchmark writeback is advanced.",
-            "bridge_note": "Open the handoff packet first, then write back through the evidence receipt after the current benchmark step.",
-            "next_gate": "Confirm this bridge before opening the evidence receipt target.",
-        }
-    ]
-
-
-def build_benchmark_receipt_bridge_checklist_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Receipt Bridge Checklist",
-        "",
-        "This generated checklist turns the receipt bridge into an ordered verification path. It remains a coordination artifact and does not claim that any benchmark has already been executed.",
-        "",
-        "| checklist_order | benchmark_step | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |",
-        "| --- | --- | --- | --- | --- | --- | --- |",
-    ]
-    for row in rows:
-        lines.append(
-            f"| {row['checklist_order']} | {row['benchmark_step']} | {row['prerequisite_artifact']} | {row['receipt_target']} | {row['checklist_goal']} | {row['bridge_note']} | {row['next_gate']} |"
-        )
-    return lines
-
-
-def write_benchmark_outputs(
-    rows: list[dict[str, Any]],
-    csv_path: Path,
-    json_path: Path,
-    summary_path: Path,
-    columns: list[str],
-    line_fn: Any,
-) -> None:
-    write_csv_json(rows, csv_path, json_path, columns)
-    summary_path.parent.mkdir(parents=True, exist_ok=True)
-    summary_path.write_text("\n".join(line_fn(rows)) + "\n", encoding="utf-8")
-
-
-def write_benchmark_evidence_receipt_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_EVIDENCE_RECEIPT_COLUMNS, build_benchmark_evidence_receipt_lines)
-
-
-def write_benchmark_evidence_checklist_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_EVIDENCE_CHECKLIST_COLUMNS, build_benchmark_evidence_checklist_lines)
-
-
-def write_benchmark_receipt_bridge_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_RECEIPT_BRIDGE_COLUMNS, build_benchmark_receipt_bridge_lines)
-
-
-def write_benchmark_receipt_bridge_checklist_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_RECEIPT_BRIDGE_CHECKLIST_COLUMNS, build_benchmark_receipt_bridge_checklist_lines)
-
-
-def write_benchmark_operator_brief_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_OPERATOR_BRIEF_COLUMNS, build_benchmark_operator_brief_lines)
-
-
-def write_benchmark_frontier_bridge_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_FRONTIER_BRIDGE_COLUMNS, build_benchmark_frontier_bridge_lines)
-
-
-def write_benchmark_frontier_bridge_checklist_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_FRONTIER_BRIDGE_CHECKLIST_COLUMNS, build_benchmark_frontier_bridge_checklist_lines)
-
-
-def write_benchmark_completion_dashboard_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_COMPLETION_DASHBOARD_COLUMNS, build_benchmark_completion_dashboard_lines)
-
-
-def write_benchmark_phase_checkpoint_card_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_PHASE_CHECKPOINT_CARD_COLUMNS, build_benchmark_phase_checkpoint_card_lines)
-
-
-def write_benchmark_milestone_card_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_MILESTONE_CARD_COLUMNS, build_benchmark_milestone_card_lines)
-
-
-def write_benchmark_runbook_card_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_RUNBOOK_CARD_COLUMNS, build_benchmark_runbook_card_lines)
-
-
-def write_benchmark_blocker_matrix_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_BLOCKER_MATRIX_COLUMNS, build_benchmark_blocker_matrix_lines)
-
-
-def write_benchmark_dependency_graph_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_DEPENDENCY_GRAPH_COLUMNS, build_benchmark_dependency_graph_lines)
-
-
-def write_benchmark_session_ledger_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_SESSION_LEDGER_COLUMNS, build_benchmark_session_ledger_lines)
-
-
-def write_benchmark_execution_queue_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_EXECUTION_QUEUE_COLUMNS, build_benchmark_execution_queue_lines)
-
-
-def write_benchmark_execution_summary_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_EXECUTION_SUMMARY_COLUMNS, build_benchmark_execution_summary_lines)
-
-
-def write_benchmark_packet_output(
-    readiness_rows: list[dict[str, Any]],
-    plan_rows: list[dict[str, Any]],
-    checklist_rows: list[dict[str, Any]],
-    manifest_rows: list[dict[str, Any]],
-    status_rows: list[dict[str, Any]],
-    execution_summary_rows: list[dict[str, Any]],
-    execution_queue_rows: list[dict[str, Any]],
-    session_ledger_rows: list[dict[str, Any]],
-    dependency_graph_rows: list[dict[str, Any]],
-    blocker_matrix_rows: list[dict[str, Any]],
-    runbook_card_rows: list[dict[str, Any]],
-    milestone_card_rows: list[dict[str, Any]],
-    phase_checkpoint_card_rows: list[dict[str, Any]],
-    completion_dashboard_rows: list[dict[str, Any]],
-    operator_brief_rows: list[dict[str, Any]],
-    frontier_bridge_checklist_rows: list[dict[str, Any]],
-    receipt_bridge_checklist_rows: list[dict[str, Any]],
-    evidence_receipt_rows: list[dict[str, Any]],
-    evidence_checklist_rows: list[dict[str, Any]],
-    output_path: Path,
-) -> None:
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(
-        "\n".join(
-            build_benchmark_packet_lines(
-                readiness_rows,
-                plan_rows,
-                checklist_rows,
-                manifest_rows,
-                status_rows,
-                execution_summary_rows,
-                execution_queue_rows,
-                session_ledger_rows,
-                dependency_graph_rows,
-                blocker_matrix_rows,
-                runbook_card_rows,
-                milestone_card_rows,
-                phase_checkpoint_card_rows,
-                completion_dashboard_rows,
-                operator_brief_rows,
-                frontier_bridge_checklist_rows,
-                receipt_bridge_checklist_rows,
-                evidence_receipt_rows,
-                evidence_checklist_rows,
-            )
-        )
-        + "\n",
-        encoding="utf-8",
-    )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def parse_args() -> argparse.Namespace:
@@ -2654,490 +1401,44 @@ def write_frontier_report(
     output_path.write_text("\n".join(build_frontier_report_lines(decision_matrix_rows, family_stability_rows, robustness_rows)) + "\n", encoding="utf-8")
 
 
-def build_artifact_index_rows() -> list[dict[str, Any]]:
-    registry = [
-        ("gold_cascade_performance", "gold", "experimental/frontier", "performance", "results/tables/cascade_performance.csv", "python -m src.compute_aware_cascade", "Primary gold compute-aware performance table."),
-        ("gold_cascade_summary", "gold", "experimental/frontier", "summary", "results/figures/compute_aware_cascade_summary.md", "python -m src.compute_aware_cascade", "Narrative summary of the gold cascade trade-off table."),
-        ("gold_tradeoff_figure", "gold", "experimental/frontier", "figure", "results/figures/cer_runtime_tradeoff.png", "python -m src.compute_aware_cascade", "CER versus compute scatter plot for gold strategies."),
-        ("gold_runtime_audit", "gold", "experimental/frontier", "audit", "results/tables/cascade_runtime_audit.csv", "python -m src.compute_aware_cascade", "Observed-runtime versus proxy-runtime provenance audit for gold selections."),
-        ("gold_runtime_normalization", "gold", "experimental/frontier", "audit", "results/tables/cascade_runtime_normalization.csv", "python -m src.compute_aware_cascade", "Selected-route runtime normalization and RTF audit for gold strategies."),
-        ("gold_pareto", "gold", "experimental/frontier", "audit", "results/tables/cascade_pareto.csv", "python -m src.compute_aware_cascade", "CER/compute Pareto frontier audit for gold strategies."),
-        ("gold_recommendations", "gold", "experimental/frontier", "recommendation", "results/tables/cascade_recommendations.csv", "python -m src.compute_aware_cascade", "Deployment-profile recommendation card for gold strategies."),
-        ("gold_frontier_report", "gold", "experimental/frontier", "report", "results/figures/cascade_frontier_report.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Single-entry frontier report that consolidates the current cascade evidence stack."),
-        ("synthetic_split_cascade_performance", "synthetic_split", "synthetic/silver", "performance", "results/tables/synthetic_split_cascade_performance.csv", "python -m src.compute_aware_cascade --dataset synthetic_split", "Held-out synthetic split cascade performance table."),
-        ("synthetic_split_cascade_summary", "synthetic_split", "synthetic/silver", "summary", "results/figures/synthetic_split_cascade_summary.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Narrative summary of synthetic split cascade trade-offs."),
-        ("synthetic_split_tradeoff_figure", "synthetic_split", "synthetic/silver", "figure", "results/figures/synthetic_split_cer_runtime_tradeoff.png", "python -m src.compute_aware_cascade --dataset synthetic_split", "CER versus compute scatter plot for synthetic split strategies."),
-        ("synthetic_split_runtime_audit", "synthetic_split", "synthetic/silver", "audit", "results/tables/synthetic_split_cascade_runtime_audit.csv", "python -m src.compute_aware_cascade --dataset synthetic_split", "Observed-runtime versus proxy-runtime provenance audit for synthetic split selections."),
-        ("synthetic_split_runtime_normalization", "synthetic_split", "synthetic/silver", "audit", "results/tables/synthetic_split_cascade_runtime_normalization.csv", "python -m src.compute_aware_cascade --dataset synthetic_split", "Selected-route runtime normalization and RTF audit for synthetic split strategies."),
-        ("synthetic_split_pareto", "synthetic_split", "synthetic/silver", "audit", "results/tables/synthetic_split_cascade_pareto.csv", "python -m src.compute_aware_cascade --dataset synthetic_split", "CER/compute Pareto frontier audit for synthetic split strategies."),
-        ("synthetic_split_recommendations", "synthetic_split", "synthetic/silver", "recommendation", "results/tables/synthetic_split_cascade_recommendations.csv", "python -m src.compute_aware_cascade --dataset synthetic_split", "Deployment-profile recommendation card for synthetic split strategies."),
-        ("cross_dataset_robustness_gap", "cross_dataset", "experimental/frontier", "audit", "results/tables/cascade_robustness_gap.csv", "python -m src.compute_aware_cascade --dataset synthetic_split", "Gold versus synthetic split robustness gap table for shared strategy families."),
-        ("cross_dataset_recommendation_stability", "cross_dataset", "experimental/frontier", "audit", "results/tables/cascade_recommendation_stability.csv", "python -m src.compute_aware_cascade --dataset synthetic_split", "Raw strategy recommendation stability across gold and synthetic scopes."),
-        ("cross_dataset_family_stability", "cross_dataset", "experimental/frontier", "audit", "results/tables/cascade_recommendation_family_stability.csv", "python -m src.compute_aware_cascade --dataset synthetic_split", "Family-level recommendation stability across gold and synthetic scopes."),
-        ("cross_dataset_decision_matrix", "cross_dataset", "experimental/frontier", "report", "results/tables/cascade_decision_matrix.csv", "python -m src.compute_aware_cascade --dataset synthetic_split", "Deployment-facing matrix that merges recommendation and robustness evidence."),
-        ("cross_dataset_profile_playbook", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_profile_playbook.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Profile-by-profile deployment playbook derived from the cascade decision matrix."),
-        ("cross_dataset_benchmark_readiness", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_readiness.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Priority-ordered readiness scaffold for replacing repository-local timing with controlled benchmark evidence."),
-        ("cross_dataset_benchmark_plan", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_plan.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Staged benchmark handoff plan derived from the readiness scaffold."),
-        ("cross_dataset_benchmark_checklist", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_checklist.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Execution checklist for recording benchmark session metadata and acceptance checks."),
-        ("cross_dataset_benchmark_manifest_template", "cross_dataset", "experimental/frontier", "report", "results/tables/cascade_benchmark_manifest_template.csv", "python -m src.compute_aware_cascade --dataset synthetic_split", "Fill-in template for benchmark session metadata captured during controlled timing runs."),
-        ("cross_dataset_benchmark_status", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_status.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Phase-by-phase benchmark status board showing template completeness and pending execution gaps."),
-        ("cross_dataset_benchmark_execution_summary", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_execution_summary.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Execution-summary rollup showing blocker totals, readiness by phase, and recommended next actions."),
-        ("cross_dataset_benchmark_execution_queue", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_execution_queue.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Ordered benchmark execution queue showing which pending step should run or review next."),
-        ("cross_dataset_benchmark_session_ledger", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_session_ledger.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Session ledger linking each queued benchmark step to its required evidence anchor and completion note."),
-        ("cross_dataset_benchmark_dependency_graph", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_dependency_graph.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Dependency graph showing which benchmark step unlocks or blocks downstream benchmark steps."),
-        ("cross_dataset_benchmark_blocker_matrix", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_blocker_matrix.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Matrix view consolidating blocker type, queue priority, dependency state, and pending-field scale."),
-        ("cross_dataset_benchmark_runbook_card", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_runbook_card.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "One-page runbook card summarizing the first benchmark action, evidence needs, and completion target."),
-        ("cross_dataset_benchmark_milestone_card", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_milestone_card.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Milestone card summarizing the next unlock, current urgency, and remaining benchmark phases."),
-        ("cross_dataset_benchmark_phase_checkpoint_card", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_phase_checkpoint_card.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Per-phase checkpoint card summarizing blocker, next action, and completion signal."),
-        ("cross_dataset_benchmark_completion_dashboard", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_completion_dashboard.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Completion dashboard summarizing current start, dominant blocker family, and pending phase count."),
-        ("cross_dataset_benchmark_operator_brief", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_operator_brief.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Plain-language brief for the current benchmark operator covering step, evidence, and urgency."),
-        ("cross_dataset_benchmark_frontier_bridge", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_frontier_bridge.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Bridge card linking the current benchmark operator step to the broader frontier execution queue."),
-        ("cross_dataset_benchmark_frontier_bridge_checklist", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_frontier_bridge_checklist.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Verification checklist for the benchmark bridge between the current operator step and the frontier queue."),
-        ("cross_dataset_benchmark_receipt_bridge_checklist", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_receipt_bridge_checklist.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Verification checklist for the benchmark receipt bridge between the handoff packet and the evidence receipt."),
-        ("cross_dataset_benchmark_evidence_receipt", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_evidence_receipt.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Receipt-style writeback guide for the current benchmark step covering evidence, completion signal, and follow-up."),
-        ("cross_dataset_benchmark_handoff_packet", "cross_dataset", "experimental/frontier", "report", "results/figures/cascade_benchmark_handoff_packet.md", "python -m src.compute_aware_cascade --dataset synthetic_split", "Single-entry benchmark handoff packet consolidating readiness, plan, checklist, manifest template, and status board."),
-    ]
-    rows = [
-        {
-            "artifact_id": artifact_id,
-            "dataset": dataset,
-            "label": label,
-            "artifact_group": artifact_group,
-            "artifact_path": artifact_path,
-            "generator_command": generator_command,
-            "intended_use": intended_use,
-        }
-        for artifact_id, dataset, label, artifact_group, artifact_path, generator_command, intended_use in registry
-    ]
-    return sorted(rows, key=lambda row: (str(row["dataset"]), str(row["artifact_group"]), str(row["artifact_id"])))
 
 
-def build_artifact_index_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Artifact Index",
-        "",
-        "This generated index lists the current compute-aware cascade artifacts, labels, and intended entrypoints.",
-        "",
-    ]
-    datasets = sorted({str(row.get("dataset", "")) for row in rows})
-    for dataset in datasets:
-        lines.extend(
-            [
-                f"## {dataset}",
-                "",
-                "| artifact_id | label | artifact_group | artifact_path | generator_command | intended_use |",
-                "| --- | --- | --- | --- | --- | --- |",
-            ]
-        )
-        for row in rows:
-            if str(row.get("dataset", "")) == dataset:
-                lines.append(
-                    f"| {row['artifact_id']} | {row['label']} | {row['artifact_group']} | {row['artifact_path']} | {row['generator_command']} | {row['intended_use']} |"
-                )
-        lines.append("")
-    return lines
 
 
-def write_artifact_index_outputs(
-    rows: list[dict[str, Any]],
-    csv_path: Path,
-    json_path: Path,
-    summary_path: Path,
-) -> None:
-    write_csv_json(rows, csv_path, json_path, ARTIFACT_INDEX_COLUMNS)
-    summary_path.parent.mkdir(parents=True, exist_ok=True)
-    summary_path.write_text("\n".join(build_artifact_index_lines(rows)) + "\n", encoding="utf-8")
 
 
-def benchmark_priority_rank(priority: str) -> int:
-    return {"high": 0, "medium": 1, "low": 2}.get(priority, 9)
 
 
-def build_benchmark_readiness_rows(artifact_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    rows: list[dict[str, Any]] = []
-    for artifact in artifact_rows:
-        artifact_id = str(artifact.get("artifact_id", ""))
-        dataset = str(artifact.get("dataset", ""))
-        artifact_group = str(artifact.get("artifact_group", ""))
-
-        if "runtime" in artifact_id:
-            priority = "high"
-            status = "repo_local_runtime_only"
-            readiness_tier = "benchmark_foundation"
-            next_step = "Run a controlled same-hardware timing sweep for the selected routes."
-        elif artifact_group in {"performance", "figure"}:
-            priority = "high"
-            status = "repo_local_runtime_only"
-            readiness_tier = "benchmark_surface"
-            next_step = "Rebuild this artifact after controlled route timing is collected."
-        elif dataset == "cross_dataset":
-            priority = "medium"
-            status = "inherits_repo_local_runtime"
-            readiness_tier = "downstream_summary"
-            next_step = "Refresh after gold and synthetic controlled benchmark evidence lands."
-        elif artifact_group in {"recommendation", "report", "summary"}:
-            priority = "medium"
-            status = "inherits_repo_local_runtime"
-            readiness_tier = "downstream_summary"
-            next_step = "Refresh after controlled benchmark evidence replaces repository-local timing."
-        else:
-            priority = "low"
-            status = "reference_only"
-            readiness_tier = "registry_support"
-            next_step = "Keep as lookup support unless benchmark scope expands."
-
-        rows.append(
-            {
-                "artifact_id": artifact_id,
-                "dataset": dataset,
-                "label": artifact.get("label", ""),
-                "artifact_group": artifact_group,
-                "artifact_path": artifact.get("artifact_path", ""),
-                "benchmark_priority": priority,
-                "benchmark_priority_rank": benchmark_priority_rank(priority),
-                "benchmark_status": status,
-                "readiness_tier": readiness_tier,
-                "next_evidence_step": next_step,
-            }
-        )
-    return sorted(
-        rows,
-        key=lambda row: (
-            to_int(row.get("benchmark_priority_rank")),
-            str(row.get("dataset", "")),
-            str(row.get("artifact_id", "")),
-        ),
-    )
 
 
-def build_benchmark_readiness_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Readiness",
-        "",
-        "This generated note identifies which cascade artifacts most need controlled hardware/runtime evidence next.",
-        "",
-    ]
-    priorities = ["high", "medium", "low"]
-    for priority in priorities:
-        scoped_rows = [row for row in rows if str(row.get("benchmark_priority", "")) == priority]
-        if not scoped_rows:
-            continue
-        lines.extend(
-            [
-                f"## {priority} priority",
-                "",
-                "| artifact_id | dataset | benchmark_status | readiness_tier | artifact_path | next_evidence_step |",
-                "| --- | --- | --- | --- | --- | --- |",
-            ]
-        )
-        for row in scoped_rows:
-            lines.append(
-                f"| {row['artifact_id']} | {row['dataset']} | {row['benchmark_status']} | {row['readiness_tier']} | {row['artifact_path']} | {row['next_evidence_step']} |"
-            )
-        lines.append("")
-    return lines
 
 
-def write_benchmark_readiness_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_READINESS_COLUMNS, build_benchmark_readiness_lines)
 
 
-def build_benchmark_plan_rows(readiness_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    rows = [
-        {
-            "plan_step_id": "phase1_gold_runtime_foundation",
-            "step_order": 1,
-            "phase": "foundation",
-            "dataset_scope": "gold",
-            "command": "python -m src.compute_aware_cascade",
-            "prerequisite_artifacts": "gold_runtime_audit;gold_runtime_normalization",
-            "refreshed_artifacts": "gold_runtime_audit;gold_runtime_normalization",
-            "success_signal": "Gold runtime foundation artifacts are rebuilt from controlled timing.",
-        },
-        {
-            "plan_step_id": "phase2_synthetic_runtime_foundation",
-            "step_order": 2,
-            "phase": "foundation",
-            "dataset_scope": "synthetic_split",
-            "command": "python -m src.compute_aware_cascade --dataset synthetic_split",
-            "prerequisite_artifacts": "synthetic_split_runtime_audit;synthetic_split_runtime_normalization",
-            "refreshed_artifacts": "synthetic_split_runtime_audit;synthetic_split_runtime_normalization",
-            "success_signal": "Synthetic split runtime foundation artifacts are rebuilt from controlled timing.",
-        },
-        {
-            "plan_step_id": "phase3_gold_surface_refresh",
-            "step_order": 3,
-            "phase": "surface",
-            "dataset_scope": "gold",
-            "command": "python -m src.compute_aware_cascade",
-            "prerequisite_artifacts": "gold_cascade_performance;gold_tradeoff_figure;gold_cascade_summary;gold_recommendations;gold_frontier_report",
-            "refreshed_artifacts": "gold_cascade_performance;gold_tradeoff_figure;gold_cascade_summary;gold_recommendations;gold_frontier_report",
-            "success_signal": "Gold surface artifacts are rebuilt from controlled timing-backed inputs.",
-        },
-        {
-            "plan_step_id": "phase4_synthetic_surface_refresh",
-            "step_order": 4,
-            "phase": "surface",
-            "dataset_scope": "synthetic_split",
-            "command": "python -m src.compute_aware_cascade --dataset synthetic_split",
-            "prerequisite_artifacts": "synthetic_split_cascade_performance;synthetic_split_tradeoff_figure;synthetic_split_cascade_summary;synthetic_split_recommendations",
-            "refreshed_artifacts": "synthetic_split_cascade_performance;synthetic_split_tradeoff_figure;synthetic_split_cascade_summary;synthetic_split_recommendations",
-            "success_signal": "Synthetic split surface artifacts are rebuilt from controlled timing-backed inputs.",
-        },
-        {
-            "plan_step_id": "phase5_cross_dataset_refresh",
-            "step_order": 5,
-            "phase": "cross_dataset",
-            "dataset_scope": "cross_dataset",
-            "command": "python -m src.compute_aware_cascade --dataset synthetic_split",
-            "prerequisite_artifacts": "cross_dataset_robustness_gap;cross_dataset_recommendation_stability;cross_dataset_family_stability;cross_dataset_decision_matrix",
-            "refreshed_artifacts": "cross_dataset_robustness_gap;cross_dataset_recommendation_stability;cross_dataset_family_stability;cross_dataset_decision_matrix",
-            "success_signal": "Cross-dataset decision-support artifacts are rebuilt from controlled timing-backed inputs.",
-        },
-    ]
-    available = {str(row.get("artifact_id", "")) for row in readiness_rows}
-    filtered_rows: list[dict[str, Any]] = []
-    for row in rows:
-        needed = {
-            artifact
-            for field in ["prerequisite_artifacts", "refreshed_artifacts"]
-            for artifact in str(row.get(field, "")).split(";")
-            if artifact
-        }
-        if needed.issubset(available):
-            filtered_rows.append(row)
-    return sorted(filtered_rows, key=lambda row: to_int(row.get("step_order")))
 
 
-def build_benchmark_plan_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Plan",
-        "",
-        "This generated handoff plan turns benchmark readiness priorities into a staged execution order.",
-        "",
-        "| step_order | plan_step_id | phase | dataset_scope | command | prerequisite_artifacts | refreshed_artifacts | success_signal |",
-        "| ---: | --- | --- | --- | --- | --- | --- | --- |",
-    ]
-    for row in rows:
-        lines.append(
-            f"| {row['step_order']} | {row['plan_step_id']} | {row['phase']} | {row['dataset_scope']} | {row['command']} | "
-            f"{row['prerequisite_artifacts']} | {row['refreshed_artifacts']} | {row['success_signal']} |"
-        )
-    return lines
 
 
-def write_benchmark_plan_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_PLAN_COLUMNS, build_benchmark_plan_lines)
 
 
-def build_profile_playbook_rows(decision_matrix_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    rows: list[dict[str, Any]] = []
-    for row in decision_matrix_rows:
-        profile = str(row.get("profile", ""))
-        family_strategy = str(row.get("family_most_common_strategy", ""))
-        gold_strategy = str(row.get("gold_recommended_strategy", ""))
-        synthetic_strategy = str(row.get("synthetic_all_recommended_strategy", ""))
-        robustness_rank = to_int(row.get("robustness_rank"))
-        consensus_ratio = to_float(row.get("family_consensus_ratio"))
-        synthetic_cost = to_float(row.get("synthetic_all_average_compute_cost"))
-
-        if profile == "balanced":
-            default_role = "default"
-            when_to_use = "Use when you want the cleanest default operating point across scopes and a stable router-family recommendation around router_v2."
-            avoid_when = "Avoid when your main requirement is either the absolute lowest held-out CER or the lowest compute floor."
-            tradeoff_summary = (
-                f"Stable family-level default around `{family_strategy}` with consensus {consensus_ratio} and lower synthetic cost "
-                "than accuracy_first."
-            )
-        elif profile == "accuracy_first":
-            default_role = "robust_accuracy"
-            when_to_use = "Use when held-out robustness and stronger accuracy-biased recovery matter more than compute simplicity."
-            avoid_when = "Avoid when you need the cheapest operating mode or a perfectly stable family recommendation across scopes."
-            tradeoff_summary = (
-                f"Best accuracy-biased option with lowest shared robustness rank {robustness_rank}, but it shifts from `{gold_strategy}` "
-                f"on gold to `{synthetic_strategy}` on held-out synthetic split."
-            )
-        else:
-            default_role = "budget_floor"
-            when_to_use = "Use when compute cost is the primary constraint and you want the most stable cost-first recommendation."
-            avoid_when = "Avoid when moderate or heavy overlap accuracy matters more than cost floor."
-            tradeoff_summary = (
-                f"Cheapest stable profile built around `{family_strategy}` with synthetic compute cost {synthetic_cost}, but it carries the weakest CER."
-            )
-
-        rows.append(
-            {
-                "profile": profile,
-                "default_role": default_role,
-                "family_strategy": family_strategy,
-                "gold_strategy": gold_strategy,
-                "synthetic_strategy": synthetic_strategy,
-                "when_to_use": when_to_use,
-                "avoid_when": avoid_when,
-                "tradeoff_summary": tradeoff_summary,
-            }
-        )
-    return sorted(rows, key=lambda row: str(row.get("profile", "")))
 
 
-def build_profile_playbook_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Profile Playbook",
-        "",
-        "This generated playbook turns the cascade profile recommendations into deployment-facing guidance.",
-        "",
-    ]
-    for row in rows:
-        lines.extend(
-            [
-                f"## {row['profile']}",
-                "",
-                f"- role: `{row['default_role']}`",
-                f"- family_strategy: `{row['family_strategy']}`",
-                f"- gold_strategy: `{row['gold_strategy']}`",
-                f"- synthetic_strategy: `{row['synthetic_strategy']}`",
-                f"- when_to_use: {row['when_to_use']}",
-                f"- avoid_when: {row['avoid_when']}",
-                f"- tradeoff_summary: {row['tradeoff_summary']}",
-                "",
-            ]
-        )
-    return lines
 
 
-def write_profile_playbook_outputs(
-    rows: list[dict[str, Any]],
-    csv_path: Path,
-    json_path: Path,
-    summary_path: Path,
-) -> None:
-    write_csv_json(rows, csv_path, json_path, PROFILE_PLAYBOOK_COLUMNS)
-    summary_path.parent.mkdir(parents=True, exist_ok=True)
-    summary_path.write_text("\n".join(build_profile_playbook_lines(rows)) + "\n", encoding="utf-8")
 
 
-def build_benchmark_checklist_rows(plan_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    rows: list[dict[str, Any]] = []
-    for row in plan_rows:
-        phase = str(row.get("phase", ""))
-        if phase == "foundation":
-            session_type = "timing_capture"
-            required_metadata = "hardware_label;device;repeat_count;warmup_count;batch_shape;timing_notes"
-        elif phase == "surface":
-            session_type = "artifact_refresh"
-            required_metadata = "source_timing_manifest;refresh_command;diff_review_notes"
-        else:
-            session_type = "derived_refresh"
-            required_metadata = "source_timing_manifest;cross_dataset_scope;refresh_command;consistency_notes"
-
-        rows.append(
-            {
-                "plan_step_id": row.get("plan_step_id", ""),
-                "step_order": row.get("step_order", ""),
-                "phase": phase,
-                "dataset_scope": row.get("dataset_scope", ""),
-                "command": row.get("command", ""),
-                "session_type": session_type,
-                "required_metadata": required_metadata,
-                "acceptance_check": row.get("success_signal", ""),
-            }
-        )
-    return sorted(rows, key=lambda row: to_int(row.get("step_order")))
 
 
-def build_benchmark_checklist_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Checklist",
-        "",
-        "This generated checklist records the metadata and acceptance checks required for each benchmark handoff step.",
-        "",
-        "| step_order | plan_step_id | phase | dataset_scope | command | session_type | required_metadata | acceptance_check |",
-        "| ---: | --- | --- | --- | --- | --- | --- | --- |",
-    ]
-    for row in rows:
-        lines.append(
-            f"| {row['step_order']} | {row['plan_step_id']} | {row['phase']} | {row['dataset_scope']} | {row['command']} | "
-            f"{row['session_type']} | {row['required_metadata']} | {row['acceptance_check']} |"
-        )
-    return lines
 
 
-def write_benchmark_checklist_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_CHECKLIST_COLUMNS, build_benchmark_checklist_lines)
 
 
-def build_benchmark_manifest_template_rows(checklist_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    template_fields = [
-        "hardware_label",
-        "device",
-        "repeat_count",
-        "warmup_count",
-        "batch_shape",
-        "timing_notes",
-        "source_timing_manifest",
-        "refresh_command",
-        "diff_review_notes",
-        "cross_dataset_scope",
-        "consistency_notes",
-    ]
-    rows: list[dict[str, Any]] = []
-    for row in checklist_rows:
-        template = {field: "" for field in template_fields}
-        for field in str(row.get("required_metadata", "")).split(";"):
-            key = field.strip()
-            if key in template:
-                template[key] = "TODO"
-        rows.append(
-            {
-                "plan_step_id": row.get("plan_step_id", ""),
-                "step_order": row.get("step_order", ""),
-                "phase": row.get("phase", ""),
-                "dataset_scope": row.get("dataset_scope", ""),
-                "session_type": row.get("session_type", ""),
-                "command": row.get("command", ""),
-                "acceptance_check": row.get("acceptance_check", ""),
-                **template,
-            }
-        )
-    return sorted(rows, key=lambda row: to_int(row.get("step_order")))
 
 
-def write_benchmark_manifest_template_outputs(
-    rows: list[dict[str, Any]],
-    csv_path: Path,
-    json_path: Path,
-) -> None:
-    write_csv_json(rows, csv_path, json_path, BENCHMARK_MANIFEST_TEMPLATE_COLUMNS)
 
 
-def build_benchmark_status_lines(rows: list[dict[str, Any]]) -> list[str]:
-    lines = [
-        "# Cascade Benchmark Status Board",
-        "",
-        "This generated status board tracks which benchmark handoff phases are still template-only and what evidence is missing next.",
-        "",
-        "| step_order | plan_step_id | phase | dataset_scope | execution_status | readiness_signal | pending_field_count | blocking_category | next_action | missing_fields | acceptance_check |",
-        "| ---: | --- | --- | --- | --- | --- | ---: | --- | --- | --- | --- |",
-    ]
-    for row in rows:
-        lines.append(
-            f"| {row['step_order']} | {row['plan_step_id']} | {row['phase']} | {row['dataset_scope']} | "
-            f"{row['execution_status']} | {row['readiness_signal']} | {row['pending_field_count']} | {row['blocking_category']} | "
-            f"{row['next_action']} | {row['missing_fields']} | {row['acceptance_check']} |"
-        )
-    return lines
 
 
-def write_benchmark_status_outputs(
-    rows: list[dict[str, Any]], csv_path: Path, json_path: Path, summary_path: Path,
-) -> None:
-    write_benchmark_outputs(rows, csv_path, json_path, summary_path, BENCHMARK_STATUS_COLUMNS, build_benchmark_status_lines)
 
 
 def set_pixel(pixels: bytearray, width: int, height: int, x: int, y: int, color: tuple[int, int, int]) -> None:
@@ -3298,155 +1599,16 @@ def write_runtime_normalization_outputs(
     render_runtime_normalization_summary(rows, summary_path)
 
 
+
+
 def main() -> None:
     args = parse_args()
-    wrote_profile_playbook = False
-    artifact_index_rows = build_artifact_index_rows()
-    benchmark_readiness_rows = build_benchmark_readiness_rows(artifact_index_rows)
-    benchmark_plan_rows = build_benchmark_plan_rows(benchmark_readiness_rows)
-    artifact_index_csv = PROJECT_ROOT / "results" / "tables" / "cascade_artifact_index.csv"
-    artifact_index_json = PROJECT_ROOT / "results" / "tables" / "cascade_artifact_index.json"
-    artifact_index_md = PROJECT_ROOT / "results" / "figures" / "cascade_artifact_index.md"
-    benchmark_readiness_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_readiness.csv"
-    benchmark_readiness_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_readiness.json"
-    benchmark_readiness_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_readiness.md"
-    benchmark_plan_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_plan.csv"
-    benchmark_plan_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_plan.json"
-    benchmark_plan_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_plan.md"
-    benchmark_checklist_rows = build_benchmark_checklist_rows(benchmark_plan_rows)
-    benchmark_checklist_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_checklist.csv"
-    benchmark_checklist_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_checklist.json"
-    benchmark_checklist_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_checklist.md"
-    benchmark_manifest_template_rows = build_benchmark_manifest_template_rows(benchmark_checklist_rows)
-    benchmark_manifest_template_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_manifest_template.csv"
-    benchmark_manifest_template_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_manifest_template.json"
-    benchmark_status_rows = build_benchmark_status_rows(benchmark_manifest_template_rows)
-    benchmark_status_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_status.csv"
-    benchmark_status_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_status.json"
-    benchmark_status_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_status.md"
-    benchmark_execution_summary_rows = build_benchmark_execution_summary_rows(benchmark_status_rows)
-    benchmark_execution_summary_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_execution_summary.csv"
-    benchmark_execution_summary_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_execution_summary.json"
-    benchmark_execution_summary_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_execution_summary.md"
-    benchmark_execution_queue_rows = build_benchmark_execution_queue_rows(benchmark_status_rows)
-    benchmark_execution_queue_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_execution_queue.csv"
-    benchmark_execution_queue_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_execution_queue.json"
-    benchmark_execution_queue_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_execution_queue.md"
-    benchmark_session_ledger_rows = build_benchmark_session_ledger_rows(
-        benchmark_execution_queue_rows,
-        benchmark_manifest_template_rows,
-    )
-    benchmark_session_ledger_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_session_ledger.csv"
-    benchmark_session_ledger_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_session_ledger.json"
-    benchmark_session_ledger_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_session_ledger.md"
-    benchmark_dependency_graph_rows = build_benchmark_dependency_graph_rows(
-        benchmark_plan_rows,
-        benchmark_execution_queue_rows,
-    )
-    benchmark_dependency_graph_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_dependency_graph.csv"
-    benchmark_dependency_graph_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_dependency_graph.json"
-    benchmark_dependency_graph_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_dependency_graph.md"
-    benchmark_blocker_matrix_rows = build_benchmark_blocker_matrix_rows(
-        benchmark_status_rows,
-        benchmark_execution_queue_rows,
-        benchmark_dependency_graph_rows,
-    )
-    benchmark_blocker_matrix_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_blocker_matrix.csv"
-    benchmark_blocker_matrix_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_blocker_matrix.json"
-    benchmark_blocker_matrix_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_blocker_matrix.md"
-    benchmark_runbook_card_rows = build_benchmark_runbook_card_rows(
-        benchmark_blocker_matrix_rows,
-        benchmark_execution_queue_rows,
-        benchmark_session_ledger_rows,
-    )
-    benchmark_runbook_card_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_runbook_card.csv"
-    benchmark_runbook_card_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_runbook_card.json"
-    benchmark_runbook_card_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_runbook_card.md"
-    benchmark_milestone_card_rows = build_benchmark_milestone_card_rows(
-        benchmark_runbook_card_rows,
-        benchmark_dependency_graph_rows,
-        benchmark_execution_summary_rows,
-    )
-    benchmark_milestone_card_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_milestone_card.csv"
-    benchmark_milestone_card_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_milestone_card.json"
-    benchmark_milestone_card_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_milestone_card.md"
-    benchmark_phase_checkpoint_card_rows = build_benchmark_phase_checkpoint_card_rows(
-        benchmark_execution_summary_rows,
-        benchmark_plan_rows,
-    )
-    benchmark_phase_checkpoint_card_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_phase_checkpoint_card.csv"
-    benchmark_phase_checkpoint_card_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_phase_checkpoint_card.json"
-    benchmark_phase_checkpoint_card_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_phase_checkpoint_card.md"
-    benchmark_completion_dashboard_rows = build_benchmark_completion_dashboard_rows(
-        benchmark_execution_summary_rows,
-        benchmark_runbook_card_rows,
-        benchmark_milestone_card_rows,
-    )
-    benchmark_completion_dashboard_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_completion_dashboard.csv"
-    benchmark_completion_dashboard_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_completion_dashboard.json"
-    benchmark_completion_dashboard_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_completion_dashboard.md"
-    benchmark_operator_brief_rows = build_benchmark_operator_brief_rows(
-        benchmark_completion_dashboard_rows,
-        benchmark_runbook_card_rows,
-        benchmark_session_ledger_rows,
-    )
-    benchmark_operator_brief_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_operator_brief.csv"
-    benchmark_operator_brief_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_operator_brief.json"
-    benchmark_operator_brief_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_operator_brief.md"
-    benchmark_frontier_bridge_rows = build_benchmark_frontier_bridge_rows(
-        benchmark_operator_brief_rows,
-        load_frontier_execution_queue_rows(),
-    )
-    benchmark_frontier_bridge_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_frontier_bridge.csv"
-    benchmark_frontier_bridge_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_frontier_bridge.json"
-    benchmark_frontier_bridge_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_frontier_bridge.md"
-    benchmark_frontier_bridge_checklist_rows = build_benchmark_frontier_bridge_checklist_rows(
-        benchmark_operator_brief_rows,
-        load_frontier_execution_queue_rows(),
-    )
-    benchmark_frontier_bridge_checklist_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_frontier_bridge_checklist.csv"
-    benchmark_frontier_bridge_checklist_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_frontier_bridge_checklist.json"
-    benchmark_frontier_bridge_checklist_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_frontier_bridge_checklist.md"
-    benchmark_evidence_receipt_rows = build_benchmark_evidence_receipt_rows(
-        benchmark_completion_dashboard_rows,
-        benchmark_operator_brief_rows,
-        benchmark_session_ledger_rows,
-        benchmark_phase_checkpoint_card_rows,
-    )
-    benchmark_evidence_receipt_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_evidence_receipt.csv"
-    benchmark_evidence_receipt_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_evidence_receipt.json"
-    benchmark_evidence_receipt_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_evidence_receipt.md"
-    benchmark_evidence_checklist_rows = build_benchmark_evidence_checklist_rows(benchmark_evidence_receipt_rows)
-    benchmark_evidence_checklist_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_evidence_checklist.csv"
-    benchmark_evidence_checklist_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_evidence_checklist.json"
-    benchmark_evidence_checklist_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_evidence_checklist.md"
-    benchmark_receipt_bridge_rows = build_benchmark_receipt_bridge_rows(
-        benchmark_runbook_card_rows,
-        benchmark_evidence_receipt_rows,
-    )
-    benchmark_receipt_bridge_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_receipt_bridge.csv"
-    benchmark_receipt_bridge_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_receipt_bridge.json"
-    benchmark_receipt_bridge_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_receipt_bridge.md"
-    benchmark_receipt_bridge_checklist_rows = build_benchmark_receipt_bridge_checklist_rows(
-        benchmark_runbook_card_rows,
-        benchmark_evidence_receipt_rows,
-    )
-    benchmark_receipt_bridge_checklist_csv = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_receipt_bridge_checklist.csv"
-    benchmark_receipt_bridge_checklist_json = PROJECT_ROOT / "results" / "tables" / "cascade_benchmark_receipt_bridge_checklist.json"
-    benchmark_receipt_bridge_checklist_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_receipt_bridge_checklist.md"
-    benchmark_packet_md = PROJECT_ROOT / "results" / "figures" / "cascade_benchmark_handoff_packet.md"
-    profile_playbook_csv = PROJECT_ROOT / "results" / "tables" / "cascade_profile_playbook.csv"
-    profile_playbook_json = PROJECT_ROOT / "results" / "tables" / "cascade_profile_playbook.json"
-    profile_playbook_md = PROJECT_ROOT / "results" / "figures" / "cascade_profile_playbook.md"
     if args.dataset == "synthetic_split":
         cases = load_synthetic_split_cases()
         decisions = load_synthetic_split_decisions()
         runtime_lookup = load_synthetic_split_runtime_lookup()
         rows = build_synthetic_scope_rows(
-            cases,
-            decisions,
-            load_synthetic_split_cer_lookup(),
-            runtime_lookup,
+            cases, decisions, load_synthetic_split_cer_lookup(), runtime_lookup
         )
         table_csv = PROJECT_ROOT / "results" / "tables" / "synthetic_split_cascade_performance.csv"
         table_json = PROJECT_ROOT / "results" / "tables" / "synthetic_split_cascade_performance.json"
@@ -3471,23 +1633,16 @@ def main() -> None:
         runtime_rows: list[dict[str, Any]] = []
         runtime_rows.extend(
             summarize_runtime_sources(
-                cases,
-                SYNTHETIC_STRATEGIES,
-                decisions,
-                runtime_lookup,
-                scope="ALL",
-                dataset_label="synthetic_split",
+                cases, SYNTHETIC_STRATEGIES, decisions, runtime_lookup,
+                scope="ALL", dataset_label="synthetic_split",
             )
         )
         for split in sorted({str(case.get("split", "")).strip() for case in cases if str(case.get("split", "")).strip()}):
             runtime_rows.extend(
                 summarize_runtime_sources(
                     [case for case in cases if str(case.get("split", "")).strip() == split],
-                    SYNTHETIC_STRATEGIES,
-                    decisions,
-                    runtime_lookup,
-                    scope=split.upper(),
-                    dataset_label="synthetic_split",
+                    SYNTHETIC_STRATEGIES, decisions, runtime_lookup,
+                    scope=split.upper(), dataset_label="synthetic_split",
                 )
             )
         write_runtime_audit_outputs(runtime_rows, runtime_audit_csv, runtime_audit_json, runtime_audit_md)
@@ -3495,32 +1650,22 @@ def main() -> None:
         runtime_norm_rows: list[dict[str, Any]] = []
         runtime_norm_rows.extend(
             summarize_runtime_normalization(
-                cases,
-                SYNTHETIC_STRATEGIES,
-                decisions,
-                runtime_lookup,
-                duration_lookup,
-                scope="ALL",
-                dataset_label="synthetic_split",
+                cases, SYNTHETIC_STRATEGIES, decisions, runtime_lookup, duration_lookup,
+                scope="ALL", dataset_label="synthetic_split",
             )
         )
         for split in sorted({str(case.get("split", "")).strip() for case in cases if str(case.get("split", "")).strip()}):
             runtime_norm_rows.extend(
                 summarize_runtime_normalization(
                     [case for case in cases if str(case.get("split", "")).strip() == split],
-                    SYNTHETIC_STRATEGIES,
-                    decisions,
-                    runtime_lookup,
-                    duration_lookup,
-                    scope=split.upper(),
-                    dataset_label="synthetic_split",
+                    SYNTHETIC_STRATEGIES, decisions, runtime_lookup, duration_lookup,
+                    scope=split.upper(), dataset_label="synthetic_split",
                 )
             )
         write_runtime_normalization_outputs(runtime_norm_rows, runtime_norm_csv, runtime_norm_json, runtime_norm_md)
         pareto_rows = build_pareto_rows(
             [row for row in rows if str(row.get("scope", "")) in {"ALL", "DEV", "TEST"}],
-            runtime_norm_rows,
-            dataset_label="synthetic_split",
+            runtime_norm_rows, dataset_label="synthetic_split",
         )
         write_pareto_outputs(pareto_rows, pareto_csv, pareto_json, pareto_md)
         recommendation_rows = build_recommendation_rows(pareto_rows)
@@ -3528,13 +1673,8 @@ def main() -> None:
 
         gold_rows = build_strategy_rows(load_gold_cases(), load_decisions(), load_cer_lookup(), load_runtime_lookup())
         gold_runtime_norm_rows = summarize_runtime_normalization(
-            load_gold_cases(),
-            STRATEGIES,
-            load_decisions(),
-            load_runtime_lookup(),
-            load_gold_duration_lookup(),
-            scope="ALL",
-            dataset_label="gold",
+            load_gold_cases(), STRATEGIES, load_decisions(), load_runtime_lookup(), load_gold_duration_lookup(),
+            scope="ALL", dataset_label="gold",
         )
         gold_performance_rows = [dict(row, scope="ALL") for row in gold_rows]
         gold_pareto_rows = build_pareto_rows(gold_performance_rows, gold_runtime_norm_rows, dataset_label="gold")
@@ -3561,10 +1701,7 @@ def main() -> None:
             PROJECT_ROOT / "results" / "figures" / "cascade_recommendation_family_stability.md",
         )
         decision_matrix_rows = build_decision_matrix_rows(
-            gold_recommendation_rows,
-            recommendation_rows,
-            family_stability_rows,
-            robustness_rows,
+            gold_recommendation_rows, recommendation_rows, family_stability_rows, robustness_rows,
         )
         write_decision_matrix_outputs(
             decision_matrix_rows,
@@ -3573,167 +1710,9 @@ def main() -> None:
             PROJECT_ROOT / "results" / "figures" / "cascade_decision_matrix.md",
         )
         write_frontier_report(
-            decision_matrix_rows,
-            family_stability_rows,
-            robustness_rows,
+            decision_matrix_rows, family_stability_rows, robustness_rows,
             PROJECT_ROOT / "results" / "figures" / "cascade_frontier_report.md",
         )
-        write_artifact_index_outputs(artifact_index_rows, artifact_index_csv, artifact_index_json, artifact_index_md)
-        write_benchmark_readiness_outputs(
-            benchmark_readiness_rows,
-            benchmark_readiness_csv,
-            benchmark_readiness_json,
-            benchmark_readiness_md,
-        )
-        write_benchmark_plan_outputs(
-            benchmark_plan_rows,
-            benchmark_plan_csv,
-            benchmark_plan_json,
-            benchmark_plan_md,
-        )
-        write_benchmark_checklist_outputs(
-            benchmark_checklist_rows,
-            benchmark_checklist_csv,
-            benchmark_checklist_json,
-            benchmark_checklist_md,
-        )
-        write_benchmark_manifest_template_outputs(
-            benchmark_manifest_template_rows,
-            benchmark_manifest_template_csv,
-            benchmark_manifest_template_json,
-        )
-        write_benchmark_status_outputs(
-            benchmark_status_rows,
-            benchmark_status_csv,
-            benchmark_status_json,
-            benchmark_status_md,
-        )
-        write_benchmark_execution_summary_outputs(
-            benchmark_execution_summary_rows,
-            benchmark_execution_summary_csv,
-            benchmark_execution_summary_json,
-            benchmark_execution_summary_md,
-        )
-        write_benchmark_execution_queue_outputs(
-            benchmark_execution_queue_rows,
-            benchmark_execution_queue_csv,
-            benchmark_execution_queue_json,
-            benchmark_execution_queue_md,
-        )
-        write_benchmark_session_ledger_outputs(
-            benchmark_session_ledger_rows,
-            benchmark_session_ledger_csv,
-            benchmark_session_ledger_json,
-            benchmark_session_ledger_md,
-        )
-        write_benchmark_dependency_graph_outputs(
-            benchmark_dependency_graph_rows,
-            benchmark_dependency_graph_csv,
-            benchmark_dependency_graph_json,
-            benchmark_dependency_graph_md,
-        )
-        write_benchmark_blocker_matrix_outputs(
-            benchmark_blocker_matrix_rows,
-            benchmark_blocker_matrix_csv,
-            benchmark_blocker_matrix_json,
-            benchmark_blocker_matrix_md,
-        )
-        write_benchmark_runbook_card_outputs(
-            benchmark_runbook_card_rows,
-            benchmark_runbook_card_csv,
-            benchmark_runbook_card_json,
-            benchmark_runbook_card_md,
-        )
-        write_benchmark_milestone_card_outputs(
-            benchmark_milestone_card_rows,
-            benchmark_milestone_card_csv,
-            benchmark_milestone_card_json,
-            benchmark_milestone_card_md,
-        )
-        write_benchmark_phase_checkpoint_card_outputs(
-            benchmark_phase_checkpoint_card_rows,
-            benchmark_phase_checkpoint_card_csv,
-            benchmark_phase_checkpoint_card_json,
-            benchmark_phase_checkpoint_card_md,
-        )
-        write_benchmark_completion_dashboard_outputs(
-            benchmark_completion_dashboard_rows,
-            benchmark_completion_dashboard_csv,
-            benchmark_completion_dashboard_json,
-            benchmark_completion_dashboard_md,
-        )
-        write_benchmark_operator_brief_outputs(
-            benchmark_operator_brief_rows,
-            benchmark_operator_brief_csv,
-            benchmark_operator_brief_json,
-            benchmark_operator_brief_md,
-        )
-        write_benchmark_frontier_bridge_outputs(
-            benchmark_frontier_bridge_rows,
-            benchmark_frontier_bridge_csv,
-            benchmark_frontier_bridge_json,
-            benchmark_frontier_bridge_md,
-        )
-        write_benchmark_frontier_bridge_checklist_outputs(
-            benchmark_frontier_bridge_checklist_rows,
-            benchmark_frontier_bridge_checklist_csv,
-            benchmark_frontier_bridge_checklist_json,
-            benchmark_frontier_bridge_checklist_md,
-        )
-        write_benchmark_evidence_receipt_outputs(
-            benchmark_evidence_receipt_rows,
-            benchmark_evidence_receipt_csv,
-            benchmark_evidence_receipt_json,
-            benchmark_evidence_receipt_md,
-        )
-        write_benchmark_evidence_checklist_outputs(
-            benchmark_evidence_checklist_rows,
-            benchmark_evidence_checklist_csv,
-            benchmark_evidence_checklist_json,
-            benchmark_evidence_checklist_md,
-        )
-        write_benchmark_receipt_bridge_outputs(
-            benchmark_receipt_bridge_rows,
-            benchmark_receipt_bridge_csv,
-            benchmark_receipt_bridge_json,
-            benchmark_receipt_bridge_md,
-        )
-        write_benchmark_receipt_bridge_checklist_outputs(
-            benchmark_receipt_bridge_checklist_rows,
-            benchmark_receipt_bridge_checklist_csv,
-            benchmark_receipt_bridge_checklist_json,
-            benchmark_receipt_bridge_checklist_md,
-        )
-        write_benchmark_packet_output(
-            benchmark_readiness_rows,
-            benchmark_plan_rows,
-            benchmark_checklist_rows,
-            benchmark_manifest_template_rows,
-            benchmark_status_rows,
-            benchmark_execution_summary_rows,
-            benchmark_execution_queue_rows,
-            benchmark_session_ledger_rows,
-            benchmark_dependency_graph_rows,
-            benchmark_blocker_matrix_rows,
-            benchmark_runbook_card_rows,
-            benchmark_milestone_card_rows,
-            benchmark_phase_checkpoint_card_rows,
-            benchmark_completion_dashboard_rows,
-            benchmark_operator_brief_rows,
-            benchmark_frontier_bridge_checklist_rows,
-            benchmark_receipt_bridge_checklist_rows,
-            benchmark_evidence_receipt_rows,
-            benchmark_evidence_checklist_rows,
-            benchmark_packet_md,
-        )
-        profile_playbook_rows = build_profile_playbook_rows(decision_matrix_rows)
-        write_profile_playbook_outputs(
-            profile_playbook_rows,
-            profile_playbook_csv,
-            profile_playbook_json,
-            profile_playbook_md,
-        )
-        wrote_profile_playbook = True
     else:
         cases = load_gold_cases()
         decisions = load_decisions()
@@ -3760,22 +1739,12 @@ def main() -> None:
         render_tradeoff_figure(rows, figure_path)
         render_summary(rows, summary_path, figure_path)
         runtime_rows = summarize_runtime_sources(
-            cases,
-            STRATEGIES,
-            decisions,
-            runtime_lookup,
-            scope="ALL",
-            dataset_label="gold",
+            cases, STRATEGIES, decisions, runtime_lookup, scope="ALL", dataset_label="gold"
         )
         write_runtime_audit_outputs(runtime_rows, runtime_audit_csv, runtime_audit_json, runtime_audit_md)
         runtime_norm_rows = summarize_runtime_normalization(
-            cases,
-            STRATEGIES,
-            decisions,
-            runtime_lookup,
-            load_gold_duration_lookup(),
-            scope="ALL",
-            dataset_label="gold",
+            cases, STRATEGIES, decisions, runtime_lookup, load_gold_duration_lookup(),
+            scope="ALL", dataset_label="gold",
         )
         write_runtime_normalization_outputs(runtime_norm_rows, runtime_norm_csv, runtime_norm_json, runtime_norm_md)
         gold_performance_rows = [dict(row, scope="ALL") for row in rows]
@@ -3783,73 +1752,11 @@ def main() -> None:
         write_pareto_outputs(pareto_rows, pareto_csv, pareto_json, pareto_md)
         recommendation_rows = build_recommendation_rows(pareto_rows)
         write_recommendation_outputs(recommendation_rows, recommendation_csv, recommendation_json, recommendation_md)
-        write_artifact_index_outputs(artifact_index_rows, artifact_index_csv, artifact_index_json, artifact_index_md)
-        write_benchmark_readiness_outputs(
-            benchmark_readiness_rows,
-            benchmark_readiness_csv,
-            benchmark_readiness_json,
-            benchmark_readiness_md,
-        )
-        write_benchmark_plan_outputs(
-            benchmark_plan_rows,
-            benchmark_plan_csv,
-            benchmark_plan_json,
-            benchmark_plan_md,
-        )
-        write_benchmark_frontier_bridge_outputs(
-            benchmark_frontier_bridge_rows,
-            benchmark_frontier_bridge_csv,
-            benchmark_frontier_bridge_json,
-            benchmark_frontier_bridge_md,
-        )
-        write_benchmark_frontier_bridge_checklist_outputs(
-            benchmark_frontier_bridge_checklist_rows,
-            benchmark_frontier_bridge_checklist_csv,
-            benchmark_frontier_bridge_checklist_json,
-            benchmark_frontier_bridge_checklist_md,
-        )
-        write_benchmark_receipt_bridge_outputs(
-            benchmark_receipt_bridge_rows,
-            benchmark_receipt_bridge_csv,
-            benchmark_receipt_bridge_json,
-            benchmark_receipt_bridge_md,
-        )
-        write_benchmark_receipt_bridge_checklist_outputs(
-            benchmark_receipt_bridge_checklist_rows,
-            benchmark_receipt_bridge_checklist_csv,
-            benchmark_receipt_bridge_checklist_json,
-            benchmark_receipt_bridge_checklist_md,
-        )
 
     print(f"Wrote cascade performance: {table_csv.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade JSON: {table_json.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade figure: {figure_path.relative_to(PROJECT_ROOT)}")
     print(f"Wrote cascade summary: {summary_path.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade artifact index: {artifact_index_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark readiness: {benchmark_readiness_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark plan: {benchmark_plan_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark checklist: {benchmark_checklist_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark manifest template: {benchmark_manifest_template_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark status: {benchmark_status_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark execution summary: {benchmark_execution_summary_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark execution queue: {benchmark_execution_queue_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark session ledger: {benchmark_session_ledger_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark dependency graph: {benchmark_dependency_graph_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark blocker matrix: {benchmark_blocker_matrix_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark runbook card: {benchmark_runbook_card_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark milestone card: {benchmark_milestone_card_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark phase checkpoint card: {benchmark_phase_checkpoint_card_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark completion dashboard: {benchmark_completion_dashboard_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark operator brief: {benchmark_operator_brief_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark frontier bridge: {benchmark_frontier_bridge_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark frontier bridge checklist: {benchmark_frontier_bridge_checklist_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark evidence receipt: {benchmark_evidence_receipt_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark evidence checklist: {benchmark_evidence_checklist_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark receipt bridge: {benchmark_receipt_bridge_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark receipt bridge checklist: {benchmark_receipt_bridge_checklist_csv.relative_to(PROJECT_ROOT)}")
-    print(f"Wrote cascade benchmark handoff packet: {benchmark_packet_md.relative_to(PROJECT_ROOT)}")
-    if wrote_profile_playbook:
-        print(f"Wrote cascade profile playbook: {profile_playbook_csv.relative_to(PROJECT_ROOT)}")
 
 
 if __name__ == "__main__":
