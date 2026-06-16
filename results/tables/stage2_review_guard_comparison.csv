@@ -1,0 +1,5 @@
+policy_name,observed_route_CER_if_review_unrepaired,covered_non_review_CER,review_rate,review_count,coverage_rate,high_error_mixed_count,false_safe_count,text_probe_reduction_rate,sample_count,note
+stage30_aggressive,0.537082,,0.316667,,,12,0,0.65,60,from_policy_sweep
+stage30_balanced,0.529082,,0.316667,,,12,0,0.416667,60,from_policy_sweep
+stage2_review_guard_on_balanced,0.529082,0.422504,0.216667,13,0.783333,0,0,0.416667,60,review_guard_abstains_without_claiming_repair
+oracle,0.502854,,0.0,0,1.0,0,0,,60,offline_upper_bound_not_deployable

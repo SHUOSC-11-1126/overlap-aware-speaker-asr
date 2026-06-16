@@ -10,6 +10,36 @@ This project asks a focused question:
 
 The answer is not a single model or a universal separation rule. Instead, the project studies mixed ASR, separated speaker-track ASR, cleaned separated transcripts, adaptive routing, speaker-aware evaluation, risk-aware selection, and now a broader agentic research direction.
 
+## Final Research Narrative
+
+### Stable baseline
+
+The stable result is the small manually verified benchmark plus router_v2. On the five gold cases, router_v2 reaches average CER `0.120042`, matching the oracle-best route average. This is the part of the project that can be stated most confidently, with the caveat that the gold set is small.
+
+### Why routing matters
+
+Separation is not uniformly helpful. Heavy overlap and opposite-channel overlap benefit from separated ASR, while light and mid overlap can suffer from insertion and repetition artifacts. A route selector is therefore more appropriate than an always-separate or never-separate policy.
+
+### Why proxy validation is not enough
+
+The AudioDepth model-zoo and hybrid-fusion experiments improved strongly on synthetic/silver data, but sampled real Whisper validation exposed a proxy-to-real gap. The key lesson is that proxy labels are useful for exploration, not final evidence.
+
+### Why controlled route-sensitive benchmarks were needed
+
+The controlled and balanced v2 benchmarks were added to create route contrast under real Whisper evaluation. They show that a learned router can beat router_v2 on controlled silver-plus slices and, in balanced v2, is not blindly selecting separated. They also expose an important negative result: cleaned routing is not yet proven.
+
+### Why AudioDepth became an independent frontier
+
+AudioDepth is not meant to replace text-instability features. It is a pre-ASR acoustic occlusion representation: mixed logmel plus mixed-only overlap and uncertainty proxies. The deployable v2 maps and embedding probes show modest independent signal, which is enough to justify AudioDepth as a Stage-1 acoustic triage module.
+
+### What the risk-guarded gate proves
+
+The strongest current AudioDepth claim is narrow: in controlled silver-plus settings, a risk-guarded AudioDepth gate can reduce Stage-2 text probing while eliminating observed unsafe direct mixed bypasses. The balanced policy reaches CER `0.529082`, direct-bypass false-safe `0.000000`, and text-probe reduction `0.416667`.
+
+### What remains unsolved
+
+Stage-2 text routing remains necessary and still carries the largest safety risk. The end-to-end audit finds `12` high-error mixed selections after Stage-2 fallback/review handling; all are silver-plus references, and most are review-needed anchors. A simple review guard can abstain on these cases, reducing high-error mixed decisions to `0`, but that does not repair transcripts or prove lower real CER. The highest-value next steps are manual micro-gold verification, a verified abstention/review policy, cleaned-win benchmark construction, MeetEval/cpWER execution, and external mini validation.
+
 ## 2. Background and Motivation
 
 The repository started from an earlier overlapping-speech ASR project and turned it into a benchmark-driven research engineering pipeline. The goal is to understand the conditions under which separation improves accuracy and when it introduces hallucinated repetition or over-deletion.

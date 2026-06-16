@@ -48,6 +48,7 @@ This document is for future Codex / AI coding agents so they can resume work wit
 - AudioDepth-Router frontier prototype with deployable depth-augmented spectrogram maps
 - Balanced Route-Sensitive Benchmark v2 frontier validation
 - AudioDepth-centric deployable v2 and Stage-1 gate frontier validation
+- Stage 31 final claim ledger, end-to-end safety audit, Stage-2 review guard, and presentation cards
 
 ## Current Core Findings
 
@@ -239,6 +240,30 @@ Stage 30 adds a mixed-only risk-guarded policy sweep on top of the calibrated Au
 - selected mixed high-error cases after fallback/review handling: `12`
 
 Interpretation: the risk guard fixes the main Stage 29 acoustic-gate safety weakness by eliminating observed unsafe direct bypasses in the selected policies while preserving a CER advantage over router_v2. It does not make the whole system safe yet, because Stage-2 fallback can still choose mixed on high-error review-like samples. This strengthens AudioDepth's role as a deployable Stage-1 acoustic triage module, but the result stays `experimental/frontier` because the controlled_v2 references are still `silver_plus_unverified`.
+
+## Stage 31 Final Evidence and Safety Audit
+
+- Claim ledger: `docs/final_claim_ledger.md`
+- End-to-end safety audit: `results/figures/end_to_end_router_safety_audit.md`
+- High-error mixed cases: `results/tables/end_to_end_high_error_mixed_cases.csv`
+- Stage-2 review guard: `results/figures/stage2_review_guard_summary.md`
+- Final presentation cards: `results/figures/final_project_timeline.png`, `results/figures/final_key_results_card.png`, `results/figures/final_evidence_levels.png`, `results/figures/final_system_architecture.png`
+
+Current completion state: the stable baseline is complete, AudioDepth is a working frontier line, and the safety audit clearly separates solved direct-bypass risk from unsolved Stage-2 review risk.
+
+Strongest innovation point: AudioDepth reframes overlapping speech as time-frequency occlusion and provides a small-model, mixed-audio-only pre-ASR triage module.
+
+Current limitations: references are mostly silver-plus outside the gold baseline, cleaned routing is not proven, real meeting generalization is not proven, LLM repair is not verified, and the system is not production-ready.
+
+Highest-value next directions:
+
+1. Manual micro-gold verification for 30-50 controlled_v2 samples.
+2. Stage-2 review guard / abstention policy with verified review outcomes.
+3. Cleaned-win benchmark construction.
+4. MeetEval / cpWER compatibility execution.
+5. External mini sanity check.
+6. AST / WavLM AudioDepth probe.
+7. Repository cleanup / artifact archiving.
 
 ## Gold Benchmark Final CER Table
 

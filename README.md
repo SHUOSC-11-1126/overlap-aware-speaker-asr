@@ -1,8 +1,63 @@
-# When Should We Separate? Boundary-aware, Compute-aware, Speaker-aware, and Agent-augmented ASR for Overlapping Speech
+# When Should We Separate? Overlap-Aware Multi-Speaker ASR Routing with AudioDepth Acoustic Triage
 
 > Developed the Harness loop with reference to [code-tape](https://github.com/ceilf6/code-tape)
 
-We study when speech separation helps or hurts multi-speaker ASR, and we build adaptive routing, risk-aware evaluation, and agent-friendly research infrastructure for speaker-attributed transcription.
+Blindly separating every overlapping recording can waste compute and sometimes makes ASR worse through artifacts, repetition, and deletion. This project studies when to keep mixed audio, when to separate speakers, when to clean separated transcripts, and when to abstain for review. The stable baseline is a small verified benchmark and router_v2; the frontier contribution is AudioDepth, a mixed-audio pre-ASR acoustic triage signal inspired by RGB-D / depth-augmented vision.
+
+![Final system architecture](results/figures/final_system_architecture.png)
+
+![Final key results](results/figures/final_key_results_card.png)
+
+## Stable vs Frontier
+
+| Stable baseline | Status | Main evidence |
+| --- | --- | --- |
+| mixed / separated / cleaned ASR | complete | gold/manual verified 5-case benchmark |
+| CER, speaker-aware CER, cpCER-lite | complete | `REPORT.md`, `docs/project_state.md` |
+| router_v2 | stable research baseline | gold CER `0.120042`, matching oracle on 5 verified cases |
+| synthetic validation | robustness support | silver evidence only |
+
+| Frontier experiments | Status | Main evidence |
+| --- | --- | --- |
+| AudioDepth model zoo / hybrid fusion | promising synthetic/silver | best cascade CER `0.165545` |
+| real Whisper gap audit | diagnostic | proxy gains did not directly transfer |
+| controlled / balanced route-sensitive benchmark | controlled silver-plus | balanced router CER `0.502854`, router_v2 CER `0.643520` |
+| deployable AudioDepth Stage-1 gate | implemented | 200 mixed-only maps, modest embedding signal |
+| risk-guarded AudioDepth gate | safety-aware frontier | balanced CER `0.529082`, direct-bypass false-safe `0.000000` |
+| Stage-2 review guard | abstention audit | high-error mixed count reduced from `12` to `0` by review, not repair |
+
+## Evidence Levels
+
+![Evidence levels](results/figures/final_evidence_levels.png)
+
+The full claim ledger is in [docs/final_claim_ledger.md](docs/final_claim_ledger.md). It states which claims are gold/manual verified, real Whisper sampled validation, controlled silver-plus, synthetic silver, proxy simulation, diagnostic only, or roadmap only.
+
+## Quick Start
+
+```bash
+python -m src.project_harness
+python -m src.evaluate_audiodepth_risk_guarded_gate
+python -m src.audit_end_to_end_router_safety
+python -m src.evaluate_stage2_review_guard
+python -m src.generate_final_presentation_cards
+```
+
+## Current Limitations
+
+- Most frontier references are `silver_plus_unverified`, not manual gold.
+- Cleaned routing is not fully proven; balanced v2 produced `0` cleaned oracle wins.
+- Real meeting generalization has not been shown.
+- LLM repair is not verified; current review/critic work is candidate selection only.
+- The system is not production-ready. AudioDepth is currently best framed as a safety-aware acoustic triage module before Stage-2 text routing.
+
+## Where To Read More
+
+- [REPORT.md](REPORT.md)
+- [docs/final_claim_ledger.md](docs/final_claim_ledger.md)
+- [docs/project_state.md](docs/project_state.md)
+- [docs/skills/skill_12_audiodepth_centric_frontier.md](docs/skills/skill_12_audiodepth_centric_frontier.md)
+- [results/figures/end_to_end_router_safety_audit.md](results/figures/end_to_end_router_safety_audit.md)
+- [results/figures/stage2_review_guard_summary.md](results/figures/stage2_review_guard_summary.md)
 
 ## What This Project Is
 

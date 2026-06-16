@@ -112,6 +112,13 @@ This folder is the documentation entry point for the project.
 - [results/figures/audiodepth_decision_examples.md](../results/figures/audiodepth_decision_examples.md)
 - [results/figures/audiodepth_gate_calibrated_summary.md](../results/figures/audiodepth_gate_calibrated_summary.md)
 - [results/figures/audiodepth_gate_risk_guarded_summary.md](../results/figures/audiodepth_gate_risk_guarded_summary.md)
+- [docs/final_claim_ledger.md](final_claim_ledger.md)
+- [results/figures/end_to_end_router_safety_audit.md](../results/figures/end_to_end_router_safety_audit.md)
+- [results/figures/stage2_review_guard_summary.md](../results/figures/stage2_review_guard_summary.md)
+- [results/figures/final_system_architecture.png](../results/figures/final_system_architecture.png)
+- [results/figures/final_key_results_card.png](../results/figures/final_key_results_card.png)
+- [results/figures/final_evidence_levels.png](../results/figures/final_evidence_levels.png)
+- [results/figures/final_project_timeline.png](../results/figures/final_project_timeline.png)
 
 ## Frontier Coordination
 

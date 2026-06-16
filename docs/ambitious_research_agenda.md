@@ -162,3 +162,15 @@ The baseline is stable. The frontier should be bold, explicit, and well-labeled.
   - stronger learned overlap detection is likely needed
 
 Update: the calibrated gate follow-up recovers some of that missing action signal. By separating route-action labels from risk flags, AudioDepth reaches easy_mixed recall `0.400000`, separation_helpful recall `0.800000`, and controlled_v2 threshold-sweep CER `0.533160` with text-probe reduction `0.716667`. The remaining risk is false-safe routing, currently `0.183333` in the sweep.
+
+Update: the risk-guarded gate follow-up turns AudioDepth into a more safety-aware triage module. The balanced policy reaches controlled_v2 CER `0.529082`, direct-bypass false-safe `0.000000`, and text-probe reduction `0.416667`; the aggressive policy reaches CER `0.537082` with text-probe reduction `0.650000`. The Stage 31 safety audit shows the remaining high-error mixed selections come from Stage-2/review fallback rather than AudioDepth direct bypass.
+
+## 16. Highest-Value Next Directions
+
+1. Manual micro-gold verification for 30-50 controlled_v2 samples.
+2. Stage-2 review guard / abstention policy with verified review outcomes.
+3. Cleaned-win benchmark construction.
+4. MeetEval / cpWER compatibility execution.
+5. External mini sanity check.
+6. AST / WavLM AudioDepth probe.
+7. Repository cleanup / artifact archiving.

@@ -6,7 +6,17 @@ The core technical work is complete. The repository now has a stable baseline an
 
 Current frontier update: Stage 27 adds a balanced route-sensitive v2 benchmark. It is not a stable-baseline replacement. It evaluates 60 stratified real Whisper samples from a 120-sample v2 benchmark and shows a balanced router beating router_v2 while also exposing that cleaned-win cases are still not materializing under current Whisper/post-processing.
 
-Stage 28 adds the AudioDepth-centric line: deployable mixed-only AudioDepth v2 maps, feature audit, lightweight embedding probes, a conservative Stage-1 acoustic gate, and a two-stage AudioDepth + text cascade. Stage 29/30 calibrate that gate and add a mixed-only risk guard; the current risk-guarded setting reaches controlled_v2 CER `0.525160`, text-probe reduction `0.716667`, and false-safe rate `0.050000`. Current evidence supports AudioDepth as a promising pre-ASR representation and safety gate, but not yet as a stable replacement for text instability routing.
+Stage 28 adds the AudioDepth-centric line: deployable mixed-only AudioDepth v2 maps, feature audit, lightweight embedding probes, a conservative Stage-1 acoustic gate, and a two-stage AudioDepth + text cascade. Stage 29/30 calibrate that gate and add a mixed-only risk guard; the current balanced policy reaches controlled_v2 CER `0.529082`, text-probe reduction `0.416667`, and direct-bypass false-safe `0.000000`. Stage 31 adds the final claim ledger, end-to-end safety audit, Stage-2 review guard, and presentation cards. Current evidence supports AudioDepth as a promising pre-ASR triage module, but not as a stable replacement for text instability routing.
+
+Highest-value next directions:
+
+1. Manual micro-gold verification for 30-50 controlled_v2 samples.
+2. Stage-2 review guard / abstention policy with verified review outcomes.
+3. Cleaned-win benchmark construction.
+4. MeetEval / cpWER compatibility execution.
+5. External mini sanity check.
+6. AST / WavLM AudioDepth probe.
+7. Repository cleanup / artifact archiving.
 
 ## Phase 0: Stable Baseline Completed
 
