@@ -1,0 +1,6 @@
+﻿cure,n_catastrophic_groups,mean_cer_on_catastrophic,n_normal_groups,mean_cer_on_normal,normal_delta_vs_greedy
+greedy_baseline,5,19.843333,355,0.497578,0.0
+silence_trim,5,0.54,355,0.462708,-0.03487
+halluc_silence,5,0.665,355,0.501404,0.003826
+halluc_silence_trim,5,0.54,355,0.462708,-0.03487
+beam5,5,0.628333,355,0.50486,0.007283
