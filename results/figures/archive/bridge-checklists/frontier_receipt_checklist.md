@@ -1,7 +1,0 @@
-# Frontier Receipt Checklist
-
-This generated checklist turns the frontier receipt packet into an ordered writeback path. It remains coordination-only and does not claim that any frontier work has already been executed.
-
-| checklist_order | current_frontier | prerequisite_artifact | receipt_target | checklist_goal | preflight_step | next_gate |
-| --- | --- | --- | --- | --- | --- | --- |
-| 1 | meeteval_compatibility | results/figures/meeteval_cpwer_bridge_handoff.md | results/tables/meeteval_cpwer_bridge_receipt.json | Write back the receipt for meeteval_compatibility before any broader frontier claim. | Open the prerequisite artifact and confirm the receipt target before the writeback step. | Fill the receipt target and confirm the frontier writeback before advancing the queue. |

@@ -1,9 +1,0 @@
-{
-  "execution_status": "cascade_benchmark_phase2_gate_coordination_complete",
-  "coordination_scope": "wave10_cascade_benchmark_phase2_gate",
-  "wave10_closure_status": "wave10_exploration_baseline_closure_complete",
-  "phase1_gate_coordination_status": "cascade_benchmark_phase1_gate_coordination_complete",
-  "meeteval_coordination_status": "meeteval_cpwer_narrow_dry_run_coordination_complete",
-  "expected_inputs": "Wave10 closure, phase1 gate coordination, MeetEval narrow dry-run coordination, manifest template.",
-  "writeback_note": "experimental/frontier coordination only; does not record phase2_synthetic_runtime_foundation execution."
-}

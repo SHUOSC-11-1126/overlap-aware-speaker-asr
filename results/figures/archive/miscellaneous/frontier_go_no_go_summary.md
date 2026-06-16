@@ -1,7 +1,0 @@
-# Frontier Go-No-Go Summary
-
-This generated summary condenses the top-level frontier board into one operator-facing recommendation.
-
-| scope | frontier_count | go_count | no_go_count | highest_priority_ready_frontier | highest_priority_blocked_frontier | coordination_state | recommended_operator_focus | observation |
-| --- | ---: | ---: | ---: | --- | --- | --- | --- | --- |
-| frontier_go_no_go_board | 5 | 5 | 0 | meeteval_compatibility |  | all_ready | meeteval_compatibility | Top-level coordination board only; it summarizes narrow next-step readiness without claiming frontier completion. |

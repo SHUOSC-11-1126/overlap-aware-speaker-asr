@@ -1,2 +1,0 @@
-﻿checkpoint_frontier,checkpoint_action,completion_signal,checkpoint_note
-meeteval_compatibility,Fill the execution receipt at results/tables/meeteval_cpwer_execution_receipt.json after final bridge verification.,execution queue verification is complete and the target artifact results/tables/meeteval_cpwer_execution_receipt.json is ready to open,Phase checkpoint for meeteval_compatibility: complete this action and confirm the completion signal before advancing the execution queue stack. No benchmark execution is claimed.

@@ -1,8 +1,0 @@
-[
-  {
-    "execution_status": "scaffold_documented",
-    "scaffold_scope": "single_drift_case",
-    "case_id": "HeavyOverlap",
-    "writeback_note": "Segment inspection scaffold documented; segment-level reconciliation remains pending."
-  }
-]

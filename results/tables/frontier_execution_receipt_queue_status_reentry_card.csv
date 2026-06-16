@@ -1,2 +1,0 @@
-﻿current_first_frontier,status_rollup_target,combined_readiness_status,reentry_action,reentry_note
-meeteval_compatibility,results/figures/frontier_execution_receipt_queue_status.md,receipt_ready_to_fill,"After status preflight is confirmed, reopen results/figures/frontier_execution_receipt_queue_status.md and refresh the receipt queue rollup.",Status reentry for meeteval_compatibility while combined_readiness_status=receipt_ready_to_fill. This remains coordination-only and does not claim benchmark execution.

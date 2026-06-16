@@ -1,9 +1,0 @@
-[
-  {
-    "dominant_pattern": "swapped_bias",
-    "first_method_direction": "embedding_or_voiceprint_baseline",
-    "method_goal": "Test a stronger profile method before any attribution claim.",
-    "expected_evidence": "results/tables/speaker_profile_method_receipt.json",
-    "handoff_note": "Current signal is diagnostic only, not speaker-ID success."
-  }
-]

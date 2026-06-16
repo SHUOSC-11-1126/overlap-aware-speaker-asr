@@ -1,8 +1,0 @@
-[
-  {
-    "execution_status": "handoff_documented",
-    "handoff_scope": "single_drift_case_granularity_to_redistribution",
-    "case_id": "HeavyOverlap",
-    "writeback_note": "Granularity diagnostic handoff documented for coordination; per-speaker redistribution diagnostic and cpWER execution remain pending."
-  }
-]

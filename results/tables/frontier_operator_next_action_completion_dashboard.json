@@ -1,8 +1,0 @@
-{
-  "current_first_frontier": "meeteval_compatibility",
-  "blocked_frontier": "external_validation",
-  "next_milestone": "ready_lane_checkpoint_complete",
-  "remaining_frontier_count": "1",
-  "dominant_blocker": "external_validation",
-  "dashboard_note": "meeteval_compatibility leads the top-level operator chain while external_validation remains the dominant coordination blocker. This remains coordination-only and does not claim frontier execution."
-}

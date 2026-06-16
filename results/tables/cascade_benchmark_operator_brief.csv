@@ -1,2 +1,0 @@
-﻿operator_step,operator_action,operator_session_type,operator_evidence,operator_note
-phase1_gold_runtime_foundation,collect_controlled_runtime,timing_capture,hardware_label;device;repeat_count;warmup_count;batch_shape;timing_notes,Run phase1_gold_runtime_foundation now; it is blocked by runtime_capture_missing and carries high urgency.

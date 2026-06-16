@@ -1,8 +1,0 @@
-{
-  "scope": "meeteval_cpwer_execution_chain_batch",
-  "ready_chain_count": "5",
-  "total_chain_count": "5",
-  "pending_chain_count": "0",
-  "queue_status": "queue_complete",
-  "observation": "Experimental/frontier MeetEval cpWER batch execution-chain completion rollup; official MeetEval evaluation is not claimed."
-}

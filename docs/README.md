@@ -49,7 +49,6 @@ results, branch hygiene, governance, and archived historical records.
 - [Historical superpowers plans](archive/superpowers/)
 - [Old plans](archive/old-plans/)
 - [Old status ledgers](archive/old-status-ledgers/)
-- [Generated result archive](../results/figures/archive/)
 
 Historical records are kept for traceability, but they are not the recommended
 starting point for new readers.

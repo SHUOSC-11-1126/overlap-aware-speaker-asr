@@ -1,7 +1,0 @@
-# External Validation Slice Staging Readiness
-
-This generated note audits whether the first external slice is ready to move beyond manifest-only planning. It does not claim benchmark execution.
-
-| dataset_name | slice_id | label | license_status | staging_status | readiness_status | blocker | readiness_note |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| AISHELL-4 | aishell4_meeting_excerpt_stub_001 | external/sanity-check | confirmed_research_cc_by_sa_4_0 | ready_for_staging | ready_for_staging_review | none_documented | Staging readiness audit for the first external slice. No external audio has been downloaded or evaluated. |

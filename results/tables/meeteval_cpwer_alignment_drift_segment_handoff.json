@@ -1,9 +1,0 @@
-{
-  "handoff_status": "segment_handoff_ready",
-  "case_id": "HeavyOverlap",
-  "scaffold_status": "scaffold_only",
-  "inspection_target": "Segment-level cleaned separated hypothesis export for HeavyOverlap before cpWER bridge reconciliation.",
-  "handoff_goal": "Run a narrow segment-level inspection for HeavyOverlap before any cpWER reconciliation claim.",
-  "expected_evidence": "results/tables/meeteval_hypothesis_segments.jsonl",
-  "handoff_note": "experimental/frontier segment handoff only; segment reconciliation and cpWER execution remain pending."
-}

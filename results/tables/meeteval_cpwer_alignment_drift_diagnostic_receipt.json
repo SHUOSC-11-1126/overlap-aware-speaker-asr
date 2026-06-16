@@ -1,9 +1,0 @@
-[
-  {
-    "execution_status": "diagnostic_complete",
-    "diagnostic_scope": "alignment_drift_cases",
-    "drift_case_count": "1",
-    "expected_inputs": "MeetEval cpWER alignment table with drift status rows.",
-    "writeback_note": "Drift cases documented for coordination; full MeetEval evaluation and cpWER execution remain pending."
-  }
-]

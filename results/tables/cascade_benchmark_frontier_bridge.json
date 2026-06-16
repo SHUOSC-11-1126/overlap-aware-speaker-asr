@@ -1,8 +1,0 @@
-[
-  {
-    "benchmark_operator_step": "phase1_gold_runtime_foundation",
-    "benchmark_operator_action": "collect_controlled_runtime",
-    "frontier_queue_head": "meeteval_compatibility",
-    "bridge_reason": "The benchmark runtime foundation still matters because it is the strongest shared evidence layer before narrower frontier follow-ups."
-  }
-]

@@ -1,7 +1,0 @@
-# Frontier Execution Receipt Fill Execution Status Bridge Checklist
-
-This generated checklist turns the fill execution status rollup into a bridge verification path. It remains experimental/frontier coordination only and does not claim benchmark execution.
-
-| checklist_order | combined_fill_execution_status | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |
-| --- | --- | --- | --- | --- | --- | --- |
-| 1 | fill_execution_ready | results/figures/frontier_execution_receipt_fill_execution_status.md | results/figures/frontier_execution_receipt_fill_execution_handoff.md | Verify the unified fill execution status rollup before opening the fill execution handoff. | Status rollup reports combined_fill_execution_status=fill_execution_ready; confirm fill execution readiness before advancing the fill execution handoff. | Confirm this bridge before opening the frontier execution receipt fill execution handoff target. |

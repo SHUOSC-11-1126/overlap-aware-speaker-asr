@@ -1,2 +1,0 @@
-﻿current_first_frontier,next_milestone,remaining_frontier_count,dominant_blocker,dashboard_note
-meeteval_compatibility,first_execution_queue_checkpoint_complete,2,execution_receipt_fill_pending,meeteval_compatibility leads the execution queue while execution receipts remain the dominant coordination blocker. This remains coordination-only and does not claim benchmark execution.

@@ -1,8 +1,0 @@
-{
-  "review_order": "3",
-  "card_index": "3",
-  "card_title": "Findings",
-  "review_status": "review_complete",
-  "review_note": "Qualitative storyboard review for card 3 (Findings) complete; no live demo or recording is claimed.",
-  "expected_evidence": "results/tables/demo_storyboard_receipt.json"
-}

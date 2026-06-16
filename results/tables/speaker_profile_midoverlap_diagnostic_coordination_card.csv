@@ -1,5 +1,0 @@
-﻿section_id,headline,artifact_anchor,coordination_note,result_label
-midoverlap_diagnostic_scope,MidOverlap is the final gold-case diagnostic embedding scope,results/figures/separation_phase_diagram.md,Separation harms ASR on this anchor; diagnostic-only — no attribution claim.,experimental/frontier
-lightoverlap_prior,LightOverlap diagnostic scope already coordinated,results/figures/speaker_profile_lightoverlap_diagnostic_coordination_card.md,Overlap diagnostic chain progresses NoOverlap → LightOverlap → MidOverlap.,experimental/frontier
-gold_case_coverage,All five gold benchmark cases now have diagnostic scope boundaries,results/tables/speaker_profile_case_scope_coordination_card.json,Coordination only; no multi-case embedding execution claimed.,experimental/frontier
-wave9_boundary,Wave9 closure defers MidOverlap embedding execution to this diagnostic boundary,results/figures/wave9_exploration_baseline_closure_card.md,Gold baseline CER tables unchanged; attribution still blocked.,experimental/frontier

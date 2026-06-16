@@ -1,9 +1,0 @@
-{
-  "handoff_status": "reconciliation_handoff_ready",
-  "case_id": "HeavyOverlap",
-  "scaffold_status": "scaffold_only",
-  "reconciliation_target": "Speaker-attributed segment reconciliation for HeavyOverlap before any cpWER bridge advance.",
-  "handoff_goal": "Run a narrow segment reconciliation diagnostic for HeavyOverlap before any cpWER bridge advance.",
-  "expected_evidence": "results/tables/meeteval_hypothesis_segments.jsonl",
-  "handoff_note": "experimental/frontier reconciliation handoff only; reconciled alignment and cpWER execution remain pending."
-}

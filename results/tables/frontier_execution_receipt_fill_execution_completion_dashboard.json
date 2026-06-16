@@ -1,8 +1,0 @@
-{
-  "current_first_frontier": "meeteval_compatibility",
-  "awaiting_fill_execution_count": "3",
-  "total_frontier_count": "3",
-  "combined_fill_execution_status": "fill_execution_ready",
-  "dominant_blocker": "template_only_execution_receipts",
-  "dashboard_note": "meeteval_compatibility leads the fill execution queue with 3/3 frontiers still awaiting fill; no benchmark execution is claimed until receipts are filled."
-}

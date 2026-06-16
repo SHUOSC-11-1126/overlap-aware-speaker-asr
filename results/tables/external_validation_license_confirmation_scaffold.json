@@ -1,9 +1,0 @@
-{
-  "dataset_name": "AISHELL-4",
-  "label": "external/sanity-check",
-  "license_status": "pending_confirmation",
-  "confirmation_status": "template_only",
-  "confirmation_step": "Record the official AISHELL-4 license decision in the slice receipt before any audio staging begins.",
-  "expected_writeback": "results/tables/external_validation_slice_receipt.json",
-  "scaffold_note": "License confirmation scaffold only; no license decision has been recorded and no external audio has been staged."
-}

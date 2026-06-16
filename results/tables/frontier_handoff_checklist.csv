@@ -1,2 +1,0 @@
-﻿checklist_order,current_frontier,next_artifact,receipt_target,checklist_goal,execution_intent,next_gate
-1,meeteval_compatibility,results/figures/meeteval_cpwer_bridge_handoff.md,results/tables/meeteval_cpwer_bridge_receipt.json,Use the handoff packet to stage the next frontier pass for meeteval_compatibility.,"Open the next artifact first, then keep the receipt target visible for the narrow follow-up step.",Confirm the handoff packet snapshot before advancing the queue.

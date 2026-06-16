@@ -1,6 +1,0 @@
-﻿section_id,headline,artifact_anchor,coordination_note,result_label
-official_dry_run,Official MeetEval cpWER narrow dry-run complete on 5/5 gold cases,results/tables/meeteval_cpwer_official_execution.json,experimental/frontier dry-run only; not a full external benchmark claim.,experimental/frontier
-bridge_checklist,Official execution bridge checklist documents per-case handoff boundaries,results/tables/meeteval_cpwer_official_execution_bridge_checklist.json,Bridge checklist complete; official benchmark completion still blocked.,experimental/frontier
-character_level_prerequisite,Character-level narrow dry-run coordination remains the Wave10 prerequisite chain,results/figures/meeteval_cpwer_narrow_dry_run_coordination_card.md,Official coordination does not replace character-level boundary documentation.,experimental/frontier
-wave14_boundary,Wave14 closure keeps official MeetEval coordination separate from gold baseline CER,results/figures/wave14_exploration_baseline_closure_card.md,Coordination writeback only; stable gold CER tables unchanged.,experimental/frontier
-tokenization_reconciliation,Tokenization diagnostic reconciles official vs character-level cpWER surfaces,results/tables/meeteval_cpwer_official_execution_tokenization_diagnostic.json,Analysis artifact only; does not upgrade to gold evaluation.,experimental/frontier

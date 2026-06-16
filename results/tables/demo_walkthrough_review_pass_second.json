@@ -1,8 +1,0 @@
-{
-  "review_order": "2",
-  "step_id": "2",
-  "focus": "Baseline evidence",
-  "review_status": "review_complete",
-  "review_note": "Qualitative walkthrough review for 2 complete; no live demo or recording is claimed.",
-  "expected_evidence": "results/tables/demo_walkthrough_receipt.json"
-}

@@ -1,6 +1,0 @@
-﻿section_id,headline,artifact_anchor,coordination_note,result_label
-wave157_rollup,Wave157 closed: LightOverlap diagnostic refresh + demo + exploration closure,results/figures/wave157_exploration_baseline_closure_card.md,experimental/frontier coordination only; gold baseline untouched.,experimental/frontier
-lightoverlap_coordination,LightOverlap coordination refresh coordinated after Wave157 closure,results/figures/wave157_speaker_profile_lightoverlap_diagnostic_coordination_card.md,Diagnostic scope only; attribution claims still blocked; gold benchmark claims still blocked.,experimental/frontier
-demo_wave157,Demo presentation polish extended to 158 sections under qualitative/demo labeling,results/figures/demo_wave157_presentation_writeback.md,No live demo or benchmark timing claims.,qualitative/demo
-frontier_board,Frontier go/no-go board remains all_ready after Wave157 chain,results/tables/frontier_go_no_go_summary.json,Coordination receipts only; no deployable routing claims.,experimental/frontier
-wave158_boundary,MidOverlap speaker-profile diagnostic narrow slice refresh is the next open coordination gate,results/figures/separation_phase_diagram.md,Wave158 closure does not record overlap-case embedding execution sessions.,experimental/frontier

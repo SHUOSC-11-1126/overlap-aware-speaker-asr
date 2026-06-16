@@ -1,5 +1,0 @@
-﻿section_id,headline,artifact_anchor,coordination_note,result_label
-readiness_high_priority,Gold and synthetic_split runtime artifacts need controlled timing,results/figures/cascade_benchmark_readiness.md,repo_local_runtime_only — not controlled benchmark evidence.,experimental/frontier
-evidence_receipt_template,Benchmark evidence receipt scaffold awaits controlled runtime fill,results/tables/cascade_benchmark_evidence_receipt.json,Template-only receipt; phase1_gold_runtime_foundation not executed.,experimental/frontier
-wave6_closure_link,Wave6 frontier closure defers timing claims to this benchmark boundary,results/figures/wave6_frontier_coordination_closure_card.md,Closure card explicitly blocks controlled benchmark completion claims.,experimental/frontier
-deployment_boundary,CER/compute trade-offs remain valid; runtime numbers stay provisional,results/figures/cascade_frontier_report.md,Do not mix provisional runtime with stable gold CER tables in README.,qualitative/demo

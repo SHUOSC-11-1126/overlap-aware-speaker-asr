@@ -1,7 +1,0 @@
-{
-  "current_case": "NoOverlap",
-  "status_rollup_target": "results/figures/speaker_profile_embedding_trial_execution_status.md",
-  "execution_chain_status": "execution_chain_ready",
-  "reentry_action": "After status preflight is confirmed, reopen results/figures/speaker_profile_embedding_trial_execution_status.md and refresh the speaker-profile status rollup.",
-  "reentry_note": "Status reentry for NoOverlap while execution_chain_status=execution_chain_ready. This remains coordination-only and does not fill the receipt or claim voiceprint success."
-}

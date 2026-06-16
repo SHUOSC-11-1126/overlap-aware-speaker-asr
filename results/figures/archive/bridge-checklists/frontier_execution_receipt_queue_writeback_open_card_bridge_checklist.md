@@ -1,7 +1,0 @@
-# Frontier Execution Receipt Queue Writeback Open Card Bridge Checklist
-
-This generated checklist turns the receipt queue writeback open card into an ordered verification path. It remains experimental/frontier coordination only and does not claim benchmark execution.
-
-| checklist_order | frontier_name | writeback_status | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | speaker_profile | awaiting_writeback | results/figures/frontier_execution_receipt_queue_writeback_open_card.md | results/tables/speaker_profile_embedding_trial_execution_receipt.json | Verify the writeback open card for speaker_profile before opening the execution receipt. | Open card reports writeback_status=awaiting_writeback for speaker_profile; confirm open-card context before reopening the execution receipt. | Confirm this bridge before opening results/tables/speaker_profile_embedding_trial_execution_receipt.json. |

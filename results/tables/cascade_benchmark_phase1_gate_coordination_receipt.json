@@ -1,9 +1,0 @@
-{
-  "execution_status": "cascade_benchmark_phase1_gate_coordination_complete",
-  "coordination_scope": "wave9_cascade_benchmark_phase1_gate",
-  "wave9_closure_status": "wave9_exploration_baseline_closure_complete",
-  "evidence_receipt_coordination_status": "cascade_benchmark_evidence_receipt_coordination_complete",
-  "midoverlap_diagnostic_status": "speaker_profile_midoverlap_diagnostic_coordination_complete",
-  "expected_inputs": "Wave9 closure, evidence receipt coordination, MidOverlap diagnostic, manifest template.",
-  "writeback_note": "experimental/frontier coordination only; does not record phase1_gold_runtime_foundation execution."
-}

@@ -1,2 +1,0 @@
-﻿fill_status,writeback_scope,coordination_section_count,phase5_gate_id,execution_receipt_status,blocker,fill_note
-writeback_filled,cascade_benchmark_phase5_gate_coordination_card,5,phase5_cross_dataset_refresh,cascade_benchmark_phase5_gate_coordination_complete,controlled_benchmark_timing_pending,Filled phase5 gate coordination card after Wave14 MeetEval official chain; cross-dataset refresh not executed.

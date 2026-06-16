@@ -1,8 +1,0 @@
-{
-  "scope": "speaker_profile_embedding_trial_handoff",
-  "readiness_status": "handoff_ready",
-  "trial_case_target": "NoOverlap",
-  "method_direction": "embedding_or_voiceprint_baseline",
-  "queue_status": "queue_complete",
-  "observation": "Experimental/frontier embedding trial handoff completion rollup; embedding trial scaffold remains the next narrow step without voiceprint claims."
-}

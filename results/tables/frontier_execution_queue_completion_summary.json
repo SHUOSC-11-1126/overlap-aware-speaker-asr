@@ -1,8 +1,0 @@
-{
-  "scope": "frontier_execution_coordination_queue",
-  "ready_chain_count": "5",
-  "total_chain_count": "5",
-  "pending_chain_count": "0",
-  "queue_status": "queue_complete",
-  "observation": "Experimental/frontier execution coordination queue completion rollup; no official benchmark execution or external audio staging is claimed."
-}

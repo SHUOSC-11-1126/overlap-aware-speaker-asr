@@ -1,6 +1,0 @@
-{
-  "next_milestone": "speaker_profile_receipt_readiness_reopen_ready",
-  "unlocks": "Reopen results/figures/speaker_profile_embedding_trial_execution_receipt_readiness.md for NoOverlap after the current checkpoint gate closes.",
-  "remaining_gate_count": "0",
-  "milestone_note": "Closing the current speaker-profile checkpoint for NoOverlap completes the visible receipt-phase milestone. This remains coordination-only and does not fill the receipt or claim voiceprint success."
-}

@@ -1,8 +1,0 @@
-{
-  "dominant_pattern": "swapped_bias",
-  "method_direction": "embedding_or_voiceprint_baseline",
-  "scaffold_status": "scaffold_only",
-  "expected_inputs": "con/pro snippet audio plus separated speaker-track transcripts for one verified case.",
-  "expected_outputs": "Diagnostic embedding-similarity note comparing direct vs swapped speaker assignment.",
-  "scaffold_note": "Template-only stronger-method scaffold. The current text-profile signal is diagnostic only and should not be treated as speaker-ID success."
-}

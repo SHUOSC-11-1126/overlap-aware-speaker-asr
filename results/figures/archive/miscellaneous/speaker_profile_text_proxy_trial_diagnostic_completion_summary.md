@@ -1,7 +1,0 @@
-# Speaker Profile Text-Proxy Trial Diagnostic Completion Summary
-
-This generated note summarizes the all-gold text-proxy diagnostic completion. It does not claim voiceprint success or improved speaker attribution.
-
-| scope | swapped_count | case_count | average_confidence_gap | queue_status | observation |
-| --- | ---: | ---: | ---: | --- | --- |
-| speaker_profile_text_proxy_trial | 5 | 5 | 0.413131 | queue_complete | Experimental/frontier text-proxy diagnostic completion rollup; swapped bias confirms text profile is a warning sign, not deployment-ready attribution. |

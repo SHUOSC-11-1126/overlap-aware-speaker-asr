@@ -1,9 +1,0 @@
-{
-  "fill_status": "writeback_filled",
-  "writeback_scope": "wave42_meeteval_official_narrow_dry_run_coordination_card",
-  "coordination_section_count": "5",
-  "official_dry_run_case_count": "5",
-  "execution_receipt_status": "wave42_meeteval_official_narrow_dry_run_coordination_complete",
-  "blocker": "official_benchmark_claims_still_blocked",
-  "fill_note": "Documented MeetEval official narrow dry-run refresh boundary after Wave42 closure; full external benchmark claims remain blocked."
-}

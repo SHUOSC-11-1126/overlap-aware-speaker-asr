@@ -1,6 +1,0 @@
-{
-  "receipt_queue_frontier": "meeteval_compatibility",
-  "frontier_queue_head": "meeteval_compatibility",
-  "bridge_reason": "The receipt queue head aligns with the breadth-first frontier queue head for the current first frontier.",
-  "bridge_note": "Receipt queue recommends meeteval_compatibility while the frontier queue head is meeteval_compatibility; no benchmark execution is claimed until receipts are updated after real runs."
-}

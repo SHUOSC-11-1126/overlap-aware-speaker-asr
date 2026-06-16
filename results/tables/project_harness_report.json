@@ -1,7 +1,25 @@
 {
-  "project_root": ".",
-  "core_files_present": true,
-  "missing_core_files": [],
+  "project_root": "/Users/a86198/Desktop/overlap-aware-speaker-asr",
+  "core_files_present": {
+    "README.md": true,
+    "REPORT.md": true,
+    "AGENTS.md": true,
+    "CLAUDE.md": true,
+    "docs/README.md": true,
+    "docs/project_state.md": true,
+    "docs/roadmap.md": true,
+    "docs/maintenance_harness.md": true,
+    "docs/ambitious_research_agenda.md": true,
+    "docs/agent_challenge_board.md": true,
+    "docs/frontier/agentic_research_entropy.md": true,
+    "references/reference_transcripts.json": true,
+    "results/tables/cer_results.csv": true,
+    "results/tables/routing_performance_v2.csv": true,
+    "results/tables/error_type_summary.csv": true,
+    "results/tables/speaker_cer_results.csv": true,
+    "results/tables/cpcer_lite_results.csv": true,
+    "results/tables/risk_aware_performance.csv": true
+  },
   "gold_cases": {
     "NoOverlap": true,
     "LightOverlap": true,
@@ -9,45 +27,7 @@
     "HeavyOverlap": true,
     "OppositeOverlap": true
   },
-  "synthetic_status": {
+  "synthetic_separation": {
     "status": "synthetic_overlap"
-  },
-  "gold_and_synthetic_separated": true,
-  "frontier_status": [
-    {
-      "frontier_id": "speaker_profile",
-      "status": "documented_skill",
-      "evidence_path": "docs/skills/skill_03_speaker_profile_voiceprint.md",
-      "expected_output": "speaker profile triage card",
-      "next_step": "Use the triage card to justify a stronger profile method while keeping the signal scoped to risk detection."
-    },
-    {
-      "frontier_id": "meeteval_compatibility",
-      "status": "documented_skill",
-      "evidence_path": "docs/skills/skill_04_meeteval_compatibility.md",
-      "expected_output": "MeetEval readiness card",
-      "next_step": "Use the readiness card to stage one narrow dry run before claiming any benchmark bridge."
-    },
-    {
-      "frontier_id": "llm_critic",
-      "status": "documented_skill",
-      "evidence_path": "docs/skills/skill_05_agentic_llm_critic.md",
-      "expected_output": "qualitative critic queue",
-      "next_step": "Use the review queue to decide which critic-style review queue item should be read first."
-    },
-    {
-      "frontier_id": "external_validation",
-      "status": "documented_skill",
-      "evidence_path": "docs/ambitious_research_agenda.md",
-      "expected_output": "external sanity-check prioritization card",
-      "next_step": "Use the prioritization card to map one tiny sanity-check slice without claiming a completed benchmark."
-    },
-    {
-      "frontier_id": "demo_excellence",
-      "status": "documented_skill",
-      "evidence_path": "docs/skills/skill_06_github_demo_excellence.md",
-      "expected_output": "demo-facing storyboard or walkthrough",
-      "next_step": "Use the demo walkthrough to shape a short demo walk before any heavier app build."
-    }
-  ]
+  }
 }

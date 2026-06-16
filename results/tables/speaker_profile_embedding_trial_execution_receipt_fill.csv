@@ -1,2 +1,0 @@
-﻿fill_status,case_id,method_direction,execution_receipt_status,spectral_best_alignment,text_best_alignment,signals_agree,blocker,fill_note
-receipt_filled,NoOverlap,embedding_or_voiceprint_baseline,embedding_diagnostic_complete,swapped,unknown,False,none_documented,Execution receipt filled after spectral embedding baseline run on the verified NoOverlap case.

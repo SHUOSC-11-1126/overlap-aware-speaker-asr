@@ -1,6 +1,0 @@
-﻿section_id,headline,artifact_anchor,coordination_note,result_label
-wave63_rollup,Wave63 closed: HeavyOverlap diagnostic refresh + demo + exploration closure,results/figures/wave63_exploration_baseline_closure_card.md,experimental/frontier coordination only; gold baseline untouched.,experimental/frontier
-heavyoverlap_coordination,HeavyOverlap separation-harm diagnostic refresh coordinated after Wave63 closure,results/figures/wave63_speaker_profile_heavyoverlap_diagnostic_coordination_card.md,Diagnostic scope only; attribution claims still blocked.,experimental/frontier
-demo_wave63,Demo presentation polish extended to 64 sections under qualitative/demo labeling,results/figures/demo_wave63_presentation_writeback.md,No live demo or benchmark timing claims.,qualitative/demo
-frontier_board,Frontier go/no-go board remains all_ready after Wave63 chain,results/tables/frontier_go_no_go_summary.json,Coordination receipts only; no deployable routing claims.,experimental/frontier
-wave64_boundary,OppositeOverlap speaker-profile diagnostic narrow slice refresh is the next open coordination gate,results/figures/separation_phase_diagram.md,Wave64 closure does not record overlap-case embedding execution sessions.,experimental/frontier

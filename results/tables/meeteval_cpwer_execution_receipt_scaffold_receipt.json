@@ -1,9 +1,0 @@
-[
-  {
-    "execution_status": "receipt_scaffold_complete",
-    "scaffold_scope": "single_case_cpwer_execution_receipt",
-    "case_id": "NoOverlap",
-    "preflight_pass": "True",
-    "writeback_note": "Official cpWER execution receipt scaffold documented; MeetEval benchmark completion remains pending."
-  }
-]

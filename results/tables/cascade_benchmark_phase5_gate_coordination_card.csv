@@ -1,6 +1,0 @@
-﻿section_id,headline,artifact_anchor,coordination_note,result_label
-phase5_cross_dataset_gate,phase5_cross_dataset_refresh is the cross-dataset decision-support artifact refresh entry gate,results/tables/cascade_benchmark_status.csv,Follows phase4 synthetic surface gate; derived refresh not executed.,experimental/frontier
-phase4_prerequisite,Phase4 synthetic surface refresh gate coordinated in prior wave,results/figures/cascade_benchmark_phase4_gate_coordination_card.md,phase4_synthetic_surface_refresh template_only; refresh not captured.,experimental/frontier
-meeteval_official_boundary,MeetEval official narrow dry-run coordination precedes cross-dataset refresh gate,results/figures/meeteval_official_narrow_dry_run_coordination_card.md,Official cpWER dry-run documented; external benchmark claims still blocked.,experimental/frontier
-wave14_boundary,Wave14 closure keeps phase5 gate separate from verified gold baseline CER,results/figures/wave14_exploration_baseline_closure_card.md,Coordination writeback only; no controlled benchmark session claimed.,experimental/frontier
-timing_dependency,Cross-dataset refresh waits for phase1/phase2 runtime foundation timing evidence,results/tables/cascade_benchmark_manifest_template.csv,derived_refresh_missing until controlled timing manifest is filled.,experimental/frontier

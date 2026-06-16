@@ -1,9 +1,0 @@
-[
-  {
-    "execution_status": "scaffold_complete",
-    "method_scope": "single_verified_case",
-    "method_direction": "embedding_or_voiceprint_baseline",
-    "expected_inputs": "con/pro snippet audio plus separated speaker-track transcripts for one verified case.",
-    "writeback_note": "Embedding scaffold documented; no stronger speaker-profile method has been executed yet."
-  }
-]

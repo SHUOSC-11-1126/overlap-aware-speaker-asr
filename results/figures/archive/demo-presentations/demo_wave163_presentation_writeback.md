@@ -1,4 +1,0 @@
-# Demo Wave163 Presentation Writeback
-
-polish_section_count: 164
-execution_receipt_status: wave163_presentation_extension_complete

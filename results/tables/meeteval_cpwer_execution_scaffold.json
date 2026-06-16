@@ -1,9 +1,0 @@
-{
-  "case_id": "ALL",
-  "bridge_status": "cpwer_bridge_complete",
-  "cpwer_bridge_lite": "0.120823",
-  "scaffold_status": "scaffold_only",
-  "expected_inputs": "results/tables/meeteval_reference_segments.jsonl; results/tables/meeteval_hypothesis_segments.jsonl; MeetEval cpWER tooling.",
-  "expected_outputs": "Official cpWER score receipt for one verified gold case.",
-  "scaffold_note": "Template-only full MeetEval cpWER execution scaffold for ALL. Bridge-lite context is recorded; official cpWER execution remains pending."
-}

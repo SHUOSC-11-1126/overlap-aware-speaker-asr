@@ -1,2 +1,0 @@
-﻿scope,awaiting_fill_count,total_frontier_count,fill_complete_count,combined_fill_status,observation
-frontier_execution_receipt_fill_coordination_queue,3,3,0,fill_queue_ready,Experimental/frontier receipt-fill coordination queue completion rollup; template-only receipts remain unfilled and no benchmark execution is claimed.

@@ -1,2 +1,0 @@
-﻿next_milestone,unlocks,remaining_frontier_count,milestone_note
-first_receipt_queue_checkpoint_complete,Advance coordination focus to speaker_profile after the current first receipt-queue checkpoint closes,2,Closing the current first receipt-queue checkpoint completes the first visible receipt-queue milestone; this remains coordination-only and does not claim benchmark execution.

@@ -1,7 +1,0 @@
-# External Validation Slice Staging Handoff Receipt Readiness
-
-This generated note records receipt-fill readiness for one external slice staging path. It does not claim external audio download or benchmark execution.
-
-| scope | dataset_name | execution_chain_status | receipt_template_status | blocker | readiness_status | readiness_note |
-| --- | --- | --- | --- | --- | --- | --- |
-| external_validation_slice_staging_receipt | AISHELL-4 | execution_chain_ready | template_only | license_confirmation_pending | receipt_ready_to_fill | external/sanity-check receipt readiness for one narrow slice; external audio staging and benchmark evaluation are not claimed. |

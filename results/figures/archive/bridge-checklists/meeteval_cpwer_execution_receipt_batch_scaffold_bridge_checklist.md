@@ -1,7 +1,0 @@
-# MeetEval cpWER Execution Receipt Batch Scaffold Bridge Checklist
-
-This generated checklist connects the batch execution receipt scaffold to the official execution receipt target. It does not claim cpWER execution.
-
-| checklist_order | preflight_pass_count | scaffold_case_count | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |
-| --- | ---: | ---: | --- | --- | --- | --- | --- |
-| 1 | 5 | 5 | results/figures/meeteval_cpwer_execution_receipt_batch_scaffold.md | results/tables/meeteval_cpwer_execution_receipt.json | Verify the batch execution receipt scaffold before opening the official cpWER execution receipt. | Batch scaffold reports 5/5 cases with preflight_pass=True; confirm segment-export readiness before official cpWER execution. | Confirm this bridge before opening the official MeetEval cpWER execution receipt. |

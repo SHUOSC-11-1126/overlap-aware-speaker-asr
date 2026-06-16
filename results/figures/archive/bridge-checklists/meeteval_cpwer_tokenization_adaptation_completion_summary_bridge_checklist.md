@@ -1,7 +1,0 @@
-# MeetEval cpWER Tokenization Adaptation Completion Summary Bridge Checklist
-
-This generated checklist connects the tokenization adaptation completion summary to frontier fill execution. It does not claim full MeetEval benchmark completion.
-
-| checklist_order | queue_status | aligned_count | total_count | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |
-| --- | --- | ---: | ---: | --- | --- | --- | --- | --- |
-| 1 | queue_complete | 5 | 5 | results/figures/meeteval_cpwer_tokenization_adaptation_completion_summary.md | results/figures/frontier_execution_receipt_fill_execution_operator_brief.md | Verify tokenization adaptation completion before advancing frontier fill execution. | Tokenization adaptation reports queue_status=queue_complete with 5/5 reconciled cases; confirm before treating character-spaced cpWER as the preferred frontier metric. | Confirm this bridge before opening the frontier fill execution operator brief. |

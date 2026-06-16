@@ -1,9 +1,0 @@
-# Frontier Execution Receipt Queue Handoff Bridge Checklist
-
-This generated checklist turns the receipt-fill handoff into a row-by-row bridge verification path. It remains experimental/frontier coordination only and does not claim benchmark execution.
-
-| checklist_order | frontier_name | readiness_status | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | meeteval_compatibility | receipt_ready_to_fill | results/figures/frontier_execution_receipt_queue_handoff.md | results/tables/meeteval_cpwer_execution_receipt.json | Verify the receipt-fill handoff for meeteval_compatibility before opening the execution receipt. | Handoff reports readiness_status=receipt_ready_to_fill for meeteval_compatibility; confirm handoff context before filling the execution receipt. | Confirm this bridge before claiming any meeteval_compatibility benchmark execution. |
-| 2 | speaker_profile | receipt_ready_to_fill | results/figures/frontier_execution_receipt_queue_handoff.md | results/tables/speaker_profile_embedding_trial_execution_receipt.json | Verify the receipt-fill handoff for speaker_profile before opening the execution receipt. | Handoff reports readiness_status=receipt_ready_to_fill for speaker_profile; confirm handoff context before filling the execution receipt. | Confirm this bridge before claiming any speaker_profile benchmark execution. |
-| 3 | external_validation | receipt_ready_to_fill | results/figures/frontier_execution_receipt_queue_handoff.md | results/tables/external_validation_slice_staging_handoff_receipt.json | Verify the receipt-fill handoff for external_validation before opening the execution receipt. | Handoff reports readiness_status=receipt_ready_to_fill for external_validation; confirm handoff context before filling the execution receipt. | Confirm this bridge before claiming any external_validation benchmark execution. |

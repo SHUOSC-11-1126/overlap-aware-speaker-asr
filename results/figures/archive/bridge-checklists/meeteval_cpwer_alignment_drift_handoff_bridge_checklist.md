@@ -1,7 +1,0 @@
-# MeetEval cpWER Alignment Drift Handoff Bridge Checklist
-
-This generated checklist turns the drift handoff into a row-by-row bridge verification path. It remains experimental/frontier coordination only and does not claim cpWER execution.
-
-| checklist_order | case_id | prerequisite_artifact | receipt_target | checklist_goal | bridge_note | next_gate |
-| --- | --- | --- | --- | --- | --- | --- |
-| 1 | HeavyOverlap | results/figures/meeteval_cpwer_alignment_drift_handoff.md | results/figures/meeteval_cpwer_alignment_drift_bridge_checklist.md | Verify the drift handoff bridge for HeavyOverlap before reopening the alignment bridge checklist. | Drift handoff remains severity=moderate; confirm segment-inspection context before advancing. | Confirm this bridge before opening the cpWER alignment drift bridge checklist target. |

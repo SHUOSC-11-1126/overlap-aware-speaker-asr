@@ -1,4 +1,0 @@
-# Demo Wave124 Presentation Writeback
-
-polish_section_count: 125
-execution_receipt_status: wave124_presentation_extension_complete

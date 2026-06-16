@@ -1,6 +1,0 @@
-﻿section_id,headline,artifact_anchor,coordination_note,result_label
-wave108_rollup,Wave108 closed: MeetEval official narrow dry-run refresh + demo + exploration closure,results/figures/wave108_exploration_baseline_closure_card.md,experimental/frontier coordination only; gold baseline untouched.,experimental/frontier
-meeteval_official_coordination,MeetEval official coordination refresh coordinated after Wave108 closure,results/figures/wave108_meeteval_official_narrow_dry_run_coordination_card.md,experimental/frontier dry-run scope only; gold benchmark claims still blocked.,experimental/frontier
-demo_wave108,Demo presentation polish extended to 109 sections under qualitative/demo labeling,results/figures/demo_wave108_presentation_writeback.md,No live demo or benchmark timing claims.,qualitative/demo
-frontier_board,Frontier go/no-go board remains all_ready after Wave108 chain,results/tables/frontier_go_no_go_summary.json,Coordination receipts only; no deployable routing claims.,experimental/frontier
-wave109_boundary,LightOverlap speaker-profile diagnostic narrow slice refresh is the next open coordination gate,results/figures/separation_phase_diagram.md,Wave109 closure does not record overlap-case embedding execution sessions.,experimental/frontier
