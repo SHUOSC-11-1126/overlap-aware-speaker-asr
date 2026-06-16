@@ -89,6 +89,22 @@ Historical wave, receipt, writeback, checklist, and demo presentation records ha
 
 See [docs/branch-audit.md](docs/branch-audit.md) for the branch cleanup policy.
 
+## Frontier Research: AudioDepth Router
+
+AudioDepth is an exploratory frontier research line that treats overlapping
+speech as a time-frequency occlusion problem, inspired by depth-style
+representations in visual recognition. It studies whether pre-ASR acoustic maps
+can help decide when to use mixed ASR, separated ASR, cleaned routes, or
+review/fallback paths.
+
+See [AudioDepth Router Exploratory Study](docs/frontier/audio-depth-router.md)
+for the research motivation, visualization design, experiment stages,
+controlled results, limitations, and merge boundaries.
+
+AudioDepth is not currently a stable mainline claim and should not be merged
+from `frontier/audio-depth-router` without separating code, documentation,
+lightweight examples, tests, and large artifacts.
+
 ## Documentation
 
 | Need | Read |
@@ -99,7 +115,7 @@ See [docs/branch-audit.md](docs/branch-audit.md) for the branch cleanup policy.
 | Understand result storage | [results/README.md](results/README.md) |
 | Understand branch status | [docs/branch-audit.md](docs/branch-audit.md) |
 | Understand archive policy | [docs/archive-plan.md](docs/archive-plan.md) |
-| Review course contribution records | [docs/contributions/README.md](docs/contributions/README.md) |
+| Review course contribution records | [CONTRIBUTIONS.md](CONTRIBUTIONS.md) |
 | Review AudioDepth frontier strategy | [docs/frontier/audio-depth-router.md](docs/frontier/audio-depth-router.md) |
 | Review governance | [docs/harness/](docs/harness/) and [docs/adr/](docs/adr/) |
 
@@ -122,14 +138,25 @@ The full loop is `issue → PR → repo-guard CR → respond` ([workflow](docs/h
 
 > Illustrative tooling shown for context, not a benchmark result. Label: `qualitative/demo`.
 
-OpenClaw ("ceilf6's claw") is the agentic engineering assistant that drives the kind of workflow described in the Harness Engineering Loop above. Instead of living only in a terminal, it runs as chat 智能体 (agents) inside the IM tools a team already uses — 飞书 (Feishu) and 大象 — so issue triage, code review, and progress reporting happen in the conversation rather than in a separate dashboard.
+OpenClaw ("ceilf6's claw") is the agentic engineering assistant that drives
+the kind of workflow described in the Harness Engineering Loop above. Instead
+of living only in a terminal, it runs as chat 智能体 (agents) inside the IM tools
+a team already uses — 飞书 (Feishu) and 大象 — so issue triage, code review, and
+progress reporting happen in the conversation rather than in a separate
+dashboard.
 
 It exposes named agents driven by slash commands:
 
-- **`FrontAgent`** — reference-free code review that returns a risk summary (Blocker / Critical counts plus concrete fixes, e.g. flagging a dynamic-`RegExp` ReDoS in a test file) and `/progress-reporter` group updates that track each member's current issue, unclaimed work, recently merged PRs, and milestones.
+- **`FrontAgent`** — reference-free code review that returns a risk summary
+  (Blocker / Critical counts plus concrete fixes, e.g. flagging a
+  dynamic-`RegExp` ReDoS in a test file) and `/progress-reporter` group updates
+  that track each member's current issue, unclaimed work, recently merged PRs,
+  and milestones.
 - **坤坤** — a conversational agent for handover notes, material organization, and message polishing.
 
-Agents call LLM backends (e.g. `gpt-5.5`) through a provider abstraction and follow the same `issue → PR → repo-guard CR → respond` loop documented above. OpenClaw is developed alongside [code-tape](https://github.com/ceilf6/code-tape).
+Agents call LLM backends (e.g. `gpt-5.5`) through a provider abstraction and
+follow the same `issue → PR → repo-guard CR → respond` loop documented above.
+OpenClaw is developed alongside [code-tape](https://github.com/ceilf6/code-tape).
 
 <p align="center">
   <img src="assets/飞书中的OpenClaw-1.jpg" width="40%" alt="OpenClaw code review with risk scoring in Feishu" />
@@ -138,9 +165,11 @@ Agents call LLM backends (e.g. `gpt-5.5`) through a provider abstraction and fol
 
 ## Contributors
 
-Contributor details live in [CONTRIBUTIONS.md](CONTRIBUTIONS.md). The README intentionally keeps contributor history short so the project entry point remains readable.
+Contributor details live in [CONTRIBUTIONS.md](CONTRIBUTIONS.md). The README
+intentionally keeps contributor history short so the project entry point remains
+readable.
 
-- [Contribution Records](docs/contributions/README.md): course submission contribution statements and team contribution evidence.
+- [Contributions](CONTRIBUTIONS.md): team contribution statements and course submission evidence.
 
 ## License / Citation / Acknowledgements
 

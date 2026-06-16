@@ -22,10 +22,17 @@ Recommended split before any merge:
 
 | Slice | Handling |
 |---|---|
-| Code | Review separately with tests |
-| Documentation | Keep claim boundaries explicit |
-| Lightweight samples | Keep small and reproducible |
-| Large artifacts / models | Move to release artifacts or external storage |
+| Documentation | Keep the curated overview and claim boundaries in `docs/frontier/` |
+| Lightweight figures | Allow only representative, reviewer-facing assets |
+| Lightweight code | Extract minimal modules in a focused PR |
+| Tests | Add targeted tests for extracted logic |
+| Large `.npy` / `.png` dumps | Keep out of main; use external artifact storage if needed |
+| Model weights / raw result dumps | Keep out of main; do not merge directly |
+
+The branch should be split into focused PRs rather than merged wholesale. Any
+future code PR must separate implementation from artifacts, avoid bulk generated
+outputs, and preserve the Frontier Branch Only / Exploratory Research label
+until reviewed evidence supports a narrower claim.
 
 See [frontier/audio-depth-router.md](frontier/audio-depth-router.md) for the
 lightweight mainline documentation entry and merge-boundary checklist.

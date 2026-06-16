@@ -28,12 +28,12 @@ experimental, what is optional, and what is historical.
 | Router v1/v2 | Mainline Experimental | `src/adaptive_router.py`, `src/adaptive_router_v2.py`, `results/figures/curated/best_method_by_case.md` | Reference-free selection; CER is post-decision evaluation only |
 | Risk-aware selector | Mainline Experimental | `src/risk_aware_selector.py`, `results/figures/curated/risk_aware_selection_summary.md` | Deployability/explainability layer, not necessarily best-CER |
 | Compute-aware cascade | Mainline Experimental | `src/compute_aware_cascade.py`, `results/figures/curated/compute_aware_cascade_summary.md` | Cost analysis layer with experimental/frontier labeling |
-| Cascade tiers / Mode B | Mainline Experimental | `src/cascade_tiers.py`, `tests/test_cascade_tiers.py`, `results/figures/curated/cascade_tiers_summary.md` | Merged to `main`, but its own result files label it experimental/frontier and include modeled stronger routes |
-| Synthetic silver validation | Mainline Experimental | `src/evaluate_synthetic_benchmark.py`, `src/evaluate_synthetic_routing.py`, `results/figures/curated/synthetic_routing_summary.md` | Silver/synthetic evidence only, not gold benchmark evidence |
+| Cascade tiers / Mode B | Mainline Experimental | `src/cascade_tiers.py`, `tests/test_cascade_tiers.py`, curated summary | Merged to `main`; result files still label it experimental/frontier |
+| Synthetic silver validation | Mainline Experimental | `src/evaluate_synthetic_*`, curated synthetic summaries | Silver/synthetic evidence only, not gold benchmark evidence |
 | MeetEval | Optional Integration | `requirements-frontier.txt`, `src/meeteval_*`, `results/figures/curated/meeteval_readiness.md` | Requires optional MeetEval dependency for official paths |
-| LLM critic / LLM scaffolding | Optional Integration / Frontier Scaffold | `requirements-optional.txt`, `src/llm_critic_review_pass.py`, `src/llm_repair_loop.py`, `src/rag_repair.py` | Optional API/SDK paths; not the core quantitative claim |
+| LLM critic / LLM scaffolding | Optional Integration / Frontier Scaffold | `requirements-optional.txt`, `src/llm_*`, `src/rag_repair.py` | Optional API/SDK paths; not the core quantitative claim |
 | Speaker-profile scaffolding | Frontier Scaffold | `src/speaker_profile_*`, `results/figures/curated/speaker_profile_audio_proxy_summary.md` | Exploratory support and diagnostics |
-| AudioDepth router | Frontier Branch Only / Exploratory Research | `frontier/audio-depth-router`, `docs/frontier/audio-depth-router.md` | Not merged into `main`; needs separate review before merge; large artifacts must not enter main directly |
+| AudioDepth router | Frontier Branch Only / Exploratory Research | [AudioDepth Router Exploratory Study](frontier/audio-depth-router.md), branch | Pre-ASR acoustic triage research; not a stable mainline claim |
 | Harness | Stable Mainline | `docs/harness/`, `.githooks/`, `scripts/harness/`, `.github/workflows/contract-guard.yml` | Development governance and quality gates |
 | ADR | Stable Mainline | `docs/adr/README.md`, `docs/adr/ADR-001-harness-adoption.md` | Decision records for governance |
 | CI / tests | Stable Mainline | `.github/workflows/test.yml`, `tests/`, `src/project_harness.py` | Full tests require installed dependencies |

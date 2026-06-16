@@ -39,9 +39,7 @@ results, branch hygiene, governance, and archived historical records.
 
 ## Course Submission / Contributions
 
-- [Contribution Records](contributions/README.md)
-- [Team Contribution Template](contributions/TEAM_CONTRIBUTION_TEMPLATE.md)
-- [WUFANGZHOU Contribution Record](contributions/WUFANGZHOU.md)
+- [Contributions](../CONTRIBUTIONS.md)
 
 ## Historical Records
 

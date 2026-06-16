@@ -15,7 +15,7 @@ policy.
 | Wave records | `results/figures/*wave*.md` | `results/figures/archive/waves/` | Generated historical coordination | Low; links may need index-based access | Review sampled files |
 | Receipts | `results/figures/*receipt*.md` | `results/figures/archive/receipts/` | Execution trace, not final claim | Low | Review sampled files |
 | Writebacks | `results/figures/*writeback*.md` | `results/figures/archive/writebacks/` | Agent writeback trace, not final claim | Low | Review sampled files |
-| Bridge/checklists | `results/figures/*bridge*checklist*.md`, `*checklist*.md` | `results/figures/archive/bridge-checklists/` | Automation/checklist trace | Medium; some checklists may be maintenance-relevant | Maintainer should review if any should return to curated |
+| Bridge/checklists | `*bridge*checklist*.md`, `*checklist*.md` | `results/figures/archive/bridge-checklists/` | Automation/checklist trace | Medium; review active relevance | Maintainer review |
 | Demo presentation writebacks | `results/figures/*demo*presentation*.md`, `*presentation*writeback*.md` | `results/figures/archive/demo-presentations/` | Demo history, not benchmark evidence | Low | Review sampled files |
 | Repeated result summaries | `results/figures/*.md` | `results/figures/curated/` or archive | Separate curated summaries from generated records | Medium | Maintainer should review curated list |
 | Branch cleanup candidates | Remote branches | Not moved | Branch list is noisy | High | Explicit maintainer approval required |
@@ -26,11 +26,11 @@ The cleanup found 1317 `src/` / `tests/` paths matching wave, writeback, or
 receipt naming patterns. This pass does not move Python files or change test
 logic.
 
-## Protected Active Documentation
+## Contribution Record Source
 
-`docs/contributions/` is not an archive target. It contains course final
-submission contribution records and should remain in the active documentation
-tree.
+Contribution records are now centralized in the root `CONTRIBUTIONS.md` file.
+The former `docs/contributions/` tree has been removed to avoid duplicate
+contribution sources.
 
 Recommended future work:
 

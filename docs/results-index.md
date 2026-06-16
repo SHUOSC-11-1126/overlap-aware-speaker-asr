@@ -57,6 +57,15 @@ results from generated historical records.
 | `docs/frontier/audio-depth-router.md` | AudioDepth router merge strategy and claim boundary | Frontier Branch Only / Exploratory Research; not a final result claim |
 | `docs/frontier/agentic_research_entropy.md` | Meta-analysis of substance-vs-ceremony collapse in this workspace (`results/entropy_audit/`) | experimental/frontier (analysis-only); not an ASR result |
 
+## Frontier Research: AudioDepth
+
+AudioDepth is documented as a frontier exploratory research line in
+[AudioDepth Router Exploratory Study](frontier/audio-depth-router.md). Its
+controlled and frontier results should be read as exploratory evidence unless
+explicitly linked to verified mainline benchmarks. The results index does not
+restore raw frontier dumps, archived wave/writeback files, large `.npy` arrays,
+or bulk visualization outputs to the primary reading path.
+
 ## Historical Archive
 
 The generated wave / receipt / writeback / bridge-checklist archive that
