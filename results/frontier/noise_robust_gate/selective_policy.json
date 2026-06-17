@@ -1,0 +1,23 @@
+{
+  "n": 192,
+  "threshold": 2.4,
+  "gate_arm": "flatness_relenergy_gate",
+  "guard_fired_frac": 0.067708,
+  "mean_cer": {
+    "always_sep": 1.151889,
+    "always_gate": 0.83324,
+    "guard_gated": 0.689997,
+    "oracle": 0.652653
+  },
+  "tail_rate": {
+    "always_sep": 0.109375,
+    "always_gate": 0.052083,
+    "guard_gated": 0.057292,
+    "oracle": 0.036458
+  },
+  "regret_vs_oracle": {
+    "always_sep": 0.499236,
+    "always_gate": 0.180587,
+    "guard_gated": 0.037344
+  }
+}

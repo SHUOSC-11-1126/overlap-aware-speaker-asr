@@ -58,7 +58,9 @@ before any merge into stable claims.
 - **稳定基线:** CER评估、Adaptive Router v1/v2、Risk-Aware Selector、
   Speaker-Aware CER、cpCER-lite。
 - **前沿探索:** Compute-Aware Cascade、MeetEval/cpWER兼容性、Speaker
-  Profile/声纹风险、外部验证、LLM Critic、Demo。
+  Profile/声纹风险、外部验证、LLM Critic、Demo、噪声鲁棒
+  separation-hallucination 门控（`noise_robust_gate`，谱平坦度 VAD，承接
+  #806 "noise defeats the silence-trim cure"）。
 - **横切:** `project_harness` 协调主链。
 - **辅助:** 仓库维护、Harness (Git hooks/知识库契约/SDD/TDD) +
   repo-guard CR。
@@ -67,7 +69,7 @@ before any merge into stable claims.
 `src/compute_aware_cascade.py`, `src/speaker_*.py`,
 `src/llm_critic_*.py`, `src/meeteval_*.py`,
 `src/external_validation_*.py`, `src/demo_*.py`,
-`src/project_harness.py`, `scripts/harness/*`.
+`src/project_harness.py`, `src/noise_robust_gate.py`, `scripts/harness/*`.
 
 ## 谢宇轩 (xyx12369)
 
