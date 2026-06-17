@@ -152,8 +152,17 @@ Speech-like babble cannot be separated from a target's silence-residual by spect
 alone — it requires **speaker identity**. The principled next step is a *voiceprint-conditioned*
 gate (keep frames whose embedding matches the track's dominant speaker), which is exactly where
 the project's dormant speaker-profile / voiceprint frontier becomes load-bearing rather than
-diagnostic. This experiment turns "try voiceprints" from a vague backlog item into a specific,
-motivated question: *can a speaker-embedding gate crop babble residual where flatness cannot?*
+diagnostic.
+
+We probed the *cheap* form of that idea (offline-feasible): a target centroid from the
+top-30%-energy frames' Whisper log-mel, then per-frame cosine similarity to the centroid. It
+separates target from residual well under white noise (AUC 0.848, ≈ flatness's 0.839) but
+**fails under babble (AUC 0.516 ≈ chance**, vs flatness 0.489) — a single speaker's mel envelope
+is not discriminative against a babble of same-language speakers. So the babble case needs a
+*trained* speaker-discriminative embedding (x-vector / ECAPA), which is **gated on offline model
+availability** (only Whisper-tiny is cached here). The refined, honest direction: babble-robust
+separation-hallucination control is not a quick reference-free win — it requires a real speaker
+model, and that is the specific bar the speaker-profile frontier must clear to matter.
 
 ## Honest limitations
 
