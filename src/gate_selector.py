@@ -57,7 +57,7 @@ from .noise_robust_gate import adaptive_flatness_threshold, track_flatness
 from .speaker_conditioned_gate import (
     HOP,
     WIN,
-    EmbedFn,
+    EmbedFn,  # type: callable(wav: np.ndarray) -> np.ndarray (a speaker-window embedder)
     cosine_sims,
     frame_windows,
     reference_embedding,
