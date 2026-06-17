@@ -2,3 +2,9 @@
 # Install when running official MeetEval cpWER narrow dry runs:
 #   pip install -r requirements-frontier.txt
 meeteval>=0.4.0
+
+# Speaker-conditioned gate (src/speaker_conditioned_gate.py): a real pretrained GE2E
+# speaker embedding whose weights ship inside the wheel, so it runs fully offline.
+# Only needed to RUN the babble-cure driver; the gate's pure logic is unit-tested with an
+# injected fake embedder and needs none of this.
+resemblyzer>=0.1.4
