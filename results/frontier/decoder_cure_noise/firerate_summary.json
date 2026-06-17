@@ -1,0 +1,92 @@
+[
+  {
+    "noise_type": "babble",
+    "snr_db": 10.0,
+    "n": 48,
+    "fire_rate_energy_trim": 0.0,
+    "fire_rate_flatness_gate": 0.645833,
+    "fire_rate_beam5": 0.770833,
+    "fire_rate_halluc_silence": 0.1875
+  },
+  {
+    "noise_type": "babble",
+    "snr_db": 5.0,
+    "n": 48,
+    "fire_rate_energy_trim": 0.0,
+    "fire_rate_flatness_gate": 0.666667,
+    "fire_rate_beam5": 0.791667,
+    "fire_rate_halluc_silence": 0.291667
+  },
+  {
+    "noise_type": "babble",
+    "snr_db": 0.0,
+    "n": 48,
+    "fire_rate_energy_trim": 0.0,
+    "fire_rate_flatness_gate": 0.604167,
+    "fire_rate_beam5": 0.895833,
+    "fire_rate_halluc_silence": 0.3125
+  },
+  {
+    "noise_type": "clean",
+    "snr_db": "clean",
+    "n": 48,
+    "fire_rate_energy_trim": 0.729167,
+    "fire_rate_flatness_gate": 0.729167,
+    "fire_rate_beam5": 0.75,
+    "fire_rate_halluc_silence": 0.041667
+  },
+  {
+    "noise_type": "pink",
+    "snr_db": 10.0,
+    "n": 48,
+    "fire_rate_energy_trim": 0.0,
+    "fire_rate_flatness_gate": 0.0625,
+    "fire_rate_beam5": 0.791667,
+    "fire_rate_halluc_silence": 0.0625
+  },
+  {
+    "noise_type": "pink",
+    "snr_db": 5.0,
+    "n": 48,
+    "fire_rate_energy_trim": 0.0,
+    "fire_rate_flatness_gate": 0.041667,
+    "fire_rate_beam5": 0.791667,
+    "fire_rate_halluc_silence": 0.083333
+  },
+  {
+    "noise_type": "pink",
+    "snr_db": 0.0,
+    "n": 48,
+    "fire_rate_energy_trim": 0.0,
+    "fire_rate_flatness_gate": 0.041667,
+    "fire_rate_beam5": 0.791667,
+    "fire_rate_halluc_silence": 0.208333
+  },
+  {
+    "noise_type": "white",
+    "snr_db": 10.0,
+    "n": 48,
+    "fire_rate_energy_trim": 0.0,
+    "fire_rate_flatness_gate": 0.625,
+    "fire_rate_beam5": 0.791667,
+    "fire_rate_halluc_silence": 0.104167
+  },
+  {
+    "noise_type": "white",
+    "snr_db": 5.0,
+    "n": 48,
+    "fire_rate_energy_trim": 0.0,
+    "fire_rate_flatness_gate": 0.708333,
+    "fire_rate_beam5": 0.833333,
+    "fire_rate_halluc_silence": 0.166667
+  },
+  {
+    "noise_type": "white",
+    "snr_db": 0.0,
+    "n": 48,
+    "fire_rate_energy_trim": 0.0,
+    "fire_rate_flatness_gate": 0.791667,
+    "fire_rate_beam5": 0.895833,
+    "fire_rate_halluc_silence": 0.333333
+  }
+]

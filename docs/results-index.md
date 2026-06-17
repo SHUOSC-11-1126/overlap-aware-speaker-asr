@@ -56,6 +56,7 @@ results from generated historical records.
 |---|---|---|
 | `docs/frontier/audio-depth-router.md` | AudioDepth router merge strategy and claim boundary | Frontier Branch Only / Exploratory Research; not a final result claim |
 | `docs/frontier/agentic_research_entropy.md` | Meta-analysis of substance-vs-ceremony collapse in this workspace (`results/entropy_audit/`) | experimental/frontier (analysis-only); not an ASR result |
+| `results/frontier/decoder_cure_noise/FINDINGS.md` | Decoder-domain cures (beam / native halluc-silence) under noise: negative result — the noise-robust cure is NOT in the decoder (`results/frontier/decoder_cure_noise/`) | experimental/frontier; Whisper-tiny + silver refs; not a gold result |
 
 ## Frontier Research: AudioDepth
 

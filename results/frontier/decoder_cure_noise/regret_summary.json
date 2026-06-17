@@ -1,0 +1,52 @@
+{
+  "all_noisy": {
+    "n": 432,
+    "oracle_arms": [
+      "greedy",
+      "beam5",
+      "flatness_gate"
+    ],
+    "mean_cer": {
+      "always_greedy": 1.675634,
+      "always_beam": 1.946995,
+      "always_flatness": 1.187986,
+      "oracle": 0.767801
+    },
+    "tail_rate": {
+      "always_greedy": 0.219907,
+      "always_beam": 0.222222,
+      "always_flatness": 0.159722,
+      "oracle": 0.078704
+    },
+    "regret_vs_oracle": {
+      "always_greedy": 0.907833,
+      "always_beam": 1.179194,
+      "always_flatness": 0.420185
+    }
+  },
+  "babble": {
+    "n": 144,
+    "oracle_arms": [
+      "greedy",
+      "beam5",
+      "flatness_gate"
+    ],
+    "mean_cer": {
+      "always_greedy": 2.701032,
+      "always_beam": 3.206943,
+      "always_flatness": 1.710148,
+      "oracle": 1.000162
+    },
+    "tail_rate": {
+      "always_greedy": 0.479167,
+      "always_beam": 0.4375,
+      "always_flatness": 0.333333,
+      "oracle": 0.194444
+    },
+    "regret_vs_oracle": {
+      "always_greedy": 1.70087,
+      "always_beam": 2.206781,
+      "always_flatness": 0.709986
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "all": {
+    "n_catastrophic": 96,
+    "n_normal": 384,
+    "arms": [
+      {
+        "arm": "greedy",
+        "mean_cer_catastrophic": 5.348601,
+        "tail_rate_catastrophic": 1.0,
+        "mean_cer_normal": 0.670548,
+        "normal_delta_vs_greedy": 0.0
+      },
+      {
+        "arm": "energy_trim",
+        "mean_cer_catastrophic": 5.101205,
+        "tail_rate_catastrophic": 0.989583,
+        "mean_cer_normal": 0.66203,
+        "normal_delta_vs_greedy": -0.008518
+      },
+      {
+        "arm": "flatness_gate",
+        "mean_cer_catastrophic": 2.050631,
+        "tail_rate_catastrophic": 0.572917,
+        "mean_cer_normal": 0.875078,
+        "normal_delta_vs_greedy": 0.20453
+      },
+      {
+        "arm": "beam5",
+        "mean_cer_catastrophic": 3.780225,
+        "tail_rate_catastrophic": 0.552083,
+        "mean_cer_normal": 1.305533,
+        "normal_delta_vs_greedy": 0.634985
+      },
+      {
+        "arm": "halluc_silence",
+        "mean_cer_catastrophic": 5.692348,
+        "tail_rate_catastrophic": 0.635417,
+        "mean_cer_normal": 0.782192,
+        "normal_delta_vs_greedy": 0.111644
+      }
+    ]
+  },
+  "babble": {
+    "n_catastrophic": 69,
+    "n_normal": 75,
+    "arms": [
+      {
+        "arm": "greedy",
+        "mean_cer_catastrophic": 4.822943,
+        "tail_rate_catastrophic": 1.0,
+        "mean_cer_normal": 0.748874,
+        "normal_delta_vs_greedy": 0.0
+      },
+      {
+        "arm": "energy_trim",
+        "mean_cer_catastrophic": 4.822943,
+        "tail_rate_catastrophic": 1.0,
+        "mean_cer_normal": 0.748874,
+        "normal_delta_vs_greedy": 0.0
+      },
+      {
+        "arm": "flatness_gate",
+        "mean_cer_catastrophic": 1.862813,
+        "tail_rate_catastrophic": 0.536232,
+        "mean_cer_normal": 1.569696,
+        "normal_delta_vs_greedy": 0.820822
+      },
+      {
+        "arm": "beam5",
+        "mean_cer_catastrophic": 4.322492,
+        "tail_rate_catastrophic": 0.652174,
+        "mean_cer_normal": 2.180638,
+        "normal_delta_vs_greedy": 1.431764
+      },
+      {
+        "arm": "halluc_silence",
+        "mean_cer_catastrophic": 5.678307,
+        "tail_rate_catastrophic": 0.666667,
+        "mean_cer_normal": 0.758254,
+        "normal_delta_vs_greedy": 0.00938
+      }
+    ]
+  }
+}
