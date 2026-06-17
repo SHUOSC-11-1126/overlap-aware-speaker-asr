@@ -16,12 +16,16 @@ import numpy as np
 
 from src.noise_robust_gate import (
     adaptive_flatness_threshold,
+    add_noise_field,
     aggregate_by_snr,
+    babble_noise,
     flatness_relenergy_trim,
     flatness_trim,
     frame_energy,
     frame_signal,
+    make_noise,
     mask_to_span,
+    pink_noise,
     relenergy_speech_mask,
     selective_gate_policy,
     spectral_flatness,
@@ -237,6 +241,50 @@ class TestSelectiveGatePolicy(unittest.TestCase):
     def test_skips_rows_missing_signals(self) -> None:
         rows = [{"cer_sep": "1.0", "cer_flatness_relenergy_gate": "0.5", "cr_sep1": "", "cr_sep2": ""}]
         self.assertEqual(selective_gate_policy(rows)["n"], 0)
+
+
+class TestColoredAndBabbleNoise(unittest.TestCase):
+    def test_pink_is_low_frequency_weighted(self) -> None:
+        p = pink_noise(16000, seed=1)
+        self.assertEqual(p.shape, (16000,))
+        mag = np.abs(np.fft.rfft(p))
+        dec = mag.size // 10
+        # 1/sqrt(f) amplitude spectrum: lowest decile >> highest decile (white ~1x)
+        self.assertGreater(float(np.mean(mag[1:dec])), 2.5 * float(np.mean(mag[-dec:])))
+
+    def test_pink_deterministic(self) -> None:
+        self.assertTrue(np.array_equal(pink_noise(8000, 5), pink_noise(8000, 5)))
+
+    def test_babble_is_speech_like(self) -> None:
+        # babble (sum of speech sources) is spectrally peakier than white noise
+        rng = np.random.default_rng(0)
+        sources = [(_tone(16000, freq=f) + _noise(16000, 0.05, int(f))) for f in (180.0, 240.0, 300.0)]
+        b = babble_noise(16000, seed=2, sources=sources, n_talkers=3)
+        self.assertEqual(b.shape, (16000,))
+        fb = float(np.mean(track_flatness(b)))
+        fw = float(np.mean(track_flatness(_noise(16000, 0.3, 9))))
+        self.assertLess(fb, fw)  # speech-like -> lower flatness than white
+
+    def test_babble_deterministic(self) -> None:
+        srcs = [_tone(9000, 200.0), _tone(9000, 260.0)]
+        self.assertTrue(np.array_equal(
+            babble_noise(8000, 3, srcs, 2), babble_noise(8000, 3, srcs, 2)))
+
+    def test_make_noise_dispatch_and_clean(self) -> None:
+        self.assertEqual(make_noise("white", 4000, 1).shape, (4000,))
+        self.assertEqual(make_noise("pink", 4000, 1).shape, (4000,))
+        srcs = [_tone(5000, 220.0)]
+        self.assertEqual(make_noise("babble", 4000, 1, sources=srcs).shape, (4000,))
+
+    def test_add_noise_field_hits_target_snr(self) -> None:
+        from src.noise_robustness import measured_snr_db
+        sig = _tone(16000, 220.0)
+        noisy = add_noise_field(sig, 10.0, make_noise("white", 16000, 4))
+        self.assertAlmostEqual(measured_snr_db(sig, noisy), 10.0, delta=1.5)
+
+    def test_add_noise_field_clean_passthrough(self) -> None:
+        sig = _tone(8000, 220.0)
+        self.assertTrue(np.array_equal(add_noise_field(sig, None, make_noise("white", 8000, 1)), sig))
 
 
 if __name__ == "__main__":

@@ -122,14 +122,48 @@ the track), so **blind gating does not transfer** — it slightly hurts (0.910 v
 exactly inert (0.888), confirming #806's mechanism on real audio too. n=20 is small; treat as a
 directional sanity check, not a benchmark.
 
+## Noise type decides everything: robust to broadband, not to babble
+
+The grid above used white noise. White is the *easy* case for spectral flatness. Stress test
+across noise types (8 pairs × 2 low overlaps × 3 SNR = 48 separated tracks/type;
+`python -m src.noise_robust_gate --noise-types`):
+
+| noise type | raw sep | flat+rel-energy gate | gain | tail sep → gate | gate fire rate |
+|---|---:|---:|---:|---:|---:|
+| white (broadband) | 0.974 | 0.944 | **+0.030** | 0.062 → 0.042 | ~100% |
+| pink (1/f) | 1.245 | 1.240 | +0.005 | 0.042 → 0.042 | ~23% (abstains) |
+| babble (speech-like) | 2.394 | 2.243 | +0.152 | 0.604 → 0.542 | ~95% |
+
+Measured frame-level flatness contrast (residual − speech) at 5 dB: **white +0.162, pink +0.028,
+babble −0.004** (it *inverts*). Consequences, all falsifiable:
+
+- **White:** residual is flatter than speech → gate fires and helps (the main result).
+- **Pink:** 1/f noise is itself low-flatness (energy at low frequency), so the adaptive threshold
+  finds no clean valley and the gate **safely abstains** (~23% fire) — inert, neither helping nor
+  hurting. Pink defeats the cure but *fails safe*.
+- **Babble:** the residual is speech-like and spectrally **indistinguishable** from the target, so
+  flatness carries no signal; the gate fires on the rel-energy term but crops unreliably and the
+  catastrophic tail stays high (0.54). The cure **largely fails** — and babble is the real-meeting
+  condition.
+
+**Synthesis (the direction this opens).** Reference-free *spectral* gating cures
+separation-hallucination only when the interference is spectrally distinct from speech.
+Speech-like babble cannot be separated from a target's silence-residual by spectral statistics
+alone — it requires **speaker identity**. The principled next step is a *voiceprint-conditioned*
+gate (keep frames whose embedding matches the track's dominant speaker), which is exactly where
+the project's dormant speaker-profile / voiceprint frontier becomes load-bearing rather than
+diagnostic. This experiment turns "try voiceprints" from a vague backlog item into a specific,
+motivated question: *can a speaker-embedding gate crop babble residual where flatness cannot?*
+
 ## Honest limitations
 
-Whisper-`tiny`; silver references; additive **white** Gaussian noise (colored/real meeting
-noise is less spectrally flat, so the flatness contrast — and thus the gate — would weaken);
-synthetic oracle separation for the main grid. The 5 dB column is anomalous (raw sep already
-low, mixed unusually high): per-cell point estimates are high-variance at n=48 with a heavy
-tail, so the *pooled* and *tail-conditional* numbers are the trustworthy ones. The gate's
-benefit is tail control, not uniform reduction, and it costs ~+0.16 CER on healthy tracks if
-applied blindly — hence the guard-gated policy. Frontier evidence, not a gold result.
-Artifacts: `gate_curve.csv` (240 rows), `gate_summary.json`, `selective_policy.json`,
-`gold_noisy_curve.csv`, `gold_noisy_summary.json`, `noise_robust_gate.png`.
+Whisper-`tiny`; silver references; synthetic oracle separation for the main grid; additive
+synthetic noise (real meeting noise is non-stationary). The white-noise result does **not**
+generalize to colored/babble noise (see above) — the gate is a broadband-noise cure. The 5 dB
+column of the white grid is anomalous (raw sep already low, mixed unusually high): per-cell point
+estimates are high-variance at n=48 with a heavy tail, so the *pooled* and *tail-conditional*
+numbers are the trustworthy ones. The gate's benefit is tail control, not uniform reduction, and
+it costs ~+0.16 CER on healthy tracks if applied blindly — hence the guard-gated policy. Frontier
+evidence, not a gold result. Artifacts: `gate_curve.csv` (240 rows), `gate_summary.json`,
+`selective_policy.json`, `gold_noisy_curve.csv`, `gold_noisy_summary.json`,
+`noise_types_curve.csv` (144 rows), `noise_types_summary.json`, `noise_robust_gate.png`.

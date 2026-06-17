@@ -254,6 +254,72 @@ def aggregate_by_snr(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return out
 
 
+# ======================================================================================
+# Colored / babble noise fields (pure) -- for the noise-TYPE stress test. White noise is
+# the easy case for spectral flatness; pink (1/f) and babble (speech-like) are the hard,
+# realistic cases that probe where the flatness signal collapses.
+# ======================================================================================
+def pink_noise(n: int, seed: int) -> np.ndarray:
+    """1/f (pink) noise via spectral shaping of white noise. Unit-RMS-ish, deterministic."""
+    if n <= 0:
+        return np.zeros((0,), dtype=np.float32)
+    w = np.random.default_rng(seed).standard_normal(n)
+    spec = np.fft.rfft(w)
+    f = np.arange(spec.size, dtype=np.float64)
+    f[0] = 1.0
+    spec = spec / np.sqrt(f)  # amplitude ~ 1/sqrt(f) -> power ~ 1/f
+    out = np.fft.irfft(spec, n=n).astype(np.float32)
+    std = float(np.std(out)) + 1e-12
+    return (out / std).astype(np.float32)
+
+
+def babble_noise(n: int, seed: int, sources: list[np.ndarray], n_talkers: int = 6) -> np.ndarray:
+    """Speech-like babble: sum of n_talkers randomly chosen source signals, each looped to
+    length n. Deterministic given (seed, sources). Speech-like spectra -> LOW flatness, which
+    is exactly what defeats a flatness gate (the residual stops looking 'flat')."""
+    if n <= 0 or not sources:
+        return np.zeros((max(0, n),), dtype=np.float32)
+    rng = np.random.default_rng(seed)
+    acc = np.zeros(n, dtype=np.float32)
+    idxs = rng.integers(0, len(sources), size=n_talkers)
+    for k in idxs:
+        s = np.asarray(sources[int(k)], dtype=np.float32)
+        if s.size == 0:
+            continue
+        reps = int(np.ceil(n / s.size))
+        acc += np.tile(s, reps)[:n]
+    std = float(np.std(acc)) + 1e-12
+    return (acc / std).astype(np.float32)
+
+
+def make_noise(kind: str, n: int, seed: int, sources: list[np.ndarray] | None = None) -> np.ndarray:
+    if kind == "white":
+        out = np.random.default_rng(seed).standard_normal(n).astype(np.float32)
+        return out / (float(np.std(out)) + 1e-12)
+    if kind == "pink":
+        return pink_noise(n, seed)
+    if kind == "babble":
+        return babble_noise(n, seed, sources or [])
+    raise ValueError(f"unknown noise kind: {kind}")
+
+
+def add_noise_field(x: np.ndarray, snr_db: float | None, noise: np.ndarray) -> np.ndarray:
+    """Add a pre-generated noise field to x at the target SNR (computed over x's speech region),
+    peak-limited. snr_db=None returns x unchanged."""
+    from .noise_robustness import speech_power
+
+    x = np.asarray(x, dtype=np.float32)
+    if snr_db is None or x.size == 0 or noise.size == 0:
+        return x
+    noise = np.asarray(noise[: x.size], dtype=np.float32)
+    sp = speech_power(x)
+    npow = float(np.mean(noise ** 2)) + 1e-12
+    gain = float(np.sqrt(sp / (10.0 ** (snr_db / 10.0)) / npow))
+    y = (x + noise * gain).astype(np.float32)
+    peak = float(np.max(np.abs(y)))
+    return (y * (0.98 / peak)).astype(np.float32) if peak > 0.98 else y
+
+
 # Whisper's default compression_ratio_threshold (a degeneracy signal), reused as the
 # reference-free guard. Mirrors separation_tax_phase.GUARD_THRESHOLD -- chosen a priori,
 # NOT tuned on CER, so no reference leakage enters the routing decision.
@@ -497,8 +563,78 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--pairs", type=int, default=8)
     p.add_argument("--quick", action="store_true", help="Tiny smoke grid (2 pairs, coarse).")
     p.add_argument("--gold-noisy", action="store_true", help="Real-separator transfer check on the 5 gold cases (noise-injected) and exit.")
+    p.add_argument("--noise-types", action="store_true", help="Stress test across white/pink/babble noise and exit.")
     p.add_argument("--out-dir", type=str, default=str(OUT_DIR))
     return p.parse_args()
+
+
+NOISE_TYPES = ["white", "pink", "babble"]
+NOISE_TYPE_SNR: list[float | None] = [10.0, 5.0, 0.0]
+NOISE_TYPE_OVERLAPS = [0.1, 0.3]
+
+
+def run_noise_types(out_dir: Path, num_pairs: int) -> dict[str, Any]:
+    """Stress test the gate across noise TYPES. White noise is the easy case for spectral
+    flatness; pink (1/f) and babble (speech-like) are the realistic hard cases. Hypothesis:
+    the gate recovers the cure under white noise but loses its discriminative signal under
+    pink/babble (the residual stops looking 'flat'), bounding the method to broadband noise."""
+    import whisper
+
+    from .evaluate_cer import compute_cer
+    from .generate_synthetic_overlap import build_mixture, read_mono_audio
+    from .separation_tax_phase import SNIPPETS_DIR, select_pairs, transcribe_with_signals, trim_silence
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    plans = select_pairs(num_pairs)
+    all_snips = {p.name: read_mono_audio(p).samples for p in sorted(SNIPPETS_DIR.glob("*.wav"))}
+    model = whisper.load_model("tiny")
+    print(f"[noise-type] pairs={len(plans)} types={NOISE_TYPES} snr={NOISE_TYPE_SNR}", flush=True)
+
+    def tx(a: np.ndarray) -> str:
+        return transcribe_with_signals(model, a, "greedy")["text"]
+
+    gates = {"energy_trim": trim_silence, "flatness_gate": flatness_trim,
+             "flatness_relenergy_gate": flatness_relenergy_trim}
+    rows: list[dict[str, Any]] = []
+    for pi, plan in enumerate(plans):
+        s1, s2 = read_mono_audio(plan.con_path), read_mono_audio(plan.pro_path)
+        ref = plan.con_text + plan.pro_text
+        # babble sources exclude this pair's own snippets (no target leakage into the babble)
+        babble_src = [v for k, v in all_snips.items() if k not in (plan.con_path.name, plan.pro_path.name)]
+        for overlap in NOISE_TYPE_OVERLAPS:
+            mixed, t1, t2, _ = build_mixture(s1, s2, overlap)
+            for kind in NOISE_TYPES:
+                for snr in NOISE_TYPE_SNR:
+                    sd = (pi * 131 + int(round(overlap * 100)) + int(snr) * 7 + NOISE_TYPES.index(kind) * 17)
+                    mx = add_noise_field(mixed, snr, make_noise(kind, mixed.size, sd, babble_src))
+                    n1 = add_noise_field(t1, snr, make_noise(kind, t1.size, sd + 1, babble_src))
+                    n2 = add_noise_field(t2, snr, make_noise(kind, t2.size, sd + 2, babble_src))
+                    cer = {"mixed": compute_cer(ref, tx(mx))["cer"], "sep": compute_cer(ref, tx(n1) + tx(n2))["cer"]}
+                    fired: dict[str, int] = {}
+                    for name, fn in gates.items():
+                        g1, g2 = fn(n1), fn(n2)
+                        fired[name] = int(g1.size < n1.size or g2.size < n2.size)
+                        cer[name] = compute_cer(ref, tx(g1) + tx(g2))["cer"]
+                    rows.append({
+                        "pair_id": pi, "overlap_ratio": overlap, "noise_type": kind,
+                        "snr_db": snr,
+                        **{f"cer_{a}": round(cer[a], 6) for a in ARMS},
+                        **{f"fired_{g}": fired[g] for g in gates},
+                    })
+        print(f"[noise-type] pair {pi + 1}/{len(plans)} done", flush=True)
+
+    curve = out_dir / "noise_types_curve.csv"
+    with curve.open("w", newline="", encoding="utf-8-sig") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(rows[0].keys()))
+        w.writeheader()
+        w.writerows(rows)
+    summary: list[dict[str, Any]] = []
+    for kind in NOISE_TYPES:
+        for g in aggregate_by_snr([r for r in rows if r["noise_type"] == kind]):
+            summary.append({"noise_type": kind, **g})
+    (out_dir / "noise_types_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"[noise-type] wrote {curve} + noise_types_summary.json (rows={len(rows)})", flush=True)
+    return {"summary": summary, "n_rows": len(rows)}
 
 
 def main() -> None:
@@ -506,6 +642,8 @@ def main() -> None:
     out_dir = Path(args.out_dir)
     if args.gold_noisy:
         run_gold_noisy(out_dir, DEFAULT_SNR)
+    elif args.noise_types:
+        run_noise_types(out_dir, args.pairs)
     elif args.quick:
         run(out_dir, num_pairs=2, overlaps=[0.0, 0.3], snr_levels=[None, 5.0])
     else:
