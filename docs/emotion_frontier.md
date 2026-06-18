@@ -102,3 +102,57 @@ Abandon the emotion frontier if, with a realistic separator (α≈0.15–0.3): t
 in overlap AND uncorrelated with CER AND dominated by `gain_component_db` — i.e. prosody preservation
 is orthogonal to the separation decision and adds no objective. (Current evidence rejects this: there
 is a clear, gain-invariant, overlap-dependent divergence.)
+
+## Frontier extensions: lexical emotion + LLM × ASR (added 2026-06)
+
+6. **Lexical Emotion Separation Tax + tri-modal agreement (DONE).** A deterministic, offline
+   regex/lexicon **valence + arousal** reader (`src/lexical_emotion.py`, the "用正则辅助情感分析"
+   direction) measures whether ASR errors corrupt a speaker's *textual* emotion, and unifies three
+   views of "should we separate?" — CER, acoustic arousal, lexical valence — on identical conditions
+   (`src/lexical_emotion_tax.py`). *Finding:* the three respond differently (CER tax; acoustic no-tax;
+   lexical ~flat) and weakly correlate; but the lexical arm is **underpowered** here — the seed lexicon
+   fires on only 2/16 casual debate snippets — which **motivates a generative LLM** emotion reader.
+   See `results/frontier/lexical_emotion_tax/FINDINGS.md`.
+7. **Prosody-grounded LLM × ASR critic (in progress).** A dependency-injected critic
+   (`src/llm_asr_critic.py`) with an offline default (regex/lexicon) and a real local LLM backend
+   (deepseek-r1 via ollama). Following the 2025/26 SER + GER frontier (below), it **injects explicit
+   prosodic + lexical cues** into the LLM (speech-LLMs have documented weak prosody perception) and
+   **separates the repair role from the judge role** (the code-tape *generation-evaluation separation*
+   principle) to (a) repair separation-induced hallucination [GER], guarding against over-correction,
+   and (b) emit a reference-free quality judgment tested as a CER predictor.
+
+## References / Frontier reading (2025–2026)
+
+This frontier is grounded in current work; every paper consulted is listed here (per project policy
+to cite all reading). Treated as background — no text reproduced.
+
+- *Prompt-Based ASR with Speech LLMs* (review, Jan 2026), emergentmind.com — names over-correction in
+  ill-posed regions and highly-overlapping scenarios as open problems (motivates our over-correction
+  guard and the overlap setting). https://www.emergentmind.com/topics/prompt-based-asr-with-speech-llms
+- *VoxEmo: Benchmarking Speech Emotion Recognition with Speech LLMs* (arXiv 2603.08936, 2026).
+  https://arxiv.org/pdf/2603.08936
+- *EmotionThinker: Prosody-Aware Reinforcement Learning for Explainable Speech Emotion Reasoning*
+  (OpenReview, 2026) — explainable, acoustic-cue-grounded SER; speech-LLMs have weak prosody perception.
+  https://openreview.net/forum?id=wbttgzp7MT
+- *ProsodyLM: Uncovering the Emerging Prosody Processing Capabilities in Speech Language Models*
+  (OpenReview, 2026). https://openreview.net/forum?id=uBg8PClMUu
+- *EmoSRE: Emotion-prediction-based speech synthesis and refined speech recognition using LLM and
+  prosody encoding* (Current Psychology, Springer, 2025).
+  https://link.springer.com/content/pdf/10.1007/s12144-025-07705-2.pdf
+- *Steering Language Model to Stable Speech Emotion Recognition via Contextual Perception and Chain of
+  Thought* (arXiv 2502.18186, 2025). https://arxiv.org/pdf/2502.18186
+- *LLM-based Generative Error Correction for Rare Words with Synthetic Data and Phonetic Context*
+  (arXiv 2505.17410, 2025). https://arxiv.org/pdf/2505.17410
+- *LLM-Based GER: A Challenge and Baselines for Speech Recognition, Speaker Tagging, and Emotion
+  Recognition* (arXiv 2409.09785, 2024) — GER + emotion jointly. https://arxiv.org/html/2409.09785v3
+- *HyPoradise: Open Baseline for Generative Speech Recognition with LLMs* (arXiv 2309.15701, 2023) —
+  the GER paradigm. https://arxiv.org/pdf/2309.15701
+
+## Lineage / acknowledgements
+
+The development harness (git hooks, GitNexus knowledge-base contract, repo-guard CR loop, TDD, SDD)
+this frontier runs under is adapted from **[ceilf6/code-tape](https://github.com/ceilf6/code-tape)**
+(`ref/code-tape`). The LLM × ASR critic (experiment 7) deliberately borrows code-tape's
+**generation-evaluation separation** principle — the transcript *repairer* and the quality *judge* are
+distinct roles, not one self-grading pass — to reduce the model's bias in scoring its own corrections.
+

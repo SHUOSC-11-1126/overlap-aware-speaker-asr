@@ -134,6 +134,23 @@ An always-on development harness keeps the stable baseline safe while frontier w
 
 The full loop is `issue → PR → repo-guard CR → respond` ([workflow](docs/harness/workflow_spec.md)). code-tape's engineering-camp scoring and auto-merge automation is intentionally out of scope.
 
+## Emotion Frontier (experimental)
+
+> Label: `experimental/frontier`. Full plan, findings, and cited 2025–2026 reading in
+> [`docs/emotion_frontier.md`](docs/emotion_frontier.md).
+
+Extends the project's "when should we separate?" question from ASR-CER into **emotion**. Offline,
+label-free (clean-source prosody / reference text are the ground truth, mirroring CER):
+
+- **Emotional Separation Tax** — separation *helps* emotion at every overlap (no tax) yet *hurts* ASR
+  at low/mid overlap: the separate-or-not decision is **objective-dependent** ([findings](results/frontier/emotion_separation_tax/FINDINGS.md)).
+- **Arousal ≠ ASR-difficulty** — acoustic arousal does not predict CER (bounding negative); emotion is
+  a consequence to *preserve*, not a routing feature ([findings](results/frontier/arousal_asr_probe/FINDINGS.md)).
+- **Regex/lexicon lexical emotion** (valence) + tri-modal agreement, and a **prosody-grounded LLM × ASR
+  critic** (deepseek-r1 via ollama, regex fallback). The critic borrows code-tape's
+  **generation-evaluation separation** (separate *repair* and *judge* roles) and injects explicit
+  prosodic/lexical cues, since the 2025/26 SER frontier finds speech-LLMs have weak prosody perception.
+
 ## OpenClaw: Agentic Engineering Assistant
 
 > Illustrative tooling shown for context, not a benchmark result. Label: `qualitative/demo`.
