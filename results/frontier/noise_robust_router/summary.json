@@ -1,0 +1,97 @@
+{
+  "pooled": {
+    "n": 270,
+    "mean_cer_mixed": 1.213535,
+    "mean_cer_speaker_gate": 1.530828,
+    "mean_cer_router": 0.777775,
+    "mean_cer_oracle": 0.738105,
+    "regret_vs_oracle": 0.03967,
+    "oracle_gap_recovered": 0.91656,
+    "pearson_cr_vs_gate_minus_mixed": 0.824407,
+    "router_route_dist": {
+      "mixed": 21,
+      "separate_gate": 249
+    }
+  },
+  "by_overlap": [
+    {
+      "n": 54,
+      "mean_cer_mixed": 0.794531,
+      "mean_cer_speaker_gate": 2.285472,
+      "mean_cer_router": 0.78802,
+      "mean_cer_oracle": 0.723536,
+      "regret_vs_oracle": 0.064484,
+      "oracle_gap_recovered": 0.091711,
+      "pearson_cr_vs_gate_minus_mixed": 0.997211,
+      "router_route_dist": {
+        "mixed": 9,
+        "separate_gate": 45
+      },
+      "overlap_ratio": 0.0
+    },
+    {
+      "n": 54,
+      "mean_cer_mixed": 0.816084,
+      "mean_cer_speaker_gate": 1.490884,
+      "mean_cer_router": 0.761257,
+      "mean_cer_oracle": 0.723665,
+      "regret_vs_oracle": 0.037592,
+      "oracle_gap_recovered": 0.593244,
+      "pearson_cr_vs_gate_minus_mixed": 0.994017,
+      "router_route_dist": {
+        "mixed": 3,
+        "separate_gate": 51
+      },
+      "overlap_ratio": 0.1
+    },
+    {
+      "n": 54,
+      "mean_cer_mixed": 1.020313,
+      "mean_cer_speaker_gate": 1.435155,
+      "mean_cer_router": 0.770333,
+      "mean_cer_oracle": 0.73963,
+      "regret_vs_oracle": 0.030703,
+      "oracle_gap_recovered": 0.890613,
+      "pearson_cr_vs_gate_minus_mixed": 0.86194,
+      "router_route_dist": {
+        "mixed": 4,
+        "separate_gate": 50
+      },
+      "overlap_ratio": 0.3
+    },
+    {
+      "n": 54,
+      "mean_cer_mixed": 1.02722,
+      "mean_cer_speaker_gate": 1.382079,
+      "mean_cer_router": 0.790991,
+      "mean_cer_oracle": 0.744762,
+      "regret_vs_oracle": 0.046229,
+      "oracle_gap_recovered": 0.836333,
+      "pearson_cr_vs_gate_minus_mixed": 0.869889,
+      "router_route_dist": {
+        "mixed": 3,
+        "separate_gate": 51
+      },
+      "overlap_ratio": 0.6
+    },
+    {
+      "n": 54,
+      "mean_cer_mixed": 2.409527,
+      "mean_cer_speaker_gate": 1.060549,
+      "mean_cer_router": 0.778274,
+      "mean_cer_oracle": 0.758932,
+      "regret_vs_oracle": 0.019342,
+      "oracle_gap_recovered": 0.935872,
+      "pearson_cr_vs_gate_minus_mixed": 0.462399,
+      "router_route_dist": {
+        "mixed": 2,
+        "separate_gate": 52
+      },
+      "overlap_ratio": 0.8
+    }
+  ],
+  "cr_guard": 2.4,
+  "rep_guard": 5,
+  "H1_router_beats_both_fixed": true,
+  "H3_degeneracy_tracks_tax": true
+}
