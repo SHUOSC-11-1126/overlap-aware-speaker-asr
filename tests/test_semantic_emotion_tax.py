@@ -193,5 +193,63 @@ class TestLlmEmotionReader(unittest.TestCase):
         self.assertEqual(fake.calls, 0)
 
 
+class TestRunOrchestration(unittest.TestCase):
+    """End-to-end run() with an injected fake LLM and a monkeypatched loader — fully offline
+    (no ollama, no librosa, no real data files). Addresses repo-guard's optional coverage note on
+    PR #832: exercise the CSV/JSON/FINDINGS writers and the H1/H2/H3 wiring."""
+
+    def _fake_records(self):
+        # Two overlap bins; clean ref + clean sep (== ref) + garbled mixed -> positive benefit.
+        recs = []
+        for tier, ov, sid in [("Lo", 0.1, "s1"), ("Lo", 0.1, "s2"), ("Hi", 0.5, "s3"), ("Hi", 0.5, "s4")]:
+            recs.append({
+                "sample_id": sid, "tier": tier, "overlap_ratio": ov, "sample_overlap_ratio": ov,
+                "speaker": 1, "speaker_label": "con",
+                "ref_text": "我坚决反对这个观点",       # -> oppose (fake)
+                "mixed_hyp": "嗯啊那个这个",            # -> neutral (fake)
+                "sep_hyp": "我坚决反对这个观点",         # == ref -> d_sem(sep)=0
+                "spk_audio_path": "does/not/exist.wav",
+            })
+        return recs
+
+    def _fake_llm(self, prompt: str) -> str:
+        # deterministic: opposition phrase -> strong oppose; filler -> neutral
+        if "反对" in prompt:
+            return '{"valence": -0.8, "arousal": 0.5, "stance": "oppose"}'
+        return '{"valence": 0.0, "arousal": 0.0, "stance": "neutral"}'
+
+    def test_run_writes_outputs_and_summary(self):
+        import json
+        import tempfile
+        from unittest import mock
+
+        with tempfile.TemporaryDirectory() as td:
+            with mock.patch.object(set_mod, "load_samples", lambda n_per_tier=5: self._fake_records()):
+                out = set_mod.run(
+                    n_per_tier=2, out_dir=td, llm_fn=self._fake_llm, compute_acoustic=False
+                )
+            out = set_mod.Path(out)
+            # all four artifacts exist
+            for name in ("semantic_tax_curve.csv", "summary.json", "FINDINGS.md"):
+                self.assertTrue((out / name).exists(), f"missing {name}")
+
+            summary = json.loads((out / "summary.json").read_text())
+            for key in ("H1_coverage", "H2_semantic_tax", "H3_triangulation", "parse_health"):
+                self.assertIn(key, summary)
+
+            # every reference reading parsed (fake LLM always returns valid JSON)
+            self.assertEqual(summary["parse_health"]["parse_rate"], 1.0)
+            self.assertFalse(summary["parse_health"]["kill_criterion_tripped"])
+
+            # LLM coverage > 0 (oppose readings are non-degenerate); benefit positive (mixed garbled, sep==ref)
+            self.assertGreater(summary["H1_coverage"]["llm_coverage_rate"], 0.0)
+            bins = summary["H2_semantic_tax"]["by_overlap"]
+            self.assertEqual({b["overlap_ratio"] for b in bins}, {0.1, 0.5})
+            self.assertTrue(all(b["mean_semantic_benefit"] >= 0 for b in bins))
+
+            findings = (out / "FINDINGS.md").read_text()
+            self.assertIn("Semantic Emotion Tax", findings)
+
+
 if __name__ == "__main__":
     unittest.main()
