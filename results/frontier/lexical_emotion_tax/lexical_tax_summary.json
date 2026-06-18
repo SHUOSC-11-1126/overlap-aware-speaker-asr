@@ -1,0 +1,46 @@
+{
+  "n": 40,
+  "pearson_cer_lexical": 0.060157,
+  "pearson_cer_acoustic": 0.105511,
+  "pearson_acoustic_lexical": -0.096419,
+  "sign_agree_cer_lexical": 0.4,
+  "sign_agree_cer_acoustic": 0.419355,
+  "sign_agree_acoustic_lexical": 0.75,
+  "by_overlap": [
+    {
+      "overlap_ratio": 0.0,
+      "n": 8,
+      "mean_cer_benefit": -0.425279,
+      "mean_acoustic_benefit": 0.0,
+      "mean_lexical_benefit": -0.00435
+    },
+    {
+      "overlap_ratio": 0.1,
+      "n": 8,
+      "mean_cer_benefit": -0.361892,
+      "mean_acoustic_benefit": 0.118211,
+      "mean_lexical_benefit": 0.021129
+    },
+    {
+      "overlap_ratio": 0.3,
+      "n": 8,
+      "mean_cer_benefit": -1.716217,
+      "mean_acoustic_benefit": 0.091266,
+      "mean_lexical_benefit": 0.021129
+    },
+    {
+      "overlap_ratio": 0.6,
+      "n": 8,
+      "mean_cer_benefit": 0.000383,
+      "mean_acoustic_benefit": 0.132252,
+      "mean_lexical_benefit": 0.002597
+    },
+    {
+      "overlap_ratio": 0.9,
+      "n": 8,
+      "mean_cer_benefit": 0.231797,
+      "mean_acoustic_benefit": 0.160331,
+      "mean_lexical_benefit": 0.024851
+    }
+  ]
+}
