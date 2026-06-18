@@ -1,0 +1,26 @@
+sample_id,tier,overlap_ratio,con_valence,pro_valence,con_stance,pro_stance,con_text,pro_text
+SyntheticHeavyOverlap_01,SyntheticHeavyOverlap,0.5,0.8,0.5,support,support,他让你在那个时间段里拥有了自己,你方式要 那它是怎么缓解我们的空虚的
+SyntheticHeavyOverlap_02,SyntheticHeavyOverlap,0.5,0.0,-1.0,neutral,oppose,哪怕自己是刷抖音的自己,因为有一个前提性的问题没有讨论
+SyntheticHeavyOverlap_03,SyntheticHeavyOverlap,0.5,0.2,0.0,neutral,neutral,我往这里再稍微解释一下,好我先聊完
+SyntheticHeavyOverlap_04,SyntheticHeavyOverlap,0.5,0.0,-0.5,neutral,support,其实不落分也是一种,上班的时间必定也晚
+SyntheticHeavyOverlap_05,SyntheticHeavyOverlap,0.5,0.0,-0.3,neutral,support,当觉得晚睡晚起少夜,那你个人的生活空间必定也就这么点
+SyntheticLightOverlap_01,SyntheticLightOverlap,0.1,0.8,0.5,support,support,他让你在那个时间段里拥有了自己,你方式要 那它是怎么缓解我们的空虚的
+SyntheticLightOverlap_02,SyntheticLightOverlap,0.1,0.0,-0.3,neutral,neutral,哪怕自己是刷抖音的自己,我会把你当成一个人
+SyntheticLightOverlap_03,SyntheticLightOverlap,0.1,0.2,0.0,neutral,neutral,我往这里再稍微解释一下,好我先聊完 都帅玩起
+SyntheticLightOverlap_04,SyntheticLightOverlap,0.1,0.0,-0.5,neutral,support,其实不落分也是一种,上班的时间必定也晚
+SyntheticLightOverlap_05,SyntheticLightOverlap,0.1,0.0,-0.3,neutral,support,当觉得晚睡晚起少夜,那你个人的生活空间必定也就这么点
+SyntheticMidOverlap_01,SyntheticMidOverlap,0.3,0.8,0.5,support,support,他让你在那个时间段里拥有了自己,你方式要 那它是怎么缓解我们的空虚的
+SyntheticMidOverlap_02,SyntheticMidOverlap,0.3,0.0,-1.0,neutral,oppose,哪怕自己是刷抖音的自己,因为有一个前提性的问题没有讨论
+SyntheticMidOverlap_03,SyntheticMidOverlap,0.3,0.2,0.0,neutral,neutral,我往这里再稍微解释一下,好我先聊完
+SyntheticMidOverlap_04,SyntheticMidOverlap,0.3,0.0,-0.5,neutral,support,其实不落分也是一种,上班的时间必定也晚
+SyntheticMidOverlap_05,SyntheticMidOverlap,0.3,0.0,-0.3,neutral,support,当觉得晚睡晚起少夜,那你个人的生活空间必定也就这么点
+SyntheticNoOverlap_01,SyntheticNoOverlap,0.0,0.8,0.0,support,neutral,他让你在那个时间段里拥有了自己,你方式要那它是怎么缓解我们的空虚的
+SyntheticNoOverlap_02,SyntheticNoOverlap,0.0,0.0,0.0,neutral,neutral,哪怕自己是刷抖音的自己,这次的计划是什么呢我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍我看了一遍
+SyntheticNoOverlap_03,SyntheticNoOverlap,0.0,0.2,0.8,neutral,support,我往这里再稍微解释一下,好我先聊完 都帅玩齊
+SyntheticNoOverlap_04,SyntheticNoOverlap,0.0,0.0,-0.5,neutral,support,其实不落分也是一种,上班的时间必定也晚
+SyntheticNoOverlap_05,SyntheticNoOverlap,0.0,0.0,-0.3,neutral,support,当觉得晚睡晚起少夜,那你个人的生活空间必定也就这么点
+SyntheticOppositeOverlap_01,SyntheticOppositeOverlap,0.8,0.8,-0.2,support,neutral,他让你在那个时间段里拥有了自己,"你方式要,那它是怎么缓解我们的空虚的"
+SyntheticOppositeOverlap_02,SyntheticOppositeOverlap,0.8,0.0,-1.0,neutral,oppose,哪怕自己是刷抖音的自己,因为有一个前提性的问题没有讨论
+SyntheticOppositeOverlap_03,SyntheticOppositeOverlap,0.8,0.2,0.0,neutral,neutral,我往这里再稍微解释一下,好我先聊完 都帅玩起
+SyntheticOppositeOverlap_04,SyntheticOppositeOverlap,0.8,0.0,0.0,neutral,neutral,其实不落分也是一种,上班的時間必定也晚
+SyntheticOppositeOverlap_05,SyntheticOppositeOverlap,0.8,0.0,-0.3,neutral,support,当觉得晚睡晚起少夜,那你个人的生活空间必定也就这么点

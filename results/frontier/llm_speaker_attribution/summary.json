@@ -1,0 +1,17 @@
+{
+  "n": 25,
+  "valence_auc": 0.216,
+  "valence_auc_strength": 0.784,
+  "llm_attribution_accuracy": 0.08,
+  "calibrated_attribution_accuracy": 0.92,
+  "valence_direction": "con_higher_valence",
+  "raw_accuracy_at_swap_rate": 0.5,
+  "abstain_rate": 0.08,
+  "stance_disagreement_rate": 0.6,
+  "attributed_cer_oracle": 0.280889,
+  "attributed_cer_llm": 1.173592,
+  "H1_valence_discriminates": true,
+  "H2_llm_beats_chance": false,
+  "H2b_calibrated_beats_chance": true,
+  "swap_rate": 0.5
+}
