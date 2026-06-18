@@ -56,9 +56,12 @@ that reuse the existing mixture / separation / ASR scaffolding.
    emotion-fidelity predictor (vs true distortion r=−0.20; saturates beyond mild leakage). Deployable as
    a confidence gate, not a replacement for the oracle reference. See
    `results/frontier/emotion_fidelity_meter/FINDINGS.md`.
-5. **Emotion-conditioned gate (stretch).** Does an arousal-aware variant of the speaker-conditioned
-   gate (finding #12/#13) preserve prosody better than the CER-tuned gate? Ties the gate frontier to
-   emotion.
+5. **Emotion cost of the CER-tuned gate cures (DONE).** Do the #11/#12 hallucination-cure gates damage
+   emotion while curing CER? *Finding:* yes — both impose a real emotion cost (objective-blind cures,
+   extending #14), but the **speaker gate dominates on both axes** (cures CER more, +0.46 vs +0.40;
+   damages emotion less, +0.023 vs +0.057), reinforcing #13's "use the speaker gate" from the emotion
+   side. The cost is second-order vs the separate-vs-mixed decision. `src/gate_emotion_cost.py`; see
+   `results/frontier/gate_emotion_cost/FINDINGS.md`.
 
 ## Metrics (all offline)
 

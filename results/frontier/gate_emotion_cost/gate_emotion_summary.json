@@ -1,0 +1,19 @@
+{
+  "n": 128,
+  "by_gate": [
+    {
+      "gate": "flatness",
+      "n": 64,
+      "mean_cer_benefit": 0.397381,
+      "mean_emotion_cost": 0.057126,
+      "pearson_benefit_cost": -0.30323
+    },
+    {
+      "gate": "speaker",
+      "n": 64,
+      "mean_cer_benefit": 0.460151,
+      "mean_emotion_cost": 0.022521,
+      "pearson_benefit_cost": -0.00937
+    }
+  ]
+}
