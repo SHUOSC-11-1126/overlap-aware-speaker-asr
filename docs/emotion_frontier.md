@@ -42,10 +42,13 @@ that reuse the existing mixture / separation / ASR scaffolding.
    So emotion is a downstream consequence to **preserve**, not an upstream feature for **routing**.
    The emotion↔ASR relationship is asymmetric (separation affects emotion; emotion doesn't predict
    ASR). Module: `src/arousal_asr_probe.py`; see `results/frontier/arousal_asr_probe/FINDINGS.md`.
-3. **Objective-aware routing.** Fold the divergence into a router that decodes text from the
-   conservative route but estimates emotion from the separated track, specifically in the identifiable
-   low/mid-overlap disagreement band. Builds on the noise-robust router (issue #814). *Metric: joint
-   (CER, prosody-preservation) regret vs a two-objective oracle.*
+3. **Objective-aware routing (DONE — the capstone).** Route TEXT by the ASR-optimal decision but
+   always read EMOTION from the separated track. *Finding:* decoupling Pareto-dominates a single
+   separate-or-not switch — same CER, emotion distortion halved (0.139→0.079 ≈ oracle), joint regret
+   cut ~14× (0.046→0.003); the coupling cost (mean 0.060) is concentrated in the low/mid-overlap
+   disagreement band (#14). The deployable emotion-aware answer: keep the reference-free ASR router for
+   text, always recover emotion from the separated track. `src/objective_aware_routing.py`; see
+   `results/frontier/objective_aware_routing/FINDINGS.md`.
 4. **Prosody-preservation as a reference-free separator-quality score.** At deploy there is no clean
    reference; test whether separated-track prosody **self-consistency** (or speaker-embedding stability)
    tracks the leakage α, giving a label-free separation-quality meter. *Label frontier/oracle-analysis.*

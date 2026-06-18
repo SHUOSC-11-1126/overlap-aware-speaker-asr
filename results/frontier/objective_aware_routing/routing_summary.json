@@ -1,0 +1,46 @@
+{
+  "n": 40,
+  "mean_coupling_cost": 0.060031,
+  "mean_cer_always_mixed": 0.595847,
+  "mean_emo_always_mixed": 0.179652,
+  "joint_regret_always_mixed": 0.077604,
+  "mean_cer_always_sep": 1.050089,
+  "mean_emo_always_sep": 0.079241,
+  "joint_regret_always_sep": 0.024565,
+  "mean_cer_coupled": 0.528467,
+  "mean_emo_coupled": 0.139271,
+  "joint_regret_coupled": 0.046044,
+  "mean_cer_decoupled": 0.528467,
+  "mean_emo_decoupled": 0.079241,
+  "joint_regret_decoupled": 0.003226,
+  "mean_cer_oracle": 0.528467,
+  "mean_emo_oracle": 0.074717,
+  "joint_regret_oracle": 0.0,
+  "by_overlap": [
+    {
+      "overlap_ratio": 0.0,
+      "n": 8,
+      "mean_coupling_cost": 0.0
+    },
+    {
+      "overlap_ratio": 0.1,
+      "n": 8,
+      "mean_coupling_cost": 0.118782
+    },
+    {
+      "overlap_ratio": 0.3,
+      "n": 8,
+      "mean_coupling_cost": 0.084944
+    },
+    {
+      "overlap_ratio": 0.6,
+      "n": 8,
+      "mean_coupling_cost": 0.096427
+    },
+    {
+      "overlap_ratio": 0.9,
+      "n": 8,
+      "mean_coupling_cost": 0.0
+    }
+  ]
+}
