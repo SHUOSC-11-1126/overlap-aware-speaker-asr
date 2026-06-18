@@ -37,6 +37,26 @@ See [docs/implementation-status.md](docs/implementation-status.md) for the detai
 | MeetEval, LLM, speaker-profile, demo support | Optional Integration / Frontier Scaffold |
 | AudioDepth router | Frontier Branch Only |
 
+## Frontier Highlights — ASR × LLM + Emotion + Speaker (experimental/frontier)
+
+A 2026 frontier session explored where a *local, offline* LLM (`deepseek-r1` via ollama) and cheap
+reference-free signals help overlap-aware speaker ASR. Full synthesis + deployable recipe:
+[docs/frontier/asr_llm_emotion_capstone.md](docs/frontier/asr_llm_emotion_capstone.md) · hero figure:
+`results/frontier/asr_llm_frontier_capstone.png`.
+
+| Result | Outcome |
+|---|---|
+| [Noise-robust router](results/frontier/noise_robust_router/FINDINGS.md) (#814) | ✅ a reference-free decoder-degeneracy router beats both fixed strategies and recovers ~92% of the per-utterance oracle gap |
+| [Semantic Emotion Tax](results/frontier/semantic_emotion_tax/FINDINGS.md) (#831) | ✅ a local LLM reads implicit emotion ~7× more than the lexicon — an orthogonal 3rd emotion modality |
+| [Tri-modal emotion fusion](results/frontier/emotion_modality_fusion/FINDINGS.md) (#835) | ◐ fusion helps the semantic target only; acoustic-arousal is the dominant reference-free emotion-damage signal |
+| [Emotion-anchored repair](results/frontier/emotion_anchored_repair/FINDINGS.md) (#833) | ❌ anchoring does not cure LLM over-correction — don't blind-repair in this setting |
+| [LLM speaker-attribution](results/frontier/llm_speaker_attribution/FINDINGS.md) (#838) | ◐ affect encodes who-said-what, but the sign isn't knowable reference-free |
+
+These are `experimental/frontier` (Whisper-tiny + silver references + local `deepseek-r1`); they are not
+gold-benchmark claims. The unifying thread: the cheap Whisper decoder signal is the deployable routing
+lever, acoustic prosody owns acoustic emotion, and the LLM's gift is *coverage* of implicit semantics —
+not free-lunch repair or attribution rules.
+
 ## Quickstart
 
 Use a Python version aligned with CI, preferably Python 3.12. The core install is:
