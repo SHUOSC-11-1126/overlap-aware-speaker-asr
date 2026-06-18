@@ -4,6 +4,39 @@
 (`src/emotion_separation_tax.py`, `src/prosody.py`); see
 `results/frontier/emotion_separation_tax/FINDINGS.md`.
 
+## TL;DR — seven findings and the deployable recipe
+
+Seven offline, label-free, falsifiable experiments (findings #14–#20) extend the project's "when should
+we separate?" question into emotion (operationalized as gain-invariant acoustic prosody + a regex
+valence reader; the clean source is the label-free reference, mirroring CER):
+
+1. **#14 Emotional Separation Tax** — separation *helps* emotion at every overlap but *hurts* ASR at
+   low/mid overlap. The separate-or-not decision is **objective-dependent**.
+2. **#15 Asymmetry** — emotion (arousal) does *not* predict ASR difficulty (r≈0). Emotion is a
+   consequence to *preserve*, not a routing feature.
+3. **#16 Lexical valence + tri-modal** — a regex/lexicon valence reader; CER / acoustic / lexical
+   disagree on separation. The lexicon underfires on casual debate text → motivates the LLM.
+4. **#17 LLM × ASR critic** (real deepseek-r1) — the LLM judge is *dominated* by the free
+   compression-ratio signal (QE), and GER repair *over-corrects*: simple beats fancy.
+5. **#18 Objective-aware routing (capstone)** — route TEXT by the ASR signal, read EMOTION from the
+   separated track: same CER, emotion distortion **halved**, joint regret cut **~14×**.
+6. **#19 Reference-free fidelity meter** — self-consistency is a *coarse* clean/contaminated gate
+   (r=−0.51 vs leakage) but a *weak graded* fidelity estimate.
+7. **#20 Emotion cost of the gate cures** — the CER-tuned cures are objective-blind too, but the
+   **speaker gate damages emotion least** while curing CER most (reinforces #13).
+
+**Deployable recipe for emotion-aware overlapping-speech ASR** (the synthesis):
+
+1. **Separate-vs-mixed: decouple by objective** (#14/#18). Route the transcript with the reference-free
+   ASR signal (compression-ratio / router_v2); always recover emotion from the separated track.
+2. **If separating, use the speaker gate** as the post-separation cure (#13) — broadest CER cure and
+   the least emotion-damaging (#20).
+3. **Gate confidence with the reference-free fidelity meter** (#19) to flag grossly contaminated tracks.
+4. **Don't** add an LLM critic or fold arousal into the ASR router (#15/#17): they cost more than the
+   cheap reference-free signals they'd replace.
+
+
+
 ## Goal
 
 Extend the project's central question — *"when should we separate?"* — from the ASR-CER objective into
