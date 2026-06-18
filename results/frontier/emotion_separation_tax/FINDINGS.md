@@ -73,6 +73,17 @@ Overall the two benefits are weakly correlated (Pearson 0.08 at α=0, 0.11 at α
 0.31, n=40) — confirming the objectives are *loosely* aligned with an active sign disagreement where
 it matters.
 
+### Robustness: the emotion gain is per-pair, not a noisy mean
+
+The emotion benefit is positive for the large majority of the 8 pairs at a *realistic* separator
+(α=0.15): 7/8 pairs at overlap 0.1, 7/8 at 0.3, 8/8 at 0.6, 7/8 at 0.9 (per-pair minimums only ≈
+−0.005, i.e. essentially zero, never strongly negative). At the oracle (α=0) it is 8/8 at every
+overlap. So the low/mid-overlap emotion gain that *opposes* the ASR loss is not an artifact of
+averaging. Only a **poor** separator (α=0.3) erodes it at high overlap (6/8 positive at ov0.3, mean
++0.016 at ov0.9) — consistent with "separator quality matters more at high overlap." The ASR loss
+side is noisier (driven by hallucination tails over n=8), so the robust claim is the **sign**
+disagreement at low/mid overlap, not the exact CER magnitudes.
+
 ## Synthesis: the separate-or-not decision is objective-dependent
 
 This extends the project's thesis into a two-objective regime. A single reference-free

@@ -94,8 +94,10 @@ def prosodic_features(wav: np.ndarray, sr: int = SR, fmin: float = 65.0, fmax: f
 
 def arousal_index(feat: dict[str, float]) -> float:
     """A documented, label-free arousal proxy (higher = more aroused): a weighted blend of energy
-    dynamics, pitch range, pitch height, and spectral brightness, each on its a-priori scale. This is
-    a RELATIVE index — meaningful only when comparing signals, never as an absolute emotion score."""
+    dynamics, pitch range, pitch height, and spectral brightness, each on its a-priori scale.
+
+    NOT an emotion classifier and NOT a valence/category score: this is a RELATIVE index, meaningful
+    only when comparing signals (e.g. mixed vs separated), never as an absolute emotion label."""
     return float(
         0.35 * feat.get("rms_dyn_db", 0.0) / _AROUSAL_FEATURES["rms_dyn_db"]
         + 0.25 * feat.get("f0_iqr", 0.0) / _AROUSAL_FEATURES["f0_iqr"]
@@ -108,6 +110,9 @@ def prosody_distance(ref: dict[str, float], hyp: dict[str, float], energy_invari
     """Distance between two prosody feature dicts. With `energy_invariant=True` (default) the headline
     `emotional_distortion` is a normalized RMS difference over GAIN-INVARIANT arousal features only, so
     pure loudness changes do not count as emotional change — they are reported as `gain_component_db`.
+
+    This measures prosody *preservation* (a proxy for emotion preservation), NOT classified-emotion
+    accuracy; it is only meaningful relative to a reference signal, never as an absolute emotion label.
 
     Returns:
       emotional_distortion  normalized RMS distance over the arousal-feature subspace (>=0; 0 = identical)
