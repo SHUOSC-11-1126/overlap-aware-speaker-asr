@@ -1,0 +1,40 @@
+{
+  "alpha": 0.15,
+  "correlation": {
+    "pearson": 0.105511,
+    "spearman": 0.311257,
+    "n": 40
+  },
+  "by_overlap": [
+    {
+      "overlap_ratio": 0.0,
+      "mean_cer_benefit": -0.425279,
+      "mean_emotion_benefit": 0.0,
+      "sign_disagreement": false
+    },
+    {
+      "overlap_ratio": 0.1,
+      "mean_cer_benefit": -0.361892,
+      "mean_emotion_benefit": 0.118211,
+      "sign_disagreement": true
+    },
+    {
+      "overlap_ratio": 0.3,
+      "mean_cer_benefit": -1.716217,
+      "mean_emotion_benefit": 0.091266,
+      "sign_disagreement": true
+    },
+    {
+      "overlap_ratio": 0.6,
+      "mean_cer_benefit": 0.000383,
+      "mean_emotion_benefit": 0.132252,
+      "sign_disagreement": false
+    },
+    {
+      "overlap_ratio": 0.9,
+      "mean_cer_benefit": 0.231797,
+      "mean_emotion_benefit": 0.160331,
+      "sign_disagreement": false
+    }
+  ]
+}
