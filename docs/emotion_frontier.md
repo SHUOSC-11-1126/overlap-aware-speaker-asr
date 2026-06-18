@@ -35,10 +35,13 @@ that reuse the existing mixture / separation / ASR scaffolding.
    *Finding:* emotion has **no** separation tax (separation always helps, more at higher overlap), and
    **diverges from ASR** at low/mid overlap (where ASR is hurt). Modules: `src/prosody.py`,
    `src/emotion_separation_tax.py`.
-2. **Arousal as a reference-free ASR-difficulty predictor.** Is acoustic arousal a pre-decode signal
-   that predicts per-track CER / hallucination risk, controlling for overlap and noise (partial
-   correlation, stratified)? Useful even if weak: bounds whether emotion adds routing signal beyond
-   overlap. *Reference-free; metric: partial-corr(arousal, CER | overlap); label frontier.*
+2. **Arousal as a reference-free ASR-difficulty predictor (DONE — bounding negative).** Does acoustic
+   arousal predict per-track CER / hallucination, controlling for overlap and beyond the
+   compression-ratio guard? → *Finding:* **no** — Pearson(arousal, CER)=0.002, partial-controlling-
+   overlap=0.002, orthogonal to compression ratio (−0.04); the pre-registered kill criterion is met.
+   So emotion is a downstream consequence to **preserve**, not an upstream feature for **routing**.
+   The emotion↔ASR relationship is asymmetric (separation affects emotion; emotion doesn't predict
+   ASR). Module: `src/arousal_asr_probe.py`; see `results/frontier/arousal_asr_probe/FINDINGS.md`.
 3. **Objective-aware routing.** Fold the divergence into a router that decodes text from the
    conservative route but estimates emotion from the separated track, specifically in the identifiable
    low/mid-overlap disagreement band. Builds on the noise-robust router (issue #814). *Metric: joint
@@ -71,8 +74,11 @@ python -m src.emotion_separation_tax --crosslink --crosslink-alpha 0.15 --pairs 
 # 3. Render both figures from existing summaries:
 python -m src.emotion_separation_tax --figure
 
+# 4. Arousal -> ASR-difficulty probe (experiment #2, Whisper-tiny):
+python -m src.arousal_asr_probe --pairs 8
+
 # Smoke check (fast):
-python -m unittest tests.test_prosody tests.test_emotion_separation_tax
+python -m unittest tests.test_prosody tests.test_emotion_separation_tax tests.test_arousal_asr_probe
 ```
 
 ## Limitations

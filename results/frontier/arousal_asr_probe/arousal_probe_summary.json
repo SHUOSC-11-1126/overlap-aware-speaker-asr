@@ -1,0 +1,143 @@
+{
+  "all": {
+    "n": 120,
+    "pearson_arousal_cer": 0.00172,
+    "spearman_arousal_cer": -0.086405,
+    "partial_pearson_controlling_overlap": 0.002416,
+    "mean_within_overlap_pearson": -0.134257,
+    "arousal_auc_hallucination": 0.411765,
+    "cr_auc_hallucination": 1.0,
+    "hallucination_rate": 0.008333,
+    "by_overlap": [
+      {
+        "overlap_ratio": 0.0,
+        "n": 24,
+        "pearson_arousal_cer": 0.202711,
+        "mean_arousal": 2.569689,
+        "mean_cer": 0.481767
+      },
+      {
+        "overlap_ratio": 0.1,
+        "n": 24,
+        "pearson_arousal_cer": 0.059328,
+        "mean_arousal": 2.528358,
+        "mean_cer": 1.492315
+      },
+      {
+        "overlap_ratio": 0.3,
+        "n": 24,
+        "pearson_arousal_cer": -0.084035,
+        "mean_arousal": 2.60642,
+        "mean_cer": 0.497667
+      },
+      {
+        "overlap_ratio": 0.6,
+        "n": 24,
+        "pearson_arousal_cer": -0.347421,
+        "mean_arousal": 2.639042,
+        "mean_cer": 0.516167
+      },
+      {
+        "overlap_ratio": 0.9,
+        "n": 24,
+        "pearson_arousal_cer": -0.501867,
+        "mean_arousal": 2.551127,
+        "mean_cer": 0.558958
+      }
+    ]
+  },
+  "separated_only": {
+    "n": 80,
+    "pearson_arousal_cer": -0.09608,
+    "spearman_arousal_cer": 0.304021,
+    "partial_pearson_controlling_overlap": -0.088457,
+    "mean_within_overlap_pearson": 0.199971,
+    "arousal_auc_hallucination": 0.113924,
+    "cr_auc_hallucination": 1.0,
+    "hallucination_rate": 0.0125,
+    "by_overlap": [
+      {
+        "overlap_ratio": 0.0,
+        "n": 16,
+        "pearson_arousal_cer": 0.409424,
+        "mean_arousal": 3.071717,
+        "mean_cer": 0.490401
+      },
+      {
+        "overlap_ratio": 0.1,
+        "n": 16,
+        "pearson_arousal_cer": -0.233227,
+        "mean_arousal": 3.048586,
+        "mean_cer": 1.980006
+      },
+      {
+        "overlap_ratio": 0.3,
+        "n": 16,
+        "pearson_arousal_cer": 0.311445,
+        "mean_arousal": 3.113838,
+        "mean_cer": 0.472241
+      },
+      {
+        "overlap_ratio": 0.6,
+        "n": 16,
+        "pearson_arousal_cer": 0.481656,
+        "mean_arousal": 3.167443,
+        "mean_cer": 0.437733
+      },
+      {
+        "overlap_ratio": 0.9,
+        "n": 16,
+        "pearson_arousal_cer": 0.030557,
+        "mean_arousal": 3.113292,
+        "mean_cer": 0.450311
+      }
+    ]
+  },
+  "mixed_only": {
+    "n": 40,
+    "pearson_arousal_cer": 0.034321,
+    "spearman_arousal_cer": 0.049894,
+    "partial_pearson_controlling_overlap": 0.106743,
+    "mean_within_overlap_pearson": 0.091519,
+    "arousal_auc_hallucination": NaN,
+    "cr_auc_hallucination": NaN,
+    "hallucination_rate": 0.0,
+    "by_overlap": [
+      {
+        "overlap_ratio": 0.0,
+        "n": 8,
+        "pearson_arousal_cer": 0.157474,
+        "mean_arousal": 1.565633,
+        "mean_cer": 0.464498
+      },
+      {
+        "overlap_ratio": 0.1,
+        "n": 8,
+        "pearson_arousal_cer": 0.646676,
+        "mean_arousal": 1.487902,
+        "mean_cer": 0.516934
+      },
+      {
+        "overlap_ratio": 0.3,
+        "n": 8,
+        "pearson_arousal_cer": -0.282251,
+        "mean_arousal": 1.591582,
+        "mean_cer": 0.548521
+      },
+      {
+        "overlap_ratio": 0.6,
+        "n": 8,
+        "pearson_arousal_cer": -0.574969,
+        "mean_arousal": 1.582238,
+        "mean_cer": 0.673033
+      },
+      {
+        "overlap_ratio": 0.9,
+        "n": 8,
+        "pearson_arousal_cer": 0.510667,
+        "mean_arousal": 1.426798,
+        "mean_cer": 0.776252
+      }
+    ]
+  }
+}
