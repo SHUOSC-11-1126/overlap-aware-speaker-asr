@@ -12,6 +12,12 @@ import numpy as np
 
 from src import emotion_modality_fusion as emf
 
+try:
+    import sklearn  # noqa: F401
+    _HAS_SKLEARN = True
+except ImportError:  # CI may run without scikit-learn (see commit 8a4b43f6)
+    _HAS_SKLEARN = False
+
 
 def _linear_dataset(n=80, weights=(2.0, 3.0, 1.5), noise=0.05, seed=0):
     """y depends on all three single-column groups a,b,c (so every modality contributes)."""
@@ -25,6 +31,7 @@ def _linear_dataset(n=80, weights=(2.0, 3.0, 1.5), noise=0.05, seed=0):
     return X, y, groups
 
 
+@unittest.skipUnless(_HAS_SKLEARN, "scikit-learn not installed")
 class TestFitEvalCV(unittest.TestCase):
     def test_fusion_beats_best_single(self):
         X, y, groups = _linear_dataset()
@@ -107,6 +114,7 @@ class TestFeatureRowToVector(unittest.TestCase):
         self.assertEqual(idxs, list(range(len(emf.FEATURE_NAMES))))
 
 
+@unittest.skipUnless(_HAS_SKLEARN, "scikit-learn not installed")
 class TestRunOrchestration(unittest.TestCase):
     """End-to-end run() with injected rows (no ollama/Whisper/librosa). Covers the two-target wiring
     and the CSV/JSON/FINDINGS writers."""
