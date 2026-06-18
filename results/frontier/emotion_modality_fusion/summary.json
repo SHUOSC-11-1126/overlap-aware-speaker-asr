@@ -1,0 +1,124 @@
+{
+  "n": 50,
+  "model": "deepseek-r1:7b",
+  "feature_names": [
+    "llm_valence",
+    "llm_arousal",
+    "lexical_valence",
+    "lexical_arousal",
+    "acoustic_arousal"
+  ],
+  "by_target": {
+    "acoustic_emotion_damage": {
+      "n": 50,
+      "per_group": {
+        "llm": {
+          "r2_cv": -0.325711,
+          "spearman_cv": -0.142665,
+          "auc_cv": 0.4552,
+          "n_features": 2
+        },
+        "lexical": {
+          "r2_cv": -0.155564,
+          "spearman_cv": -0.083121,
+          "auc_cv": 0.4184,
+          "n_features": 2
+        },
+        "acoustic": {
+          "r2_cv": 0.108008,
+          "spearman_cv": 0.074094,
+          "auc_cv": 0.4216,
+          "n_features": 1
+        }
+      },
+      "best_single": "acoustic",
+      "best_single_r2": 0.108008,
+      "fused_r2": 0.024343,
+      "fused_spearman": -0.062665,
+      "fused_auc": 0.4776,
+      "ablations": {
+        "llm": {
+          "r2_cv": 0.099224,
+          "drop_vs_fused": -0.074881
+        },
+        "lexical": {
+          "r2_cv": 0.031871,
+          "drop_vs_fused": -0.007528
+        },
+        "acoustic": {
+          "r2_cv": -0.369643,
+          "drop_vs_fused": 0.393986
+        }
+      },
+      "permutation_importance": {
+        "0": 0.000118,
+        "1": 0.026323,
+        "2": 0.007106,
+        "3": 0.0,
+        "4": 0.725962
+      },
+      "H1_fused_beats_best_single": false,
+      "H2_each_modality_contributes": false,
+      "H3_fused_ranking_ok": false,
+      "n_used": 50
+    },
+    "semantic_emotion_damage": {
+      "n": 50,
+      "per_group": {
+        "llm": {
+          "r2_cv": 0.067706,
+          "spearman_cv": 0.40389,
+          "auc_cv": 0.6384,
+          "n_features": 2
+        },
+        "lexical": {
+          "r2_cv": -0.077653,
+          "spearman_cv": -0.11587,
+          "auc_cv": 0.3544,
+          "n_features": 2
+        },
+        "acoustic": {
+          "r2_cv": 0.097506,
+          "spearman_cv": 0.391885,
+          "auc_cv": 0.584,
+          "n_features": 1
+        }
+      },
+      "best_single": "acoustic",
+      "best_single_r2": 0.097506,
+      "fused_r2": 0.160366,
+      "fused_spearman": 0.481585,
+      "fused_auc": 0.6528,
+      "ablations": {
+        "llm": {
+          "r2_cv": 0.100617,
+          "drop_vs_fused": 0.059749
+        },
+        "lexical": {
+          "r2_cv": 0.160559,
+          "drop_vs_fused": -0.000193
+        },
+        "acoustic": {
+          "r2_cv": 0.071724,
+          "drop_vs_fused": 0.088642
+        }
+      },
+      "permutation_importance": {
+        "0": 0.07764,
+        "1": 0.125173,
+        "2": 0.004519,
+        "3": 0.0,
+        "4": 0.123301
+      },
+      "H1_fused_beats_best_single": true,
+      "H2_each_modality_contributes": false,
+      "H3_fused_ranking_ok": false,
+      "n_used": 50
+    }
+  },
+  "fusion_ever_beats_best_single": true,
+  "best_single_per_target": {
+    "acoustic_emotion_damage": "acoustic",
+    "semantic_emotion_damage": "acoustic"
+  }
+}
