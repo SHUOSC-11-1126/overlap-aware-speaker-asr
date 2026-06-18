@@ -1,0 +1,107 @@
+{
+  "0.0": {
+    "by_overlap": [
+      {
+        "overlap_ratio": 0.0,
+        "n": 8,
+        "mean_emotion_benefit": 0.0,
+        "mean_gain_component_db": 0.0
+      },
+      {
+        "overlap_ratio": 0.1,
+        "n": 8,
+        "mean_emotion_benefit": 0.151368,
+        "mean_gain_component_db": 0.0
+      },
+      {
+        "overlap_ratio": 0.3,
+        "n": 8,
+        "mean_emotion_benefit": 0.174133,
+        "mean_gain_component_db": 0.0
+      },
+      {
+        "overlap_ratio": 0.6,
+        "n": 8,
+        "mean_emotion_benefit": 0.262562,
+        "mean_gain_component_db": 0.0
+      },
+      {
+        "overlap_ratio": 0.9,
+        "n": 8,
+        "mean_emotion_benefit": 0.310199,
+        "mean_gain_component_db": 0.0
+      }
+    ],
+    "crossover_detected": false
+  },
+  "0.15": {
+    "by_overlap": [
+      {
+        "overlap_ratio": 0.0,
+        "n": 8,
+        "mean_emotion_benefit": 0.0,
+        "mean_gain_component_db": 0.0
+      },
+      {
+        "overlap_ratio": 0.1,
+        "n": 8,
+        "mean_emotion_benefit": 0.118211,
+        "mean_gain_component_db": 0.032711
+      },
+      {
+        "overlap_ratio": 0.3,
+        "n": 8,
+        "mean_emotion_benefit": 0.091266,
+        "mean_gain_component_db": 0.120952
+      },
+      {
+        "overlap_ratio": 0.6,
+        "n": 8,
+        "mean_emotion_benefit": 0.132252,
+        "mean_gain_component_db": 0.178893
+      },
+      {
+        "overlap_ratio": 0.9,
+        "n": 8,
+        "mean_emotion_benefit": 0.160331,
+        "mean_gain_component_db": 0.227102
+      }
+    ],
+    "crossover_detected": false
+  },
+  "0.3": {
+    "by_overlap": [
+      {
+        "overlap_ratio": 0.0,
+        "n": 8,
+        "mean_emotion_benefit": 0.0,
+        "mean_gain_component_db": 0.0
+      },
+      {
+        "overlap_ratio": 0.1,
+        "n": 8,
+        "mean_emotion_benefit": 0.107715,
+        "mean_gain_component_db": 0.079999
+      },
+      {
+        "overlap_ratio": 0.3,
+        "n": 8,
+        "mean_emotion_benefit": 0.037107,
+        "mean_gain_component_db": 0.31654
+      },
+      {
+        "overlap_ratio": 0.6,
+        "n": 8,
+        "mean_emotion_benefit": 0.09771,
+        "mean_gain_component_db": 0.519716
+      },
+      {
+        "overlap_ratio": 0.9,
+        "n": 8,
+        "mean_emotion_benefit": 0.015773,
+        "mean_gain_component_db": 0.687652
+      }
+    ],
+    "crossover_detected": false
+  }
+}
