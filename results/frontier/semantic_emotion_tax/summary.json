@@ -1,0 +1,93 @@
+{
+  "n_samples": 50,
+  "n_per_tier": 5,
+  "model": "deepseek-r1:7b",
+  "H1_coverage": {
+    "llm_coverage_rate": 0.7,
+    "lexical_firing_rate": 0.1,
+    "llm_recovers_more": true
+  },
+  "H2_semantic_tax": {
+    "by_overlap": [
+      {
+        "overlap_ratio": 0.0,
+        "n": 10,
+        "n_valid": 10,
+        "mean_semantic_benefit": 0.147609,
+        "mean_d_sem_mixed": 0.433367,
+        "mean_d_sem_sep": 0.285758
+      },
+      {
+        "overlap_ratio": 0.1,
+        "n": 10,
+        "n_valid": 10,
+        "mean_semantic_benefit": 0.262654,
+        "mean_d_sem_mixed": 0.537208,
+        "mean_d_sem_sep": 0.274555
+      },
+      {
+        "overlap_ratio": 0.3,
+        "n": 10,
+        "n_valid": 10,
+        "mean_semantic_benefit": 0.311794,
+        "mean_d_sem_mixed": 0.654546,
+        "mean_d_sem_sep": 0.342751
+      },
+      {
+        "overlap_ratio": 0.5,
+        "n": 10,
+        "n_valid": 10,
+        "mean_semantic_benefit": 0.457208,
+        "mean_d_sem_mixed": 0.79996,
+        "mean_d_sem_sep": 0.342751
+      },
+      {
+        "overlap_ratio": 0.8,
+        "n": 10,
+        "n_valid": 10,
+        "mean_semantic_benefit": 0.218179,
+        "mean_d_sem_mixed": 0.426463,
+        "mean_d_sem_sep": 0.208284
+      }
+    ],
+    "crossover_detected": false,
+    "d_sem_vs_cer_pooled": {
+      "pearson": 0.29411,
+      "spearman": 0.511023,
+      "n": 100
+    },
+    "d_sem_vs_cer_mixed_arm": {
+      "pearson": 0.077798,
+      "spearman": 0.099352,
+      "n": 50
+    },
+    "semantic_benefit_vs_cer_benefit": {
+      "pearson": 0.037567,
+      "spearman": 0.349436,
+      "n": 50
+    }
+  },
+  "H3_triangulation": {
+    "llm_valence_vs_lexical_valence": {
+      "pearson": -0.14058,
+      "spearman": 0.078511,
+      "n": 50
+    },
+    "llm_arousal_vs_acoustic_arousal": {
+      "pearson": -0.030805,
+      "spearman": -0.088499,
+      "n": 50
+    },
+    "lexical_valence_vs_acoustic_arousal": {
+      "pearson": -0.182429,
+      "spearman": -0.13066,
+      "n": 50
+    }
+  },
+  "parse_health": {
+    "ref_readings_parsed": 50,
+    "ref_readings_total": 50,
+    "parse_rate": 1.0,
+    "kill_criterion_tripped": false
+  }
+}

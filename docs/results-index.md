@@ -57,6 +57,7 @@ results from generated historical records.
 | `docs/frontier/audio-depth-router.md` | AudioDepth router merge strategy and claim boundary | Frontier Branch Only / Exploratory Research; not a final result claim |
 | `docs/frontier/agentic_research_entropy.md` | Meta-analysis of substance-vs-ceremony collapse in this workspace (`results/entropy_audit/`) | experimental/frontier (analysis-only); not an ASR result |
 | `results/frontier/decoder_cure_noise/FINDINGS.md` | Decoder-domain cures (beam / native halluc-silence) under noise: negative result — the noise-robust cure is NOT in the decoder (`results/frontier/decoder_cure_noise/`) | experimental/frontier; Whisper-tiny + silver refs; not a gold result |
+| `results/frontier/semantic_emotion_tax/FINDINGS.md` | The Semantic Emotion Tax (ASR×LLM + emotion, #831): a local LLM reads implicit emotion 7× more than the lexicon (0.70 vs 0.10 coverage), is orthogonal to acoustic-arousal and lexical-valence (a complementary 3rd emotion modality), and emotion *meaning* is only partially coupled to CER (pooled d_sem↔CER ρ=0.51) — separation recovers more emotional meaning as overlap rises | experimental/frontier; Whisper-tiny + deepseek-r1 (local ollama) + silver refs; not a gold result |
 
 ## Frontier Research: AudioDepth
 
