@@ -1,0 +1,25 @@
+{
+  "n": 192,
+  "pearson_meter_distortion": -0.198328,
+  "pearson_meter_alpha": -0.514285,
+  "by_alpha": [
+    {
+      "alpha": 0.0,
+      "n": 64,
+      "mean_meter": 0.949677,
+      "mean_distortion": 0.0
+    },
+    {
+      "alpha": 0.15,
+      "n": 64,
+      "mean_meter": 0.864484,
+      "mean_distortion": 0.099051
+    },
+    {
+      "alpha": 0.3,
+      "n": 64,
+      "mean_meter": 0.866228,
+      "mean_distortion": 0.159989
+    }
+  ]
+}
