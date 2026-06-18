@@ -8,11 +8,17 @@ All tests use short synthetic signals so they run offline in well under a second
 """
 from __future__ import annotations
 
+import importlib.util
 import unittest
 
 import numpy as np
 
 from src.prosody import arousal_index, prosodic_features, prosody_distance
+
+# CI runs a minimal env without librosa; these tests exercise real feature extraction, so skip them
+# there (matching the repo's sklearn/matplotlib skip convention). The pure-logic tests in
+# tests/test_emotion_separation_tax.py do NOT need librosa and still run in CI for coverage.
+HAS_LIBROSA = importlib.util.find_spec("librosa") is not None
 
 SR = 16000
 
@@ -29,6 +35,7 @@ def _am_sine(freq: float, mod: float = 4.0, dur: float = 0.6, amp: float = 0.3, 
     return (amp * env * np.sin(2 * np.pi * freq * t)).astype(np.float32)
 
 
+@unittest.skipUnless(HAS_LIBROSA, "librosa not installed")
 class TestProsodicFeatures(unittest.TestCase):
     def test_returns_expected_keys(self) -> None:
         feat = prosodic_features(_sine(150.0))
@@ -53,6 +60,7 @@ class TestProsodicFeatures(unittest.TestCase):
         self.assertEqual(feat["voiced_frac"], 0.0)
 
 
+@unittest.skipUnless(HAS_LIBROSA, "librosa not installed")
 class TestEnergyInvariance(unittest.TestCase):
     """The core confound control: amplitude scaling is NOT emotional change."""
 
@@ -77,6 +85,7 @@ class TestEnergyInvariance(unittest.TestCase):
         self.assertAlmostEqual(d["arousal_distance"], 0.0, places=6)
 
 
+@unittest.skipUnless(HAS_LIBROSA, "librosa not installed")
 class TestArousalIndex(unittest.TestCase):
     def test_amplitude_dynamics_raise_arousal(self) -> None:
         steady = arousal_index(prosodic_features(_sine(200.0)))
