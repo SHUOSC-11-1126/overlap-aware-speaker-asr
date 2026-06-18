@@ -51,6 +51,8 @@ from .semantic_emotion_tax import LlmEmotionReader, ollama_emotion_llm, semantic
 
 LLMFn = Callable[[str], str]
 OUT_DIR = PROJECT_ROOT / "results" / "frontier" / "emotion_anchored_repair"
+# Compression-ratio hallucination guard. 2.4 is the value used across the project's noise/cure studies
+# (#810, #813) and matches llm_asr_critic's gate, so the CR-gated pipeline here is directly comparable.
 CR_GUARD = 2.4
 STANCE_ZH = {"support": "支持", "oppose": "反对", "neutral": "中立"}
 
@@ -260,6 +262,7 @@ def _conclusion(s: dict[str, Any]) -> str:
     before = s.get("mean_cer_before", float("nan"))
     naive = s.get("mean_cer_naive", float("nan"))
     anch = s.get("mean_cer_anchored", float("nan"))
+    n = s.get("n", 0)
     if not all(_finite(v) for v in (before, naive, anch)):
         return "Inconclusive (insufficient parsed cases)."
     best_repair = min(naive, anch)
@@ -271,8 +274,8 @@ def _conclusion(s: dict[str, Any]) -> str:
             f"{anch_rel}, so #822's over-correction tax is ROBUST to the most natural fix: the small "
             "reasoning model rewrites/hallucinates regardless (e.g. emitting a literal placeholder, or "
             "substituting a proverb for the transcript). The deployable policy is to NOT run LLM repair "
-            "in this setting; the CR-gated variant collapses to no-repair here because the "
-            "compression-ratio guard does not fire on these tracks. A clean bounding negative result."
+            f"in this setting; the CR-gated variant is identical to no-repair because the "
+            f"compression-ratio guard never fires on any of these {n} cases. A clean bounding negative result."
         )
     winner = "naive" if naive <= anch else "emotion-anchored"
     return (

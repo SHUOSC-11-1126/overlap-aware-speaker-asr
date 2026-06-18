@@ -19,7 +19,7 @@ Cases: 12 curated separated tracks (2 clean, 6 hallucinated) — the same clean�
 
 ## Deployable conclusion
 
-**No-repair is best (0.924 CER) — both naive (1.082) and emotion-anchored (1.122) repair are net-harmful.** Anchoring the edit to the LLM-detected stance worsens it further, so #822's over-correction tax is ROBUST to the most natural fix: the small reasoning model rewrites/hallucinates regardless (e.g. emitting a literal placeholder, or substituting a proverb for the transcript). The deployable policy is to NOT run LLM repair in this setting; the CR-gated variant collapses to no-repair here because the compression-ratio guard does not fire on these tracks. A clean bounding negative result.
+**No-repair is best (0.924 CER) — both naive (1.082) and emotion-anchored (1.122) repair are net-harmful.** Anchoring the edit to the LLM-detected stance worsens it further, so #822's over-correction tax is ROBUST to the most natural fix: the small reasoning model rewrites/hallucinates regardless (e.g. emitting a literal placeholder, or substituting a proverb for the transcript). The deployable policy is to NOT run LLM repair in this setting; the CR-gated variant is identical to no-repair because the compression-ratio guard never fires on any of these 12 cases. A clean bounding negative result.
 
 ## Cost / benefit (repo-guard #833)
 
