@@ -1,0 +1,16 @@
+{
+  "n": 16,
+  "n_hallucinated": 8,
+  "n_clean": 2,
+  "pearson_judge_cer": -0.408959,
+  "pearson_cr_cer": 0.737418,
+  "qe_winner": "compression_ratio",
+  "mean_cer_reduction_hallucinated": 0.01001,
+  "mean_cer_reduction_clean": -0.25,
+  "mean_cer_before": 0.95099,
+  "mean_cer_after_naive_repair": 0.983311,
+  "mean_cer_after_cr_gated": 0.95099,
+  "mean_cer_after_judge_gated": 0.991834,
+  "model": "deepseek-r1:7b",
+  "grounded": true
+}

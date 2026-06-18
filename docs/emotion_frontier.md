@@ -113,13 +113,16 @@ is a clear, gain-invariant, overlap-dependent divergence.)
    lexical ~flat) and weakly correlate; but the lexical arm is **underpowered** here — the seed lexicon
    fires on only 2/16 casual debate snippets — which **motivates a generative LLM** emotion reader.
    See `results/frontier/lexical_emotion_tax/FINDINGS.md`.
-7. **Prosody-grounded LLM × ASR critic (in progress).** A dependency-injected critic
+7. **Prosody-grounded LLM × ASR critic (DONE — bounding negative).** A dependency-injected critic
    (`src/llm_asr_critic.py`) with an offline default (regex/lexicon) and a real local LLM backend
    (deepseek-r1 via ollama). Following the 2025/26 SER + GER frontier (below), it **injects explicit
    prosodic + lexical cues** into the LLM (speech-LLMs have documented weak prosody perception) and
    **separates the repair role from the judge role** (the code-tape *generation-evaluation separation*
-   principle) to (a) repair separation-induced hallucination [GER], guarding against over-correction,
-   and (b) emit a reference-free quality judgment tested as a CER predictor.
+   principle). *Finding:* the critic adds cost without winning — the LLM judge (QE r=−0.41) is
+   dominated by the free compression-ratio signal (r=+0.74), and GER repair net-harms CER
+   (over-corrects clean text); no reference-free gate rescues it. Same "simple beats fancy" motif as
+   #13. See `results/frontier/llm_asr_critic/FINDINGS.md`. Demo: `python -m src.llm_asr_critic --pairs 8`
+   (requires `ollama serve` with `deepseek-r1:7b`).
 
 ## References / Frontier reading (2025–2026)
 
