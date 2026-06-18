@@ -49,9 +49,13 @@ that reuse the existing mixture / separation / ASR scaffolding.
    disagreement band (#14). The deployable emotion-aware answer: keep the reference-free ASR router for
    text, always recover emotion from the separated track. `src/objective_aware_routing.py`; see
    `results/frontier/objective_aware_routing/FINDINGS.md`.
-4. **Prosody-preservation as a reference-free separator-quality score.** At deploy there is no clean
-   reference; test whether separated-track prosody **self-consistency** (or speaker-embedding stability)
-   tracks the leakage α, giving a label-free separation-quality meter. *Label frontier/oracle-analysis.*
+4. **Prosody-preservation as a reference-free separator-quality score (DONE — partial).** Removes the
+   oracle-reference crutch: a self-consistency meter (speaker-embedding stability + prosodic coherence,
+   no clean reference) in `src/emotion_fidelity_meter.py`. *Finding:* a usable **coarse** clean-vs-
+   contaminated gate (meter vs leakage α: r=−0.51; 0.95 oracle → 0.86 leaky) but a **weak graded**
+   emotion-fidelity predictor (vs true distortion r=−0.20; saturates beyond mild leakage). Deployable as
+   a confidence gate, not a replacement for the oracle reference. See
+   `results/frontier/emotion_fidelity_meter/FINDINGS.md`.
 5. **Emotion-conditioned gate (stretch).** Does an arousal-aware variant of the speaker-conditioned
    gate (finding #12/#13) preserve prosody better than the CER-tuned gate? Ties the gate frontier to
    emotion.
