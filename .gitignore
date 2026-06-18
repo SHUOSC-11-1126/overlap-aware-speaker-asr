@@ -4044,3 +4044,6 @@ backups/
 
 # repo-evolver / semantic_emotion_tax runtime LLM cache (not a result artifact)
 results/frontier/semantic_emotion_tax/_llm_cache.json
+
+# emotion_anchored_repair runtime LLM cache
+results/frontier/emotion_anchored_repair/_llm_cache.json
