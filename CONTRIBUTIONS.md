@@ -325,6 +325,23 @@ Stage-2 fallback / review policy 仍需更多验证，AudioDepth 需要独立评
 
 src/eval_adapter.py, src/eval_aggregator.py, src/speaker_cer.py, src/error_analysis.py, scripts/eval_sanity_check.py
 
+## 邵俊霖 / saayaya
+
+**Role:** Mode E: Learned Router & LLM-ASR Collaborative Repair（学习型路由与 LLM-ASR 协作修复）
+
+**主要贡献：**
+
+- 实现 LLM-ASR 协作修复闭环 `llm_repair_loop.py`：以 ASR 输出为起点，经风险检测 → RAG 检索 → LLM 纠错 → CER 评估迭代修复（最多三轮、带收敛判定与回退保护），并提供离线 oracle 模式，在未运行完整 pipeline 时自动生成 synthetic ASR 输出以支持复现。
+- 实现 RAG 检索修复模块 `rag_repair.py`：基于已验证 reference segments 构建知识库，使用字符 n-gram Jaccard 相似度检索 top-k 上下文，为 LLM 修复提供领域提示。
+- 实现 Router 特征重要性分析 `router_feature_importance.py`：量化各特征对 learned router 决策的贡献，并输出可视化柱状图，用于支撑 routing 决策的可解释性分析。
+- 参与 learned router（`learned_router.py`）的开发与调试，修复 sklearn 兼容性问题（LogisticRegression `multi_class` 参数与 `classification_report` 的 `target_names` 数量不匹配）。
+- 完善 `README.md` 的 LLM-ASR Collaborative Repair 章节（架构图、模块表、使用方法、RAG 集成说明与设计理念），并将 `src/__init__.py` 中 router 可视化模块改为 lazy import，避免可选依赖缺失导致整体导入失败。
+- 配合 GitHub Demo（`demo/app.py`）方向，整理 LLM-repair 与 router 模块在演示中的调用路径与预期结果展示。
+
+**模块：**
+
+src/llm_repair_loop.py, src/rag_repair.py, src/router_feature_importance.py, src/learned_router.py, src/__init__.py, README.md, demo/app.py
+
 ## Commit 规范
 
 - feat: 新功能
