@@ -270,6 +270,29 @@ Stage-2 fallback / review policy 仍需更多验证，AudioDepth 需要独立评
 `src/separation_phase_diagram.py` (fix), `scripts/train_learned_router.py`,
 `tests/test_learned_router.py`, `tests/test_plot_phase_boundary.py`.
 
+## 梁跃川 (liang-yuechuan)
+
+**Role:** Mode C: 前沿探索 — 分离相位图 (Separation Phase Diagram)。
+
+**主要贡献：**
+
+- 设计并实现分离相位图：研究语音分离在不同重叠程度下对 ASR
+  的帮助/损害边界，通过 delta CER（separated - mixed）vs overlap ratio
+  的散点图量化"何时分离有用、何时有害"。
+- 数据整合：从 gold benchmark（5个锚点）和 silver sweep（合成样本）
+  提取 CER 数据，统一为相位点格式，支持 `stable/gold` 和
+  `synthetic/silver` 双证据层级。
+- 趋势分析：按 overlap ratio 分箱聚合（binning），输出均值、中位数
+  和分离帮助率，为路由决策提供参考。
+- 产出可视化：生成 PNG 散点图、趋势线、Markdown 总结报告及
+  CSV/JSON 结构化数据表。
+- 完成 5 单元测试 TDD。
+- 标签: `experimental/frontier`，不替代稳定 gold benchmark。
+
+**模块：** `src/separation_phase_diagram.py`,
+`tests/test_separation_phase_diagram.py`,
+`tests/test_separation_phase_diagram_write_outputs.py`.
+
 ## Additional Contributors
 
 Additional team members can add concise contribution statements here before the
