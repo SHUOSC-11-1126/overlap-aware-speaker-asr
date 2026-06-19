@@ -307,12 +307,23 @@ Stage-2 fallback / review policy 仍需更多验证，AudioDepth 需要独立评
 `tests/test_separation_phase_diagram.py`,
 `tests/test_separation_phase_diagram_write_outputs.py`.
 
-## Additional Contributors
+## 张浩豪 / haohaozhang776
 
-Additional team members can add concise contribution statements here before the
-final course submission. New entries should keep the same format: role,
-mainline contribution, frontier or exploratory contribution if applicable, and
-claim boundaries.
+**Role:** Mode D: Evaluation System & Cross-Benchmark Analysis（评估系统与跨实验对齐）
+
+**主要贡献：**
+
+- 构建统一 evaluation adapter，使 mixed / separated / cleaned / router v2 / cascade outputs 能够在同一评估接口下进行对齐比较，减少不同 pipeline 在格式层面的不一致问题。
+- 设计并实现跨 benchmark aggregation 流程，将 gold / synthetic / held-out 三类数据的评估结果统一标准化为可复用 evaluation schema，用于 REPORT.md 与可视化模块共享。
+- 对 speaker-aware CER、cpCER-lite 以及 error-type breakdown（insertion / deletion / repetition）进行了结构化整理，使其可用于后续 routing 与 separation 分析。
+- 协助建立 evaluation sanity check pipeline，用于检测不同 ASR 输出在 alignment、length drift 与 duplication ratio 上的一致性风险。
+- 参与 early-stage evaluation robustness exploration，分析不同 ASR pipeline 在长文本与高重叠场景下的 stability drift。
+- 对 router v2 与 rule-based baseline 的评估偏差进行了对照分析，支持 report 中“reference-free routing validity”的实验结论构建。
+- 提供 evaluation-side evidence support，用于验证 cascade / learned router / separation phase analysis 的实验一致性。
+
+**模块：**
+
+src/eval_adapter.py, src/eval_aggregator.py, src/speaker_cer.py, src/error_analysis.py, scripts/eval_sanity_check.py
 
 ## Commit 规范
 
