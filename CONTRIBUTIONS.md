@@ -97,7 +97,7 @@ handoff / receipt / coordination / completion-summary 仪式代码、**计算为
 `project_harness.py`；以及 `scripts/harness/*`、`.githooks/*`、`docs/harness/*`、
 `docs/frontier/asr_llm_emotion_capstone.md`。
 
-## 吴方舟/Wufangzhou (23123986)
+## 吴方舟/wfzark（23123986）
 
 **Role:** Core technical contributor; route-selection problem framer; main
 experimental pipeline owner; AudioDepth frontier explorer; team report and
