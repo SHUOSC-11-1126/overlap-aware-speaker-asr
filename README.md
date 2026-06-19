@@ -80,6 +80,7 @@ Start with [docs/results-index.md](docs/results-index.md) and [results/README.md
 
 Recommended result entry points:
 
+- [Team research report](REPORT.md)
 - [Current results summary](results/figures/curated/current_results_summary.md)
 - [Adaptive routing summary](results/figures/curated/best_method_by_case.md)
 - [Risk-aware selector summary](results/figures/curated/risk_aware_selection_summary.md)
@@ -131,6 +132,7 @@ lightweight examples, tests, and large artifacts.
 | Need | Read |
 |---|---|
 | Run locally | [docs/quickstart.md](docs/quickstart.md) |
+| Read the full team report | [REPORT.md](REPORT.md) |
 | Understand what is implemented | [docs/implementation-status.md](docs/implementation-status.md) |
 | Find core results | [docs/results-index.md](docs/results-index.md) |
 | Understand result storage | [results/README.md](results/README.md) |

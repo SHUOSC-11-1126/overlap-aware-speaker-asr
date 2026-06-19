@@ -97,49 +97,122 @@ handoff / receipt / coordination / completion-summary 仪式代码、**计算为
 `project_harness.py`；以及 `scripts/harness/*`、`.githooks/*`、`docs/harness/*`、
 `docs/frontier/asr_llm_emotion_capstone.md`。
 
-## WU FANGZHOU / 吴方舟
+## 吴方舟/Wufangzhou (23123986)
 
-**Role:** Core technical contributor; project route designer; main experimental
-pipeline owner; AudioDepth frontier explorer.
+**Role:** Core technical contributor; route-selection problem framer; main
+experimental pipeline owner; AudioDepth frontier explorer; team report and
+research-visualization contributor.
 
-WU FANGZHOU contributed to the project from the mainline system design through
-evaluation, routing, documentation, and frontier research planning. A central
-part of this work was framing the project around a system-level question:
+吴方舟的贡献主线是把项目从“比较一个固定 ASR 输出”推进为一个系统问题：
 **when should an overlap-aware ASR system separate speech, keep mixed audio, or
-fall back to a safer review path?** This framing helped keep the repository
-focused on route selection rather than only reporting one fixed ASR result.
+fall back to a safer route?** 这一 framing 贯穿主实验、风险选择、前沿探索和
+最终报告，使项目围绕 route selection、claim boundary 和 evidence level
+组织，而不是只报告单一 CER 表。
 
-On the stable mainline, WU FANGZHOU helped organize the benchmark structure for
-mixed audio, separated speaker tracks, snippets, and synthetic samples. He
-implemented or coordinated the mixed-Whisper baseline, separated-track ASR,
-speaker transcript merging, comparison tables, verified gold-reference
-workflow, CER evaluation, duplicate suppression, error-type analysis, adaptive
-router v1, feature-based router v2, router ablation, synthetic silver
-validation, speaker-aware CER, cpCER-lite speaker permutation checks, and the
-risk-aware final selector. This work established the main experimental path used
-to compare mixed, separated, cleaned, routed, and risk-aware ASR outputs.
+### 1. Mainline ASR pipeline and route-selection evidence
 
-He also contributed to evidence discipline. The project distinguishes gold
-cases, silver-plus references, synthetic silver validation, proxy simulation,
-sampled real-Whisper validation, diagnostic experiments, and roadmap-only
-claims. WU FANGZHOU helped keep these boundaries visible so the project does not
-overstate synthetic or exploratory evidence as final benchmark proof. His
-documentation work included project state refreshes, maintenance alignment,
-claim-boundary cleanup, and review-facing summaries.
+在稳定主线上，吴方舟组织并实现/协调了项目的核心实验路径：
 
-As frontier exploration, WU FANGZHOU proposed and developed the AudioDepth
-direction. This work treats overlapping speech as a time-frequency occlusion
-problem and explores whether pre-ASR acoustic representations can help routing
-or safety-aware triage. The AudioDepth work should be read as exploratory
-frontier research only. It is not claimed as a stable mainline feature, and it
-does not replace the documented mainline evaluation pipeline. For the detailed
-AudioDepth exploratory study, see
-[AudioDepth Router Exploratory Study](docs/frontier/audio-depth-router.md).
+- mixed Whisper baseline；
+- separated speaker-track ASR；
+- speaker transcript merging；
+- duplicate-suppressed cleaned separated transcript；
+- verified gold-reference workflow；
+- CER evaluation and comparison tables；
+- error-type analysis for insertion / deletion / substitution / repetition；
+- adaptive router v1；
+- feature-based router v2；
+- router ablation；
+- synthetic silver validation；
+- held-out synthetic split interpretation；
+- speaker-aware CER；
+- cpCER-lite speaker permutation checks；
+- risk-aware final selector。
 
-Known limitations remain: some controlled references are silver-plus or
-synthetic, real-meeting generalization is not fully proven, Stage-2 fallback /
-review policy still needs further work, and AudioDepth requires separate review
-before any merge into stable claims.
+这些工作建立了项目最核心的比较面：`mixed_whisper`、
+`separated_whisper`、`separated_whisper_cleaned`、router v1/v2、
+risk-aware selector 和 oracle-best 的关系。对应的系统性文档入口包括
+[Current results summary](results/figures/curated/current_results_summary.md),
+[Results Index](docs/results-index.md), and
+[Implementation Status](docs/implementation-status.md).
+
+### 2. Evidence discipline and claim-boundary cleanup
+
+吴方舟持续维护项目的证据边界，区分：
+
+- five-case gold benchmark；
+- synthetic silver validation；
+- held-out synthetic split；
+- silver-plus / proxy / diagnostic references；
+- sampled real-Whisper validation；
+- optional integration scaffolds；
+- frontier exploratory research。
+
+这部分贡献体现在主文档、结果索引和最终报告中，尤其是
+[REPORT.md](REPORT.md) 中的 evidence-level table、limitations、team
+contribution synthesis，以及对“CER is evaluation-only, never a routing input”
+的反复约束。该工作避免把 synthetic、frontier 或 roadmap-only 内容误写成
+stable mainline claim。
+
+### 3. AudioDepth frontier research
+
+吴方舟提出并推进 AudioDepth 方向，把 overlapping speech 解释为
+time-frequency occlusion，并借鉴 RGB-D / depth-style visual recognition 中
+“depth is an additional view, not a replacement for RGB”的思想。AudioDepth
+探索 pre-ASR acoustic maps 是否能在 Whisper 产生不稳定 transcript 前暴露
+overlap risk，从而辅助 mixed / separated / cleaned / review 路由。
+
+该方向包括：
+
+- overlap as time-frequency occlusion；
+- RGB-D / depth-style research motivation and citations；
+- deployable mixed-only AudioDepth maps；
+- analysis-only separated-track diagnostics；
+- AudioDepth MVP；
+- weak simple-CNN negative result；
+- model zoo, handcrafted features, CNN-depth models, balanced depth models；
+- hybrid late fusion with transcript instability；
+- controlled route-sensitive benchmark；
+- balanced benchmark v2；
+- real Whisper validation and proxy-to-real gap analysis；
+- Stage-1 acoustic gate；
+- risk-guarded sweep；
+- end-to-end safety audit；
+- curated 3D / channel / route-space visualizations。
+
+AudioDepth 始终被标为 Frontier Branch Only / Exploratory Research，不替代
+mainline pipeline，也不作为 stable deployment claim。完整研究叙事见
+[AudioDepth Router Exploratory Study](docs/frontier/audio-depth-router.md)。
+
+### 4. Team report, documentation integration, and research figures
+
+近期贡献中，吴方舟推动并整理了团队级 [REPORT.md](REPORT.md)，把原本分散的
+主线实验、Mode B cascade、speaker-aware evaluation、MeetEval/cpWER、
+speaker-profile diagnostics、LLM critic、AudioDepth、OpenClaw / harness
+等内容整合成一份 team-level research report。该报告删除了低信息密度的
+handoff / receipt / checklist / queue 流水账，并改为围绕 research
+question、benchmark evidence、core results、boundary analysis、compute-aware
+routing、frontier studies 和 limitations 展开。
+
+同时，吴方舟补充了可复现的科研绘图脚本
+[`scripts/report/make_report_figures.py`](scripts/report/make_report_figures.py)，
+并生成报告级图表：
+
+- route map；
+- gold CER strategy comparison；
+- separation boundary phase plane；
+- compute-aware cascade 3D surface。
+
+这些图表服务于报告表达，不引入新 benchmark claim；数值图读取 curated
+result tables，概念图明确标注为 decision surface / visualization。
+
+### 5. Contribution boundary
+
+吴方舟的贡献重点是主 ASR 实验管线、route-selection framing、AudioDepth 前沿
+研究、证据边界维护和最终报告整合。已知限制仍然存在：gold benchmark 很小，
+synthetic / silver 证据不能替代 gold，real-meeting generalization 未完全证明，
+Stage-2 fallback / review policy 仍需更多验证，AudioDepth 需要独立评审后才
+能进入任何 stable mainline claim。
 
 ## 谢宇轩 (xyx12369)
 
