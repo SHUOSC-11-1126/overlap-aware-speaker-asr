@@ -270,24 +270,38 @@ Stage-2 fallback / review policy 仍需更多验证，AudioDepth 需要独立评
 `src/separation_phase_diagram.py` (fix), `scripts/train_learned_router.py`,
 `tests/test_learned_router.py`, `tests/test_plot_phase_boundary.py`.
 
-## 梁跃川 (liang-yuechuan)
+## 梁跃川 / liang-yuechuan
 
-**Role:** Mode C: 前沿探索 — 分离相位图 (Separation Phase Diagram)。
+**Role:** Mode C: 前沿探索 — 分离相位图 (Separation Phase Diagram) 设计与实现。
 
 **主要贡献：**
 
-- 设计并实现分离相位图：研究语音分离在不同重叠程度下对 ASR
-  的帮助/损害边界，通过 delta CER（separated - mixed）vs overlap ratio
-  的散点图量化"何时分离有用、何时有害"。
-- 数据整合：从 gold benchmark（5个锚点）和 silver sweep（合成样本）
-  提取 CER 数据，统一为相位点格式，支持 `stable/gold` 和
-  `synthetic/silver` 双证据层级。
-- 趋势分析：按 overlap ratio 分箱聚合（binning），输出均值、中位数
-  和分离帮助率，为路由决策提供参考。
-- 产出可视化：生成 PNG 散点图、趋势线、Markdown 总结报告及
-  CSV/JSON 结构化数据表。
-- 完成 5 单元测试 TDD。
-- 标签: `experimental/frontier`，不替代稳定 gold benchmark。
+### 1. Separation Phase Diagram（核心贡献）
+
+针对项目核心问题"语音分离何时帮助、何时损害多说话人 ASR"，设计并
+实现了 `src/separation_phase_diagram.py`，通过 delta CER
+（separated_whisper − mixed_whisper）vs overlap ratio 的散点图
+量化分离帮助/损害的 crossover 边界。
+
+### 2. 单元测试 (TDD)
+
+- `tests/test_separation_phase_diagram.py`（5 项测试）：
+  覆盖 `compute_delta_cer`（正负 delta）、`overlap_bin_key`
+  （步长舍入）、`build_gold_points`（锚点映射 + separation_helps
+  标记）、`build_silver_points`（manifest overlap ratio 读取）、
+  `aggregate_trend_rows`（分箱聚合 + help_rate 计算）。
+- `tests/test_separation_phase_diagram_write_outputs.py`（1 项测试）：
+  smoke test 验证 `write_outputs()` 正确输出 CSV（含正确列名和
+  行数据）、JSON（结构正确）、Markdown（含 `experimental/frontier`
+  标签和 case 名称）、PNG（非空文件 ≥ 6 字节）。
+
+全部 6 项测试通过。
+
+### 3. 研究意义
+
+该项目首次为 overlap-aware ASR 提供了"分离是否值得"的量化视图：
+在低重叠场景分离有益（delta < 0），在高重叠场景分离可能有害
+（delta > 0），为 Router 决策和级联策略提供了实验依据。
 
 **模块：** `src/separation_phase_diagram.py`,
 `tests/test_separation_phase_diagram.py`,
