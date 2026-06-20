@@ -5,8 +5,9 @@ References `synthetic/silver` (Whisper-`small` on clean snippets); CER is post-h
 and **never** a routing input. Stable tables untouched. Issue #855. Mode C.
 
 Module: `src/causal_hallucination_probe.py`. Proposal: `docs/frontier/causal_hallucination_probe.md`.
-Literature grounding: `docs/frontier/causal_hallucination_probe_litreview.md`. Reproduce:
-`python -m src.causal_hallucination_probe` (full case-control; ~12 min) or `--smoke`.
+Literature grounding: `docs/frontier/causal_hallucination_probe_litreview.md`. Reproduce (exact run that
+produced the committed artifacts): `python -m src.causal_hallucination_probe --discover-ratios 0.1
+--analyze-ratios 0.1,0.3,0.5 --controls 24` (full case-control; ~12 min) or `--smoke` (~20 s).
 Tests: `python -m unittest tests.test_causal_hallucination_probe`.
 
 ## The question this answers
