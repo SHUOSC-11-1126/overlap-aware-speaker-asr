@@ -1,0 +1,62 @@
+{
+  "n": 25,
+  "n_divergent": 13,
+  "n_agreeing": 12,
+  "rq1_divergence_predicts_cer": {
+    "mean_cer_divergent_sep": 0.517094,
+    "mean_cer_agreeing_sep": 0.41307,
+    "divergent_is_worse": true,
+    "auc_divergence_cer>0.5": 0.765,
+    "auc_divergence_cer>1.0": 0.5
+  },
+  "rq2_hybrid_vs_greedy": {
+    "mean_cer_greedy": 0.467163,
+    "mean_cer_fallback": 0.547163,
+    "mean_cer_hybrid": 0.542718,
+    "hybrid_improvement_over_greedy": -0.075555,
+    "n_hybrid_helped": 1,
+    "n_hybrid_hurt": 10
+  },
+  "rq3_per_ratio": [
+    {
+      "overlap_ratio": 0.0,
+      "mean_cer_greedy": 0.467163,
+      "mean_cer_fallback": 0.576052,
+      "mean_cer_hybrid": 0.576052,
+      "divergence_rate": 0.6,
+      "mean_divergence": 0.361184
+    },
+    {
+      "overlap_ratio": 0.15,
+      "mean_cer_greedy": 0.467163,
+      "mean_cer_fallback": 0.508274,
+      "mean_cer_hybrid": 0.497163,
+      "divergence_rate": 0.4,
+      "mean_divergence": 0.146711
+    },
+    {
+      "overlap_ratio": 0.35,
+      "mean_cer_greedy": 0.467163,
+      "mean_cer_fallback": 0.466052,
+      "mean_cer_hybrid": 0.466052,
+      "divergence_rate": 0.6,
+      "mean_divergence": 0.177632
+    },
+    {
+      "overlap_ratio": 0.6,
+      "mean_cer_greedy": 0.467163,
+      "mean_cer_fallback": 0.59494,
+      "mean_cer_hybrid": 0.59494,
+      "divergence_rate": 0.6,
+      "mean_divergence": 0.344737
+    },
+    {
+      "overlap_ratio": 0.9,
+      "mean_cer_greedy": 0.467163,
+      "mean_cer_fallback": 0.590496,
+      "mean_cer_hybrid": 0.579385,
+      "divergence_rate": 0.4,
+      "mean_divergence": 0.234868
+    }
+  ]
+}
