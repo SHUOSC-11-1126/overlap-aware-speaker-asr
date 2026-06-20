@@ -1,367 +1,320 @@
-# When Should We Separate? Boundary-aware, Compute-aware, Speaker-aware, and Agent-augmented ASR for Overlapping Speech
+# When Should We Separate?
 
-## 1. Introduction
+Boundary-aware, compute-aware, speaker-aware, and frontier-assisted ASR for
+overlapping speech.
 
-Multi-speaker audio is hard to transcribe reliably when speakers interrupt each other or talk at the same time. In those cases, a single ASR pass often produces repeated fragments, insertions, missing spans, and speaker attribution errors.
+## Abstract
 
-This project asks a focused question:
+This project studies a practical question in multi-speaker speech recognition:
+when should an ASR system keep the mixed audio, when should it run separated
+speaker tracks, and when should it escalate to a safer route? The answer is not
+"always separate." On the five-case gold benchmark, separated ASR is strongest
+for NoOverlap, HeavyOverlap, and OppositeOverlap, while mixed ASR is safer for
+LightOverlap and MidOverlap. The feature-based router v2 matches the post-hoc
+oracle average CER on the gold cases (`0.120042`) without using CER as an input
+feature. Synthetic silver and held-out split results show that the same story
+must remain evidence-labeled: route selection is promising, but robustness,
+external validation, and official meeting-style metrics still need care.
 
-> When should we separate, and when does separation hurt more than it helps?
+The team extended the baseline in several directions: boundary analysis for
+where separation helps or hurts, risk-aware final selection, compute-aware and
+Mode B tiered cascades, speaker-aware and cpCER-lite evaluation, MeetEval/cpWER
+compatibility, speaker-profile diagnostics, LLM critic scaffolding, AudioDepth
+frontier research, and OpenClaw-style agentic engineering support. The report
+keeps stable mainline findings separate from exploratory and demo claims.
 
-The answer is not a single model or a universal separation rule. Instead, the project studies mixed ASR, separated speaker-track ASR, cleaned separated transcripts, adaptive routing, speaker-aware evaluation, risk-aware selection, and now a broader agentic research direction.
+## 1. Research Question
 
-## 2. Background and Motivation
+Overlapping speech creates a routing problem. A single mixed ASR pass can
+preserve content but lose speakers. Separation can recover masked speech, but
+it can also introduce repeated fragments, insertions, and over-cleaned
+transcripts. This project therefore asks:
 
-The repository started from an earlier overlapping-speech ASR project and turned it into a benchmark-driven research engineering pipeline. The goal is to understand the conditions under which separation improves accuracy and when it introduces hallucinated repetition or over-deletion.
+> When should we separate, when should we keep mixed ASR, and when should the
+> system escalate to a risk-aware or compute-aware route?
 
-The motivation is practical:
+The current system compares and routes among:
 
-- meeting and debate audio often contains overlap;
-- raw ASR may transcribe the words but still lose who said what;
-- separation can help, but it can also amplify repetition and insertion errors;
-- a better system should select the safest transcript type for the observed overlap regime;
-- once the baseline is stable, the project can also serve as an agentic research playground for more ambitious exploration.
+- `mixed_whisper`;
+- `separated_whisper`;
+- `separated_whisper_cleaned`;
+- adaptive router v1/v2;
+- risk-aware final selection;
+- compute-aware and Mode B cascade variants;
+- optional frontier paths such as MeetEval, speaker-profile risk signals, LLM
+  critic, and AudioDepth acoustic triage.
 
-## 3. Dataset and Benchmark
+![Overlap-aware ASR route map](results/figures/report/fig1_system_route_map.png)
+
+## 2. Benchmark and Evidence Levels
 
 The gold benchmark contains five manually verified cases:
 
-| case_id | overlap_level | purpose |
-| --- | ---: | --- |
-| NoOverlap | 0 | clean baseline |
-| LightOverlap | 1 | light cross-talk |
-| MidOverlap | 2 | moderate overlap |
-| HeavyOverlap | 3 | strong overlap |
-| OppositeOverlap | 4 | highly competitive overlap |
+| case | overlap level | role in analysis |
+|---|---:|---|
+| NoOverlap | 0 | clean comparison case |
+| LightOverlap | 1 | light cross-talk, separation can hurt |
+| MidOverlap | 2 | moderate overlap, instability remains visible |
+| HeavyOverlap | 3 | stronger overlap, separation tends to help |
+| OppositeOverlap | 4 | competitive overlap, separated route is strongest |
 
-Each case has:
+The repository also contains synthetic silver and held-out synthetic split
+evaluations. These are valuable for stress-testing route rules, but they are
+not gold evidence. Optional frontier outputs such as MeetEval/cpWER bridges,
+speaker-profile diagnostics, LLM critic notes, OpenClaw screenshots, and
+AudioDepth visualizations are labeled as exploratory, compatibility, or demo
+support unless directly tied to verified benchmark numbers.
 
-- mixed audio,
-- separated speaker tracks,
-- mixed ASR output,
-- separated speaker-track ASR output,
-- duplicate-suppressed cleaned separated output,
-- a verified reference transcript pair for speaker-aware evaluation.
+| evidence level | used for | claim boundary |
+|---|---|---|
+| Gold benchmark | core CER, speaker CER, cpCER-lite, router comparison | primary project result |
+| Synthetic silver | robustness and overfitting checks | not a gold benchmark |
+| Held-out synthetic split | route stability under larger synthetic variation | silver/synthetic only |
+| Optional frontier | compatibility, diagnostic, demo, and research extensions | not stable ASR claims |
+| AudioDepth frontier | pre-ASR acoustic triage research | exploratory, not mainline stable |
 
-In addition, the repository contains synthetic silver benchmarks and a held-out synthetic split. These are used for robustness validation only and are not gold evaluation.
+## 3. Mainline ASR Pipeline
 
-## 4. Method
+The mainline pipeline starts from existing mixed audio and separated speaker
+tracks. It runs mixed Whisper, separated speaker-track Whisper, and a
+duplicate-suppressed cleaned separated transcript. The outputs are evaluated
+with CER, error-type summaries, speaker-aware CER, and cpCER-lite permutation
+checks. Router decisions use observable features only; CER is reserved for
+post-decision evaluation.
 
-### 4.1 Mixed ASR
+The most important engineering discipline is that route selection and
+evaluation are separate. Router v1 uses overlap-level rules. Router v2 adds
+instability features such as length inflation, duplicate-removal count,
+repetition proxies, speaker length imbalance, and method disagreement. The
+risk-aware selector adds a conservative deployment layer that can choose a
+slightly worse CER route if the transcript looks safer and more explainable.
 
-The mixed baseline uses `whisper-small` directly on the mixed audio. It is the simplest non-separation path and provides the baseline against which all other methods are measured.
+## 4. Core Results
 
-### 4.2 Separated Speaker-track ASR
+On the five gold cases, the best method changes by overlap regime:
 
-For each case, the already-separated `spk1` and `spk2` waveforms are transcribed independently with `whisper-small`. The resulting segments are merged into a speaker-attributed transcript in start-time order.
+| case | best method | best CER |
+|---|---|---:|
+| NoOverlap | separated_whisper | 0.053957 |
+| LightOverlap | mixed_whisper | 0.210714 |
+| MidOverlap | mixed_whisper | 0.178947 |
+| HeavyOverlap | separated_whisper | 0.109489 |
+| OppositeOverlap | separated_whisper | 0.047101 |
 
-### 4.3 Duplicate Suppression
-
-The cleaned transcript is produced by a lightweight duplicate suppression pass over the separated speaker transcript. The goal is to remove repeated hallucinated fragments while preserving speaker order.
-
-### 4.4 Error Type Analysis
-
-We analyze the edit structure of the CER errors and summarize substitution, deletion, insertion, and repetition-related patterns.
-
-This explains why separation can degrade quality in lighter overlap:
-
-- `LightOverlap` is dominated by insertion and repetition hallucination;
-- `MidOverlap` shows a similar pattern;
-- `HeavyOverlap` and `OppositeOverlap` benefit more clearly from separation.
-
-### 4.5 Adaptive Router v1 and v2
-
-The router selects one of:
-
-- `mixed_whisper`
-- `separated_whisper`
-- `separated_whisper_cleaned`
-
-The router does not use ground-truth CER as an input feature. CER is only used after the decision is fixed.
-
-The first router version is overlap-only. The second version adds transcript-instability signals such as:
-
-- length inflation,
-- duplicate removal count,
-- repetition proxy signals,
-- speaker length imbalance,
-- method disagreement proxies.
-
-### 4.6 Speaker-aware CER
-
-Normal CER collapses the transcript into one string and can hide speaker attribution problems. Speaker-aware CER evaluates `speaker_1_text` and `speaker_2_text` separately and reports per-speaker CER, macro CER, and speaker gap.
-
-### 4.7 cpCER-lite
-
-cpCER-lite is a lightweight permutation-aware evaluation. It compares direct and swapped speaker mappings and chooses the better one. This helps check whether the main issue is speaker swap or content-level transcription quality.
-
-### 4.8 Synthetic Silver Validation
-
-Synthetic overlap samples are used as supplementary robustness evidence. They are not gold evaluation. Their purpose is to show whether the router behavior remains stable outside the five verified benchmark cases.
-
-### 4.9 Held-out Synthetic Split
-
-A larger synthetic split is divided into dev and test subsets. Dev is useful for inspecting thresholds and behavior, but test is reserved for final evaluation.
-
-### 4.10 Risk-aware Final Selector
-
-The risk-aware selector is a reference-free final selection layer. It uses only deployment-visible stability signals and risk proxies to choose a final transcript type. Ground-truth CER is used only after selection, for evaluation.
-
-## 5. Experiments
-
-### 5.1 Global CER
+Average CER by strategy:
 
 | strategy | average CER |
-| --- | ---: |
+|---|---:|
 | fixed_mixed_whisper | 0.302093 |
 | fixed_separated_whisper | 0.191846 |
 | fixed_separated_whisper_cleaned | 0.181681 |
-| router_v2 | 0.120042 |
-| oracle_best | 0.120042 |
-
-### 5.2 Error Type Analysis
-
-The error-type study reveals the main failure mode of separated ASR under light and moderate overlap:
-
-- repeated hallucinations,
-- insertion-heavy errors,
-- duplicated tail fragments.
-
-### 5.3 Adaptive Routing
-
-The router chooses the following best method per gold case:
-
-| case_id | selected_method |
-| --- | --- |
-| NoOverlap | separated_whisper |
-| LightOverlap | mixed_whisper |
-| MidOverlap | mixed_whisper |
-| HeavyOverlap | separated_whisper |
-| OppositeOverlap | separated_whisper |
-
-### 5.4 Synthetic Silver Validation
-
-Original synthetic silver results:
-
-| strategy | average CER |
-| --- | ---: |
-| v1 | 0.350902 |
-| v2 | 0.167553 |
-| oracle | 0.082239 |
-
-The synthetic silver benchmark exposed a stability issue in the overlap-only router. It looked strong on the gold benchmark but failed on synthetic NoOverlap. The feature-based router v2 improved robustness by reacting to instability signals.
-
-### 5.5 Held-out Synthetic Split
-
-Held-out synthetic test results:
-
-| strategy | average CER |
-| --- | ---: |
-| v1 | 0.361350 |
-| v2 | 0.335326 |
-| oracle | 0.115181 |
-
-The held-out split confirms that v2 is more stable than v1, but there is still a non-trivial gap to oracle performance.
-
-### 5.6 Router Ablation
-
-Router ablation shows that repetition and duplicate-removal features are more useful than length ratio alone. This supports the idea that instability signals matter more than overlap level by itself.
-
-### 5.7 Speaker-aware CER
-
-Speaker-aware CER shows that cleaned separated output can improve some overlap cases, but raw separated output remains better in others.
-
-| case_id | separated_whisper macro CER | separated_whisper_cleaned macro CER |
-| --- | ---: | ---: |
-| NoOverlap | 0.054312 | 0.089278 |
-| LightOverlap | 0.194170 | 0.135164 |
-| MidOverlap | 0.175908 | 0.168620 |
-| HeavyOverlap | 0.110821 | 0.146535 |
-| OppositeOverlap | 0.047479 | 0.083193 |
-
-### 5.8 cpCER-lite
-
-cpCER-lite did not find speaker permutation mismatch in the five gold cases. The direct speaker assignment is always better than the swapped one, which means the main errors are content-level rather than speaker-swap-level.
-
-### 5.9 Risk-aware Selector
-
-| strategy | average CER |
-| --- | ---: |
 | risk_aware_selector | 0.134587 |
 | router_v2 | 0.120042 |
 | oracle_best | 0.120042 |
 
-The risk-aware selector is deliberately conservative and explainable. It is not the best-CER result, but it is useful as a deployment-oriented final selector.
+![Gold benchmark CER by route strategy](results/figures/report/fig2_gold_cer_strategy_comparison.png)
 
-### 5.10 Compute-aware Cascade Frontier
+The central result is selective separation. Separation is helpful in heavier
+overlap regimes, but under LightOverlap and MidOverlap it can amplify
+insertion-heavy and repetition-heavy hallucinations. Duplicate suppression
+reduces some damage but does not make separated output universally best.
 
-The repository now includes an `experimental/frontier` compute-aware cascade analysis layer. This layer does not change any stable gold benchmark references or use CER as an input signal. Instead, it scores already-fixed route choices using observed runtime fields, route-normalized RTF, and held-out synthetic-split robustness views.
+## 5. Boundary-aware Analysis
 
-#### Gold compute-aware view
+The project does not stop at a leaderboard. It also studies where separation
+changes from helpful to harmful. The boundary line appears through several
+modules:
+
+- `src/separation_phase_diagram.py` maps overlap regimes and delta CER.
+- `src/separation_phase_boundary.py` adds LOWESS-style smoothing and bootstrap
+  confidence intervals for a separation-help boundary.
+- `src/router_boundary_alignment.py` checks whether router decisions agree
+  with the gold boundary.
+- `src/error_type_boundary_report.py` explains boundary behavior through
+  insertion, deletion, substitution, and repetition patterns.
+- `src/risk_aware_boundary_audit.py` checks whether conservative selection
+  blocks unsafe direct routes.
+
+![Separation boundary phase plane](results/figures/report/fig3_separation_boundary_phase_plane.png)
+
+This boundary framing is the scientific core of the project. The goal is not
+only to find the lowest average CER on five examples, but to explain why route
+choice should change when overlap intensity and transcript instability change.
+
+## 6. Speaker-aware and Permutation-aware Evaluation
+
+Global CER collapses all speaker text into one string. That can hide speaker
+attribution failures, so the project includes speaker-aware CER and cpCER-lite.
+
+Speaker-aware CER compares each speaker track separately and reports macro CER
+and speaker gap. On the gold benchmark:
+
+| method | average speaker macro CER |
+|---|---:|
+| separated_whisper | 0.116538 |
+| separated_whisper_cleaned | 0.124558 |
+
+cpCER-lite checks direct vs swapped speaker mapping. In the five gold cases,
+the direct mapping is always better, so the main errors are content-level
+insertions and repetitions rather than speaker-swap failures.
+
+This does not mean speaker identity is solved. Speaker-profile and voiceprint
+experiments remain frontier diagnostics. Their current value is to expose weak
+or near-tie risk signals, not to claim robust open-set speaker identification.
+
+## 7. Risk-aware and Compute-aware Routing
+
+The risk-aware selector is a reference-free final selection layer. It uses
+deployment-visible signals such as method disagreement, repetition risk, length
+inflation, and instability features. Its average CER (`0.134587`) is slightly
+worse than router v2, but it is more conservative and easier to explain.
+
+The compute-aware cascade line asks a different question: when should the
+system spend more compute? The current costed gold analysis shows:
 
 | strategy | average CER | relative cost vs fixed separated |
-| --- | ---: | ---: |
+|---|---:|---:|
+| fixed_mixed_whisper | 0.302093 | 0.874104 |
+| fixed_separated_whisper | 0.191846 | 1.000000 |
+| fixed_separated_whisper_cleaned | 0.181681 | 1.000000 |
 | router_v2_costed | 0.120042 | 0.929533 |
 | risk_aware_costed | 0.134587 | 0.929533 |
 | budget_cascade | 0.134587 | 0.929533 |
 
-Key observations:
+## 8. Mode B: Three-tier Compute-aware Cascade
 
-- `router_v2_costed` is the strongest gold adaptive route.
-- The committed gold cascade tables are fully backed by observed runtime rather than proxy fallback.
-- Under the joint CER/cost Pareto view, the gold frontier reduces to `fixed_mixed_whisper` and `router_v2_costed`.
+谢宇轩 (xyx12369) contributed the Mode B three-tier cascade. This line treats
+overlap-aware ASR as a staged compute allocation problem:
 
-#### Held-out synthetic split cascade validation
+| tier | purpose | trigger style |
+|---|---|---|
+| Tier 1 | cheap default route | always available |
+| Tier 2 | stronger route | instability signals |
+| Tier 3 | critic or manual review | extreme instability |
 
-| strategy | average CER | relative cost vs fixed separated |
-| --- | ---: | ---: |
-| router_v2_synthetic_costed | 0.285187 | 0.704888 |
-| budget_cascade | 0.367582 | 0.854921 |
-| cleaned_preferred_cascade | 0.249877 | 0.945686 |
+The escalation rule is reference-free: it uses observable signals such as text
+length ratio, duplicate count, runtime ratio, and overlap level. CER is used
+only after the route is chosen. The Mode B result is intentionally labeled
+`experimental/frontier`; it is a systems design contribution, not a deployment
+recommendation.
 
-Key observations:
+| strategy | average CER | average compute cost | automatic coverage |
+|---|---:|---:|---:|
+| fixed_mixed_whisper | 0.302093 | 1.00 | 100% |
+| fixed_separated_whisper | 0.191846 | 2.00 | 100% |
+| fixed_separated_whisper_cleaned | 0.181681 | 2.10 | 100% |
+| router_v2_baseline | 0.120042 | 1.60 | 100% |
+| tiered_cascade_v1 | 0.181134 | 1.92 | 100% |
 
-- `router_v2_synthetic_costed` is the best balanced synthetic-split route.
-- `fixed_separated_whisper_cleaned` remains the strongest synthetic-split accuracy-first route.
-- `budget_cascade` is cheaper than always separated, but it degrades more sharply on held-out synthetic split.
+![Compute-aware cascade trade-off surface](results/figures/report/fig4_compute_cascade_3d_surface.png)
 
-#### Decision-support layer
+## 9. MeetEval, External Validation, and LLM Frontiers
 
-The frontier work now includes:
+Several frontier lines extend the evaluation surface without replacing the
+stable gold benchmark.
 
-- runtime provenance audits
-- route-normalized RTF audits
-- Pareto frontier classification
-- profile-based recommendation cards
-- cross-dataset robustness gap comparisons
-- family-level recommendation stability
-- a consolidated decision matrix
-- a generated artifact index
-- a generated benchmark-readiness scaffold
-- a generated benchmark handoff plan
-- a generated profile playbook
-- a generated benchmark checklist
-- a generated benchmark manifest template
-- a generated benchmark status board
-- a generated benchmark execution summary
-- a generated benchmark execution queue
-- a generated benchmark session ledger
-- a generated benchmark dependency graph
-- a generated benchmark blocker matrix
-- a generated benchmark runbook card
-- a generated benchmark milestone card
-- a generated benchmark phase checkpoint card
-- a generated benchmark completion dashboard
-- a generated benchmark handoff packet
+MeetEval / cpWER compatibility exports verified reference and hypothesis
+segments into a meeting-evaluation-friendly format. The current bridge is
+export-complete and ready for narrow diagnostic follow-up, but it does not yet
+claim official cpWER completion.
 
-This turns the cascade from a single offline plot into a small decision-support stack. The current evidence suggests:
+External validation is framed as a tiny sanity-check path, not a full external
+benchmark. Candidate work includes documented source, license, preprocessing,
+and a narrow slice before any broader claim.
 
-- `router_v2` is the cleanest default balanced family.
-- `fixed_mixed_whisper` is the most stable cost-first choice.
-- `fixed_separated_whisper_cleaned` is the most robust accuracy-first alternative across gold and held-out synthetic split.
+LLM critic and repair-loop modules are qualitative diagnostics. They can
+explain risky transcripts and propose candidate repairs, but they must not
+silently become the gold truth. Any repair claim needs after-the-fact
+evaluation against references.
 
-## 6. Results and Discussion
+## 10. AudioDepth Frontier Study
 
-The project leads to eight main findings:
+AudioDepth, led as a frontier research direction by WU FANGZHOU, reframes
+overlapping speech as time-frequency occlusion. The analogy comes from RGB-D
+and depth-style visual recognition: depth is not a replacement for RGB, but an
+additional view that helps reason about occlusion, distance, and boundaries.
+AudioDepth asks whether a pre-ASR acoustic map can expose overlap risk before
+Whisper or another ASR model has already produced an unstable transcript.
 
-1. Speech separation is useful, but not universally beneficial.
-2. The main degradation in `LightOverlap` and `MidOverlap` is caused by insertion and repetition hallucination.
-3. Speaker swap is not the dominant error source in the five gold cases.
-4. Router v1 is fragile outside the small gold benchmark, while router v2 is more stable.
-5. Synthetic silver validation is valuable for exposing overfitting, but it is not gold evaluation.
-6. Speaker-aware and permutation-aware evaluation reveal behaviors that global CER alone does not show.
-7. Compute-aware cascade analysis is now strong enough to support deployment-style trade-off discussion, not just raw CER comparison.
-8. The repository now supports a second, broader interpretation: the stable baseline is complete, and the project can also serve as an agentic research workspace for ambitious extensions.
+![AudioDepth 3D occlusion landscape](docs/assets/audio-depth/audio_depth_3d_occlusion_landscape.png)
 
-The strongest practical conclusion is that a system should separate selectively, not blindly. A mixed transcript is safer in some overlap regimes, while separated or cleaned separated output is better in others.
+The frontier work includes an AudioDepth MVP, model zoo, handcrafted features,
+CNN-depth models, balanced depth models, hybrid late fusion, transcript
+instability fusion, route-sensitive controlled benchmarks, real Whisper
+validation, proxy-to-real gap analysis, deployable mixed-only maps, Stage-1
+acoustic gating, risk-guarded sweeps, and end-to-end safety audits.
 
-The newer frontier conclusion is more specific: once selective separation is accepted, the next question is no longer only "which route wins CER?" but also "which route family is stable across operating points?" The current evidence favors `router_v2` as the default balanced family, `fixed_mixed_whisper` as the cheapest stable fallback, and `fixed_separated_whisper_cleaned` as the strongest robustness-oriented accuracy path.
+The important negative finding is that a simple CNN over AudioDepth maps did
+not beat router v2. That failure is useful: it suggests that pre-ASR acoustic
+maps may need handcrafted or hybrid late-fusion features rather than a small
+pure CNN. AudioDepth remains Frontier Branch Only / Exploratory Research and
+should not be presented as a stable mainline feature.
 
-## 7. Limitations
+![AudioDepth route decision space](docs/assets/audio-depth/audio_depth_route_decision_space.png)
 
-This project is intentionally bounded.
+## 11. Agentic Engineering and OpenClaw
 
-- No new ASR model training was performed.
-- The gold benchmark is small.
-- Synthetic references are silver, not gold.
-- The router is rule-based rather than learned.
-- External benchmark validation is not yet complete.
-- LLM/RAG remains a future extension rather than the core quantitative result.
+The repository also includes an engineering governance layer. Git hooks,
+contract guards, SDD/TDD documentation, ADRs, and GitNexus-style code graph
+checks protect the stable baseline while frontier work continues. OpenClaw is
+the agentic engineering assistant associated with this workflow. It is shown as
+qualitative/demo support, not as a benchmark result.
 
-## 8. Future Work
+The most important meta-lesson is evidence discipline. The project previously
+accumulated many status, handoff, receipt, and queue artifacts. The
+agentic-research-entropy audit measured that drift, and the cleanup pass
+demoted or archived low-value coordination records. Those artifacts are useful
+for traceability, but they are not research findings.
 
-The stable baseline opens a path toward more ambitious agentic ASR systems:
+## 12. Team Contributions in the Research Story
 
-1. Boundary-aware phase diagram
-2. Compute-aware cascaded recognition
-3. Speaker-profile-assisted risk detection
-4. Agentic LLM critic and repair loop
-5. External mini validation
-6. Learned router from synthetic split
-7. Demo-oriented ASR intelligence system
+The report is a team artifact, not a single-line personal writeup.
 
-The compute-aware line is now beyond a placeholder idea: the immediate next step is a controlled hardware/runtime benchmark that can replace repository-local runtime comparisons with stronger deployment evidence. The repository now includes a generated benchmark-readiness scaffold, a staged benchmark handoff plan, a profile playbook, a benchmark checklist, a benchmark manifest template, a benchmark status board, a benchmark execution summary, a benchmark execution queue, a benchmark session ledger, a benchmark dependency graph, a benchmark blocker matrix, a benchmark runbook card, a benchmark milestone card, a benchmark phase checkpoint card, a benchmark completion dashboard, a benchmark operator brief, a benchmark evidence receipt, and a benchmark handoff packet, so the next contributor can see which artifacts matter first, what order to refresh them in, how the resulting profile choices should be interpreted, which run metadata must be captured during execution, where to record that metadata, which phases are still template-only, which blocker category each pending phase belongs to, which phase should move next, which exact benchmark step should run first, what evidence each step must leave behind, which step unlocks the next one, how urgent each blocker is, what the first one-page execution brief should say, where the next milestone boundary sits, how each phase should be checked off, what the top-level pending state looks like, which single plain-language operator note should be read first, which writeback receipt should be checked before closing the run, and which single note to start from before touching the lower-level files. After that, the most interesting future work will still be the work that clarifies a boundary, exposes a failure mode, or tests an idea that is intentionally a little risky.
+| contributor | research emphasis |
+|---|---|
+| WU FANGZHOU / 吴方舟 | main ASR pipeline, route framing, router v1/v2, evaluation discipline, AudioDepth frontier |
+| 王景宏 (ceilf6) | team lead across stable baseline and frontiers; compute-aware cascade, MeetEval/cpWER, speaker-profile diagnostics, external validation, LLM critic, demo, harness and repo guard |
+| 谢宇轩 (xyx12369) | Mode B three-tier compute-aware cascade, CER-cost tradeoff, reference-free escalation, TDD coverage |
 
-That benchmark coordination stack is now also linked back to the broader frontier workflow: `results/figures/cascade_benchmark_frontier_bridge.md` connects the current benchmark operator step to the newer breadth-first frontier queue. This does not add any new measurement result. Its value is organizational: it shows why the controlled runtime foundation still deserves priority even while several narrower frontier handoffs are now ready in parallel.
+The shared contribution is the claim boundary: stable gold results, synthetic
+silver checks, optional frontier scaffolds, and exploratory research are labeled
+separately so the project can be ambitious without overstating evidence.
 
-That benchmark stack is now also slightly easier to close out correctly: `results/figures/cascade_benchmark_receipt_bridge.md` links the benchmark handoff packet directly to the evidence receipt target. This still adds no new benchmark claim. Its value is procedural: it reduces the last bit of ambiguity between the note that tells the next contributor where to start and the receipt that should eventually capture what happened.
+## 13. Limitations
 
-To support a broader next phase, the harness now also exposes a generated breadth-first frontier status table in `results/figures/project_harness_report.md`. That table does not claim new experimental results; it simply makes the current evidence path, expected output, and next step visible for `speaker_profile`, `meeteval_compatibility`, `llm_critic`, `external_validation`, and `demo_excellence`, which makes it easier for future agents to spread effort across multiple frontiers instead of deepening only one line at a time.
+- The gold benchmark has only five verified cases.
+- Synthetic and held-out synthetic references are silver evidence, not gold.
+- Router v2 matches the oracle on the gold cases, but that does not prove
+  universal generalization.
+- Runtime and compute measurements are repository-local and not universal
+  hardware benchmarks.
+- Mode B, MeetEval, speaker-profile, external validation, LLM critic, and
+  AudioDepth outputs are experimental or frontier-labeled unless explicitly
+  connected to verified benchmark evidence.
+- AudioDepth has strong explanatory visuals and useful negative findings, but
+  it is not a stable mainline router.
+- OpenClaw and the harness improve engineering workflow, not ASR accuracy by
+  themselves.
 
-That coordination layer is now also more executable: `results/figures/frontier_execution_queue.md` adds a lightweight breadth-first queue across the same frontiers. This is not new model evidence. Its value is organizational: it turns the growing set of frontier handoff cards into one short ordered list so the next contributor can choose the first breadth-first move with less friction.
+## 14. Conclusion
 
-The current queue head is `meeteval_compatibility`, and the immediate next move is to use the MeetEval readiness path to stage a narrow dry run before the remaining frontier backlog is touched.
+The project establishes a stable overlap-aware ASR baseline and extends it into
+a broader research system. The main result is selective separation: mixed ASR is
+safer under some light and moderate overlap conditions, separated ASR is
+stronger under heavier overlap, and duplicate suppression can reduce but not
+eliminate separated-track hallucination. Router v2 reaches the post-hoc oracle
+average CER on the gold benchmark while preserving reference-free decision
+making.
 
-That queue is now also easier to scan at a glance: `results/figures/frontier_focus_card.md` compresses the current queue head into a one-card starting point. This is still purely coordination support, but it reduces the time from opening the repository to seeing the current breadth-first priority.
+The broader team contribution is a research map around that result. Boundary
+analysis asks where separation flips from helpful to harmful. Risk-aware and
+compute-aware routes ask when a safer or more expensive path is justified. Mode
+B turns that into a tiered cascade. Speaker-aware and MeetEval-compatible
+metrics broaden evaluation. AudioDepth explores a pre-ASR acoustic view of
+overlap risk. OpenClaw and the harness make the workflow easier to review
+without confusing process with evidence.
 
-That queue head is now also easier to hand off without file-hopping: `results/figures/frontier_handoff_packet.md` points the current frontier directly at its next artifact and expected evidence target. This still adds no new research claim. It is a tiny coordination convenience, but one that makes the breadth-first workflow more executable for the next contributor.
-
-That queue head is now also easier to close out cleanly: `results/figures/frontier_receipt_packet.md` pushes the same coordination thread one step further down to the receipt layer. This still adds no new research claim. Its value is organizational: it reduces the last bit of ambiguity between the artifact to open now and the receipt target that should eventually capture what happened.
-
-That receipt-aware layer is now also broader rather than head-only: `results/figures/frontier_receipt_map.md` lays out the prerequisite artifact and receipt target for every current frontier in one table. This still adds no new research claim. Its value is again organizational, but in a slightly different way: it makes it easier for future contributors to pick up any frontier in parallel without first reverse-engineering where its writeback should land.
-
-That broader receipt-aware layer is now also easier to act on in parallel: `results/figures/frontier_parallel_picklist.md` turns the same current frontier set into a parallel-friendly pickup table with queue order, pickup artifact, and receipt target side by side. This still adds no new research claim. Its value is practical rather than analytic: it lowers the overhead for contributors who want to pick up one frontier slice without losing sight of the broader breadth-first order.
-
-That breadth-first push now also includes a first concrete `meeteval_compatibility` bridge: `results/figures/meeteval_compatibility_note.md` plus JSONL exports for verified reference segments and speaker-attributed hypothesis segments. This is intentionally framed as a compatibility scaffold rather than a completed MeetEval / cpWER result, but it turns that frontier from a pure idea into a reusable artifact.
-
-That bridge is now also easier to hand off: `results/figures/meeteval_readiness.md` adds a narrow dry-run readiness card. It still does not claim that MeetEval has been executed. Instead, it makes the current state more honest and more usable at the same time by showing that the export is ready for a diagnostic next step while also exposing that cleaned fallback still dominates the current hypothesis mix.
-
-That handoff is now one step more executable: `results/figures/meeteval_dry_run_handoff.md` compresses the next action into a single-row packet with a recommended first slice, a primary blocker, and an expected evidence file. This still does not claim any completed MeetEval or cpWER run. Its value is narrower and more practical: it reduces the ambiguity around what the first diagnostic follow-up should actually look like.
-
-That expected evidence file now also exists as a template: `results/figures/meeteval_dry_run_receipt.md` defines the narrow run scope, expected inputs, expected outputs, and post-run writeback note for the first diagnostic pass. This still stops well short of claiming that any dry run has happened. What it adds is a cleaner handoff boundary: the next contributor no longer has to infer what the first evidence writeback should contain.
-
-That handoff boundary is now also ordered as a checklist: `results/figures/meeteval_dry_run_checklist.md` ranks the verified cases for the first diagnostic pass so the next contributor can choose a concrete exported case before filling the receipt slot. This still does not claim MeetEval or cpWER execution. It simply makes the pre-evaluation queue more actionable.
-
-It now also includes a first concrete `speaker_profile` bridge: `results/figures/speaker_profile_risk_summary.md` plus a lightweight text-profile similarity table built from the `con/pro` snippet transcripts. This is deliberately not presented as a voiceprint success story. In fact, its current research value comes from a failure signal: the simple overlap-based profile prefers swapped alignment across the verified gold cases, which makes the limitation visible and gives future agents a sharper target for stronger profile methods.
-
-That bridge is now also easier to scan in one glance: `results/figures/speaker_profile_triage.md` adds an aggregate handoff card that compresses the current result into a single dominant pattern. It still does not claim any speaker-attribution success. Instead, it makes the present limitation even clearer by recording that the current gold set collapses into `swapped_bias`, which strengthens the case for trying a materially stronger profile method next.
-
-That aggregate finding is now also easier to pick up as a concrete next move: `results/figures/speaker_profile_method_handoff.md` compresses the stronger-method recommendation into a one-row packet. This still does not claim that any improved profile method has succeeded. Its role is narrower and more operational: it names the first method direction and expected evidence target so the next contributor can test a stronger baseline without first reinterpreting the triage card.
-
-That stronger-method packet now also has an explicit evidence slot: `results/figures/speaker_profile_method_receipt.md` defines the template-only writeback target for the first stronger profile trial. This still does not claim that any profile improvement has happened. What it adds is a cleaner handoff boundary, because the next contributor no longer has to invent the first receipt format before recording what the stronger baseline actually did.
-
-The breadth-first push now also includes a first `llm_critic` bridge: `results/figures/llm_critic_qualitative_note.md` plus a qualitative summary table derived from structured risk cues. This is not a true repair loop yet, and it is not presented as verified correction. Its value is that it turns existing risk signals into an explicit critique, candidate repair direction, and uncertainty statement, which makes the next agentic step more concrete.
-
-That critic bridge is now slightly more executable: `results/figures/llm_critic_review_queue.md` adds a lightweight review order for the next critic-style pass. This still does not claim repaired output. In fact, its current value is partly diagnostic: the queue makes it obvious that swapped-profile uncertainty still appears broadly, so the frontier remains more about exposing a failure mode than demonstrating a solved agent loop.
-
-That first-pass queue now also has an explicit evidence slot: `results/figures/llm_critic_review_receipt.md` defines the template-only writeback target for the first critic-style review pass. This still does not claim that any qualitative repair loop has worked. What it adds is a cleaner handoff boundary, because the next contributor no longer has to invent the first receipt format before recording what the review actually found.
-
-It now also includes a first `external_validation` bridge: `results/figures/external_validation_candidates.md` plus a small candidate table covering AISHELL-4, AliMeeting, AMI, and LibriCSS. This is explicitly labeled `external/sanity-check`: it records source, license, fit, preprocessing, and next-action notes so future agents can move toward a narrow external mini validation without overstating the current evidence.
-
-That bridge is now one step more actionable: `results/figures/external_validation_prioritization.md` adds a lightweight execution order across the same candidates and currently recommends AISHELL-4 as the first tiny sanity-check target. This still does not claim that any external benchmark has been run; it simply reduces the next contributor's decision surface before data staging begins.
-
-That recommendation is now also easier to pick up without extra interpretation: `results/figures/external_validation_slice_handoff.md` compresses the next external step into a one-row first-slice packet. This still does not claim any external benchmark execution. Its value is narrower and operational: it names the first slice shape, the license gate, the mapping artifact, and the dry-run goal before any external data is actually staged.
-
-That first-slice packet now also has an explicit evidence slot: `results/figures/external_validation_slice_receipt.md` defines the template-only writeback target for the first narrow external sanity-check. This still does not claim that any external slice has been executed. What it adds is a clearer handoff boundary, because the next contributor no longer has to invent the first receipt format before recording what happened.
-
-The external-mini-validation frontier now also has a dedicated skill card: `docs/skills/skill_07_external_validation.md`. That makes the queue head pickable from the skills index instead of only from the roadmap and project-state layers, which is a small but useful improvement in how the frontier work is surfaced.
-
-It now also includes a first `demo_excellence` bridge: `results/figures/demo_storyboard.md` plus a small JSON card set. This is intentionally light-weight rather than a full demo app, but it already improves onboarding by giving a one-page story that connects the problem, pipeline, main findings, and frontier extensions.
-
-That demo bridge is now also easier to present live: `results/figures/demo_walkthrough.md` adds a short ordered talk track anchored to existing artifacts. This is still presentation support rather than a new benchmark layer, but it makes the demo frontier more executable without forcing a UI build first.
-
-That walkthrough now also has an explicit evidence slot: `results/figures/demo_walkthrough_receipt.md` defines the template-only writeback target for the first presentation pass. This still does not claim that any live demo or recording has been completed. What it adds is a cleaner handoff boundary, because the next contributor no longer has to invent the first demo receipt format before recording what the walkthrough actually covered.
-
-## 9. Conclusion
-
-This project establishes a stable experimental baseline and opens a path toward more ambitious agentic ASR systems. Mixed ASR is safer under light overlap, separated ASR is stronger under heavier overlap, and duplicate suppression can reduce repetition without fully solving separated hallucinations. Router_v2 matches the oracle-best average CER on the gold benchmark, while synthetic validation and risk-aware selection help explain where the system remains fragile and where further exploration may be most valuable. The newer compute-aware frontier work adds a practical decision layer on top: it shows that `router_v2` is the cleanest balanced default, `fixed_mixed_whisper` is the most stable cost-first option, and `fixed_separated_whisper_cleaned` remains a strong robustness-oriented accuracy choice when cross-dataset stability matters.
+The answer to "When should we separate?" is therefore a controlled decision,
+not a fixed rule: separate when overlap and instability evidence support it,
+keep mixed ASR when separation introduces hallucination risk, and escalate only
+when the observable signals justify the extra cost or review.

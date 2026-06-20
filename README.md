@@ -27,6 +27,8 @@ This repository studies when speech separation helps or hurts multi-speaker ASR,
 ## Current Status
 
 See [docs/implementation-status.md](docs/implementation-status.md) for the detailed status matrix.
+For the integrated research narrative, evidence levels, limitations, and figure
+set, start with the [team research report](REPORT.md).
 
 | Area | Status |
 |---|---|
@@ -74,6 +76,24 @@ the Mode-R repetition tail, keep compression-ratio for the Mode-N non-repetition
 confident-loop mechanism extends (not discovers) the 2025–26 attractor line; the token-id lock-in
 trip-wire and the offline-router gain-decay-under-prefix-forcing analysis are the novel slots.
 
+## Frontier Highlights — AudioDepth Router (frontier branch only)
+
+AudioDepth is a second frontier branch. It treats overlapping speech as a
+time-frequency occlusion problem, inspired by depth-style representations in
+visual recognition, and asks whether pre-ASR acoustic maps can help decide when
+to use mixed ASR, separated ASR, cleaned routes, or review/fallback paths.
+
+See [AudioDepth Router Exploratory Study](docs/frontier/audio-depth-router.md)
+for the research motivation, visualization design, experiment stages,
+controlled results, limitations, and merge boundaries. See also the
+[team research report](REPORT.md) for how AudioDepth relates to the stable ASR
+router, compute-aware cascade, LLM/emotion frontier, and team-level evidence
+hierarchy.
+
+AudioDepth is not currently a stable mainline claim and should not be merged
+from `frontier/audio-depth-router` without separating code, documentation,
+lightweight examples, tests, and large artifacts.
+
 ## Quickstart
 
 Use a Python version aligned with CI, preferably Python 3.12. The core install is:
@@ -96,6 +116,7 @@ Start with [docs/results-index.md](docs/results-index.md) and [results/README.md
 
 Recommended result entry points:
 
+- [Team research report](REPORT.md)
 - [Current results summary](results/figures/curated/current_results_summary.md)
 - [Adaptive routing summary](results/figures/curated/best_method_by_case.md)
 - [Risk-aware selector summary](results/figures/curated/risk_aware_selection_summary.md)
@@ -126,27 +147,12 @@ Historical wave, receipt, writeback, checklist, and demo presentation records ha
 
 See [docs/branch-audit.md](docs/branch-audit.md) for the branch cleanup policy.
 
-## Frontier Research: AudioDepth Router
-
-AudioDepth is an exploratory frontier research line that treats overlapping
-speech as a time-frequency occlusion problem, inspired by depth-style
-representations in visual recognition. It studies whether pre-ASR acoustic maps
-can help decide when to use mixed ASR, separated ASR, cleaned routes, or
-review/fallback paths.
-
-See [AudioDepth Router Exploratory Study](docs/frontier/audio-depth-router.md)
-for the research motivation, visualization design, experiment stages,
-controlled results, limitations, and merge boundaries.
-
-AudioDepth is not currently a stable mainline claim and should not be merged
-from `frontier/audio-depth-router` without separating code, documentation,
-lightweight examples, tests, and large artifacts.
-
 ## Documentation
 
 | Need | Read |
 |---|---|
 | Run locally | [docs/quickstart.md](docs/quickstart.md) |
+| Read the full team report | [REPORT.md](REPORT.md) |
 | Understand what is implemented | [docs/implementation-status.md](docs/implementation-status.md) |
 | Find core results | [docs/results-index.md](docs/results-index.md) |
 | Understand result storage | [results/README.md](results/README.md) |

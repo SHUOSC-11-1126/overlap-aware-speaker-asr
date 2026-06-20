@@ -118,49 +118,122 @@ handoff / receipt / coordination / completion-summary 仪式代码、**计算为
 `project_harness.py`；以及 `scripts/harness/*`、`.githooks/*`、`docs/harness/*`、
 `docs/frontier/asr_llm_emotion_capstone.md`。
 
-## WU FANGZHOU / 吴方舟
+## 吴方舟/wfzark（23123986）
 
-**Role:** Core technical contributor; project route designer; main experimental
-pipeline owner; AudioDepth frontier explorer.
+**Role:** Core technical contributor; route-selection problem framer; main
+experimental pipeline owner; AudioDepth frontier explorer; team report and
+research-visualization contributor.
 
-WU FANGZHOU contributed to the project from the mainline system design through
-evaluation, routing, documentation, and frontier research planning. A central
-part of this work was framing the project around a system-level question:
+吴方舟的贡献主线是把项目从“比较一个固定 ASR 输出”推进为一个系统问题：
 **when should an overlap-aware ASR system separate speech, keep mixed audio, or
-fall back to a safer review path?** This framing helped keep the repository
-focused on route selection rather than only reporting one fixed ASR result.
+fall back to a safer route?** 这一 framing 贯穿主实验、风险选择、前沿探索和
+最终报告，使项目围绕 route selection、claim boundary 和 evidence level
+组织，而不是只报告单一 CER 表。
 
-On the stable mainline, WU FANGZHOU helped organize the benchmark structure for
-mixed audio, separated speaker tracks, snippets, and synthetic samples. He
-implemented or coordinated the mixed-Whisper baseline, separated-track ASR,
-speaker transcript merging, comparison tables, verified gold-reference
-workflow, CER evaluation, duplicate suppression, error-type analysis, adaptive
-router v1, feature-based router v2, router ablation, synthetic silver
-validation, speaker-aware CER, cpCER-lite speaker permutation checks, and the
-risk-aware final selector. This work established the main experimental path used
-to compare mixed, separated, cleaned, routed, and risk-aware ASR outputs.
+### 1. Mainline ASR pipeline and route-selection evidence
 
-He also contributed to evidence discipline. The project distinguishes gold
-cases, silver-plus references, synthetic silver validation, proxy simulation,
-sampled real-Whisper validation, diagnostic experiments, and roadmap-only
-claims. WU FANGZHOU helped keep these boundaries visible so the project does not
-overstate synthetic or exploratory evidence as final benchmark proof. His
-documentation work included project state refreshes, maintenance alignment,
-claim-boundary cleanup, and review-facing summaries.
+在稳定主线上，吴方舟组织并实现/协调了项目的核心实验路径：
 
-As frontier exploration, WU FANGZHOU proposed and developed the AudioDepth
-direction. This work treats overlapping speech as a time-frequency occlusion
-problem and explores whether pre-ASR acoustic representations can help routing
-or safety-aware triage. The AudioDepth work should be read as exploratory
-frontier research only. It is not claimed as a stable mainline feature, and it
-does not replace the documented mainline evaluation pipeline. For the detailed
-AudioDepth exploratory study, see
-[AudioDepth Router Exploratory Study](docs/frontier/audio-depth-router.md).
+- mixed Whisper baseline；
+- separated speaker-track ASR；
+- speaker transcript merging；
+- duplicate-suppressed cleaned separated transcript；
+- verified gold-reference workflow；
+- CER evaluation and comparison tables；
+- error-type analysis for insertion / deletion / substitution / repetition；
+- adaptive router v1；
+- feature-based router v2；
+- router ablation；
+- synthetic silver validation；
+- held-out synthetic split interpretation；
+- speaker-aware CER；
+- cpCER-lite speaker permutation checks；
+- risk-aware final selector。
 
-Known limitations remain: some controlled references are silver-plus or
-synthetic, real-meeting generalization is not fully proven, Stage-2 fallback /
-review policy still needs further work, and AudioDepth requires separate review
-before any merge into stable claims.
+这些工作建立了项目最核心的比较面：`mixed_whisper`、
+`separated_whisper`、`separated_whisper_cleaned`、router v1/v2、
+risk-aware selector 和 oracle-best 的关系。对应的系统性文档入口包括
+[Current results summary](results/figures/curated/current_results_summary.md),
+[Results Index](docs/results-index.md), and
+[Implementation Status](docs/implementation-status.md).
+
+### 2. Evidence discipline and claim-boundary cleanup
+
+吴方舟持续维护项目的证据边界，区分：
+
+- five-case gold benchmark；
+- synthetic silver validation；
+- held-out synthetic split；
+- silver-plus / proxy / diagnostic references；
+- sampled real-Whisper validation；
+- optional integration scaffolds；
+- frontier exploratory research。
+
+这部分贡献体现在主文档、结果索引和最终报告中，尤其是
+[REPORT.md](REPORT.md) 中的 evidence-level table、limitations、team
+contribution synthesis，以及对“CER is evaluation-only, never a routing input”
+的反复约束。该工作避免把 synthetic、frontier 或 roadmap-only 内容误写成
+stable mainline claim。
+
+### 3. AudioDepth frontier research
+
+吴方舟提出并推进 AudioDepth 方向，把 overlapping speech 解释为
+time-frequency occlusion，并借鉴 RGB-D / depth-style visual recognition 中
+“depth is an additional view, not a replacement for RGB”的思想。AudioDepth
+探索 pre-ASR acoustic maps 是否能在 Whisper 产生不稳定 transcript 前暴露
+overlap risk，从而辅助 mixed / separated / cleaned / review 路由。
+
+该方向包括：
+
+- overlap as time-frequency occlusion；
+- RGB-D / depth-style research motivation and citations；
+- deployable mixed-only AudioDepth maps；
+- analysis-only separated-track diagnostics；
+- AudioDepth MVP；
+- weak simple-CNN negative result；
+- model zoo, handcrafted features, CNN-depth models, balanced depth models；
+- hybrid late fusion with transcript instability；
+- controlled route-sensitive benchmark；
+- balanced benchmark v2；
+- real Whisper validation and proxy-to-real gap analysis；
+- Stage-1 acoustic gate；
+- risk-guarded sweep；
+- end-to-end safety audit；
+- curated 3D / channel / route-space visualizations。
+
+AudioDepth 始终被标为 Frontier Branch Only / Exploratory Research，不替代
+mainline pipeline，也不作为 stable deployment claim。完整研究叙事见
+[AudioDepth Router Exploratory Study](docs/frontier/audio-depth-router.md)。
+
+### 4. Team report, documentation integration, and research figures
+
+近期贡献中，吴方舟推动并整理了团队级 [REPORT.md](REPORT.md)，把原本分散的
+主线实验、Mode B cascade、speaker-aware evaluation、MeetEval/cpWER、
+speaker-profile diagnostics、LLM critic、AudioDepth、OpenClaw / harness
+等内容整合成一份 team-level research report。该报告删除了低信息密度的
+handoff / receipt / checklist / queue 流水账，并改为围绕 research
+question、benchmark evidence、core results、boundary analysis、compute-aware
+routing、frontier studies 和 limitations 展开。
+
+同时，吴方舟补充了可复现的科研绘图脚本
+[`scripts/report/make_report_figures.py`](scripts/report/make_report_figures.py)，
+并生成报告级图表：
+
+- route map；
+- gold CER strategy comparison；
+- separation boundary phase plane；
+- compute-aware cascade 3D surface。
+
+这些图表服务于报告表达，不引入新 benchmark claim；数值图读取 curated
+result tables，概念图明确标注为 decision surface / visualization。
+
+### 5. Contribution boundary
+
+吴方舟的贡献重点是主 ASR 实验管线、route-selection framing、AudioDepth 前沿
+研究、证据边界维护和最终报告整合。已知限制仍然存在：gold benchmark 很小，
+synthetic / silver 证据不能替代 gold，real-meeting generalization 未完全证明，
+Stage-2 fallback / review policy 仍需更多验证，AudioDepth 需要独立评审后才
+能进入任何 stable mainline claim。
 
 ## 谢宇轩 (xyx12369)
 
@@ -214,16 +287,87 @@ before any merge into stable claims.
 - 完成 `tests/test_learned_router.py` 共 11 项单元测试（全部通过）。
 - 标签: `experimental/frontier`。
 
+### 3. LLM-ASR Collaborative Repair（本轮新增）
+
+- 实现 LLM-ASR 协作修复闭环 `src/llm_repair_loop.py`：以 ASR 输出为
+  起点，经风险检测 → RAG 检索 → LLM 纠错 → CER 评估迭代修复（最多三轮、
+  带收敛判定与回退保护），并提供离线 oracle 模式，在未运行完整 pipeline
+  时自动生成 synthetic ASR 输出以支持复现。
+- 实现 RAG 检索修复模块 `src/rag_repair.py`：基于已验证 reference
+  segments 构建知识库，使用字符 n-gram Jaccard 相似度检索 top-k 上下文，
+  为 LLM 修复提供领域提示。
+- 实现 Router 特征重要性分析 `src/router_feature_importance.py`：量化各
+  特征对 learned router 决策的贡献并输出可视化柱状图，支撑 routing 决策的
+  可解释性分析。
+- 修复 learned router 的 sklearn 兼容性问题（LogisticRegression
+  `multi_class` 参数与 `classification_report` 的 `target_names` 数量
+  不匹配），并将 `src/__init__.py` 中 router 可视化模块改为 lazy import，
+  避免可选依赖缺失导致整体导入失败。
+- 完善 `README.md` 的 LLM-ASR Collaborative Repair 章节（架构图、模块表、
+  使用方法、RAG 集成说明与设计理念），并配合 `demo/app.py` 整理 LLM-repair
+  与 router 模块在演示中的调用路径。
+
 **模块：** `src/learned_router.py`, `src/plot_phase_boundary.py`,
 `src/separation_phase_diagram.py` (fix), `scripts/train_learned_router.py`,
-`tests/test_learned_router.py`, `tests/test_plot_phase_boundary.py`.
+`tests/test_learned_router.py`, `tests/test_plot_phase_boundary.py`,
+`src/llm_repair_loop.py`, `src/rag_repair.py`,
+`src/router_feature_importance.py`, `src/__init__.py`, `README.md`,
+`demo/app.py`.
 
-## Additional Contributors
+## 梁跃川 / liang-yuechuan
 
-Additional team members can add concise contribution statements here before the
-final course submission. New entries should keep the same format: role,
-mainline contribution, frontier or exploratory contribution if applicable, and
-claim boundaries.
+**Role:** Mode C: 前沿探索 — 分离相位图 (Separation Phase Diagram) 设计与实现。
+
+**主要贡献：**
+
+### 1. Separation Phase Diagram（核心贡献）
+
+针对项目核心问题"语音分离何时帮助、何时损害多说话人 ASR"，设计并
+实现了 `src/separation_phase_diagram.py`，通过 delta CER
+（separated_whisper − mixed_whisper）vs overlap ratio 的散点图
+量化分离帮助/损害的 crossover 边界。
+
+### 2. 单元测试 (TDD)
+
+- `tests/test_separation_phase_diagram.py`（5 项测试）：
+  覆盖 `compute_delta_cer`（正负 delta）、`overlap_bin_key`
+  （步长舍入）、`build_gold_points`（锚点映射 + separation_helps
+  标记）、`build_silver_points`（manifest overlap ratio 读取）、
+  `aggregate_trend_rows`（分箱聚合 + help_rate 计算）。
+- `tests/test_separation_phase_diagram_write_outputs.py`（1 项测试）：
+  smoke test 验证 `write_outputs()` 正确输出 CSV（含正确列名和
+  行数据）、JSON（结构正确）、Markdown（含 `experimental/frontier`
+  标签和 case 名称）、PNG（非空文件 ≥ 6 字节）。
+
+全部 6 项测试通过。
+
+### 3. 研究意义
+
+该项目首次为 overlap-aware ASR 提供了"分离是否值得"的量化视图：
+在低重叠场景分离有益（delta < 0），在高重叠场景分离可能有害
+（delta > 0），为 Router 决策和级联策略提供了实验依据。
+
+**模块：** `src/separation_phase_diagram.py`,
+`tests/test_separation_phase_diagram.py`,
+`tests/test_separation_phase_diagram_write_outputs.py`.
+
+## 张浩豪 / haohaozhang776
+
+**Role:** Mode D: Evaluation System & Cross-Benchmark Analysis（评估系统与跨实验对齐）
+
+**主要贡献：**
+
+- 构建统一 evaluation adapter，使 mixed / separated / cleaned / router v2 / cascade outputs 能够在同一评估接口下进行对齐比较，减少不同 pipeline 在格式层面的不一致问题。
+- 设计并实现跨 benchmark aggregation 流程，将 gold / synthetic / held-out 三类数据的评估结果统一标准化为可复用 evaluation schema，用于 REPORT.md 与可视化模块共享。
+- 对 speaker-aware CER、cpCER-lite 以及 error-type breakdown（insertion / deletion / repetition）进行了结构化整理，使其可用于后续 routing 与 separation 分析。
+- 协助建立 evaluation sanity check pipeline，用于检测不同 ASR 输出在 alignment、length drift 与 duplication ratio 上的一致性风险。
+- 参与 early-stage evaluation robustness exploration，分析不同 ASR pipeline 在长文本与高重叠场景下的 stability drift。
+- 对 router v2 与 rule-based baseline 的评估偏差进行了对照分析，支持 report 中“reference-free routing validity”的实验结论构建。
+- 提供 evaluation-side evidence support，用于验证 cascade / learned router / separation phase analysis 的实验一致性。
+
+**模块：**
+
+src/eval_adapter.py, src/eval_aggregator.py, src/speaker_cer.py, src/error_analysis.py, scripts/eval_sanity_check.py
 
 ## Commit 规范
 
