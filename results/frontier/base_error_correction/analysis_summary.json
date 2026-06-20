@@ -1,0 +1,54 @@
+{
+  "n_snippets": 26,
+  "mean_cer": 0.3318,
+  "std_cer": 0.2392,
+  "total_errors": 96,
+  "total_substitutions": 72,
+  "total_insertions": 12,
+  "total_deletions": 12,
+  "unique_substitution_patterns": 64,
+  "recurring_patterns": 6,
+  "h1_predictable": false,
+  "top_patterns": [
+    [
+      "个→個",
+      3
+    ],
+    [
+      "点→點",
+      3
+    ],
+    [
+      "间→間",
+      2
+    ],
+    [
+      "解→节",
+      2
+    ],
+    [
+      "起→期",
+      2
+    ],
+    [
+      "早→走",
+      2
+    ],
+    [
+      "让→讓",
+      1
+    ],
+    [
+      "时→時",
+      1
+    ],
+    [
+      "里→裡",
+      1
+    ],
+    [
+      "拥→擁",
+      1
+    ]
+  ]
+}
