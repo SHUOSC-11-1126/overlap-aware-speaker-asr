@@ -1,0 +1,9 @@
+{
+  "n": 26,
+  "mean_cer_raw": 0.3163,
+  "mean_cer_corrected": 0.7975,
+  "mean_improvement": -0.4812,
+  "n_helped": 0,
+  "n_hurt": 19,
+  "h1_confirmed": false
+}
