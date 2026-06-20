@@ -1,0 +1,68 @@
+{
+  "n": 25,
+  "fixed_tiny_cer": 0.467163,
+  "fixed_base_cer": 0.19996,
+  "cer_gap": 0.267203,
+  "frontier": [
+    {
+      "threshold": 0.0,
+      "mean_cer": 0.19996,
+      "mean_escalate_frac": 1.0,
+      "mean_runtime_sec": 0.22544,
+      "gap_recovery": 1.0
+    },
+    {
+      "threshold": 0.5,
+      "mean_cer": 0.19996,
+      "mean_escalate_frac": 1.0,
+      "mean_runtime_sec": 0.22544,
+      "gap_recovery": 1.0
+    },
+    {
+      "threshold": 0.7,
+      "mean_cer": 0.222183,
+      "mean_escalate_frac": 0.8,
+      "mean_runtime_sec": 0.22544,
+      "gap_recovery": 0.9168
+    },
+    {
+      "threshold": 0.8,
+      "mean_cer": 0.422817,
+      "mean_escalate_frac": 0.3,
+      "mean_runtime_sec": 0.22544,
+      "gap_recovery": 0.166
+    },
+    {
+      "threshold": 0.9,
+      "mean_cer": 0.467163,
+      "mean_escalate_frac": 0.0,
+      "mean_runtime_sec": 0.22544,
+      "gap_recovery": 0.0
+    },
+    {
+      "threshold": 1.0,
+      "mean_cer": 0.467163,
+      "mean_escalate_frac": 0.0,
+      "mean_runtime_sec": 0.22544,
+      "gap_recovery": 0.0
+    }
+  ],
+  "h1_twenty_pct": {
+    "target_escalation": 0.2,
+    "actual_escalation": 0.3,
+    "threshold": 0.8,
+    "cascade_cer": 0.422817,
+    "gap_recovery": 0.166,
+    "h1_confirmed": false
+  },
+  "h2_vs_random": {
+    "cascade_cer_at_20pct": 0.422817,
+    "random_escalation_cer": 0.413722,
+    "cascade_beats_random": false
+  },
+  "compute": {
+    "tiny_runtime_sec": 0.22544,
+    "base_runtime_sec": 0.43604,
+    "speedup_base_vs_tiny": 1.93
+  }
+}
