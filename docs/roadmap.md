@@ -29,6 +29,19 @@ The core technical work is complete. The repository now has a stable baseline an
 - error boundary analysis
 - overlap regime exploration
 
+Update: the separation-tax boundary now has a **causal & internal-state** layer (issue #855).
+
+- Script: `python -m src.causal_hallucination_probe` (full case-control) or `--smoke`
+- Proposal: `docs/frontier/causal_hallucination_probe.md`; litreview: `docs/frontier/causal_hallucination_probe_litreview.md`
+- Findings: `results/frontier/causal_hallucination_probe/FINDINGS.md`
+- Result: the separation-tax hallucination is a *confident* attractor (catastrophic routes decode at
+  higher `avg_logprob` / lower token-id entropy than clean), and a token-id **repetition lock-in**
+  trip-wire fires at ~2% of the decoded stream vs ~20% for the output compression-ratio guard
+  (~10× earlier, on the Mode-R repetition tail). At tight streaming-realistic causal caps the
+  internal-state detector beats output-CR; at loose caps CR's broader two-mode coverage wins —
+  neither alone dominates. `experimental/frontier`; this is the streaming-safe realization of the
+  `separation_tax` guard-gated router, not a gold claim.
+
 ## Phase 3: Compute-aware Cascade
 
 - cheap route vs stronger route

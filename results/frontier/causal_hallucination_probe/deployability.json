@@ -1,0 +1,62 @@
+{
+  "cap_0.05": {
+    "n": 66,
+    "abort_frac_cap": 0.05,
+    "oracle_cer": 0.513532,
+    "offline_guard_cer": 0.623809,
+    "fixed_mixed_cer": 0.584358,
+    "fixed_sep_cer": 3.209666,
+    "causal_cr_cer": 3.209666,
+    "causal_internal_cer": 1.804858,
+    "offline_guard_regret": 0.110277,
+    "fixed_mixed_regret": 0.070826,
+    "fixed_sep_regret": 2.696134,
+    "causal_cr_regret": 2.696134,
+    "causal_internal_regret": 1.291326
+  },
+  "cap_0.15": {
+    "n": 66,
+    "abort_frac_cap": 0.15,
+    "oracle_cer": 0.513532,
+    "offline_guard_cer": 0.623809,
+    "fixed_mixed_cer": 0.584358,
+    "fixed_sep_cer": 3.209666,
+    "causal_cr_cer": 1.804858,
+    "causal_internal_cer": 1.804858,
+    "offline_guard_regret": 0.110277,
+    "fixed_mixed_regret": 0.070826,
+    "fixed_sep_regret": 2.696134,
+    "causal_cr_regret": 1.291326,
+    "causal_internal_regret": 1.291326
+  },
+  "cap_0.3": {
+    "n": 66,
+    "abort_frac_cap": 0.3,
+    "oracle_cer": 0.513532,
+    "offline_guard_cer": 0.623809,
+    "fixed_mixed_cer": 0.584358,
+    "fixed_sep_cer": 3.209666,
+    "causal_cr_cer": 0.876196,
+    "causal_internal_cer": 1.804858,
+    "offline_guard_regret": 0.110277,
+    "fixed_mixed_regret": 0.070826,
+    "fixed_sep_regret": 2.696134,
+    "causal_cr_regret": 0.362664,
+    "causal_internal_regret": 1.291326
+  },
+  "cap_1.0": {
+    "n": 66,
+    "abort_frac_cap": 1.0,
+    "oracle_cer": 0.513532,
+    "offline_guard_cer": 0.623809,
+    "fixed_mixed_cer": 0.584358,
+    "fixed_sep_cer": 3.209666,
+    "causal_cr_cer": 0.667668,
+    "causal_internal_cer": 1.804858,
+    "offline_guard_regret": 0.110277,
+    "fixed_mixed_regret": 0.070826,
+    "fixed_sep_regret": 2.696134,
+    "causal_cr_regret": 0.154136,
+    "causal_internal_regret": 1.291326
+  }
+}

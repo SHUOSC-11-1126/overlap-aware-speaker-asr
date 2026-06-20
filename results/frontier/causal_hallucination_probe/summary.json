@@ -1,0 +1,32 @@
+{
+  "mechanism": {
+    "n_arms": 66,
+    "n_catastrophic": 26,
+    "n_clean": 40,
+    "catastrophic_mean_no_speech_prob": 0.179477,
+    "clean_mean_no_speech_prob": 0.256396,
+    "catastrophic_mean_avg_logprob": -0.334681,
+    "clean_mean_avg_logprob": -0.739317,
+    "catastrophic_mean_token_entropy": 1.486711,
+    "clean_mean_token_entropy": 2.329858,
+    "catastrophic_mean_dominant_token_fraction": 0.499834,
+    "clean_mean_dominant_token_fraction": 0.140292,
+    "catastrophic_mean_confident_silent_score": 0.123289,
+    "clean_mean_confident_silent_score": 0.10734
+  },
+  "latency": {
+    "cr_mean_lat_frac_where_fires": 0.201136,
+    "lockin_mean_lat_frac_where_fires": 0.022422,
+    "n_cr_fired": 22,
+    "n_lockin_fired": 11,
+    "lockin_earlier_than_cr": true
+  },
+  "auc": {
+    "n_pos": 26,
+    "n_neg": 40,
+    "auc_compression_ratio": 0.996154,
+    "auc_no_speech_prob": 0.333654,
+    "auc_confident_silent_score": 0.601923,
+    "auc_dominant_token_fraction": 0.703365
+  }
+}
