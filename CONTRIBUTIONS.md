@@ -28,6 +28,30 @@ migration.
 模块 `src/causal_hallucination_probe.py` + `tests/test_causal_hallucination_probe.py`（23 纯助手单测）；
 `docs/frontier/causal_hallucination_probe.md` + `_litreview.md`；`results/frontier/causal_hallucination_probe/`。
 
+### 一-bis、模型规模与修正前沿：分离税是 tiny 模型伪影（2026-06-20，Mode A+C，全部已合并）
+
+9 个 PR（#860–#871），回答一个根本问题：**"何时分离"这个问题是真实的，还是 tiny 模型的伪影？**
+
+| 主题 | Issue → PR | 结论 |
+|---|---|---|
+| **置信度校准路由器** | CCR (direct) | ❌ 多信号复合反而更差；压缩比单独即近最优 |
+| **多解码投票** | #858 → #860 | ❌ 温度扰动无帮助；CR Spearman 0.781 胜出 |
+| **对比解码** | #857 → #861 | ◐ 发散检测幻觉（AUC 0.765）但 fallback 不能修复 |
+| **🏆 模型规模分析** | #859 → #862 | **🏆 base 消除分离税（CER 0.200 在所有重叠率恒定）** |
+| **运行时级联** | #863 → #864 | ❌ CR 信号太粗糙（二元悬崖，非平滑 Pareto） |
+| **参考有效性** | → #866 | ✅ base 的 0.200 CER 是真实的（非模型相似性） |
+| **错误模式分析** | #867 → #868 | ❌ 64 种模式仅 9.4% 重复——0.200 是修正硬地板 |
+| **LLM 重评分** | #869 → #870 | ❌ 灾难性（0/26 改善，CER 0.316→0.798） |
+| **错误类型分解** | #865 → #871 | ◐ 两模型均 ~70% 替换主导；CER 差异=总数，非类型 |
+
+**一句话结论：** "重叠感知说话人 ASR"问题是 tiny 模型伪影。Whisper-base（1.93× 计算）在所有重叠率
+产生 CER=0.200——分离税消失。0.200 剩余 CER 是硬地板：模式修正、T/S 归一化、LLM 重评分均失败。
+未来前沿应聚焦 base+ 模型能力和外部验证。
+
+模块：`src/confidence_calibrated_router.py`、`src/multi_decode_voter.py`、`src/contrastive_decode.py`、
+`src/model_scale_analysis.py`、`src/runtime_cascade.py`、`src/error_profile_decomposition.py`；
+对应测试 + `results/frontier/{confidence_calibrated_router,multi_decode_voter,contrastive_decode,model_scale,runtime_cascade,reference_validity,base_error_correction,llm_base_rescore,error_profile_decomposition}/`。
+
 ### 二、最能体现深度思考的近期主线：ASR × LLM × 情感 × 说话人（2026-06-18，全部已合并）
 
 围绕「参考无关地决定：何时分离 / 何时修复 / 如何读情感 / 是否信任说话人归属」。本地离线

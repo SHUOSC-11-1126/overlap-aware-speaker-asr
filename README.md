@@ -38,6 +38,7 @@ set, start with the [team research report](REPORT.md).
 | Synthetic validation | Mainline Experimental; silver evidence only |
 | MeetEval, LLM, speaker-profile, demo support | Optional Integration / Frontier Scaffold |
 | AudioDepth router | Frontier Branch Only |
+| **Model scale & correction frontier (PR #860–#871)** | **experimental/frontier; base eliminates separation tax** |
 
 ## Frontier Highlights — ASR × LLM + Emotion + Speaker (experimental/frontier)
 
@@ -59,6 +60,29 @@ These are `experimental/frontier` (Whisper-tiny + silver references + local `dee
 gold-benchmark claims. The unifying thread: the cheap Whisper decoder signal is the deployable routing
 lever, acoustic prosody owns acoustic emotion, and the LLM's gift is *coverage* of implicit semantics —
 not free-lunch repair or attribution rules.
+
+## Frontier Highlights — Model Scale & Correction Frontier (experimental/frontier)
+
+A 2026 frontier session asked: **is the "when to separate?" problem real, or a tiny-model artifact?**
+The answer changes the project's research direction.
+
+| Result | Outcome |
+|---|---|
+| [Confidence-Calibrated Router](results/frontier/confidence_calibrated_router/FINDINGS.md) | ❌ multi-signal composites hurt; compression-ratio alone is near-optimal |
+| [Multi-Decode Voting](results/frontier/multi_decode_voter/FINDINGS.md) (#858) | ❌ temperature perturbation doesn't help; CR wins (Spearman 0.781) |
+| [Contrastive Decoding](results/frontier/contrastive_decode/FINDINGS.md) (#857) | ◐ divergence detects hallucination (AUC 0.765) but fallback can't cure it |
+| **[Model Scale Analysis](results/frontier/model_scale/FINDINGS.md) (#859)** | **🏆 base eliminates the separation tax entirely (CER 0.200 at ALL overlaps)** |
+| [Runtime Cascade](results/frontier/runtime_cascade/FINDINGS.md) (#863) | ❌ CR signal too coarse for segment selection (binary cliff, not smooth Pareto) |
+| [Reference Validity](results/frontier/reference_validity/FINDINGS.md) | ✅ base's 0.200 CER is real (base and small differ 37.2% on clean audio) |
+| [Error Pattern Analysis](results/frontier/base_error_correction/FINDINGS.md) (#867) | ❌ 64 unique patterns, only 9.4% recurring — 0.200 is a hard floor for correction |
+| [LLM Rescoring](results/frontier/llm_base_rescore/FINDINGS.md) (#869) | ❌ catastrophic (0/26 helped, CER 0.316→0.798) — LLM rewrites instead of correcting |
+| [Error Profile Decomposition](results/frontier/error_profile_decomposition/FINDINGS.md) (#865) | ◐ both models ~70% substitution-dominated; CER difference = total count, not error types |
+
+**The key finding: the "overlap-aware speaker ASR" problem is a tiny-model artifact.** Whisper-base
+(1.93× compute) produces CER=0.200 at all overlap ratios — the separation tax vanishes. The 29 frontier
+routing/gating studies were compensating for a problem that disappears with marginally more compute.
+The 0.200 remaining CER is a hard floor: pattern-based correction, T/S normalization, and LLM rescoring
+all fail to improve it. Future frontier should focus on base+ model capabilities and external validation.
 
 ## Frontier Highlights — Causal & Internal-State Hallucination (experimental/frontier)
 
