@@ -1,0 +1,106 @@
+{
+  "n": 25,
+  "models": [
+    "base",
+    "tiny"
+  ],
+  "per_model": {
+    "base": {
+      "mean_cer_mixed": 0.43521,
+      "mean_cer_sep": 0.19996,
+      "tail_rate_mixed": 0.0,
+      "tail_rate_sep": 0.0,
+      "cr_auc_cer>0.5": 0.5,
+      "spearman_cr_vs_cer": -0.0513,
+      "spearman_nsp_vs_cer": 0.3,
+      "crossover_ratio": 0.0,
+      "mean_runtime_sec": 0.0,
+      "per_ratio": [
+        {
+          "overlap_ratio": 0.0,
+          "mean_cer_mixed": 0.259286,
+          "mean_cer_sep": 0.19996,
+          "mean_cr_sep": 0.77732
+        },
+        {
+          "overlap_ratio": 0.15,
+          "mean_cer_mixed": 0.263254,
+          "mean_cer_sep": 0.19996,
+          "mean_cr_sep": 0.77732
+        },
+        {
+          "overlap_ratio": 0.35,
+          "mean_cer_mixed": 0.377083,
+          "mean_cer_sep": 0.19996,
+          "mean_cr_sep": 0.77732
+        },
+        {
+          "overlap_ratio": 0.6,
+          "mean_cer_mixed": 0.504901,
+          "mean_cer_sep": 0.19996,
+          "mean_cr_sep": 0.77732
+        },
+        {
+          "overlap_ratio": 0.9,
+          "mean_cer_mixed": 0.771528,
+          "mean_cer_sep": 0.19996,
+          "mean_cr_sep": 0.77732
+        }
+      ]
+    },
+    "tiny": {
+      "mean_cer_mixed": 0.841202,
+      "mean_cer_sep": 0.467163,
+      "tail_rate_mixed": 0.04,
+      "tail_rate_sep": 0.0,
+      "cr_auc_cer>0.5": 0.0,
+      "spearman_cr_vs_cer": -0.8,
+      "spearman_nsp_vs_cer": -0.3,
+      "crossover_ratio": 0.0,
+      "mean_runtime_sec": 0.0,
+      "per_ratio": [
+        {
+          "overlap_ratio": 0.0,
+          "mean_cer_mixed": 0.49994,
+          "mean_cer_sep": 0.467163,
+          "mean_cr_sep": 0.78328
+        },
+        {
+          "overlap_ratio": 0.15,
+          "mean_cer_mixed": 0.545496,
+          "mean_cer_sep": 0.467163,
+          "mean_cr_sep": 0.78328
+        },
+        {
+          "overlap_ratio": 0.35,
+          "mean_cer_mixed": 1.671429,
+          "mean_cer_sep": 0.467163,
+          "mean_cr_sep": 0.78328
+        },
+        {
+          "overlap_ratio": 0.6,
+          "mean_cer_mixed": 0.669722,
+          "mean_cer_sep": 0.467163,
+          "mean_cr_sep": 0.78328
+        },
+        {
+          "overlap_ratio": 0.9,
+          "mean_cer_mixed": 0.819425,
+          "mean_cer_sep": 0.467163,
+          "mean_cr_sep": 0.78328
+        }
+      ]
+    }
+  },
+  "cross_model": {
+    "base_vs_tiny": {
+      "cer_improvement": -0.267203,
+      "tail_rate_change": 0.0,
+      "cr_auc_change": -0.5,
+      "runtime_multiplier": 0.0
+    }
+  },
+  "h1_tail_rate_decreasing": true,
+  "h2_crossover_shifts_left": true,
+  "h3_signal_paradox": true
+}
