@@ -60,6 +60,22 @@ gold-benchmark claims. The unifying thread: the cheap Whisper decoder signal is 
 lever, acoustic prosody owns acoustic emotion, and the LLM's gift is *coverage* of implicit semantics —
 not free-lunch repair or attribution rules.
 
+## Frontier Highlights — Causal & Internal-State Hallucination (experimental/frontier)
+
+A 2026 frontier line looks *inside* Whisper at the separation-tax hallucination (`separation_tax` showed
+a reference-free compression-ratio guard catches the catastrophic tail — but only at ~20% of the decoded
+stream, *after* the repetition is emitted). Plan + cited 2025–26 literature:
+[docs/frontier/causal_hallucination_probe.md](docs/frontier/causal_hallucination_probe.md).
+
+| Result | Outcome |
+|---|---|
+| [Causal & internal-state hallucination probe](results/frontier/causal_hallucination_probe/FINDINGS.md) (#855) | ✅ the separation-tax loop is a *confident* attractor (catastrophic routes decode at higher avg_logprob / lower token entropy than clean), and a token-id **repetition lock-in trip-wire** fires at ~2% of the stream vs ~20% for compression-ratio (~10× earlier); at tight streaming-realistic causal caps the internal-state detector beats output-CR, at loose caps CR's broader coverage wins — neither alone dominates |
+
+The honest deployable sharpening: gate a streaming overlap-aware ASR system on the lock-in trip-wire for
+the Mode-R repetition tail, keep compression-ratio for the Mode-N non-repetition minority. The
+confident-loop mechanism extends (not discovers) the 2025–26 attractor line; the token-id lock-in
+trip-wire and the offline-router gain-decay-under-prefix-forcing analysis are the novel slots.
+
 ## Frontier Highlights — AudioDepth Router (frontier branch only)
 
 AudioDepth is a second frontier branch. It treats overlapping speech as a
