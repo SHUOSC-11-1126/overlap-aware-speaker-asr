@@ -1,0 +1,62 @@
+{
+  "n": 25,
+  "temperatures": [
+    0.0,
+    0.1,
+    0.2,
+    0.3,
+    0.4
+  ],
+  "signal_comparison": {
+    "spearman_agreement_vs_cer": -0.404,
+    "spearman_cr_vs_cer": 0.7805,
+    "agreement_wins": false,
+    "auc_agreement_cer>0.5": 0.369,
+    "auc_cr_cer>0.5": 0.0
+  },
+  "voting": {
+    "mean_greedy_cer": 0.454524,
+    "mean_vote_cer": 0.473083,
+    "vote_improvement": -0.018559,
+    "n_vote_helped": 4,
+    "n_vote_hurt": 8,
+    "n_total": 25
+  },
+  "per_ratio": [
+    {
+      "overlap_ratio": 0.0,
+      "mean_cer_sep_greedy": 0.467163,
+      "mean_cer_sep_vote": 0.46996,
+      "mean_agreement_sep": 0.402837,
+      "vote_delta": -0.002797
+    },
+    {
+      "overlap_ratio": 0.15,
+      "mean_cer_sep_greedy": 0.467163,
+      "mean_cer_sep_vote": 0.505258,
+      "mean_agreement_sep": 0.302276,
+      "vote_delta": -0.038095
+    },
+    {
+      "overlap_ratio": 0.35,
+      "mean_cer_sep_greedy": 0.467163,
+      "mean_cer_sep_vote": 0.497797,
+      "mean_agreement_sep": 0.313693,
+      "vote_delta": -0.030634
+    },
+    {
+      "overlap_ratio": 0.6,
+      "mean_cer_sep_greedy": 0.467163,
+      "mean_cer_sep_vote": 0.487321,
+      "mean_agreement_sep": 0.34425,
+      "vote_delta": -0.020158
+    },
+    {
+      "overlap_ratio": 0.9,
+      "mean_cer_sep_greedy": 0.467163,
+      "mean_cer_sep_vote": 0.498432,
+      "mean_agreement_sep": 0.371559,
+      "vote_delta": -0.031269
+    }
+  ]
+}
