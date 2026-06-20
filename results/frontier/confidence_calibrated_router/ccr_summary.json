@@ -1,0 +1,268 @@
+{
+  "n_greedy_rows": 300,
+  "scoring_methods": [
+    "cr_only",
+    "cr_nsp",
+    "cr_nsp_rep",
+    "cr_log",
+    "threshold_gate"
+  ],
+  "eval_3way": {
+    "split": "all",
+    "n": 300,
+    "arms": [
+      "mixed",
+      "sep",
+      "sep_trim"
+    ],
+    "mean_cer": {
+      "cr_only": 0.492185,
+      "cr_nsp": 0.533642,
+      "cr_nsp_rep": 0.530422,
+      "cr_log": 0.492185,
+      "threshold_gate": 0.489256,
+      "fixed_mixed": 0.697331,
+      "fixed_sep": 0.618139,
+      "oracle": 0.378641
+    },
+    "regret_vs_oracle": {
+      "cr_only": 0.113544,
+      "cr_nsp": 0.155001,
+      "cr_nsp_rep": 0.151781,
+      "cr_log": 0.113544,
+      "threshold_gate": 0.110615,
+      "fixed_mixed": 0.31869,
+      "fixed_sep": 0.239498,
+      "oracle": 0.0
+    },
+    "best_policy": "oracle",
+    "best_reference_free": "threshold_gate"
+  },
+  "eval_2way": {
+    "split": "all",
+    "n": 300,
+    "arms": [
+      "mixed",
+      "sep_trim"
+    ],
+    "mean_cer": {
+      "cr_only": 0.468001,
+      "cr_nsp": 0.5334,
+      "cr_nsp_rep": 0.529468,
+      "cr_log": 0.468001,
+      "threshold_gate": 0.490644,
+      "fixed_mixed": 0.697331,
+      "fixed_sep": 0.697331,
+      "oracle": 0.395891
+    },
+    "regret_vs_oracle": {
+      "cr_only": 0.07211,
+      "cr_nsp": 0.137509,
+      "cr_nsp_rep": 0.133577,
+      "cr_log": 0.07211,
+      "threshold_gate": 0.094753,
+      "fixed_mixed": 0.30144,
+      "fixed_sep": 0.30144,
+      "oracle": 0.0
+    },
+    "best_policy": "oracle",
+    "best_reference_free": "cr_only"
+  },
+  "signal_contribution_3way": {
+    "baseline_cr_only_regret": 0.113544,
+    "contributions": {
+      "cr_nsp": {
+        "regret": 0.155001,
+        "improvement_over_cr_only": -0.041457
+      },
+      "cr_nsp_rep": {
+        "regret": 0.151781,
+        "improvement_over_cr_only": -0.038237
+      },
+      "cr_log": {
+        "regret": 0.113544,
+        "improvement_over_cr_only": 0.0
+      },
+      "threshold_gate": {
+        "regret": 0.110615,
+        "improvement_over_cr_only": 0.002929
+      }
+    },
+    "best_method": "threshold_gate"
+  },
+  "signal_contribution_2way": {
+    "baseline_cr_only_regret": 0.07211,
+    "contributions": {
+      "cr_nsp": {
+        "regret": 0.137509,
+        "improvement_over_cr_only": -0.065399
+      },
+      "cr_nsp_rep": {
+        "regret": 0.133577,
+        "improvement_over_cr_only": -0.061467
+      },
+      "cr_log": {
+        "regret": 0.07211,
+        "improvement_over_cr_only": 0.0
+      },
+      "threshold_gate": {
+        "regret": 0.094753,
+        "improvement_over_cr_only": -0.022643
+      }
+    },
+    "best_method": "cr_log"
+  },
+  "hard_regime_3way": {
+    "margin": 0.1,
+    "n_hard": 85,
+    "n_easy": 215,
+    "hard": {
+      "split": "all",
+      "n": 85,
+      "arms": [
+        "mixed",
+        "sep",
+        "sep_trim"
+      ],
+      "mean_cer": {
+        "cr_only": 0.463979,
+        "cr_nsp": 0.466799,
+        "cr_nsp_rep": 0.467704,
+        "cr_log": 0.463979,
+        "threshold_gate": 0.454353,
+        "fixed_mixed": 0.467101,
+        "fixed_sep": 0.725619,
+        "oracle": 0.420516
+      },
+      "regret_vs_oracle": {
+        "cr_only": 0.043463,
+        "cr_nsp": 0.046283,
+        "cr_nsp_rep": 0.047188,
+        "cr_log": 0.043463,
+        "threshold_gate": 0.033837,
+        "fixed_mixed": 0.046585,
+        "fixed_sep": 0.305103,
+        "oracle": 0.0
+      },
+      "best_policy": "oracle",
+      "best_reference_free": "threshold_gate"
+    },
+    "easy": {
+      "split": "all",
+      "n": 215,
+      "arms": [
+        "mixed",
+        "sep",
+        "sep_trim"
+      ],
+      "mean_cer": {
+        "cr_only": 0.503336,
+        "cr_nsp": 0.560069,
+        "cr_nsp_rep": 0.555217,
+        "cr_log": 0.503336,
+        "threshold_gate": 0.503054,
+        "fixed_mixed": 0.788352,
+        "fixed_sep": 0.575648,
+        "oracle": 0.362086
+      },
+      "regret_vs_oracle": {
+        "cr_only": 0.14125,
+        "cr_nsp": 0.197983,
+        "cr_nsp_rep": 0.193131,
+        "cr_log": 0.14125,
+        "threshold_gate": 0.140968,
+        "fixed_mixed": 0.426266,
+        "fixed_sep": 0.213562,
+        "oracle": 0.0
+      },
+      "best_policy": "oracle",
+      "best_reference_free": "threshold_gate"
+    },
+    "improvement": {
+      "hard_cr_nsp_vs_cr_only": -0.00282,
+      "hard_cr_nsp_rep_vs_cr_only": -0.003725,
+      "hard_cr_log_vs_cr_only": 0.0,
+      "hard_threshold_gate_vs_cr_only": 0.009626,
+      "easy_cr_nsp_vs_cr_only": -0.056733,
+      "easy_cr_nsp_rep_vs_cr_only": -0.051881,
+      "easy_cr_log_vs_cr_only": 0.0,
+      "easy_threshold_gate_vs_cr_only": 0.000282
+    }
+  },
+  "hard_regime_2way": {
+    "margin": 0.1,
+    "n_hard": 85,
+    "n_easy": 215,
+    "hard": {
+      "split": "all",
+      "n": 85,
+      "arms": [
+        "mixed",
+        "sep_trim"
+      ],
+      "mean_cer": {
+        "cr_only": 0.456284,
+        "cr_nsp": 0.466799,
+        "cr_nsp_rep": 0.467101,
+        "cr_log": 0.456284,
+        "threshold_gate": 0.458958,
+        "fixed_mixed": 0.467101,
+        "fixed_sep": 0.467101,
+        "oracle": 0.437592
+      },
+      "regret_vs_oracle": {
+        "cr_only": 0.018692,
+        "cr_nsp": 0.029207,
+        "cr_nsp_rep": 0.029509,
+        "cr_log": 0.018692,
+        "threshold_gate": 0.021366,
+        "fixed_mixed": 0.029509,
+        "fixed_sep": 0.029509,
+        "oracle": 0.0
+      },
+      "best_policy": "oracle",
+      "best_reference_free": "cr_only"
+    },
+    "easy": {
+      "split": "all",
+      "n": 215,
+      "arms": [
+        "mixed",
+        "sep_trim"
+      ],
+      "mean_cer": {
+        "cr_only": 0.472634,
+        "cr_nsp": 0.55973,
+        "cr_nsp_rep": 0.554124,
+        "cr_log": 0.472634,
+        "threshold_gate": 0.503172,
+        "fixed_mixed": 0.788352,
+        "fixed_sep": 0.788352,
+        "oracle": 0.379405
+      },
+      "regret_vs_oracle": {
+        "cr_only": 0.093229,
+        "cr_nsp": 0.180325,
+        "cr_nsp_rep": 0.174719,
+        "cr_log": 0.093229,
+        "threshold_gate": 0.123767,
+        "fixed_mixed": 0.408947,
+        "fixed_sep": 0.408947,
+        "oracle": 0.0
+      },
+      "best_policy": "oracle",
+      "best_reference_free": "cr_only"
+    },
+    "improvement": {
+      "hard_cr_nsp_vs_cr_only": -0.010515,
+      "hard_cr_nsp_rep_vs_cr_only": -0.010817,
+      "hard_cr_log_vs_cr_only": 0.0,
+      "hard_threshold_gate_vs_cr_only": -0.002674,
+      "easy_cr_nsp_vs_cr_only": -0.087096,
+      "easy_cr_nsp_rep_vs_cr_only": -0.08149,
+      "easy_cr_log_vs_cr_only": 0.0,
+      "easy_threshold_gate_vs_cr_only": -0.030538
+    }
+  },
+  "hallucination_router_comparison": {}
+}

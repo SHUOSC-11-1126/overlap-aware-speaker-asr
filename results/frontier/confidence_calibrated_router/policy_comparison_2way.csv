@@ -1,0 +1,9 @@
+﻿policy,mean_cer,regret_vs_oracle,reference_free
+cr_log,0.468001,0.07211,yes
+cr_nsp,0.5334,0.137509,yes
+cr_nsp_rep,0.529468,0.133577,yes
+cr_only,0.468001,0.07211,yes
+fixed_mixed,0.697331,0.30144,yes
+fixed_sep,0.697331,0.30144,yes
+oracle,0.395891,0.0,no(oracle)
+threshold_gate,0.490644,0.094753,yes
