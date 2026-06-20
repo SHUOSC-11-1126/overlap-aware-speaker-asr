@@ -1,0 +1,120 @@
+{
+  "n": 25,
+  "models": [
+    "base",
+    "tiny"
+  ],
+  "per_model": {
+    "base": {
+      "mean_cer": 0.198066,
+      "mean_substitution_frac": 0.7,
+      "mean_deletion_frac": 0.1,
+      "mean_insertion_frac": 0.2,
+      "halluc_dominated_frac": 0.2,
+      "per_ratio": [
+        {
+          "overlap_ratio": 0.0,
+          "mean_cer": 0.198066,
+          "mean_sub_frac": 0.7,
+          "mean_del_frac": 0.1,
+          "mean_ins_frac": 0.2,
+          "halluc_dominated_frac": 0.2
+        },
+        {
+          "overlap_ratio": 0.15,
+          "mean_cer": 0.198066,
+          "mean_sub_frac": 0.7,
+          "mean_del_frac": 0.1,
+          "mean_ins_frac": 0.2,
+          "halluc_dominated_frac": 0.2
+        },
+        {
+          "overlap_ratio": 0.35,
+          "mean_cer": 0.198066,
+          "mean_sub_frac": 0.7,
+          "mean_del_frac": 0.1,
+          "mean_ins_frac": 0.2,
+          "halluc_dominated_frac": 0.2
+        },
+        {
+          "overlap_ratio": 0.6,
+          "mean_cer": 0.198066,
+          "mean_sub_frac": 0.7,
+          "mean_del_frac": 0.1,
+          "mean_ins_frac": 0.2,
+          "halluc_dominated_frac": 0.2
+        },
+        {
+          "overlap_ratio": 0.9,
+          "mean_cer": 0.198066,
+          "mean_sub_frac": 0.7,
+          "mean_del_frac": 0.1,
+          "mean_ins_frac": 0.2,
+          "halluc_dominated_frac": 0.2
+        }
+      ]
+    },
+    "tiny": {
+      "mean_cer": 0.465079,
+      "mean_substitution_frac": 0.75666,
+      "mean_deletion_frac": 0.12334,
+      "mean_insertion_frac": 0.12,
+      "halluc_dominated_frac": 0.0,
+      "per_ratio": [
+        {
+          "overlap_ratio": 0.0,
+          "mean_cer": 0.465079,
+          "mean_sub_frac": 0.75666,
+          "mean_del_frac": 0.12334,
+          "mean_ins_frac": 0.12,
+          "halluc_dominated_frac": 0.0
+        },
+        {
+          "overlap_ratio": 0.15,
+          "mean_cer": 0.465079,
+          "mean_sub_frac": 0.75666,
+          "mean_del_frac": 0.12334,
+          "mean_ins_frac": 0.12,
+          "halluc_dominated_frac": 0.0
+        },
+        {
+          "overlap_ratio": 0.35,
+          "mean_cer": 0.465079,
+          "mean_sub_frac": 0.75666,
+          "mean_del_frac": 0.12334,
+          "mean_ins_frac": 0.12,
+          "halluc_dominated_frac": 0.0
+        },
+        {
+          "overlap_ratio": 0.6,
+          "mean_cer": 0.465079,
+          "mean_sub_frac": 0.75666,
+          "mean_del_frac": 0.12334,
+          "mean_ins_frac": 0.12,
+          "halluc_dominated_frac": 0.0
+        },
+        {
+          "overlap_ratio": 0.9,
+          "mean_cer": 0.465079,
+          "mean_sub_frac": 0.75666,
+          "mean_del_frac": 0.12334,
+          "mean_ins_frac": 0.12,
+          "halluc_dominated_frac": 0.0
+        }
+      ]
+    }
+  },
+  "cross_model": {
+    "comparison": "base vs tiny",
+    "cer_delta": 0.267013,
+    "insertion_frac_delta": -0.08,
+    "substitution_frac_delta": 0.0567
+  },
+  "hypotheses": {
+    "h1_base_fewer_insertions": false,
+    "h2_base_substitution_dominated": true,
+    "h2_tiny_insertion_dominated": false,
+    "h3_base_profile_stable": true,
+    "h3_tiny_profile_variable": false
+  }
+}
