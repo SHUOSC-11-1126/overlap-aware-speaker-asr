@@ -1,0 +1,2 @@
+base_sample_id,family,case_count,monotonic_consistent,pairwise_ordering_accuracy,spearman,prediction_flip_rate,map_stability,first_route,last_route,metric_min,metric_max,failure_reason
+controlled_route_sensitive_v2_0002,dominance_sdr_sweep,5,False,0.5,0.1,0.0,0.994186,mixed,mixed,0.192274,0.20897,non_monotonic_or_high_route_flip
