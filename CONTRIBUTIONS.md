@@ -202,15 +202,43 @@ This thread unifies two project directions (ASR×LLM synergy + emotion) across 7
 - **Why not adopt code-tape's training-camp scoring/auto-merge?** Those mechanisms optimize for _throughput_ (maximize merged PRs), which directly contributed to the ceremony collapse documented in Thread 4. We adopted only the _quality_ pillars: git hooks, knowledge-base contract, SDD, TDD.
 - **Why GitNexus for the knowledge base?** GitNexus provides a code knowledge graph with symbol-level impact analysis, enabling the `Contract Guard` CI check that verifies critical skeleton changes include paired tests. No comparable open-source tool provides this at the symbol level.
 
-**Four pillars:**
+**Implementation (943 lines of harness code across 5 Python modules):**
 
-1. **Git hooks** (`.githooks/{pre-commit,pre-push}`): pre-commit runs fast test gate; pre-push runs GitNexus contract + full test gate. `SKIP_QUALITY_HOOKS=1` escape hatch.
-2. **GitNexus knowledge-base contract** (`scripts/harness/contract_{rules,check}.py`): Critical skeleton classification (router-core / evaluation-core / harness / references / gold-results / authority-docs). Changes to critical code _must_ include paired `tests/test_<module>*.py` + structured impact summary.
-3. **SDD**: Authority-doc hierarchy + `docs/adr/ADR-001` + PR template with structured GitNexus impact summary.
-4. **TDD**: Contract mechanically enforces paired tests for critical code changes. 41 harness contract tests cover the engine itself.
-5. **repo-guard LLM code review** integration: every PR receives automated review comments; author must respond to every finding before merge.
+1. **Git hooks** (`.githooks/{pre-commit,pre-push}`): POSIX shell, ~15 lines each. pre-commit runs fast test gate (`quality.py precommit`); pre-push runs GitNexus contract + full test gate (`quality.py prepush`). `SKIP_QUALITY_HOOKS=1` escape hatch for emergencies. `install_hooks.py` sets `core.hooksPath=.githooks` automatically.
 
-**Verification:** Pre-push gate passes live — GitNexus index (26,296 nodes) + contract + full suite (3,253 tests OK at adoption time).
+2. **Contract rules engine** (`scripts/harness/contract_rules.py`, 424 lines): Classifies every file in the repo into one of 6 critical-skeleton categories:
+   - `router-core` — routing/selection logic (e.g., `adaptive_router_v2.py`, `gate_selector.py`)
+   - `evaluation-core` — CER/error metrics (e.g., `evaluate_cer.py`, `speaker_cer.py`)
+   - `harness` — infrastructure code (`scripts/harness/*`, `.githooks/*`)
+   - `references` — verified reference transcripts (`references/`)
+   - `gold-results` — stable benchmark results (`results/gold/`)
+   - `authority-docs` — documentation that other code depends on (`CLAUDE.md`, `docs/project_state.md`, `CONTRIBUTIONS.md`)
+
+   Changes to files in these categories **trigger the paired-test gate**: the diff must include a corresponding `tests/test_<module>*.py` or the contract fails. This is the mechanical TDD enforcement.
+
+3. **Contract check** (`scripts/harness/contract_check.py`, 238 lines): Runs on every `git push` (pre-push hook). Compares the staged diff against the contract rules; reports violations as structured JSON; integrates with CI as `Contract Guard` (`.github/workflows/contract-guard.yml`). Also enforces structured impact summary in the PR body.
+
+4. **Quality dispatcher** (`scripts/harness/quality.py`, 123 lines): Unified command surface — `quality.py {predev,precommit,prepush,ci,local}` — each running the appropriate subset of {entropy guard, fast tests, contract check, full tests, GitNexus index refresh}. `Makefile` exposes these as `make quality-{predev,precommit,prepush}`.
+
+5. **Entropy guard** (`scripts/harness/entropy_guard.py`, 128 lines): Advisory (never blocking) pre-dev check that warns when a change adds ceremony with no substance. Uses the same two-signal classifier as `research_entropy_audit.py` (Thread 4). Integrated into `make quality-predev`.
+
+6. **SDD (Specification-Driven Development):**
+   - Authority-doc hierarchy: `CLAUDE.md` (operating charter) -> `docs/project_state.md` (findings register) -> `CONTRIBUTIONS.md` (contribution record) -> `docs/roadmap.md`.
+   - ADR-001 (`docs/adr/ADR-001-harness-adoption.md`): Architecture Decision Record documenting why we adopted the Harness and what we deliberately excluded.
+   - PR template (`.github/PULL_REQUEST_TEMPLATE.md`): Every PR must include a structured GitNexus impact summary with risk level, critical skeleton changes, blast radius, and verification evidence.
+
+7. **TDD enforcement:** The contract rules engine mechanically blocks `git push` if a critical-skeleton change lacks its paired test. 41 harness-specific contract tests (`scripts/harness/tests/`) cover the engine itself — classification accuracy, diff parsing, violation reporting, edge cases.
+
+8. **repo-guard LLM code review** integration: Every PR receives automated review comments from a configured GitHub bot. The author must respond to every guard finding (fix or justify) before merge. This standardized the `issue -> PR -> repo-guard CR -> respond` loop across all 45+ PRs.
+
+**Workflow documentation:** `docs/harness/` contains 5 specification files:
+   - `README.md` — harness overview and quick-start
+   - `knowledge_base_contract.md` — contract rules specification
+   - `sdd.md` — Specification-Driven Development rules
+   - `tdd.md` — Test-Driven Development enforcement rules
+   - `workflow_spec.md` — the standardized PR review loop
+
+**Verification:** Pre-push gate passes live — GitNexus index (26,296 nodes) + contract + full suite (3,253 tests OK at adoption time). The harness enabled the entire frontier research workflow: every one of the 40+ frontier PRs passed through this gate, and the contract prevented any critical-skeleton change from landing without paired tests.
 
 ---
 
