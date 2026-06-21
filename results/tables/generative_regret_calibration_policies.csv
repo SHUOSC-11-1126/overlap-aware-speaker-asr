@@ -1,0 +1,4 @@
+policy_name,sample_count,selected_route_cer,realized_regret,route_accuracy,false_safe_count,high_error_mixed_count,review_rate,coverage,base_model,regret_margin_threshold,review_threshold,confidence_threshold,stage32_false_safe,stage30_balanced_cer,stage27_balanced_router_cer,policy_tier
+margin0.00_review0.40_conf0.50,9,0.519641,0.0,1.0,0,0,0.777778,0.222222,R2_regret_rank_review_head,0.0,0.4,0.5,4,0.529082,0.502854,aggressive
+margin0.00_review0.40_conf0.50,9,0.519641,0.0,1.0,0,0,0.777778,0.222222,R2_regret_rank_review_head,0.0,0.4,0.5,4,0.529082,0.502854,balanced
+margin0.00_review0.40_conf0.90,9,0.519641,0.0,0.0,0,0,1.0,0.0,R2_regret_rank_review_head,0.0,0.4,0.9,4,0.529082,0.502854,conservative

@@ -1,0 +1,5 @@
+{
+  "model_name": "R1_regret_pairwise_rank",
+  "prototype": true,
+  "train_samples": 16
+}

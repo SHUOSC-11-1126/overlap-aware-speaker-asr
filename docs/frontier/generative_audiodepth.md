@@ -144,3 +144,40 @@ upgrade is not a large model; it is a stricter data design:
    improvement.
 4. Keep route regret sample-level unless reliable window-level CER labels are
    created.
+
+## Stage 33 Reliability Audit
+
+Stage 33 tightens the evidence boundary. The original Stage 32 split was
+source-pair and counterfactual-family clean, but a stricter audit found source
+utterance reuse across splits. A fully connected source-token graph means the
+full 60-sample set cannot be split into non-empty, strict source-utterance
+partitions. The reliability split therefore keeps a smaller strict subset:
+
+- train: 16 samples / 80 task rows;
+- validation: 7 samples / 35 task rows;
+- test: 9 samples / 45 task rows;
+- dropped cross-partition samples: 28;
+- source utterance, source pair, counterfactual family, and mixed-wav leaks: 0.
+
+Information-value probes show generated map summaries beat shuffled and zero
+maps. Generated maps do not improve review-risk beyond logmel because logmel is
+already perfect on this tiny strict test slice, but `logmel + generated maps`
+does improve route-gap bucket prediction (`1.000000` versus `0.888889`).
+
+The map-level counterfactual suite reports monotonic consistency `0.966667`
+with one dominance/SDR failure case. This is useful but remains map-level
+evidence, not ASR-level counterfactual generalization.
+
+Regret ranking is the strongest Stage 33 improvement. On the strict test split,
+the Stage 32-style R0 regret regression has selected CER `0.593715` and
+false-safe count `4`. Pairwise route ranking reduces false-safe count to `0`
+and reaches selected CER `0.519641`. The review-head and cost-aware variants
+keep false-safe at `0` but rely on high abstention/review rate (`0.777778`).
+
+Teacher-student gap is largest for `DOMINANCE_MAP` (`0.295101`) and smallest
+for `UNCERTAINTY_MAP` (`0.230941`). The recommended minimum task set is
+`overlap_plus_regret`; all five tasks are not justified by the current evidence.
+
+Final Stage 33 decision: **keep Generative AudioDepth as a safety/interpretable
+auxiliary module**. It is not ready as a standalone router and should not be
+promoted above the balanced router or the risk-guarded AudioDepth gate.

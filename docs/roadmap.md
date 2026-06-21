@@ -2413,6 +2413,17 @@ Status: first-pass `experimental/frontier` prototype exists.
 
 This line treats AudioDepth as promptable acoustic scene-map generation rather than only direct route classification. Current evidence is useful but limited: promptable map MAE improves slightly over an unconditioned baseline (`0.241263` vs `0.246685`), and route-regret selection improves fixed mixed CER (`0.671608` vs `0.739509`) on the source-disjoint test split. Keep it as an auxiliary interpretability frontier until exact same-source counterfactual scenes, stronger mixed-only students, and verified gold references exist.
 
+Stage 33 reliability update:
+
+- strict source-token reliability subset: train `16`, validation `7`, test `9`;
+- dropped samples: `28` because the full controlled_v2 source-token graph is connected;
+- generated maps beat shuffled/zero map controls and add route-gap-bucket signal over logmel;
+- pairwise regret ranking lowers strict-test false-safe from `4` to `0`;
+- safe fusion is useful mainly as confirmation/review augmentation, with high review rate;
+- minimal effective task set is currently `overlap_plus_regret`.
+
+Decision: keep this as a safety/interpretable auxiliary module. Do not make it the main router without larger strict source-disjoint data and ASR-level counterfactual reruns.
+
 ## Healthy Project Principles
 
 - New experiments should be isolated.

@@ -46,6 +46,8 @@ results/synthetic_overlap_v2/
 !results/tables/audiodepth_*
 !results/tables/generative_audiodepth_*
 !results/tables/generative_route_regret_*
+!results/tables/generative_regret_calibration_*
+!results/tables/generative_safe_fusion_*
 !results/tables/controlled_*
 !results/tables/route_winner_*
 !results/tables/whisper_env_diagnosis.json
@@ -54,6 +56,9 @@ results/synthetic_overlap_v2/
 !results/figures/audiodepth_*
 !results/figures/generative_audiodepth_*
 !results/figures/generative_route_regret_*
+!results/figures/generative_regret_calibration.md
+!results/figures/generative_regret_calibration_*
+!results/figures/generative_safe_fusion_*
 !results/figures/controlled_*
 !results/figures/route_winner_*
 !results/figures/whisper_env_diagnosis.md

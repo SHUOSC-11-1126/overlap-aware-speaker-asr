@@ -1,9 +1,10 @@
 # Generative AudioDepth Teacher-Student Gap
 
-Teacher maps may use source tracks. The first-pass student/prototype uses only mixed-only deployable AudioDepth metadata.
+| task | MAE |
+|---|---:|
+| OVERLAP_MAP | 0.246642 |
+| DOMINANCE_MAP | 0.295101 |
+| UNCERTAINTY_MAP | 0.230941 |
 
-| task | test samples | student-teacher MAE | interpretation |
-|---|---:|---:|---|
-| DOMINANCE_MAP | 9 | 0.267788 | prototype_student_recovers_partial_structure_only |
-| OVERLAP_MAP | 9 | 0.233477 | prototype_student_recovers_partial_structure_only |
-| UNCERTAINTY_MAP | 9 | 0.222524 | prototype_student_recovers_partial_structure_only |
+- easiest map: `UNCERTAINTY_MAP`
+- hardest map: `DOMINANCE_MAP`

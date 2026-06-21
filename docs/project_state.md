@@ -50,6 +50,7 @@ This document is for future Codex / AI coding agents so they can resume work wit
 - AudioDepth-centric deployable v2 and Stage-1 gate frontier validation
 - Stage 31 final claim ledger, end-to-end safety audit, Stage-2 review guard, and presentation cards
 - Stage 32 Generative AudioDepth promptable acoustic-map dataset, route-regret prototype, counterfactual proxy audit, and downstream comparison
+- Stage 33 Generative AudioDepth reliability audit, strict source-token subset, counterfactual reliability, regret ranking, and safe fusion
 
 ## Current Core Findings
 
@@ -66,6 +67,7 @@ This document is for future Codex / AI coding agents so they can resume work wit
 11. AudioDepth-Router is an experimental/frontier learned-router probe, not a stable baseline. The first deployable synthetic split run underperforms router_v2, which is a useful negative finding about audio-only depth proxies.
 12. The AudioDepth frontier has now been expanded into a model-zoo and hybrid-routing exploration scaffold. That broader sweep is designed to test whether richer architectures, class balancing, and transcript-instability features can recover more signal than the MVP.
 13. Generative AudioDepth is an auxiliary interpretability frontier, not a replacement router. The current promptable prototype slightly improves map MAE over an unconditioned baseline and improves fixed mixed CER through route-regret selection, but false-safe mixed selections and proxy-only counterfactuals remain.
+14. Stage 33 makes that conclusion stricter: a full 60-sample strict source-token split is impossible because source utterances connect the graph, so the reliable subset drops 28 samples. Pairwise regret ranking removes strict-test false-safe mixed selections, but high abstention means the role remains safety confirmation / review augmentation.
 
 ## AudioDepth-Router Frontier Finding
 
@@ -95,6 +97,16 @@ Label: `experimental/frontier`
 Stage 32 reframes AudioDepth as promptable acoustic scene-map generation with task tokens for overlap maps, dominance maps, uncertainty maps, route-regret vectors, and review-risk maps. Teacher maps can use source tracks only for analysis, while the deployable student boundary remains mixed-audio / mixed-logmel only.
 
 Current first-pass evidence is modest but useful: promptable map generation improves map MAE over the unconditioned baseline (`0.241263` vs `0.246685`), and route-regret selection improves fixed mixed CER on the source-disjoint test split (`0.671608` vs `0.739509`). It should stay framed as an auxiliary interpretability and diagnostic path because it still has `4` false-safe mixed selections and only proxy counterfactual pairs.
+
+Stage 33 reliability audit:
+
+- Strict source-token split: train `16`, validation `7`, test `9`; dropped cross-partition samples `28`.
+- Leakage checks: source utterance `0`, source pair `0`, counterfactual family `0`, mixed wav `0`.
+- Information value: generated maps beat shuffled/zero maps; `logmel + generated maps` improves route-gap bucket prediction over logmel (`1.000000` vs `0.888889`) but not review-risk on the tiny strict slice.
+- Counterfactual reliability: map-level monotonic consistency `0.966667`, with a dominance/SDR failure case.
+- Regret ranking: R0 false-safe `4`, pairwise ranker false-safe `0`, selected CER `0.519641`.
+- Minimal task set: `overlap_plus_regret`.
+- Decision: keep as safety/interpretable auxiliary module, not standalone router.
 
 Current deployable synthetic split TEST result:
 

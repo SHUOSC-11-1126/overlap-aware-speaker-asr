@@ -1,0 +1,10 @@
+sample_id,oracle_route,generative_route,review_risk,gate_route_proxy,mixed_cer,oracle_cer,F2_route,F5_route
+controlled_route_sensitive_v2_0002,separated,review,0.807382,separated,1.0,0.347826,review,review
+controlled_route_sensitive_v2_0008,mixed,review,0.813248,separated,1.0,1.0,review,review
+controlled_route_sensitive_v2_0013,mixed,mixed,0.11049,separated,0.233333,0.233333,review,mixed
+controlled_route_sensitive_v2_0024,mixed,review,0.817789,separated,1.0,1.0,review,review
+controlled_route_sensitive_v2_0030,separated,review,0.792836,separated,1.0,0.32,review,review
+controlled_route_sensitive_v2_0036,mixed,review,0.817891,separated,1.0,1.0,review,review
+controlled_route_sensitive_v2_0041,mixed,mixed,0.140911,mixed,0.137931,0.137931,mixed,mixed
+controlled_route_sensitive_v2_0047,separated,review,0.799838,separated,0.73913,0.304348,review,review
+controlled_route_sensitive_v2_0058,separated,review,0.818523,separated,1.0,0.333333,review,review

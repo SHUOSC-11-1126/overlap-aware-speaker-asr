@@ -1,0 +1,5 @@
+model_name,loss_family,cost_weight,train_samples,test_samples
+R0_regret_regression,smooth_l1,0.0,16,9
+R1_regret_pairwise_rank,smooth_l1+pairwise_rank,0.0,16,9
+R2_regret_rank_review_head,smooth_l1+pairwise_rank+review_head,0.0,16,9
+R3_cost_aware_regret_ranker,smooth_l1+pairwise_rank+review_head,0.04,16,9

@@ -1,0 +1,5 @@
+{
+  "model_name": "R3_cost_aware_regret_ranker",
+  "prototype": true,
+  "train_samples": 16
+}

@@ -1,0 +1,6 @@
+component,parameter_count,file_size_bytes,map_generation_latency_ms,route_decision_latency_ms,runtime_device,relative_performance_proxy,total_extra_overhead_ms
+stage30_handcrafted_gate,12,6997,0.0,2e-05,CPU,0.529082,2e-05
+stage32_promptable_generator,0,254,0.000612,5.6e-05,CPU,0.671608,0.000668
+stage33_regret_ranker,18,360,0.0,6.3e-05,CPU,0.0,6.3e-05
+stage33_safe_fusion,24,0,0.0,1.6e-05,CPU,0.0,1.6e-05
+stage27_balanced_router,8,0,0.0,2e-05,CPU,0.502854,2e-05

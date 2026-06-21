@@ -118,6 +118,8 @@ This folder is the documentation entry point for the project.
 - [results/figures/stage2_review_guard_summary.md](../results/figures/stage2_review_guard_summary.md)
 - [docs/frontier/generative_audiodepth.md](frontier/generative_audiodepth.md)
 - [results/figures/generative_audiodepth_downstream_summary.md](../results/figures/generative_audiodepth_downstream_summary.md)
+- [results/figures/generative_audiodepth_reliability_split_audit.md](../results/figures/generative_audiodepth_reliability_split_audit.md)
+- [results/figures/generative_safe_fusion_summary.md](../results/figures/generative_safe_fusion_summary.md)
 - [results/figures/final_system_architecture.png](../results/figures/final_system_architecture.png)
 - [results/figures/final_key_results_card.png](../results/figures/final_key_results_card.png)
 - [results/figures/final_evidence_levels.png](../results/figures/final_evidence_levels.png)

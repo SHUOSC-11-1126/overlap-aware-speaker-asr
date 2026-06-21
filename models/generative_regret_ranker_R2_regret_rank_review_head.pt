@@ -1,0 +1,5 @@
+{
+  "model_name": "R2_regret_rank_review_head",
+  "prototype": true,
+  "train_samples": 16
+}

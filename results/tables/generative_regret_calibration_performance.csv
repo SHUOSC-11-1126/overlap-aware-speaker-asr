@@ -1,0 +1,5 @@
+policy_name,sample_count,selected_route_cer,realized_regret,route_accuracy,false_safe_count,high_error_mixed_count,review_rate,coverage,regret_mae,regret_spearman,pairwise_ranking_accuracy,review_recall,calibration_error
+R0_regret_regression,9,0.593715,0.074074,0.888889,4,4,0.0,1.0,0.061352,0.922278,1.0,1.0,0.055094
+R1_regret_pairwise_rank,9,0.519641,0.0,0.666667,0,0,0.0,1.0,0.085056,0.83106,1.0,1.0,0.013612
+R2_regret_rank_review_head,9,0.519641,0.0,1.0,0,0,0.777778,0.222222,0.093945,0.83106,1.0,1.0,0.007129
+R3_cost_aware_regret_ranker,9,0.519641,0.0,1.0,0,0,0.777778,0.222222,0.133416,0.784261,1.0,1.0,0.071129

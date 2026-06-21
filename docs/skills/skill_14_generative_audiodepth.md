@@ -100,3 +100,28 @@ The first pass should answer:
 
 Negative findings are valid. If direct classification is stronger or generated
 maps are only visually pleasing, the conclusion should say so plainly.
+
+## 6. Stage 33 Reliability Rule
+
+Before claiming generalization, run the reliability stack:
+
+```bash
+python -m src.rebuild_generative_audiodepth_disjoint_split
+python -m src.evaluate_generative_map_information_value
+python -m src.build_generative_audiodepth_counterfactual_suite
+python -m src.evaluate_generative_audiodepth_counterfactual_reliability
+python -m src.train_generative_regret_ranker
+python -m src.calibrate_generative_regret_safety
+python -m src.evaluate_generative_safe_fusion
+```
+
+Current Stage 33 conclusion:
+
+- strict source-token split requires dropping cross-partition samples;
+- generated maps beat shuffled/zero maps, but their incremental value is small;
+- pairwise regret ranking reduces strict-test false-safe count from `4` to `0`;
+- safe fusion is more plausible than standalone Generative routing;
+- `overlap_plus_regret` is the minimum useful task set under this audit.
+
+Use the line as a safety confirmer, review-risk augmenter, and interpretable
+auxiliary representation. Do not present it as a major standalone router.

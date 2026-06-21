@@ -1,0 +1,7 @@
+policy_name,sample_count,selected_route_cer,route_accuracy,false_safe_count,high_error_mixed_count,review_rate,coverage,text_probe_reduction,realized_regret
+F0_stage30_risk_guarded_gate,60.0,0.529082,0.833333,0,12.0,0.316667,0.683333,0.416667,
+F1_generative_regret_only,9,0.519641,1.0,0,0,0.777778,0.222222,0.222222,0.0
+F2_gate_plus_generative_confirmation,9,0.519641,1.0,0,0,0.888889,0.111111,0.111111,0.0
+F3_generated_review_risk_augmenter,9,0.519641,1.0,0,0,0.777778,0.222222,0.222222,0.0
+F4_balanced_router_disagreement_guard,9,0.519641,1.0,3,3,0.0,1.0,1.0,0.0
+F5_stacked_lightweight_fusion,9,0.519641,1.0,0,0,0.777778,0.222222,0.222222,0.0

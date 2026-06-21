@@ -1,0 +1,5 @@
+{
+  "model_name": "R0_regret_regression",
+  "prototype": true,
+  "train_samples": 16
+}
