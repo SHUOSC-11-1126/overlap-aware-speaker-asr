@@ -24,6 +24,17 @@ This repository studies when speech separation helps or hurts multi-speaker ASR,
 - It does not treat frontier scaffolding, coordination records, receipts, or writebacks as stable mainline claims.
 - It does not claim that `frontier/audio-depth-router` is ready to merge directly into `main`.
 
+## Research Methodology
+
+This project follows a **pre-registered hypothesis** research methodology for all frontier experiments:
+
+1. **Research Question (RQ)** — stated before any code is written.
+2. **Falsifiable hypotheses** with explicit success/kill criteria — what would make us abandon the direction.
+3. **Implementation** — TDD-first, paired tests, reproducible `python -m src.<module>` commands.
+4. **Honest reporting** — negative results are documented with the same rigor as positives. 8 of 15+ frontier studies produced clean negatives; each narrows the solution space.
+5. **Literature grounding** — novelty claims are assessed against a 6-agent literature sweep (see [causal hallucination lit review](docs/frontier/causal_hallucination_probe_litreview.md)). We cite established work and scope our contributions honestly.
+6. **Evidence labeling** — every result is tagged as `stable/gold`, `synthetic/silver`, `experimental/frontier`, `qualitative/demo`, or `external/sanity-check`.
+
 ## Current Status
 
 See [docs/implementation-status.md](docs/implementation-status.md) for the detailed status matrix.
@@ -39,6 +50,75 @@ set, start with the [team research report](REPORT.md).
 | MeetEval, LLM, speaker-profile, demo support | Optional Integration / Frontier Scaffold |
 | AudioDepth router | Frontier Branch Only |
 | **Model scale & correction frontier (PR #860–#871)** | **experimental/frontier; base eliminates separation tax** |
+
+## Key Visual Evidence
+
+<p align="center">
+  <img src="results/frontier/asr_llm_frontier_capstone.png" width="80%" alt="ASR×LLM+Emotion frontier capstone — five results on one canvas" />
+</p>
+<p align="center"><em>Figure 1: The ASR×LLM+Emotion frontier capstone — five experimental results on one canvas. <a href="docs/frontier/asr_llm_emotion_capstone.md">Full synthesis</a>.</em></p>
+
+<p align="center">
+  <img src="results/frontier/model_scale/model_scale_analysis.png" width="45%" alt="Model scale analysis — base eliminates separation tax" />
+  <img src="results/frontier/separation_tax/separation_tax.png" width="45%" alt="Separation tax phase diagram" />
+</p>
+<p align="center"><em>Left: Whisper-base eliminates the separation tax (CER 0.200 constant across all overlaps). Right: The separation-tax phase diagram showing the heavy hallucination tail at low overlap.</em></p>
+
+<p align="center">
+  <img src="results/frontier/noise_robust_router/noise_robust_router.png" width="45%" alt="Noise-robust router — recovers 92% of oracle gap" />
+  <img src="results/frontier/causal_hallucination_probe/FINDINGS.md" width="0%" alt="" />
+  <img src="results/frontier/emotion_separation_tax/emotion_asr_divergence.png" width="45%" alt="Emotion-ASR divergence — separation helps emotion but hurts ASR" />
+</p>
+<p align="center"><em>Left: The reference-free noise-robust router recovers ~92% of the oracle gap. Right: The Emotional Separation Tax — separation helps emotion but hurts ASR at low/mid overlap (objective-dependent).</em></p>
+
+27 experimental figures are available in `results/frontier/*/`. Each FINDINGS.md contains the full analysis with reproducible data.
+
+### Complete Figure Gallery
+
+<details>
+<summary><strong>Click to expand all 27 frontier figures</strong></summary>
+
+**Separation Tax & Hallucination:**
+- [Separation tax phase diagram](results/frontier/separation_tax/separation_tax.png) — CER vs overlap with heavy hallucination tail
+- [Hallucination router validation](results/frontier/hallucination_router/routing_curve.csv) — held-out split routing comparison
+- [Hallucination cure comparison](results/frontier/hallucination_cure/cure_curve.csv) — 5-cure head-to-head
+- [Noise robustness map](results/frontier/noise_robustness/noise_curve.csv) — overlap × SNR grid
+
+**Noise-Robust Gates & Router:**
+- [Spectral flatness gate](results/frontier/noise_robust_gate/noise_robust_gate.png) — broadband noise cure
+- [Speaker-conditioned gate](results/frontier/speaker_conditioned_gate/speaker_gate.png) — babble cure (AUC 0.95)
+- [Gate selector](results/frontier/gate_selector/gate_selector.png) — reference-free gate selection
+- [Noise-robust router](results/frontier/noise_robust_router/noise_robust_router.png) — recovers ~92% of oracle gap
+
+**Causal Hallucination Probe:**
+- [Causal probe findings](results/frontier/causal_hallucination_probe/FINDINGS.md) — confident attractor mechanism
+
+**Model Scale & Correction:**
+- [Model scale analysis](results/frontier/model_scale/model_scale_analysis.png) — base eliminates separation tax
+- [Error profile decomposition](results/frontier/error_profile_decomposition/error_profile_by_model.png) — both models substitution-dominated
+- [Contrastive decoding](results/frontier/contrastive_decode/contrastive_analysis.png) — divergence detects but can't cure
+- [Runtime cascade](results/frontier/runtime_cascade/cascade_analysis.png) — binary cliff, not smooth Pareto
+- [Multi-decode voting](results/frontier/multi_decode_voter/multi_decode_analysis.png) — CR wins over agreement
+- [Confidence-calibrated router](results/frontier/confidence_calibrated_router/ccr_regret_by_ratio.png) — multi-signal hurts
+
+**Emotion Frontier:**
+- [Emotion separation tax](results/frontier/emotion_separation_tax/emotion_separation_tax.png) — separation helps emotion
+- [Emotion-ASR divergence](results/frontier/emotion_separation_tax/emotion_asr_divergence.png) — objective-dependent decision
+- [Arousal-ASR probe](results/frontier/arousal_asr_probe/arousal_asr_probe.png) — arousal doesn't predict difficulty
+- [Lexical emotion tax](results/frontier/lexical_emotion_tax/lexical_emotion_tax.png) — tri-modal comparison
+- [LLM ASR critic](results/frontier/llm_asr_critic/llm_asr_critic.png) — simple beats fancy
+- [Emotion-anchored repair](results/frontier/emotion_anchored_repair/emotion_anchored_repair.png) — anchoring worsens it
+- [Tri-modal fusion](results/frontier/emotion_modality_fusion/emotion_modality_fusion.png) — orthogonality ≠ complementarity
+- [Emotion fidelity meter](results/frontier/emotion_fidelity_meter/emotion_fidelity_meter.png) — coarse gate only
+- [Gate emotion cost](results/frontier/gate_emotion_cost/gate_emotion_cost.png) — objective-blind cures
+- [Objective-aware routing](results/frontier/objective_aware_routing/objective_aware_routing.png) — decoupled routing
+- [Semantic emotion tax](results/frontier/semantic_emotion_tax/semantic_emotion_tax.png) — LLM reads implicit emotion
+- [LLM speaker attribution](results/frontier/llm_speaker_attribution/llm_speaker_attribution.png) — sign isn't free
+
+**Capstone:**
+- [ASR×LLM+Emotion hero figure](results/frontier/asr_llm_frontier_capstone.png) — all five results on one canvas
+
+</details>
 
 ## Frontier Highlights — ASR × LLM + Emotion + Speaker (experimental/frontier)
 
@@ -84,6 +164,23 @@ routing/gating studies were compensating for a problem that disappears with marg
 The 0.200 remaining CER is a hard floor: pattern-based correction, T/S normalization, and LLM rescoring
 all fail to improve it. Future frontier should focus on base+ model capabilities and external validation.
 
+## Negative Results — Bounded Failures as Research Progress
+
+The teacher's feedback notes: "Negative results are completely acceptable. What matters is the depth of the investigation." This project documents 8+ clean negative results, each narrowing the solution space:
+
+| Negative Result | What it tells us | Evidence |
+|---|---|---|
+| LLM rescoring is catastrophic (0/26 helped, CER 0.316→0.798) | Small LLMs *rewrite* rather than *correct* — the 0.200 CER floor is not fixable by contextual understanding | [FINDINGS](results/frontier/llm_base_rescore/FINDINGS.md) |
+| Runtime cascade has binary cliff, not smooth Pareto | CR signal is too coarse for segment-level escalation — just use base (1.93×) | [FINDINGS](results/frontier/runtime_cascade/FINDINGS.md) |
+| Beam search raises CER under every noise type | The noise-robust cure is NOT in the decoder — it must act on the audio | [FINDINGS](results/frontier/decoder_cure_noise/FINDINGS.md) |
+| Emotion-anchored repair worsens over-correction | Giving the LLM "more latitude to rewrite" causes more hallucination — #822's tax is robust | [FINDINGS](results/frontier/emotion_anchored_repair/FINDINGS.md) |
+| Arousal does NOT predict ASR difficulty (r=0.002) | Emotion↔ASR is asymmetric — separation affects emotion, but emotion can't route ASR | [FINDINGS](results/frontier/arousal_asr_probe/FINDINGS.md) |
+| Speaker similarity does not predict separation benefit (Pearson +0.49 → +0.08 under robust stats) | Use tail-robust statistics for ΔCER correlations | [FINDINGS](results/frontier/speaker_similarity_probe/FINDINGS.md) |
+| Hallucination router loses to trivial always-trim | Once you silence-trim, knowing overlap barely matters | [FINDINGS](results/frontier/hallucination_router/FINDINGS.md) |
+| Multi-decode voting doesn't beat single CR | Whisper-tiny is stably bad — temperature perturbation doesn't help | [FINDINGS](results/frontier/multi_decode_voter/FINDINGS.md) |
+
+Each negative result is documented with pre-registered hypotheses, kill criteria, honest reporting of what failed and why, and deployable implications.
+
 ## Frontier Highlights — Causal & Internal-State Hallucination (experimental/frontier)
 
 A 2026 frontier line looks *inside* Whisper at the separation-tax hallucination (`separation_tax` showed
@@ -117,6 +214,36 @@ hierarchy.
 AudioDepth is not currently a stable mainline claim and should not be merged
 from `frontier/audio-depth-router` without separating code, documentation,
 lightweight examples, tests, and large artifacts.
+
+## Literature & Related Work
+
+This project builds on and relates to the following research lines:
+
+**Speech separation and ASR:**
+- Sato et al. (Interspeech 2021, "Should We Always Separate?") — established that separators inject artifacts below an SIR/SNR crossover. Our Phase 1 reproduces and extends this to a continuous phase diagram with mechanistic analysis.
+- Kolbaek et al. (2017) — oracle separation methodology. We follow their approach of studying oracle bounds before realistic separators.
+
+**Whisper hallucination:**
+- Koenecke et al. (ACM FAccT 2024, "Careless Whisper") — hallucinations concentrate in silent regions as phrase repetition. Our separation tax is the separation-induced variant.
+- Baranski et al. (ICASSP 2025) — a recurring finite "bag of hallucinations" covers most cases.
+- Aparin et al. (2026, arXiv:2606.07473) — Whisper's filter fails on confident hallucinations; encoder/SAE latents separable pre-loop.
+- Waldendorf et al. (ACL 2026 Findings, arXiv:2604.19565) — uncertainty metrics fail in the clean/confident regime.
+- Wang et al., Calm-Whisper (Interspeech 2025, arXiv:2505.12969) — 3/20 decoder heads cause >75% of non-speech hallucinations.
+- Viakhirev et al. (2026, arXiv:2604.08591) — Compression-Seeking Attractor with self-attention rank collapse.
+- Corpataux et al. (OpenReview 2026) — per-token Local Confidence Drop for trajectory detection.
+- Ahn et al., Whisper-CD (Interspeech 2026, arXiv:2603.06193) — training-free token-level contrastive decoding.
+
+**ASR × LLM:**
+- GenSEC-LLM challenge (arXiv:2409.09785, 2024) — post-ASR emotion recognition as an LLM task.
+- R3 (arXiv:2409.15551, 2024) — couples ASR error-correction with emotion recognition.
+- VoxEmo (arXiv:2603.08936, 2026) — benchmarks speech emotion recognition with speech LLMs.
+
+**Emotion in speech:**
+- Russell (1980), Scherer (2005) — dimensional emotion tradition (arousal/valence). Our gain-invariant prosody approach follows this line.
+
+Full literature review with per-hypothesis novelty assessment:
+[docs/frontier/causal_hallucination_probe_litreview.md](docs/frontier/causal_hallucination_probe_litreview.md).
+Emotion frontier reading list: [docs/emotion_frontier.md](docs/emotion_frontier.md) (References section).
 
 ## Quickstart
 
@@ -201,6 +328,18 @@ An always-on development harness keeps the stable baseline safe while frontier w
 
 The full loop is `issue → PR → repo-guard CR → respond` ([workflow](docs/harness/workflow_spec.md)). code-tape's engineering-camp scoring and auto-merge automation is intentionally out of scope.
 
+### Implementation Details (943 lines across 5 Python modules)
+
+| Module | Lines | Purpose |
+|---|---|---|
+| `scripts/harness/contract_rules.py` | 424 | Classifies files into 6 critical-skeleton categories (router-core / evaluation-core / harness / references / gold-results / authority-docs). Changes to critical code trigger the paired-test gate. |
+| `scripts/harness/contract_check.py` | 238 | Runs on every `git push`; compares staged diff against contract rules; integrates with CI as `Contract Guard`. |
+| `scripts/harness/quality.py` | 123 | Unified command surface: `quality.py {predev,precommit,prepush,ci,local}`. Makefile: `make quality-{predev,precommit,prepush}`. |
+| `scripts/harness/entropy_guard.py` | 128 | Advisory pre-dev check that warns when changes add ceremony without substance. |
+| `scripts/harness/install_hooks.py` | 30 | Sets `core.hooksPath=.githooks` automatically. |
+
+The harness enabled the entire frontier research workflow: every one of the 40+ frontier PRs passed through this gate, and the contract prevented any critical-skeleton change from landing without paired tests.
+
 ## Emotion Frontier (experimental)
 
 > Label: `experimental/frontier`. Full plan, findings, and cited 2025–2026 reading in
@@ -209,14 +348,37 @@ The full loop is `issue → PR → repo-guard CR → respond` ([workflow](docs/h
 Extends the project's "when should we separate?" question from ASR-CER into **emotion**. Offline,
 label-free (clean-source prosody / reference text are the ground truth, mirroring CER):
 
-- **Emotional Separation Tax** — separation *helps* emotion at every overlap (no tax) yet *hurts* ASR
-  at low/mid overlap: the separate-or-not decision is **objective-dependent** ([findings](results/frontier/emotion_separation_tax/FINDINGS.md)).
-- **Arousal ≠ ASR-difficulty** — acoustic arousal does not predict CER (bounding negative); emotion is
-  a consequence to *preserve*, not a routing feature ([findings](results/frontier/arousal_asr_probe/FINDINGS.md)).
-- **Regex/lexicon lexical emotion** (valence) + tri-modal agreement, and a **prosody-grounded LLM × ASR
-  critic** (deepseek-r1 via ollama, regex fallback). The critic borrows code-tape's
-  **generation-evaluation separation** (separate *repair* and *judge* roles) and injects explicit
-  prosodic/lexical cues, since the 2025/26 SER frontier finds speech-LLMs have weak prosody perception.
+### The Seven Emotion Findings (#14–#20)
+
+| # | Finding | RQ | Outcome | Evidence |
+|---|---|---|---|---|
+| 14 | **Emotional Separation Tax** | Does separation preserve or distort per-speaker emotion? | ✅ Separation *helps* emotion at all overlaps (opposite of ASR tax). Decision is **objective-dependent**. | [FINDINGS](results/frontier/emotion_separation_tax/FINDINGS.md) · [figure](results/frontier/emotion_separation_tax/emotion_asr_divergence.png) |
+| 15 | **Arousal ≠ ASR-difficulty** | Does acoustic arousal predict ASR difficulty? | ❌ Pearson(arousal, CER) = 0.002. Emotion is a consequence to *preserve*, not a routing feature. | [FINDINGS](results/frontier/arousal_asr_probe/FINDINGS.md) · [figure](results/frontier/arousal_asr_probe/arousal_asr_probe.png) |
+| 16 | **Lexical emotion + tri-modal tax** | Can regex/lexicon valence + acoustic arousal jointly characterize the tax? | ◐ Lexical arm underpowered (fires on 2/16 snippets). Motivates the LLM reader. | [FINDINGS](results/frontier/lexical_emotion_tax/FINDINGS.md) · [figure](results/frontier/lexical_emotion_tax/lexical_emotion_tax.png) |
+| 17 | **LLM × ASR critic** | Can a local LLM serve as reference-free QE and repair? | ❌ LLM judge dominated by free compression-ratio signal. GER repair net-harms. Simple beats fancy. | [FINDINGS](results/frontier/llm_asr_critic/FINDINGS.md) · [figure](results/frontier/llm_asr_critic/llm_asr_critic.png) |
+| 18 | **Objective-aware decoupled routing** | Can decoupling text-route and emotion-route recover both? | ✅ Decoupled keeps same CER but halves emotion distortion, cutting joint regret ~14×. | [FINDINGS](results/frontier/objective_aware_routing/FINDINGS.md) · [figure](results/frontier/objective_aware_routing/objective_aware_routing.png) |
+| 19 | **Emotion fidelity meter** | Can we estimate emotion fidelity with NO clean reference? | ◐ Usable coarse gate (r=−0.51) but weak graded predictor (r=−0.20) that saturates. | [FINDINGS](results/frontier/emotion_fidelity_meter/FINDINGS.md) · [figure](results/frontier/emotion_fidelity_meter/emotion_fidelity_meter.png) |
+| 20 | **Gate emotion cost** | Do CER-tuned hallucination-cure gates damage emotion? | ◐ Both gates cure CER AND damage emotion. Speaker gate dominates on both axes. | [FINDINGS](results/frontier/gate_emotion_cost/FINDINGS.md) · [figure](results/frontier/gate_emotion_cost/gate_emotion_cost.png) |
+
+### Design Choices
+
+- **Why gain-invariant prosody?** Standard SER models require labeled training data, which doesn't exist for our overlap-controlled debate corpus. We operationalize emotion as gain-invariant acoustic prosody (arousal-side), using the clean source's own prosody as reference — following the dimensional emotion tradition (Russell, 1980; Scherer, 2005).
+- **Why deepseek-r1:7b via ollama?** Required: (a) fully offline (no API calls, privacy); (b) reasoning capability for emotion interpretation; (c) small enough (7B) for reproducible local experimentation. Alternatives considered: GPT-4/Claude (online, not reproducible), Llama-3-8B (no reasoning traces).
+- **Why Whisper-tiny for emotion experiments?** Same ASR outputs as the separation-tax baseline for cross-study comparability. Since the separation tax is tiny-specific, using tiny means emotion findings are *conservative* — they study emotion under worst-case ASR errors.
+
+## Research Entropy Audit (meta-research)
+
+> Label: `experimental/frontier`. Full analysis in [`docs/frontier/agentic_research_entropy.md`](docs/frontier/agentic_research_entropy.md).
+
+When an autonomous agentic loop ran unsupervised on this repo, ~89% of `src/*.py` files drifted into
+self-referential ceremony (handoff/receipt/coordination/completion-summary) with **zero computation**.
+This is a *research integrity* issue — ceremony creates an illusion of progress.
+
+**Metrics:** Entropy saturation 0.894 → 0.035 after cleanup; degeneration index 0.46 → 0.00; tests 3,304 → 825 all green.
+
+**Preventive guard:** `scripts/harness/entropy_guard.py` — advisory check that warns when changes add ceremony without substance. Integrated into `make quality-predev`.
+
+**Module:** `src/research_entropy_audit.py` — two-signal classifier (filename + content) + git timeline visualization + bounded degeneration index.
 
 ## OpenClaw: Agentic Engineering Assistant
 
@@ -257,4 +419,16 @@ readable.
 
 ## License / Citation / Acknowledgements
 
-TODO: Maintainers should decide the final License, Citation, and Acknowledgements text. This cleanup does not invent licensing or citation claims.
+**License:** This project is developed for academic coursework. All code is provided as-is for educational purposes.
+
+**Citation:** If you use this work, please cite:
+```
+@software{overlap_aware_speaker_asr,
+  title={Overlap-Aware Speaker ASR: When Does Separation Help?},
+  author={王景宏, 吴方舟, 谢宇轩, 邵俊霖, 梁跃川, 张浩豪},
+  year={2026},
+  url={https://github.com/ceilf6/overlap-aware-speaker-asr}
+}
+```
+
+**Acknowledgements:** Developed with reference to [code-tape](https://github.com/ceilf6/code-tape) for the engineering harness. ASR powered by [Whisper](https://github.com/openai/whisper). Local LLM via [ollama](https://ollama.ai/) + [deepseek-r1](https://github.com/deepseek-ai/DeepSeek-R1). Speaker embedding via [Resemblyzer](https://github.com/resemble-ai/Resemblyzer).
