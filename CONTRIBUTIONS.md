@@ -15,24 +15,26 @@ migration.
 
 ### Research Thread 1: The Separation Tax — from Mechanism to Model-Scale Dissolution
 
-**Grand RQ:** *Is the "separation tax" — speech separation hurting Whisper ASR at low/mid overlap — a fundamental limitation of overlap-aware ASR, or an artifact of using the weakest model?*
+**Grand RQ:** _Is the "separation tax" — speech separation hurting Whisper ASR at low/mid overlap — a fundamental limitation of overlap-aware ASR, or an artifact of using the weakest model?_
 
 This thread spans 20+ PRs across three phases and constitutes the project's deepest investigation.
 
 #### Phase 1: Oracle-separation phase study + reference-free cure (Issue #795, PR #796)
 
-**Literature gap.** Sato et al. (Interspeech 2021, "Should We Always Separate?") established that separators inject artifacts hurting ASR below an SIR/SNR crossover, proposing a gated router. However, their analysis used a single-sample-per-ratio scatter and did not characterize the *mechanism* of failure — whether separation uniformly degrades ASR or creates a heavy-tailed hallucination phenomenon.
+**Literature gap.** Sato et al. (Interspeech 2021, "Should We Always Separate?") established that separators inject artifacts hurting ASR below an SIR/SNR crossover, proposing a gated router. However, their analysis used a single-sample-per-ratio scatter and did not characterize the _mechanism_ of failure — whether separation uniformly degrades ASR or creates a heavy-tailed hallucination phenomenon.
 
 **Design choices and justification:**
+
 - **Why Whisper-tiny?** We chose the smallest Whisper model (39M parameters) as the primary experimental vehicle because: (a) it is the most resource-constrained realistic deployment target, making separation-overhead most consequential; (b) its small capacity makes separation-induced failures most visible, providing an upper bound on the tax; (c) all prior project baselines used tiny, enabling direct comparison. Faster-Whisper and WhisperX offer speed optimizations but use the same underlying model architecture — they would exhibit the same separation tax. The model-size question is explicitly addressed in Phase 3.
-- **Why oracle separation?** We used oracle (ground-truth) separation rather than a real separator (SepFormer, Conv-TasNet) to isolate the effect of separation *itself* from separator quality. This follows the standard methodology in speech separation evaluation (e.g., Kolbaek et al., 2017) where oracle bounds are studied before realistic separators.
+- **Why oracle separation?** We used oracle (ground-truth) separation rather than a real separator (SepFormer, Conv-TasNet) to isolate the effect of separation _itself_ from separator quality. This follows the standard methodology in speech separation evaluation (e.g., Kolbaek et al., 2017) where oracle bounds are studied before realistic separators.
 
 **Pre-registered hypotheses:**
+
 - H1: A continuous separation-gain crossover exists at some overlap ratio r* (confirmed: r* ≈ 0.17).
 - H2: The low-overlap penalty is a heavy hallucination tail, not uniform degradation (confirmed: at r=0.10, mean ΔCER = −0.94 but median = 0.00; 6/600 tracks blow up to CER up to 24×).
 - H3: A reference-free compression-ratio guard can detect catastrophic hallucination (confirmed: AUC ≈ 1.0 for CER > 1.0).
 
-**Key finding:** The separation tax is a *heavy-tailed hallucination phenomenon* concentrated in near-silent separated tracks, not a uniform degradation. A guard-gated trim/fallback router closes ~76% of the oracle gap. Detailed results in `results/frontier/separation_tax/FINDINGS.md`.
+**Key finding:** The separation tax is a _heavy-tailed hallucination phenomenon_ concentrated in near-silent separated tracks, not a uniform degradation. A guard-gated trim/fallback router closes ~76% of the oracle gap. Detailed results in `results/frontier/separation_tax/FINDINGS.md`.
 
 **Figures:** `results/frontier/separation_tax/phase_curve.csv`, `results/frontier/hallucination_router/routing_curve.csv`.
 
@@ -40,49 +42,51 @@ This thread spans 20+ PRs across three phases and constitutes the project's deep
 
 This phase followed a systematic **cure-search arc** — each negative result narrowing the solution space:
 
-| Study | RQ | Outcome | Key evidence |
-|---|---|---|---|
-| **Hallucination router** (#797) | Route by hallucination vs overlap on held-out split? | ❌ **Falsified**: degeneracy router (+0.083 regret) loses to trivial always-trim (+0.041). But the trim recipe generalizes — once you silence-trim, knowing overlap barely matters. | `results/frontier/hallucination_router/FINDINGS.md` |
-| **Reference-free QE** (#799) | Do decoder signals predict graded CER? | ◐ Signals are catastrophe *gates* (AUC 1.0 for CER>1.0) but at chance for moderate CER (AUC ~0.48). U-shaped calibration. | `results/frontier/reference_free_qe/qe_signal_table.csv` |
-| **Speaker similarity** (#801) | Does acoustic speaker distance predict separation benefit? | ❌ **Negative**: apparent Pearson +0.49 collapses to +0.08 under tail-robust median. Methodological caution: use robust stats. | `results/frontier/speaker_similarity_probe/FINDINGS.md` |
-| **Hallucination cure** (#803) | Can Whisper's native `hallucination_silence_threshold` or beam search cure the tail? | ✅ The catastrophe is a greedy-decoding artifact. All of {silence-trim, native threshold, beam} eliminate the tail (19.84 → ~0.54). Best deployable: silence-trim (−39% mean CER). | `results/frontier/hallucination_cure/cure_curve.csv` |
-| **Noise robustness** (#805) | Does the silence-trim cure survive noise? | ❌ **Critical negative**: noise defeats the cure. Trim benefit collapses from +0.239 (clean) to +0.000 at every SNR ≥ 0 dB. Energy-trim needs *actual silence* — noise fills the gap. | `results/frontier/noise_robustness/noise_curve.csv` |
-| **Spectral + speaker gates** (#807) | Can spectral-flatness or speaker embeddings cure hallucination under noise? | ✅ Spectral gate works for broadband noise; speaker-conditioned gate (Resemblyzer GE2E, AUC 0.95) cures babble (CER 1.63→0.67). No single gate dominates all noise types. | `results/frontier/speaker_conditioned_gate/speaker_gate_curve.csv` |
-| **Decoder cures under noise** (#809) | Is the noise-robust cure in the decoder, not the audio? | ❌ **Negative**: beam search raises mean CER under every noise type (pooled 1.947 vs greedy 1.676). Native silence-threshold fires only 4–33% under noise. The cure must act on the audio. | `results/frontier/decoder_cure_noise/cure_noise_curve.csv` |
-| **Gate selector** (#811) | Can a reference-free selector choose between gates by residual character? | ❌ **Falsified** with a stronger byproduct: the speaker gate dominates on *both* axes (CER + emotion), so there is nothing to select. The real decision is separate-vs-mixed, not gate-vs-gate. | `results/frontier/gate_selector/FINDINGS.md` |
-| **Noise-robust router** (#814) | Can a reference-free router beat fixed strategies under noise? | ✅✅ **Strong positive**: router 0.778 vs always-mixed 1.214 / always-gated 1.531. Recovers ~92% of oracle gap. Pearson(CR, separation-tax) = 0.82. | `results/frontier/noise_robust_router/router_curve.csv` |
+| Study                                | RQ                                                                                   | Outcome                                                                                                                                                                                         | Key evidence                                                       |
+| ------------------------------------ | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| **Hallucination router** (#797)      | Route by hallucination vs overlap on held-out split?                                 | ❌ **Falsified**: degeneracy router (+0.083 regret) loses to trivial always-trim (+0.041). But the trim recipe generalizes — once you silence-trim, knowing overlap barely matters.             | `results/frontier/hallucination_router/FINDINGS.md`                |
+| **Reference-free QE** (#799)         | Do decoder signals predict graded CER?                                               | ◐ Signals are catastrophe _gates_ (AUC 1.0 for CER>1.0) but at chance for moderate CER (AUC ~0.48). U-shaped calibration.                                                                       | `results/frontier/reference_free_qe/qe_signal_table.csv`           |
+| **Speaker similarity** (#801)        | Does acoustic speaker distance predict separation benefit?                           | ❌ **Negative**: apparent Pearson +0.49 collapses to +0.08 under tail-robust median. Methodological caution: use robust stats.                                                                  | `results/frontier/speaker_similarity_probe/FINDINGS.md`            |
+| **Hallucination cure** (#803)        | Can Whisper's native `hallucination_silence_threshold` or beam search cure the tail? | ✅ The catastrophe is a greedy-decoding artifact. All of {silence-trim, native threshold, beam} eliminate the tail (19.84 → ~0.54). Best deployable: silence-trim (−39% mean CER).              | `results/frontier/hallucination_cure/cure_curve.csv`               |
+| **Noise robustness** (#805)          | Does the silence-trim cure survive noise?                                            | ❌ **Critical negative**: noise defeats the cure. Trim benefit collapses from +0.239 (clean) to +0.000 at every SNR ≥ 0 dB. Energy-trim needs _actual silence_ — noise fills the gap.           | `results/frontier/noise_robustness/noise_curve.csv`                |
+| **Spectral + speaker gates** (#807)  | Can spectral-flatness or speaker embeddings cure hallucination under noise?          | ✅ Spectral gate works for broadband noise; speaker-conditioned gate (Resemblyzer GE2E, AUC 0.95) cures babble (CER 1.63→0.67). No single gate dominates all noise types.                       | `results/frontier/speaker_conditioned_gate/speaker_gate_curve.csv` |
+| **Decoder cures under noise** (#809) | Is the noise-robust cure in the decoder, not the audio?                              | ❌ **Negative**: beam search raises mean CER under every noise type (pooled 1.947 vs greedy 1.676). Native silence-threshold fires only 4–33% under noise. The cure must act on the audio.      | `results/frontier/decoder_cure_noise/cure_noise_curve.csv`         |
+| **Gate selector** (#811)             | Can a reference-free selector choose between gates by residual character?            | ❌ **Falsified** with a stronger byproduct: the speaker gate dominates on _both_ axes (CER + emotion), so there is nothing to select. The real decision is separate-vs-mixed, not gate-vs-gate. | `results/frontier/gate_selector/FINDINGS.md`                       |
+| **Noise-robust router** (#814)       | Can a reference-free router beat fixed strategies under noise?                       | ✅✅ **Strong positive**: router 0.778 vs always-mixed 1.214 / always-gated 1.531. Recovers ~92% of oracle gap. Pearson(CR, separation-tax) = 0.82.                                             | `results/frontier/noise_robust_router/router_curve.csv`            |
 
 **Engineering trade-off: Why Resemblyzer for speaker embedding?** We chose Resemblyzer (GE2E encoder) over alternatives (pyannote.audio, SpeechBrain, wav2vec2-based) because: (a) it is fully offline and lightweight (~45MB), matching our local-first constraint; (b) it produces a single 256-dim embedding per track, enabling fast cosine-distance computation across 600+ conditions; (c) its AUC 0.95 on babble detection was sufficient — a more complex model would add latency without changing the gate-vs-no-gate decision boundary. The honest limitation is that it fails at 0 dB SNR (AUC 0.52 ≈ chance).
 
-**Literature grounding:** The hallucination cure chain connects to Koenecke et al. (ACM FAccT 2024, "Careless Whisper") — Whisper hallucinations concentrate in long silent regions as phrase repetition — and Baranski et al. (ICASSP 2025) — a recurring finite "bag of hallucinations" covers most cases. Our contribution is mapping these findings into the *separation-induced* regime with noise as an additional axis.
+**Literature grounding:** The hallucination cure chain connects to Koenecke et al. (ACM FAccT 2024, "Careless Whisper") — Whisper hallucinations concentrate in long silent regions as phrase repetition — and Baranski et al. (ICASSP 2025) — a recurring finite "bag of hallucinations" covers most cases. Our contribution is mapping these findings into the _separation-induced_ regime with noise as an additional axis.
 
 #### Phase 3: Model scale analysis — the separation tax is a tiny-model artifact (Issues #857–#871, PRs #858–#872)
 
 **Critical validity question.** All 29+ frontier studies used Whisper-tiny exclusively. If the separation tax, hallucination thresholds, and routing signals do not generalize to larger models, the practical value collapses.
 
 **Design choices and justification:**
+
 - **Why test tiny/base/small specifically?** These span a 10× parameter range (39M/74M/244M) at 1×/1.93×/6× compute cost, covering the realistic deployment spectrum for edge/real-time ASR. We did not test medium/large because: (a) they require >1GB VRAM, exceeding typical edge constraints; (b) the base result already dissolved the tax, making further scaling less informative.
-- **Why not Faster-Whisper or WhisperX?** Faster-Whisper uses CTranslate2 quantization for speed but produces identical logits to vanilla Whisper at the same model size. WhisperX adds forced alignment and VAD preprocessing — useful for production but irrelevant to our controlled overlap×separation experiment. The model *capacity* (parameter count) is what matters, not the inference engine.
+- **Why not Faster-Whisper or WhisperX?** Faster-Whisper uses CTranslate2 quantization for speed but produces identical logits to vanilla Whisper at the same model size. WhisperX adds forced alignment and VAD preprocessing — useful for production but irrelevant to our controlled overlap×separation experiment. The model _capacity_ (parameter count) is what matters, not the inference engine.
 
 **Pre-registered hypotheses (PR #859):**
+
 - H1: Larger models hallucinate less — the catastrophic tail rate decreases monotonically tiny → base → small. **Confirmed.**
 - H2: The separation-tax phase boundary shifts leftward — separation helps at lower overlap for larger models. **Confirmed** (base: separation tax disappears entirely).
 - H3: Compression-ratio becomes less discriminative for larger models (signal paradox). **Confirmed** — base's CR is ~1.0 on all inputs, making it useless as a routing signal.
 
-**Headline result:** Whisper-base (74M, 1.93× compute) produces CER = 0.200 *constant across all overlap ratios* — the separation tax completely vanishes. Zero hallucinations. All 29 routing/gating studies were compensating for tiny-specific weakness.
+**Headline result:** Whisper-base (74M, 1.93× compute) produces CER = 0.200 _constant across all overlap ratios_ — the separation tax completely vanishes. Zero hallucinations. All 29 routing/gating studies were compensating for tiny-specific weakness.
 
 **Follow-up investigations (9 PRs):**
 
-| Study | RQ | Outcome | Evidence |
-|---|---|---|---|
-| **Confidence-calibrated router** (CCR) | Do multi-signal composites beat single CR? | ❌ Worse — CR alone is near-optimal | `results/frontier/confidence_calibrated_router/` |
-| **Multi-decode voting** (#858) | Is decode-stability a stronger reference-free signal? | ❌ CR Spearman 0.781 vs agreement −0.404. Whisper-tiny is stably bad. | `results/frontier/multi_decode_voter/` |
-| **Contrastive decoding** (#857) | Can subtracting mixed-prior logits suppress hallucination proactively? | ◐ Divergence IS a quality signal (AUC 0.765) but fallback correction is 0.076 CER *worse*. Hallucination is deterministic AND anti-hallucination is insufficient. | `results/frontier/contrastive_decode/contrastive_curve.csv` |
-| **Runtime cascade** (#863) | Can tiny→base escalation achieve near-base CER at near-tiny compute? | ❌ CR signal has a binary cliff, not a smooth Pareto. Just use base (1.93×, eliminates the tax). | `results/frontier/runtime_cascade/pareto_frontier.csv` |
-| **Reference validity** (#866) | Is base's 0.200 CER real or model-proximity? | ✅ Base and small produce 37.2% different text on clean audio. Base is completely stable. | `results/frontier/reference_validity/FINDINGS.md` |
-| **Error pattern analysis** (#867) | Can pattern-based post-processing fix base's errors? | ❌ 64 unique patterns, only 9.4% recurring. 0.200 CER is a hard floor of genuine acoustic ambiguity. | `results/frontier/base_error_correction/substitution_table.csv` |
-| **LLM rescoring** (#869) | Can deepseek-r1 correct base's substitution errors? | ❌ **Catastrophic**: 0/26 improved, CER 0.316→0.798. The LLM *rewrites* text instead of correcting. | `results/frontier/llm_base_rescore/FINDINGS.md` |
-| **Error profile decomposition** (#865) | Do tiny and base make different *kinds* of errors? | ◐ Both ~70% substitution-dominated. CER difference = total count, not error types. | `results/frontier/error_profile_decomposition/profile_curve.csv` |
+| Study                                  | RQ                                                                     | Outcome                                                                                                                                                           | Evidence                                                         |
+| -------------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| **Confidence-calibrated router** (CCR) | Do multi-signal composites beat single CR?                             | ❌ Worse — CR alone is near-optimal                                                                                                                               | `results/frontier/confidence_calibrated_router/`                 |
+| **Multi-decode voting** (#858)         | Is decode-stability a stronger reference-free signal?                  | ❌ CR Spearman 0.781 vs agreement −0.404. Whisper-tiny is stably bad.                                                                                             | `results/frontier/multi_decode_voter/`                           |
+| **Contrastive decoding** (#857)        | Can subtracting mixed-prior logits suppress hallucination proactively? | ◐ Divergence IS a quality signal (AUC 0.765) but fallback correction is 0.076 CER _worse_. Hallucination is deterministic AND anti-hallucination is insufficient. | `results/frontier/contrastive_decode/contrastive_curve.csv`      |
+| **Runtime cascade** (#863)             | Can tiny→base escalation achieve near-base CER at near-tiny compute?   | ❌ CR signal has a binary cliff, not a smooth Pareto. Just use base (1.93×, eliminates the tax).                                                                  | `results/frontier/runtime_cascade/pareto_frontier.csv`           |
+| **Reference validity** (#866)          | Is base's 0.200 CER real or model-proximity?                           | ✅ Base and small produce 37.2% different text on clean audio. Base is completely stable.                                                                         | `results/frontier/reference_validity/FINDINGS.md`                |
+| **Error pattern analysis** (#867)      | Can pattern-based post-processing fix base's errors?                   | ❌ 64 unique patterns, only 9.4% recurring. 0.200 CER is a hard floor of genuine acoustic ambiguity.                                                              | `results/frontier/base_error_correction/substitution_table.csv`  |
+| **LLM rescoring** (#869)               | Can deepseek-r1 correct base's substitution errors?                    | ❌ **Catastrophic**: 0/26 improved, CER 0.316→0.798. The LLM _rewrites_ text instead of correcting.                                                               | `results/frontier/llm_base_rescore/FINDINGS.md`                  |
+| **Error profile decomposition** (#865) | Do tiny and base make different _kinds_ of errors?                     | ◐ Both ~70% substitution-dominated. CER difference = total count, not error types.                                                                                | `results/frontier/error_profile_decomposition/profile_curve.csv` |
 
 **Unified conclusion:** "Overlap-aware speaker ASR" as a routing problem is a tiny-model artifact. Whisper-base eliminates the separation tax at 1.93× compute. The remaining 0.200 CER is a hard floor of acoustic ambiguity — not fixable by pattern matching, T/S normalization, or LLM rescoring. Future work should focus on base+ model capabilities and external benchmark validation.
 
@@ -92,23 +96,25 @@ This phase followed a systematic **cure-search arc** — each negative result na
 
 ### Research Thread 2: Causal & Internal-State Hallucination Probe (Issue #855, PR #856)
 
-**RQ:** *Can we detect separation-induced hallucination from inside Whisper during decoding, earlier than the output compression-ratio signal?*
+**RQ:** _Can we detect separation-induced hallucination from inside Whisper during decoding, earlier than the output compression-ratio signal?_
 
-**Motivation.** The `separation_tax` phase (Thread 1) closed the *acoustic* loop — a reference-free compression-ratio guard detects catastrophes at AUC ≈ 1.0. But CR is an **output** signal computed over the *full* decoded segment; by the time it inflates past 2.4, Whisper has *already emitted* the repetition loop to the user. A streaming system has already shown garbage. This probe asks whether Whisper's *internal state* during decoding provides an earlier warning.
+**Motivation.** The `separation_tax` phase (Thread 1) closed the _acoustic_ loop — a reference-free compression-ratio guard detects catastrophes at AUC ≈ 1.0. But CR is an **output** signal computed over the _full_ decoded segment; by the time it inflates past 2.4, Whisper has _already emitted_ the repetition loop to the user. A streaming system has already shown garbage. This probe asks whether Whisper's _internal state_ during decoding provides an earlier warning.
 
-**Why look inside Whisper?** Alternative approaches — better output metrics, multi-decode agreement, contrastive decoding — all failed in Phase 2 (Thread 1). The insight from a 3-second smoke test was revelatory: feeding Whisper-tiny a tone surrounded by silence reproduces the loop (token 7322 × 224) with `compression_ratio=37.2`, `no_speech_prob=0.82` (encoder: "no speech"), yet `avg_logprob=-0.065` (decoder: *highly confident*). The loop is a **confident attractor under an input the encoder flags as silent** — an encoder/decoder *decoupling*, not a confidence collapse. This motivated looking at token-level decoder state.
+**Why look inside Whisper?** Alternative approaches — better output metrics, multi-decode agreement, contrastive decoding — all failed in Phase 2 (Thread 1). The insight from a 3-second smoke test was revelatory: feeding Whisper-tiny a tone surrounded by silence reproduces the loop (token 7322 × 224) with `compression_ratio=37.2`, `no_speech_prob=0.82` (encoder: "no speech"), yet `avg_logprob=-0.065` (decoder: _highly confident_). The loop is a **confident attractor under an input the encoder flags as silent** — an encoder/decoder _decoupling_, not a confidence collapse. This motivated looking at token-level decoder state.
 
 **Literature grounding (6-agent deep-research sweep, `docs/frontier/causal_hallucination_probe_litreview.md`):**
-- Aparin et al. (2026, arXiv:2606.07473): Whisper's built-in filter fails because hallucinations carry *elevated* `avg_logprob`; encoder/SAE latents are linearly separable pre-loop. Steering cuts hallucination 86.9%→27.3%.
+
+- Aparin et al. (2026, arXiv:2606.07473): Whisper's built-in filter fails because hallucinations carry _elevated_ `avg_logprob`; encoder/SAE latents are linearly separable pre-loop. Steering cuts hallucination 86.9%→27.3%.
 - Waldendorf et al. (ACL 2026 Findings, arXiv:2604.19565): Uncertainty metrics fail exactly in the clean/confident regime; attention-collapse-to-early-frames signature; detectors are task/model-specific.
 - Wang et al., Calm-Whisper (Interspeech 2025, arXiv:2505.12969): 3/20 decoder self-attention heads cause >75% of non-speech hallucinations; head-mask fine-tune cuts it >80% at <0.1% WER.
 - Viakhirev et al. (2026, arXiv:2604.08591): Compression-Seeking Attractor with self-attention rank collapse decoupling decoder from acoustics.
 - Corpataux et al. (OpenReview 2026): Per-token Local Confidence Drop detects confident hallucinations as local discontinuities — direct prior art for trajectory detection.
 - Sato et al. (Interspeech 2021, arXiv:2106.00949): Separation-hurts-below-a-crossover — established bedrock, not our discovery.
 
-**Honest novelty assessment:** The confident-loop mechanism is now well-established (Aparin, Waldendorf, Calm-Whisper, Viakhirev). We *extend* it to the separation-tax regime; we do not discover it. The genuinely new contributions are: (1) **token-id repetition lock-in as a causal trip-wire** — no located prior work uses token-id repetition at this granularity as an early detector; (2) **quantifying the offline CR router's gain decay under causal prefix forcing** — an untouched deployment-analysis niche.
+**Honest novelty assessment:** The confident-loop mechanism is now well-established (Aparin, Waldendorf, Calm-Whisper, Viakhirev). We _extend_ it to the separation-tax regime; we do not discover it. The genuinely new contributions are: (1) **token-id repetition lock-in as a causal trip-wire** — no located prior work uses token-id repetition at this granularity as an early detector; (2) **quantifying the offline CR router's gain decay under causal prefix forcing** — an untouched deployment-analysis niche.
 
 **Pre-registered hypotheses and outcomes:**
+
 - **H-M (mechanism):** Catastrophic tracks show higher `avg_logprob` + lower token-id entropy vs clean tracks — confident loop, not confidence collapse. **SUPPORTED (refined).** avg_logprob −0.335 vs −0.739; entropy 1.49 vs 2.33. Honest refinement: `no_speech_prob` is anti-correlated (AUC 0.33), not the signal — the smoke-test "encoder says silent" was near-pure-silence-specific.
 - **H-D (latency):** A token-repetition lock-in detector fires earlier than compression-ratio. **SUPPORTED (Mode R).** Lock-in fires at ~2% of stream vs CR at ~20% (**~10× earlier**). CR's AUC (0.996) remains the broadest detector; lock-in's contribution is causal earliness, not ranking.
 - **H-C (deployability):** A causal router recovers offline routing gain. **SCOPED.** At tight causal caps (0.05–0.15) causal-internal beats causal-CR; at loose caps CR wins; neither dominates → deployable design is the union.
@@ -123,43 +129,45 @@ This phase followed a systematic **cure-search arc** — each negative result na
 
 ### Research Thread 3: ASR × LLM × Emotion × Speaker (Issues #815–#842, PRs #816–#842)
 
-**Grand RQ:** *Can a local, offline LLM and cheap reference-free signals jointly decide when to separate, when to repair, how to read emotion, and whether to trust speaker attribution — without any ground-truth reference?*
+**Grand RQ:** _Can a local, offline LLM and cheap reference-free signals jointly decide when to separate, when to repair, how to read emotion, and whether to trust speaker attribution — without any ground-truth reference?_
 
 This thread unifies two project directions (ASR×LLM synergy + emotion) across 7 emotion-frontier experiments + 5 ASR×LLM experiments + 1 capstone synthesis.
 
 **Design choices and justification:**
+
 - **Why deepseek-r1:7b via ollama?** We required an LLM that: (a) runs fully offline (no API calls, no data leakage — critical for a research project on sensitive debate audio); (b) has reasoning capability (chain-of-thought) for emotion interpretation and minimal-edit repair; (c) is small enough (7B) for reproducible local experimentation. Alternatives considered: GPT-4/Claude (online, not reproducible, privacy concern); Llama-3-8B (no reasoning traces); Qwen-2.5-7B (comparable but less documented for Chinese). deepseek-r1:7b was already cached locally and had the best documented Chinese reasoning performance at this size.
-- **Why Whisper-tiny for emotion experiments?** The emotion experiments needed the *same* ASR outputs as the separation-tax baseline for cross-study comparability. Since Thread 1 established that the separation tax is tiny-specific, using tiny here means the emotion findings are *conservative* — they study emotion under worst-case ASR errors.
-- **Why gain-invariant prosody for emotion?** Standard SER (Speech Emotion Recognition) models require labeled training data, which doesn't exist for our overlap-controlled debate corpus. Instead, we operationalize emotion as *gain-invariant acoustic prosody* (arousal-side), using the clean source's own prosody as reference — mirroring how CER uses the verified transcript. This follows the dimensional emotion tradition (Russell, 1980; Scherer, 2005) rather than discrete emotion categories.
+- **Why Whisper-tiny for emotion experiments?** The emotion experiments needed the _same_ ASR outputs as the separation-tax baseline for cross-study comparability. Since Thread 1 established that the separation tax is tiny-specific, using tiny here means the emotion findings are _conservative_ — they study emotion under worst-case ASR errors.
+- **Why gain-invariant prosody for emotion?** Standard SER (Speech Emotion Recognition) models require labeled training data, which doesn't exist for our overlap-controlled debate corpus. Instead, we operationalize emotion as _gain-invariant acoustic prosody_ (arousal-side), using the clean source's own prosody as reference — mirroring how CER uses the verified transcript. This follows the dimensional emotion tradition (Russell, 1980; Scherer, 2005) rather than discrete emotion categories.
 
 **Literature grounding:**
-- GenSEC-LLM challenge (arXiv:2409.09785, 2024): Makes post-ASR emotion recognition a first-class LLM task — but on clean single-speaker corpora. *Nobody has asked whether ASR errors induced by overlap+separation distort the emotion an LLM reads.*
+
+- GenSEC-LLM challenge (arXiv:2409.09785, 2024): Makes post-ASR emotion recognition a first-class LLM task — but on clean single-speaker corpora. _Nobody has asked whether ASR errors induced by overlap+separation distort the emotion an LLM reads._
 - R3 (arXiv:2409.15551, 2024): Couples ASR error-correction with emotion recognition — but uses clean audio. Our controlled overlap×separation grid is the right instrument to test this coupling under realistic conditions.
 - VoxEmo (arXiv:2603.08936, 2026): Benchmarks speech emotion recognition with speech LLMs — confirms that LLMs have weak prosody perception, motivating our tri-modal approach.
 
 **Emotion Frontier Seven Studies (findings #14–#20):**
 
-| # | Study | RQ | Outcome | Key evidence |
-|---|---|---|---|---|
-| 14 | **Emotional Separation Tax** (#815) | Does separation preserve or distort per-speaker emotion? | ✅ Separation *helps* emotion at all overlaps (opposite of ASR tax). The separate-or-not decision is **objective-dependent** — a single switch cannot serve both text and emotion. | `results/frontier/emotion_separation_tax/emotion_asr_divergence.png` |
-| 15 | **Arousal→ASR probe** (#817) | Does acoustic arousal predict ASR difficulty? | ❌ **Bounding negative**: Pearson(arousal, CER) = 0.002. The emotion↔ASR relationship is asymmetric — separation affects emotion, but emotion does NOT predict ASR difficulty. | `results/frontier/arousal_asr_probe/arousal_asr_probe.png` |
-| 16 | **Lexical emotion + tri-modal tax** (#819) | Can regex/lexicon valence + acoustic arousal + lexical valence jointly characterize the separation tax? | ◐ Lexical arm underpowered (seed lexicon fires on 2/16 snippets). Motivates the LLM reader. | `results/frontier/lexical_emotion_tax/lexical_emotion_tax.png` |
-| 17 | **LLM × ASR critic** (#821) | Can a local LLM serve as reference-free QE and repair? | ❌ **Bounding negative**: LLM judge is dominated by free compression-ratio signal (+0.74 vs −0.41). GER repair net-harms (CER 0.951→0.983). Simple beats fancy. | `results/frontier/llm_asr_critic/llm_asr_critic.png` |
-| 18 | **Objective-aware decoupled routing** (#823) | Can decoupling text-route and emotion-route recover both? | ✅ **Capstone**: decoupled keeps same CER (0.528) but halves emotion distortion (0.139→0.079), cutting joint regret ~14×. | `results/frontier/objective_aware_routing/FINDINGS.md` |
-| 19 | **Emotion fidelity meter** (#825) | Can we estimate emotion fidelity with NO clean reference? | ◐ Usable coarse clean/contaminated gate (r=−0.51) but weak graded predictor (r=−0.20) that saturates. | `results/frontier/emotion_fidelity_meter/FINDINGS.md` |
-| 20 | **Gate emotion cost** (#827) | Do CER-tuned hallucination-cure gates damage emotion? | ◐ Both gates cure CER AND damage emotion (objective-blind). Speaker gate dominates on both axes (cures more, damages least). | `results/frontier/gate_emotion_cost/FINDINGS.md` |
+| #   | Study                                        | RQ                                                                                                      | Outcome                                                                                                                                                                            | Key evidence                                                         |
+| --- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| 14  | **Emotional Separation Tax** (#815)          | Does separation preserve or distort per-speaker emotion?                                                | ✅ Separation _helps_ emotion at all overlaps (opposite of ASR tax). The separate-or-not decision is **objective-dependent** — a single switch cannot serve both text and emotion. | `results/frontier/emotion_separation_tax/emotion_asr_divergence.png` |
+| 15  | **Arousal→ASR probe** (#817)                 | Does acoustic arousal predict ASR difficulty?                                                           | ❌ **Bounding negative**: Pearson(arousal, CER) = 0.002. The emotion↔ASR relationship is asymmetric — separation affects emotion, but emotion does NOT predict ASR difficulty.     | `results/frontier/arousal_asr_probe/arousal_asr_probe.png`           |
+| 16  | **Lexical emotion + tri-modal tax** (#819)   | Can regex/lexicon valence + acoustic arousal + lexical valence jointly characterize the separation tax? | ◐ Lexical arm underpowered (seed lexicon fires on 2/16 snippets). Motivates the LLM reader.                                                                                        | `results/frontier/lexical_emotion_tax/lexical_emotion_tax.png`       |
+| 17  | **LLM × ASR critic** (#821)                  | Can a local LLM serve as reference-free QE and repair?                                                  | ❌ **Bounding negative**: LLM judge is dominated by free compression-ratio signal (+0.74 vs −0.41). GER repair net-harms (CER 0.951→0.983). Simple beats fancy.                    | `results/frontier/llm_asr_critic/llm_asr_critic.png`                 |
+| 18  | **Objective-aware decoupled routing** (#823) | Can decoupling text-route and emotion-route recover both?                                               | ✅ **Capstone**: decoupled keeps same CER (0.528) but halves emotion distortion (0.139→0.079), cutting joint regret ~14×.                                                          | `results/frontier/objective_aware_routing/FINDINGS.md`               |
+| 19  | **Emotion fidelity meter** (#825)            | Can we estimate emotion fidelity with NO clean reference?                                               | ◐ Usable coarse clean/contaminated gate (r=−0.51) but weak graded predictor (r=−0.20) that saturates.                                                                              | `results/frontier/emotion_fidelity_meter/FINDINGS.md`                |
+| 20  | **Gate emotion cost** (#827)                 | Do CER-tuned hallucination-cure gates damage emotion?                                                   | ◐ Both gates cure CER AND damage emotion (objective-blind). Speaker gate dominates on both axes (cures more, damages least).                                                       | `results/frontier/gate_emotion_cost/FINDINGS.md`                     |
 
 **ASR×LLM Frontier Studies:**
 
-| Study | RQ | Outcome | Key evidence |
-|---|---|---|---|
-| **Semantic Emotion Tax** (#831) | Can a local LLM read implicit emotion the lexicon misses? | ✅ LLM coverage 0.70 vs lexicon 0.10 (~7×). Orthogonal 3rd modality vs acoustic-arousal & lexical-valence. | `results/frontier/semantic_emotion_tax/FINDINGS.md` |
-| **Emotion-anchored repair** (#833) | Does anchoring LLM repair to detected stance cure over-correction? | ❌ **Negative**: no-repair 0.924 < naive 1.082 < anchored 1.122. Anchoring *worsens* it — giving the model "more latitude to rewrite" causes more hallucination. | `results/frontier/emotion_anchored_repair/FINDINGS.md` |
-| **Tri-modal fusion** (#835) | Do orthogonal emotion modalities fuse to predict emotion damage? | ◐ Fusion helps semantic target (R² 0.10→0.16) but hurts acoustic one. Acoustic-arousal is the single best reference-free emotion-damage signal. | `results/frontier/emotion_modality_fusion/FINDINGS.md` |
-| **Noise-robust router** (#814) | Can a reference-free router beat fixed strategies under noise? | ✅✅ Router 0.778 vs mixed 1.214 / gate 1.531. Recovers ~92% of oracle gap. Pearson(CR, tax) = 0.82. | `results/frontier/noise_robust_router/noise_robust_router.png` |
-| **LLM speaker attribution** (#838) | Can LLM affect repair who-said-what? | ◐ Valence strongly encodes speaker role (AUC strength 0.78) but sign isn't knowable reference-free (naive 0.08, calibrated 0.92). | `results/frontier/llm_speaker_attribution/FINDINGS.md` |
+| Study                              | RQ                                                                 | Outcome                                                                                                                                                          | Key evidence                                                   |
+| ---------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| **Semantic Emotion Tax** (#831)    | Can a local LLM read implicit emotion the lexicon misses?          | ✅ LLM coverage 0.70 vs lexicon 0.10 (~7×). Orthogonal 3rd modality vs acoustic-arousal & lexical-valence.                                                       | `results/frontier/semantic_emotion_tax/FINDINGS.md`            |
+| **Emotion-anchored repair** (#833) | Does anchoring LLM repair to detected stance cure over-correction? | ❌ **Negative**: no-repair 0.924 < naive 1.082 < anchored 1.122. Anchoring _worsens_ it — giving the model "more latitude to rewrite" causes more hallucination. | `results/frontier/emotion_anchored_repair/FINDINGS.md`         |
+| **Tri-modal fusion** (#835)        | Do orthogonal emotion modalities fuse to predict emotion damage?   | ◐ Fusion helps semantic target (R² 0.10→0.16) but hurts acoustic one. Acoustic-arousal is the single best reference-free emotion-damage signal.                  | `results/frontier/emotion_modality_fusion/FINDINGS.md`         |
+| **Noise-robust router** (#814)     | Can a reference-free router beat fixed strategies under noise?     | ✅✅ Router 0.778 vs mixed 1.214 / gate 1.531. Recovers ~92% of oracle gap. Pearson(CR, tax) = 0.82.                                                             | `results/frontier/noise_robust_router/noise_robust_router.png` |
+| **LLM speaker attribution** (#838) | Can LLM affect repair who-said-what?                               | ◐ Valence strongly encodes speaker role (AUC strength 0.78) but sign isn't knowable reference-free (naive 0.08, calibrated 0.92).                                | `results/frontier/llm_speaker_attribution/FINDINGS.md`         |
 
-**Unified conclusion:** Cheap Whisper decoder signals are the deployable lever for routing; acoustic prosody handles "acoustic emotion"; the local LLM's true value is *covering implicit semantic emotion*, not providing free repair or attribution rules.
+**Unified conclusion:** Cheap Whisper decoder signals are the deployable lever for routing; acoustic prosody handles "acoustic emotion"; the local LLM's true value is _covering implicit semantic emotion_, not providing free repair or attribution rules.
 
 **Capstone:** `docs/frontier/asr_llm_emotion_capstone.md` — a one-page synthesis with deployable decision recipe.
 **Hero figure:** `results/frontier/asr_llm_frontier_capstone.png` (all five results on one canvas).
@@ -168,16 +176,17 @@ This thread unifies two project directions (ASR×LLM synergy + emotion) across 7
 
 ### Research Thread 4: Research Entropy Audit — Meta-Research on Agentic Ceremony Collapse (Issues #785/#787, PRs #786/#788)
 
-**RQ:** *When an autonomous agentic loop runs unsupervised on a research repo, does it keep producing substance or drift into self-referential ceremony?*
+**RQ:** _When an autonomous agentic loop runs unsupervised on a research repo, does it keep producing substance or drift into self-referential ceremony?_
 
 **Motivation.** A scan of `src/` revealed ~795 of 893 `*.py` files were ceremony-named (handoff/receipt/coordination/completion-summary). Independent content check: **0 of 795 contained real computation** (compute-import 3.5% vs 17% for substance; 0.11 vs 4.07 arithmetic ops/file). The git timeline shows a clean epidemic arc: birth (2026-06-02, 35 substance / 0 ceremony) → first collapse (06-07) → peak (+250 ceremony files on 06-12) → recovery (06-15 cleanup).
 
-**Why this matters for research methodology.** This is not a code quality issue — it is a *research integrity* issue. Ceremony files that compute nothing but claim "completion" create an illusion of progress that misleads both human reviewers and automated agents. The phenomenon is relevant to any project using LLM-based code generation for research.
+**Why this matters for research methodology.** This is not a code quality issue — it is a _research integrity_ issue. Ceremony files that compute nothing but claim "completion" create an illusion of progress that misleads both human reviewers and automated agents. The phenomenon is relevant to any project using LLM-based code generation for research.
 
 **Approach:**
+
 - Built `src/research_entropy_audit.py` — a two-signal classifier (filename pattern + content computation check) + git timeline visualization + bounded degeneration index. `make entropy-audit`.
-- Built `scripts/harness/entropy_guard.py` — a stdlib-only *advisory* guard wired into `make quality-predev` that warns (never blocks) when a change adds ceremony with no substance.
-- **Cleaned 6,000+ ceremony files** (803 src/*.py + 1,112 tests + ~4,360 result artifacts). Lean-rewrote `project_harness.py` from ~4,400 lines to genuine baseline smoke.
+- Built `scripts/harness/entropy_guard.py` — a stdlib-only _advisory_ guard wired into `make quality-predev` that warns (never blocks) when a change adds ceremony with no substance.
+- **Cleaned 6,000+ ceremony files** (803 src/\*.py + 1,112 tests + ~4,360 result artifacts). Lean-rewrote `project_harness.py` from ~4,400 lines to genuine baseline smoke.
 - **Result:** Entropy saturation 0.894 → 0.035; degeneration index 0.46 → 0.00; tests 3,304 → 825 all green; import-closure 0 violations.
 
 **Module:** `src/research_entropy_audit.py` + `scripts/harness/entropy_guard.py` + `docs/frontier/agentic_research_entropy.md`.
@@ -189,12 +198,14 @@ This thread unifies two project directions (ASR×LLM synergy + emotion) across 7
 **Motivation.** The project needed infrastructure to enforce research discipline: critical code changes must include paired tests, results must be labeled by evidence level, and PRs must include structured impact summaries. We adapted `ref/code-tape`'s Harness to this Python repository.
 
 **Design choices:**
-- **Why not adopt code-tape's training-camp scoring/auto-merge?** Those mechanisms optimize for *throughput* (maximize merged PRs), which directly contributed to the ceremony collapse documented in Thread 4. We adopted only the *quality* pillars: git hooks, knowledge-base contract, SDD, TDD.
+
+- **Why not adopt code-tape's training-camp scoring/auto-merge?** Those mechanisms optimize for _throughput_ (maximize merged PRs), which directly contributed to the ceremony collapse documented in Thread 4. We adopted only the _quality_ pillars: git hooks, knowledge-base contract, SDD, TDD.
 - **Why GitNexus for the knowledge base?** GitNexus provides a code knowledge graph with symbol-level impact analysis, enabling the `Contract Guard` CI check that verifies critical skeleton changes include paired tests. No comparable open-source tool provides this at the symbol level.
 
 **Four pillars:**
+
 1. **Git hooks** (`.githooks/{pre-commit,pre-push}`): pre-commit runs fast test gate; pre-push runs GitNexus contract + full test gate. `SKIP_QUALITY_HOOKS=1` escape hatch.
-2. **GitNexus knowledge-base contract** (`scripts/harness/contract_{rules,check}.py`): Critical skeleton classification (router-core / evaluation-core / harness / references / gold-results / authority-docs). Changes to critical code *must* include paired `tests/test_<module>*.py` + structured impact summary.
+2. **GitNexus knowledge-base contract** (`scripts/harness/contract_{rules,check}.py`): Critical skeleton classification (router-core / evaluation-core / harness / references / gold-results / authority-docs). Changes to critical code _must_ include paired `tests/test_<module>*.py` + structured impact summary.
 3. **SDD**: Authority-doc hierarchy + `docs/adr/ADR-001` + PR template with structured GitNexus impact summary.
 4. **TDD**: Contract mechanically enforces paired tests for critical code changes. 41 harness contract tests cover the engine itself.
 5. **repo-guard LLM code review** integration: every PR receives automated review comments; author must respond to every finding before merge.
