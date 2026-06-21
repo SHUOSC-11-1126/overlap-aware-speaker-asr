@@ -1,12 +1,36 @@
 # Capstone: the ASR × LLM + Emotion + Speaker Frontier
 
-**Label:** `qualitative/demo` — a synthesis of five `experimental/frontier` results (all merged, all
+**Label:** `experimental/frontier` — a synthesis of five `experimental/frontier` results (all merged, all
 verified through the harness with repo-guard review + green CI). Hero figure:
 `results/frontier/asr_llm_frontier_capstone.png`. No gold tables are touched by this consolidation.
 
 This is the one-page map of what a *local, offline* LLM (`deepseek-r1` via ollama) and cheap
 reference-free signals can and cannot do for overlap-aware speaker ASR, built on this repo's controlled
 overlap × separation × noise grid with silver references.
+
+## Reproducibility
+
+Each of the five results can be reproduced independently:
+
+```bash
+# Semantic Emotion Tax (#831)
+python -m src.semantic_emotion_tax
+
+# Emotion-anchored Repair (#833)
+python -m src.emotion_anchored_repair
+
+# Tri-modal Fusion (#835)
+python -m src.emotion_modality_fusion
+
+# Noise-robust Router (#814)
+python -m src.noise_robust_router
+
+# LLM Speaker Attribution (#838)
+python -m src.llm_speaker_attribution
+```
+
+All outputs are written to `results/frontier/<experiment_name>/` as CSV + PNG + FINDINGS.md.
+Unit tests: `python -m pytest tests/test_<module>.py` for each module.
 
 ## The five results
 
@@ -48,6 +72,56 @@ produce. Across these five studies one ordering is consistent:
 5. **Speaker attribution:** affect alone can't fix who-said-what reference-free (the sign is
    dataset-specific, #838); a few labels — or a full LLM role-classification call reading context, not
    just valence — would unlock it.
+
+## Failure Analysis
+
+### Why Emotion-Anchored Repair Fails (#833)
+
+The hypothesis was natural: if the LLM over-corrects because it doesn't know the speaker's emotional
+state, providing that state as context should constrain its edits. The result was the opposite:
+anchored repair (CER 1.122) was *worse* than naive repair (1.082), which was worse than no repair
+(0.924).
+
+**Mechanism:** The anchor text ("the speaker sounds angry") gives the LLM *permission* to rewrite
+more aggressively — it interprets the emotional context as license to paraphrase, not as a constraint
+on edit distance. This is consistent with the general finding that LLMs in this small-model regime
+(7B parameters) have weak instruction-following for edit-minimal tasks.
+
+**Implication:** Don't blind-repair in this setting. The 0.200 CER floor (Thread 2) is not fixable by
+contextual understanding alone.
+
+### Why LLM Speaker Attribution Sign Is Unknowable (#838)
+
+The LLM can detect that speaker A is more positive/negative than speaker B (AUC 0.78 for role
+strength), but it cannot determine *which* speaker is the pro side and *which* is the con side
+without labeled examples. The sign mapping is dataset-specific: positive valence → pro speaker in one
+debate, → con speaker in another.
+
+**Mechanism:** The LLM reads *relative* affect (who is more positive), not *absolute* stance (who
+supports the proposition). Without a few ground-truth labels to calibrate the sign, the attribution
+is a coin flip (naive AUC 0.08).
+
+**Implication:** Affect-based speaker attribution requires a small calibration set — a few labeled
+examples per debate to establish the sign mapping. This is a realistic deployment constraint, not a
+fundamental failure.
+
+## Connection to Broader Literature
+
+This capstone connects to three research lines:
+
+1. **ASR × LLM (GenSEC-LLM, R3, VoxEmo):** Prior work showed LLMs can process ASR output for
+   downstream tasks. Our contribution: the LLM's value is *coverage* of implicit semantic emotion
+   (7× vs lexicon), not free repair or attribution rules. This is a scope clarification, not a
+   contradiction.
+
+2. **Whisper hallucination (Koenecke, Baranski, Aparin, Waldendorf):** The confident-attractor
+   mechanism explains why the compression-ratio signal works — it detects the loop *after* it starts.
+   Our noise-robust router (#814) shows this signal survives noise, extending the hallucination
+   detection line into realistic conditions.
+
+3. **Emotion in speech (Russell, Scherer):** The Emotional Separation Tax (#14) is a new finding in
+   the dimensional emotion tradition: separation helps emotion (opposite of ASR tax), making the
+   routing decision objective-dependent. This has not been reported in prior work.
 
 ## Honesty note
 

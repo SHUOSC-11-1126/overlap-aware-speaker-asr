@@ -10,20 +10,24 @@ Seven offline, label-free, falsifiable experiments (findings #14–#20) extend t
 we separate?" question into emotion (operationalized as gain-invariant acoustic prosody + a regex
 valence reader; the clean source is the label-free reference, mirroring CER):
 
-1. **#14 Emotional Separation Tax** — separation *helps* emotion at every overlap but *hurts* ASR at
-   low/mid overlap. The separate-or-not decision is **objective-dependent**.
-2. **#15 Asymmetry** — emotion (arousal) does *not* predict ASR difficulty (r≈0). Emotion is a
-   consequence to *preserve*, not a routing feature.
-3. **#16 Lexical valence + tri-modal** — a regex/lexicon valence reader; CER / acoustic / lexical
-   disagree on separation. The lexicon underfires on casual debate text → motivates the LLM.
+1. **#14 Emotional Separation Tax** — separation *helps* emotion at every overlap (prosody distance
+   +0.151 at ov=0.1, +0.310 at ov=0.9 for oracle separation) but *hurts* ASR at low/mid overlap.
+   The separate-or-not decision is **objective-dependent**.
+2. **#15 Asymmetry** — emotion (arousal) does *not* predict ASR difficulty (Pearson r=0.002). Emotion
+   is a consequence to *preserve*, not a routing feature.
+3. **#16 Lexical valence + tri-modal** — a regex/lexicon valence reader fires on only 2/16 snippets
+   (underpowered). CER / acoustic / lexical disagree on separation. The lexicon underfires on casual
+   debate text → motivates the LLM.
 4. **#17 LLM × ASR critic** (real deepseek-r1) — the LLM judge is *dominated* by the free
-   compression-ratio signal (QE), and GER repair *over-corrects*: simple beats fancy.
+   compression-ratio signal (Pearson +0.74 vs −0.41 for LLM), and GER repair *over-corrects*
+   (CER 0.951→0.983): simple beats fancy.
 5. **#18 Objective-aware routing (capstone)** — route TEXT by the ASR signal, read EMOTION from the
-   separated track: same CER, emotion distortion **halved**, joint regret cut **~14×**.
+   separated track: same CER (0.528), emotion distortion **halved** (0.139→0.079), joint regret cut
+   **~14×**.
 6. **#19 Reference-free fidelity meter** — self-consistency is a *coarse* clean/contaminated gate
-   (r=−0.51 vs leakage) but a *weak graded* fidelity estimate.
-7. **#20 Emotion cost of the gate cures** — the CER-tuned cures are objective-blind too, but the
-   **speaker gate damages emotion least** while curing CER most (reinforces #13).
+   (r=−0.51 vs leakage) but a *weak graded* fidelity estimate (r=−0.20, saturates).
+7. **#20 Emotion cost of the gate cures** — both gates cure CER AND damage emotion (objective-blind),
+   but the **speaker gate damages emotion least** while curing CER most (reinforces #13).
 
 **Deployable recipe for emotion-aware overlapping-speech ASR** (the synthesis):
 

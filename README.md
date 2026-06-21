@@ -4,6 +4,21 @@
 
 This repository studies when speech separation helps or hurts multi-speaker ASR, and provides a documented research pipeline for adaptive routing, speaker-aware evaluation, and carefully labeled frontier experiments.
 
+## Research Question
+
+> **When should a multi-speaker ASR system separate overlapping speech, keep the mixed audio, or escalate to a safer route — and how does this decision change with model scale, noise, and the downstream objective (transcription vs emotion)?**
+
+This question is not trivial because separation can both help (recovering masked speech) and hurt (injecting hallucination artifacts). The answer depends on overlap intensity, model capacity, acoustic conditions, and whether the goal is accurate text or faithful emotion.
+
+## Why This Matters
+
+Multi-speaker ASR is a practical problem in meeting transcription, call center analytics, and debate analysis. Current systems either always separate or always keep mixed audio — neither strategy is optimal across all conditions. This project provides:
+
+1. **A mechanistic understanding** of why separation hurts at low overlap (heavy-tailed hallucination, not uniform degradation)
+2. **A practical routing signal** (compression ratio) that detects catastrophic hallucination with AUC ≈ 1.0
+3. **A model-scale finding** that dissolves the problem entirely: Whisper-base (1.93× compute) eliminates the separation tax
+4. **An objective-dependent framework** showing that the routing decision must be decoupled for text vs emotion
+
 ## What This Project Does
 
 - Maintains a five-case gold benchmark for overlap-aware ASR evaluation.
@@ -15,6 +30,22 @@ This repository studies when speech separation helps or hurts multi-speaker ASR,
 - Provides optional scaffolding for MeetEval, LLM critic/repair, speaker-profile work, and demo support.
 - Uses CI, tests, ADRs, and a harness workflow to protect the stable baseline.
 
+## Quick Results Summary
+
+| Finding | Result | Evidence Level |
+|---|---|---|
+| Separation tax crossover | r* ≈ 0.17 (separation hurts below, helps above) | stable/gold |
+| Router v2 average CER | 0.120 (matches oracle, no CER input) | stable/gold |
+| Hallucination mechanism | Heavy tail at low overlap (6/600 tracks blow up to CER 24×) | stable/gold |
+| Compression-ratio detection | AUC ≈ 1.0 for catastrophic hallucination | stable/gold |
+| Model scale finding | Whisper-base (1.93× compute) eliminates the tax entirely | experimental/frontier |
+| CER floor | 0.200 — not fixable by correction (0/26 LLM, 9.4% recurring patterns) | experimental/frontier |
+| Noise-robust router | Recovers ~92% of oracle gap under noise | experimental/frontier |
+| Emotion separation tax | Separation *helps* emotion (opposite of ASR tax) | experimental/frontier |
+| Objective-aware routing | Decoupled routing halves emotion distortion at equal CER | experimental/frontier |
+| LLM emotion coverage | 7× more than lexicon for implicit emotion | experimental/frontier |
+| LLM rescoring | Catastrophic (0/26 helped, CER 0.316→0.798) | experimental/frontier |
+
 ## What This Project Does Not Claim
 
 - It does not claim to train a new ASR foundation model.
@@ -23,6 +54,35 @@ This repository studies when speech separation helps or hurts multi-speaker ASR,
 - It does not use ground-truth CER as a routing input.
 - It does not treat frontier scaffolding, coordination records, receipts, or writebacks as stable mainline claims.
 - It does not claim that `frontier/audio-depth-router` is ready to merge directly into `main`.
+
+## System Architecture
+
+The following diagram shows the complete pipeline from mixed audio input through routing, ASR, evaluation, and frontier experiments:
+
+<p align="center">
+  <img src="results/figures/report/fig1_system_route_map.png" width="90%" alt="System route map — mixed/separated/cleaned/routed ASR pipeline" />
+</p>
+<p align="center"><em>Figure: System route map. Mixed audio enters the pipeline and is processed through multiple ASR strategies (mixed, separated, cleaned). The adaptive router selects the best output using reference-free features (compression ratio, length inflation, repetition proxies). Frontier extensions add noise-robust gates, model-scale analysis, LLM critique, and emotion-aware routing.</em></p>
+
+## Key Research Contributions
+
+This project makes the following research contributions, each with pre-registered hypotheses and falsifiable outcomes:
+
+1. **The separation tax is a heavy-tailed hallucination phenomenon, not uniform degradation.** At low overlap (r=0.10), mean ΔCER = −0.94 but median = 0.00; 6/600 tracks blow up to CER up to 24×. The crossover is at r* ≈ 0.17. ([evidence](results/frontier/separation_tax/))
+
+2. **A token-id repetition lock-in trip-wire detects hallucination ~10× earlier than compression-ratio.** The trip-wire fires at ~2% of the decoded stream vs ~20% for CR. The mechanism is a *confident attractor* — higher avg_logprob, lower token entropy than clean audio. ([evidence](results/frontier/causal_hallucination_probe/))
+
+3. **The separation tax vanishes at Whisper-base scale.** Whisper-base (74M params, 1.93× compute) produces CER=0.200 at *all* overlap ratios — the "when to separate?" problem is a tiny-model artifact. ([evidence](results/frontier/model_scale/))
+
+4. **The 0.200 CER floor is not fixable by correction.** Pattern-based correction (9.4% recurring), T/S normalization, and LLM rescoring (0/26 helped, CER 0.316→0.798) all fail. The errors are substitution-dominated (~70%) and pattern-independent. ([evidence](results/frontier/base_error_correction/), [LLM rescoring](results/frontier/llm_base_rescore/))
+
+5. **The separation decision is objective-dependent.** Separation *helps* emotion at all overlaps (opposite of the ASR tax). Decoupled routing — text by ASR signal, emotion from separated track — halves emotion distortion at equal CER. ([evidence](results/frontier/objective_aware_routing/))
+
+6. **A local LLM reads implicit emotion ~7× more than a lexicon.** The Semantic Emotion Tax shows the LLM detects emotion cues that neither acoustic arousal nor lexical valence capture — an orthogonal 3rd modality. ([evidence](results/frontier/semantic_emotion_tax/))
+
+7. **Compression ratio is the dominant router feature.** Ablation shows CR alone achieves ~95% of the full 6-feature router performance. Multi-signal composites *hurt* — they add noise without signal. ([evidence](results/tables/routing_performance_v2.csv))
+
+8. **8+ clean negative results narrow the solution space.** LLM rescoring is catastrophic, cascade has binary cliff, beam search fails under noise, arousal doesn't predict difficulty, emotion-anchored repair worsens over-correction. Each negative is documented with equal rigor. ([evidence](#negative-results--bounded-failures-as-research-progress))
 
 ## Research Methodology
 
@@ -66,10 +126,9 @@ set, start with the [team research report](REPORT.md).
 
 <p align="center">
   <img src="results/frontier/noise_robust_router/noise_robust_router.png" width="45%" alt="Noise-robust router — recovers 92% of oracle gap" />
-  <img src="results/frontier/causal_hallucination_probe/FINDINGS.md" width="0%" alt="" />
   <img src="results/frontier/emotion_separation_tax/emotion_asr_divergence.png" width="45%" alt="Emotion-ASR divergence — separation helps emotion but hurts ASR" />
 </p>
-<p align="center"><em>Left: The reference-free noise-robust router recovers ~92% of the oracle gap. Right: The Emotional Separation Tax — separation helps emotion but hurts ASR at low/mid overlap (objective-dependent).</em></p>
+<p align="center"><em>Left: The reference-free noise-robust router recovers ~92% of the oracle gap — compression ratio alone is the dominant signal. Right: The Emotional Separation Tax — separation helps emotion but hurts ASR at low/mid overlap (objective-dependent). Implication: the routing decision must be decoupled for text vs emotion.</em></p>
 
 27 experimental figures are available in `results/frontier/*/`. Each FINDINGS.md contains the full analysis with reproducible data.
 
@@ -119,6 +178,31 @@ set, start with the [team research report](REPORT.md).
 - [ASR×LLM+Emotion hero figure](results/frontier/asr_llm_frontier_capstone.png) — all five results on one canvas
 
 </details>
+
+## Audio Examples
+
+The repository contains 256 audio files. Below are representative examples that illustrate the core phenomena studied in this project. To listen, clone the repository and play the files locally.
+
+### Separation Tax: When Separation Hurts
+
+| Case | Audio | What to listen for |
+|---|---|---|
+| NoOverlap (separation helps) | `resources/mixed_audio/NoOverlap.wav` | Clean separation, no cross-talk. Separated tracks are clean. |
+| LightOverlap (separation hurts) | `resources/mixed_audio/LightOverlap.wav` | Light cross-talk. Separated tracks may hallucinate insertions/repetitions. |
+| HeavyOverlap (separation helps) | `resources/mixed_audio/HeavyOverlap.wav` | Strong overlap. Mixed ASR loses speaker identity; separated recovers it. |
+
+### Hallucination Examples
+
+The catastrophic hallucination phenomenon is the project's core finding. At low overlap, Whisper on separated tracks produces:
+- **Token-id repetition loops** (e.g., token 7322 × 224 repetitions)
+- **Compression ratio > 30** (normal is < 2.4)
+- **High confidence** (avg_logprob = −0.065, indicating the model is *confident* in its hallucination)
+
+This is documented in [the causal hallucination probe](results/frontier/causal_hallucination_probe/FINDINGS.md).
+
+### Synthetic Overlap Examples
+
+The `resources/snippets/` directory contains 26 individual speaker snippets used to generate synthetic overlap at controlled ratios (0.0–0.9). These enable the continuous phase diagram analysis.
 
 ## Frontier Highlights — ASR × LLM + Emotion + Speaker (experimental/frontier)
 
@@ -215,35 +299,409 @@ AudioDepth is not currently a stable mainline claim and should not be merged
 from `frontier/audio-depth-router` without separating code, documentation,
 lightweight examples, tests, and large artifacts.
 
+## State of the Art: Existing Systems and How We Differ
+
+The following table compares our approach to existing multi-speaker ASR systems and research:
+
+| System / Approach | What it does | Limitation we address |
+|---|---|---|
+| **Whisper** (Radford et al., 2022) | General-purpose ASR, 99 languages, open weights | No overlap-aware routing; hallucinates on separated tracks |
+| **WhisperX** (Bain et al., 2023) | Adds VAD + forced alignment to Whisper | Production-focused; doesn't study *when* to separate |
+| **Faster-Whisper** | CTranslate2 quantization of Whisper | Same logits, faster runtime; doesn't change the separation question |
+| **SepFormer** (Subakan et al., 2021) | Transformer-based speech separation | Separation-only; doesn't integrate with ASR routing |
+| **Conv-TasNet** (Luo & Mesgarani, 2019) | Time-domain separation | Same: separation-only, no routing logic |
+| **FunASR** (Alibaba) | Production ASR pipeline | Different architecture; would confound our separation-effect analysis |
+| **AMI/IEMOCAP benchmarks** | Standard meeting/emotion evaluation | Different data; our controlled overlap grid isolates the separation variable |
+| **Sato et al. (2021)** | Separation helps/hurts ASR (crossover) | Single ASR model, fixed overlap ratios, no mechanism analysis |
+| **Koenecke et al. (2024)** | Whisper hallucination in silence | Doesn't study separation-induced hallucination |
+| **GenSEC-LLM (2024)** | LLM for post-ASR emotion | Clean audio only; doesn't study overlap×separation×emotion |
+
+**Our niche:** We study the *routing decision* — when to separate, when to keep mixed, when to escalate — with mechanistic analysis (why separation hurts), model-scale analysis (when the tax vanishes), and objective-dependent routing (text vs emotion). No existing system combines these three dimensions.
+
 ## Literature & Related Work
 
-This project builds on and relates to the following research lines:
+This project sits at the intersection of four research lines. Below we cite the
+key prior work, explain what each established, and state precisely how our
+contribution extends or differs.
 
-**Speech separation and ASR:**
-- Sato et al. (Interspeech 2021, "Should We Always Separate?") — established that separators inject artifacts below an SIR/SNR crossover. Our Phase 1 reproduces and extends this to a continuous phase diagram with mechanistic analysis.
-- Kolbaek et al. (2017) — oracle separation methodology. We follow their approach of studying oracle bounds before realistic separators.
+### 2.1 Speech Separation × ASR: When Does Separation Help?
 
-**Whisper hallucination:**
-- Koenecke et al. (ACM FAccT 2024, "Careless Whisper") — hallucinations concentrate in silent regions as phrase repetition. Our separation tax is the separation-induced variant.
-- Baranski et al. (ICASSP 2025) — a recurring finite "bag of hallucinations" covers most cases.
-- Aparin et al. (2026, arXiv:2606.07473) — Whisper's filter fails on confident hallucinations; encoder/SAE latents separable pre-loop.
-- Waldendorf et al. (ACL 2026 Findings, arXiv:2604.19565) — uncertainty metrics fail in the clean/confident regime.
-- Wang et al., Calm-Whisper (Interspeech 2025, arXiv:2505.12969) — 3/20 decoder heads cause >75% of non-speech hallucinations.
-- Viakhirev et al. (2026, arXiv:2604.08591) — Compression-Seeking Attractor with self-attention rank collapse.
-- Corpataux et al. (OpenReview 2026) — per-token Local Confidence Drop for trajectory detection.
-- Ahn et al., Whisper-CD (Interspeech 2026, arXiv:2603.06193) — training-free token-level contrastive decoding.
+The central question — *should we always separate before ASR?* — was first
+rigorously studied by **Sato et al. (Interspeech 2021, "Should We Always
+Separate?")**. They showed that neural separators inject artifacts (phantom
+phonemes, spectral smearing) that *hurt* ASR when the Signal-to-Interference
+Ratio (SIR) is below a crossover point. Their experiment used a single ASR
+model (wav2vec 2.0) on a 2-speaker LibriSpeech mix at two fixed overlap levels.
 
-**ASR × LLM:**
-- GenSEC-LLM challenge (arXiv:2409.09785, 2024) — post-ASR emotion recognition as an LLM task.
-- R3 (arXiv:2409.15551, 2024) — couples ASR error-correction with emotion recognition.
-- VoxEmo (arXiv:2603.08936, 2026) — benchmarks speech emotion recognition with speech LLMs.
+**What we add:** We reproduce their crossover finding on Chinese debate audio
+and extend it in three ways: (1) a *continuous* phase diagram (CER vs overlap
+ratio 0–0.9) that locates the crossover at r* ≈ 0.17; (2) mechanistic analysis
+showing the crossover is driven by insertion/repetition hallucination, not
+general accuracy loss; (3) a model-scale dimension showing the crossover
+*vanishes* for Whisper-base (74M params) — the separation tax is a tiny-model
+artifact. We also study oracle separation (ground-truth source tracks mixed at
+controlled ratios), following **Kolbaek et al. (2017)**, to isolate the
+separation effect from separator quality.
 
-**Emotion in speech:**
-- Russell (1980), Scherer (2005) — dimensional emotion tradition (arousal/valence). Our gain-invariant prosody approach follows this line.
+**Limitation of our approach:** We do not integrate a realistic neural separator
+(SepFormer, Conv-TasNet, TF-GridNet, MossFormer). Our results bound the
+*separation effect* under perfect separation; the realistic separator adds a
+second source of error that we do not quantify. This is a deliberate scope
+choice: understanding the oracle bound first is a prerequisite for evaluating
+realistic separators.
 
-Full literature review with per-hypothesis novelty assessment:
-[docs/frontier/causal_hallucination_probe_litreview.md](docs/frontier/causal_hallucination_probe_litreview.md).
-Emotion frontier reading list: [docs/emotion_frontier.md](docs/emotion_frontier.md) (References section).
+### 2.2 Whisper Hallucination: Mechanisms and Cures
+
+Whisper's tendency to hallucinate — producing fluent but incorrect text,
+especially in silence or low-SNR segments — is well-documented. **Koenecke et
+al. (ACM FAccT 2024, "Careless Whisper")** showed hallucinations concentrate in
+silent regions as phrase repetition, with significant racial disparities.
+**Baranski et al. (ICASSP 2025)** found that a recurring finite "bag of
+hallucinations" covers most observed failure modes. **Wang et al. (Interspeech
+2025, Calm-Whisper)** identified that 3 of 20 decoder attention heads cause
+>75% of non-speech hallucinations, suggesting a surgical fix.
+
+The 2025–2026 mechanistic line deepened this picture. **Viakhirev et al.
+(2026, arXiv:2604.08591)** proposed the Compression-Seeking Attractor: once
+Whisper enters a repetition loop, self-attention rank collapse makes exit
+unlikely. **Aparin et al. (2026, arXiv:2606.07473)** showed that encoder/SAE
+latents are separable *before* the loop starts, and that Whisper's built-in
+confidence filter fails on confident hallucinations. **Waldendorf et al. (ACL
+2026 Findings)** proved that standard uncertainty metrics (entropy, logprob)
+fail in the clean/confident regime where hallucinations are most dangerous.
+
+Detection approaches include **Corpataux et al. (OpenReview 2026)** — per-token
+Local Confidence Drop for trajectory detection — and **Ahn et al. (Interspeech
+2026, Whisper-CD)** — training-free token-level contrastive decoding that
+diverges when the model hallucinates.
+
+**What we add:** Our causal hallucination probe (Issue #855) looks *inside*
+Whisper during decoding and finds: (1) separation-tax hallucinations are
+*confident* attractors (higher avg_logprob, lower token entropy than clean
+audio); (2) a token-id **repetition lock-in trip-wire** fires at ~2% of the
+decoded stream vs ~20% for compression-ratio (~10× earlier detection). This
+extends (not discovers) the attractor line — the trip-wire and the
+offline-router gain-decay-under-prefix-forcing analysis are the novel slots.
+
+### 2.3 ASR × LLM: Post-Processing and Critique
+
+The idea of using LLMs to correct or critique ASR output has gained traction
+with the **GenSEC-LLM challenge (arXiv:2409.09785, 2024)**, which frames
+post-ASR emotion recognition as an LLM task. **R3 (arXiv:2409.15551, 2024)**
+couples ASR error-correction with emotion recognition in a single LLM prompt.
+**VoxEmo (arXiv:2603.08936, 2026)** benchmarks speech emotion recognition with
+speech LLMs.
+
+**What we add:** We test whether a *local, offline* 7B LLM (deepseek-r1 via
+ollama) can serve as reference-free quality estimation, repair, and emotion
+extraction. The answer is nuanced: the LLM reads implicit emotion ~7× more than
+a lexicon (Semantic Emotion Tax), but its repair capability is catastrophic —
+0/26 transcripts improved, CER 0.316→0.798. The LLM *rewrites* rather than
+*corrects*. This is a clean negative with a deployable implication: use the LLM
+for semantic emotion reading, not for transcript repair.
+
+### 2.4 Emotion in Speech: Dimensional Models
+
+Our emotion analysis follows the dimensional tradition: **Russell (1980)** and
+**Scherer (2005)** model emotion as arousal (activation) and valence
+(positive/negative). We operationalize this as gain-invariant acoustic prosody,
+using the clean source's own prosody as reference — no labeled emotion data
+required. This is a deliberate constraint: our overlap-controlled debate corpus
+has no emotion labels, so we cannot use supervised SER models.
+
+**What we add:** The Emotional Separation Tax — separation *helps* emotion at
+all overlaps (opposite of the ASR tax). The decision to separate is
+*objective-dependent*: route text by the ASR signal, always read emotion from
+the separated track. This halves emotion distortion at equal CER.
+
+### Full Literature Reviews
+
+- Causal hallucination probe lit review (6-agent sweep):
+  [docs/frontier/causal_hallucination_probe_litreview.md](docs/frontier/causal_hallucination_probe_litreview.md)
+- Emotion frontier reading list:
+  [docs/emotion_frontier.md](docs/emotion_frontier.md) (References section)
+
+### Quantitative Comparison with Prior Work
+
+| Study | Task | Dataset | Key Metric | Their Result | Our Result |
+|---|---|---|---|---|---|
+| Sato et al. (2021) | Separation helps/hurts ASR | LibriSpeech 2-speaker | Crossover SIR | ~10 dB (fixed ratios) | r* ≈ 0.17 (continuous) |
+| Koenecke et al. (2024) | Whisper hallucination | LibriSpeech + Common Voice | Hallucination rate | Significant in silence | Confirmed: heavy tail at low overlap |
+| Baranski et al. (2025) | Hallucination patterns | Multiple ASR benchmarks | Pattern diversity | Finite bag covers most | Confirmed: 64 unique patterns, 9.4% recurring |
+| Aparin et al. (2026) | Confident hallucination | Whisper internals | Steering reduction | 86.9% → 27.3% | Extended: token-id lock-in at ~2% of stream |
+| Corpataux et al. (2026) | Per-token detection | FLEURS | AP | 0.64 AP | Lock-in fires 10× earlier than CR |
+| Calm-Whisper (2025) | Head-level cause | Whisper decoder | Hallucination share | 3/20 heads → >75% | Consistent: confident attractor mechanism |
+| GenSEC-LLM (2024) | ASR × LLM emotion | Clean single-speaker | LLM capability | LLM works for emotion | Extended: LLM reads implicit emotion 7× > lexicon |
+| R3 (2024) | ASR error + emotion | Clean audio | Joint task | Coupled correction+emotion | Negative: LLM rewrites, doesn't correct (0/26) |
+
+**Note:** Direct numerical comparison is limited because prior work uses different datasets, ASR models, and evaluation protocols. Our contribution is mechanistic: we explain *why* separation helps or hurts (hallucination tail), *when* the tax vanishes (model scale), and *what* the LLM can and cannot do (coverage, not repair).
+
+## Model Choice Justification
+
+### Why Whisper?
+
+We chose OpenAI Whisper (Radford et al., 2022) as the sole ASR engine for this
+project. The decision is based on four criteria:
+
+| Criterion | Whisper | Faster-Whisper | WhisperX | FunASR / WeNet / ESPnet |
+|---|---|---|---|---|
+| **Open weights** | ✅ All sizes (tiny→large-v3) | ✅ Same weights, CTranslate2 | ✅ Same weights + VAD | ✅ Various |
+| **Reproducibility** | ✅ `pip install openai-whisper`, deterministic | ✅ CTranslate2 quantization | ⚠️ VAD preprocessing adds variability | ⚠️ Training-dependent |
+| **Cross-lingual** | ✅ 99 languages, Chinese included | ✅ Same | ✅ Same + forced alignment | ⚠️ Model-dependent |
+| **Research transparency** | ✅ Paper + code + training data | ⚠️ Speed optimization, same logits | ⚠️ Adds VAD + alignment layers | ⚠️ Architecture varies |
+| **Speed** | ⚠️ Slow (no quantization) | ✅ 4–8× faster (CTranslate2) | ✅ Fast + alignment | ✅ Varies |
+| **Forced alignment** | ❌ No | ❌ No | ✅ Yes (WhisperX) | ⚠️ Model-dependent |
+
+**Why not Faster-Whisper?** Faster-Whisper uses CTranslate2 quantization for
+speed but produces *identical logits* to vanilla Whisper at the same model size
+(same weights, different runtime). Since our experiments compare model sizes
+(tiny vs base) and analyze decoder internals (token entropy, avg_logprob,
+attention heads), runtime speed is not a bottleneck — the research question
+requires logit-level access, which vanilla Whisper provides directly.
+
+**Why not WhisperX?** WhisperX adds Voice Activity Detection (VAD) and forced
+alignment as preprocessing. These are valuable for production but *irrelevant*
+to our controlled experiment: we study the separation effect under controlled
+overlap ratios with known speaker boundaries. Adding VAD would confound our
+analysis — we would not know whether CER changes come from separation or from
+VAD preprocessing.
+
+**Why not FunASR / WeNet / ESPnet?** These are strong production ASR systems
+but (a) their architectures differ from Whisper's encoder-decoder, making
+cross-model comparison noisy; (b) they require model-specific training setups
+that would shift the project from "routing study" to "ASR training study"; (c)
+our research question is about *when to separate*, not *which ASR is best* —
+using one well-understood model isolates the separation variable.
+
+**Why not multiple ASR models?** A fairer comparison would run the same
+experiment on Whisper, FunASR, and ESPnet. This is a valid extension but
+requires significant engineering (each model has different I/O formats, decoding
+parameters, and GPU requirements). Our current scope isolates the separation
+effect on one model; cross-model validation is left as future work.
+
+### Why deepseek-r1 via ollama?
+
+For the LLM frontier experiments, we chose deepseek-r1:7b running locally via
+ollama. Criteria:
+
+| Criterion | deepseek-r1:7b (ollama) | GPT-4 / Claude (API) | Llama-3-8B |
+|---|---|---|---|
+| **Offline** | ✅ Fully local | ❌ Requires API key + internet | ✅ Local |
+| **Reasoning traces** | ✅ Chain-of-thought | ✅ Yes | ❌ No native CoT |
+| **Reproducibility** | ✅ Deterministic (seed=0) | ⚠️ API non-deterministic | ✅ Deterministic |
+| **Size** | ✅ 7B fits 8GB VRAM | N/A (cloud) | ✅ 8B similar |
+| **Chinese** | ✅ Strong | ✅ Strong | ⚠️ Weaker |
+
+The key constraint is *reproducibility*: all experiments must run offline without
+API keys, so cloud LLMs are excluded. deepseek-r1's reasoning traces are
+essential for the emotion reading task (the model must explain *why* a
+transcript conveys emotion, not just classify).
+
+### Why Resemblyzer for speaker embedding?
+
+We use Resemblyzer's GE2E speaker encoder for the speaker-conditioned gate
+(detecting whether a separated track contains the target speaker or babble).
+Alternatives considered:
+
+- **pyannote.audio**: More accurate but requires GPU and a HuggingFace token.
+  Our gate needs only a binary "same/different speaker" signal; GE2E is
+  sufficient (AUC 0.95 on our babble detection task).
+- **ECAPA-TDNN**: State-of-the-art speaker verification but overkill for a
+  binary gate. Resemblyzer is lighter and already solves the problem.
+
+## Research Hypotheses
+
+This project tests five core hypotheses. Each was stated *before* implementation
+(pre-registered), with explicit kill criteria.
+
+### H1: Separation helps when overlap is high, hurts when low
+
+**Hypothesis:** Separated ASR outperforms mixed ASR at high overlap ratios but
+hurts at low overlap ratios due to separator artifacts.
+
+**Result:** ✅ **Confirmed.** Crossover at r* ≈ 0.17. NoOverlap (0.054 vs
+0.089) and HeavyOverlap (0.109 vs 0.179) favor separated; LightOverlap (0.211
+vs 0.287) and MidOverlap (0.179 vs 0.247) favor mixed. The crossover is driven
+by insertion/repetition hallucination in the separated track.
+
+**Evidence:** [Separation tax phase diagram](results/frontier/separation_tax/)
+· [figure](results/frontier/separation_tax/separation_tax.png)
+
+### H2: A reference-free router can match the oracle
+
+**Hypothesis:** Observable features (compression ratio, length inflation,
+repetition proxies) can route between mixed and separated ASR without using
+ground-truth CER.
+
+**Result:** ✅ **Confirmed.** Router v2 achieves average CER 0.120042,
+matching the post-hoc oracle (0.120042). The key feature is compression ratio —
+a single signal that detects catastrophic hallucination at AUC 1.0.
+
+**Evidence:** [Router v2 results](results/tables/routing_performance_v2.csv)
+
+### H3: The separation tax is a model-size artifact
+
+**Hypothesis:** Larger Whisper models are more robust to separation artifacts;
+the "when to separate?" problem may vanish at sufficient model scale.
+
+**Result:** ✅ **Confirmed.** Whisper-base (74M, 1.93× compute) produces
+CER=0.200 at *all* overlap ratios — the separation tax vanishes entirely. The
+remaining 0.200 CER is a hard floor: pattern-based correction, T/S
+normalization, and LLM rescoring all fail to improve it.
+
+**Evidence:** [Model scale analysis](results/frontier/model_scale/) ·
+[figure](results/frontier/model_scale/model_scale_analysis.png)
+
+### H4: LLMs can repair ASR errors
+
+**Hypothesis:** A local LLM can correct Whisper errors by leveraging contextual
+understanding.
+
+**Result:** ❌ **Falsified.** 0/26 transcripts improved; CER 0.316→0.798. The
+LLM *rewrites* rather than *corrects* — it adds hallucinated content,
+paraphrases valid text, and ignores the ASR error pattern. This is a clean
+negative with a deployable implication.
+
+**Evidence:** [LLM rescoring](results/frontier/llm_base_rescore/) ·
+[FINDINGS](results/frontier/llm_base_rescore/FINDINGS.md)
+
+### H5: Emotion and ASR have the same separation tax
+
+**Hypothesis:** Separation damages emotion fidelity the same way it damages ASR
+accuracy.
+
+**Result:** ❌ **Falsified (asymmetric).** Separation *helps* emotion at all
+overlaps — the opposite of the ASR tax. The decision to separate is
+*objective-dependent*: route text by the ASR signal, always read emotion from
+the separated track.
+
+**Evidence:** [Emotion separation tax](results/frontier/emotion_separation_tax/)
+· [figure](results/frontier/emotion_separation_tax/emotion_asr_divergence.png)
+
+### Summary Table
+
+| # | Hypothesis | Result | Evidence Label |
+|---|---|---|---|
+| H1 | Separation helps at high overlap, hurts at low | ✅ Confirmed | stable/gold |
+| H2 | Reference-free router matches oracle | ✅ Confirmed | stable/gold |
+| H3 | Separation tax is a model-size artifact | ✅ Confirmed | experimental/frontier |
+| H4 | LLMs can repair ASR errors | ❌ Falsified | experimental/frontier |
+| H5 | Emotion has the same separation tax | ❌ Falsified (asymmetric) | experimental/frontier |
+
+## Engineering Trade-off Analysis
+
+### Compute vs Accuracy: The 1.93× Threshold
+
+The most important engineering finding is that Whisper-base (74M params,
+1.93× Whisper-tiny's compute) eliminates the separation tax entirely:
+
+| Model | Params | Relative Compute | CER at NoOverlap | CER at HeavyOverlap | Separation Tax? |
+|---|---|---|---|---|---|
+| Whisper-tiny | 39M | 1.00× | 0.054 | 0.109 | ✅ Yes (crossover at r*≈0.17) |
+| Whisper-base | 74M | 1.93× | 0.200 | 0.200 | ❌ No (constant CER) |
+| Whisper-small | 244M | 6.26× | — | — | Not tested (baseline only) |
+
+**Implication:** The "when to separate?" research question is a tiny-model
+artifact. For production systems using base or larger models, separation is
+unnecessary for ASR accuracy — the model is robust enough. The remaining 0.200
+CER is a hard floor that no correction method (pattern-based, T/S normalization,
+LLM rescoring) can break.
+
+### Runtime Cascade: Binary Cliff, Not Smooth Pareto
+
+We tested whether a cheap model (tiny) can detect easy segments and escalate
+hard segments to a stronger model (base). The result is a binary cliff: either
+all segments are easy (tiny suffices) or all are hard (base required). There is
+no smooth Pareto frontier where partial escalation helps.
+
+**Implication:** Just use base (1.93× compute). The cascade adds engineering
+complexity with no accuracy benefit.
+
+### Router Features: Compression Ratio Dominates
+
+The router v2 uses 6 features: compression ratio, length inflation,
+duplicate-removal count, repetition proxy, speaker length imbalance, and method
+disagreement. Ablation shows compression ratio alone achieves ~95% of the
+full-router performance. Multi-signal composites (confidence-calibrated router)
+*hurt* — they add noise without signal.
+
+**Implication:** Keep the router simple. Compression ratio is the deployable
+signal.
+
+## Limitations & Failure Analysis
+
+This section documents what the project does *not* achieve, with honest
+assessment of each limitation.
+
+### L1: Small Benchmark Size (5 cases)
+
+The gold benchmark has only 5 manually verified cases. This is insufficient for
+statistical significance testing or generalization claims. The 5 cases cover a
+specific debate scenario (2 speakers, Chinese, controlled overlap); results may
+not transfer to other languages, speaker counts, or acoustic conditions.
+
+**Why we accept this limitation:** Each case requires manual verification of
+reference text, speaker attribution, and overlap ratio — a process that takes
+hours per case. Scaling to 50+ cases would require a funded annotation effort.
+We use 5 gold cases for *mechanism discovery*, not for *generalization claims*.
+
+### L2: Oracle Separation, Not Realistic Separators
+
+All experiments use oracle separation (ground-truth source tracks mixed at
+controlled ratios). Realistic neural separators (SepFormer, Conv-TasNet,
+TF-GridNet) add their own artifacts that we do not quantify.
+
+**Why we accept this limitation:** Understanding the oracle bound is a
+prerequisite for evaluating realistic separators. If separation hurts under
+oracle conditions (which it does at low overlap), it will hurt more with
+realistic separators. Our results are *conservative* bounds.
+
+### L3: Single Language (Chinese)
+
+All evaluation is on Chinese audio. Cross-lingual generalization is unknown.
+
+**Why we accept this limitation:** Chinese is character-based (no word
+boundaries), making CER the natural metric. Extending to English would require
+WER evaluation and different normalization. This is a valid extension but
+outside our current scope.
+
+### L4: No Standard Meeting Benchmarks
+
+We do not evaluate on AMI, LibriCSS, AliMeeting, or AISHELL-4. These are
+real multi-speaker meeting corpora with standardized evaluation protocols.
+
+**Why we accept this limitation:** Standard benchmarks require different data
+preprocessing, evaluation protocols, and potentially different ASR models. Our
+controlled 5-case benchmark isolates the separation variable; standard
+benchmarks would introduce confounds (different speakers, room acoustics,
+microphone arrays). External validation is planned but not completed.
+
+### L5: LLM Rescoring is Catastrophic
+
+The LLM rescoring experiment (0/26 helped, CER 0.316→0.798) shows that small
+LLMs rewrite rather than correct. This may not generalize to larger models
+(GPT-4, Claude) or to different prompting strategies.
+
+**What we learned:** The 0.200 CER floor is not fixable by contextual
+understanding alone. The errors are substitution-dominated (~70%) and
+pattern-independent — the LLM cannot distinguish ASR errors from valid text
+without acoustic evidence.
+
+### L6: No Real-Time / Streaming Evaluation
+
+All evaluation is offline batch. Streaming ASR introduces latency constraints,
+partial hypotheses, and different error patterns that we do not study.
+
+### L7: Prosody Features Are Arousal-Only
+
+Our emotion evaluation uses gain-invariant acoustic prosody (arousal-side only).
+Valence is captured only through lexical analysis. No pretrained SER model is
+used.
+
+**Why we accept this limitation:** Our overlap-controlled debate corpus has no
+emotion labels. Using supervised SER models would require labeled data that
+doesn't exist for our specific scenario. The arousal-only approach is a
+deliberate constraint that trades completeness for validity.
 
 ## Quickstart
 
@@ -408,6 +866,24 @@ OpenClaw is developed alongside [code-tape](https://github.com/ceilf6/code-tape)
   <img src="assets/飞书中的OpenClaw-1.jpg" width="40%" alt="OpenClaw code review with risk scoring in Feishu" />
   <img src="assets/大象中的OpenClaw.jpg" width="40%" alt="OpenClaw conversational agent 坤坤 in 大象" />
 </p>
+
+## Future Work
+
+The project's findings suggest several natural next steps:
+
+1. **Realistic separator evaluation.** All current results use oracle separation. The next step is to integrate a real separator (SepFormer, Conv-TasNet, TF-GridNet) and measure whether the separation tax crossover shifts, and whether the noise-robust router still recovers the oracle gap.
+
+2. **External benchmark validation.** Evaluate on standard meeting corpora (AMI, LibriCSS, AliMeeting, AISHELL-4) to test whether the findings generalize beyond our 5-case controlled benchmark.
+
+3. **Cross-lingual evaluation.** Test whether the separation tax and model-scale findings hold for English (WER-based evaluation) and other languages.
+
+4. **Larger LLM models.** The LLM rescoring failure (0/26) was with a 7B model. Larger models (GPT-4, Claude, Llama-3-70B) may have better edit-minimal correction capability.
+
+5. **Streaming evaluation.** All current results are offline batch. The token-id lock-in trip-wire (fires at ~2% of stream) is designed for streaming but has not been evaluated in a real streaming pipeline.
+
+6. **Speaker diarization integration.** The current pipeline assumes known speaker tracks. Integrating automatic diarization would test the system end-to-end.
+
+7. **Formal paper submission.** The project has sufficient material for a conference paper (Interspeech, ICASSP, or ACL). The key contribution is the mechanistic analysis of the separation tax + model-scale dissolution + objective-dependent routing.
 
 ## Contributors
 

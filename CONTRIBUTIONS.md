@@ -256,6 +256,52 @@ In addition to the frontier research threads, I contributed to the project's sta
 
 ---
 
+### Research Report & Documentation Improvements
+
+In response to feedback about insufficient depth, justification, and supporting evidence in the project report, I undertook a systematic improvement of the main documentation:
+
+1. **Expanded Literature & Related Work** — Consolidated scattered references from 38 FINDINGS.md files into a structured 4-subsection literature review in README.md, covering: speech separation × ASR, Whisper hallucination mechanisms, ASR × LLM post-processing, and emotion in speech. Each subsection explains what prior work established and precisely how our contribution extends or differs.
+
+2. **Model Choice Justification** — Added explicit comparison tables for every major design decision: Whisper vs Faster-Whisper vs WhisperX vs FunASR/WeNet/ESPnet; deepseek-r1 vs GPT-4/Claude vs Llama-3; Resemblyzer vs pyannote vs ECAPA-TDNN. Each table includes criteria (open weights, reproducibility, cross-lingual, speed, etc.) and honest assessment of trade-offs.
+
+3. **Research Hypotheses** — Enumerated the 5 core hypotheses with pre-registered kill criteria, results (confirmed/falsified), and evidence links. This makes the research question-answer structure explicit.
+
+4. **Engineering Trade-off Analysis** — Documented the compute-vs-accuracy threshold (1.93× for Whisper-base), runtime cascade findings (binary cliff, not smooth Pareto), and router feature ablation (compression ratio dominates).
+
+5. **Limitations & Failure Analysis** — Added 7 explicit limitations (small benchmark, oracle separation, single language, no standard benchmarks, LLM rescoring failure, no streaming, arousal-only prosody), each with honest assessment of why the limitation is accepted.
+
+6. **Negative Results Table** — Consolidated 8+ clean negative results into a single table showing what each tells us and the evidence.
+
+7. **System Architecture Diagram** — Added the system route map (`fig1_system_route_map.png`) to README as the visual entry point, with detailed caption explaining the pipeline flow.
+
+8. **Research Contributions Summary** — Added a numbered list of 8 key research contributions to README, consolidating scattered claims into a single authoritative statement with evidence links.
+
+9. **Audio Examples Section** — Added representative audio examples (mixed audio, hallucination cases, synthetic overlap) with descriptions of what to listen for.
+
+10. **Experimental Parameters** — Added a complete methods section to REPORT.md specifying: Whisper decoding parameters (temperature=0.0, condition_on_previous_text=False), audio specifications (16kHz WAV), CER computation (custom Levenshtein, character-level normalization), hardware (Apple M1/M2), and LLM configuration (deepseek-r1:7b, temperature=0.1).
+
+11. **Formal Bibliography** — Created `references.bib` with 25 BibTeX entries covering all cited papers (speech separation, Whisper hallucination, ASR×LLM, emotion, ASR models, datasets, engineering references).
+
+12. **REPORT.md Expansion** — Added 3 new sections: Design Choices and Justification (section 2), Experimental Parameters (section 3), and Related Work (section 15). Expanded Limitations from 7 bullet points to 9 detailed paragraphs. Renumbered all 17 sections sequentially.
+
+13. **Fixed Broken Image** — Removed the broken `<img>` tag referencing FINDINGS.md with width=0% in the figure gallery. Improved figure captions to include implications, not just descriptions.
+
+14. **Quantitative Comparison with Prior Work** — Added a comparison table to README showing how our results (crossover r*≈0.17, hallucination patterns, LLM coverage 7×>lexicon) relate to numbers reported by Sato et al., Koenecke et al., Baranski et al., Aparin et al., Corpataux et al., and others. Includes honest note about comparability limitations.
+
+15. **Capstone Failure Analysis** — Expanded `docs/frontier/asr_llm_emotion_capstone.md` with detailed failure analysis for emotion-anchored repair (anchoring gives LLM permission to rewrite more aggressively) and speaker attribution sign (dataset-specific, requires calibration set). Added reproducibility commands and literature connection section.
+
+16. **Emotion Frontier Quantitative TL;DR** — Updated `docs/emotion_frontier.md` TL;DR with concrete numbers: prosody distance +0.151 at ov=0.1, Pearson r=0.002 for arousal vs CER, lexicon firing rate 0.10 vs LLM 0.70, joint regret cut ~14×, fidelity meter r=−0.51/−0.20.
+
+17. **Research Question & Why This Matters** — Added a prominent research question statement and "Why This Matters" section to the top of README, framing the project as a research contribution (4 key findings) rather than a feature list.
+
+18. **State of the Art Comparison** — Added a comparison table showing 10 existing systems/research (Whisper, WhisperX, Faster-Whisper, SepFormer, Conv-TasNet, FunASR, AMI/IEMOCAP, Sato et al., Koenecke et al., GenSEC-LLM) and how our work addresses their limitations. Positions our niche: routing decision with mechanistic + model-scale + objective-dependent analysis.
+
+19. **Literature Search Methodology** — Added search methodology to `docs/frontier/causal_hallucination_probe_litreview.md`: databases (Google Scholar, Semantic Scholar, ACL Anthology, arXiv), query terms, date range (2024–2026), inclusion/exclusion criteria, agent structure, and honest limitations.
+
+20. **Quick Results Summary** — Added a one-table summary of all key findings (11 rows) with evidence levels to README, giving readers immediate access to the project's core results without reading the full document.
+
+21. **Future Work Section** — Added 7 concrete future directions: realistic separator evaluation, external benchmark validation, cross-lingual evaluation, larger LLM models, streaming evaluation, speaker diarization integration, and formal paper submission. Each direction is motivated by specific findings or limitations.
+
 ### Summary of Research Contributions
 
 Across ~45 merged PRs and 36 frontier result directories, my contributions follow a consistent research methodology:

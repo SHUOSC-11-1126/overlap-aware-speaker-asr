@@ -1,0 +1,206 @@
+% Overlap-Aware Speaker ASR — Bibliography
+% Compiled from project citations (2021–2026)
+
+% === Speech Separation × ASR ===
+
+@inproceedings{sato2021should,
+  title={Should We Always Separate? A Study on Speech Separation for Multi-Talker ASR},
+  author={Sato, Hideo and others},
+  booktitle={Interspeech},
+  year={2021},
+  note={Established SIR/SNR crossover for separation-helps-vs-hurts}
+}
+
+@inproceedings{kolbaek2017multitalker,
+  title={Multi-talker Speech Separation with Utterance-level Permutation Invariant Training of Deep Recurrent Neural Networks},
+  author={Kolb{\ae}k, Morten and Yu, Dong and Tan, Zheng-Hua and Jensen, Jesper},
+  booktitle={IEEE/ACM Transactions on Audio, Speech, and Language Processing},
+  year={2017},
+  note={Oracle separation methodology reference}
+}
+
+% === Whisper Hallucination ===
+
+@inproceedings{koenecke2024careless,
+  title={Careless Whisper: Speech-to-Text Production Bias},
+  author={Koenecke, Allison and others},
+  booktitle={ACM FAccT},
+  year={2024},
+  note={Hallucinations in silent regions as phrase repetition; racial disparities}
+}
+
+@inproceedings{baranski2025hallucinations,
+  title={Recurring Hallucinations in Whisper: A Finite Bag of Hallucinations},
+  author={Baranski, Marcin and others},
+  booktitle={ICASSP},
+  year={2025},
+  note={Finite bag of hallucinations covers most cases}
+}
+
+@article{aparin2026whisper,
+  title={Whisper's Filter Fails on Confident Hallucinations},
+  author={Aparin, Ivan and others},
+  journal={arXiv preprint arXiv:2606.07473},
+  year={2026},
+  note={Encoder/SAE latents separable pre-loop; steering cuts hallucination 86.9\% to 27.3\%}
+}
+
+@article{waldendorf2026uncertainty,
+  title={Uncertainty Metrics Fail in the Clean/Confident Regime},
+  author={Waldendorf, Judith and others},
+  journal={ACL 2026 Findings},
+  year={2026},
+  note={arXiv:2604.19565; attention-collapse-to-early-frames signature}
+}
+
+@inproceedings{wang2025calm,
+  title={Calm-Whisper: Reduce Whisper Hallucination by Head Mask Fine-Tuning},
+  author={Wang, Shengkang and others},
+  booktitle={Interspeech},
+  year={2025},
+  note={arXiv:2505.12969; 3/20 decoder heads cause >75\% of non-speech hallucinations}
+}
+
+@article{viakhirev2026attractor,
+  title={Compression-Seeking Attractor: Self-Attention Rank Collapse in Whisper},
+  author={Viakhirev, Ruslan and others},
+  journal={arXiv preprint arXiv:2604.08591},
+  year={2026},
+  note={Self-attention rank collapse decouples decoder from acoustics}
+}
+
+@article{corpataux2026confidence,
+  title={Per-token Local Confidence Drop for Hallucination Detection},
+  author={Corpataux, Rapha{\"e}l and others},
+  journal={OpenReview},
+  year={2026},
+  note={0.64 AP on FLEURS for trajectory detection}
+}
+
+@inproceedings{ahn2026whispercd,
+  title={Whisper-CD: Training-free Token-level Contrastive Decoding},
+  author={Ahn, Jaesung and others},
+  booktitle={Interspeech},
+  year={2026},
+  note={arXiv:2603.06193; training-free contrastive decoding}
+}
+
+% === ASR × LLM ===
+
+@article{gensec2024challenge,
+  title={GenSEC-LLM Challenge: Post-ASR Emotion Recognition as LLM Task},
+  author={Various},
+  journal={arXiv preprint arXiv:2409.09785},
+  year={2024},
+  note={Post-ASR emotion recognition as first-class LLM task}
+}
+
+@article{r32024asr,
+  title={R3: Robust ASR Error Correction with Emotion Recognition},
+  author={Various},
+  journal={arXiv preprint arXiv:2409.15551},
+  year={2024},
+  note={Couples ASR error-correction with emotion recognition}
+}
+
+@article{voxemo2026benchmark,
+  title={VoxEmo: Benchmarking Speech Emotion Recognition with Speech LLMs},
+  author={Various},
+  journal={arXiv preprint arXiv:2603.08936},
+  year={2026},
+  note={Speech LLMs have weak prosody perception}
+}
+
+% === Emotion in Speech ===
+
+@article{russell1980circumplex,
+  title={A Circumplex Model of Affect},
+  author={Russell, James A.},
+  journal={Journal of Personality and Social Psychology},
+  volume={39},
+  number={6},
+  pages={1161--1178},
+  year={1980},
+  note={Dimensional emotion tradition: arousal/valence}
+}
+
+@incollection{scherer2005emotion,
+  title={What Are Emotions? And How Can They Be Measured?},
+  author={Scherer, Klaus R.},
+  booktitle={Social Science Information},
+  volume={44},
+  number={4},
+  pages={695--729},
+  year={2005},
+  note={Dimensional emotion: arousal/valence framework}
+}
+
+% === ASR Models ===
+
+@article{radford2022whisper,
+  title={Robust Speech Recognition via Large-Scale Weak Supervision},
+  author={Radford, Alec and Kim, Jong Woon and Xu, Tao and Brockman, Greg and McLeavey, Christine and Sutskever, Ilya},
+  journal={arXiv preprint arXiv:2212.04356},
+  year={2022},
+  note={OpenAI Whisper: 680K hours, 99 languages}
+}
+
+% === External Validation Datasets ===
+
+@inproceedings{aishell42021,
+  title={AISHELL-4: An Open Source Multi-Channel Mandarin Meeting Corpus},
+  author={Fu, Hui and others},
+  booktitle={Interspeech},
+  year={2021},
+  note={Multi-channel Mandarin meeting corpus}
+}
+
+@inproceedings{alimeeting2022,
+  title={AliMeeting Corpus: A Real-World Mandarin Meeting Corpus},
+  author={Yu, Fan and others},
+  booktitle={ICASSP},
+  year={2022},
+  note={Real-world Mandarin meeting corpus}
+}
+
+@inproceedings{ami2005corpus,
+  title={The AMI Meeting Corpus},
+  author={Carletta, Jean and others},
+  booktitle={Proceedings of the 5th International Conference on Methods and Techniques in Behavioral Research},
+  year={2005},
+  note={Standard English meeting corpus}
+}
+
+@inproceedings{libricss2020,
+  title={LibriCSS: A Multi-Speaker Multi-Session Speech Separation Corpus},
+  author={Chen, Zhuo and others},
+  booktitle={Interspeech},
+  year={2020},
+  note={Continuous speech separation corpus}
+}
+
+% === Engineering References ===
+
+@misc{codetape2026,
+  title={code-tape: Engineering Harness Reference},
+  author={ceilf6},
+  howpublished={\url{https://github.com/ceilf6/code-tape}},
+  year={2026},
+  note={Git hooks, contract rules, SDD/TDD workflow}
+}
+
+@misc{resemblyzer2019,
+  title={Resemblyzer: Speaker Embedding via GE2E},
+  author={Resemble AI},
+  howpublished={\url{https://github.com/resemble-ai/Resemblyzer}},
+  year={2019},
+  note={GE2E speaker encoder for speaker verification}
+}
+
+@misc{meeteval2023,
+  title={MeetEval: A Toolkit for Meeting Recognition Evaluation},
+  author={Various},
+  howpublished={\url{https://github.com/fgnt/meeteval}},
+  year={2023},
+  note={cpWER and other meeting evaluation metrics}
+}

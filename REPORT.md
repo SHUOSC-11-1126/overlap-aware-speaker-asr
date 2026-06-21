@@ -46,7 +46,100 @@ The current system compares and routes among:
 
 ![Overlap-aware ASR route map](results/figures/report/fig1_system_route_map.png)
 
-## 2. Benchmark and Evidence Levels
+## 2. Design Choices and Justification
+
+This section explicitly answers: why did we make the design decisions we made?
+
+### Why Whisper as the sole ASR engine?
+
+We chose OpenAI Whisper (Radford et al., 2022) over alternatives for four reasons:
+
+1. **Open weights + reproducibility.** Whisper provides open weights for all model sizes (tiny→large-v3) with a simple `pip install openai-whisper` interface. This enables deterministic reproduction of all results.
+
+2. **Logit-level access.** Our experiments analyze Whisper's internal decoder state (token entropy, avg_logprob, attention heads). Vanilla Whisper provides direct access to these signals; Faster-Whisper (CTranslate2 quantization) produces identical logits but adds an abstraction layer; WhisperX adds VAD preprocessing that would confound our analysis.
+
+3. **Cross-lingual.** Whisper supports 99 languages including Chinese, which is our evaluation language. FunASR/WeNet/ESPnet are model-specific and would shift the project from "routing study" to "ASR training study."
+
+4. **Research transparency.** Whisper's paper, code, and training data are well-documented. This makes our experimental setup verifiable.
+
+**Why not Faster-Whisper?** Same logits, different runtime. Speed is not our bottleneck — the research question requires logit-level access.
+
+**Why not WhisperX?** VAD preprocessing would confound our separation-effect analysis. We need controlled overlap, not automatic voice activity detection.
+
+**Why not FunASR/WeNet/ESPnet?** Different architectures would make cross-model comparison noisy. Our research question is about *when to separate*, not *which ASR is best*.
+
+### Why oracle separation instead of a realistic separator?
+
+We use ground-truth source tracks mixed at controlled ratios. This isolates the *separation effect* from separator quality. If separation hurts under oracle conditions (which it does at low overlap), it will hurt more with realistic separators. Our results are conservative bounds. This follows the standard methodology in speech separation evaluation (Kolbaek et al., 2017).
+
+### Why gain-invariant prosody for emotion?
+
+Standard SER models require labeled training data, which doesn't exist for our overlap-controlled debate corpus. We operationalize emotion as gain-invariant acoustic prosody (arousal-side), using the clean source's own prosody as reference. This follows the dimensional emotion tradition (Russell, 1980; Scherer, 2005) and trades completeness for validity.
+
+### Why deepseek-r1 via ollama?
+
+Required: (a) fully offline (no API calls, privacy); (b) reasoning capability for emotion interpretation; (c) small enough (7B) for reproducible local experimentation. Alternatives: GPT-4/Claude (online, not reproducible), Llama-3-8B (no reasoning traces).
+
+### Why Resemblyzer for speaker embedding?
+
+Resemblyzer (GE2E encoder) is lightweight (~45MB), fully offline, and produces a single 256-dim embedding per track. Its AUC 0.95 on babble detection was sufficient — pyannote.audio would add latency without changing the gate decision boundary.
+
+## 3. Experimental Parameters
+
+This section specifies the exact parameters used in all experiments, enabling reproduction.
+
+### ASR Configuration
+
+| Parameter | Value | Justification |
+|---|---|---|
+| **Model** | OpenAI Whisper (openai-whisper package) | See Section 2 for model choice justification |
+| **Model sizes** | tiny (39M), base (74M), small (244M) | Spans 10× parameter range at 1×/1.93×/6× compute |
+| **Language** | `zh` (Chinese) | All audio is Mandarin debate speech |
+| **Temperature** | `0.0` (greedy decoding) | Deterministic; eliminates sampling variability |
+| **Condition on previous text** | `False` | Prevents context leakage between segments |
+| **Beam size** | 1 (default, greedy) | Beam search tested separately in hallucination cure experiments |
+| **Initial prompt** | None | No prompt engineering; vanilla Whisper |
+
+### Audio Specifications
+
+| Parameter | Value |
+|---|---|
+| **Sampling rate** | 16 kHz (Whisper's expected input) |
+| **Format** | WAV (PCM 16-bit) |
+| **Gold benchmark** | 5 manually verified cases (2-speaker Mandarin debate) |
+| **Overlap levels** | 0 (NoOverlap) through 4 (OppositeOverlap) |
+| **Synthetic benchmark** | 26 speaker snippets combined at controlled overlap ratios (0.0–0.9) |
+
+### CER Computation
+
+| Parameter | Value |
+|---|---|
+| **Metric** | Character Error Rate (CER) — appropriate for Chinese (character-based language) |
+| **Implementation** | Custom Levenshtein distance on normalized text (`src/evaluate_cer.py`) |
+| **Normalization** | Remove punctuation, speaker tags, whitespace; lowercase |
+| **Alignment** | Character-level edit distance (not word-level) |
+| **Speaker-aware CER** | Per-speaker macro average with speaker gap |
+| **cpCER-lite** | Speaker permutation check: direct vs swapped assignment, keeps lower macro CER |
+
+### Hardware and Runtime
+
+| Parameter | Value |
+|---|---|
+| **Reference hardware** | Apple M1/M2 (macOS) |
+| **GPU** | Apple MPS (Metal Performance Shaders) when available |
+| **Runtime measurement** | Wall-clock time per utterance (not FLOPs) |
+| **Compute cost** | Relative to Whisper-tiny (1.00×); base = 1.93×; small = 6.26× (architecture ratios, not wall-clock) |
+
+### LLM Configuration (Frontier Experiments)
+
+| Parameter | Value |
+|---|---|
+| **Model** | deepseek-r1:7b via ollama |
+| **Temperature** | 0.1 (near-deterministic) |
+| **RAG** | Enabled (character n-gram Jaccard similarity, top-k retrieval) |
+| **Offline** | Fully local, no API calls |
+
+## 4. Benchmark and Evidence Levels
 
 The gold benchmark contains five manually verified cases:
 
@@ -73,7 +166,7 @@ support unless directly tied to verified benchmark numbers.
 | Optional frontier | compatibility, diagnostic, demo, and research extensions | not stable ASR claims |
 | AudioDepth frontier | pre-ASR acoustic triage research | exploratory, not mainline stable |
 
-## 3. Mainline ASR Pipeline
+## 5. Mainline ASR Pipeline
 
 The mainline pipeline starts from existing mixed audio and separated speaker
 tracks. It runs mixed Whisper, separated speaker-track Whisper, and a
@@ -89,7 +182,7 @@ repetition proxies, speaker length imbalance, and method disagreement. The
 risk-aware selector adds a conservative deployment layer that can choose a
 slightly worse CER route if the transcript looks safer and more explainable.
 
-## 4. Core Results
+## 6. Core Results
 
 On the five gold cases, the best method changes by overlap regime:
 
@@ -119,7 +212,7 @@ overlap regimes, but under LightOverlap and MidOverlap it can amplify
 insertion-heavy and repetition-heavy hallucinations. Duplicate suppression
 reduces some damage but does not make separated output universally best.
 
-## 5. Boundary-aware Analysis
+## 7. Boundary-aware Analysis
 
 The project does not stop at a leaderboard. It also studies where separation
 changes from helpful to harmful. The boundary line appears through several
@@ -141,7 +234,7 @@ This boundary framing is the scientific core of the project. The goal is not
 only to find the lowest average CER on five examples, but to explain why route
 choice should change when overlap intensity and transcript instability change.
 
-## 6. Speaker-aware and Permutation-aware Evaluation
+## 8. Speaker-aware and Permutation-aware Evaluation
 
 Global CER collapses all speaker text into one string. That can hide speaker
 attribution failures, so the project includes speaker-aware CER and cpCER-lite.
@@ -162,7 +255,7 @@ This does not mean speaker identity is solved. Speaker-profile and voiceprint
 experiments remain frontier diagnostics. Their current value is to expose weak
 or near-tie risk signals, not to claim robust open-set speaker identification.
 
-## 7. Risk-aware and Compute-aware Routing
+## 9. Risk-aware and Compute-aware Routing
 
 The risk-aware selector is a reference-free final selection layer. It uses
 deployment-visible signals such as method disagreement, repetition risk, length
@@ -181,7 +274,7 @@ system spend more compute? The current costed gold analysis shows:
 | risk_aware_costed | 0.134587 | 0.929533 |
 | budget_cascade | 0.134587 | 0.929533 |
 
-## 8. Mode B: Three-tier Compute-aware Cascade
+## 10. Mode B: Three-tier Compute-aware Cascade
 
 谢宇轩 (xyx12369) contributed the Mode B three-tier cascade. This line treats
 overlap-aware ASR as a staged compute allocation problem:
@@ -208,7 +301,7 @@ recommendation.
 
 ![Compute-aware cascade trade-off surface](results/figures/report/fig4_compute_cascade_3d_surface.png)
 
-## 9. MeetEval, External Validation, and LLM Frontiers
+## 11. MeetEval, External Validation, and LLM Frontiers
 
 Several frontier lines extend the evaluation surface without replacing the
 stable gold benchmark.
@@ -227,7 +320,7 @@ explain risky transcripts and propose candidate repairs, but they must not
 silently become the gold truth. Any repair claim needs after-the-fact
 evaluation against references.
 
-## 10. AudioDepth Frontier Study
+## 12. AudioDepth Frontier Study
 
 AudioDepth, led as a frontier research direction by WU FANGZHOU, reframes
 overlapping speech as time-frequency occlusion. The analogy comes from RGB-D
@@ -252,7 +345,7 @@ should not be presented as a stable mainline feature.
 
 ![AudioDepth route decision space](docs/assets/audio-depth/audio_depth_route_decision_space.png)
 
-## 11. Agentic Engineering and OpenClaw
+## 13. Agentic Engineering and OpenClaw
 
 The repository also includes an engineering governance layer. Git hooks,
 contract guards, SDD/TDD documentation, ADRs, and GitNexus-style code graph
@@ -266,7 +359,7 @@ agentic-research-entropy audit measured that drift, and the cleanup pass
 demoted or archived low-value coordination records. Those artifacts are useful
 for traceability, but they are not research findings.
 
-## 12. Team Contributions in the Research Story
+## 14. Team Contributions in the Research Story
 
 The report is a team artifact, not a single-line personal writeup.
 
@@ -280,23 +373,41 @@ The shared contribution is the claim boundary: stable gold results, synthetic
 silver checks, optional frontier scaffolds, and exploratory research are labeled
 separately so the project can be ambitious without overstating evidence.
 
-## 13. Limitations
+## 15. Related Work
 
-- The gold benchmark has only five verified cases.
-- Synthetic and held-out synthetic references are silver evidence, not gold.
-- Router v2 matches the oracle on the gold cases, but that does not prove
-  universal generalization.
-- Runtime and compute measurements are repository-local and not universal
-  hardware benchmarks.
-- Mode B, MeetEval, speaker-profile, external validation, LLM critic, and
-  AudioDepth outputs are experimental or frontier-labeled unless explicitly
-  connected to verified benchmark evidence.
-- AudioDepth has strong explanatory visuals and useful negative findings, but
-  it is not a stable mainline router.
-- OpenClaw and the harness improve engineering workflow, not ASR accuracy by
-  themselves.
+This project builds on four research lines. The full literature review with per-hypothesis novelty assessment is in the [README](README.md#literature--related-work); here we summarize the key relationships.
 
-## 14. Conclusion
+**Speech separation × ASR.** Sato et al. (Interspeech 2021, "Should We Always Separate?") established that neural separators inject artifacts below an SIR/SNR crossover. We reproduce this finding on Chinese debate audio and extend it with a continuous phase diagram (crossover at r* ≈ 0.17), mechanistic analysis (insertion/repetition hallucination), and a model-scale dimension showing the crossover vanishes for Whisper-base.
+
+**Whisper hallucination.** Koenecke et al. (ACM FAccT 2024, "Careless Whisper") documented hallucinations in silent regions. Baranski et al. (ICASSP 2025) found a finite "bag of hallucinations." Viakhirev et al. (2026) proposed the Compression-Seeking Attractor. Aparin et al. (2026) showed encoder/SAE latents are separable pre-loop. Our causal hallucination probe extends this line to the separation-tax regime, finding a token-id repetition lock-in trip-wire that fires ~10× earlier than compression-ratio.
+
+**ASR × LLM.** The GenSEC-LLM challenge (2024) and R3 (2024) explore post-ASR LLM processing. Our contribution: a local 7B LLM reads implicit emotion ~7× more than a lexicon (useful), but rescoring is catastrophic (0/26 helped, CER 0.316→0.798) — the LLM rewrites rather than corrects.
+
+**Emotion in speech.** Following Russell (1980) and Scherer (2005), we operationalize emotion as gain-invariant acoustic prosody. The Emotional Separation Tax — separation helps emotion at all overlaps — is the opposite of the ASR tax, making the routing decision objective-dependent.
+
+## 16. Limitations
+
+The project has several important limitations that bound the scope of its claims:
+
+**Benchmark size.** The gold benchmark has only five verified cases. This is insufficient for statistical significance testing or generalization claims. Each case requires manual verification of reference text, speaker attribution, and overlap ratio — a process that takes hours per case. We use 5 gold cases for mechanism discovery, not for generalization.
+
+**Oracle separation.** All experiments use oracle separation (ground-truth source tracks mixed at controlled ratios). Realistic neural separators (SepFormer, Conv-TasNet, TF-GridNet) add their own artifacts that we do not quantify. Our results are conservative bounds — if separation hurts under oracle conditions, it will hurt more with realistic separators.
+
+**Single language.** All evaluation is on Chinese audio. Cross-lingual generalization is unknown. Chinese is character-based (no word boundaries), making CER the natural metric; extending to English would require WER evaluation and different normalization.
+
+**No standard meeting benchmarks.** We do not evaluate on AMI, LibriCSS, AliMeeting, or AISHELL-4. Our controlled 5-case benchmark isolates the separation variable; standard benchmarks would introduce confounds (different speakers, room acoustics, microphone arrays).
+
+**LLM rescoring failure.** The LLM rescoring experiment (0/26 helped, CER 0.316→0.798) shows that small LLMs rewrite rather than correct. This may not generalize to larger models or different prompting strategies. The 0.200 CER floor is not fixable by contextual understanding alone.
+
+**No real-time evaluation.** All evaluation is offline batch. Streaming ASR introduces latency constraints, partial hypotheses, and different error patterns.
+
+**Prosody features are arousal-only.** Our emotion evaluation uses gain-invariant acoustic prosody (arousal-side only). Valence is captured only through lexical analysis. No pretrained SER model is used, because our overlap-controlled debate corpus has no emotion labels.
+
+**Router generalization.** Router v2 matches the oracle on the gold cases, but that does not prove universal generalization. The router's features (compression ratio, length inflation, repetition proxies) are tuned to the specific acoustic conditions of our benchmark.
+
+**Compute measurements.** Runtime and compute measurements are repository-local (Apple M1/M2) and not universal hardware benchmarks. Relative costs (1.93× for base vs tiny) are model-architecture ratios, not wall-clock measurements.
+
+## 17. Conclusion
 
 The project establishes a stable overlap-aware ASR baseline and extends it into
 a broader research system. The main result is selective separation: mixed ASR is
