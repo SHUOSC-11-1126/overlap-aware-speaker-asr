@@ -35,6 +35,7 @@ This folder is the documentation entry point for the project.
 - [docs/skills/skill_10_controlled_route_sensitive_benchmark.md](skills/skill_10_controlled_route_sensitive_benchmark.md)
 - [docs/skills/skill_11_balanced_route_sensitive_benchmark.md](skills/skill_11_balanced_route_sensitive_benchmark.md)
 - [docs/skills/skill_12_audiodepth_centric_frontier.md](skills/skill_12_audiodepth_centric_frontier.md)
+- [docs/skills/skill_14_generative_audiodepth.md](skills/skill_14_generative_audiodepth.md)
 
 ## Ambitious Exploration Docs
 
@@ -115,6 +116,8 @@ This folder is the documentation entry point for the project.
 - [docs/final_claim_ledger.md](final_claim_ledger.md)
 - [results/figures/end_to_end_router_safety_audit.md](../results/figures/end_to_end_router_safety_audit.md)
 - [results/figures/stage2_review_guard_summary.md](../results/figures/stage2_review_guard_summary.md)
+- [docs/frontier/generative_audiodepth.md](frontier/generative_audiodepth.md)
+- [results/figures/generative_audiodepth_downstream_summary.md](../results/figures/generative_audiodepth_downstream_summary.md)
 - [results/figures/final_system_architecture.png](../results/figures/final_system_architecture.png)
 - [results/figures/final_key_results_card.png](../results/figures/final_key_results_card.png)
 - [results/figures/final_evidence_levels.png](../results/figures/final_evidence_levels.png)

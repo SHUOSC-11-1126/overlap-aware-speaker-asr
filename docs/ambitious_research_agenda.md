@@ -165,12 +165,15 @@ Update: the calibrated gate follow-up recovers some of that missing action signa
 
 Update: the risk-guarded gate follow-up turns AudioDepth into a more safety-aware triage module. The balanced policy reaches controlled_v2 CER `0.529082`, direct-bypass false-safe `0.000000`, and text-probe reduction `0.416667`; the aggressive policy reaches CER `0.537082` with text-probe reduction `0.650000`. The Stage 31 safety audit shows the remaining high-error mixed selections come from Stage-2/review fallback rather than AudioDepth direct bypass.
 
+Update: the generative follow-up reframes AudioDepth as a promptable acoustic-map problem rather than only a route classifier. The first-pass dataset has `60` controlled_v2 samples and `300` task rows across overlap, dominance, uncertainty, route-regret, and review-risk targets. It is worth keeping as an auxiliary interpretability frontier: promptable map MAE improves slightly over an unconditioned baseline (`0.241263` vs `0.246685`), and route-regret selection improves fixed mixed CER on the source-disjoint test split (`0.671608` vs `0.739509`). It is not yet a replacement path because false-safe mixed selections remain (`4`) and counterfactual evidence is proxy-only.
+
 ## 16. Highest-Value Next Directions
 
 1. Manual micro-gold verification for 30-50 controlled_v2 samples.
 2. Stage-2 review guard / abstention policy with verified review outcomes.
 3. Cleaned-win benchmark construction.
-4. MeetEval / cpWER compatibility execution.
-5. External mini sanity check.
-6. AST / WavLM AudioDepth probe.
-7. Repository cleanup / artifact archiving.
+4. Exact same-source AudioDepth counterfactual scenes for overlap and dominance.
+5. MeetEval / cpWER compatibility execution.
+6. External mini sanity check.
+7. AST / WavLM AudioDepth probe.
+8. Repository cleanup / artifact archiving.

@@ -1,0 +1,7 @@
+model_name,sample_count,selected_route_cer,oracle_gap,route_accuracy,false_safe_count,split
+fixed_mixed,9,0.739509,0.117901,0.777778,6,test
+fixed_separated,9,0.840462,0.218854,0.222222,0,test
+fixed_cleaned,9,0.840462,0.218854,0.0,0,test
+generative_regret_no_cost,9,0.671608,0.05,0.777778,4,test
+generative_regret_cost_aware,9,0.671608,0.05,0.777778,4,test
+oracle,9,0.621608,0.0,1.0,4,test

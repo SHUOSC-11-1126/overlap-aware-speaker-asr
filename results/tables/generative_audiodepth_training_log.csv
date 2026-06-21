@@ -1,0 +1,5 @@
+model_name,epoch,train_samples,validation_samples,test_samples,status
+logmel_direct_classifier,0,42,9,9,deterministic_prototype_completed
+multitask_direct_model,0,42,9,9,deterministic_prototype_completed
+map_generation_unconditioned,0,42,9,9,deterministic_prototype_completed
+promptable_map_generator,0,42,9,9,deterministic_prototype_completed

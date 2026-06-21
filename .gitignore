@@ -30,6 +30,7 @@ torch_cache/
 !models/audio_depth_controlled_*
 !models/audio_depth_balanced_*
 !models/audiodepth_*
+!models/generative_audiodepth_*
 
 # Runtime outputs
 results/transcripts_raw/*
@@ -43,12 +44,16 @@ results/synthetic_overlap_v2/
 !results/tables/audio_depth_*.csv
 !results/tables/audio_depth_*.json
 !results/tables/audiodepth_*
+!results/tables/generative_audiodepth_*
+!results/tables/generative_route_regret_*
 !results/tables/controlled_*
 !results/tables/route_winner_*
 !results/tables/whisper_env_diagnosis.json
 !results/figures/audio_depth_*.png
 !results/figures/audio_depth_*.md
 !results/figures/audiodepth_*
+!results/figures/generative_audiodepth_*
+!results/figures/generative_route_regret_*
 !results/figures/controlled_*
 !results/figures/route_winner_*
 !results/figures/whisper_env_diagnosis.md

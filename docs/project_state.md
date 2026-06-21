@@ -49,6 +49,7 @@ This document is for future Codex / AI coding agents so they can resume work wit
 - Balanced Route-Sensitive Benchmark v2 frontier validation
 - AudioDepth-centric deployable v2 and Stage-1 gate frontier validation
 - Stage 31 final claim ledger, end-to-end safety audit, Stage-2 review guard, and presentation cards
+- Stage 32 Generative AudioDepth promptable acoustic-map dataset, route-regret prototype, counterfactual proxy audit, and downstream comparison
 
 ## Current Core Findings
 
@@ -64,6 +65,7 @@ This document is for future Codex / AI coding agents so they can resume work wit
 10. The compute-aware cascade is an experimental/frontier cost analysis layer; it evaluates route cost after reference-free decisions are fixed and does not use CER as a routing input.
 11. AudioDepth-Router is an experimental/frontier learned-router probe, not a stable baseline. The first deployable synthetic split run underperforms router_v2, which is a useful negative finding about audio-only depth proxies.
 12. The AudioDepth frontier has now been expanded into a model-zoo and hybrid-routing exploration scaffold. That broader sweep is designed to test whether richer architectures, class balancing, and transcript-instability features can recover more signal than the MVP.
+13. Generative AudioDepth is an auxiliary interpretability frontier, not a replacement router. The current promptable prototype slightly improves map MAE over an unconditioned baseline and improves fixed mixed CER through route-regret selection, but false-safe mixed selections and proxy-only counterfactuals remain.
 
 ## AudioDepth-Router Frontier Finding
 
@@ -77,6 +79,22 @@ Label: `experimental/frontier` plus `synthetic/silver`
 - Ablation: `results/figures/audio_depth_router_ablation.md`
 
 AudioDepth-Router is inspired by RGB-D image recognition. It treats overlapping speech as time-frequency occlusion and augments a log-mel spectrogram with overlap/depth and uncertainty channels. Deployable mode uses only mixed audio. Analysis-only mode uses separated tracks and must not be claimed as deployable.
+
+## Generative AudioDepth Frontier Finding
+
+Label: `experimental/frontier`
+
+- Skill card: `docs/skills/skill_14_generative_audiodepth.md`
+- Frontier note: `docs/frontier/generative_audiodepth.md`
+- Promptable dataset: `results/tables/generative_audiodepth_dataset.csv`
+- Split audit: `results/figures/generative_audiodepth_split_audit.md`
+- Baselines: `results/tables/generative_audiodepth_baseline_performance.csv`
+- Route-regret evaluation: `results/tables/generative_route_regret_performance.csv`
+- Downstream comparison: `results/tables/generative_audiodepth_downstream_comparison.csv`
+
+Stage 32 reframes AudioDepth as promptable acoustic scene-map generation with task tokens for overlap maps, dominance maps, uncertainty maps, route-regret vectors, and review-risk maps. Teacher maps can use source tracks only for analysis, while the deployable student boundary remains mixed-audio / mixed-logmel only.
+
+Current first-pass evidence is modest but useful: promptable map generation improves map MAE over the unconditioned baseline (`0.241263` vs `0.246685`), and route-regret selection improves fixed mixed CER on the source-disjoint test split (`0.671608` vs `0.739509`). It should stay framed as an auxiliary interpretability and diagnostic path because it still has `4` false-safe mixed selections and only proxy counterfactual pairs.
 
 Current deployable synthetic split TEST result:
 

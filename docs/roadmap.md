@@ -2401,6 +2401,18 @@ AudioDepth-Router is inspired by RGB-D / depth-augmented image recognition. It t
 
 Current deployable synthetic split TEST evidence is a negative/diagnostic result: AudioDepth-CNN routing CER is `0.436666`, worse than router_v2 (`0.335326`) and oracle (`0.115181`). This suggests text-level instability features remain important and synthetic results should not be promoted into gold claims.
 
+## Generative AudioDepth Frontier
+
+Status: first-pass `experimental/frontier` prototype exists.
+
+- Skill card: `docs/skills/skill_14_generative_audiodepth.md`
+- Frontier note: `docs/frontier/generative_audiodepth.md`
+- Scripts: `python -m src.build_promptable_acoustic_map_dataset`, `python -m src.split_generative_audiodepth_dataset`, `python -m src.train_generative_audiodepth_baselines`, `python -m src.evaluate_generative_route_regret`, `python -m src.evaluate_generative_audiodepth_downstream`
+- Tables: `results/tables/generative_audiodepth_dataset.csv`, `results/tables/generative_audiodepth_baseline_performance.csv`, `results/tables/generative_route_regret_performance.csv`, `results/tables/generative_audiodepth_downstream_comparison.csv`
+- Figures: `results/figures/generative_audiodepth_examples.png`, `results/figures/generative_route_regret_calibration.png`, `results/figures/generative_audiodepth_downstream_leaderboard.png`
+
+This line treats AudioDepth as promptable acoustic scene-map generation rather than only direct route classification. Current evidence is useful but limited: promptable map MAE improves slightly over an unconditioned baseline (`0.241263` vs `0.246685`), and route-regret selection improves fixed mixed CER (`0.671608` vs `0.739509`) on the source-disjoint test split. Keep it as an auxiliary interpretability frontier until exact same-source counterfactual scenes, stronger mixed-only students, and verified gold references exist.
+
 ## Healthy Project Principles
 
 - New experiments should be isolated.

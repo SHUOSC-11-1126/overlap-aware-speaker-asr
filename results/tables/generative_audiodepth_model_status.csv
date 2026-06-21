@@ -1,0 +1,2 @@
+model_name,status,model_path,evidence_label,task_distribution
+promptable_map_generator,prototype_trained,models/generative_audiodepth_promptable_prototype.pt,controlled_silver_plus_frontier,"{'OVERLAP_MAP': 60, 'DOMINANCE_MAP': 60, 'UNCERTAINTY_MAP': 60, 'ROUTE_REGRET': 60, 'REVIEW_RISK': 60}"

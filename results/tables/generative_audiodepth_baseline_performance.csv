@@ -1,0 +1,5 @@
+model_name,split,route_accuracy,selected_route_cer,oracle_gap,map_mae,sample_count,regret_mae
+logmel_direct_classifier,test,0.777778,0.671608,0.05,,9,
+multitask_direct_model,test,0.777778,0.671608,0.05,,9,0.077426
+map_generation_unconditioned,test,,,,0.246685,9,
+promptable_map_generator,test,,,,0.241263,9,

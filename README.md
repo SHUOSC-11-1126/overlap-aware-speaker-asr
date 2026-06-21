@@ -25,6 +25,7 @@ Blindly separating every overlapping recording can waste compute and sometimes m
 | deployable AudioDepth Stage-1 gate | implemented | 200 mixed-only maps, modest embedding signal |
 | risk-guarded AudioDepth gate | safety-aware frontier | balanced CER `0.529082`, direct-bypass false-safe `0.000000` |
 | Stage-2 review guard | abstention audit | high-error mixed count reduced from `12` to `0` by review, not repair |
+| Generative AudioDepth | auxiliary frontier | promptable map prototype improves map MAE slightly; route-regret improves fixed mixed but still has false-safe risk |
 
 ## Evidence Levels
 
@@ -56,6 +57,7 @@ python -m src.generate_final_presentation_cards
 - [docs/final_claim_ledger.md](docs/final_claim_ledger.md)
 - [docs/project_state.md](docs/project_state.md)
 - [docs/skills/skill_12_audiodepth_centric_frontier.md](docs/skills/skill_12_audiodepth_centric_frontier.md)
+- [docs/frontier/generative_audiodepth.md](docs/frontier/generative_audiodepth.md)
 - [results/figures/end_to_end_router_safety_audit.md](results/figures/end_to_end_router_safety_audit.md)
 - [results/figures/stage2_review_guard_summary.md](results/figures/stage2_review_guard_summary.md)
 

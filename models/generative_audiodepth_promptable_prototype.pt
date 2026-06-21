@@ -1,0 +1,10 @@
+{
+  "model_type": "promptable_prototype_no_torch",
+  "tasks": [
+    "DOMINANCE_MAP",
+    "OVERLAP_MAP",
+    "UNCERTAINTY_MAP"
+  ],
+  "train_samples": 42,
+  "note": "Dependency-light prototype. Future work can replace this interface with a small U-Net."
+}

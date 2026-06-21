@@ -1,0 +1,5 @@
+model_name,parameter_count,model_file_size_bytes,cpu_inference_ms,map_generation_overhead
+handcrafted_audiodepth_v2,0,0,2.4e-05,none
+direct_classifier,0,0,0.05512,none
+promptable_generator_prototype,42,254,0.00399,nearest_prototype_map_lookup
+route_regret_model,42,254,0.052785,none
