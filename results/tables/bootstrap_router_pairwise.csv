@@ -1,0 +1,12 @@
+policy,baseline,mean_delta_vs_baseline,ci_low,ci_high
+fixed_separated,fixed_mixed,-0.200916,-0.567589,0.144336
+fixed_cleaned,fixed_mixed,-0.195344,-0.565972,0.182929
+router_v2_refit,fixed_mixed,-0.303115,-0.622011,-0.054422
+balanced_router_refit,fixed_mixed,-0.311376,-0.622011,-0.054422
+stage29_calibrated_audiodepth_gate_refit,fixed_mixed,-0.301137,-0.604565,-0.054422
+stage30_risk_guarded_gate_refit,fixed_mixed,-0.302705,-0.587119,-0.054422
+stage31_stage2_review_guard_refit,fixed_mixed,-0.300571,-0.610929,-0.054422
+stage33_regret_regressor_refit,fixed_mixed,-0.306029,-0.610929,-0.054422
+stage33_regret_ranker_refit,fixed_mixed,-0.305892,-0.610929,-0.054422
+stage33_safe_regret_fusion_refit,fixed_mixed,-0.304878,-0.593483,-0.054422
+oracle_best,fixed_mixed,-0.30525,-0.610929,-0.054422

@@ -1,0 +1,16 @@
+# Unified router safety audit
+
+| policy | false-safe | high-error mixed | review | status |
+| --- | ---: | ---: | ---: | --- |
+| balanced_router_refit | 0 | 3 | 0 | no_false_safe_observed |
+| fixed_cleaned | 0 | 0 | 0 | no_false_safe_observed |
+| fixed_mixed | 3 | 6 | 0 | needs_review |
+| fixed_separated | 0 | 0 | 0 | no_false_safe_observed |
+| oracle_best | 0 | 3 | 0 | no_false_safe_observed |
+| router_v2_refit | 0 | 3 | 0 | no_false_safe_observed |
+| stage29_calibrated_audiodepth_gate_refit | 0 | 3 | 0 | no_false_safe_observed |
+| stage30_risk_guarded_gate_refit | 0 | 1 | 2 | no_false_safe_observed |
+| stage31_stage2_review_guard_refit | 0 | 1 | 4 | no_false_safe_observed |
+| stage33_regret_ranker_refit | 0 | 2 | 0 | no_false_safe_observed |
+| stage33_regret_regressor_refit | 0 | 3 | 0 | no_false_safe_observed |
+| stage33_safe_regret_fusion_refit | 0 | 1 | 4 | no_false_safe_observed |

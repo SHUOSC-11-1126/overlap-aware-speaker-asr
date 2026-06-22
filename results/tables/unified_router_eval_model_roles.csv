@@ -1,0 +1,6 @@
+model_or_policy,role,trained_on_stage34
+fixed routes,baselines,False
+router_v2_refit,metadata nearest-neighbor router,True
+balanced/stage29/stage30/stage31,AudioDepth lineage refit proxies,True
+stage33 regret family,Generative AudioDepth lineage refit proxies,True
+oracle_best,"upper bound, not deployable",False
