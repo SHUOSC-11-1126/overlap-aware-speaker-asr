@@ -2430,3 +2430,11 @@ Decision: keep this as a safety/interpretable auxiliary module. Do not make it t
 - Stable results should not be overwritten.
 - Gold / silver / experimental / demo labels must be clear.
 - Every ambitious module needs an owner and output path.
+
+## Stage 34 Priority Queue
+
+1. Annotate the `11` prepared micro-gold candidates before changing the main claim hierarchy.
+2. Add route-CER for the remaining source-disjoint manifest rows only after annotation priorities are fixed.
+3. Keep Generative AudioDepth as a safety confirmer; do not make it the main router until it beats conservative routing on a larger strict split without high review dependence.
+4. Build cleaned-win examples deliberately, because the current strict test has `0` cleaned oracle wins.
+5. Re-run unified evaluation after micro-gold verification and report gold/silver metrics in separate tables.

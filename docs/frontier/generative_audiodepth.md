@@ -181,3 +181,21 @@ for `UNCERTAINTY_MAP` (`0.230941`). The recommended minimum task set is
 Final Stage 33 decision: **keep Generative AudioDepth as a safety/interpretable
 auxiliary module**. It is not ready as a standalone router and should not be
 promoted above the balanced router or the risk-guarded AudioDepth gate.
+
+## Stage 34 Source-disjoint Expansion
+
+Stage 34 moves the AudioDepth frontier toward stronger evidence hygiene rather
+than a larger model. The new source-disjoint v2 split retains `47` controlled_v2
+manifest rows with `0` source-utterance and source-pair leakage. Unified router
+evaluation is restricted to the rows that already have real Whisper route CER:
+train `20`, validation `9`, test `7`.
+
+On this tiny strict test, fixed mixed is unsafe (`0.875111` CER, false-safe
+`3`). Conservative refit policies and the Stage 33-style safe fusion family
+show `0` false-safe, but review-heavy policies reduce coverage and are scored
+under an explicit review handoff assumption. This means Generative AudioDepth
+still has its best role as a safety confirmer and interpretability module, not
+as the main router.
+
+The most useful next step is micro-gold annotation, not more prompt complexity.
+Stage 34 prepares `11` source-disjoint candidates as `prepared_not_annotated`.

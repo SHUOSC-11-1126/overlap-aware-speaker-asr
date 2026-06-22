@@ -1,0 +1,13 @@
+# End-to-end runtime audit
+
+- strict test samples measured/reused: `11`
+- levels: head-only router, feature-ready router, end-to-end ASR reuse
+
+| level | component | mean runtime sec | provenance |
+| --- | --- | ---: | --- |
+| head_only_router | metadata_policy_eval | 0.0001 | measured_python_wallclock_lightweight |
+| feature_ready_router | wav_header_scan | 0.000105 | deterministic_stage34_bytes_4036098 |
+| end_to_end_asr_reuse | mixed_asr | 0.993471 | existing_faster_whisper_base_runtime |
+| end_to_end_asr_reuse | separated_asr | 1.098543 | existing_faster_whisper_base_runtime |
+| end_to_end_asr_reuse | cleaned_asr | 1.098543 | existing_faster_whisper_base_runtime |
+| end_to_end_asr_reuse | all_routes_per_sample | 2.0924 | existing_controlled_v2_runtime |

@@ -51,6 +51,7 @@ This document is for future Codex / AI coding agents so they can resume work wit
 - Stage 31 final claim ledger, end-to-end safety audit, Stage-2 review guard, and presentation cards
 - Stage 32 Generative AudioDepth promptable acoustic-map dataset, route-regret prototype, counterfactual proxy audit, and downstream comparison
 - Stage 33 Generative AudioDepth reliability audit, strict source-token subset, counterfactual reliability, regret ranking, and safe fusion
+- Stage 34 source-disjoint evidence expansion, unified router evaluation, micro-gold preparation, and runtime/compute audit
 
 ## Current Core Findings
 
@@ -68,6 +69,7 @@ This document is for future Codex / AI coding agents so they can resume work wit
 12. The AudioDepth frontier has now been expanded into a model-zoo and hybrid-routing exploration scaffold. That broader sweep is designed to test whether richer architectures, class balancing, and transcript-instability features can recover more signal than the MVP.
 13. Generative AudioDepth is an auxiliary interpretability frontier, not a replacement router. The current promptable prototype slightly improves map MAE over an unconditioned baseline and improves fixed mixed CER through route-regret selection, but false-safe mixed selections and proxy-only counterfactuals remain.
 14. Stage 33 makes that conclusion stricter: a full 60-sample strict source-token split is impossible because source utterances connect the graph, so the reliable subset drops 28 samples. Pairwise regret ranking removes strict-test false-safe mixed selections, but high abstention means the role remains safety confirmation / review augmentation.
+15. Stage 34 extends the audit rather than changing the main claim: strict source-disjoint v2 retains `47` manifest rows and uses route-CER train `20`, validation `9`, test `7`, with `0` source leakage. The micro-gold pack is prepared but not annotated, so no silver-plus row is promoted to gold.
 
 ## AudioDepth-Router Frontier Finding
 
@@ -107,6 +109,19 @@ Stage 33 reliability audit:
 - Regret ranking: R0 false-safe `4`, pairwise ranker false-safe `0`, selected CER `0.519641`.
 - Minimal task set: `overlap_plus_regret`.
 - Decision: keep as safety/interpretable auxiliary module, not standalone router.
+
+Stage 34 source-disjoint evidence expansion:
+
+- Frontier note: `docs/frontier/source_disjoint_evidence_expansion.md`
+- Split audit: `results/tables/source_disjoint_v2_split_audit.csv`
+- Unified evaluation: `results/tables/unified_router_eval_summary.csv`
+- Safety audit: `results/tables/unified_router_eval_safety_audit.csv`
+- Micro-gold prep: `results/tables/micro_gold_candidate_manifest.csv`, `results/tables/micro_gold_annotation_sheet.csv`
+- Runtime audit: `results/tables/end_to_end_runtime_components.csv`
+
+The full controlled_v2 manifest has `120` rows, but only `60` have existing real Whisper route CER. The strict source-token split retains `47` manifest rows and gives route-CER train `20`, validation `9`, test `7`, with `0` source-utterance and source-pair leakage. No new ASR jobs were launched; Stage 34 reuses existing faster-whisper/base outputs.
+
+Current conclusion: use source-disjoint v2 as the next evidence scaffold and annotation queue. It supports conservative safety auditing, but it is still too small and non-gold for a strong generalization claim.
 
 Current deployable synthetic split TEST result:
 

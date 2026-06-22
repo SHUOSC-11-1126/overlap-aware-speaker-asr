@@ -40,6 +40,14 @@ The strongest current AudioDepth claim is narrow: in controlled silver-plus sett
 
 Stage-2 text routing remains necessary and still carries the largest safety risk. The end-to-end audit finds `12` high-error mixed selections after Stage-2 fallback/review handling; all are silver-plus references, and most are review-needed anchors. A simple review guard can abstain on these cases, reducing high-error mixed decisions to `0`, but that does not repair transcripts or prove lower real CER. The highest-value next steps are manual micro-gold verification, a verified abstention/review policy, cleaned-win benchmark construction, MeetEval/cpWER execution, and external mini validation.
 
+### Stage 34 source-disjoint update
+
+The newest AudioDepth audit builds a stricter source-token split over controlled_v2 rather than reusing overlapping source utterances across train, validation, and test. The full manifest has `120` rows, but only `60` have existing real Whisper route CER. The strict source-disjoint benchmark retains `47` rows overall and the unified CER evaluation uses train `20`, validation `9`, and test `7` route-CER rows with `0` source-utterance and `0` source-pair leakage.
+
+This improves evidence hygiene but does not create a strong gold claim. Every controlled_v2 reference remains `silver_plus_unverified`; the micro-gold pack contains `11` source-disjoint test candidates with status `prepared_not_annotated`. The unified test oracle distribution is mixed `4`, separated `3`, cleaned `0`, so cleaned-route claims remain unsupported. Fixed mixed performs badly on this strict slice (`0.875111` CER, false-safe `3`), while conservative refits reach the oracle average on `7` samples (`0.572829`) mainly because the split is tiny and metadata-nearest policies match the controlled pattern. Review-heavy policies reduce high-error mixed exposure but trade away coverage.
+
+The right interpretation is narrow: source-disjoint evidence expansion strengthens auditability and prepares the next manual annotation step. It does not yet prove external generalization, and Generative AudioDepth remains a safety/interpretable confirmer rather than the primary router.
+
 ## 2. Background and Motivation
 
 The repository started from an earlier overlapping-speech ASR project and turned it into a benchmark-driven research engineering pipeline. The goal is to understand the conditions under which separation improves accuracy and when it introduces hallucinated repetition or over-deletion.
