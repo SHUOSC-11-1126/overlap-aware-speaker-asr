@@ -1,0 +1,6 @@
+split,manifest_rows,route_cer_rows,unique_source_tokens
+train,26,20,12
+validation,10,9,7
+test,11,7,7
+excluded,73,24,26
+leakage,0,0,0
