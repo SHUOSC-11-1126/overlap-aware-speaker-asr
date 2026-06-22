@@ -8,6 +8,7 @@ This folder is the documentation entry point for the project.
 - [REPORT.md](../REPORT.md)
 - [CONTRIBUTIONS.md](../CONTRIBUTIONS.md)
 - [docs/project_state.md](project_state.md)
+- [docs/current_roadmap.md](current_roadmap.md)
 - [docs/roadmap.md](roadmap.md)
 - [docs/maintenance_harness.md](maintenance_harness.md)
 - [docs/repo_evolver.md](repo_evolver.md)

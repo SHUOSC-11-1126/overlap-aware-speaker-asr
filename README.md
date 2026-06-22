@@ -1324,6 +1324,7 @@ New contributors should read these files before modifying code:
 
 - [AGENTS.md](AGENTS.md)
 - [docs/project_state.md](docs/project_state.md)
+- [docs/current_roadmap.md](docs/current_roadmap.md)
 - [docs/roadmap.md](docs/roadmap.md)
 - [docs/maintenance_harness.md](docs/maintenance_harness.md)
 - [docs/README.md](docs/README.md)

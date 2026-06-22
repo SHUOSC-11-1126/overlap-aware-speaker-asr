@@ -1,5 +1,8 @@
 # Roadmap
 
+For a short reviewer-facing plan, read [docs/current_roadmap.md](current_roadmap.md).
+This file is the long historical roadmap and generated frontier queue ledger.
+
 ## Current Status
 
 The core technical work is complete. The repository now has a stable baseline and a clear path toward more ambitious agentic exploration.
