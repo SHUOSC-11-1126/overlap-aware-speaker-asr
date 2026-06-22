@@ -20,8 +20,11 @@ This folder is the documentation entry point for the project.
 - [REPORT.md](../REPORT.md): main research narrative and claim boundary.
 - [docs/final_claim_ledger.md](final_claim_ledger.md): gold/silver/frontier claim ledger.
 - [docs/frontier/audio-depth-router.md](frontier/audio-depth-router.md): AudioDepth routing frontier.
+- [docs/frontier/audiodepth_one_page.md](frontier/audiodepth_one_page.md): one-page AudioDepth reviewer summary.
 - [docs/frontier/generative_audiodepth.md](frontier/generative_audiodepth.md): promptable Generative AudioDepth line.
 - [docs/frontier/source_disjoint_evidence_expansion.md](frontier/source_disjoint_evidence_expansion.md): Stage 34 source-disjoint evidence expansion and micro-gold prep.
+- [docs/module_lifecycle.md](module_lifecycle.md): top-level `src` lifecycle index.
+- [results/figures/results_manifest_summary.md](../results/figures/results_manifest_summary.md): generated result artifact manifest summary.
 
 ## Experimental Stage Docs
 

@@ -55,6 +55,7 @@ results/synthetic_overlap_v2/
 !results/tables/micro_gold_*
 !results/tables/bootstrap_router_*
 !results/tables/end_to_end_runtime_*
+!results/tables/results_manifest.csv
 !results/tables/controlled_*
 !results/tables/route_winner_*
 !results/tables/whisper_env_diagnosis.json
@@ -71,6 +72,7 @@ results/synthetic_overlap_v2/
 !results/figures/micro_gold_*
 !results/figures/bootstrap_router_*
 !results/figures/end_to_end_runtime_*
+!results/figures/results_manifest_summary.md
 !results/figures/controlled_*
 !results/figures/route_winner_*
 !results/figures/whisper_env_diagnosis.md

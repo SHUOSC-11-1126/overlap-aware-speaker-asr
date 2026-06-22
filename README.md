@@ -61,7 +61,10 @@ python -m src.generate_final_presentation_cards
 - [docs/project_state.md](docs/project_state.md)
 - [docs/skills/skill_12_audiodepth_centric_frontier.md](docs/skills/skill_12_audiodepth_centric_frontier.md)
 - [docs/frontier/generative_audiodepth.md](docs/frontier/generative_audiodepth.md)
+- [docs/frontier/audiodepth_one_page.md](docs/frontier/audiodepth_one_page.md)
 - [docs/frontier/source_disjoint_evidence_expansion.md](docs/frontier/source_disjoint_evidence_expansion.md)
+- [docs/module_lifecycle.md](docs/module_lifecycle.md)
+- [results/figures/results_manifest_summary.md](results/figures/results_manifest_summary.md)
 - [results/figures/generative_regret_calibration.md](results/figures/generative_regret_calibration.md)
 - [results/figures/source_disjoint_v2_dataset_summary.md](results/figures/source_disjoint_v2_dataset_summary.md)
 - [results/figures/unified_router_eval_summary.md](results/figures/unified_router_eval_summary.md)
@@ -1333,6 +1336,8 @@ New contributors should read these files before modifying code:
 - [docs/experiment_proposal_template.md](docs/experiment_proposal_template.md)
 - [docs/skills/README.md](docs/skills/README.md)
 - [docs/markdown_audit.md](docs/markdown_audit.md)
+- [docs/module_lifecycle.md](docs/module_lifecycle.md)
+- [results/figures/results_manifest_summary.md](results/figures/results_manifest_summary.md)
 
 ## Project Maintenance and Future Skills
 

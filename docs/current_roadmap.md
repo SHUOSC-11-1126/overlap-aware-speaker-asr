@@ -21,8 +21,9 @@ This is the short, reviewer-facing roadmap. The long historical queue remains in
 
 1. Keep `python -m scripts.check_environment` as the first clone-and-run command.
 2. Keep new frontier outputs under explicit prefixes and claim ledgers.
-3. Avoid committing generated queue expansions unless they are intentionally refreshed with `python -m src.project_harness`.
-4. Prefer small documents that point to detailed ledgers over adding more long-form content to `README.md`.
+3. Maintain `docs/module_lifecycle.md` and `results/tables/results_manifest.csv` with `python -m scripts.generate_repo_indexes`.
+4. Avoid committing generated queue expansions unless they are intentionally refreshed with `python -m src.project_harness`.
+5. Prefer small documents that point to detailed ledgers over adding more long-form content to `README.md`.
 
 ## Current Decision
 
