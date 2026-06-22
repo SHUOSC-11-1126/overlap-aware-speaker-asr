@@ -38,5 +38,3949 @@
     "receipt_target": "results/tables/demo_walkthrough_receipt.json",
     "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
     "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "6",
+    "current_frontier": "wave1_error_type_boundary_report",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "7",
+    "current_frontier": "wave1_frontier_boundary_consolidated_report",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "8",
+    "current_frontier": "wave1_router_boundary_alignment",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "9",
+    "current_frontier": "wave1_separation_phase_diagram",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "10",
+    "current_frontier": "wave1_speaker_profile_spectral_baseline",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "11",
+    "current_frontier": "wave2_cascade_boundary_bridge",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "12",
+    "current_frontier": "wave2_llm_critic_qualitative_brief_light_mid",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "13",
+    "current_frontier": "wave2_meeteval_gold_cer_cpwer_reconciliation",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "14",
+    "current_frontier": "wave2_risk_aware_boundary_audit",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "15",
+    "current_frontier": "wave2_speaker_profile_multisignal_gold_sweep",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "16",
+    "current_frontier": "wave2_synthetic_router_boundary_alignment",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "17",
+    "current_frontier": "wave3_external_validation_aishell4_excerpt_fetch",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "18",
+    "current_frontier": "wave3_external_validation_audio_excerpt_staging_plan",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "19",
+    "current_frontier": "wave3_external_validation_license_confirmation",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "20",
+    "current_frontier": "wave3_external_validation_mini_sanity_check",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "21",
+    "current_frontier": "wave3_external_validation_narrow_audio_eval",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "22",
+    "current_frontier": "wave3_external_validation_narrow_audio_eval_receipt",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "23",
+    "current_frontier": "wave3_external_validation_staging_execution_receipt_fill",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "24",
+    "current_frontier": "wave4_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "25",
+    "current_frontier": "wave4_llm_critic_qualitative_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "26",
+    "current_frontier": "wave4_speaker_profile_embedding_trial_execution_receipt_fill",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "27",
+    "current_frontier": "wave5_cascade_frontier_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "28",
+    "current_frontier": "wave5_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "29",
+    "current_frontier": "wave5_meeteval_character_level_execution_receipt_fill",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "30",
+    "current_frontier": "wave5_separation_phase_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "31",
+    "current_frontier": "wave6_cascade_benchmark_readiness_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "32",
+    "current_frontier": "wave6_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "33",
+    "current_frontier": "wave6_frontier_coordination_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "34",
+    "current_frontier": "wave7_cascade_benchmark_manifest_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "35",
+    "current_frontier": "wave7_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "36",
+    "current_frontier": "wave7_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "37",
+    "current_frontier": "wave7_speaker_profile_case_scope_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "38",
+    "current_frontier": "wave8_cascade_benchmark_evidence_receipt_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "39",
+    "current_frontier": "wave8_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "40",
+    "current_frontier": "wave8_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "41",
+    "current_frontier": "wave8_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "42",
+    "current_frontier": "wave9_cascade_benchmark_phase1_gate_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "43",
+    "current_frontier": "wave9_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "44",
+    "current_frontier": "wave9_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "45",
+    "current_frontier": "wave9_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "46",
+    "current_frontier": "wave10_cascade_benchmark_phase2_gate_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "47",
+    "current_frontier": "wave10_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "48",
+    "current_frontier": "wave10_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "49",
+    "current_frontier": "wave10_meeteval_cpwer_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "50",
+    "current_frontier": "wave11_cascade_benchmark_phase3_gate_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "51",
+    "current_frontier": "wave11_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "52",
+    "current_frontier": "wave11_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "53",
+    "current_frontier": "wave11_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "54",
+    "current_frontier": "wave12_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "55",
+    "current_frontier": "wave12_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "56",
+    "current_frontier": "wave12_llm_critic_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "57",
+    "current_frontier": "wave12_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "58",
+    "current_frontier": "wave13_cascade_benchmark_phase4_gate_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "59",
+    "current_frontier": "wave13_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "60",
+    "current_frontier": "wave13_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "61",
+    "current_frontier": "wave13_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "62",
+    "current_frontier": "wave14_cascade_benchmark_phase5_gate_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "63",
+    "current_frontier": "wave14_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "64",
+    "current_frontier": "wave14_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "65",
+    "current_frontier": "wave14_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "66",
+    "current_frontier": "wave15_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "67",
+    "current_frontier": "wave15_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "68",
+    "current_frontier": "wave15_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "69",
+    "current_frontier": "wave15_llm_critic_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "70",
+    "current_frontier": "wave16_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "71",
+    "current_frontier": "wave16_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "72",
+    "current_frontier": "wave16_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "73",
+    "current_frontier": "wave17_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "74",
+    "current_frontier": "wave17_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "75",
+    "current_frontier": "wave17_meeteval_cpwer_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "76",
+    "current_frontier": "wave17_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "77",
+    "current_frontier": "wave100_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "78",
+    "current_frontier": "wave100_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "79",
+    "current_frontier": "wave100_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "80",
+    "current_frontier": "wave101_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "81",
+    "current_frontier": "wave101_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "82",
+    "current_frontier": "wave101_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "83",
+    "current_frontier": "wave102_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "84",
+    "current_frontier": "wave102_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "85",
+    "current_frontier": "wave102_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "86",
+    "current_frontier": "wave103_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "87",
+    "current_frontier": "wave103_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "88",
+    "current_frontier": "wave103_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "89",
+    "current_frontier": "wave104_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "90",
+    "current_frontier": "wave104_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "91",
+    "current_frontier": "wave104_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "92",
+    "current_frontier": "wave105_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "93",
+    "current_frontier": "wave105_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "94",
+    "current_frontier": "wave105_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "95",
+    "current_frontier": "wave106_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "96",
+    "current_frontier": "wave106_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "97",
+    "current_frontier": "wave106_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "98",
+    "current_frontier": "wave107_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "99",
+    "current_frontier": "wave107_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "100",
+    "current_frontier": "wave107_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "101",
+    "current_frontier": "wave108_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "102",
+    "current_frontier": "wave108_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "103",
+    "current_frontier": "wave108_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "104",
+    "current_frontier": "wave109_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "105",
+    "current_frontier": "wave109_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "106",
+    "current_frontier": "wave109_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "107",
+    "current_frontier": "wave110_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "108",
+    "current_frontier": "wave110_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "109",
+    "current_frontier": "wave110_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "110",
+    "current_frontier": "wave111_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "111",
+    "current_frontier": "wave111_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "112",
+    "current_frontier": "wave111_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "113",
+    "current_frontier": "wave112_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "114",
+    "current_frontier": "wave112_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "115",
+    "current_frontier": "wave112_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "116",
+    "current_frontier": "wave113_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "117",
+    "current_frontier": "wave113_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "118",
+    "current_frontier": "wave113_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "119",
+    "current_frontier": "wave114_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "120",
+    "current_frontier": "wave114_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "121",
+    "current_frontier": "wave114_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "122",
+    "current_frontier": "wave115_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "123",
+    "current_frontier": "wave115_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "124",
+    "current_frontier": "wave115_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "125",
+    "current_frontier": "wave116_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "126",
+    "current_frontier": "wave116_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "127",
+    "current_frontier": "wave116_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "128",
+    "current_frontier": "wave117_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "129",
+    "current_frontier": "wave117_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "130",
+    "current_frontier": "wave117_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "131",
+    "current_frontier": "wave118_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "132",
+    "current_frontier": "wave118_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "133",
+    "current_frontier": "wave118_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "134",
+    "current_frontier": "wave119_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "135",
+    "current_frontier": "wave119_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "136",
+    "current_frontier": "wave119_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "137",
+    "current_frontier": "wave120_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "138",
+    "current_frontier": "wave120_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "139",
+    "current_frontier": "wave120_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "140",
+    "current_frontier": "wave121_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "141",
+    "current_frontier": "wave121_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "142",
+    "current_frontier": "wave121_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "143",
+    "current_frontier": "wave122_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "144",
+    "current_frontier": "wave122_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "145",
+    "current_frontier": "wave122_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "146",
+    "current_frontier": "wave123_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "147",
+    "current_frontier": "wave123_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "148",
+    "current_frontier": "wave123_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "149",
+    "current_frontier": "wave124_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "150",
+    "current_frontier": "wave124_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "151",
+    "current_frontier": "wave124_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "152",
+    "current_frontier": "wave125_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "153",
+    "current_frontier": "wave125_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "154",
+    "current_frontier": "wave125_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "155",
+    "current_frontier": "wave126_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "156",
+    "current_frontier": "wave126_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "157",
+    "current_frontier": "wave126_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "158",
+    "current_frontier": "wave127_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "159",
+    "current_frontier": "wave127_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "160",
+    "current_frontier": "wave127_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "161",
+    "current_frontier": "wave128_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "162",
+    "current_frontier": "wave128_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "163",
+    "current_frontier": "wave128_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "164",
+    "current_frontier": "wave129_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "165",
+    "current_frontier": "wave129_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "166",
+    "current_frontier": "wave129_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "167",
+    "current_frontier": "wave130_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "168",
+    "current_frontier": "wave130_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "169",
+    "current_frontier": "wave130_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "170",
+    "current_frontier": "wave131_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "171",
+    "current_frontier": "wave131_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "172",
+    "current_frontier": "wave131_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "173",
+    "current_frontier": "wave132_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "174",
+    "current_frontier": "wave132_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "175",
+    "current_frontier": "wave132_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "176",
+    "current_frontier": "wave133_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "177",
+    "current_frontier": "wave133_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "178",
+    "current_frontier": "wave133_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "179",
+    "current_frontier": "wave134_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "180",
+    "current_frontier": "wave134_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "181",
+    "current_frontier": "wave134_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "182",
+    "current_frontier": "wave135_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "183",
+    "current_frontier": "wave135_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "184",
+    "current_frontier": "wave135_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "185",
+    "current_frontier": "wave136_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "186",
+    "current_frontier": "wave136_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "187",
+    "current_frontier": "wave136_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "188",
+    "current_frontier": "wave137_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "189",
+    "current_frontier": "wave137_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "190",
+    "current_frontier": "wave137_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "191",
+    "current_frontier": "wave138_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "192",
+    "current_frontier": "wave138_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "193",
+    "current_frontier": "wave138_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "194",
+    "current_frontier": "wave139_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "195",
+    "current_frontier": "wave139_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "196",
+    "current_frontier": "wave139_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "197",
+    "current_frontier": "wave140_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "198",
+    "current_frontier": "wave140_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "199",
+    "current_frontier": "wave140_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "200",
+    "current_frontier": "wave141_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "201",
+    "current_frontier": "wave141_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "202",
+    "current_frontier": "wave141_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "203",
+    "current_frontier": "wave142_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "204",
+    "current_frontier": "wave142_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "205",
+    "current_frontier": "wave142_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "206",
+    "current_frontier": "wave143_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "207",
+    "current_frontier": "wave143_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "208",
+    "current_frontier": "wave143_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "209",
+    "current_frontier": "wave144_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "210",
+    "current_frontier": "wave144_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "211",
+    "current_frontier": "wave144_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "212",
+    "current_frontier": "wave145_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "213",
+    "current_frontier": "wave145_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "214",
+    "current_frontier": "wave145_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "215",
+    "current_frontier": "wave146_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "216",
+    "current_frontier": "wave146_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "217",
+    "current_frontier": "wave146_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "218",
+    "current_frontier": "wave147_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "219",
+    "current_frontier": "wave147_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "220",
+    "current_frontier": "wave147_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "221",
+    "current_frontier": "wave148_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "222",
+    "current_frontier": "wave148_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "223",
+    "current_frontier": "wave148_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "224",
+    "current_frontier": "wave149_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "225",
+    "current_frontier": "wave149_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "226",
+    "current_frontier": "wave149_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "227",
+    "current_frontier": "wave150_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "228",
+    "current_frontier": "wave150_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "229",
+    "current_frontier": "wave150_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "230",
+    "current_frontier": "wave151_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "231",
+    "current_frontier": "wave151_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "232",
+    "current_frontier": "wave151_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "233",
+    "current_frontier": "wave152_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "234",
+    "current_frontier": "wave152_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "235",
+    "current_frontier": "wave152_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "236",
+    "current_frontier": "wave153_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "237",
+    "current_frontier": "wave153_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "238",
+    "current_frontier": "wave153_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "239",
+    "current_frontier": "wave154_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "240",
+    "current_frontier": "wave154_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "241",
+    "current_frontier": "wave154_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "242",
+    "current_frontier": "wave155_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "243",
+    "current_frontier": "wave155_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "244",
+    "current_frontier": "wave155_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "245",
+    "current_frontier": "wave156_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "246",
+    "current_frontier": "wave156_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "247",
+    "current_frontier": "wave156_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "248",
+    "current_frontier": "wave164_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "249",
+    "current_frontier": "wave164_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "250",
+    "current_frontier": "wave164_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "251",
+    "current_frontier": "wave18_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "252",
+    "current_frontier": "wave18_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "253",
+    "current_frontier": "wave18_llm_critic_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "254",
+    "current_frontier": "wave18_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "255",
+    "current_frontier": "wave19_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "256",
+    "current_frontier": "wave19_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "257",
+    "current_frontier": "wave19_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "258",
+    "current_frontier": "wave19_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "259",
+    "current_frontier": "wave20_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "260",
+    "current_frontier": "wave20_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "261",
+    "current_frontier": "wave20_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "262",
+    "current_frontier": "wave21_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "263",
+    "current_frontier": "wave21_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "264",
+    "current_frontier": "wave21_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "265",
+    "current_frontier": "wave22_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "266",
+    "current_frontier": "wave22_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "267",
+    "current_frontier": "wave22_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "268",
+    "current_frontier": "wave23_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "269",
+    "current_frontier": "wave23_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "270",
+    "current_frontier": "wave23_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "271",
+    "current_frontier": "wave24_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "272",
+    "current_frontier": "wave24_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "273",
+    "current_frontier": "wave24_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "274",
+    "current_frontier": "wave25_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "275",
+    "current_frontier": "wave25_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "276",
+    "current_frontier": "wave25_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "277",
+    "current_frontier": "wave26_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "278",
+    "current_frontier": "wave26_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "279",
+    "current_frontier": "wave26_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "280",
+    "current_frontier": "wave27_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "281",
+    "current_frontier": "wave27_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "282",
+    "current_frontier": "wave27_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "283",
+    "current_frontier": "wave28_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "284",
+    "current_frontier": "wave28_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "285",
+    "current_frontier": "wave28_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "286",
+    "current_frontier": "wave29_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "287",
+    "current_frontier": "wave29_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "288",
+    "current_frontier": "wave29_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "289",
+    "current_frontier": "wave30_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "290",
+    "current_frontier": "wave30_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "291",
+    "current_frontier": "wave30_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "292",
+    "current_frontier": "wave31_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "293",
+    "current_frontier": "wave31_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "294",
+    "current_frontier": "wave31_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "295",
+    "current_frontier": "wave32_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "296",
+    "current_frontier": "wave32_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "297",
+    "current_frontier": "wave32_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "298",
+    "current_frontier": "wave33_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "299",
+    "current_frontier": "wave33_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "300",
+    "current_frontier": "wave33_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "301",
+    "current_frontier": "wave34_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "302",
+    "current_frontier": "wave34_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "303",
+    "current_frontier": "wave34_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "304",
+    "current_frontier": "wave35_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "305",
+    "current_frontier": "wave35_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "306",
+    "current_frontier": "wave35_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "307",
+    "current_frontier": "wave36_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "308",
+    "current_frontier": "wave36_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "309",
+    "current_frontier": "wave36_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "310",
+    "current_frontier": "wave37_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "311",
+    "current_frontier": "wave37_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "312",
+    "current_frontier": "wave37_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "313",
+    "current_frontier": "wave38_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "314",
+    "current_frontier": "wave38_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "315",
+    "current_frontier": "wave38_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "316",
+    "current_frontier": "wave39_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "317",
+    "current_frontier": "wave39_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "318",
+    "current_frontier": "wave39_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "319",
+    "current_frontier": "wave40_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "320",
+    "current_frontier": "wave40_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "321",
+    "current_frontier": "wave40_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "322",
+    "current_frontier": "wave41_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "323",
+    "current_frontier": "wave41_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "324",
+    "current_frontier": "wave41_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "325",
+    "current_frontier": "wave42_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "326",
+    "current_frontier": "wave42_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "327",
+    "current_frontier": "wave42_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "328",
+    "current_frontier": "wave43_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "329",
+    "current_frontier": "wave43_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "330",
+    "current_frontier": "wave43_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "331",
+    "current_frontier": "wave44_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "332",
+    "current_frontier": "wave44_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "333",
+    "current_frontier": "wave44_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "334",
+    "current_frontier": "wave45_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "335",
+    "current_frontier": "wave45_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "336",
+    "current_frontier": "wave45_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "337",
+    "current_frontier": "wave46_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "338",
+    "current_frontier": "wave46_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "339",
+    "current_frontier": "wave46_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "340",
+    "current_frontier": "wave47_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "341",
+    "current_frontier": "wave47_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "342",
+    "current_frontier": "wave47_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "343",
+    "current_frontier": "wave48_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "344",
+    "current_frontier": "wave48_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "345",
+    "current_frontier": "wave48_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "346",
+    "current_frontier": "wave49_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "347",
+    "current_frontier": "wave49_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "348",
+    "current_frontier": "wave49_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "349",
+    "current_frontier": "wave50_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "350",
+    "current_frontier": "wave50_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "351",
+    "current_frontier": "wave50_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "352",
+    "current_frontier": "wave51_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "353",
+    "current_frontier": "wave51_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "354",
+    "current_frontier": "wave51_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "355",
+    "current_frontier": "wave52_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "356",
+    "current_frontier": "wave52_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "357",
+    "current_frontier": "wave52_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "358",
+    "current_frontier": "wave53_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "359",
+    "current_frontier": "wave53_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "360",
+    "current_frontier": "wave53_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "361",
+    "current_frontier": "wave54_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "362",
+    "current_frontier": "wave54_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "363",
+    "current_frontier": "wave54_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "364",
+    "current_frontier": "wave55_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "365",
+    "current_frontier": "wave55_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "366",
+    "current_frontier": "wave55_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "367",
+    "current_frontier": "wave56_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "368",
+    "current_frontier": "wave56_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "369",
+    "current_frontier": "wave56_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "370",
+    "current_frontier": "wave57_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "371",
+    "current_frontier": "wave57_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "372",
+    "current_frontier": "wave57_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "373",
+    "current_frontier": "wave58_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "374",
+    "current_frontier": "wave58_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "375",
+    "current_frontier": "wave58_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "376",
+    "current_frontier": "wave59_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "377",
+    "current_frontier": "wave59_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "378",
+    "current_frontier": "wave59_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "379",
+    "current_frontier": "wave60_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "380",
+    "current_frontier": "wave60_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "381",
+    "current_frontier": "wave60_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "382",
+    "current_frontier": "wave61_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "383",
+    "current_frontier": "wave61_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "384",
+    "current_frontier": "wave61_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "385",
+    "current_frontier": "wave62_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "386",
+    "current_frontier": "wave62_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "387",
+    "current_frontier": "wave62_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "388",
+    "current_frontier": "wave63_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "389",
+    "current_frontier": "wave63_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "390",
+    "current_frontier": "wave63_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "391",
+    "current_frontier": "wave64_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "392",
+    "current_frontier": "wave64_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "393",
+    "current_frontier": "wave64_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "394",
+    "current_frontier": "wave65_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "395",
+    "current_frontier": "wave65_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "396",
+    "current_frontier": "wave65_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "397",
+    "current_frontier": "wave66_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "398",
+    "current_frontier": "wave66_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "399",
+    "current_frontier": "wave66_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "400",
+    "current_frontier": "wave67_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "401",
+    "current_frontier": "wave67_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "402",
+    "current_frontier": "wave67_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "403",
+    "current_frontier": "wave68_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "404",
+    "current_frontier": "wave68_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "405",
+    "current_frontier": "wave68_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "406",
+    "current_frontier": "wave69_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "407",
+    "current_frontier": "wave69_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "408",
+    "current_frontier": "wave69_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "409",
+    "current_frontier": "wave70_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "410",
+    "current_frontier": "wave70_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "411",
+    "current_frontier": "wave70_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "412",
+    "current_frontier": "wave71_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "413",
+    "current_frontier": "wave71_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "414",
+    "current_frontier": "wave71_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "415",
+    "current_frontier": "wave72_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "416",
+    "current_frontier": "wave72_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "417",
+    "current_frontier": "wave72_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "418",
+    "current_frontier": "wave73_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "419",
+    "current_frontier": "wave73_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "420",
+    "current_frontier": "wave73_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "421",
+    "current_frontier": "wave74_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "422",
+    "current_frontier": "wave74_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "423",
+    "current_frontier": "wave74_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "424",
+    "current_frontier": "wave75_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "425",
+    "current_frontier": "wave75_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "426",
+    "current_frontier": "wave75_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "427",
+    "current_frontier": "wave76_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "428",
+    "current_frontier": "wave76_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "429",
+    "current_frontier": "wave76_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "430",
+    "current_frontier": "wave77_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "431",
+    "current_frontier": "wave77_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "432",
+    "current_frontier": "wave77_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "433",
+    "current_frontier": "wave78_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "434",
+    "current_frontier": "wave78_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "435",
+    "current_frontier": "wave78_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "436",
+    "current_frontier": "wave79_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "437",
+    "current_frontier": "wave79_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "438",
+    "current_frontier": "wave79_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "439",
+    "current_frontier": "wave80_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "440",
+    "current_frontier": "wave80_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "441",
+    "current_frontier": "wave80_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "442",
+    "current_frontier": "wave81_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "443",
+    "current_frontier": "wave81_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "444",
+    "current_frontier": "wave81_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "445",
+    "current_frontier": "wave82_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "446",
+    "current_frontier": "wave82_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "447",
+    "current_frontier": "wave82_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "448",
+    "current_frontier": "wave83_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "449",
+    "current_frontier": "wave83_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "450",
+    "current_frontier": "wave83_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "451",
+    "current_frontier": "wave84_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "452",
+    "current_frontier": "wave84_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "453",
+    "current_frontier": "wave84_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "454",
+    "current_frontier": "wave85_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "455",
+    "current_frontier": "wave85_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "456",
+    "current_frontier": "wave85_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "457",
+    "current_frontier": "wave86_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "458",
+    "current_frontier": "wave86_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "459",
+    "current_frontier": "wave86_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "460",
+    "current_frontier": "wave87_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "461",
+    "current_frontier": "wave87_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "462",
+    "current_frontier": "wave87_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "463",
+    "current_frontier": "wave88_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "464",
+    "current_frontier": "wave88_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "465",
+    "current_frontier": "wave88_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "466",
+    "current_frontier": "wave89_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "467",
+    "current_frontier": "wave89_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "468",
+    "current_frontier": "wave89_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "469",
+    "current_frontier": "wave90_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "470",
+    "current_frontier": "wave90_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "471",
+    "current_frontier": "wave90_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "472",
+    "current_frontier": "wave91_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "473",
+    "current_frontier": "wave91_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "474",
+    "current_frontier": "wave91_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "475",
+    "current_frontier": "wave92_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "476",
+    "current_frontier": "wave92_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "477",
+    "current_frontier": "wave92_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "478",
+    "current_frontier": "wave93_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "479",
+    "current_frontier": "wave93_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "480",
+    "current_frontier": "wave93_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "481",
+    "current_frontier": "wave94_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "482",
+    "current_frontier": "wave94_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "483",
+    "current_frontier": "wave94_speaker_profile_oppositeoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "484",
+    "current_frontier": "wave95_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "485",
+    "current_frontier": "wave95_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "486",
+    "current_frontier": "wave95_external_validation_narrow_slice_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "487",
+    "current_frontier": "wave96_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "488",
+    "current_frontier": "wave96_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "489",
+    "current_frontier": "wave96_meeteval_official_narrow_dry_run_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "490",
+    "current_frontier": "wave97_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "491",
+    "current_frontier": "wave97_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "492",
+    "current_frontier": "wave97_speaker_profile_lightoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "493",
+    "current_frontier": "wave98_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "494",
+    "current_frontier": "wave98_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "495",
+    "current_frontier": "wave98_speaker_profile_midoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "496",
+    "current_frontier": "wave99_demo_presentation_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "497",
+    "current_frontier": "wave99_exploration_baseline_closure_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
+  },
+  {
+    "queue_order": "498",
+    "current_frontier": "wave99_speaker_profile_heavyoverlap_diagnostic_coordination_writeback",
+    "pickup_artifact": "",
+    "receipt_target": "",
+    "pickup_note": "Safe to pick up in parallel after checking queue order and opening the pickup artifact first.",
+    "picklist_scope": "Coordination-only picklist; not a claim of completed frontier execution."
   }
 ]
