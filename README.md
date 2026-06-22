@@ -38,6 +38,7 @@ The full claim ledger is in [docs/final_claim_ledger.md](docs/final_claim_ledger
 ## Quick Start
 
 ```bash
+python -m scripts.check_environment
 python -m src.project_harness
 python -m src.evaluate_audiodepth_risk_guarded_gate
 python -m src.audit_end_to_end_router_safety
@@ -1419,3 +1420,28 @@ python -m src.router_feature_importance
 ## Team Contributions
 
 See [CONTRIBUTIONS.md](CONTRIBUTIONS.md) for role assignments.
+
+## License
+
+License status is pending course/project maintainer decision. Until clarified,
+reuse this repository only for review, reproduction, or project-continuation
+contexts, and keep third-party dependency licenses attached to any derivative
+work.
+
+## Citation
+
+If you reference this project in coursework or internal review, cite it as:
+
+```text
+SHUOSC-11-1126. When Should We Separate? Overlap-Aware Multi-Speaker ASR
+Routing with AudioDepth Acoustic Triage. GitHub repository, 2026.
+```
+
+## Acknowledgements
+
+This project builds on open-source ASR and scientific Python tooling including
+Whisper / faster-whisper-compatible ASR paths, NumPy, SciPy, SoundFile,
+Matplotlib, PyYAML, optional MeetEval-style evaluation, and the repository
+harness loop inspired by code-tape. Frontier modules may require additional
+optional dependencies listed in `requirements-frontier.txt`,
+`requirements-demo.txt`, and `requirements-optional.txt`.

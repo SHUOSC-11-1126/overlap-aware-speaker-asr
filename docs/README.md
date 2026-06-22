@@ -5,13 +5,22 @@ This folder is the documentation entry point for the project.
 ## Current Core Docs
 
 - [AGENTS.md](../AGENTS.md)
+- [REPORT.md](../REPORT.md)
+- [CONTRIBUTIONS.md](../CONTRIBUTIONS.md)
 - [docs/project_state.md](project_state.md)
 - [docs/roadmap.md](roadmap.md)
 - [docs/maintenance_harness.md](maintenance_harness.md)
 - [docs/repo_evolver.md](repo_evolver.md)
 - [docs/technical_implementation_plan_v2.md](technical_implementation_plan_v2.md)
-- [REPORT.md](../REPORT.md)
 - [README.md](../README.md)
+
+## Research Narrative and Frontier Branches
+
+- [REPORT.md](../REPORT.md): main research narrative and claim boundary.
+- [docs/final_claim_ledger.md](final_claim_ledger.md): gold/silver/frontier claim ledger.
+- [docs/frontier/audio-depth-router.md](frontier/audio-depth-router.md): AudioDepth routing frontier.
+- [docs/frontier/generative_audiodepth.md](frontier/generative_audiodepth.md): promptable Generative AudioDepth line.
+- [docs/frontier/source_disjoint_evidence_expansion.md](frontier/source_disjoint_evidence_expansion.md): Stage 34 source-disjoint evidence expansion and micro-gold prep.
 
 ## Experimental Stage Docs
 

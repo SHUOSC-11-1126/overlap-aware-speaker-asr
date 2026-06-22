@@ -1,0 +1,578 @@
+Overlap-Aware Speaker ASR
+结构性审查报告
+
+审查视角：
+本报告采用“严厉项目审查人”的视角，不主要评价某个实验是否漂亮，
+而是评价这个仓库能否被外部评审、课程助教、未来维护者快速理解、
+复现、相信和继续扩展。
+
+当前总体判断：
+项目的研究野心、实验广度和 claim boundary 意识都很强。README、
+REPORT、implementation-status、results-index 已经能说明“哪些是 gold，
+哪些是 silver，哪些是 frontier”。这比很多研究仓库成熟。
+
+但项目现在的核心结构风险是：成果、前沿探索、历史记录、自动化治理、
+生成结果和课程贡献材料同时堆在主可见层级里。项目不是“内容不够”，
+而是“内容太多以后，缺少更强的信息架构和生命周期管理”。
+
+如果我是严厉审查人，我会给出如下结论：
+这个仓库有真实研究贡献，但必须继续压缩入口、统一结果索引、明确依赖
+环境、整理 frontier/mainline 分层，否则评审人会被复杂度拖慢，并对
+长期可维护性产生怀疑。
+
+
+一、必须改的问题
+================
+
+1. README、results/README、docs/results-index 对历史归档的说法不一致
+
+现象：
+- README.md 中仍说历史 wave、receipt、writeback、checklist、demo records
+  已经移动到 results/figures/archive/。
+- results/README.md 也列出 results/figures/archive/waves、receipts、
+  writebacks、bridge-checklists 等路径。
+- docs/results-index.md 又说这些 archive 已经在 ceremony purge 中删除，
+  可从 git history 恢复。
+
+为什么严重：
+这是典型的“权威文档互相打架”。审查人会怀疑：到底哪些结果还在仓库里？
+哪些是 final benchmark claim？哪些只是历史自动化痕迹？如果连结果索引
+都不一致，后续所有 claim boundary 的可信度都会下降。
+
+最佳改法：
+- 先确认实际仓库状态：results/figures/archive 是否存在，里面是否还有
+  内容。
+- 选择一个最终说法：
+  A. 如果 archive 目录仍存在，就改 docs/results-index.md 的“removed”
+     说法，改成“archived and deprioritized”。
+  B. 如果 archive 已经删除或只剩空壳，就改 README.md 和 results/README.md，
+     不再把 archive 当作当前路径。
+- 在 docs/results-index.md 中保留一句：历史自动化记录不作为 benchmark
+  claim，必要时从 git history 追溯。
+
+预估耗时：
+30 分钟到 1 小时。
+
+优先级：
+P0，必须先修。它不难，但影响评审信任。
+
+
+2. README 末尾 License / Citation / Acknowledgements 仍是 TODO
+
+现象：
+README.md 末尾仍有：
+TODO: Maintainers should decide the final License, Citation, and Acknowledgements text.
+
+为什么严重：
+对于课程项目，TODO 也许能解释；对于公开 GitHub 仓库，License 和 Citation
+缺失会让审查人觉得项目没有完成收尾。尤其本项目涉及 Whisper、MeetEval、
+Resemblyzer、OpenClaw / code-tape、可能的 LLM API、本地 ollama 模型、
+外部数据集候选等，引用和许可边界必须清楚。
+
+最佳改法：
+- 如果不能决定正式许可证，至少写成：
+  “License: pending course/project maintainer decision; do not reuse beyond
+  review context until clarified.”
+- Citation 可以先给项目引用格式，不夸大论文发表状态。
+- Acknowledgements 应列出核心依赖和参考工具：
+  Whisper / openai-whisper、PyYAML、NumPy、SciPy、Matplotlib、MeetEval
+  optional path、code-tape inspiration、GitHub Actions 等。
+- 如果有第三方图片、音频、外部数据，必须确认来源和使用范围。
+
+预估耗时：
+1 到 2 小时。如果要严格查每个外部资源许可，可能 0.5 天。
+
+优先级：
+P0，必须改。它是项目“完成度”的门面。
+
+
+3. 本地复现入口仍容易踩坑
+
+现象：
+README 推荐 Python 3.12 和 requirements.txt，这本身正确。但如果审查人直接
+用系统 python 运行测试，可能遇到 Python 3.14、缺 yaml、缺 pytest 等问题。
+CI 使用 unittest，不使用 pytest。
+
+为什么严重：
+严厉审查人不会只看 CI 绿不绿，还会问：“我 clone 后 5 分钟能不能知道
+环境是否正确？”如果第一步就失败，哪怕是环境问题，也会损失信任。
+
+最佳改法：
+- 新增一个环境检查命令：
+  make doctor
+  或 scripts/check_environment.py
+- 检查内容：
+  1. Python 主版本是否推荐 3.12；
+  2. 是否在虚拟环境内；
+  3. PyYAML、numpy、scipy、soundfile、matplotlib 是否可 import；
+  4. openai-whisper 是否可 import 或给出清晰 optional/required 说明；
+  5. unittest discovery 是否可启动；
+  6. 可选依赖 requirements-frontier、requirements-demo、requirements-optional
+     未安装时不要报错，只提示对应功能不可用。
+- README Quickstart 中加入：
+  python -m scripts.check_environment
+  或 make doctor
+
+预估耗时：
+2 到 4 小时。
+
+优先级：
+P0/P1。对评审体验很关键。
+
+
+4. src/__init__.py 顶层导入过重
+
+现象：
+src/__init__.py 顶层导入 llm_repair_loop 和 rag_repair。导入 src 包时会
+触发 LLM/RAG/config/yaml 等依赖链。
+
+为什么严重：
+包初始化应该轻量。现在任何测试只要 import src.xxx，就可能先执行
+src/__init__.py，从而引入与当前测试无关的依赖。这会让可选模块污染核心路径。
+
+最佳改法：
+- src/__init__.py 只保留 docstring、__version__ 或空初始化。
+- 不在包级别 re-export LLM/RAG 功能。
+- 如果确实需要便捷 API，使用懒加载函数，或在单独 src/api.py 中集中暴露。
+- 运行全量 unittest，确保 import 行为变化不破坏测试。
+
+预估耗时：
+1 到 3 小时。
+
+优先级：
+P1，但建议尽快做。它能显著改善依赖边界。
+
+
+二、改得快、收益高的问题
+========================
+
+5. 删除或忽略 docs/.DS_Store
+
+现象：
+当前工作区有未跟踪 docs/.DS_Store。
+
+为什么要改：
+这是小问题，但对仓库卫生有负面观感。
+
+最佳改法：
+- 删除本地 docs/.DS_Store。
+- 确认 .gitignore 已忽略 .DS_Store。如果没有，加入。
+
+预估耗时：
+5 分钟。
+
+优先级：
+P2，快修。
+
+
+6. README 仍然太长，承担了太多角色
+
+现象：
+README 目前包含：
+- 项目介绍；
+- status matrix；
+- ASR x LLM + Emotion frontier；
+- AudioDepth frontier；
+- Quickstart；
+- results；
+- repository map；
+- harness；
+- Emotion Frontier；
+- OpenClaw；
+- contributors；
+- license/citation TODO。
+
+为什么要改：
+README 应该是 5 分钟入口，不应该像总报告。现在它比普通 README 更强，
+但也更容易让评审人迷路。
+
+最佳改法：
+- README 保留：
+  1. one sentence；
+  2. what it does / does not claim；
+  3. current status；
+  4. quickstart；
+  5. recommended reading；
+  6. frontier highlights 的极短摘要；
+  7. links to REPORT / CONTRIBUTIONS / docs。
+- 将 Emotion Frontier 长段落移动到 docs/emotion_frontier.md。
+- 将 OpenClaw 长段落移动到 docs/harness/opencLaw 或 docs/opencLaw.md，
+  README 只保留一行 demo/context 链接。
+
+预估耗时：
+1 到 2 小时。
+
+优先级：
+P1。改完后评审体验会明显提升。
+
+
+7. docs/README 缺少 REPORT.md 和 AudioDepth / ASR-LLM capstone 的更突出入口
+
+现象：
+docs/README.md 已有 Review report，但 frontier 入口可以更系统。
+
+最佳改法：
+- 在 docs/README.md 增加 “Research Narrative” 或 “Frontier Branches”
+  小节。
+- 明确列：
+  REPORT.md；
+  docs/frontier/audio-depth-router.md；
+  docs/frontier/asr_llm_emotion_capstone.md；
+  docs/emotion_frontier.md。
+
+预估耗时：
+30 分钟。
+
+优先级：
+P2，快修。
+
+
+8. PR 模板要求严格，但 README 文档贡献者容易漏字段
+
+现象：
+GitNexus contract 要求 PR body 中包含 risk_level、skeleton_change、
+gitnexus_impact、verification 等字段。之前 README-only PR 就因为 body
+格式失败。
+
+为什么要改：
+规则本身好，但模板对普通贡献者不够“防呆”。文档-only PR 也会触发 authority-docs
+规则，容易失败。
+
+最佳改法：
+- 在 .github/PULL_REQUEST_TEMPLATE.md 中加入一个文档-only 示例：
+  Risk level: LOW
+  Critical skeleton change: README.md authority-docs only
+  GitNexus impact: detect_changes ...
+  Verification: links checked / git diff --check
+- 或新增 docs/harness/pr_body_examples.md。
+
+预估耗时：
+30 分钟到 1 小时。
+
+优先级：
+P1/P2。对后续协作很有用。
+
+
+三、难改但应该规划的问题
+========================
+
+9. src 目录缺少稳定层、实验层、前沿层的物理分区
+
+现象：
+src 下面有 117 个 Python 文件，包含 core ASR、evaluation、routing、
+compute cascade、MeetEval、LLM、emotion、speaker-profile、external validation、
+frontier figures 等多种性质的代码。
+
+为什么难：
+直接移动文件会影响 import、测试、文档链接、历史路径、GitNexus contract。
+但不移动的话，未来维护者很难判断一个模块是不是稳定主线。
+
+最佳改法：
+分阶段做，不要一次性大重构。
+
+第一阶段：只加索引，不移动文件。
+- 新增 docs/module_lifecycle.md。
+- 按表格列出每个 src 模块：
+  module / lifecycle / owner / evidence path / safe to change? / tests。
+- 生命周期建议：
+  stable-mainline；
+  mainline-experimental；
+  optional-integration；
+  frontier-scaffold；
+  archive-candidate。
+
+第二阶段：移动低风险 frontier 或 optional 模块。
+- 先移动最少被 import 的模块到 src/frontier/ 或 src/optional/。
+- 每次移动一小批，配套 import 兼容 shim 或全局 rg 更新。
+
+第三阶段：拆 core 包。
+- src/evaluation/
+- src/routing/
+- src/transcription/
+- src/frontier/
+- src/reporting/
+
+预估耗时：
+第一阶段 0.5 到 1 天。
+第二阶段 1 到 2 天。
+第三阶段 2 到 4 天。
+
+优先级：
+P1/P2。不是今天必须完成，但越晚越难。
+
+
+10. compute_aware_cascade.py 单文件过大
+
+现象：
+src/compute_aware_cascade.py 约 1763 行，是结构债热点。
+
+为什么严重：
+它承载 compute-aware cascade 这一重要成果，但单文件太长会降低审查可读性。
+任何小改动都容易影响大范围逻辑。
+
+最佳改法：
+拆为 5 到 6 个模块：
+- src/compute_cascade/io.py：读取 CSV/JSON、路径处理；
+- src/compute_cascade/costs.py：成本模型、runtime normalization；
+- src/compute_cascade/strategies.py：固定策略、router_v2、risk-aware、budget cascade；
+- src/compute_cascade/metrics.py：average CER、coverage、Pareto、tradeoff；
+- src/compute_cascade/reporting.py：CSV/JSON/Markdown/figure 输出；
+- src/compute_aware_cascade.py：保留 CLI wrapper，兼容旧命令。
+
+最佳策略：
+- 先写 characterization tests，确保拆分前后输出一致。
+- 每次只抽一个纯函数区域。
+- 保留旧 CLI，不破坏 README 和 roadmap。
+
+预估耗时：
+1 到 2 天，如果测试覆盖不足则 2 到 3 天。
+
+优先级：
+P1。它是核心成果，值得整理。
+
+
+11. results/tables 过大且缺少 manifest
+
+现象：
+results/tables 有 241 个文件，部分 JSON 超过上万行，例如 synthetic split
+routing decisions。results 目录总量不算灾难，但信息密度参差。
+
+为什么难：
+这些文件可能是可复现实验输出，也可能是中间产物。随便删会破坏可追溯性。
+
+最佳改法：
+- 新增 results/MANIFEST.md 或 results/tables/MANIFEST.csv。
+- 每个结果文件标注：
+  evidence_label；
+  generated_by；
+  source_inputs；
+  reviewer_priority；
+  can_regenerate；
+  keep/archive/drop。
+- 对超大决策 JSON，考虑保留 summary CSV + generation script，
+  大 JSON 只保留必要样本或移到 release artifact。
+
+预估耗时：
+0.5 到 1 天做 manifest。
+1 到 3 天做结果瘦身。
+
+优先级：
+P2。不是最紧急，但会显著提升专业度。
+
+
+12. docs/project_state.md 和 docs/roadmap.md 像历史账本，不像当前状态
+
+现象：
+docs/project_state.md 约 3200 行，docs/roadmap.md 约 2300 行。
+它们包含大量历史 update、bridge、handoff、frontier notes。
+
+为什么严重：
+未来维护者打开 roadmap，是想知道“现在该做什么”，不是读完整历史。
+过长的路线图会让真正重要的信息被稀释。
+
+最佳改法：
+- 新建 docs/current-roadmap.md，控制在 150 到 250 行以内。
+- 内容只保留：
+  current stable baseline；
+  active frontier branches；
+  known blockers；
+  next 5 actions；
+  completed but archived milestones。
+- 旧 docs/roadmap.md 改名或移动到 docs/archive/old-status-ledgers/。
+- docs/project_state.md 变成 agent handoff ledger，不再作为 reviewer 入口。
+
+预估耗时：
+0.5 到 1 天。
+
+优先级：
+P1/P2。对新读者很重要。
+
+
+四、科研可信度层面的优化
+========================
+
+13. gold benchmark 只有五例，需要更强的表述防线
+
+现象：
+REPORT 已经明确 gold benchmark 只有五个 verified cases，也明确 synthetic
+不是 gold evidence。这很好。
+
+风险：
+router_v2 与 oracle_best 在五个 gold cases 上平均 CER 相等，这个结果很亮眼，
+但严厉审查人会追问：
+- 是否过拟合五例？
+- rule 是否在设计时隐含看过 gold 结果？
+- 是否有外部真实会议数据？
+
+最佳改法：
+- 在 REPORT 和 README 的核心结论旁边补一句：
+  “This is a five-case gold benchmark result, not a broad deployment guarantee.”
+- 把 held-out synthetic split 和 external sanity-check 作为下一阶段明确路线。
+- 对 router_v2 规则写一页 design audit：
+  输入特征、禁止特征、是否用 CER、是否用 reference、调参来源。
+
+预估耗时：
+2 到 4 小时写文档。
+外部验证则需要 1 到 3 天，取决于数据许可和预处理。
+
+优先级：
+P1。不是推翻结果，而是保护结果。
+
+
+14. AudioDepth 前沿很亮，但需要“失败也有价值”的结构化摘要
+
+现象：
+AudioDepth 文档和图都很强，也引用了 RGB-D / depth-style visual recognition。
+但它仍是 Frontier Branch Only。
+
+风险：
+如果审查人只看到漂亮图，可能以为它是主线结果；如果只看到“CNN 没赢”，
+又可能低估它作为研究方向的价值。
+
+最佳改法：
+- 新增一个 AudioDepth 一页纸 summary：
+  1. research question；
+  2. analogy to RGB-D；
+  3. what was tested；
+  4. what failed；
+  5. what signal still seems useful；
+  6. why not mainline；
+  7. next minimum viable experiment。
+- README 只链接这一页和完整 audio-depth-router.md。
+
+预估耗时：
+2 到 3 小时。
+
+优先级：
+P2。对前沿展示很有帮助。
+
+
+15. LLM / Emotion frontier 需要统一“silver-only”视觉标签
+
+现象：
+README 中 ASR x LLM + Emotion table 很有冲击力，但里面有很多百分比、AUC、
+R2、positive/negative 结论。
+
+风险：
+审查人可能质疑这些数字是否来自 gold benchmark。README 已经写了不是 gold，
+但表格本身太强，容易被误读。
+
+最佳改法：
+- 表格标题或每一行的 Evidence 列加入：
+  experimental/frontier, Whisper-tiny + silver refs。
+- 或把这个长表移入 capstone 文档，README 留 3 条 synthesis。
+
+预估耗时：
+1 到 2 小时。
+
+优先级：
+P2。
+
+
+五、建议执行路线
+================
+
+推荐按三轮推进。
+
+第 1 轮：一天内完成的“评审信任修复”
+------------------------------------
+
+目标：
+修掉最容易被审查人抓住的完成度和一致性问题。
+
+任务：
+1. 修 README / results/README / docs/results-index 的 archive 说法。
+2. 补 License / Citation / Acknowledgements。
+3. 删除 docs/.DS_Store，并确认 .gitignore。
+4. PR 模板加文档-only GitNexus 示例。
+5. README 缩短或至少把 OpenClaw / Emotion 长段落降噪。
+
+预估总耗时：
+4 到 8 小时。
+
+收益：
+最快提升“项目完成度”和“审查可信度”。
+
+
+第 2 轮：一到两天完成的“可复现和入口硬化”
+------------------------------------------
+
+目标：
+让新审查人 clone 后能明确知道怎么跑、为什么失败、哪些功能是 optional。
+
+任务：
+1. 新增 make doctor 或 scripts/check_environment.py。
+2. README 和 docs/quickstart 接入 doctor。
+3. 清理 src/__init__.py 重依赖。
+4. 给 src 模块加 lifecycle index。
+5. docs/README 增加 Research Narrative / Frontier Branches 入口。
+
+预估总耗时：
+1 到 2 天。
+
+收益：
+减少“我跑不起来”的误伤，明确核心与可选功能边界。
+
+
+第 3 轮：两到五天完成的“结构债治理”
+------------------------------------
+
+目标：
+把项目从“研究爆发后的堆叠态”整理成“可长期维护的研究软件仓库”。
+
+任务：
+1. 拆 compute_aware_cascade.py。
+2. 建 results manifest。
+3. 瘦身或归档低价值结果文件。
+4. 重写 current-roadmap，旧 roadmap 移 archive。
+5. 逐步把 frontier / optional / core 模块分区。
+
+预估总耗时：
+2 到 5 天。
+
+收益：
+长期维护性明显提高，后续贡献者不容易把 frontier 和 mainline 混在一起。
+
+
+六、总工期估算
+==============
+
+如果只做“必须改 + 快修”：
+约 1 天。
+
+如果做“评审前强收尾”：
+约 2 到 3 天。
+包含文档一致性、license/citation、doctor、README 降噪、src/__init__.py。
+
+如果做“结构性治理完整版”：
+约 5 到 8 天。
+包含模块分区、compute cascade 拆分、results manifest、roadmap 重写。
+
+如果还要做外部真实数据验证：
+额外 2 到 5 天，主要取决于数据许可、预处理和评估脚本适配。
+
+
+七、最推荐的最终改法
+====================
+
+不要一上来大重构。这个项目已经有很多成果，最怕因为大移动导致链接、
+测试、PR contract 全部震荡。
+
+最佳策略是：
+1. 先修文档一致性和 TODO；
+2. 再硬化环境检查；
+3. 再轻量标注模块生命周期；
+4. 最后拆大文件和移动目录。
+
+也就是说：
+先让评审人相信，再让维护者舒服，最后再让架构变漂亮。
+
+如果必须压缩到最少动作，我建议只做这 5 件：
+1. 修 archive 文档冲突；
+2. 补 License / Citation / Acknowledgements；
+3. 加 make doctor；
+4. 清理 src/__init__.py；
+5. README 降噪，把长 frontier 段落下放到 docs。
+
+这 5 件完成后，项目的审查观感会从“很强但有点乱”，变成
+“研究成果丰富，并且边界、入口、复现、治理都有章法”。
