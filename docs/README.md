@@ -26,6 +26,7 @@ This folder is the documentation entry point for the project.
 - [docs/module_lifecycle.md](module_lifecycle.md): top-level `src` lifecycle index.
 - [results/figures/results_manifest_summary.md](../results/figures/results_manifest_summary.md): generated result artifact manifest summary.
 - [docs/demo_10min_runbook.md](demo_10min_runbook.md): 10 minute offline demo plan.
+- [docs/demo_recording_plan.md](demo_recording_plan.md): 7 minute project demo plus 3 minute GitHub walkthrough recording plan.
 - [demo/index.html](../demo/index.html): static local demo deck.
 
 ## Experimental Stage Docs

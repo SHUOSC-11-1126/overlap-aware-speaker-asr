@@ -50,6 +50,27 @@ def contribution_card(title: str, owner: str, body: str, artifacts: str) -> str:
     """
 
 
+def flow_step(title: str, body: str) -> str:
+    return f"""
+    <div class="flow-step">
+      <div class="flow-title">{html.escape(title)}</div>
+      <div class="flow-body">{html.escape(body)}</div>
+    </div>
+    """
+
+
+def figure(path: str, alt: str, caption: str) -> str:
+    escaped_path = rel(path)
+    return f"""
+    <figure class="figure-card">
+      <a href="{html.escape(escaped_path)}" target="_blank" rel="noreferrer">
+        <img class="hero-img" src="{html.escape(escaped_path)}" alt="{html.escape(alt)}">
+      </a>
+      <figcaption>{html.escape(caption)} <span>Click image for full-size artifact.</span></figcaption>
+    </figure>
+    """
+
+
 def metric(label: str, value: str, note: str = "") -> str:
     return f"""
     <div class="metric">
@@ -127,7 +148,7 @@ def build_demo() -> str:
             {metric("Fixed mixed CER", "0.302", "gold baseline")}
             {metric("Core result", "router_v2", "team routing baseline")}
           </div>
-          <img class="hero-img" src="{rel('results/figures/final_system_architecture.png')}" alt="Final system architecture">
+          {figure('results/figures/final_system_architecture.png', 'Final system architecture', 'System architecture overview.')}
         </section>
         """,
         f"""
@@ -142,6 +163,21 @@ def build_demo() -> str:
             {contribution_card("Evaluation stack", "Metric track", "Implemented CER, speaker-aware CER, cpCER-lite, error-type analysis, and evidence ledgers.", "REPORT.md, docs/final_claim_ledger.md")}
             {contribution_card("Synthetic robustness", "Validation track", "Created synthetic silver and held-out split checks to expose overfitting and oracle gaps.", "src/synthetic_*.py, results/tables/")}
             {contribution_card("Frontier systems", "Research-expansion track", "Explored MeetEval/cpWER, speaker-profile diagnostics, LLM critic/RAG, demo excellence, and AudioDepth.", "docs/frontier/, results/figures/")}
+          </div>
+        </section>
+        """,
+        f"""
+        <section class="slide" data-title="Pipeline">
+          <div class="eyebrow">Readable pipeline</div>
+          <h2>The system flow in six readable steps.</h2>
+          <p>Use this slide when the architecture figure is too small on a projector. It is the same story, rewritten as large text.</p>
+          <div class="flow-grid">
+            {flow_step("1. Audio assets", "Mixed recordings, separated tracks, and reference transcripts are organized as evidence inputs.")}
+            {flow_step("2. ASR routes", "Run or compare mixed, separated, and cleaned transcript routes.")}
+            {flow_step("3. Metrics", "CER, speaker-aware CER, cpCER-lite, and error-type analysis expose different failures.")}
+            {flow_step("4. Router", "router_v2 selects a route from deployment-visible instability signals.")}
+            {flow_step("5. Audits", "Synthetic, held-out, source-disjoint, runtime, and risk checks prevent overclaiming.")}
+            {flow_step("6. Frontiers", "MeetEval, speaker profile, LLM critic, demo excellence, and AudioDepth become scoped follow-ups.")}
           </div>
         </section>
         """,
@@ -163,7 +199,14 @@ def build_demo() -> str:
             {metric("fixed separated", "0.192", "average CER")}
             {metric("fixed mixed", "0.302", "average CER")}
           </div>
-          <img class="hero-img" src="{rel('results/figures/final_key_results_card.png')}" alt="Final key results">
+          {compact_table([
+              {'strategy': 'fixed_mixed_whisper', 'average_CER': '0.302093', 'meaning': 'simple baseline'},
+              {'strategy': 'fixed_separated_whisper', 'average_CER': '0.191846', 'meaning': 'stronger but not always safe'},
+              {'strategy': 'fixed_separated_whisper_cleaned', 'average_CER': '0.181681', 'meaning': 'postprocess helps sometimes'},
+              {'strategy': 'router_v2', 'average_CER': '0.120042', 'meaning': 'team stable baseline'},
+              {'strategy': 'oracle_best', 'average_CER': '0.120042', 'meaning': 'upper bound on this tiny gold set'},
+          ], ['strategy', 'average_CER', 'meaning'], 5)}
+          {figure('results/figures/final_key_results_card.png', 'Final key results', 'Gold benchmark result card.')}
         </section>
         """,
         f"""
@@ -171,6 +214,11 @@ def build_demo() -> str:
           <div class="eyebrow">Metric contribution</div>
           <h2>We also measured the right failure modes.</h2>
           <p>Normal CER is not enough for multi-speaker audio. The project adds error-type analysis, speaker-aware CER, and cpCER-lite so routing decisions are judged by content and attribution behavior.</p>
+          <div class="metrics">
+            {metric("CER", "content", "character-level transcript quality")}
+            {metric("speaker-aware CER", "attribution", "per-speaker quality and speaker gap")}
+            {metric("cpCER-lite", "permutation", "checks direct vs swapped speaker mapping")}
+          </div>
           <div class="image-grid">
             <img src="{rel('results/figures/error_type_by_case.png')}" alt="Error type by case">
             <img src="{rel('results/figures/cer_by_case.png')}" alt="CER by case">
@@ -222,7 +270,7 @@ def build_demo() -> str:
             {metric("router_v2 on same slice", fmt(router_v2.get('average_cer'), 3), "controlled silver-plus")}
             {metric("Route accuracy", fmt(balanced_router.get('accuracy_vs_oracle_route'), 3), "not gold")}
           </div>
-          <img class="hero-img" src="{rel('results/figures/audiodepth_v2_examples.png')}" alt="AudioDepth examples">
+          {figure('results/figures/audiodepth_v2_examples.png', 'AudioDepth examples', 'AudioDepth map examples.')}
         </section>
         """,
         f"""
@@ -235,7 +283,7 @@ def build_demo() -> str:
             {metric("False-safe rate", fmt(risk_balanced.get('false_safe_rate'), 3), "direct bypass")}
             {metric("Text probe reduction", fmt(risk_balanced.get('text_probe_reduction_rate'), 3), "less downstream work")}
           </div>
-          <img class="hero-img" src="{rel('results/figures/audiodepth_risk_guarded_gate_pareto.png')}" alt="Risk guarded Pareto">
+          {figure('results/figures/audiodepth_risk_guarded_gate_pareto.png', 'Risk guarded Pareto', 'Risk-guarded AudioDepth gate tradeoff.')}
         </section>
         """,
         f"""
@@ -287,7 +335,7 @@ def build_demo() -> str:
             {metric("Project claim", "systematic", "complete evidence workflow")}
             {metric("Next step", "micro-gold", "11 candidates ready")}
           </div>
-          <img class="hero-img" src="{rel('results/figures/final_evidence_levels.png')}" alt="Evidence levels">
+          {figure('results/figures/final_evidence_levels.png', 'Evidence levels', 'Evidence-level boundary card.')}
         </section>
         """,
     ]
@@ -308,17 +356,22 @@ def build_demo() -> str:
     .slide { display:none; min-height:calc(100vh - 8rem); padding:3rem clamp(1.2rem,4vw,4rem); animation: pop .25s ease; }
     .slide.active { display:block; }
     @keyframes pop { from { opacity:.2; transform: translateY(8px); } to { opacity:1; transform:none; } }
-    h1, h2 { max-width:62rem; margin:.2rem 0 1rem; line-height:1.02; letter-spacing:0; }
-    h1 { font-size:clamp(2.6rem,7vw,6rem); }
-    h2 { font-size:clamp(2rem,5vw,4.6rem); }
-    .lead, p { color:var(--muted); max-width:58rem; font-size:clamp(1rem,1.5vw,1.28rem); }
+    h1, h2 { max-width:66rem; margin:.2rem 0 1rem; line-height:1.02; letter-spacing:0; }
+    h1 { font-size:clamp(3rem,7vw,6.2rem); }
+    h2 { font-size:clamp(2.25rem,5vw,4.8rem); }
+    h3 { font-size:1.28rem; }
+    .lead, p { color:var(--muted); max-width:62rem; font-size:clamp(1.08rem,1.55vw,1.34rem); }
     .eyebrow { color:var(--accent); font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
     .metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(12rem,1fr)); gap:1rem; margin:1.4rem 0; max-width:72rem; }
     .metric { border:1px solid var(--line); background:rgba(18,26,49,.76); border-radius:8px; padding:1rem; min-height:7rem; }
-    .metric-value { font-size:2rem; font-weight:850; color:var(--text); }
+    .metric-value { font-size:2.15rem; font-weight:850; color:var(--text); }
     .metric-label { color:var(--accent); font-weight:750; }
     .metric-note { color:var(--muted); font-size:.9rem; }
-    .hero-img { width:min(100%,72rem); max-height:42vh; object-fit:contain; display:block; margin:1.5rem 0; border:1px solid var(--line); border-radius:8px; background:#fff; }
+    .figure-card { margin:1.3rem 0 0; width:min(100%,78rem); }
+    .figure-card a { display:block; }
+    .hero-img { width:min(100%,78rem); max-height:56vh; object-fit:contain; display:block; margin:0; border:1px solid var(--line); border-radius:8px; background:#fff; }
+    figcaption { color:var(--muted); margin-top:.45rem; font-size:1rem; }
+    figcaption span { color:var(--gold); }
     .image-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(18rem,1fr)); gap:1rem; margin-top:1.5rem; }
     .image-grid img { width:100%; border:1px solid var(--line); border-radius:8px; background:white; }
     .contribution-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(18rem,1fr)); gap:1rem; margin-top:1.5rem; max-width:78rem; }
@@ -328,8 +381,12 @@ def build_demo() -> str:
     .contribution-card p { font-size:.96rem; margin:.45rem 0; }
     .owner { color:var(--accent); font-weight:800; }
     .artifact { color:var(--gold); font-size:.86rem !important; }
-    table { border-collapse:collapse; width:min(100%,72rem); margin:1.3rem 0; font-size:.92rem; background:rgba(18,26,49,.7); }
-    th, td { border:1px solid var(--line); padding:.6rem .7rem; text-align:left; }
+    .flow-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(18rem,1fr)); gap:1rem; max-width:78rem; margin-top:1.5rem; }
+    .flow-step { border:1px solid var(--line); border-radius:8px; background:rgba(18,26,49,.82); padding:1.1rem; min-height:9rem; }
+    .flow-title { color:var(--accent); font-size:1.18rem; font-weight:850; }
+    .flow-body { color:var(--text); font-size:1.1rem; margin-top:.55rem; }
+    table { border-collapse:collapse; width:min(100%,78rem); margin:1.3rem 0; font-size:1.04rem; background:rgba(18,26,49,.7); }
+    th, td { border:1px solid var(--line); padding:.72rem .82rem; text-align:left; }
     th { color:var(--accent); background:#10182d; }
     .challenge { display:grid; grid-template-columns: minmax(16rem, 28rem) 1fr; gap:1.2rem; align-items:start; margin-top:1.5rem; }
     .case-card, .answer-card { border:1px solid var(--line); background:rgba(18,26,49,.78); border-radius:8px; padding:1rem; }
@@ -345,6 +402,9 @@ def build_demo() -> str:
 
     js = f"""
     const DATA = {json.dumps(slide_data)};
+    const params = new URLSearchParams(window.location.search);
+    const autoplay = params.get('autoplay') === '1';
+    const autoplaySeconds = Math.max(60, Number(params.get('seconds') || 420));
     let current = 0;
     const slides = [...document.querySelectorAll('.slide')];
     const bar = document.querySelector('#progressBar');
@@ -403,6 +463,13 @@ def build_demo() -> str:
     show(0);
     tick();
     setInterval(tick, 1000);
+    if (autoplay) {{
+      const stepMs = Math.floor((autoplaySeconds * 1000) / Math.max(1, slides.length - 1));
+      document.body.classList.add('recording-mode');
+      setInterval(() => {{
+        if (current < slides.length - 1) show(current + 1);
+      }}, stepMs);
+    }}
     """
 
     return f"""<!doctype html>
@@ -432,7 +499,7 @@ def build_demo() -> str:
       {''.join(slides)}
     </main>
     <footer>
-      <span>Keys: Left / Right / Space. Demo mode: offline, evidence-backed, no live ASR rerun.</span>
+      <span>Keys: Left / Right / Space. Recording URL: ?autoplay=1&amp;seconds=420.</span>
       <span>Claim boundary: team baseline first, frontier attempts second.</span>
     </footer>
   </div>

@@ -20,17 +20,22 @@
     .slide { display:none; min-height:calc(100vh - 8rem); padding:3rem clamp(1.2rem,4vw,4rem); animation: pop .25s ease; }
     .slide.active { display:block; }
     @keyframes pop { from { opacity:.2; transform: translateY(8px); } to { opacity:1; transform:none; } }
-    h1, h2 { max-width:62rem; margin:.2rem 0 1rem; line-height:1.02; letter-spacing:0; }
-    h1 { font-size:clamp(2.6rem,7vw,6rem); }
-    h2 { font-size:clamp(2rem,5vw,4.6rem); }
-    .lead, p { color:var(--muted); max-width:58rem; font-size:clamp(1rem,1.5vw,1.28rem); }
+    h1, h2 { max-width:66rem; margin:.2rem 0 1rem; line-height:1.02; letter-spacing:0; }
+    h1 { font-size:clamp(3rem,7vw,6.2rem); }
+    h2 { font-size:clamp(2.25rem,5vw,4.8rem); }
+    h3 { font-size:1.28rem; }
+    .lead, p { color:var(--muted); max-width:62rem; font-size:clamp(1.08rem,1.55vw,1.34rem); }
     .eyebrow { color:var(--accent); font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
     .metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(12rem,1fr)); gap:1rem; margin:1.4rem 0; max-width:72rem; }
     .metric { border:1px solid var(--line); background:rgba(18,26,49,.76); border-radius:8px; padding:1rem; min-height:7rem; }
-    .metric-value { font-size:2rem; font-weight:850; color:var(--text); }
+    .metric-value { font-size:2.15rem; font-weight:850; color:var(--text); }
     .metric-label { color:var(--accent); font-weight:750; }
     .metric-note { color:var(--muted); font-size:.9rem; }
-    .hero-img { width:min(100%,72rem); max-height:42vh; object-fit:contain; display:block; margin:1.5rem 0; border:1px solid var(--line); border-radius:8px; background:#fff; }
+    .figure-card { margin:1.3rem 0 0; width:min(100%,78rem); }
+    .figure-card a { display:block; }
+    .hero-img { width:min(100%,78rem); max-height:56vh; object-fit:contain; display:block; margin:0; border:1px solid var(--line); border-radius:8px; background:#fff; }
+    figcaption { color:var(--muted); margin-top:.45rem; font-size:1rem; }
+    figcaption span { color:var(--gold); }
     .image-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(18rem,1fr)); gap:1rem; margin-top:1.5rem; }
     .image-grid img { width:100%; border:1px solid var(--line); border-radius:8px; background:white; }
     .contribution-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(18rem,1fr)); gap:1rem; margin-top:1.5rem; max-width:78rem; }
@@ -40,8 +45,12 @@
     .contribution-card p { font-size:.96rem; margin:.45rem 0; }
     .owner { color:var(--accent); font-weight:800; }
     .artifact { color:var(--gold); font-size:.86rem !important; }
-    table { border-collapse:collapse; width:min(100%,72rem); margin:1.3rem 0; font-size:.92rem; background:rgba(18,26,49,.7); }
-    th, td { border:1px solid var(--line); padding:.6rem .7rem; text-align:left; }
+    .flow-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(18rem,1fr)); gap:1rem; max-width:78rem; margin-top:1.5rem; }
+    .flow-step { border:1px solid var(--line); border-radius:8px; background:rgba(18,26,49,.82); padding:1.1rem; min-height:9rem; }
+    .flow-title { color:var(--accent); font-size:1.18rem; font-weight:850; }
+    .flow-body { color:var(--text); font-size:1.1rem; margin-top:.55rem; }
+    table { border-collapse:collapse; width:min(100%,78rem); margin:1.3rem 0; font-size:1.04rem; background:rgba(18,26,49,.7); }
+    th, td { border:1px solid var(--line); padding:.72rem .82rem; text-align:left; }
     th { color:var(--accent); background:#10182d; }
     .challenge { display:grid; grid-template-columns: minmax(16rem, 28rem) 1fr; gap:1.2rem; align-items:start; margin-top:1.5rem; }
     .case-card, .answer-card { border:1px solid var(--line); background:rgba(18,26,49,.78); border-radius:8px; padding:1rem; }
@@ -65,7 +74,7 @@
       <div class="controls">
         <button id="prev">Back</button>
         <button id="next">Next</button>
-        <span class="pill" id="counter">1 / 13</span>
+        <span class="pill" id="counter">1 / 14</span>
         <span class="timer" id="timer">10:00</span>
       </div>
       <div class="progress" aria-label="slide progress"><span id="progressBar"></span></div>
@@ -99,7 +108,14 @@
     </div>
     
           </div>
-          <img class="hero-img" src="../results/figures/final_system_architecture.png" alt="Final system architecture">
+          
+    <figure class="figure-card">
+      <a href="../results/figures/final_system_architecture.png" target="_blank" rel="noreferrer">
+        <img class="hero-img" src="../results/figures/final_system_architecture.png" alt="Final system architecture">
+      </a>
+      <figcaption>System architecture overview. <span>Click image for full-size artifact.</span></figcaption>
+    </figure>
+    
         </section>
         
         <section class="slide" data-title="Team map">
@@ -158,6 +174,50 @@
           </div>
         </section>
         
+        <section class="slide" data-title="Pipeline">
+          <div class="eyebrow">Readable pipeline</div>
+          <h2>The system flow in six readable steps.</h2>
+          <p>Use this slide when the architecture figure is too small on a projector. It is the same story, rewritten as large text.</p>
+          <div class="flow-grid">
+            
+    <div class="flow-step">
+      <div class="flow-title">1. Audio assets</div>
+      <div class="flow-body">Mixed recordings, separated tracks, and reference transcripts are organized as evidence inputs.</div>
+    </div>
+    
+            
+    <div class="flow-step">
+      <div class="flow-title">2. ASR routes</div>
+      <div class="flow-body">Run or compare mixed, separated, and cleaned transcript routes.</div>
+    </div>
+    
+            
+    <div class="flow-step">
+      <div class="flow-title">3. Metrics</div>
+      <div class="flow-body">CER, speaker-aware CER, cpCER-lite, and error-type analysis expose different failures.</div>
+    </div>
+    
+            
+    <div class="flow-step">
+      <div class="flow-title">4. Router</div>
+      <div class="flow-body">router_v2 selects a route from deployment-visible instability signals.</div>
+    </div>
+    
+            
+    <div class="flow-step">
+      <div class="flow-title">5. Audits</div>
+      <div class="flow-body">Synthetic, held-out, source-disjoint, runtime, and risk checks prevent overclaiming.</div>
+    </div>
+    
+            
+    <div class="flow-step">
+      <div class="flow-title">6. Frontiers</div>
+      <div class="flow-body">MeetEval, speaker profile, LLM critic, demo excellence, and AudioDepth become scoped follow-ups.</div>
+    </div>
+    
+          </div>
+        </section>
+        
         <section class="slide" data-title="Listen">
           <div class="eyebrow">Act 1: make the audience judge</div>
           <h2>Route challenge: listen first, then guess.</h2>
@@ -192,13 +252,44 @@
     </div>
     
           </div>
-          <img class="hero-img" src="../results/figures/final_key_results_card.png" alt="Final key results">
+          <table><thead><tr><th>strategy</th><th>average_CER</th><th>meaning</th></tr></thead><tbody><tr><td>fixed_mixed_whisper</td><td>0.302093</td><td>simple baseline</td></tr><tr><td>fixed_separated_whisper</td><td>0.191846</td><td>stronger but not always safe</td></tr><tr><td>fixed_separated_whisper_cleaned</td><td>0.181681</td><td>postprocess helps sometimes</td></tr><tr><td>router_v2</td><td>0.120042</td><td>team stable baseline</td></tr><tr><td>oracle_best</td><td>0.120042</td><td>upper bound on this tiny gold set</td></tr></tbody></table>
+          
+    <figure class="figure-card">
+      <a href="../results/figures/final_key_results_card.png" target="_blank" rel="noreferrer">
+        <img class="hero-img" src="../results/figures/final_key_results_card.png" alt="Final key results">
+      </a>
+      <figcaption>Gold benchmark result card. <span>Click image for full-size artifact.</span></figcaption>
+    </figure>
+    
         </section>
         
         <section class="slide" data-title="Evaluation">
           <div class="eyebrow">Metric contribution</div>
           <h2>We also measured the right failure modes.</h2>
           <p>Normal CER is not enough for multi-speaker audio. The project adds error-type analysis, speaker-aware CER, and cpCER-lite so routing decisions are judged by content and attribution behavior.</p>
+          <div class="metrics">
+            
+    <div class="metric">
+      <div class="metric-value">content</div>
+      <div class="metric-label">CER</div>
+      <div class="metric-note">character-level transcript quality</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">attribution</div>
+      <div class="metric-label">speaker-aware CER</div>
+      <div class="metric-note">per-speaker quality and speaker gap</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">permutation</div>
+      <div class="metric-label">cpCER-lite</div>
+      <div class="metric-note">checks direct vs swapped speaker mapping</div>
+    </div>
+    
+          </div>
           <div class="image-grid">
             <img src="../results/figures/error_type_by_case.png" alt="Error type by case">
             <img src="../results/figures/cer_by_case.png" alt="CER by case">
@@ -326,7 +417,14 @@
     </div>
     
           </div>
-          <img class="hero-img" src="../results/figures/audiodepth_v2_examples.png" alt="AudioDepth examples">
+          
+    <figure class="figure-card">
+      <a href="../results/figures/audiodepth_v2_examples.png" target="_blank" rel="noreferrer">
+        <img class="hero-img" src="../results/figures/audiodepth_v2_examples.png" alt="AudioDepth examples">
+      </a>
+      <figcaption>AudioDepth map examples. <span>Click image for full-size artifact.</span></figcaption>
+    </figure>
+    
         </section>
         
         <section class="slide" data-title="Safety">
@@ -356,7 +454,14 @@
     </div>
     
           </div>
-          <img class="hero-img" src="../results/figures/audiodepth_risk_guarded_gate_pareto.png" alt="Risk guarded Pareto">
+          
+    <figure class="figure-card">
+      <a href="../results/figures/audiodepth_risk_guarded_gate_pareto.png" target="_blank" rel="noreferrer">
+        <img class="hero-img" src="../results/figures/audiodepth_risk_guarded_gate_pareto.png" alt="Risk guarded Pareto">
+      </a>
+      <figcaption>Risk-guarded AudioDepth gate tradeoff. <span>Click image for full-size artifact.</span></figcaption>
+    </figure>
+    
         </section>
         
         <section class="slide" data-title="Evidence hygiene">
@@ -476,17 +581,27 @@
     </div>
     
           </div>
-          <img class="hero-img" src="../results/figures/final_evidence_levels.png" alt="Evidence levels">
+          
+    <figure class="figure-card">
+      <a href="../results/figures/final_evidence_levels.png" target="_blank" rel="noreferrer">
+        <img class="hero-img" src="../results/figures/final_evidence_levels.png" alt="Evidence levels">
+      </a>
+      <figcaption>Evidence-level boundary card. <span>Click image for full-size artifact.</span></figcaption>
+    </figure>
+    
         </section>
         
     </main>
     <footer>
-      <span>Keys: Left / Right / Space. Demo mode: offline, evidence-backed, no live ASR rerun.</span>
+      <span>Keys: Left / Right / Space. Recording URL: ?autoplay=1&amp;seconds=420.</span>
       <span>Claim boundary: team baseline first, frontier attempts second.</span>
     </footer>
   </div>
   <script>
     const DATA = {"challengeCases": [{"case": "NoOverlap", "audio": "../resources/mixed_audio/NoOverlap.wav", "best": "separate", "why": "Clean speech is easy, but the separated speaker-track route is strongest on the gold case."}, {"case": "LightOverlap", "audio": "../resources/mixed_audio/LightOverlap.wav", "best": "keep mixed", "why": "Light overlap can make separation hallucinate repeated fragments, so mixed wins."}, {"case": "MidOverlap", "audio": "../resources/mixed_audio/MidOverlap.wav", "best": "keep mixed", "why": "Moderate overlap still shows insertion and repetition risk after separation."}, {"case": "HeavyOverlap", "audio": "../resources/mixed_audio/HeavyOverlap.wav", "best": "separate", "why": "Heavy overlap benefits from separating competing speech streams."}, {"case": "OppositeOverlap", "audio": "../resources/mixed_audio/OppositeOverlap.wav", "best": "separate", "why": "Highly competitive opposite overlap is where separation helps most."}], "minutes": 10};
+    const params = new URLSearchParams(window.location.search);
+    const autoplay = params.get('autoplay') === '1';
+    const autoplaySeconds = Math.max(60, Number(params.get('seconds') || 420));
     let current = 0;
     const slides = [...document.querySelectorAll('.slide')];
     const bar = document.querySelector('#progressBar');
@@ -545,6 +660,13 @@
     show(0);
     tick();
     setInterval(tick, 1000);
+    if (autoplay) {
+      const stepMs = Math.floor((autoplaySeconds * 1000) / Math.max(1, slides.length - 1));
+      document.body.classList.add('recording-mode');
+      setInterval(() => {
+        if (current < slides.length - 1) show(current + 1);
+      }, stepMs);
+    }
     </script>
 </body>
 </html>

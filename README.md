@@ -67,6 +67,7 @@ python -m src.generate_final_presentation_cards
 - [docs/module_lifecycle.md](docs/module_lifecycle.md)
 - [results/figures/results_manifest_summary.md](results/figures/results_manifest_summary.md)
 - [docs/demo_10min_runbook.md](docs/demo_10min_runbook.md)
+- [docs/demo_recording_plan.md](docs/demo_recording_plan.md)
 - [demo/index.html](demo/index.html)
 - [results/figures/generative_regret_calibration.md](results/figures/generative_regret_calibration.md)
 - [results/figures/source_disjoint_v2_dataset_summary.md](results/figures/source_disjoint_v2_dataset_summary.md)
