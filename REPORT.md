@@ -259,6 +259,17 @@ the reference (CER=24.25, CR=16.33). This is the heavy-tail mechanism
 visualized: the silent region is where Whisper enters the compression-seeking
 attractor (Viakhirev et al., 2026).
 
+![Separation tax spectrogram visualization](results/figures/report/fig6_separation_tax_spectrogram.png)
+
+**Figure (spectrogram):** The same catastrophic case viewed in the
+time-frequency domain. Panel (C) reveals *what Whisper sees* before
+hallucinating: a spectrally empty region (0–2.0s) before speech onset —
+a blank spectrogram that the compression-seeking attractor fills with
+confident token-id repetition. Panel (B)'s trailing silence is less
+harmful because Whisper has already committed to a transcription state.
+The asymmetry (leading vs trailing silence) explains why the
+hallucination is triggered by separation, not by silence per se.
+
 ### 6.2 Router Ablation — Why the Router Is Deployable
 
 A deployable router must not use CER (that would require the reference
@@ -551,6 +562,7 @@ Optional frontiers require `requirements-frontier.txt` (ollama, resemblyzer) or 
 | LLM rescoring (catastrophic negative) | §15 | `python -m src.llm_base_rescore` | ~30 min (needs ollama) |
 | Semantic emotion tax (LLM 7× > lexicon) | §15 | `python -m src.semantic_emotion_tax` | ~20 min (needs ollama) |
 | Separation-tax waveform figure (fig5) | §6.1 | `python scripts/docs/make_separation_tax_waveform.py` | ~5 s |
+| Separation-tax spectrogram figure (fig6) | §6.1 | `python scripts/docs/make_separation_tax_spectrogram.py` | ~5 s |
 
 ### Verification Gates
 

@@ -125,6 +125,11 @@ The figure below visualizes the catastrophic case (pair=5, r=0.05) from the 600-
 </p>
 <p align="center"><em>Figure: Separation tax waveform visualization. (A) Mixed audio at r=0.05 — Whisper transcribes both speakers correctly (CER=0.44). (B) Oracle-separated Speaker 1 — speech followed by trailing silence, transcribes OK (CER=0.44). (C) Oracle-separated Speaker 2 — <strong>2.05s of leading silence</strong> triggers a token-id repetition loop: the transcript is 24× longer than the reference (CER=24.25, CR=16.33). This is the heavy-tail mechanism: 6/600 tracks blow up this way, driving mean ΔCER far below the median.</em></p>
 
+<p align="center">
+  <img src="results/figures/report/fig6_separation_tax_spectrogram.png" width="95%" alt="Spectrogram visualization of the separation tax: the leading-silence region in Speaker 2 is spectrally empty, providing a blank canvas that Whisper's compression-seeking attractor fills with confident token-id repetition" />
+</p>
+<p align="center"><em>Figure: Separation tax spectrogram visualization (same case as above). The time-frequency view reveals <strong>what Whisper "sees"</strong> before hallucinating: Panel (C) shows a spectrally empty region (0–2.0s) before speech onset — a blank spectrogram that the compression-seeking attractor (Viakhirev et al., 2026) fills with confident repetition. Panel (B)'s trailing silence is less harmful because Whisper has already committed to a transcription state.</em></p>
+
 ## Current Status
 
 See [docs/implementation-status.md](docs/implementation-status.md) for the detailed status matrix.
