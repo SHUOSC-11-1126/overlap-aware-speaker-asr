@@ -319,7 +319,7 @@ window.DEMO_DATA = {
     "mixedWin": {
       "caseId": "LightOverlap",
       "label": "Case A — Mixed-win",
-      "why": "Light overlap: router v2 keeps mixed audio because separation inflates insertions/repetitions.",
+      "why": "LightOverlap is the mixed-win case: router v2 keeps mixed audio because the separated route has worse committed CER. The raw separated transcript artifact is not bundled in main, so this replay shows the CER and the cleaned separated text without reconstructing or fabricating the missing raw transcript.",
       "audio": "assets/audio/LightOverlap.wav",
       "audioSource": "resources/mixed_audio/LightOverlap.wav",
       "audioSourceId": "src_audio_LightOverlap",
@@ -335,7 +335,7 @@ window.DEMO_DATA = {
         "sourceId": "src_transcript_LightOverlap_mixed"
       },
       "separated": {
-        "text": "Artifact is referenced by result tables but the raw transcript JSON is not bundled in main. No transcript is fabricated in this replay demo.",
+        "text": "Raw separated transcript artifact is not bundled in main. The committed CER value is shown, and no transcript is reconstructed or fabricated.",
         "sourcePath": "results/transcripts_speaker/LightOverlap_separated_speaker_transcript.json",
         "available": false,
         "sourceId": "src_cer"
@@ -361,8 +361,8 @@ window.DEMO_DATA = {
     },
     "separatedWin": {
       "caseId": "NoOverlap",
-      "label": "Case B — Separated-win",
-      "why": "NoOverlap is selected for live transcript comparison because main bundles raw separated JSON; Heavy/Opposite also win by separated CER in the gold table.",
+      "label": "Case B — Control separated-win case",
+      "why": "NoOverlap is the control separated-win case because main includes complete raw transcript artifacts for mixed, separated, and cleaned routes. HeavyOverlap and OppositeOverlap also favor separated ASR in the gold CER table.",
       "audio": "assets/audio/NoOverlap.wav",
       "audioSource": "resources/mixed_audio/NoOverlap.wav",
       "audioSourceId": "src_audio_NoOverlap",
@@ -932,11 +932,11 @@ window.DEMO_DATA = {
     {
       "name": "王景宏 (ceilf6)（23123994）",
       "role": "Frontier research lead; overlap-hallucination mechanism investigator; ASR×LLM×emotion axis explorer; research-entropy meta-analyst; engineering harness architect.",
-      "scope": "~45 merged PRs (#780–#872), 40+ issues, 40+ new modules, 36 frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled `experimental/frontier`; no gold tables or verified references touched.",
+      "scope": "~45 merged PRs (#780–#872), 40+ issues, 40+ new modules, 36 frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled experimental/frontier; no gold tables or verified references touched.",
       "highlights": [
-        "*Role:** Frontier research lead; overlap-hallucination mechanism investigator; ASR×LLM×emotion axis explorer; research-entropy meta-analyst; engineering harness architect.",
-        "*Scope summary:** ~45 merged PRs (#780–#872), 40+ issues, 40+ new modules, 36 frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled `experimental/frontier`; no gold tables or verified references touched.",
-        "--"
+        "Established the separation-tax and hallucination mechanism frontier with careful evidence labels and falsifiable findings.",
+        "Built the ASR×LLM×emotion frontier synthesis, including objective-aware routing and negative LLM repair results.",
+        "Led research-entropy cleanup and engineering harness work to protect the stable baseline from ceremony drift."
       ],
       "evidencePaths": [
         "results/frontier/separation_tax/FINDINGS.md",
@@ -949,73 +949,78 @@ window.DEMO_DATA = {
     },
     {
       "name": "吴方舟/wfzark（23123986）",
-      "role": "Core technical contributor; route-selection problem framer; main experimental pipeline owner; AudioDepth frontier explorer; team report and",
-      "scope": "",
+      "role": "Core technical contributor; route-selection problem framer; main experimental pipeline owner; AudioDepth frontier explorer; team report and research-visualization contributor.",
+      "scope": "吴方舟的贡献主线是把项目从\"比较一个固定 ASR 输出\"推进为一个系统问题： when should an overlap-aware ASR system separate speech, keep mixed audio, or fall back to a safer route? 这一 framing 贯穿主实验、风险选择、前沿探索和 最终报告，使项目围绕 route selection、claim boundary 和 evidence level 组织，而不是只报告单一 CER 表",
       "highlights": [
-        "*Role:** Core technical contributor; route-selection problem framer; main",
-        "*when should an overlap-aware ASR system separate speech, keep mixed audio, or",
-        "mixed Whisper baseline；"
+        "Mainline ASR pipeline and route-selection evidence across mixed, separated, cleaned, router v1/v2, risk-aware selector, and oracle comparisons.",
+        "Evidence discipline and claim-boundary cleanup across gold, synthetic, held-out, optional integration, and frontier exploratory claims.",
+        "AudioDepth frontier research framed as branch-only acoustic triage and visualization, not a stable mainline router."
       ],
       "evidencePaths": [
-        "CONTRIBUTIONS.md"
+        "results/figures/curated/current_results_summary.md",
+        "docs/results-index.md",
+        "docs/implementation-status.md",
+        "REPORT.md",
+        "docs/frontier/audio-depth-router.md"
       ],
       "sourceId": "src_contributions"
     },
     {
       "name": "谢宇轩 (xyx12369)",
-      "role": "Mode B: 算力感知三层级联识别。",
-      "scope": "",
+      "role": "Mode B: 算力感知三层级联识别",
+      "scope": "设计并实现参考无关的三层级联架构：Tier 1 (便宜) → Tier 2 (风险触发更强ASR) → Tier 3 (LLM Critic/人工复核)",
       "highlights": [
-        "*Role:** Mode B: 算力感知三层级联识别。",
-        "*主要贡献：**",
-        "设计并实现参考无关的三层级联架构：Tier 1 (便宜) → Tier 2"
+        "Designed the reference-free three-tier cascade: cheap route, risk-triggered stronger ASR, and review-oriented escalation.",
+        "Used observable signals such as repetition count, runtime inflation, text length ratio, and overlap level; CER remains post-hoc evaluation only.",
+        "Produced CER-cost tradeoff artifacts, cost-aware routing tables, coverage statistics, and comparisons with fixed strategies and router v2."
       ],
       "evidencePaths": [
-        "src/cascade_tiers.py"
+        "src/cascade_tiers.py",
+        "tests/test_cascade_tiers.py"
       ],
       "sourceId": "src_contributions"
     },
     {
       "name": "邵俊霖 / saayaya (23124001)",
-      "role": "Separation Phase Diagram 修复；Learned Router 设计与实现；bugfix。",
-      "scope": "",
+      "role": "Separation Phase Diagram 修复；Learned Router 设计与实现；bugfix",
+      "scope": "修复 separation_phase_diagram.py 中因合并冲突导致的内容重复和 import 损坏问题（移除 374 行重复代码，修复 collections.defaultdict import）",
       "highlights": [
-        "*Role:** Separation Phase Diagram 修复；Learned Router 设计与实现；bugfix。",
-        "*主要贡献：**",
-        "修复 `separation_phase_diagram.py` 中因合并冲突导致的内容重复和"
+        "创建缺失模块 src/plot_phase_boundary.py： 实现 plot_enhanced_phase_diagram()（带 crossover 标记和 CI 区域的 增强相图）和 plot_bootstrap_probability_curve()（bootstrap P(helps) 概率曲线+ΔCER双轴图）",
+        "补充 tests/test_plot_phase_boundary.py（5 项 smoke test，覆盖 有无 boundary_metadata 两种路径）",
+        "针对 REPORT.md §7 \"router is entirely rule-based\" 的局限性，设计并 实现了监督学习路由器 src/learned_router.py，替代手写规则 router_v2"
       ],
       "evidencePaths": [
         "src/plot_phase_boundary.py",
+        "tests/test_plot_phase_boundary.py",
         "src/learned_router.py",
-        "src/llm_repair_loop.py",
-        "src/rag_repair.py",
-        "src/router_feature_importance.py"
+        "scripts/train_learned_router.py",
+        "tests/test_learned_router.py"
       ],
       "sourceId": "src_contributions"
     },
     {
       "name": "梁跃川 / liang-yuechuan",
-      "role": "Mode C: 前沿探索 — 分离相位图 (Separation Phase Diagram) 设计与实现。",
-      "scope": "",
+      "role": "Mode C: 前沿探索 — 分离相位图 (Separation Phase Diagram) 设计与实现",
+      "scope": "针对项目核心问题\"语音分离何时帮助、何时损害多说话人 ASR\"，设计并 实现了 src/separation_phase_diagram.py，通过 delta CER （separated_whisper − mixed_whisper）vs overlap ratio 的散点图 量化分离帮助/损害的 crossover 边界",
       "highlights": [
-        "*Role:** Mode C: 前沿探索 — 分离相位图 (Separation Phase Diagram) 设计与实现。",
-        "*主要贡献：**",
-        "`tests/test_separation_phase_diagram.py`（5 项测试）："
+        "Designed and implemented the separation phase diagram for visualizing when separation helps or hurts overlap-aware ASR.",
+        "Added TDD coverage for delta CER computation, overlap binning, gold/silver point construction, aggregation, and output writing."
       ],
       "evidencePaths": [
         "src/separation_phase_diagram.py",
-        "src/separation_phase_diagram.py"
+        "tests/test_separation_phase_diagram.py",
+        "tests/test_separation_phase_diagram_write_outputs.py"
       ],
       "sourceId": "src_contributions"
     },
     {
       "name": "张浩豪 / haohaozhang776",
       "role": "Mode D: Evaluation System & Cross-Benchmark Analysis（评估系统与跨实验对齐）",
-      "scope": "",
+      "scope": "Built the unified evaluation and cross-benchmark analysis layer for comparing mixed, separated, cleaned, router v2, and cascade outputs under one evaluation schema.",
       "highlights": [
-        "*Role:** Mode D: Evaluation System & Cross-Benchmark Analysis（评估系统与跨实验对齐）",
-        "*主要贡献：**",
-        "构建统一 evaluation adapter，使 mixed / separated / cleaned / router v2 / cascade outputs 能够在同一评估接口下进行对齐比较，减少不同 pipeline 在格式层面的不一致问题。"
+        "Structured speaker-aware CER, cpCER-lite, and error-type breakdowns for routing and separation analysis.",
+        "Built cross-benchmark aggregation for gold, synthetic, and held-out evaluation outputs.",
+        "Provided evaluation-side evidence support for cascade, learned-router, and separation-phase consistency checks."
       ],
       "evidencePaths": [
         "CONTRIBUTIONS.md"

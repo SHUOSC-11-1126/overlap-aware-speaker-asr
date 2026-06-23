@@ -17,9 +17,9 @@ Presenter A does not operate the mouse.
 1. Open Core Routing.
 2. Select Mixed-win.
 3. Play the short LightOverlap audio.
-4. Point at reference, mixed, separated, and cleaned transcript columns.
-5. Switch to Separated-win.
-6. Play the NoOverlap audio and point out the lower separated CER.
+4. Point at the reference, mixed transcript, the raw-separated artifact notice, and the cleaned separated transcript. Do not imply the missing LightOverlap raw separated transcript is being reconstructed.
+5. Switch to Separated-win: the NoOverlap control separated-win case.
+6. Play the NoOverlap audio and explain it is the control separated-win case because main includes complete raw transcript artifacts. Add that HeavyOverlap and OppositeOverlap also favor separated ASR in the gold CER table.
 7. Open Separation Tax and point to leading silence, repetition loop, and confident attractor.
 8. Open Team Frontiers and summarize learned router, Mode B cascade, emotion/LLM, and AudioDepth.
 
@@ -29,12 +29,12 @@ Presenter B owns mouse and audio. Do not switch terminals, install dependencies,
 
 - Evidence levels: stable/gold, synthetic/silver, experimental/frontier, qualitative/demo, branch-only exploratory.
 - Limitations: small five-case gold benchmark, oracle separation, synthetic/silver frontier references, branch-specific model-scale and AudioDepth results, replay demo not live inference.
-- Final conclusion: fixed routing is wrong; boundary-aware and objective-aware routing is the contribution.
+- Final conclusion: No single fixed route dominates across all evaluated conditions; boundary-aware and objective-aware routing is the contribution.
 
 Detailed individual contributions are documented in the authoritative contribution record.
 
 ## Fixed Click Path
 
-Overview → Core Routing: Mixed-win → Core Routing: Separated-win → Separation Tax → Team Frontiers → Evidence & Limitations.
+Overview → Core Routing: Mixed-win → Core Routing: Separated-win → Separation Tax → Routing + Evaluation → Team Frontiers → Evidence
 
 Keep total clicks under 8.
