@@ -5,7 +5,7 @@ submission. Contribution records were centralized here so the repository has a
 single source of truth; the former `docs/contributions/` tree was removed after
 migration.
 
-## 王景宏 [ceilf6](https://github.com/ceilf6)（23123994）
+## 王景宏 23123994 [ceilf6](https://github.com/ceilf6) 
 
 **Role:** Frontier research lead; overlap-hallucination mechanism investigator; ASR×LLM×emotion axis explorer; research-entropy meta-analyst; engineering harness architect.
 
