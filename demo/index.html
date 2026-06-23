@@ -74,7 +74,7 @@
       <div class="controls">
         <button id="prev">Back</button>
         <button id="next">Next</button>
-        <span class="pill" id="counter">1 / 14</span>
+        <span class="pill" id="counter">1 / 16</span>
         <span class="timer" id="timer">10:00</span>
       </div>
       <div class="progress" aria-label="slide progress"><span id="progressBar"></span></div>
@@ -121,7 +121,7 @@
         <section class="slide" data-title="Team map">
           <div class="eyebrow">Full project map</div>
           <h2>Everybody's work fits into one pipeline.</h2>
-          <p>This slide is the answer to "what did the whole project build?" It keeps the team contributions visible before the demo zooms into the route challenge.</p>
+          <p>This is a team project. The demo starts from the shared pipeline and then zooms into individual contribution tracks, not the other way around.</p>
           <div class="contribution-grid">
             
     <div class="contribution-card">
@@ -169,6 +169,69 @@
       <p class="owner">Research-expansion track</p>
       <p>Explored MeetEval/cpWER, speaker-profile diagnostics, LLM critic/RAG, demo excellence, and AudioDepth.</p>
       <p class="artifact">docs/frontier/, results/figures/</p>
+    </div>
+    
+          </div>
+        </section>
+        
+        <section class="slide" data-title="Contribution ledger">
+          <div class="eyebrow">Directly from CONTRIBUTIONS.md</div>
+          <h2>Six contribution lanes, all visible.</h2>
+          <p>This page is intentionally explicit so the demo does not look like one person's frontier experiment. Each lane has a role, module surface, and presentation angle.</p>
+          <table><thead><tr><th>member</th><th>contribution</th><th>modules</th><th>demo_angle</th></tr></thead><tbody><tr><td>Member 1</td><td>Data preparation, audio splitting, Whisper ASR baseline</td><td>src/whisper_transcribe.py; src/separate_speakers.py</td><td>Where the evidence starts</td></tr><tr><td>Member 2</td><td>Adaptive Router v1/v2 and risk-aware selection</td><td>src/adaptive_router_v2.py; src/risk_aware_selector.py</td><td>Main stable routing result</td></tr><tr><td>Member 3</td><td>Postprocessing, duplicate suppression, CER evaluation</td><td>src/postprocess.py; src/evaluate_cer.py</td><td>Why cleaned routes and metrics matter</td></tr><tr><td>Member 4</td><td>LLM Repair Loop and RAG integration</td><td>src/llm_repair_loop.py; src/rag_repair.py</td><td>Agentic repair frontier, claim-bounded</td></tr><tr><td>Member 5</td><td>Synthetic data generation and generalization tests</td><td>src/synthetic_*.py</td><td>Robustness beyond five gold cases</td></tr><tr><td>Member 6</td><td>Streamlit demo, visualization, report writing</td><td>src/demo_app.py; src/router_feature_importance.py</td><td>Presentation and explainability layer</td></tr></tbody></table>
+        </section>
+        
+        <section class="slide" data-title="Team highlights">
+          <div class="eyebrow">Beyond one frontier branch</div>
+          <h2>The strongest story is the combined system.</h2>
+          <p>AudioDepth is only one attempt. These team highlights are what make the project complete and defensible.</p>
+          <div class="contribution-grid">
+            
+    <div class="contribution-card">
+      <h3>Whisper + separation baseline</h3>
+      <p class="owner">Core experiment</p>
+      <p>Turns raw overlap audio into comparable mixed, separated, and cleaned transcript candidates.</p>
+      <p class="artifact">resources/, results/transcripts/</p>
+    </div>
+    
+            
+    <div class="contribution-card">
+      <h3>router_v2</h3>
+      <p class="owner">Main quantitative win</p>
+      <p>Selects routes using instability signals and reaches the oracle average on the five-case gold benchmark.</p>
+      <p class="artifact">src/adaptive_router_v2.py</p>
+    </div>
+    
+            
+    <div class="contribution-card">
+      <h3>Evaluation discipline</h3>
+      <p class="owner">Metric contribution</p>
+      <p>Adds error type analysis, speaker-aware CER, cpCER-lite, and final claim ledgers.</p>
+      <p class="artifact">REPORT.md; docs/final_claim_ledger.md</p>
+    </div>
+    
+            
+    <div class="contribution-card">
+      <h3>Synthetic generalization</h3>
+      <p class="owner">Robustness contribution</p>
+      <p>Uses synthetic and held-out split validation to catch overfitting beyond the tiny gold set.</p>
+      <p class="artifact">src/synthetic_*.py</p>
+    </div>
+    
+            
+    <div class="contribution-card">
+      <h3>LLM/RAG repair direction</h3>
+      <p class="owner">Agentic contribution</p>
+      <p>Frames repair as a qualitative, claim-bounded frontier rather than pretending it is verified.</p>
+      <p class="artifact">src/llm_repair_loop.py; src/rag_repair.py</p>
+    </div>
+    
+            
+    <div class="contribution-card">
+      <h3>Demo and visualization</h3>
+      <p class="owner">Communication contribution</p>
+      <p>Makes the project inspectable through Streamlit, figures, reports, and this recording deck.</p>
+      <p class="artifact">demo/app.py; results/figures/</p>
     </div>
     
           </div>

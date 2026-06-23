@@ -38,14 +38,15 @@ If a teammate's research track cannot be rerun on this laptop, present it throug
 | Time | Demo beat | Action |
 | ---: | --- | --- |
 | 0:00-1:00 | Whole-project hook | Present the complete pipeline: data, separation, ASR, cleaning, routing, evaluation, frontier work. |
-| 1:00-2:00 | Contribution map | Show how all major contribution tracks fit into one system. |
-| 2:00-3:10 | Listen and guess | Play one or two gold audio clips in the route challenge. |
-| 3:10-4:10 | Stable result | Show router_v2 vs fixed routes on the five-case gold benchmark. |
-| 4:10-5:10 | Evaluation contribution | Show why CER, speaker-aware CER, cpCER-lite, and error-type analysis matter. |
-| 5:10-6:10 | Router lesson | Show why separation is a route decision, not a universal rule. |
-| 6:10-7:00 | Frontier breadth | Cover compute-aware cascade, MeetEval/cpWER, speaker profile, LLM critic/RAG, external validation, and demo excellence. |
-| 7:00-8:10 | AudioDepth attempt | Show RGB-D style acoustic-depth maps as one exploratory branch, not the central team claim. |
-| 8:10-9:15 | Evidence hygiene | Show risk guard, source-disjoint audit, unified eval, and micro-gold prep. |
+| 1:00-2:20 | Contribution map and ledger | Show the six contribution lanes from `CONTRIBUTIONS.md`; make it clear this is team work. |
+| 2:20-3:00 | Team highlights | Emphasize Whisper/separation baseline, router_v2, evaluation, synthetic validation, LLM/RAG, and demo/visualization. |
+| 3:00-4:00 | Listen and guess | Play one or two gold audio clips in the route challenge. |
+| 4:00-4:45 | Stable result | Show router_v2 vs fixed routes on the five-case gold benchmark. |
+| 4:45-5:30 | Evaluation contribution | Show why CER, speaker-aware CER, cpCER-lite, and error-type analysis matter. |
+| 5:30-6:10 | Router lesson | Show why separation is a route decision, not a universal rule. |
+| 6:10-6:50 | Frontier breadth | Cover compute-aware cascade, MeetEval/cpWER, speaker profile, LLM critic/RAG, external validation, and demo excellence. |
+| 6:50-7:45 | AudioDepth attempt | Show RGB-D style acoustic-depth maps as one exploratory branch, not the central team claim. |
+| 7:45-9:15 | Evidence hygiene | Show risk guard, source-disjoint audit, unified eval, and micro-gold prep. |
 | 9:15-10:00 | Honest close | Repeat claim boundary: stable narrow gold result, complete project workflow, next micro-gold step. |
 
 ## Fun Interaction

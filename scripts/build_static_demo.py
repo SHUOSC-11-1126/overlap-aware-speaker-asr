@@ -155,7 +155,7 @@ def build_demo() -> str:
         <section class="slide" data-title="Team map">
           <div class="eyebrow">Full project map</div>
           <h2>Everybody's work fits into one pipeline.</h2>
-          <p>This slide is the answer to "what did the whole project build?" It keeps the team contributions visible before the demo zooms into the route challenge.</p>
+          <p>This is a team project. The demo starts from the shared pipeline and then zooms into individual contribution tracks, not the other way around.</p>
           <div class="contribution-grid">
             {contribution_card("Data + Whisper baseline", "Team baseline track", "Prepared mixed/separated audio, transcript candidates, and reproducible Whisper-style baselines.", "resources/, results/transcripts/, src/whisper_transcribe.py")}
             {contribution_card("Separation + postprocess", "Pipeline track", "Compared mixed, separated, and duplicate-suppressed cleaned transcript routes.", "src/separate_speakers.py, src/postprocess.py")}
@@ -163,6 +163,36 @@ def build_demo() -> str:
             {contribution_card("Evaluation stack", "Metric track", "Implemented CER, speaker-aware CER, cpCER-lite, error-type analysis, and evidence ledgers.", "REPORT.md, docs/final_claim_ledger.md")}
             {contribution_card("Synthetic robustness", "Validation track", "Created synthetic silver and held-out split checks to expose overfitting and oracle gaps.", "src/synthetic_*.py, results/tables/")}
             {contribution_card("Frontier systems", "Research-expansion track", "Explored MeetEval/cpWER, speaker-profile diagnostics, LLM critic/RAG, demo excellence, and AudioDepth.", "docs/frontier/, results/figures/")}
+          </div>
+        </section>
+        """,
+        f"""
+        <section class="slide" data-title="Contribution ledger">
+          <div class="eyebrow">Directly from CONTRIBUTIONS.md</div>
+          <h2>Six contribution lanes, all visible.</h2>
+          <p>This page is intentionally explicit so the demo does not look like one person's frontier experiment. Each lane has a role, module surface, and presentation angle.</p>
+          {compact_table([
+              {'member': 'Member 1', 'contribution': 'Data preparation, audio splitting, Whisper ASR baseline', 'modules': 'src/whisper_transcribe.py; src/separate_speakers.py', 'demo_angle': 'Where the evidence starts'},
+              {'member': 'Member 2', 'contribution': 'Adaptive Router v1/v2 and risk-aware selection', 'modules': 'src/adaptive_router_v2.py; src/risk_aware_selector.py', 'demo_angle': 'Main stable routing result'},
+              {'member': 'Member 3', 'contribution': 'Postprocessing, duplicate suppression, CER evaluation', 'modules': 'src/postprocess.py; src/evaluate_cer.py', 'demo_angle': 'Why cleaned routes and metrics matter'},
+              {'member': 'Member 4', 'contribution': 'LLM Repair Loop and RAG integration', 'modules': 'src/llm_repair_loop.py; src/rag_repair.py', 'demo_angle': 'Agentic repair frontier, claim-bounded'},
+              {'member': 'Member 5', 'contribution': 'Synthetic data generation and generalization tests', 'modules': 'src/synthetic_*.py', 'demo_angle': 'Robustness beyond five gold cases'},
+              {'member': 'Member 6', 'contribution': 'Streamlit demo, visualization, report writing', 'modules': 'src/demo_app.py; src/router_feature_importance.py', 'demo_angle': 'Presentation and explainability layer'},
+          ], ['member', 'contribution', 'modules', 'demo_angle'], 6)}
+        </section>
+        """,
+        f"""
+        <section class="slide" data-title="Team highlights">
+          <div class="eyebrow">Beyond one frontier branch</div>
+          <h2>The strongest story is the combined system.</h2>
+          <p>AudioDepth is only one attempt. These team highlights are what make the project complete and defensible.</p>
+          <div class="contribution-grid">
+            {contribution_card("Whisper + separation baseline", "Core experiment", "Turns raw overlap audio into comparable mixed, separated, and cleaned transcript candidates.", "resources/, results/transcripts/")}
+            {contribution_card("router_v2", "Main quantitative win", "Selects routes using instability signals and reaches the oracle average on the five-case gold benchmark.", "src/adaptive_router_v2.py")}
+            {contribution_card("Evaluation discipline", "Metric contribution", "Adds error type analysis, speaker-aware CER, cpCER-lite, and final claim ledgers.", "REPORT.md; docs/final_claim_ledger.md")}
+            {contribution_card("Synthetic generalization", "Robustness contribution", "Uses synthetic and held-out split validation to catch overfitting beyond the tiny gold set.", "src/synthetic_*.py")}
+            {contribution_card("LLM/RAG repair direction", "Agentic contribution", "Frames repair as a qualitative, claim-bounded frontier rather than pretending it is verified.", "src/llm_repair_loop.py; src/rag_repair.py")}
+            {contribution_card("Demo and visualization", "Communication contribution", "Makes the project inspectable through Streamlit, figures, reports, and this recording deck.", "demo/app.py; results/figures/")}
           </div>
         </section>
         """,
