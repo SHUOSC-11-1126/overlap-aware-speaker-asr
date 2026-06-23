@@ -574,10 +574,41 @@ def build_demo() -> str:
 """
 
 
+def print_terminal_result_summary() -> None:
+    rows = [
+        ("Fixed mixed CER", "0.302", "baseline: mixed audio only"),
+        ("router_v2 CER", "0.120", "gold benchmark; matches oracle without CER input"),
+        ("Separation crossover", "r* ~= 0.17", "below this, separation tends to hurt ASR"),
+        ("Hallucination detector", "AUC ~= 1.0", "compression ratio catches catastrophic hallucination"),
+        ("Heavy-tail failure", "6/600 tracks; CER up to 24x", "separation tax is not uniform"),
+        ("Model scale", "Whisper-base = 1.93x compute", "online result: separation tax disappears"),
+        ("Noise router", "~92% oracle gap recovered", "frontier: robust routing under noise"),
+        ("LLM repair", "0/26 helped; CER 0.316 -> 0.798", "negative result: do not overclaim repair"),
+        ("Emotion frontier", "7x LLM emotion coverage", "emotion objective differs from transcript CER"),
+    ]
+    width_1 = max(len(r[0]) for r in rows)
+    width_2 = max(len(r[1]) for r in rows)
+    print()
+    print("=" * 78)
+    print("DEMO RESULTS TO SHOW")
+    print("=" * 78)
+    for name, value, meaning in rows:
+        print(f"{name:<{width_1}}  {value:<{width_2}}  {meaning}")
+    print("-" * 78)
+    print("Open manual demo:    http://127.0.0.1:8765/demo/index.html")
+    print("Open autoplay demo:  http://127.0.0.1:8765/demo/index.html?autoplay=1&seconds=420")
+    print("Main sentence: router_v2 reduces gold CER from fixed mixed 0.302 to 0.120;")
+    print("then frontier work shows separation depends on overlap, model scale, noise,")
+    print("and downstream objective such as emotion.")
+    print("=" * 78)
+    print()
+
+
 def main() -> int:
     DEMO_DIR.mkdir(parents=True, exist_ok=True)
     OUT.write_text(build_demo(), encoding="utf-8")
     print(f"Wrote {OUT.relative_to(ROOT)} from {GH}/tree/{BRANCH}")
+    print_terminal_result_summary()
     return 0
 
 
