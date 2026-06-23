@@ -311,6 +311,11 @@ stream, *after* the repetition is emitted). Plan + cited 2025–26 literature:
 |---|---|
 | [Causal & internal-state hallucination probe](results/frontier/causal_hallucination_probe/FINDINGS.md) (#855) | ✅ the separation-tax loop is a *confident* attractor (catastrophic routes decode at higher avg_logprob / lower token entropy than clean), and a token-id **repetition lock-in trip-wire** fires at ~2% of the stream vs ~20% for compression-ratio (~10× earlier); at tight streaming-realistic causal caps the internal-state detector beats output-CR, at loose caps CR's broader coverage wins — neither alone dominates |
 
+<p align="center">
+  <img src="results/figures/report/fig7_confident_attractor_scatter.png" width="90%" alt="Confident attractor scatter plot: catastrophic hallucination cases (red triangles) cluster at higher confidence and lower entropy than clean cases (blue dots) — the opposite of confusion" />
+</p>
+<p align="center"><em>Figure: The confident attractor mechanism. (A) Catastrophic routes (red ▲, n=26) decode at <strong>higher</strong> avg_logprob and <strong>lower</strong> token entropy than clean routes (blue ●, n=40) — the decoder is <em>more confident</em> while producing garbage. (B) Catastrophic routes cluster at dominant-token fraction ≈ 0.99 (single-token loops). This is the counterintuitive core of the separation-tax hallucination: it is not a confidence collapse but a <strong>confident lock-in</strong>. Data: <code>results/frontier/causal_hallucination_probe/probe_rows.csv</code>.</em></p>
+
 The honest deployable sharpening: gate a streaming overlap-aware ASR system on the lock-in trip-wire for
 the Mode-R repetition tail, keep compression-ratio for the Mode-N non-repetition minority. The
 confident-loop mechanism extends (not discovers) the 2025–26 attractor line; the token-id lock-in

@@ -270,6 +270,21 @@ harmful because Whisper has already committed to a transcription state.
 The asymmetry (leading vs trailing silence) explains why the
 hallucination is triggered by separation, not by silence per se.
 
+![Confident attractor scatter plot](results/figures/report/fig7_confident_attractor_scatter.png)
+
+**Figure (confident attractor):** The causal hallucination probe
+([FINDINGS](results/frontier/causal_hallucination_probe/FINDINGS.md))
+reveals the counterintuitive mechanism: catastrophic routes (red ▲,
+n=26) decode at **higher** avg_logprob (−0.335 vs −0.739 for clean)
+and **lower** token entropy (1.487 vs 2.330) — the decoder is *more
+confident* while producing garbage. This is not a confidence collapse
+but a **confident lock-in**: the compression-seeking attractor
+(Viakhirev et al., 2026) traps the decoder in a high-probability
+repetition loop. Panel (B) shows the lock-in signature: catastrophic
+routes cluster at dominant-token fraction ≈ 0.99 (single-token loops).
+A token-id repetition trip-wire detects this at ~2% of the decoded
+stream, ~10× earlier than the compression-ratio guard (~20%).
+
 ### 6.2 Router Ablation — Why the Router Is Deployable
 
 A deployable router must not use CER (that would require the reference
@@ -563,6 +578,7 @@ Optional frontiers require `requirements-frontier.txt` (ollama, resemblyzer) or 
 | Semantic emotion tax (LLM 7× > lexicon) | §15 | `python -m src.semantic_emotion_tax` | ~20 min (needs ollama) |
 | Separation-tax waveform figure (fig5) | §6.1 | `python scripts/docs/make_separation_tax_waveform.py` | ~5 s |
 | Separation-tax spectrogram figure (fig6) | §6.1 | `python scripts/docs/make_separation_tax_spectrogram.py` | ~5 s |
+| Confident-attractor scatter figure (fig7) | §6.1 | `python scripts/docs/make_confident_attractor_scatter.py` | ~5 s |
 
 ### Verification Gates
 
