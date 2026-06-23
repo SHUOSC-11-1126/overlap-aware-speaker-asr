@@ -29,6 +29,9 @@
     .metric-value { font-size:2rem; font-weight:900; color:var(--text); }
     .metric-label, .owner, .flow-title { color:var(--accent); font-weight:850; }
     .metric-note, .source { color:var(--muted); font-size:.98rem; }
+    .talk { max-width:82rem; margin:1rem 0 0; border-left:5px solid var(--gold); background:rgba(255,209,102,.09); padding:.85rem 1rem; border-radius:8px; color:#f7e7b1; display:flex; gap:.75rem; align-items:flex-start; }
+    .talk strong { color:var(--gold); white-space:nowrap; }
+    .talk span { color:#f4ead0; font-size:1.06rem; }
     .big-source { font-size:1.2rem; }
     .frontier-status, .visual-chip { display:inline-block; border:1px solid var(--line); border-radius:999px; padding:.2rem .55rem; color:var(--gold); font-weight:750; font-size:.86rem; }
     .visual-chip { color:var(--accent); margin-top:.35rem; }
@@ -60,39 +63,46 @@
       <div class="controls">
         <button id="prev">Back</button>
         <button id="next">Next</button>
-        <span class="pill" id="counter">1 / 16</span>
+        <span class="pill" id="counter">1 / 18</span>
       </div>
       <div class="progress"><span id="progressBar"></span></div>
     </header>
     <main>
         <section class="slide active" data-title="Online Source">
           <div class="eyebrow">GitHub-online evidence deck</div>
-          <h1>Overlap-Aware Speaker ASR</h1>
-          <p class="lead">This demo is rebuilt from the online GitHub repository: README, CONTRIBUTIONS, implementation status, results index, contributors API, and raw GitHub figures.</p>
+          <h1>How to present this project in 10 minutes</h1>
+          <p class="lead">Do not start with figures. Start with the research question, then the numbers, then the team contribution map, then the GitHub evidence trail.</p>
           <div class="metrics">
             
     <div class="metric">
-      <div class="metric-value">main</div>
-      <div class="metric-label">Online branch</div>
-      <div class="metric-note">source of truth for this deck</div>
+      <div class="metric-value">10 min</div>
+      <div class="metric-label">Total demo</div>
+      <div class="metric-note">7 min slides + 3 min GitHub walkthrough</div>
     </div>
     
             
     <div class="metric">
-      <div class="metric-value">6 / 3</div>
-      <div class="metric-label">Stars / forks</div>
-      <div class="metric-note">GitHub API</div>
+      <div class="metric-value">data first</div>
+      <div class="metric-label">Main proof</div>
+      <div class="metric-note">do not rely on blurry screenshots</div>
     </div>
     
             
     <div class="metric">
       <div class="metric-value">6</div>
       <div class="metric-label">Human contributors</div>
-      <div class="metric-note">cursor/tool accounts excluded</div>
+      <div class="metric-note">from GitHub contributors API</div>
     </div>
     
           </div>
+          <table><thead><tr><th>Time</th><th>Speaker focus</th><th>What to show</th></tr></thead><tbody><tr><td>0:00-0:40</td><td>Project lead</td><td>Research question + headline data</td></tr><tr><td>0:40-1:40</td><td>Team lead</td><td>Named contributors and contribution records</td></tr><tr><td>1:40-2:40</td><td>Baseline/router</td><td>Architecture + router v2 gold result</td></tr><tr><td>2:40-3:40</td><td>Evaluation</td><td>CER, speaker CER, cpCER-lite, error types</td></tr><tr><td>3:40-5:40</td><td>Frontier members</td><td>separation tax, model scale, Mode B/C/D, LLM, emotion</td></tr><tr><td>5:40-6:30</td><td>AudioDepth</td><td>only one exploratory branch, not central proof</td></tr><tr><td>6:30-7:00</td><td>Closer</td><td>claim boundaries</td></tr><tr><td>7:00-10:00</td><td>GitHub walkthrough</td><td>README, CONTRIBUTIONS, implementation-status, results-index</td></tr></tbody></table>
           <p class="source big-source"><a href="https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/tree/main" target="_blank" rel="noreferrer">https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/tree/main</a></p>
+          
+    <aside class="talk">
+      <strong>Opening sentence</strong>
+      <span>This project asks when separation helps or hurts multi-speaker ASR, and the answer changes by overlap, model scale, noise, and downstream objective.</span>
+    </aside>
+    
         </section>
         
         <section class="slide" data-title="Research Question">
@@ -105,6 +115,25 @@
             <div class="flow-step"><div class="flow-title">Emotion objective</div><div class="flow-body">Do not assume the best transcript route is also the best affect route.</div></div>
           </div>
           <p class="source"><a href="https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/blob/main/README.md" target="_blank" rel="noreferrer">README.md</a></p>
+          
+    <aside class="talk">
+      <strong>Say this</strong>
+      <span>The project is not just ASR accuracy. It is a routing problem: text, speaker attribution, compute, and emotion can prefer different actions.</span>
+    </aside>
+    
+        </section>
+        
+        <section class="slide" data-title="Headline Data">
+          <div class="eyebrow">Data you should actually say out loud</div>
+          <h2>Seven numbers carry the demo.</h2>
+          <p>These are the numbers to narrate. If time is short, this one slide can replace several figure-heavy slides.</p>
+          <table><thead><tr><th>Claim</th><th>Data</th><th>Interpretation</th></tr></thead><tbody><tr><td>Separation tax crossover</td><td>r* ≈ 0.17</td><td>below this, separation tends to hurt; above this, separation helps</td></tr><tr><td>Router v2 gold CER</td><td>0.120</td><td>matches oracle on the five-case gold benchmark without CER input</td></tr><tr><td>Catastrophe detector</td><td>AUC ≈ 1.0</td><td>compression ratio detects catastrophic hallucination</td></tr><tr><td>Model scale</td><td>Whisper-base = 1.93× compute</td><td>eliminates the tiny-model separation tax in the online summary</td></tr><tr><td>Noise router</td><td>~92% oracle gap recovered</td><td>decoder degeneracy remains useful under noise</td></tr><tr><td>LLM correction</td><td>0/26 helped; CER 0.316→0.798</td><td>negative result: do not sell LLM repair as solved</td></tr><tr><td>Emotion frontier</td><td>7× LLM emotion coverage</td><td>implicit emotion needs different evidence than transcript CER</td></tr></tbody></table>
+          
+    <aside class="talk">
+      <strong>Say this</strong>
+      <span>The important pattern is not one metric. Separation tax, router v2, model scale, noise robustness, emotion, and LLM repair all point to route choice as a systems problem.</span>
+    </aside>
+    
         </section>
         
         <section class="slide" data-title="Online Contributors">
@@ -112,6 +141,12 @@
           <h2>Team members visible from the online repository.</h2>
           <p>The member names below come from GitHub contributors and the online contribution record. Cursor/tool accounts are not counted as human members.</p>
           <table><thead><tr><th>GitHub</th><th>Commits</th><th>Role source</th></tr></thead><tbody><tr><td><a href="https://github.com/ceilf6" target="_blank" rel="noreferrer">ceilf6</a></td><td>2332</td><td><a href="https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/blob/main/CONTRIBUTIONS.md" target="_blank" rel="noreferrer">CONTRIBUTIONS.md</a></td></tr><tr><td><a href="https://github.com/YuechuanLiang" target="_blank" rel="noreferrer">YuechuanLiang</a></td><td>18</td><td>GitHub contributor API</td></tr><tr><td><a href="https://github.com/wfzark" target="_blank" rel="noreferrer">wfzark</a></td><td>18</td><td><a href="https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/blob/main/CONTRIBUTIONS.md" target="_blank" rel="noreferrer">CONTRIBUTIONS.md</a></td></tr><tr><td><a href="https://github.com/saayaya" target="_blank" rel="noreferrer">saayaya</a></td><td>17</td><td><a href="https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/blob/main/CONTRIBUTIONS.md" target="_blank" rel="noreferrer">CONTRIBUTIONS.md</a></td></tr><tr><td><a href="https://github.com/xyx12369" target="_blank" rel="noreferrer">xyx12369</a></td><td>2</td><td><a href="https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/blob/main/CONTRIBUTIONS.md" target="_blank" rel="noreferrer">CONTRIBUTIONS.md</a></td></tr><tr><td><a href="https://github.com/haohaozhang776-maker" target="_blank" rel="noreferrer">haohaozhang776-maker</a></td><td>1</td><td>GitHub contributor API</td></tr></tbody></table>
+          
+    <aside class="talk">
+      <strong>Say this</strong>
+      <span>Commit count is not contribution percentage. It is only a GitHub visibility signal. The authoritative role text is CONTRIBUTIONS.md.</span>
+    </aside>
+    
         </section>
         
         <section class="slide" data-title="Contribution Records">
@@ -162,6 +197,25 @@
     </div>
     
           </div>
+          
+    <aside class="talk">
+      <strong>Say this</strong>
+      <span>This is the team slide. Do not skip it. The frontiers are not one person&#x27;s side quest; each named contribution has a separate presentation angle.</span>
+    </aside>
+    
+        </section>
+        
+        <section class="slide" data-title="Who Says What">
+          <div class="eyebrow">Presentation division</div>
+          <h2>Give every member a clean talking slot.</h2>
+          <p>This is the practical voiceover map. Use it to split the recording or live presentation.</p>
+          <table><thead><tr><th>Member</th><th>Say this</th></tr></thead><tbody><tr><td>王景宏 (ceilf6)</td><td>frontier research lead: separation tax, hallucination mechanism, ASR×LLM×emotion, harness</td></tr><tr><td>吴方舟/wfzark</td><td>core pipeline and route-selection framing; AudioDepth as one continuation attempt</td></tr><tr><td>谢宇轩 (xyx12369)</td><td>Mode B compute-aware three-tier cascade</td></tr><tr><td>邵俊霖 / saayaya</td><td>phase diagram repair, learned router, implementation and bugfix</td></tr><tr><td>梁跃川 / liang-yuechuan</td><td>Mode C separation phase diagram design and implementation</td></tr><tr><td>张浩豪 / haohaozhang776</td><td>Mode D evaluation system and cross-benchmark analysis</td></tr></tbody></table>
+          
+    <aside class="talk">
+      <strong>Recording tip</strong>
+      <span>If members record separately, assign each person one row from this table and keep each segment under 25 seconds.</span>
+    </aside>
+    
         </section>
         
         <section class="slide" data-title="Architecture">
@@ -177,12 +231,24 @@
     </figure>
     
           <p class="source"><a href="https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/blob/main/README.md" target="_blank" rel="noreferrer">README.md</a></p>
+          
+    <aside class="talk">
+      <strong>Say this</strong>
+      <span>This figure is only the map. The claim is that the repo compares multiple routes and then evaluates them under explicit evidence labels.</span>
+    </aside>
+    
         </section>
         
         <section class="slide" data-title="Quick Results">
           <div class="eyebrow">Online README quick results</div>
           <h2>Core findings and evidence levels.</h2>
           <table><thead><tr><th>Finding</th><th>Result</th><th>Evidence</th></tr></thead><tbody><tr><td>Separation tax crossover</td><td>r* ≈ 0.17 (separation hurts below, helps above)</td><td>stable/gold</td></tr><tr><td>Router v2 average CER</td><td>0.120 (matches oracle, no CER input)</td><td>stable/gold</td></tr><tr><td>Hallucination mechanism</td><td>Heavy tail at low overlap (6/600 tracks blow up to CER 24×)</td><td>stable/gold</td></tr><tr><td>Compression-ratio detection</td><td>AUC ≈ 1.0 for catastrophic hallucination</td><td>stable/gold</td></tr><tr><td>Model scale finding</td><td>Whisper-base (1.93× compute) eliminates the tax entirely</td><td>experimental/frontier</td></tr><tr><td>CER floor</td><td>0.200 — not fixable by correction (0/26 LLM, 9.4% recurring patterns)</td><td>experimental/frontier</td></tr><tr><td>Noise-robust router</td><td>Recovers ~92% of oracle gap under noise</td><td>experimental/frontier</td></tr><tr><td>Emotion separation tax</td><td>Separation *helps* emotion (opposite of ASR tax)</td><td>experimental/frontier</td></tr><tr><td>Objective-aware routing</td><td>Decoupled routing halves emotion distortion at equal CER</td><td>experimental/frontier</td></tr><tr><td>LLM emotion coverage</td><td>7× more than lexicon for implicit emotion</td><td>experimental/frontier</td></tr><tr><td>LLM rescoring</td><td>Catastrophic (0/26 helped, CER 0.316→0.798)</td><td>experimental/frontier</td></tr></tbody></table>
+          
+    <aside class="talk">
+      <strong>Say this</strong>
+      <span>Stable gold claims and experimental frontier claims are intentionally mixed in this table, but the evidence level column tells us how strongly to state each one.</span>
+    </aside>
+    
         </section>
         
         <section class="slide" data-title="Mainline Matrix">
@@ -215,6 +281,12 @@
     
           </div>
           <p class="source"><a href="https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/blob/main/docs/results-index.md" target="_blank" rel="noreferrer">docs/results-index.md</a></p>
+          
+    <aside class="talk">
+      <strong>Say this</strong>
+      <span>This is how we avoid overclaiming: stable mainline, mainline experimental, optional integration, frontier scaffold, and branch-only work are separate.</span>
+    </aside>
+    
         </section>
         
         <section class="slide" data-title="Separation Tax">
@@ -247,6 +319,12 @@
             <img src="https://raw.githubusercontent.com/SHUOSC-11-1126/overlap-aware-speaker-asr/main/results/figures/cer_by_case.png" alt="CER by case">
             <img src="https://raw.githubusercontent.com/SHUOSC-11-1126/overlap-aware-speaker-asr/main/results/figures/error_type_by_case.png" alt="Error type by case">
           </div>
+          
+    <aside class="talk">
+      <strong>Say this</strong>
+      <span>Do not ask the audience to read the small figure text. Say the numbers: r-star around 0.17, heavy tail, six tracks blow up, compression ratio catches catastrophes.</span>
+    </aside>
+    
         </section>
         
         <section class="slide" data-title="Compute + Model Scale">
@@ -289,6 +367,12 @@
       <figcaption>Cascade CER/cost tradeoff <span>GitHub raw image, click for repository file.</span></figcaption>
     </figure>
     
+          
+    <aside class="talk">
+      <strong>Say this</strong>
+      <span>Compute is part of the research question. The route decision changes when you can afford Whisper-base or when you need a cost-aware cascade.</span>
+    </aside>
+    
         </section>
         
         <section class="slide" data-title="Emotion + LLM">
@@ -324,6 +408,12 @@
     
           </div>
           <p class="source"><a href="https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/blob/main/docs/frontier/asr_llm_emotion_capstone.md" target="_blank" rel="noreferrer">docs/frontier/asr_llm_emotion_capstone.md</a> · <a href="https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/blob/main/docs/emotion_frontier.md" target="_blank" rel="noreferrer">docs/emotion_frontier.md</a></p>
+          
+    <aside class="talk">
+      <strong>Say this</strong>
+      <span>The emotion result is not decoration. It shows that the best route for transcript CER is not necessarily the best route for emotional meaning.</span>
+    </aside>
+    
         </section>
         
         <section class="slide" data-title="Evaluation Frontiers">
@@ -358,6 +448,12 @@
     </div>
     
           </div>
+          
+    <aside class="talk">
+      <strong>Say this</strong>
+      <span>Evaluation is a contribution too. MeetEval, cpWER, speaker profile, and cross-benchmark analysis are how the project avoids being a single CER leaderboard.</span>
+    </aside>
+    
         </section>
         
         <section class="slide" data-title="Separation Phase">
@@ -400,6 +496,12 @@
       <figcaption>Online CER/runtime tradeoff figure <span>GitHub raw image, click for repository file.</span></figcaption>
     </figure>
     
+          
+    <aside class="talk">
+      <strong>Say this</strong>
+      <span>This is where Mode B, Mode C, and learned router work connect: separate or not is a phase decision, not a hard-coded rule.</span>
+    </aside>
+    
         </section>
         
         <section class="slide" data-title="AudioDepth">
@@ -411,12 +513,24 @@
             <img src="https://raw.githubusercontent.com/SHUOSC-11-1126/overlap-aware-speaker-asr/main/docs/assets/audio-depth/audio_depth_channel_triptych.png" alt="AudioDepth channel triptych">
           </div>
           <p class="source"><a href="https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/blob/main/docs/frontier/audio-depth-router.md" target="_blank" rel="noreferrer">docs/frontier/audio-depth-router.md</a></p>
+          
+    <aside class="talk">
+      <strong>Say this</strong>
+      <span>AudioDepth is a good visual and research attempt, but the demo should explicitly say it is branch-only exploratory work, not the team&#x27;s central proof.</span>
+    </aside>
+    
         </section>
         
         <section class="slide" data-title="Frontier Index">
           <div class="eyebrow">Online docs/frontier index</div>
           <h2>Frontier files visible in the GitHub repository.</h2>
           <table><thead><tr><th>file</th><th>type</th><th>source</th></tr></thead><tbody><tr><td><a href="https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/blob/main/docs/frontier/agentic_research_entropy.md" target="_blank" rel="noreferrer">agentic_research_entropy.md</a></td><td>file</td><td>GitHub docs/frontier</td></tr><tr><td><a href="https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/blob/main/docs/frontier/asr_llm_emotion_capstone.md" target="_blank" rel="noreferrer">asr_llm_emotion_capstone.md</a></td><td>file</td><td>GitHub docs/frontier</td></tr><tr><td><a href="https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/blob/main/docs/frontier/audio-depth-router.md" target="_blank" rel="noreferrer">audio-depth-router.md</a></td><td>file</td><td>GitHub docs/frontier</td></tr><tr><td><a href="https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/blob/main/docs/frontier/causal_hallucination_probe.md" target="_blank" rel="noreferrer">causal_hallucination_probe.md</a></td><td>file</td><td>GitHub docs/frontier</td></tr><tr><td><a href="https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/blob/main/docs/frontier/causal_hallucination_probe_litreview.md" target="_blank" rel="noreferrer">causal_hallucination_probe_litreview.md</a></td><td>file</td><td>GitHub docs/frontier</td></tr></tbody></table>
+          
+    <aside class="talk">
+      <strong>Say this</strong>
+      <span>If asked where the frontier evidence lives, do not wave hands. Open these GitHub files and show the status labels.</span>
+    </aside>
+    
         </section>
         
         <section class="slide" data-title="GitHub Walkthrough">
@@ -456,6 +570,12 @@
     </div>
     
           </div>
+          
+    <aside class="talk">
+      <strong>Say this</strong>
+      <span>The last three minutes should be GitHub itself: README for story, CONTRIBUTIONS for people, implementation-status for claim boundaries, results-index for evidence.</span>
+    </aside>
+    
         </section>
         
         <section class="slide" data-title="Boundaries">
@@ -467,6 +587,12 @@
             <div class="flow-step"><div class="flow-title">Frontier only</div><div class="flow-body">AudioDepth, emotion/LLM, speaker profile, MeetEval optional paths, and agentic scaffolds.</div></div>
           </div>
           <p class="source"><a href="https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/blob/main/docs/implementation-status.md" target="_blank" rel="noreferrer">docs/implementation-status.md</a> · <a href="https://github.com/SHUOSC-11-1126/overlap-aware-speaker-asr/blob/main/CONTRIBUTIONS.md" target="_blank" rel="noreferrer">CONTRIBUTIONS.md</a></p>
+          
+    <aside class="talk">
+      <strong>Closing sentence</strong>
+      <span>The project is strongest when we say exactly what is stable, what is experimental, and what is frontier-only.</span>
+    </aside>
+    
         </section>
         </main>
     <footer>

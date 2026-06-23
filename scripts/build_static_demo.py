@@ -95,6 +95,15 @@ def metric(label: str, value: str, note: str = "") -> str:
     """
 
 
+def talk(title: str, body: str) -> str:
+    return f"""
+    <aside class="talk">
+      <strong>{esc(title)}</strong>
+      <span>{esc(body)}</span>
+    </aside>
+    """
+
+
 def card(title: str, owner: str, body: str, source: str) -> str:
     return f"""
     <div class="card">
@@ -209,19 +218,49 @@ def build_demo() -> str:
         if item.get("name", "").endswith(".md")
     ]
 
+    headline_rows = [
+        {"Claim": "Separation tax crossover", "Data": "r* ≈ 0.17", "Interpretation": "below this, separation tends to hurt; above this, separation helps"},
+        {"Claim": "Router v2 gold CER", "Data": "0.120", "Interpretation": "matches oracle on the five-case gold benchmark without CER input"},
+        {"Claim": "Catastrophe detector", "Data": "AUC ≈ 1.0", "Interpretation": "compression ratio detects catastrophic hallucination"},
+        {"Claim": "Model scale", "Data": "Whisper-base = 1.93× compute", "Interpretation": "eliminates the tiny-model separation tax in the online summary"},
+        {"Claim": "Noise router", "Data": "~92% oracle gap recovered", "Interpretation": "decoder degeneracy remains useful under noise"},
+        {"Claim": "LLM correction", "Data": "0/26 helped; CER 0.316→0.798", "Interpretation": "negative result: do not sell LLM repair as solved"},
+        {"Claim": "Emotion frontier", "Data": "7× LLM emotion coverage", "Interpretation": "implicit emotion needs different evidence than transcript CER"},
+    ]
+    run_order_rows = [
+        {"Time": "0:00-0:40", "Speaker focus": "Project lead", "What to show": "Research question + headline data"},
+        {"Time": "0:40-1:40", "Speaker focus": "Team lead", "What to show": "Named contributors and contribution records"},
+        {"Time": "1:40-2:40", "Speaker focus": "Baseline/router", "What to show": "Architecture + router v2 gold result"},
+        {"Time": "2:40-3:40", "Speaker focus": "Evaluation", "What to show": "CER, speaker CER, cpCER-lite, error types"},
+        {"Time": "3:40-5:40", "Speaker focus": "Frontier members", "What to show": "separation tax, model scale, Mode B/C/D, LLM, emotion"},
+        {"Time": "5:40-6:30", "Speaker focus": "AudioDepth", "What to show": "only one exploratory branch, not central proof"},
+        {"Time": "6:30-7:00", "Speaker focus": "Closer", "What to show": "claim boundaries"},
+        {"Time": "7:00-10:00", "Speaker focus": "GitHub walkthrough", "What to show": "README, CONTRIBUTIONS, implementation-status, results-index"},
+    ]
+    member_talk_rows = [
+        {"Member": "王景宏 (ceilf6)", "Say this": "frontier research lead: separation tax, hallucination mechanism, ASR×LLM×emotion, harness"},
+        {"Member": "吴方舟/wfzark", "Say this": "core pipeline and route-selection framing; AudioDepth as one continuation attempt"},
+        {"Member": "谢宇轩 (xyx12369)", "Say this": "Mode B compute-aware three-tier cascade"},
+        {"Member": "邵俊霖 / saayaya", "Say this": "phase diagram repair, learned router, implementation and bugfix"},
+        {"Member": "梁跃川 / liang-yuechuan", "Say this": "Mode C separation phase diagram design and implementation"},
+        {"Member": "张浩豪 / haohaozhang776", "Say this": "Mode D evaluation system and cross-benchmark analysis"},
+    ]
+
     online_source = f"{GH}/tree/{BRANCH}"
     slides = [
         f"""
         <section class="slide active" data-title="Online Source">
           <div class="eyebrow">GitHub-online evidence deck</div>
-          <h1>Overlap-Aware Speaker ASR</h1>
-          <p class="lead">This demo is rebuilt from the online GitHub repository: README, CONTRIBUTIONS, implementation status, results index, contributors API, and raw GitHub figures.</p>
+          <h1>How to present this project in 10 minutes</h1>
+          <p class="lead">Do not start with figures. Start with the research question, then the numbers, then the team contribution map, then the GitHub evidence trail.</p>
           <div class="metrics">
-            {metric("Online branch", BRANCH, "source of truth for this deck")}
-            {metric("Stars / forks", f"{repo_info.get('stargazers_count', 0)} / {repo_info.get('forks_count', 0)}", "GitHub API")}
-            {metric("Human contributors", str(len(human_contributors(contributors))), "cursor/tool accounts excluded")}
+            {metric("Total demo", "10 min", "7 min slides + 3 min GitHub walkthrough")}
+            {metric("Main proof", "data first", "do not rely on blurry screenshots")}
+            {metric("Human contributors", str(len(human_contributors(contributors))), "from GitHub contributors API")}
           </div>
+          {compact_table(run_order_rows, ["Time", "Speaker focus", "What to show"], 8)}
           <p class="source big-source"><a href="{esc(online_source)}" target="_blank" rel="noreferrer">{esc(online_source)}</a></p>
+          {talk("Opening sentence", "This project asks when separation helps or hurts multi-speaker ASR, and the answer changes by overlap, model scale, noise, and downstream objective.")}
         </section>
         """,
         f"""
@@ -235,6 +274,16 @@ def build_demo() -> str:
             <div class="flow-step"><div class="flow-title">Emotion objective</div><div class="flow-body">Do not assume the best transcript route is also the best affect route.</div></div>
           </div>
           <p class="source">{md_link("README.md")}</p>
+          {talk("Say this", "The project is not just ASR accuracy. It is a routing problem: text, speaker attribution, compute, and emotion can prefer different actions.")}
+        </section>
+        """,
+        f"""
+        <section class="slide" data-title="Headline Data">
+          <div class="eyebrow">Data you should actually say out loud</div>
+          <h2>Seven numbers carry the demo.</h2>
+          <p>These are the numbers to narrate. If time is short, this one slide can replace several figure-heavy slides.</p>
+          {compact_table(headline_rows, ["Claim", "Data", "Interpretation"], 7)}
+          {talk("Say this", "The important pattern is not one metric. Separation tax, router v2, model scale, noise robustness, emotion, and LLM repair all point to route choice as a systems problem.")}
         </section>
         """,
         f"""
@@ -243,6 +292,7 @@ def build_demo() -> str:
           <h2>Team members visible from the online repository.</h2>
           <p>The member names below come from GitHub contributors and the online contribution record. Cursor/tool accounts are not counted as human members.</p>
           {compact_table(human_contributors(contributors), ["GitHub", "Commits", "Role source"], 8)}
+          {talk("Say this", "Commit count is not contribution percentage. It is only a GitHub visibility signal. The authoritative role text is CONTRIBUTIONS.md.")}
         </section>
         """,
         f"""
@@ -252,6 +302,16 @@ def build_demo() -> str:
           <div class="card-grid">
             {''.join(card(p['name'], p['role'] or 'Role recorded online', p['scope'] or 'Detailed contribution is recorded in the online CONTRIBUTIONS.md.', md_link('CONTRIBUTIONS.md')) for p in people)}
           </div>
+          {talk("Say this", "This is the team slide. Do not skip it. The frontiers are not one person's side quest; each named contribution has a separate presentation angle.")}
+        </section>
+        """,
+        f"""
+        <section class="slide" data-title="Who Says What">
+          <div class="eyebrow">Presentation division</div>
+          <h2>Give every member a clean talking slot.</h2>
+          <p>This is the practical voiceover map. Use it to split the recording or live presentation.</p>
+          {compact_table(member_talk_rows, ["Member", "Say this"], 6)}
+          {talk("Recording tip", "If members record separately, assign each person one row from this table and keep each segment under 25 seconds.")}
         </section>
         """,
         f"""
@@ -261,6 +321,7 @@ def build_demo() -> str:
           <p>The online README presents the full pipeline: ASR strategies, adaptive routing, evaluation, and frontier extensions.</p>
           {figure("results/figures/report/fig1_system_route_map.png", "System route map from online README")}
           <p class="source">{md_link("README.md")}</p>
+          {talk("Say this", "This figure is only the map. The claim is that the repo compares multiple routes and then evaluates them under explicit evidence labels.")}
         </section>
         """,
         f"""
@@ -268,6 +329,7 @@ def build_demo() -> str:
           <div class="eyebrow">Online README quick results</div>
           <h2>Core findings and evidence levels.</h2>
           {compact_table(quick_results, ["Finding", "Result", "Evidence"], 11)}
+          {talk("Say this", "Stable gold claims and experimental frontier claims are intentionally mixed in this table, but the evidence level column tells us how strongly to state each one.")}
         </section>
         """,
         f"""
@@ -280,6 +342,7 @@ def build_demo() -> str:
             {card("Optional/frontier", "MeetEval, LLM, speaker-profile, AudioDepth", "Optional dependencies and exploratory branches are kept claim-bounded, not treated as stable production claims.", md_link("docs/implementation-status.md"))}
           </div>
           <p class="source">{md_link("docs/results-index.md")}</p>
+          {talk("Say this", "This is how we avoid overclaiming: stable mainline, mainline experimental, optional integration, frontier scaffold, and branch-only work are separate.")}
         </section>
         """,
         f"""
@@ -295,6 +358,7 @@ def build_demo() -> str:
             <img src="{esc(raw_url('results/figures/cer_by_case.png'))}" alt="CER by case">
             <img src="{esc(raw_url('results/figures/error_type_by_case.png'))}" alt="Error type by case">
           </div>
+          {talk("Say this", "Do not ask the audience to read the small figure text. Say the numbers: r-star around 0.17, heavy tail, six tracks blow up, compression ratio catches catastrophes.")}
         </section>
         """,
         f"""
@@ -307,6 +371,7 @@ def build_demo() -> str:
             {frontier_card("Noise-robust router", "experimental/frontier", "Noise-robust routing recovers about 92% of oracle gap using decoder degeneracy signals.", md_link("docs/results-index.md"), "noise frontier")}
           </div>
           {figure("results/figures/cascade_tiers_cer_cost_tradeoff.png", "Cascade CER/cost tradeoff")}
+          {talk("Say this", "Compute is part of the research question. The route decision changes when you can afford Whisper-base or when you need a cost-aware cascade.")}
         </section>
         """,
         f"""
@@ -319,6 +384,7 @@ def build_demo() -> str:
             {frontier_card("LLM rescoring / repair", "negative frontier", "LLM rescoring is not a free repair path: online README reports 0/26 helped and CER 0.316 to 0.798.", md_link("README.md"), "negative result")}
           </div>
           <p class="source">{md_link("docs/frontier/asr_llm_emotion_capstone.md")} · {md_link("docs/emotion_frontier.md")}</p>
+          {talk("Say this", "The emotion result is not decoration. It shows that the best route for transcript CER is not necessarily the best route for emotional meaning.")}
         </section>
         """,
         f"""
@@ -330,6 +396,7 @@ def build_demo() -> str:
             {frontier_card("Speaker-profile diagnostics", "frontier scaffold", "Speaker-profile work is diagnostic and claim-bounded; it supports attribution risk investigation.", md_link("docs/implementation-status.md"), "speaker profile")}
             {frontier_card("Cross-benchmark analysis", "evaluation system", "Evaluation System & Cross-Benchmark Analysis is recorded as 张浩豪 / haohaozhang776's contribution.", md_link("CONTRIBUTIONS.md"), "benchmark alignment")}
           </div>
+          {talk("Say this", "Evaluation is a contribution too. MeetEval, cpWER, speaker profile, and cross-benchmark analysis are how the project avoids being a single CER leaderboard.")}
         </section>
         """,
         f"""
@@ -342,6 +409,7 @@ def build_demo() -> str:
             {frontier_card("Mode B cascade", "compute-aware", "谢宇轩 / xyx12369 is credited online for compute-aware three-tier cascade recognition.", md_link("CONTRIBUTIONS.md"), "three-tier cascade")}
           </div>
           {figure("results/figures/cer_runtime_tradeoff.png", "Online CER/runtime tradeoff figure")}
+          {talk("Say this", "This is where Mode B, Mode C, and learned router work connect: separate or not is a phase decision, not a hard-coded rule.")}
         </section>
         """,
         f"""
@@ -354,6 +422,7 @@ def build_demo() -> str:
             <img src="{esc(raw_url('docs/assets/audio-depth/audio_depth_channel_triptych.png'))}" alt="AudioDepth channel triptych">
           </div>
           <p class="source">{md_link("docs/frontier/audio-depth-router.md")}</p>
+          {talk("Say this", "AudioDepth is a good visual and research attempt, but the demo should explicitly say it is branch-only exploratory work, not the team's central proof.")}
         </section>
         """,
         f"""
@@ -361,6 +430,7 @@ def build_demo() -> str:
           <div class="eyebrow">Online docs/frontier index</div>
           <h2>Frontier files visible in the GitHub repository.</h2>
           {compact_table(frontier_doc_rows, ["file", "type", "source"], 8)}
+          {talk("Say this", "If asked where the frontier evidence lives, do not wave hands. Open these GitHub files and show the status labels.")}
         </section>
         """,
         f"""
@@ -373,6 +443,7 @@ def build_demo() -> str:
             {card("Implementation status", "Claim matrix", "Stable, experimental, optional, and frontier labels.", md_link("docs/implementation-status.md"))}
             {card("Results index", "Evidence map", "Curated result entry points and frontier notes.", md_link("docs/results-index.md"))}
           </div>
+          {talk("Say this", "The last three minutes should be GitHub itself: README for story, CONTRIBUTIONS for people, implementation-status for claim boundaries, results-index for evidence.")}
         </section>
         """,
         f"""
@@ -385,6 +456,7 @@ def build_demo() -> str:
             <div class="flow-step"><div class="flow-title">Frontier only</div><div class="flow-body">AudioDepth, emotion/LLM, speaker profile, MeetEval optional paths, and agentic scaffolds.</div></div>
           </div>
           <p class="source">{md_link("docs/implementation-status.md")} · {md_link("CONTRIBUTIONS.md")}</p>
+          {talk("Closing sentence", "The project is strongest when we say exactly what is stable, what is experimental, and what is frontier-only.")}
         </section>
         """,
     ]
@@ -415,6 +487,9 @@ def build_demo() -> str:
     .metric-value { font-size:2rem; font-weight:900; color:var(--text); }
     .metric-label, .owner, .flow-title { color:var(--accent); font-weight:850; }
     .metric-note, .source { color:var(--muted); font-size:.98rem; }
+    .talk { max-width:82rem; margin:1rem 0 0; border-left:5px solid var(--gold); background:rgba(255,209,102,.09); padding:.85rem 1rem; border-radius:8px; color:#f7e7b1; display:flex; gap:.75rem; align-items:flex-start; }
+    .talk strong { color:var(--gold); white-space:nowrap; }
+    .talk span { color:#f4ead0; font-size:1.06rem; }
     .big-source { font-size:1.2rem; }
     .frontier-status, .visual-chip { display:inline-block; border:1px solid var(--line); border-radius:999px; padding:.2rem .55rem; color:var(--gold); font-weight:750; font-size:.86rem; }
     .visual-chip { color:var(--accent); margin-top:.35rem; }
