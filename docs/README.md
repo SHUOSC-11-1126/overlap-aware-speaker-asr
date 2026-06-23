@@ -25,6 +25,8 @@ This folder is the documentation entry point for the project.
 - [docs/frontier/source_disjoint_evidence_expansion.md](frontier/source_disjoint_evidence_expansion.md): Stage 34 source-disjoint evidence expansion and micro-gold prep.
 - [docs/module_lifecycle.md](module_lifecycle.md): top-level `src` lifecycle index.
 - [results/figures/results_manifest_summary.md](../results/figures/results_manifest_summary.md): generated result artifact manifest summary.
+- [docs/demo_10min_runbook.md](demo_10min_runbook.md): 10 minute offline demo plan.
+- [demo/index.html](../demo/index.html): static local demo deck.
 
 ## Experimental Stage Docs
 

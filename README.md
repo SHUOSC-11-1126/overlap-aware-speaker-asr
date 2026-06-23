@@ -39,6 +39,7 @@ The full claim ledger is in [docs/final_claim_ledger.md](docs/final_claim_ledger
 
 ```bash
 python -m scripts.check_environment
+python -m scripts.build_static_demo
 python -m src.project_harness
 python -m src.evaluate_audiodepth_risk_guarded_gate
 python -m src.audit_end_to_end_router_safety
@@ -65,6 +66,8 @@ python -m src.generate_final_presentation_cards
 - [docs/frontier/source_disjoint_evidence_expansion.md](docs/frontier/source_disjoint_evidence_expansion.md)
 - [docs/module_lifecycle.md](docs/module_lifecycle.md)
 - [results/figures/results_manifest_summary.md](results/figures/results_manifest_summary.md)
+- [docs/demo_10min_runbook.md](docs/demo_10min_runbook.md)
+- [demo/index.html](demo/index.html)
 - [results/figures/generative_regret_calibration.md](results/figures/generative_regret_calibration.md)
 - [results/figures/source_disjoint_v2_dataset_summary.md](results/figures/source_disjoint_v2_dataset_summary.md)
 - [results/figures/unified_router_eval_summary.md](results/figures/unified_router_eval_summary.md)

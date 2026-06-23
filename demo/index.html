@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Overlap-aware Speaker ASR Demo</title>
+  <style>
+    :root { --bg:#0b1020; --panel:#121a31; --text:#f5f7fb; --muted:#aab3c5; --line:#263453; --accent:#65d6ad; --hot:#ff7a70; --gold:#ffd166; }
+    * { box-sizing: border-box; }
+    body { margin:0; background: radial-gradient(circle at 10% 10%, #1b2a4a 0, #0b1020 36rem); color:var(--text); font: 16px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .shell { min-height:100vh; display:grid; grid-template-rows:auto 1fr auto; }
+    header, footer { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 1.35rem; border-color:var(--line); }
+    header { border-bottom:1px solid var(--line); background:rgba(8,12,25,.82); backdrop-filter: blur(14px); position:sticky; top:0; z-index:10; }
+    footer { border-top:1px solid var(--line); color:var(--muted); }
+    .brand { font-weight:800; letter-spacing:0; }
+    .timer { font-variant-numeric: tabular-nums; color:var(--gold); }
+    .progress { height:.5rem; background:#1f2944; border-radius:999px; overflow:hidden; min-width:14rem; }
+    .progress span { display:block; height:100%; width:0; background:linear-gradient(90deg,var(--accent),var(--gold)); transition:width .2s ease; }
+    main { position:relative; overflow:hidden; }
+    .slide { display:none; min-height:calc(100vh - 8rem); padding:3rem clamp(1.2rem,4vw,4rem); animation: pop .25s ease; }
+    .slide.active { display:block; }
+    @keyframes pop { from { opacity:.2; transform: translateY(8px); } to { opacity:1; transform:none; } }
+    h1, h2 { max-width:62rem; margin:.2rem 0 1rem; line-height:1.02; letter-spacing:0; }
+    h1 { font-size:clamp(2.6rem,7vw,6rem); }
+    h2 { font-size:clamp(2rem,5vw,4.6rem); }
+    .lead, p { color:var(--muted); max-width:58rem; font-size:clamp(1rem,1.5vw,1.28rem); }
+    .eyebrow { color:var(--accent); font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
+    .metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(12rem,1fr)); gap:1rem; margin:1.4rem 0; max-width:72rem; }
+    .metric { border:1px solid var(--line); background:rgba(18,26,49,.76); border-radius:8px; padding:1rem; min-height:7rem; }
+    .metric-value { font-size:2rem; font-weight:850; color:var(--text); }
+    .metric-label { color:var(--accent); font-weight:750; }
+    .metric-note { color:var(--muted); font-size:.9rem; }
+    .hero-img { width:min(100%,72rem); max-height:42vh; object-fit:contain; display:block; margin:1.5rem 0; border:1px solid var(--line); border-radius:8px; background:#fff; }
+    .image-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(18rem,1fr)); gap:1rem; margin-top:1.5rem; }
+    .image-grid img { width:100%; border:1px solid var(--line); border-radius:8px; background:white; }
+    .contribution-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(18rem,1fr)); gap:1rem; margin-top:1.5rem; max-width:78rem; }
+    .contribution-grid.compact { grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); }
+    .contribution-card { border:1px solid var(--line); background:rgba(18,26,49,.76); border-radius:8px; padding:1rem; min-height:12rem; }
+    .contribution-card h3 { margin:.1rem 0 .25rem; color:var(--text); font-size:1.12rem; }
+    .contribution-card p { font-size:.96rem; margin:.45rem 0; }
+    .owner { color:var(--accent); font-weight:800; }
+    .artifact { color:var(--gold); font-size:.86rem !important; }
+    table { border-collapse:collapse; width:min(100%,72rem); margin:1.3rem 0; font-size:.92rem; background:rgba(18,26,49,.7); }
+    th, td { border:1px solid var(--line); padding:.6rem .7rem; text-align:left; }
+    th { color:var(--accent); background:#10182d; }
+    .challenge { display:grid; grid-template-columns: minmax(16rem, 28rem) 1fr; gap:1.2rem; align-items:start; margin-top:1.5rem; }
+    .case-card, .answer-card { border:1px solid var(--line); background:rgba(18,26,49,.78); border-radius:8px; padding:1rem; }
+    audio { width:100%; margin:.75rem 0; }
+    button { border:1px solid var(--line); background:#17213c; color:var(--text); border-radius:8px; padding:.7rem .9rem; font-weight:750; cursor:pointer; }
+    button:hover, button.active { border-color:var(--accent); color:var(--accent); }
+    .choices { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:.8rem; }
+    .answer { color:var(--gold); font-weight:800; font-size:1.3rem; }
+    .controls { display:flex; gap:.6rem; align-items:center; }
+    .pill { border:1px solid var(--line); border-radius:999px; padding:.35rem .65rem; color:var(--muted); }
+    @media (max-width: 820px) { .challenge { grid-template-columns:1fr; } header { align-items:flex-start; flex-direction:column; } .progress { width:100%; } }
+    </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div>
+        <div class="brand">Overlap-aware Speaker ASR</div>
+        <div class="pill" id="titles">Hook</div>
+      </div>
+      <div class="controls">
+        <button id="prev">Back</button>
+        <button id="next">Next</button>
+        <span class="pill" id="counter">1 / 13</span>
+        <span class="timer" id="timer">10:00</span>
+      </div>
+      <div class="progress" aria-label="slide progress"><span id="progressBar"></span></div>
+    </header>
+    <main>
+      
+        <section class="slide active" data-title="Hook">
+          <div class="eyebrow">10 minute demo</div>
+          <h1>A complete overlap-aware ASR project, not one trick.</h1>
+          <p class="lead">The project starts with a simple question: when should a multi-speaker ASR system keep mixed audio, separate speakers, clean transcripts, route adaptively, or abstain for review?</p>
+          <div class="metrics">
+            
+    <div class="metric">
+      <div class="metric-value">0.120</div>
+      <div class="metric-label">Gold router_v2 CER</div>
+      <div class="metric-note">5 manually verified cases</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">0.302</div>
+      <div class="metric-label">Fixed mixed CER</div>
+      <div class="metric-note">gold baseline</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">router_v2</div>
+      <div class="metric-label">Core result</div>
+      <div class="metric-note">team routing baseline</div>
+    </div>
+    
+          </div>
+          <img class="hero-img" src="../results/figures/final_system_architecture.png" alt="Final system architecture">
+        </section>
+        
+        <section class="slide" data-title="Team map">
+          <div class="eyebrow">Full project map</div>
+          <h2>Everybody's work fits into one pipeline.</h2>
+          <p>This slide is the answer to "what did the whole project build?" It keeps the team contributions visible before the demo zooms into the route challenge.</p>
+          <div class="contribution-grid">
+            
+    <div class="contribution-card">
+      <h3>Data + Whisper baseline</h3>
+      <p class="owner">Team baseline track</p>
+      <p>Prepared mixed/separated audio, transcript candidates, and reproducible Whisper-style baselines.</p>
+      <p class="artifact">resources/, results/transcripts/, src/whisper_transcribe.py</p>
+    </div>
+    
+            
+    <div class="contribution-card">
+      <h3>Separation + postprocess</h3>
+      <p class="owner">Pipeline track</p>
+      <p>Compared mixed, separated, and duplicate-suppressed cleaned transcript routes.</p>
+      <p class="artifact">src/separate_speakers.py, src/postprocess.py</p>
+    </div>
+    
+            
+    <div class="contribution-card">
+      <h3>Adaptive routing</h3>
+      <p class="owner">Router track</p>
+      <p>Built router_v1/v2 and risk-aware selection from deployment-visible instability signals.</p>
+      <p class="artifact">src/adaptive_router_v2.py, src/risk_aware_selector.py</p>
+    </div>
+    
+            
+    <div class="contribution-card">
+      <h3>Evaluation stack</h3>
+      <p class="owner">Metric track</p>
+      <p>Implemented CER, speaker-aware CER, cpCER-lite, error-type analysis, and evidence ledgers.</p>
+      <p class="artifact">REPORT.md, docs/final_claim_ledger.md</p>
+    </div>
+    
+            
+    <div class="contribution-card">
+      <h3>Synthetic robustness</h3>
+      <p class="owner">Validation track</p>
+      <p>Created synthetic silver and held-out split checks to expose overfitting and oracle gaps.</p>
+      <p class="artifact">src/synthetic_*.py, results/tables/</p>
+    </div>
+    
+            
+    <div class="contribution-card">
+      <h3>Frontier systems</h3>
+      <p class="owner">Research-expansion track</p>
+      <p>Explored MeetEval/cpWER, speaker-profile diagnostics, LLM critic/RAG, demo excellence, and AudioDepth.</p>
+      <p class="artifact">docs/frontier/, results/figures/</p>
+    </div>
+    
+          </div>
+        </section>
+        
+        <section class="slide" data-title="Listen">
+          <div class="eyebrow">Act 1: make the audience judge</div>
+          <h2>Route challenge: listen first, then guess.</h2>
+          <p>Play one clip, then ask: keep mixed, separate, clean, or review? This makes the core routing problem memorable before the results table appears.</p>
+          <div id="challenge" class="challenge"></div>
+        </section>
+        
+        <section class="slide" data-title="Stable result">
+          <div class="eyebrow">Stable baseline</div>
+          <h2>The five-case gold story</h2>
+          <p>The stable claim is deliberately narrow: on five verified gold cases, route selection beats fixed routes and matches the oracle average. This is the strongest quantitative claim in the project.</p>
+          <div class="metrics">
+            
+    <div class="metric">
+      <div class="metric-value">0.120</div>
+      <div class="metric-label">router_v2</div>
+      <div class="metric-note">average CER</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">0.192</div>
+      <div class="metric-label">fixed separated</div>
+      <div class="metric-note">average CER</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">0.302</div>
+      <div class="metric-label">fixed mixed</div>
+      <div class="metric-note">average CER</div>
+    </div>
+    
+          </div>
+          <img class="hero-img" src="../results/figures/final_key_results_card.png" alt="Final key results">
+        </section>
+        
+        <section class="slide" data-title="Evaluation">
+          <div class="eyebrow">Metric contribution</div>
+          <h2>We also measured the right failure modes.</h2>
+          <p>Normal CER is not enough for multi-speaker audio. The project adds error-type analysis, speaker-aware CER, and cpCER-lite so routing decisions are judged by content and attribution behavior.</p>
+          <div class="image-grid">
+            <img src="../results/figures/error_type_by_case.png" alt="Error type by case">
+            <img src="../results/figures/cer_by_case.png" alt="CER by case">
+          </div>
+        </section>
+        
+        <section class="slide" data-title="Router lesson">
+          <div class="eyebrow">Why fixed separation fails</div>
+          <h2>Separation is a tool, not a law.</h2>
+          <p>Light and mid overlap can suffer from insertion and repetition artifacts after separation. Heavy and opposite overlap benefit more clearly. The router contribution is making that boundary explicit.</p>
+          <div class="metrics">
+            
+    <div class="metric">
+      <div class="metric-value">separate</div>
+      <div class="metric-label">NoOverlap</div>
+      <div class="metric-note">gold best route</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">mixed</div>
+      <div class="metric-label">Light/Mid</div>
+      <div class="metric-note">separation can hurt</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">separate</div>
+      <div class="metric-label">Heavy/Opposite</div>
+      <div class="metric-note">separation helps</div>
+    </div>
+    
+          </div>
+          <table><thead><tr><th>case</th><th>best_route</th><th>lesson</th></tr></thead><tbody><tr><td>NoOverlap</td><td>separated_whisper</td><td>clean audio can still benefit from speaker-track structure</td></tr><tr><td>LightOverlap</td><td>mixed_whisper</td><td>separation can introduce insertion/repetition artifacts</td></tr><tr><td>MidOverlap</td><td>mixed_whisper</td><td>moderate overlap is not automatically a separation win</td></tr><tr><td>HeavyOverlap</td><td>separated_whisper</td><td>strong overlap benefits from separated streams</td></tr><tr><td>OppositeOverlap</td><td>separated_whisper</td><td>competitive overlap benefits from separated streams</td></tr></tbody></table>
+        </section>
+        
+        <section class="slide" data-title="Frontiers">
+          <div class="eyebrow">Breadth-first frontier work</div>
+          <h2>The repository became a team research workbench.</h2>
+          <p>Beyond the stable router, the strongest team value is the organized spread of evaluation and research tracks. Some are real results, some are honest scaffolds, and each has claim boundaries in the docs.</p>
+          <div class="contribution-grid compact">
+            
+    <div class="contribution-card">
+      <h3>Compute-aware cascade</h3>
+      <p class="owner">Deployment track</p>
+      <p>Recorded cost/RTF tradeoffs and profile cards for accuracy-first, balanced, and cost-first use.</p>
+      <p class="artifact">results/figures/cascade_*.md</p>
+    </div>
+    
+            
+    <div class="contribution-card">
+      <h3>MeetEval / cpWER</h3>
+      <p class="owner">Evaluation frontier</p>
+      <p>Built compatibility exports, dry-run handoffs, and cpWER alignment scorecards.</p>
+      <p class="artifact">results/figures/meeteval_*.md</p>
+    </div>
+    
+            
+    <div class="contribution-card">
+      <h3>Speaker profile</h3>
+      <p class="owner">Attribution frontier</p>
+      <p>Found a swapped-bias failure mode and staged stronger profile/embedding baselines.</p>
+      <p class="artifact">results/figures/speaker_profile_*.md</p>
+    </div>
+    
+            
+    <div class="contribution-card">
+      <h3>LLM critic / RAG</h3>
+      <p class="owner">Agentic frontier</p>
+      <p>Prepared qualitative critic queues and repair directions without claiming verified repair.</p>
+      <p class="artifact">results/figures/llm_critic_*.md</p>
+    </div>
+    
+            
+    <div class="contribution-card">
+      <h3>External validation</h3>
+      <p class="owner">Generalization frontier</p>
+      <p>Kept external validation visible as a blocker instead of pretending local slices prove deployment.</p>
+      <p class="artifact">results/figures/frontier_*.md</p>
+    </div>
+    
+            
+    <div class="contribution-card">
+      <h3>AudioDepth attempt</h3>
+      <p class="owner">Acoustic triage frontier</p>
+      <p>Tests RGB-D-style acoustic maps as a pre-ASR signal. Useful and visual, but not the team&#x27;s central proof.</p>
+      <p class="artifact">docs/frontier/audiodepth_one_page.md</p>
+    </div>
+    
+            
+    <div class="contribution-card">
+      <h3>Demo excellence</h3>
+      <p class="owner">Presentation frontier</p>
+      <p>Turned results into walkthroughs, runbooks, and now a static 10-minute offline deck.</p>
+      <p class="artifact">demo/index.html</p>
+    </div>
+    
+          </div>
+        </section>
+        
+        <section class="slide" data-title="AudioDepth">
+          <div class="eyebrow">Frontier branch</div>
+          <h2>AudioDepth: RGB-D intuition for sound</h2>
+          <p>This is one exploratory branch: treat overlap like time-frequency occlusion, where logmel is the image and overlap/uncertainty are depth-like channels.</p>
+          <div class="metrics">
+            
+    <div class="metric">
+      <div class="metric-value">0.503</div>
+      <div class="metric-label">Balanced router CER</div>
+      <div class="metric-note">controlled silver-plus</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">0.644</div>
+      <div class="metric-label">router_v2 on same slice</div>
+      <div class="metric-note">controlled silver-plus</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">0.983</div>
+      <div class="metric-label">Route accuracy</div>
+      <div class="metric-note">not gold</div>
+    </div>
+    
+          </div>
+          <img class="hero-img" src="../results/figures/audiodepth_v2_examples.png" alt="AudioDepth examples">
+        </section>
+        
+        <section class="slide" data-title="Safety">
+          <div class="eyebrow">Safety twist</div>
+          <h2>The router needs a seatbelt.</h2>
+          <p>This branch is most useful when framed modestly: the risk-guarded AudioDepth gate explores whether an acoustic prefilter can reduce text probing while constraining unsafe mixed bypasses.</p>
+          <div class="metrics">
+            
+    <div class="metric">
+      <div class="metric-value">0.529</div>
+      <div class="metric-label">Balanced gate CER</div>
+      <div class="metric-note">controlled silver-plus</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">0.000</div>
+      <div class="metric-label">False-safe rate</div>
+      <div class="metric-note">direct bypass</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">0.417</div>
+      <div class="metric-label">Text probe reduction</div>
+      <div class="metric-note">less downstream work</div>
+    </div>
+    
+          </div>
+          <img class="hero-img" src="../results/figures/audiodepth_risk_guarded_gate_pareto.png" alt="Risk guarded Pareto">
+        </section>
+        
+        <section class="slide" data-title="Evidence hygiene">
+          <div class="eyebrow">Act 2: evidence hygiene</div>
+          <h2>Source-disjoint audit: then we made the split stricter.</h2>
+          <p>Stage 34 uses a source-disjoint test so that source utterances do not leak across train, validation, and test.</p>
+          <div class="metrics">
+            
+    <div class="metric">
+      <div class="metric-value">7</div>
+      <div class="metric-label">Strict test rows</div>
+      <div class="metric-note">with route CER</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">0</div>
+      <div class="metric-label">Source leakage</div>
+      <div class="metric-note">source utterance leaks</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">11</div>
+      <div class="metric-label">Micro-gold candidates</div>
+      <div class="metric-note">prepared, not annotated</div>
+    </div>
+    
+          </div>
+          <table><thead><tr><th>split</th><th>manifest_rows</th><th>route_cer_rows</th><th>unique_source_tokens</th></tr></thead><tbody><tr><td>train</td><td>26</td><td>20</td><td>12</td></tr><tr><td>validation</td><td>10</td><td>9</td><td>7</td></tr><tr><td>test</td><td>11</td><td>7</td><td>7</td></tr><tr><td>excluded</td><td>73</td><td>24</td><td>26</td></tr><tr><td>leakage</td><td>0</td><td>0</td><td>0</td></tr></tbody></table>
+        </section>
+        
+        <section class="slide" data-title="Unified eval">
+          <div class="eyebrow">Act 3: router showdown</div>
+          <h2>On strict test, fixed mixed is risky.</h2>
+          <p>Use this slide as a scoreboard. The point is not huge-data victory; it is evidence discipline. Review rows use the explicit oracle_for_abstained_rows handoff assumption.</p>
+          <div class="metrics">
+            
+    <div class="metric">
+      <div class="metric-value">3</div>
+      <div class="metric-label">Fixed mixed false-safe</div>
+      <div class="metric-note">strict test</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">0</div>
+      <div class="metric-label">Safe fusion false-safe</div>
+      <div class="metric-note">with review tradeoff</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">0.429</div>
+      <div class="metric-label">Review coverage</div>
+      <div class="metric-note">coverage after abstention</div>
+    </div>
+    
+          </div>
+          <table><thead><tr><th>policy</th><th>mean_selected_cer</th><th>false_safe_count</th><th>high_error_mixed_count</th><th>review_rate</th><th>coverage</th></tr></thead><tbody><tr><td>fixed_mixed</td><td>0.875111</td><td>3</td><td>6</td><td>0.0</td><td>1.0</td></tr><tr><td>fixed_separated</td><td>0.672207</td><td>0</td><td>0</td><td>0.0</td><td>1.0</td></tr><tr><td>fixed_cleaned</td><td>0.672207</td><td>0</td><td>0</td><td>0.0</td><td>1.0</td></tr><tr><td>router_v2_refit</td><td>0.572829</td><td>0</td><td>3</td><td>0.0</td><td>1.0</td></tr><tr><td>balanced_router_refit</td><td>0.572829</td><td>0</td><td>3</td><td>0.0</td><td>1.0</td></tr><tr><td>stage29_calibrated_audiodepth_gate_refit</td><td>0.572829</td><td>0</td><td>3</td><td>0.0</td><td>1.0</td></tr><tr><td>stage30_risk_guarded_gate_refit</td><td>0.572829</td><td>0</td><td>1</td><td>0.285714</td><td>0.714286</td></tr><tr><td>stage31_stage2_review_guard_refit</td><td>0.572829</td><td>0</td><td>1</td><td>0.571429</td><td>0.428571</td></tr></tbody></table>
+        </section>
+        
+        <section class="slide" data-title="Runtime">
+          <div class="eyebrow">Act 4: can it run here?</div>
+          <h2>This demo is offline by design.</h2>
+          <p>Your current system Python lacks the full ASR/scientific stack. So the demo reads committed evidence and local media, then presents the whole project without pretending to rerun Whisper live.</p>
+          <div class="metrics">
+            
+    <div class="metric">
+      <div class="metric-value">0.0001s</div>
+      <div class="metric-label">Head-only router</div>
+      <div class="metric-note">lightweight</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">2.0924s</div>
+      <div class="metric-label">All routes ASR</div>
+      <div class="metric-note">existing runtime record</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">none</div>
+      <div class="metric-label">Demo dependency</div>
+      <div class="metric-note">open demo/index.html</div>
+    </div>
+    
+          </div>
+          <table><thead><tr><th>level</th><th>component</th><th>mean_runtime_sec</th><th>provenance</th></tr></thead><tbody><tr><td>head_only_router</td><td>metadata_policy_eval</td><td>0.0001</td><td>measured_python_wallclock_lightweight</td></tr><tr><td>feature_ready_router</td><td>wav_header_scan</td><td>0.000105</td><td>deterministic_stage34_bytes_4036098</td></tr><tr><td>end_to_end_asr_reuse</td><td>mixed_asr</td><td>0.993471</td><td>existing_faster_whisper_base_runtime</td></tr><tr><td>end_to_end_asr_reuse</td><td>separated_asr</td><td>1.098543</td><td>existing_faster_whisper_base_runtime</td></tr><tr><td>end_to_end_asr_reuse</td><td>cleaned_asr</td><td>1.098543</td><td>existing_faster_whisper_base_runtime</td></tr><tr><td>end_to_end_asr_reuse</td><td>all_routes_per_sample</td><td>2.0924</td><td>existing_controlled_v2_runtime</td></tr></tbody></table>
+        </section>
+        
+        <section class="slide" data-title="Close">
+          <div class="eyebrow">Final 60 seconds</div>
+          <h2>The honest ending is the strongest ending.</h2>
+          <p>Stable baseline: router_v2 on five gold cases. Whole-project contribution: a pipeline that combines data preparation, separation, postprocessing, adaptive routing, speaker-aware metrics, robustness checks, risk controls, and frontier scaffolds. AudioDepth is one attempt inside that larger story. Next proof: annotate the micro-gold pack and rerun gold/silver-separated evaluation.</p>
+          <div class="metrics">
+            
+    <div class="metric">
+      <div class="metric-value">narrow</div>
+      <div class="metric-label">Main claim</div>
+      <div class="metric-note">five-case gold benchmark</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">systematic</div>
+      <div class="metric-label">Project claim</div>
+      <div class="metric-note">complete evidence workflow</div>
+    </div>
+    
+            
+    <div class="metric">
+      <div class="metric-value">micro-gold</div>
+      <div class="metric-label">Next step</div>
+      <div class="metric-note">11 candidates ready</div>
+    </div>
+    
+          </div>
+          <img class="hero-img" src="../results/figures/final_evidence_levels.png" alt="Evidence levels">
+        </section>
+        
+    </main>
+    <footer>
+      <span>Keys: Left / Right / Space. Demo mode: offline, evidence-backed, no live ASR rerun.</span>
+      <span>Claim boundary: team baseline first, frontier attempts second.</span>
+    </footer>
+  </div>
+  <script>
+    const DATA = {"challengeCases": [{"case": "NoOverlap", "audio": "../resources/mixed_audio/NoOverlap.wav", "best": "separate", "why": "Clean speech is easy, but the separated speaker-track route is strongest on the gold case."}, {"case": "LightOverlap", "audio": "../resources/mixed_audio/LightOverlap.wav", "best": "keep mixed", "why": "Light overlap can make separation hallucinate repeated fragments, so mixed wins."}, {"case": "MidOverlap", "audio": "../resources/mixed_audio/MidOverlap.wav", "best": "keep mixed", "why": "Moderate overlap still shows insertion and repetition risk after separation."}, {"case": "HeavyOverlap", "audio": "../resources/mixed_audio/HeavyOverlap.wav", "best": "separate", "why": "Heavy overlap benefits from separating competing speech streams."}, {"case": "OppositeOverlap", "audio": "../resources/mixed_audio/OppositeOverlap.wav", "best": "separate", "why": "Highly competitive opposite overlap is where separation helps most."}], "minutes": 10};
+    let current = 0;
+    const slides = [...document.querySelectorAll('.slide')];
+    const bar = document.querySelector('#progressBar');
+    const counter = document.querySelector('#counter');
+    const timer = document.querySelector('#timer');
+    const titles = document.querySelector('#titles');
+    const start = Date.now();
+    function show(i) {
+      current = Math.max(0, Math.min(slides.length - 1, i));
+      slides.forEach((s, idx) => s.classList.toggle('active', idx === current));
+      counter.textContent = `${current + 1} / ${slides.length}`;
+      bar.style.width = `${((current + 1) / slides.length) * 100}%`;
+      titles.textContent = slides[current].dataset.title || '';
+    }
+    function tick() {
+      const elapsed = Math.floor((Date.now() - start) / 1000);
+      const total = DATA.minutes * 60;
+      const remain = Math.max(0, total - elapsed);
+      timer.textContent = `${Math.floor(remain / 60)}:${String(remain % 60).padStart(2,'0')}`;
+    }
+    document.querySelector('#prev').onclick = () => show(current - 1);
+    document.querySelector('#next').onclick = () => show(current + 1);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') show(current + 1);
+      if (e.key === 'ArrowLeft') show(current - 1);
+    });
+    function renderChallenge() {
+      const root = document.querySelector('#challenge');
+      let idx = 0;
+      function draw(choice='') {
+        const item = DATA.challengeCases[idx];
+        root.innerHTML = `
+          <div class="case-card">
+            <div class="eyebrow">Audio case ${idx + 1} of ${DATA.challengeCases.length}</div>
+            <h3>${item.case}</h3>
+            <audio controls src="${item.audio}"></audio>
+            <div class="choices">
+              ${['keep mixed','separate','clean','review'].map(c => `<button class="${choice===c?'active':''}" data-choice="${c}">${c}</button>`).join('')}
+            </div>
+            <div class="choices">
+              <button id="casePrev">Previous case</button>
+              <button id="caseNext">Next case</button>
+            </div>
+          </div>
+          <div class="answer-card">
+            <div class="eyebrow">Reveal</div>
+            ${choice ? `<p>Your guess: <strong>${choice}</strong></p><p class="answer">Best route: ${item.best}</p><p>${item.why}</p>` : '<p>Make a guess first. The reveal is better when the room commits.</p>'}
+          </div>`;
+        root.querySelectorAll('[data-choice]').forEach(btn => btn.onclick = () => draw(btn.dataset.choice));
+        root.querySelector('#casePrev').onclick = () => { idx = (idx + DATA.challengeCases.length - 1) % DATA.challengeCases.length; draw(); };
+        root.querySelector('#caseNext').onclick = () => { idx = (idx + 1) % DATA.challengeCases.length; draw(); };
+      }
+      draw();
+    }
+    renderChallenge();
+    show(0);
+    tick();
+    setInterval(tick, 1000);
+    </script>
+</body>
+</html>
