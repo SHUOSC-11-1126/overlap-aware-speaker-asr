@@ -11,36 +11,34 @@ ROOT = Path(__file__).resolve().parents[1]
 class StaticDemoTest(unittest.TestCase):
     def test_demo_html_contains_interactive_sections(self):
         html = build_demo()
-        self.assertIn("10 minute demo", html)
-        self.assertIn("route challenge", html.lower())
-        self.assertIn("Everybody's work fits into one pipeline", html)
-        self.assertIn("Six contribution lanes", html)
-        self.assertIn("LLM Repair Loop", html)
-        self.assertIn("Streamlit demo", html)
-        self.assertIn("Synthetic data generation", html)
+        self.assertIn("GitHub-online evidence deck", html)
+        self.assertIn("王景宏", html)
+        self.assertIn("吴方舟/wfzark", html)
+        self.assertIn("谢宇轩", html)
+        self.assertIn("邵俊霖", html)
+        self.assertIn("梁跃川", html)
+        self.assertIn("张浩豪", html)
+        self.assertIn("LLM rescoring / repair", html)
+        self.assertIn("Emotion separation tax", html)
         self.assertIn("AudioDepth", html)
         self.assertIn("MeetEval / cpWER", html)
-        self.assertIn("LLM critic / RAG", html)
-        self.assertIn("Source-disjoint", html)
-        self.assertIn("oracle_for_abstained", html)
+        self.assertIn("GitHub raw image", html)
+        self.assertIn("CONTRIBUTIONS.md", html)
 
     def test_demo_file_can_be_written(self):
         path = ROOT / "demo" / "index.html"
         self.assertTrue(path.exists())
         text = path.read_text(encoding="utf-8")
-        self.assertIn("Overlap-aware Speaker ASR", text)
-        self.assertIn("resources/mixed_audio/LightOverlap.wav", text)
+        self.assertIn("Overlap-Aware Speaker ASR", text)
+        self.assertIn("raw.githubusercontent.com", text)
+        self.assertIn("github.com/SHUOSC-11-1126/overlap-aware-speaker-asr", text)
 
-    def test_referenced_local_assets_exist(self):
+    def test_references_online_github_assets(self):
         html = build_demo()
-        refs = set(re.findall(r"\.\./[^\"'`<> ]+", html))
-        self.assertGreaterEqual(len(refs), 10)
-        missing = []
-        for ref in refs:
-            target = (ROOT / "demo" / ref.rstrip("),.;")).resolve()
-            if not target.exists():
-                missing.append(ref)
-        self.assertEqual([], sorted(missing))
+        raw_refs = set(re.findall(r"https://raw\.githubusercontent\.com/[^\"'`<> ]+", html))
+        github_refs = set(re.findall(r"https://github\.com/SHUOSC-11-1126/overlap-aware-speaker-asr[^\"'`<> ]*", html))
+        self.assertGreaterEqual(len(raw_refs), 5)
+        self.assertGreaterEqual(len(github_refs), 10)
 
 
 if __name__ == "__main__":

@@ -8,7 +8,7 @@ Produce a 10 minute group-friendly demo video:
 - final 3 minutes: GitHub repository/workspace walkthrough;
 - voiceover can be recorded by different teammates after the visual recording is ready.
 
-The visual recording should not depend on live Whisper, model downloads, Streamlit, NumPy, or network access.
+The visual recording should not depend on live Whisper, model downloads, Streamlit, or NumPy. The deck content itself is rebuilt from the online GitHub `main` branch so that contributor names, contribution narratives, and frontier claims match the public repository.
 
 ## Recommended Recording Shape
 

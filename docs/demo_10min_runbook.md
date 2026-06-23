@@ -4,14 +4,14 @@
 
 The current system Python is `3.14` and lacks the project scientific/ASR dependencies (`PyYAML`, `numpy`, `scipy`, `soundfile`, `matplotlib`, Whisper-compatible ASR). A live ASR rerun is therefore not the reliable demo path on this machine.
 
-The recommended demo is a zero-dependency static deck:
+The recommended demo is a static GitHub-online evidence deck:
 
 ```bash
 python3 -m scripts.build_static_demo
 open demo/index.html
 ```
 
-It reads committed CSV/Markdown evidence and local images/audio. It does not call Whisper, NumPy, Streamlit, or the network.
+It rebuilds the HTML from the online GitHub `main` branch: README, `CONTRIBUTIONS.md`, implementation status, results index, contributor API, and raw GitHub figures. It does not call Whisper, NumPy, or Streamlit.
 
 ## Whole-project Demo Rule
 

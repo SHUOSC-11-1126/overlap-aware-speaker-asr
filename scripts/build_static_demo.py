@@ -1,8 +1,10 @@
 from __future__ import annotations
 
-import csv
 import html
 import json
+import re
+import urllib.request
+from urllib.error import HTTPError, URLError
 from pathlib import Path
 from typing import Any
 
@@ -11,425 +13,428 @@ ROOT = Path(__file__).resolve().parents[1]
 DEMO_DIR = ROOT / "demo"
 OUT = DEMO_DIR / "index.html"
 
+OWNER = "SHUOSC-11-1126"
+REPO = "overlap-aware-speaker-asr"
+BRANCH = "main"
+GH = f"https://github.com/{OWNER}/{REPO}"
+RAW = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/{BRANCH}"
+API = f"https://api.github.com/repos/{OWNER}/{REPO}"
 
-def read_csv(path: str) -> list[dict[str, str]]:
-    full = ROOT / path
-    if not full.exists():
-        return []
-    with full.open(newline="", encoding="utf-8-sig") as f:
-        return list(csv.DictReader(f))
+FALLBACK_REPO_INFO = {"stargazers_count": 6, "forks_count": 3}
+FALLBACK_CONTRIBUTORS = [
+    {"login": "ceilf6", "contributions": 2332, "html_url": "https://github.com/ceilf6"},
+    {"login": "cursoragent", "contributions": 187, "html_url": "https://github.com/cursoragent"},
+    {"login": "YuechuanLiang", "contributions": 18, "html_url": "https://github.com/YuechuanLiang"},
+    {"login": "wfzark", "contributions": 18, "html_url": "https://github.com/wfzark"},
+    {"login": "saayaya", "contributions": 17, "html_url": "https://github.com/saayaya"},
+    {"login": "cursor[bot]", "contributions": 14, "html_url": "https://github.com/apps/cursor"},
+    {"login": "xyx12369", "contributions": 2, "html_url": "https://github.com/xyx12369"},
+    {"login": "haohaozhang776-maker", "contributions": 1, "html_url": "https://github.com/haohaozhang776-maker"},
+]
+FALLBACK_FRONTIER_DOCS = [
+    {"name": "agentic_research_entropy.md", "type": "file", "html_url": f"{GH}/blob/{BRANCH}/docs/frontier/agentic_research_entropy.md"},
+    {"name": "asr_llm_emotion_capstone.md", "type": "file", "html_url": f"{GH}/blob/{BRANCH}/docs/frontier/asr_llm_emotion_capstone.md"},
+    {"name": "audio-depth-router.md", "type": "file", "html_url": f"{GH}/blob/{BRANCH}/docs/frontier/audio-depth-router.md"},
+    {"name": "causal_hallucination_probe.md", "type": "file", "html_url": f"{GH}/blob/{BRANCH}/docs/frontier/causal_hallucination_probe.md"},
+    {"name": "causal_hallucination_probe_litreview.md", "type": "file", "html_url": f"{GH}/blob/{BRANCH}/docs/frontier/causal_hallucination_probe_litreview.md"},
+]
 
 
-def fmt(value: Any, digits: int = 3) -> str:
+def fetch_text(path: str) -> str:
+    url = f"{RAW}/{path}"
+    with urllib.request.urlopen(url, timeout=20) as response:
+        return response.read().decode("utf-8")
+
+
+def fetch_json(url: str) -> Any:
+    request = urllib.request.Request(url, headers={"Accept": "application/vnd.github+json"})
     try:
-        return f"{float(value):.{digits}f}"
-    except (TypeError, ValueError):
-        return str(value)
+        with urllib.request.urlopen(request, timeout=20) as response:
+            return json.load(response)
+    except (HTTPError, URLError, TimeoutError):
+        if url == API:
+            return FALLBACK_REPO_INFO
+        if url.endswith("/contributors?per_page=100"):
+            return FALLBACK_CONTRIBUTORS
+        if "contents/docs/frontier" in url:
+            return FALLBACK_FRONTIER_DOCS
+        raise
 
 
-def rel(path: str) -> str:
-    return "../" + path
+def esc(value: Any) -> str:
+    return html.escape("" if value is None else str(value))
 
 
-def compact_table(rows: list[dict[str, str]], columns: list[str], limit: int = 6) -> str:
-    header = "".join(f"<th>{html.escape(col)}</th>" for col in columns)
+def raw_url(path: str) -> str:
+    return f"{RAW}/{path}"
+
+
+def github_url(path: str = "") -> str:
+    return f"{GH}/blob/{BRANCH}/{path}" if path else GH
+
+
+def md_link(path: str) -> str:
+    return f'<a href="{esc(github_url(path))}" target="_blank" rel="noreferrer">{esc(path)}</a>'
+
+
+def compact_table(rows: list[dict[str, str]], columns: list[str], limit: int = 8) -> str:
+    header = "".join(f"<th>{esc(col)}</th>" for col in columns)
     body = []
     for row in rows[:limit]:
-        body.append("<tr>" + "".join(f"<td>{html.escape(row.get(col, ''))}</td>" for col in columns) + "</tr>")
+        body.append("<tr>" + "".join(f"<td>{row.get(col, '')}</td>" for col in columns) + "</tr>")
     return f"<table><thead><tr>{header}</tr></thead><tbody>{''.join(body)}</tbody></table>"
-
-
-def contribution_card(title: str, owner: str, body: str, artifacts: str) -> str:
-    return f"""
-    <div class="contribution-card">
-      <h3>{html.escape(title)}</h3>
-      <p class="owner">{html.escape(owner)}</p>
-      <p>{html.escape(body)}</p>
-      <p class="artifact">{html.escape(artifacts)}</p>
-    </div>
-    """
-
-
-def flow_step(title: str, body: str) -> str:
-    return f"""
-    <div class="flow-step">
-      <div class="flow-title">{html.escape(title)}</div>
-      <div class="flow-body">{html.escape(body)}</div>
-    </div>
-    """
-
-
-def figure(path: str, alt: str, caption: str) -> str:
-    escaped_path = rel(path)
-    return f"""
-    <figure class="figure-card">
-      <a href="{html.escape(escaped_path)}" target="_blank" rel="noreferrer">
-        <img class="hero-img" src="{html.escape(escaped_path)}" alt="{html.escape(alt)}">
-      </a>
-      <figcaption>{html.escape(caption)} <span>Click image for full-size artifact.</span></figcaption>
-    </figure>
-    """
 
 
 def metric(label: str, value: str, note: str = "") -> str:
     return f"""
     <div class="metric">
-      <div class="metric-value">{html.escape(value)}</div>
-      <div class="metric-label">{html.escape(label)}</div>
-      <div class="metric-note">{html.escape(note)}</div>
+      <div class="metric-value">{esc(value)}</div>
+      <div class="metric-label">{esc(label)}</div>
+      <div class="metric-note">{esc(note)}</div>
     </div>
     """
 
 
+def card(title: str, owner: str, body: str, source: str) -> str:
+    return f"""
+    <div class="card">
+      <h3>{esc(title)}</h3>
+      <p class="owner">{esc(owner)}</p>
+      <p>{esc(body)}</p>
+      <p class="source">{source}</p>
+    </div>
+    """
+
+
+def frontier_card(title: str, status: str, body: str, evidence: str, visual: str) -> str:
+    return f"""
+    <div class="frontier-card">
+      <div class="frontier-status">{esc(status)}</div>
+      <h3>{esc(title)}</h3>
+      <p>{esc(body)}</p>
+      <p class="source">{evidence}</p>
+      <div class="visual-chip">{esc(visual)}</div>
+    </div>
+    """
+
+
+def figure(path: str, caption: str) -> str:
+    url = raw_url(path)
+    return f"""
+    <figure class="figure-card">
+      <a href="{esc(github_url(path))}" target="_blank" rel="noreferrer">
+        <img class="hero-img" src="{esc(url)}" alt="{esc(caption)}">
+      </a>
+      <figcaption>{esc(caption)} <span>GitHub raw image, click for repository file.</span></figcaption>
+    </figure>
+    """
+
+
+def parse_contribution_people(contrib_md: str) -> list[dict[str, str]]:
+    people: list[dict[str, str]] = []
+    blocks = re.split(r"(?m)^## ", contrib_md)
+    for block in blocks[1:]:
+        lines = block.strip().splitlines()
+        if not lines:
+            continue
+        name = lines[0].strip()
+        if name in {"Commit 规范", "代码审查"}:
+            continue
+        role = ""
+        scope = ""
+        for i, line in enumerate(lines):
+            if line.startswith("**Role:**"):
+                role = line.replace("**Role:**", "").strip()
+                # Some roles wrap onto the next line in Markdown.
+                if i + 1 < len(lines) and lines[i + 1] and not lines[i + 1].startswith(("**", "#", "-", "|")):
+                    role += " " + lines[i + 1].strip()
+            if line.startswith("**Scope summary:**"):
+                scope = line.replace("**Scope summary:**", "").strip()
+        people.append({"name": name, "role": role, "scope": scope})
+    return people
+
+
+def parse_quick_results(readme: str) -> list[dict[str, str]]:
+    rows: list[dict[str, str]] = []
+    in_table = False
+    for line in readme.splitlines():
+        if line.startswith("| Finding |"):
+            in_table = True
+            continue
+        if in_table:
+            if not line.startswith("|"):
+                break
+            if set(line.replace("|", "").strip()) <= {"-", ":"}:
+                continue
+            cells = [c.strip() for c in line.strip("|").split("|")]
+            if len(cells) >= 3:
+                rows.append({"Finding": esc(cells[0]), "Result": esc(cells[1]), "Evidence": esc(cells[2])})
+    return rows
+
+
+def human_contributors(api_rows: list[dict[str, Any]]) -> list[dict[str, str]]:
+    humans = []
+    for row in api_rows:
+        login = row.get("login", "")
+        if "cursor" in login.lower():
+            continue
+        humans.append(
+            {
+                "GitHub": f'<a href="{esc(row.get("html_url"))}" target="_blank" rel="noreferrer">{esc(login)}</a>',
+                "Commits": esc(row.get("contributions")),
+                "Role source": md_link("CONTRIBUTIONS.md") if login in {"ceilf6", "wfzark", "saayaya", "xyx12369"} else "GitHub contributor API",
+            }
+        )
+    return humans
+
+
 def build_demo() -> str:
-    balanced = read_csv("results/tables/audio_depth_balanced_router_comparison.csv")
-    risk = read_csv("results/tables/audiodepth_risk_guarded_gate_best_policies.csv")
-    unified = read_csv("results/tables/unified_router_eval_summary.csv")
-    split = read_csv("results/tables/source_disjoint_v2_split_audit.csv")
-    micro = read_csv("results/tables/micro_gold_candidate_manifest.csv")
-    runtime = read_csv("results/tables/end_to_end_runtime_components.csv")
+    readme = fetch_text("README.md")
+    contrib_md = fetch_text("CONTRIBUTIONS.md")
+    status_md = fetch_text("docs/implementation-status.md")
+    results_index = fetch_text("docs/results-index.md")
+    repo_info = fetch_json(API)
+    contributors = fetch_json(f"{API}/contributors?per_page=100")
+    frontier_docs = fetch_json(f"{API}/contents/docs/frontier?ref={BRANCH}")
 
-    balanced_router = next((r for r in balanced if r.get("model_name") == "audio_depth_balanced_route_winner_router"), {})
-    router_v2 = next((r for r in balanced if r.get("model_name") == "router_v2"), {})
-    risk_balanced = next((r for r in risk if r.get("policy_tier") == "balanced"), risk[0] if risk else {})
-    fixed_mixed = next((r for r in unified if r.get("policy") == "fixed_mixed"), {})
-    safe_fusion = next((r for r in unified if r.get("policy") == "stage33_safe_regret_fusion_refit"), {})
-    leakage = next((r for r in split if r.get("split") == "leakage"), {})
-    test_split = next((r for r in split if r.get("split") == "test"), {})
-    head_runtime = next((r for r in runtime if r.get("component") == "metadata_policy_eval"), {})
-    asr_runtime = next((r for r in runtime if r.get("component") == "all_routes_per_sample"), {})
-
-    challenge_cases = [
+    people = parse_contribution_people(contrib_md)
+    quick_results = parse_quick_results(readme)
+    frontier_doc_rows = [
         {
-            "case": "NoOverlap",
-            "audio": rel("resources/mixed_audio/NoOverlap.wav"),
-            "best": "separate",
-            "why": "Clean speech is easy, but the separated speaker-track route is strongest on the gold case.",
-        },
-        {
-            "case": "LightOverlap",
-            "audio": rel("resources/mixed_audio/LightOverlap.wav"),
-            "best": "keep mixed",
-            "why": "Light overlap can make separation hallucinate repeated fragments, so mixed wins.",
-        },
-        {
-            "case": "MidOverlap",
-            "audio": rel("resources/mixed_audio/MidOverlap.wav"),
-            "best": "keep mixed",
-            "why": "Moderate overlap still shows insertion and repetition risk after separation.",
-        },
-        {
-            "case": "HeavyOverlap",
-            "audio": rel("resources/mixed_audio/HeavyOverlap.wav"),
-            "best": "separate",
-            "why": "Heavy overlap benefits from separating competing speech streams.",
-        },
-        {
-            "case": "OppositeOverlap",
-            "audio": rel("resources/mixed_audio/OppositeOverlap.wav"),
-            "best": "separate",
-            "why": "Highly competitive opposite overlap is where separation helps most.",
-        },
+            "file": f'<a href="{esc(item["html_url"])}" target="_blank" rel="noreferrer">{esc(item["name"])}</a>',
+            "type": esc(item.get("type")),
+            "source": "GitHub docs/frontier",
+        }
+        for item in frontier_docs
+        if item.get("name", "").endswith(".md")
     ]
 
-    slide_data = {
-        "challengeCases": challenge_cases,
-        "minutes": 10,
-    }
-
+    online_source = f"{GH}/tree/{BRANCH}"
     slides = [
         f"""
-        <section class="slide active" data-title="Hook">
-          <div class="eyebrow">10 minute demo</div>
-          <h1>A complete overlap-aware ASR project, not one trick.</h1>
-          <p class="lead">The project starts with a simple question: when should a multi-speaker ASR system keep mixed audio, separate speakers, clean transcripts, route adaptively, or abstain for review?</p>
+        <section class="slide active" data-title="Online Source">
+          <div class="eyebrow">GitHub-online evidence deck</div>
+          <h1>Overlap-Aware Speaker ASR</h1>
+          <p class="lead">This demo is rebuilt from the online GitHub repository: README, CONTRIBUTIONS, implementation status, results index, contributors API, and raw GitHub figures.</p>
           <div class="metrics">
-            {metric("Gold router_v2 CER", "0.120", "5 manually verified cases")}
-            {metric("Fixed mixed CER", "0.302", "gold baseline")}
-            {metric("Core result", "router_v2", "team routing baseline")}
+            {metric("Online branch", BRANCH, "source of truth for this deck")}
+            {metric("Stars / forks", f"{repo_info.get('stargazers_count', 0)} / {repo_info.get('forks_count', 0)}", "GitHub API")}
+            {metric("Human contributors", str(len(human_contributors(contributors))), "cursor/tool accounts excluded")}
           </div>
-          {figure('results/figures/final_system_architecture.png', 'Final system architecture', 'System architecture overview.')}
+          <p class="source big-source"><a href="{esc(online_source)}" target="_blank" rel="noreferrer">{esc(online_source)}</a></p>
         </section>
         """,
         f"""
-        <section class="slide" data-title="Team map">
-          <div class="eyebrow">Full project map</div>
-          <h2>Everybody's work fits into one pipeline.</h2>
-          <p>This is a team project. The demo starts from the shared pipeline and then zooms into individual contribution tracks, not the other way around.</p>
-          <div class="contribution-grid">
-            {contribution_card("Data + Whisper baseline", "Team baseline track", "Prepared mixed/separated audio, transcript candidates, and reproducible Whisper-style baselines.", "resources/, results/transcripts/, src/whisper_transcribe.py")}
-            {contribution_card("Separation + postprocess", "Pipeline track", "Compared mixed, separated, and duplicate-suppressed cleaned transcript routes.", "src/separate_speakers.py, src/postprocess.py")}
-            {contribution_card("Adaptive routing", "Router track", "Built router_v1/v2 and risk-aware selection from deployment-visible instability signals.", "src/adaptive_router_v2.py, src/risk_aware_selector.py")}
-            {contribution_card("Evaluation stack", "Metric track", "Implemented CER, speaker-aware CER, cpCER-lite, error-type analysis, and evidence ledgers.", "REPORT.md, docs/final_claim_ledger.md")}
-            {contribution_card("Synthetic robustness", "Validation track", "Created synthetic silver and held-out split checks to expose overfitting and oracle gaps.", "src/synthetic_*.py, results/tables/")}
-            {contribution_card("Frontier systems", "Research-expansion track", "Explored MeetEval/cpWER, speaker-profile diagnostics, LLM critic/RAG, demo excellence, and AudioDepth.", "docs/frontier/, results/figures/")}
-          </div>
-        </section>
-        """,
-        f"""
-        <section class="slide" data-title="Contribution ledger">
-          <div class="eyebrow">Directly from CONTRIBUTIONS.md</div>
-          <h2>Six contribution lanes, all visible.</h2>
-          <p>This page is intentionally explicit so the demo does not look like one person's frontier experiment. Each lane has a role, module surface, and presentation angle.</p>
-          {compact_table([
-              {'member': 'Member 1', 'contribution': 'Data preparation, audio splitting, Whisper ASR baseline', 'modules': 'src/whisper_transcribe.py; src/separate_speakers.py', 'demo_angle': 'Where the evidence starts'},
-              {'member': 'Member 2', 'contribution': 'Adaptive Router v1/v2 and risk-aware selection', 'modules': 'src/adaptive_router_v2.py; src/risk_aware_selector.py', 'demo_angle': 'Main stable routing result'},
-              {'member': 'Member 3', 'contribution': 'Postprocessing, duplicate suppression, CER evaluation', 'modules': 'src/postprocess.py; src/evaluate_cer.py', 'demo_angle': 'Why cleaned routes and metrics matter'},
-              {'member': 'Member 4', 'contribution': 'LLM Repair Loop and RAG integration', 'modules': 'src/llm_repair_loop.py; src/rag_repair.py', 'demo_angle': 'Agentic repair frontier, claim-bounded'},
-              {'member': 'Member 5', 'contribution': 'Synthetic data generation and generalization tests', 'modules': 'src/synthetic_*.py', 'demo_angle': 'Robustness beyond five gold cases'},
-              {'member': 'Member 6', 'contribution': 'Streamlit demo, visualization, report writing', 'modules': 'src/demo_app.py; src/router_feature_importance.py', 'demo_angle': 'Presentation and explainability layer'},
-          ], ['member', 'contribution', 'modules', 'demo_angle'], 6)}
-        </section>
-        """,
-        f"""
-        <section class="slide" data-title="Team highlights">
-          <div class="eyebrow">Beyond one frontier branch</div>
-          <h2>The strongest story is the combined system.</h2>
-          <p>AudioDepth is only one attempt. These team highlights are what make the project complete and defensible.</p>
-          <div class="contribution-grid">
-            {contribution_card("Whisper + separation baseline", "Core experiment", "Turns raw overlap audio into comparable mixed, separated, and cleaned transcript candidates.", "resources/, results/transcripts/")}
-            {contribution_card("router_v2", "Main quantitative win", "Selects routes using instability signals and reaches the oracle average on the five-case gold benchmark.", "src/adaptive_router_v2.py")}
-            {contribution_card("Evaluation discipline", "Metric contribution", "Adds error type analysis, speaker-aware CER, cpCER-lite, and final claim ledgers.", "REPORT.md; docs/final_claim_ledger.md")}
-            {contribution_card("Synthetic generalization", "Robustness contribution", "Uses synthetic and held-out split validation to catch overfitting beyond the tiny gold set.", "src/synthetic_*.py")}
-            {contribution_card("LLM/RAG repair direction", "Agentic contribution", "Frames repair as a qualitative, claim-bounded frontier rather than pretending it is verified.", "src/llm_repair_loop.py; src/rag_repair.py")}
-            {contribution_card("Demo and visualization", "Communication contribution", "Makes the project inspectable through Streamlit, figures, reports, and this recording deck.", "demo/app.py; results/figures/")}
-          </div>
-        </section>
-        """,
-        f"""
-        <section class="slide" data-title="Pipeline">
-          <div class="eyebrow">Readable pipeline</div>
-          <h2>The system flow in six readable steps.</h2>
-          <p>Use this slide when the architecture figure is too small on a projector. It is the same story, rewritten as large text.</p>
+        <section class="slide" data-title="Research Question">
+          <div class="eyebrow">From online README.md</div>
+          <h2>When should we separate, keep mixed, or escalate?</h2>
+          <p>The online README frames the problem across transcription and emotion: separation can help recover masked speech, but it can also inject hallucination artifacts. The answer depends on overlap intensity, model scale, acoustic conditions, and whether the downstream goal is accurate text or faithful emotion.</p>
           <div class="flow-grid">
-            {flow_step("1. Audio assets", "Mixed recordings, separated tracks, and reference transcripts are organized as evidence inputs.")}
-            {flow_step("2. ASR routes", "Run or compare mixed, separated, and cleaned transcript routes.")}
-            {flow_step("3. Metrics", "CER, speaker-aware CER, cpCER-lite, and error-type analysis expose different failures.")}
-            {flow_step("4. Router", "router_v2 selects a route from deployment-visible instability signals.")}
-            {flow_step("5. Audits", "Synthetic, held-out, source-disjoint, runtime, and risk checks prevent overclaiming.")}
-            {flow_step("6. Frontiers", "MeetEval, speaker profile, LLM critic, demo excellence, and AudioDepth become scoped follow-ups.")}
+            <div class="flow-step"><div class="flow-title">Text objective</div><div class="flow-body">Minimize CER while avoiding hallucination and repetition.</div></div>
+            <div class="flow-step"><div class="flow-title">Speaker objective</div><div class="flow-body">Keep speaker attribution visible with speaker CER and cpCER-lite.</div></div>
+            <div class="flow-step"><div class="flow-title">Emotion objective</div><div class="flow-body">Do not assume the best transcript route is also the best affect route.</div></div>
+          </div>
+          <p class="source">{md_link("README.md")}</p>
+        </section>
+        """,
+        f"""
+        <section class="slide" data-title="Online Contributors">
+          <div class="eyebrow">GitHub contributors + online CONTRIBUTIONS.md</div>
+          <h2>Team members visible from the online repository.</h2>
+          <p>The member names below come from GitHub contributors and the online contribution record. Cursor/tool accounts are not counted as human members.</p>
+          {compact_table(human_contributors(contributors), ["GitHub", "Commits", "Role source"], 8)}
+        </section>
+        """,
+        f"""
+        <section class="slide" data-title="Contribution Records">
+          <div class="eyebrow">Authoritative CONTRIBUTIONS.md</div>
+          <h2>Contribution records from GitHub, by name.</h2>
+          <div class="card-grid">
+            {''.join(card(p['name'], p['role'] or 'Role recorded online', p['scope'] or 'Detailed contribution is recorded in the online CONTRIBUTIONS.md.', md_link('CONTRIBUTIONS.md')) for p in people)}
           </div>
         </section>
         """,
         f"""
-        <section class="slide" data-title="Listen">
-          <div class="eyebrow">Act 1: make the audience judge</div>
-          <h2>Route challenge: listen first, then guess.</h2>
-          <p>Play one clip, then ask: keep mixed, separate, clean, or review? This makes the core routing problem memorable before the results table appears.</p>
-          <div id="challenge" class="challenge"></div>
+        <section class="slide" data-title="Architecture">
+          <div class="eyebrow">Online system architecture</div>
+          <h2>Mixed, separated, cleaned, routed, evaluated.</h2>
+          <p>The online README presents the full pipeline: ASR strategies, adaptive routing, evaluation, and frontier extensions.</p>
+          {figure("results/figures/report/fig1_system_route_map.png", "System route map from online README")}
+          <p class="source">{md_link("README.md")}</p>
         </section>
         """,
         f"""
-        <section class="slide" data-title="Stable result">
-          <div class="eyebrow">Stable baseline</div>
-          <h2>The five-case gold story</h2>
-          <p>The stable claim is deliberately narrow: on five verified gold cases, route selection beats fixed routes and matches the oracle average. This is the strongest quantitative claim in the project.</p>
-          <div class="metrics">
-            {metric("router_v2", "0.120", "average CER")}
-            {metric("fixed separated", "0.192", "average CER")}
-            {metric("fixed mixed", "0.302", "average CER")}
+        <section class="slide" data-title="Quick Results">
+          <div class="eyebrow">Online README quick results</div>
+          <h2>Core findings and evidence levels.</h2>
+          {compact_table(quick_results, ["Finding", "Result", "Evidence"], 11)}
+        </section>
+        """,
+        f"""
+        <section class="slide" data-title="Mainline Matrix">
+          <div class="eyebrow">Implementation status</div>
+          <h2>Stable mainline vs optional/frontier.</h2>
+          <div class="card-grid">
+            {card("Stable mainline", "Gold benchmark + Whisper baselines", "Gold cases, mixed/separated Whisper, CER, error analysis, speaker CER, cpCER-lite, harness and CI.", md_link("docs/implementation-status.md"))}
+            {card("Mainline experimental", "Routing and cascade", "Router v1/v2, risk-aware selector, compute-aware cascade, Mode B cascade tiers, synthetic silver validation.", md_link("docs/implementation-status.md"))}
+            {card("Optional/frontier", "MeetEval, LLM, speaker-profile, AudioDepth", "Optional dependencies and exploratory branches are kept claim-bounded, not treated as stable production claims.", md_link("docs/implementation-status.md"))}
           </div>
-          {compact_table([
-              {'strategy': 'fixed_mixed_whisper', 'average_CER': '0.302093', 'meaning': 'simple baseline'},
-              {'strategy': 'fixed_separated_whisper', 'average_CER': '0.191846', 'meaning': 'stronger but not always safe'},
-              {'strategy': 'fixed_separated_whisper_cleaned', 'average_CER': '0.181681', 'meaning': 'postprocess helps sometimes'},
-              {'strategy': 'router_v2', 'average_CER': '0.120042', 'meaning': 'team stable baseline'},
-              {'strategy': 'oracle_best', 'average_CER': '0.120042', 'meaning': 'upper bound on this tiny gold set'},
-          ], ['strategy', 'average_CER', 'meaning'], 5)}
-          {figure('results/figures/final_key_results_card.png', 'Final key results', 'Gold benchmark result card.')}
+          <p class="source">{md_link("docs/results-index.md")}</p>
         </section>
         """,
         f"""
-        <section class="slide" data-title="Evaluation">
-          <div class="eyebrow">Metric contribution</div>
-          <h2>We also measured the right failure modes.</h2>
-          <p>Normal CER is not enough for multi-speaker audio. The project adds error-type analysis, speaker-aware CER, and cpCER-lite so routing decisions are judged by content and attribution behavior.</p>
+        <section class="slide" data-title="Separation Tax">
+          <div class="eyebrow">Frontier: separation and hallucination</div>
+          <h2>Separation tax is heavy-tailed, not uniform.</h2>
           <div class="metrics">
-            {metric("CER", "content", "character-level transcript quality")}
-            {metric("speaker-aware CER", "attribution", "per-speaker quality and speaker gap")}
-            {metric("cpCER-lite", "permutation", "checks direct vs swapped speaker mapping")}
+            {metric("Crossover", "r* ≈ 0.17", "online README")}
+            {metric("Failure shape", "heavy tail", "6/600 tracks blow up")}
+            {metric("Detector", "AUC ≈ 1.0", "compression-ratio catastrophe gate")}
           </div>
           <div class="image-grid">
-            <img src="{rel('results/figures/error_type_by_case.png')}" alt="Error type by case">
-            <img src="{rel('results/figures/cer_by_case.png')}" alt="CER by case">
+            <img src="{esc(raw_url('results/figures/cer_by_case.png'))}" alt="CER by case">
+            <img src="{esc(raw_url('results/figures/error_type_by_case.png'))}" alt="Error type by case">
           </div>
         </section>
         """,
         f"""
-        <section class="slide" data-title="Router lesson">
-          <div class="eyebrow">Why fixed separation fails</div>
-          <h2>Separation is a tool, not a law.</h2>
-          <p>Light and mid overlap can suffer from insertion and repetition artifacts after separation. Heavy and opposite overlap benefit more clearly. The router contribution is making that boundary explicit.</p>
-          <div class="metrics">
-            {metric("NoOverlap", "separate", "gold best route")}
-            {metric("Light/Mid", "mixed", "separation can hurt")}
-            {metric("Heavy/Opposite", "separate", "separation helps")}
+        <section class="slide" data-title="Compute + Model Scale">
+          <div class="eyebrow">Frontier: model scale and compute-aware routing</div>
+          <h2>The route decision changes with model scale and cost.</h2>
+          <div class="card-grid">
+            {frontier_card("Whisper-base scale", "experimental/frontier", "The online README says Whisper-base at 1.93x compute eliminates the separation tax, turning the tiny-model problem into a scale finding.", md_link("README.md"), "model-scale result card")}
+            {frontier_card("Compute-aware cascade", "mainline experimental", "Cost-aware and Mode B cascade tiers compare accuracy-first, balanced, and cost-first decisions.", md_link("docs/results-index.md"), "CER/cost tradeoff")}
+            {frontier_card("Noise-robust router", "experimental/frontier", "Noise-robust routing recovers about 92% of oracle gap using decoder degeneracy signals.", md_link("docs/results-index.md"), "noise frontier")}
           </div>
-          {compact_table([
-              {'case': 'NoOverlap', 'best_route': 'separated_whisper', 'lesson': 'clean audio can still benefit from speaker-track structure'},
-              {'case': 'LightOverlap', 'best_route': 'mixed_whisper', 'lesson': 'separation can introduce insertion/repetition artifacts'},
-              {'case': 'MidOverlap', 'best_route': 'mixed_whisper', 'lesson': 'moderate overlap is not automatically a separation win'},
-              {'case': 'HeavyOverlap', 'best_route': 'separated_whisper', 'lesson': 'strong overlap benefits from separated streams'},
-              {'case': 'OppositeOverlap', 'best_route': 'separated_whisper', 'lesson': 'competitive overlap benefits from separated streams'},
-          ], ['case', 'best_route', 'lesson'], 5)}
+          {figure("results/figures/cascade_tiers_cer_cost_tradeoff.png", "Cascade CER/cost tradeoff")}
         </section>
         """,
         f"""
-        <section class="slide" data-title="Frontiers">
-          <div class="eyebrow">Breadth-first frontier work</div>
-          <h2>The repository became a team research workbench.</h2>
-          <p>Beyond the stable router, the strongest team value is the organized spread of evaluation and research tracks. Some are real results, some are honest scaffolds, and each has claim boundaries in the docs.</p>
-          <div class="contribution-grid compact">
-            {contribution_card("Compute-aware cascade", "Deployment track", "Recorded cost/RTF tradeoffs and profile cards for accuracy-first, balanced, and cost-first use.", "results/figures/cascade_*.md")}
-            {contribution_card("MeetEval / cpWER", "Evaluation frontier", "Built compatibility exports, dry-run handoffs, and cpWER alignment scorecards.", "results/figures/meeteval_*.md")}
-            {contribution_card("Speaker profile", "Attribution frontier", "Found a swapped-bias failure mode and staged stronger profile/embedding baselines.", "results/figures/speaker_profile_*.md")}
-            {contribution_card("LLM critic / RAG", "Agentic frontier", "Prepared qualitative critic queues and repair directions without claiming verified repair.", "results/figures/llm_critic_*.md")}
-            {contribution_card("External validation", "Generalization frontier", "Kept external validation visible as a blocker instead of pretending local slices prove deployment.", "results/figures/frontier_*.md")}
-            {contribution_card("AudioDepth attempt", "Acoustic triage frontier", "Tests RGB-D-style acoustic maps as a pre-ASR signal. Useful and visual, but not the team's central proof.", "docs/frontier/audiodepth_one_page.md")}
-            {contribution_card("Demo excellence", "Presentation frontier", "Turned results into walkthroughs, runbooks, and now a static 10-minute offline deck.", "demo/index.html")}
+        <section class="slide" data-title="Emotion + LLM">
+          <div class="eyebrow">Frontier: ASR x LLM x emotion</div>
+          <h2>Emotion is a separate downstream objective.</h2>
+          <div class="card-grid">
+            {frontier_card("Emotion separation tax", "experimental/frontier", "The online README reports the surprising opposite direction: separation helps emotion, even when ASR routing has a separation tax.", md_link("README.md"), "objective-aware routing")}
+            {frontier_card("LLM emotion coverage", "experimental/frontier", "Local LLM semantic emotion reads implicit emotion about 7x more than a lexicon according to the online results index.", md_link("docs/results-index.md"), "semantic emotion")}
+            {frontier_card("LLM rescoring / repair", "negative frontier", "LLM rescoring is not a free repair path: online README reports 0/26 helped and CER 0.316 to 0.798.", md_link("README.md"), "negative result")}
           </div>
+          <p class="source">{md_link("docs/frontier/asr_llm_emotion_capstone.md")} · {md_link("docs/emotion_frontier.md")}</p>
+        </section>
+        """,
+        f"""
+        <section class="slide" data-title="Evaluation Frontiers">
+          <div class="eyebrow">Frontier: evaluation systems</div>
+          <h2>Evaluation is bigger than one CER number.</h2>
+          <div class="card-grid">
+            {frontier_card("MeetEval / cpWER", "optional/frontier", "Official meeting-style evaluation is staged as optional integration with readiness and compatibility notes.", md_link("docs/results-index.md"), "cpWER bridge")}
+            {frontier_card("Speaker-profile diagnostics", "frontier scaffold", "Speaker-profile work is diagnostic and claim-bounded; it supports attribution risk investigation.", md_link("docs/implementation-status.md"), "speaker profile")}
+            {frontier_card("Cross-benchmark analysis", "evaluation system", "Evaluation System & Cross-Benchmark Analysis is recorded as 张浩豪 / haohaozhang776's contribution.", md_link("CONTRIBUTIONS.md"), "benchmark alignment")}
+          </div>
+        </section>
+        """,
+        f"""
+        <section class="slide" data-title="Separation Phase">
+          <div class="eyebrow">Frontier: separation phase diagram</div>
+          <h2>Separation is visualized as a phase decision.</h2>
+          <div class="card-grid">
+            {frontier_card("Separation Phase Diagram", "Mode C frontier", "梁跃川 / liang-yuechuan is credited online for the Separation Phase Diagram design and implementation.", md_link("CONTRIBUTIONS.md"), "phase boundary")}
+            {frontier_card("Phase diagram repair + learned router", "bugfix + model design", "邵俊霖 / saayaya is credited online for phase diagram repair, learned router design, implementation, and bugfix.", md_link("CONTRIBUTIONS.md"), "learned router")}
+            {frontier_card("Mode B cascade", "compute-aware", "谢宇轩 / xyx12369 is credited online for compute-aware three-tier cascade recognition.", md_link("CONTRIBUTIONS.md"), "three-tier cascade")}
+          </div>
+          {figure("results/figures/cer_runtime_tradeoff.png", "Online CER/runtime tradeoff figure")}
         </section>
         """,
         f"""
         <section class="slide" data-title="AudioDepth">
-          <div class="eyebrow">Frontier branch</div>
-          <h2>AudioDepth: RGB-D intuition for sound</h2>
-          <p>This is one exploratory branch: treat overlap like time-frequency occlusion, where logmel is the image and overlap/uncertainty are depth-like channels.</p>
-          <div class="metrics">
-            {metric("Balanced router CER", fmt(balanced_router.get('average_cer'), 3), "controlled silver-plus")}
-            {metric("router_v2 on same slice", fmt(router_v2.get('average_cer'), 3), "controlled silver-plus")}
-            {metric("Route accuracy", fmt(balanced_router.get('accuracy_vs_oracle_route'), 3), "not gold")}
+          <div class="eyebrow">Frontier branch only</div>
+          <h2>AudioDepth is one exploratory branch, not the whole project.</h2>
+          <p>Online `docs/frontier/audio-depth-router.md` frames AudioDepth as pre-ASR acoustic triage inspired by RGB-D / depth-style visual recognition. It complements transcript-instability features; it does not replace them.</p>
+          <div class="image-grid">
+            <img src="{esc(raw_url('docs/assets/audio-depth/audio_depth_3d_occlusion_landscape.png'))}" alt="AudioDepth 3D occlusion landscape">
+            <img src="{esc(raw_url('docs/assets/audio-depth/audio_depth_channel_triptych.png'))}" alt="AudioDepth channel triptych">
           </div>
-          {figure('results/figures/audiodepth_v2_examples.png', 'AudioDepth examples', 'AudioDepth map examples.')}
+          <p class="source">{md_link("docs/frontier/audio-depth-router.md")}</p>
         </section>
         """,
         f"""
-        <section class="slide" data-title="Safety">
-          <div class="eyebrow">Safety twist</div>
-          <h2>The router needs a seatbelt.</h2>
-          <p>This branch is most useful when framed modestly: the risk-guarded AudioDepth gate explores whether an acoustic prefilter can reduce text probing while constraining unsafe mixed bypasses.</p>
-          <div class="metrics">
-            {metric("Balanced gate CER", fmt(risk_balanced.get('selected_route_CER'), 3), "controlled silver-plus")}
-            {metric("False-safe rate", fmt(risk_balanced.get('false_safe_rate'), 3), "direct bypass")}
-            {metric("Text probe reduction", fmt(risk_balanced.get('text_probe_reduction_rate'), 3), "less downstream work")}
-          </div>
-          {figure('results/figures/audiodepth_risk_guarded_gate_pareto.png', 'Risk guarded Pareto', 'Risk-guarded AudioDepth gate tradeoff.')}
+        <section class="slide" data-title="Frontier Index">
+          <div class="eyebrow">Online docs/frontier index</div>
+          <h2>Frontier files visible in the GitHub repository.</h2>
+          {compact_table(frontier_doc_rows, ["file", "type", "source"], 8)}
         </section>
         """,
         f"""
-        <section class="slide" data-title="Evidence hygiene">
-          <div class="eyebrow">Act 2: evidence hygiene</div>
-          <h2>Source-disjoint audit: then we made the split stricter.</h2>
-          <p>Stage 34 uses a source-disjoint test so that source utterances do not leak across train, validation, and test.</p>
-          <div class="metrics">
-            {metric("Strict test rows", test_split.get('route_cer_rows', '7'), "with route CER")}
-            {metric("Source leakage", leakage.get('manifest_rows', '0'), "source utterance leaks")}
-            {metric("Micro-gold candidates", str(len(micro)), "prepared, not annotated")}
+        <section class="slide" data-title="GitHub Walkthrough">
+          <div class="eyebrow">Final 3 minutes</div>
+          <h2>Show the repository, not only the slides.</h2>
+          <div class="card-grid">
+            {card("README", "Project entry", "Research question, quick results, architecture, mainline/frontier boundary.", md_link("README.md"))}
+            {card("CONTRIBUTIONS", "Team record", "Named roles and contribution narratives from the online source of truth.", md_link("CONTRIBUTIONS.md"))}
+            {card("Implementation status", "Claim matrix", "Stable, experimental, optional, and frontier labels.", md_link("docs/implementation-status.md"))}
+            {card("Results index", "Evidence map", "Curated result entry points and frontier notes.", md_link("docs/results-index.md"))}
           </div>
-          {compact_table(split, ['split', 'manifest_rows', 'route_cer_rows', 'unique_source_tokens'], 5)}
         </section>
         """,
         f"""
-        <section class="slide" data-title="Unified eval">
-          <div class="eyebrow">Act 3: router showdown</div>
-          <h2>On strict test, fixed mixed is risky.</h2>
-          <p>Use this slide as a scoreboard. The point is not huge-data victory; it is evidence discipline. Review rows use the explicit oracle_for_abstained_rows handoff assumption.</p>
-          <div class="metrics">
-            {metric("Fixed mixed false-safe", fixed_mixed.get('false_safe_count', '3'), "strict test")}
-            {metric("Safe fusion false-safe", safe_fusion.get('false_safe_count', '0'), "with review tradeoff")}
-            {metric("Review coverage", fmt(safe_fusion.get('coverage'), 3), "coverage after abstention")}
+        <section class="slide" data-title="Boundaries">
+          <div class="eyebrow">Do not overclaim</div>
+          <h2>The strongest demo is honest.</h2>
+          <div class="flow-grid">
+            <div class="flow-step"><div class="flow-title">Stable</div><div class="flow-body">Gold benchmark, Whisper baselines, CER/error/speaker-aware evaluation, router evidence.</div></div>
+            <div class="flow-step"><div class="flow-title">Experimental</div><div class="flow-body">Compute cascade, Mode B tiers, synthetic validation, model-scale and noise frontiers.</div></div>
+            <div class="flow-step"><div class="flow-title">Frontier only</div><div class="flow-body">AudioDepth, emotion/LLM, speaker profile, MeetEval optional paths, and agentic scaffolds.</div></div>
           </div>
-          {compact_table(unified, ['policy', 'mean_selected_cer', 'false_safe_count', 'high_error_mixed_count', 'review_rate', 'coverage'], 8)}
-        </section>
-        """,
-        f"""
-        <section class="slide" data-title="Runtime">
-          <div class="eyebrow">Act 4: can it run here?</div>
-          <h2>This demo is offline by design.</h2>
-          <p>Your current system Python lacks the full ASR/scientific stack. So the demo reads committed evidence and local media, then presents the whole project without pretending to rerun Whisper live.</p>
-          <div class="metrics">
-            {metric("Head-only router", head_runtime.get('mean_runtime_sec', '0.0001') + 's', "lightweight")}
-            {metric("All routes ASR", asr_runtime.get('mean_runtime_sec', '2.0924') + 's', "existing runtime record")}
-            {metric("Demo dependency", "none", "open demo/index.html")}
-          </div>
-          {compact_table(runtime, ['level', 'component', 'mean_runtime_sec', 'provenance'], 6)}
-        </section>
-        """,
-        f"""
-        <section class="slide" data-title="Close">
-          <div class="eyebrow">Final 60 seconds</div>
-          <h2>The honest ending is the strongest ending.</h2>
-          <p>Stable baseline: router_v2 on five gold cases. Whole-project contribution: a pipeline that combines data preparation, separation, postprocessing, adaptive routing, speaker-aware metrics, robustness checks, risk controls, and frontier scaffolds. AudioDepth is one attempt inside that larger story. Next proof: annotate the micro-gold pack and rerun gold/silver-separated evaluation.</p>
-          <div class="metrics">
-            {metric("Main claim", "narrow", "five-case gold benchmark")}
-            {metric("Project claim", "systematic", "complete evidence workflow")}
-            {metric("Next step", "micro-gold", "11 candidates ready")}
-          </div>
-          {figure('results/figures/final_evidence_levels.png', 'Evidence levels', 'Evidence-level boundary card.')}
+          <p class="source">{md_link("docs/implementation-status.md")} · {md_link("CONTRIBUTIONS.md")}</p>
         </section>
         """,
     ]
 
+    slide_data = {"minutes": 10}
     css = """
-    :root { --bg:#0b1020; --panel:#121a31; --text:#f5f7fb; --muted:#aab3c5; --line:#263453; --accent:#65d6ad; --hot:#ff7a70; --gold:#ffd166; }
-    * { box-sizing: border-box; }
-    body { margin:0; background: radial-gradient(circle at 10% 10%, #1b2a4a 0, #0b1020 36rem); color:var(--text); font: 16px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    :root { --bg:#07111f; --panel:#111c2f; --text:#f7f9fc; --muted:#b5c1d5; --line:#31415f; --accent:#66e0b5; --gold:#ffd166; --hot:#ff7a70; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#07111f; color:var(--text); font:16px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
     .shell { min-height:100vh; display:grid; grid-template-rows:auto 1fr auto; }
-    header, footer { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 1.35rem; border-color:var(--line); }
-    header { border-bottom:1px solid var(--line); background:rgba(8,12,25,.82); backdrop-filter: blur(14px); position:sticky; top:0; z-index:10; }
+    header, footer { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 1.35rem; border-color:var(--line); background:rgba(7,17,31,.92); }
+    header { border-bottom:1px solid var(--line); position:sticky; top:0; z-index:10; }
     footer { border-top:1px solid var(--line); color:var(--muted); }
-    .brand { font-weight:800; letter-spacing:0; }
-    .timer { font-variant-numeric: tabular-nums; color:var(--gold); }
-    .progress { height:.5rem; background:#1f2944; border-radius:999px; overflow:hidden; min-width:14rem; }
-    .progress span { display:block; height:100%; width:0; background:linear-gradient(90deg,var(--accent),var(--gold)); transition:width .2s ease; }
-    main { position:relative; overflow:hidden; }
-    .slide { display:none; min-height:calc(100vh - 8rem); padding:3rem clamp(1.2rem,4vw,4rem); animation: pop .25s ease; }
+    .brand { font-weight:850; }
+    .slide { display:none; min-height:calc(100vh - 8rem); padding:2.3rem clamp(1.2rem,3.4vw,3.5rem); }
     .slide.active { display:block; }
-    @keyframes pop { from { opacity:.2; transform: translateY(8px); } to { opacity:1; transform:none; } }
-    h1, h2 { max-width:66rem; margin:.2rem 0 1rem; line-height:1.02; letter-spacing:0; }
-    h1 { font-size:clamp(3rem,7vw,6.2rem); }
-    h2 { font-size:clamp(2.25rem,5vw,4.8rem); }
-    h3 { font-size:1.28rem; }
-    .lead, p { color:var(--muted); max-width:62rem; font-size:clamp(1.08rem,1.55vw,1.34rem); }
-    .eyebrow { color:var(--accent); font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
-    .metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(12rem,1fr)); gap:1rem; margin:1.4rem 0; max-width:72rem; }
-    .metric { border:1px solid var(--line); background:rgba(18,26,49,.76); border-radius:8px; padding:1rem; min-height:7rem; }
-    .metric-value { font-size:2.15rem; font-weight:850; color:var(--text); }
-    .metric-label { color:var(--accent); font-weight:750; }
-    .metric-note { color:var(--muted); font-size:.9rem; }
-    .figure-card { margin:1.3rem 0 0; width:min(100%,78rem); }
-    .figure-card a { display:block; }
-    .hero-img { width:min(100%,78rem); max-height:56vh; object-fit:contain; display:block; margin:0; border:1px solid var(--line); border-radius:8px; background:#fff; }
-    figcaption { color:var(--muted); margin-top:.45rem; font-size:1rem; }
+    h1, h2 { max-width:74rem; margin:.2rem 0 1rem; line-height:1.03; letter-spacing:0; }
+    h1 { font-size:clamp(3rem,7vw,6.3rem); }
+    h2 { font-size:clamp(2.1rem,5vw,4.8rem); }
+    h3 { margin:.1rem 0 .35rem; font-size:1.25rem; }
+    p { color:var(--muted); max-width:72rem; font-size:1.16rem; }
+    .lead { font-size:1.35rem; color:#d8e0ef; }
+    .eyebrow { color:var(--accent); font-weight:850; text-transform:uppercase; letter-spacing:.08em; }
+    a { color:#9fe7ff; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .metrics, .card-grid, .flow-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:1rem; margin:1.3rem 0; max-width:82rem; }
+    .metric, .card, .frontier-card, .flow-step { border:1px solid var(--line); background:rgba(17,28,47,.84); border-radius:8px; padding:1rem; }
+    .metric-value { font-size:2rem; font-weight:900; color:var(--text); }
+    .metric-label, .owner, .flow-title { color:var(--accent); font-weight:850; }
+    .metric-note, .source { color:var(--muted); font-size:.98rem; }
+    .big-source { font-size:1.2rem; }
+    .frontier-status, .visual-chip { display:inline-block; border:1px solid var(--line); border-radius:999px; padding:.2rem .55rem; color:var(--gold); font-weight:750; font-size:.86rem; }
+    .visual-chip { color:var(--accent); margin-top:.35rem; }
+    .figure-card { width:min(100%,82rem); margin:1rem 0; }
+    .hero-img { display:block; width:100%; max-height:56vh; object-fit:contain; background:white; border:1px solid var(--line); border-radius:8px; }
+    figcaption { color:var(--muted); margin-top:.45rem; }
     figcaption span { color:var(--gold); }
-    .image-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(18rem,1fr)); gap:1rem; margin-top:1.5rem; }
-    .image-grid img { width:100%; border:1px solid var(--line); border-radius:8px; background:white; }
-    .contribution-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(18rem,1fr)); gap:1rem; margin-top:1.5rem; max-width:78rem; }
-    .contribution-grid.compact { grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); }
-    .contribution-card { border:1px solid var(--line); background:rgba(18,26,49,.76); border-radius:8px; padding:1rem; min-height:12rem; }
-    .contribution-card h3 { margin:.1rem 0 .25rem; color:var(--text); font-size:1.12rem; }
-    .contribution-card p { font-size:.96rem; margin:.45rem 0; }
-    .owner { color:var(--accent); font-weight:800; }
-    .artifact { color:var(--gold); font-size:.86rem !important; }
-    .flow-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(18rem,1fr)); gap:1rem; max-width:78rem; margin-top:1.5rem; }
-    .flow-step { border:1px solid var(--line); border-radius:8px; background:rgba(18,26,49,.82); padding:1.1rem; min-height:9rem; }
-    .flow-title { color:var(--accent); font-size:1.18rem; font-weight:850; }
-    .flow-body { color:var(--text); font-size:1.1rem; margin-top:.55rem; }
-    table { border-collapse:collapse; width:min(100%,78rem); margin:1.3rem 0; font-size:1.04rem; background:rgba(18,26,49,.7); }
-    th, td { border:1px solid var(--line); padding:.72rem .82rem; text-align:left; }
-    th { color:var(--accent); background:#10182d; }
-    .challenge { display:grid; grid-template-columns: minmax(16rem, 28rem) 1fr; gap:1.2rem; align-items:start; margin-top:1.5rem; }
-    .case-card, .answer-card { border:1px solid var(--line); background:rgba(18,26,49,.78); border-radius:8px; padding:1rem; }
-    audio { width:100%; margin:.75rem 0; }
-    button { border:1px solid var(--line); background:#17213c; color:var(--text); border-radius:8px; padding:.7rem .9rem; font-weight:750; cursor:pointer; }
-    button:hover, button.active { border-color:var(--accent); color:var(--accent); }
-    .choices { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:.8rem; }
-    .answer { color:var(--gold); font-weight:800; font-size:1.3rem; }
-    .controls { display:flex; gap:.6rem; align-items:center; }
+    .image-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(20rem,1fr)); gap:1rem; margin-top:1rem; max-width:82rem; }
+    .image-grid img { width:100%; max-height:48vh; object-fit:contain; background:white; border:1px solid var(--line); border-radius:8px; }
+    table { border-collapse:collapse; width:min(100%,82rem); margin:1.1rem 0; font-size:1rem; background:rgba(17,28,47,.84); }
+    th, td { border:1px solid var(--line); padding:.68rem .75rem; text-align:left; vertical-align:top; }
+    th { color:var(--accent); background:#0c1628; }
+    .controls { display:flex; gap:.6rem; align-items:center; flex-wrap:wrap; }
+    button { border:1px solid var(--line); border-radius:8px; background:#17243a; color:var(--text); padding:.62rem .85rem; font-weight:800; cursor:pointer; }
+    button:hover { color:var(--accent); border-color:var(--accent); }
     .pill { border:1px solid var(--line); border-radius:999px; padding:.35rem .65rem; color:var(--muted); }
-    @media (max-width: 820px) { .challenge { grid-template-columns:1fr; } header { align-items:flex-start; flex-direction:column; } .progress { width:100%; } }
+    .progress { height:.5rem; background:#1d2a43; border-radius:999px; overflow:hidden; min-width:13rem; }
+    .progress span { display:block; height:100%; width:0; background:linear-gradient(90deg,var(--accent),var(--gold)); }
+    @media (max-width:820px) { header { flex-direction:column; align-items:flex-start; } .progress { width:100%; } }
     """
-
     js = f"""
     const DATA = {json.dumps(slide_data)};
     const params = new URLSearchParams(window.location.search);
@@ -439,21 +444,13 @@ def build_demo() -> str:
     const slides = [...document.querySelectorAll('.slide')];
     const bar = document.querySelector('#progressBar');
     const counter = document.querySelector('#counter');
-    const timer = document.querySelector('#timer');
-    const titles = document.querySelector('#titles');
-    const start = Date.now();
+    const title = document.querySelector('#titles');
     function show(i) {{
       current = Math.max(0, Math.min(slides.length - 1, i));
       slides.forEach((s, idx) => s.classList.toggle('active', idx === current));
       counter.textContent = `${{current + 1}} / ${{slides.length}}`;
+      title.textContent = slides[current].dataset.title || '';
       bar.style.width = `${{((current + 1) / slides.length) * 100}}%`;
-      titles.textContent = slides[current].dataset.title || '';
-    }}
-    function tick() {{
-      const elapsed = Math.floor((Date.now() - start) / 1000);
-      const total = DATA.minutes * 60;
-      const remain = Math.max(0, total - elapsed);
-      timer.textContent = `${{Math.floor(remain / 60)}}:${{String(remain % 60).padStart(2,'0')}}`;
     }}
     document.querySelector('#prev').onclick = () => show(current - 1);
     document.querySelector('#next').onclick = () => show(current + 1);
@@ -461,44 +458,10 @@ def build_demo() -> str:
       if (e.key === 'ArrowRight' || e.key === ' ') show(current + 1);
       if (e.key === 'ArrowLeft') show(current - 1);
     }});
-    function renderChallenge() {{
-      const root = document.querySelector('#challenge');
-      let idx = 0;
-      function draw(choice='') {{
-        const item = DATA.challengeCases[idx];
-        root.innerHTML = `
-          <div class="case-card">
-            <div class="eyebrow">Audio case ${{idx + 1}} of ${{DATA.challengeCases.length}}</div>
-            <h3>${{item.case}}</h3>
-            <audio controls src="${{item.audio}}"></audio>
-            <div class="choices">
-              ${{['keep mixed','separate','clean','review'].map(c => `<button class="${{choice===c?'active':''}}" data-choice="${{c}}">${{c}}</button>`).join('')}}
-            </div>
-            <div class="choices">
-              <button id="casePrev">Previous case</button>
-              <button id="caseNext">Next case</button>
-            </div>
-          </div>
-          <div class="answer-card">
-            <div class="eyebrow">Reveal</div>
-            ${{choice ? `<p>Your guess: <strong>${{choice}}</strong></p><p class="answer">Best route: ${{item.best}}</p><p>${{item.why}}</p>` : '<p>Make a guess first. The reveal is better when the room commits.</p>'}}
-          </div>`;
-        root.querySelectorAll('[data-choice]').forEach(btn => btn.onclick = () => draw(btn.dataset.choice));
-        root.querySelector('#casePrev').onclick = () => {{ idx = (idx + DATA.challengeCases.length - 1) % DATA.challengeCases.length; draw(); }};
-        root.querySelector('#caseNext').onclick = () => {{ idx = (idx + 1) % DATA.challengeCases.length; draw(); }};
-      }}
-      draw();
-    }}
-    renderChallenge();
     show(0);
-    tick();
-    setInterval(tick, 1000);
     if (autoplay) {{
       const stepMs = Math.floor((autoplaySeconds * 1000) / Math.max(1, slides.length - 1));
-      document.body.classList.add('recording-mode');
-      setInterval(() => {{
-        if (current < slides.length - 1) show(current + 1);
-      }}, stepMs);
+      setInterval(() => {{ if (current < slides.length - 1) show(current + 1); }}, stepMs);
     }}
     """
 
@@ -507,30 +470,27 @@ def build_demo() -> str:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Overlap-aware Speaker ASR Demo</title>
+  <title>Overlap-Aware Speaker ASR Online GitHub Demo</title>
   <style>{css}</style>
 </head>
 <body>
   <div class="shell">
     <header>
       <div>
-        <div class="brand">Overlap-aware Speaker ASR</div>
-        <div class="pill" id="titles">Hook</div>
+        <div class="brand">Overlap-Aware Speaker ASR · GitHub Online Demo</div>
+        <div class="pill" id="titles">Online Source</div>
       </div>
       <div class="controls">
         <button id="prev">Back</button>
         <button id="next">Next</button>
         <span class="pill" id="counter">1 / {len(slides)}</span>
-        <span class="timer" id="timer">10:00</span>
       </div>
-      <div class="progress" aria-label="slide progress"><span id="progressBar"></span></div>
+      <div class="progress"><span id="progressBar"></span></div>
     </header>
-    <main>
-      {''.join(slides)}
-    </main>
+    <main>{''.join(slides)}</main>
     <footer>
-      <span>Keys: Left / Right / Space. Recording URL: ?autoplay=1&amp;seconds=420.</span>
-      <span>Claim boundary: team baseline first, frontier attempts second.</span>
+      <span>Source: online GitHub main branch, contributors API, raw figures, README, CONTRIBUTIONS, docs/results.</span>
+      <span>Keys: Left / Right / Space. Autoplay: ?autoplay=1&amp;seconds=420.</span>
     </footer>
   </div>
   <script>{js}</script>
@@ -542,7 +502,7 @@ def build_demo() -> str:
 def main() -> int:
     DEMO_DIR.mkdir(parents=True, exist_ok=True)
     OUT.write_text(build_demo(), encoding="utf-8")
-    print(f"Wrote {OUT.relative_to(ROOT)}")
+    print(f"Wrote {OUT.relative_to(ROOT)} from {GH}/tree/{BRANCH}")
     return 0
 
 
