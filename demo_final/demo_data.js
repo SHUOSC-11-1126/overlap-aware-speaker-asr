@@ -949,19 +949,24 @@ window.DEMO_DATA = {
     },
     {
       "name": "吴方舟/wfzark（23123986）",
-      "role": "Core technical contributor; route-selection problem framer; main experimental pipeline owner; AudioDepth frontier explorer; team report and research-visualization contributor.",
-      "scope": "吴方舟的贡献主线是把项目从\"比较一个固定 ASR 输出\"推进为一个系统问题： when should an overlap-aware ASR system separate speech, keep mixed audio, or fall back to a safer route? 这一 framing 贯穿主实验、风险选择、前沿探索和 最终报告，使项目围绕 route selection、claim boundary 和 evidence level 组织，而不是只报告单一 CER 表",
+      "role": "Core technical contributor; route-selection problem framer; main experimental pipeline owner; AudioDepth frontier explorer; team report, research-visualization, and final portable demo contributor.",
+      "scope": "Advanced the project from comparing fixed ASR outputs into a route-selection system, then packaged the team research into a portable final demo with explicit evidence levels, source paths, and replay-demo boundaries.",
       "highlights": [
         "Mainline ASR pipeline and route-selection evidence across mixed, separated, cleaned, router v1/v2, risk-aware selector, and oracle comparisons.",
         "Evidence discipline and claim-boundary cleanup across gold, synthetic, held-out, optional integration, and frontier exploratory claims.",
-        "AudioDepth frontier research framed as branch-only acoustic triage and visualization, not a stable mainline router."
+        "Final portable team demo delivery under demo_final/, including the six-page static presentation, presenter runbook, evidence manifest, validation script, backup slides, and replay-demo boundary."
       ],
       "evidencePaths": [
         "results/figures/curated/current_results_summary.md",
         "docs/results-index.md",
         "docs/implementation-status.md",
         "REPORT.md",
-        "docs/frontier/audio-depth-router.md"
+        "docs/frontier/audio-depth-router.md",
+        "demo_final/index.html",
+        "demo_final/demo_data.js",
+        "demo_final/PRESENTER_RUNBOOK.md",
+        "demo_final/EVIDENCE_MANIFEST.md",
+        "demo_final/tests/validate_demo.py"
       ],
       "sourceId": "src_contributions"
     },

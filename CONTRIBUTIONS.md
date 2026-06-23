@@ -442,13 +442,51 @@ routing、frontier studies 和 limitations 展开。
 这些图表服务于报告表达，不引入新 benchmark claim；数值图读取 curated
 result tables，概念图明确标注为 decision surface / visualization。
 
-### 5. Contribution boundary
+### 5. Final portable team demo and presentation system
+
+在最终交付阶段，吴方舟进一步把项目整理成可直接用于课堂/答辩展示的
+团队级便携 Demo，而不是继续开发新的研究模型。该工作以 `main` 分支为
+团队事实来源，把 README、REPORT、CONTRIBUTIONS、implementation status、
+results index、报告图、frontier findings 和 AudioDepth branch-only 资产
+压缩成一个零依赖静态网页包：
+
+- `demo_final/index.html`：六页团队级演示入口，覆盖 Overview、Core Routing、
+  Separation Tax、Routing + Evaluation、Team Frontiers、Evidence；
+- `demo_final/demo_data.js`：把核心案例、CER、transcript、成员贡献卡片、
+  evidence level、source path、branch 和 commit/ref 直接内联，避免浏览器
+  `file://` 读取 JSON 时出现跨域问题；
+- `demo_final/PRESENTER_RUNBOOK.md`：设计 8 分钟双人演示流程，区分
+  Research Narrative、Demo Operator 和 Conclusion，限制点击路径和现场操作；
+- `demo_final/EVIDENCE_MANIFEST.md`：记录每个数字、图片、音频、transcript、
+  contribution card 和 AudioDepth asset 的来源分支、commit/ref 与 evidence
+  level；
+- `demo_final/tests/validate_demo.py`：验证便携性、无绝对路径、无伪 live
+  inference 表述、AudioDepth branch-only 标记、成员卡片完整性、缺失
+  transcript 边界、截图/音频/图片存在性；
+- `demo_final/backup_slides.html` 和 `demo_final/screenshots/`：提供 JS 或
+  音频失效时的备用展示路径。
+
+Demo 中的 Core Routing 页面只选择两个现场案例：`LightOverlap` 作为
+mixed-win case，`NoOverlap` 作为 control separated-win case。页面明确说明
+`LightOverlap` 的 raw separated transcript artifact 未随 main 打包，因此只展示
+已提交 CER 和 cleaned separated transcript，不重建、不伪造缺失 transcript；
+同时补充 `HeavyOverlap` 和 `OppositeOverlap` 在 gold CER table 中同样偏向
+separated ASR，避免观众误解为"分离只在无重叠时有效"。
+
+该 Demo 还将 AudioDepth 控制在 Team Frontiers 页面中，标记为
+Frontier Branch Only / Exploratory Research / Not merged into stable mainline /
+Not production-ready，并写明 AudioDepth 是 safety confirmer 和 interpretable
+auxiliary representation，不是 main production router。最终 Demo 通过 PR #879
+合并到 `main`，使其他组员无需切分支即可访问 `demo_final/`。
+
+### 6. Contribution boundary
 
 吴方舟的贡献重点是主 ASR 实验管线、route-selection framing、AudioDepth 前沿
-研究、证据边界维护和最终报告整合。已知限制仍然存在：gold benchmark 很小，
-synthetic / silver 证据不能替代 gold，real-meeting generalization 未完全证明，
-Stage-2 fallback / review policy 仍需更多验证，AudioDepth 需要独立评审后才
-能进入任何 stable mainline claim。
+研究、证据边界维护、最终报告整合和团队级便携 Demo 交付。已知限制仍然存在：
+gold benchmark 很小，synthetic / silver 证据不能替代 gold，real-meeting
+generalization 未完全证明，Stage-2 fallback / review policy 仍需更多验证，
+AudioDepth 需要独立评审后才能进入任何 stable mainline claim；最终 Demo 是
+replay demo，展示已提交实验产物，不是 live inference 系统。
 
 ## 谢宇轩 (xyx12369)
 
