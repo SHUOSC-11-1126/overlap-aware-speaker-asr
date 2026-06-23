@@ -574,41 +574,39 @@ def build_demo() -> str:
 """
 
 
-def print_terminal_result_summary() -> None:
-    rows = [
-        ("Fixed mixed CER", "0.302", "baseline: mixed audio only"),
-        ("router_v2 CER", "0.120", "gold benchmark; matches oracle without CER input"),
-        ("Separation crossover", "r* ~= 0.17", "below this, separation tends to hurt ASR"),
-        ("Hallucination detector", "AUC ~= 1.0", "compression ratio catches catastrophic hallucination"),
-        ("Heavy-tail failure", "6/600 tracks; CER up to 24x", "separation tax is not uniform"),
-        ("Model scale", "Whisper-base = 1.93x compute", "online result: separation tax disappears"),
-        ("Noise router", "~92% oracle gap recovered", "frontier: robust routing under noise"),
-        ("LLM repair", "0/26 helped; CER 0.316 -> 0.798", "negative result: do not overclaim repair"),
-        ("Emotion frontier", "7x LLM emotion coverage", "emotion objective differs from transcript CER"),
-    ]
+def print_terminal_result_summary(readme: str, generated_html: str) -> None:
+    rows = [(row["Finding"], row["Result"], row["Evidence"]) for row in parse_quick_results(readme)]
     width_1 = max(len(r[0]) for r in rows)
     width_2 = max(len(r[1]) for r in rows)
     print()
     print("=" * 78)
-    print("DEMO RESULTS TO SHOW")
+    print("LIVE RUN CHECKS")
     print("=" * 78)
-    for name, value, meaning in rows:
-        print(f"{name:<{width_1}}  {value:<{width_2}}  {meaning}")
+    print(f"Generated HTML:     {generated_html}")
+    print("Evidence source:    online GitHub main README / CONTRIBUTIONS / docs")
+    print("What was computed:  HTML rebuild + source parsing + link/content checks")
+    print("What was NOT run:   Whisper, LLM, emotion, MeetEval, AudioDepth experiments")
+    print()
+    print("=" * 78)
+    print("PUBLISHED RESULTS PARSED FROM ONLINE README (NOT RECOMPUTED LIVE)")
+    print("=" * 78)
+    for name, value, evidence in rows:
+        print(f"{name:<{width_1}}  {value:<{width_2}}  {evidence}")
     print("-" * 78)
     print("Open manual demo:    http://127.0.0.1:8765/demo/index.html")
     print("Open autoplay demo:  http://127.0.0.1:8765/demo/index.html?autoplay=1&seconds=420")
-    print("Main sentence: router_v2 reduces gold CER from fixed mixed 0.302 to 0.120;")
-    print("then frontier work shows separation depends on overlap, model scale, noise,")
-    print("and downstream objective such as emotion.")
+    print("Honest sentence: the terminal run rebuilds the demo and parses published")
+    print("GitHub evidence; it does not recompute the model experiments live.")
     print("=" * 78)
     print()
 
 
 def main() -> int:
     DEMO_DIR.mkdir(parents=True, exist_ok=True)
+    readme = fetch_text("README.md")
     OUT.write_text(build_demo(), encoding="utf-8")
     print(f"Wrote {OUT.relative_to(ROOT)} from {GH}/tree/{BRANCH}")
-    print_terminal_result_summary()
+    print_terminal_result_summary(readme, str(OUT.relative_to(ROOT)))
     return 0
 
 
