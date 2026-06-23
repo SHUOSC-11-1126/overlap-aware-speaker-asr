@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ASR Transcript Effect Demo</title>
+  <style>
+    :root { color-scheme: light; --ink:#101828; --muted:#526071; --line:#d8dee8; --soft:#f4f7fb; --blue:#1f5eff; --green:#087f5b; --red:#c92a2a; --panel:#ffffff; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#eef3f8; color:var(--ink); font:17px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    header { position:sticky; top:0; z-index:10; background:rgba(255,255,255,.94); border-bottom:1px solid var(--line); padding:1rem clamp(1rem,3vw,2.5rem); display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+    .brand { font-weight:900; }
+    nav { display:flex; gap:.5rem; flex-wrap:wrap; }
+    nav a { border:1px solid var(--line); border-radius:7px; padding:.42rem .62rem; color:var(--ink); text-decoration:none; background:white; font-weight:750; }
+    main { padding:1.3rem clamp(1rem,3vw,2.5rem) 3rem; }
+    .hero, .case-card { max-width:1480px; margin:0 auto 1.2rem; background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:clamp(1rem,2vw,1.5rem); box-shadow:0 12px 35px rgba(16,24,40,.06); }
+    .hero h1 { font-size:clamp(2.2rem,4.5vw,5rem); line-height:1.03; margin:.2rem 0 1rem; letter-spacing:0; }
+    .hero p, .lesson { color:var(--muted); max-width:82rem; font-size:1.08rem; }
+    .eyebrow { color:var(--blue); font-weight:900; text-transform:uppercase; letter-spacing:.06em; margin:0 0 .35rem; }
+    .case-top { display:grid; grid-template-columns:minmax(0,1fr) minmax(22rem,34rem); gap:1rem; align-items:start; }
+    h2 { font-size:clamp(1.8rem,3.4vw,3.6rem); line-height:1.08; margin:.1rem 0 .6rem; letter-spacing:0; }
+    .audio-box { background:var(--soft); border:1px solid var(--line); border-radius:8px; padding:1rem; display:grid; gap:.6rem; }
+    .audio-box span { font-weight:850; color:var(--green); }
+    audio { width:100%; }
+    .metrics { display:grid; grid-template-columns:repeat(4,minmax(12rem,1fr)); gap:.75rem; margin:1rem 0; }
+    .metric { border:1px solid var(--line); border-radius:8px; padding:.85rem; background:#fbfcfe; }
+    .metric-value { font-size:1.65rem; font-weight:950; }
+    .metric-label { font-weight:900; color:var(--blue); }
+    .metric-note { color:var(--muted); font-size:.92rem; }
+    .transcript-grid { display:grid; grid-template-columns:repeat(4,minmax(16rem,1fr)); gap:.75rem; }
+    .transcript { border:1px solid var(--line); border-radius:8px; overflow:hidden; background:white; min-height:24rem; }
+    .panel-head { display:flex; align-items:center; justify-content:space-between; gap:.5rem; padding:.75rem .85rem; border-bottom:1px solid var(--line); background:#f8fafc; }
+    .panel-head h3 { margin:0; font-size:1.02rem; }
+    .panel-head span { color:var(--green); font-size:.82rem; font-weight:800; white-space:nowrap; }
+    pre { margin:0; white-space:pre-wrap; word-break:break-word; font:1rem/1.65 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; padding:.85rem; max-height:31rem; overflow:auto; }
+    .source { color:var(--muted); font-size:.95rem; margin-bottom:0; }
+    .live-command { display:block; width:max-content; max-width:100%; background:#111827; color:#f9fafb; border-radius:8px; padding:.75rem .9rem; overflow:auto; font:1rem/1.45 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
+    @media (max-width:1180px) { .metrics, .transcript-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .case-top { grid-template-columns:1fr; } }
+    @media (max-width:720px) { header { align-items:flex-start; flex-direction:column; } .metrics, .transcript-grid { grid-template-columns:1fr; } pre { max-height:24rem; } }
+    </style>
+</head>
+<body>
+  <header>
+    <div class="brand">Overlap-Aware Speaker ASR / Transcript Effect</div>
+    <nav><a href="#LightOverlap">LightOverlap</a><a href="#HeavyOverlap">HeavyOverlap</a><a href="#NoOverlap">NoOverlap</a><a href="#OppositeOverlap">OppositeOverlap</a><a href="./index.html">Main deck</a></nav>
+  </header>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Direct teacher-facing demo</p>
+      <h1>Play the audio, then compare what ASR actually recognized.</h1>
+      <p>This page turns the committed experiment artifacts into a visible ASR demo: local audio playback, verified reference text, mixed Whisper output, separated speaker output when present, cleaned separated output, and CER/error counts recomputed from local CSV tables. It is designed for a stable classroom demo without downloading models.</p>
+      <code class="live-command">python3 -m scripts.build_asr_effect_demo &amp;&amp; python3 -m http.server 8765</code>
+    </section>
+    
+    <section class="case-card" id="LightOverlap">
+      <div class="case-top">
+        <div>
+          <p class="eyebrow">ASR transcript effect / LightOverlap</p>
+          <h2>Light overlap: mixed ASR wins</h2>
+          <p class="lesson">A light-overlap clip can be harmed by separation because the separated route adds insertions and repetitions.</p>
+        </div>
+        <div class="audio-box">
+          <span>Play mixed audio</span>
+          <audio controls preload="metadata" src="../resources/mixed_audio/LightOverlap.wav"></audio>
+        </div>
+      </div>
+      <div class="metrics">
+        
+      <div class="metric">
+        <div class="metric-value">0.211</div>
+        <div class="metric-label">Mixed CER</div>
+        <div class="metric-note">direct Whisper on mixed audio</div>
+      </div>
+    
+        
+      <div class="metric">
+        <div class="metric-value">0.475</div>
+        <div class="metric-label">Separated CER</div>
+        <div class="metric-note">insertions 54, repetitions 38</div>
+      </div>
+    
+        
+      <div class="metric">
+        <div class="metric-value">0.382</div>
+        <div class="metric-label">Cleaned CER</div>
+        <div class="metric-note">removed 6 duplicated segments</div>
+      </div>
+    
+        
+      <div class="metric">
+        <div class="metric-value">mixed whisper</div>
+        <div class="metric-label">Best route</div>
+        <div class="metric-note">CER 0.211</div>
+      </div>
+    
+      </div>
+      <div class="transcript-grid">
+        
+      <article class="transcript">
+        <div class="panel-head">
+          <h3>Reference transcript</h3>
+          <span>human-verified</span>
+        </div>
+        <pre>[SPEAKER_1] 你方是要，那它是怎么缓解我们的空虚的？ [SPEAKER_2] 它让你在那个时间段里拥有了自己。 [SPEAKER_1] 没问题，没问题，先不着急。 [SPEAKER_2] 哪怕这个自己是一个刷抖音的自己。 [SPEAKER_2] 我方这里再稍微解释一下。 [SPEAKER_1] 因为有一个前提性的问题没有讨论。 [SPEAKER_1] 现在讲的熬夜，所谓的熬夜就是晚睡晚起，是吧？ [SPEAKER_2] 其实布洛芬也是一种毒药。 [SPEAKER_1] 好，我先聊晚睡晚起。 [SPEAKER_2] 我方觉得晚睡晚起也是熬夜。 [SPEAKER_2] 晚睡早起也是熬夜了。 [SPEAKER_1] 既然你是晚睡晚起。 [SPEAKER_1] 你上班的时间必定也晚。 [SPEAKER_2] 因为你可以早睡早起。 [SPEAKER_1] 你下班的时间必定也晚。 [SPEAKER_2] 因为你可以为了身体健康。 [SPEAKER_1] 那你个人的生活空间必定也就这么点。 [SPEAKER_2] 早睡晚起。 [SPEAKER_1] 你是怎么多出额外的时间来过自己的生活的？ [SPEAKER_2] 不太一致。 [SPEAKER_2] 我可以给你解释。 [SPEAKER_1] 我的意思是，两点睡十点起。 [SPEAKER_2] 你没有多两个小时。 [SPEAKER_2] 但是你自己的时候是多两个小时。 [SPEAKER_2] 我可以给你解释。</pre>
+      </article>
+    
+        
+      <article class="transcript">
+        <div class="panel-head">
+          <h3>Mixed Whisper output</h3>
+          <span>asr output</span>
+        </div>
+        <pre>你方式要 那他是怎么缓解我们的空虚的他让你在那个时间段里拥有了自己没问题 没问题 你先不着急哪怕这个自己是一个刷抖音的自己因为有一个前提性的问题 没有讨论我方这里再稍微解释一下他实在讲的熬夜所谓的熬夜就是晚睡晚起 是吧其实部落分义是一种要好 我先聊晚睡晚起方觉得晚睡晚起也是熬夜既然你是晚睡晚起晚睡早起也是熬夜了你上班的时间必定也晚因为你可以早睡早起你下班的时间必定也晚因为你可以为了身体健康健康那你个人的生活空间必定也就这么低早睡晚起你是怎么多出额外的时间来过自己的生活的不太一致我可以给你解释我的意思是2点睡10点起你没有多两个小时但是你自己的时候是多两个吗我可以给你解释</pre>
+      </article>
+    
+        
+      <article class="transcript">
+        <div class="panel-head">
+          <h3>Separated speaker output</h3>
+          <span>speaker route</span>
+        </div>
+        <pre>Raw separated transcript JSON is not present in this checkout. The CER row is still shown from results/tables/cer_results.csv.</pre>
+      </article>
+    
+        
+      <article class="transcript">
+        <div class="panel-head">
+          <h3>Cleaned separated output</h3>
+          <span>postprocessed</span>
+        </div>
+        <pre>[SPEAKER_1] 你方式要 那他是怎么缓解我们的空虚的 [SPEAKER_2] 他让你在那个时间段里拥有了自己 [SPEAKER_1] 没问题 没问题 你先不着急 [SPEAKER_2] 哪怕这个自己是一个刷抖音的自己 [SPEAKER_2] 我往这里再稍微解释一下 [SPEAKER_1] 因为有一个前提性的问题 没有讨论 [SPEAKER_2] 其实部落分也是一种 [SPEAKER_1] 实在讲的熬夜所谓的熬夜就是晚睡晚起 是吧 [SPEAKER_2] 刚觉得晚睡晚起也是熬夜 [SPEAKER_1] 好 我先聊晚睡晚起 [SPEAKER_2] 晚睡早起也是熬夜了 [SPEAKER_1] 既然你是晚睡晚起 [SPEAKER_1] 你上班的时间必定也晚 [SPEAKER_2] 因为你可以早睡早起 [SPEAKER_2] 因为你可以为了身体健康 [SPEAKER_2] 早睡晚睡 [SPEAKER_1] 那你个人的生活空间必定也就这么点 [SPEAKER_2] 不太一致 [SPEAKER_2] 我可以给你解释 [SPEAKER_1] 你是怎么多出额外的时间来过自己的生活的 [SPEAKER_2] 你没有多两个小时 [SPEAKER_2] 但是你自己的时候是多两个小时 [SPEAKER_1] 我的意思是2点10点起 [SPEAKER_2] 我可以给你解释 [SPEAKER_2] 我可以解释 [SPEAKER_1] 2点10点起</pre>
+      </article>
+    
+      </div>
+      <p class="source">local audio + committed transcript JSON + committed CER CSV</p>
+    </section>
+    
+
+    <section class="case-card" id="HeavyOverlap">
+      <div class="case-top">
+        <div>
+          <p class="eyebrow">ASR transcript effect / HeavyOverlap</p>
+          <h2>Heavy overlap: separation helps</h2>
+          <p class="lesson">A heavy-overlap clip shows the opposite behavior: mixed ASR misses too much speech, while the separated route is much closer.</p>
+        </div>
+        <div class="audio-box">
+          <span>Play mixed audio</span>
+          <audio controls preload="metadata" src="../resources/mixed_audio/HeavyOverlap.wav"></audio>
+        </div>
+      </div>
+      <div class="metrics">
+        
+      <div class="metric">
+        <div class="metric-value">0.387</div>
+        <div class="metric-label">Mixed CER</div>
+        <div class="metric-note">direct Whisper on mixed audio</div>
+      </div>
+    
+        
+      <div class="metric">
+        <div class="metric-value">0.109</div>
+        <div class="metric-label">Separated CER</div>
+        <div class="metric-note">insertions 4, repetitions 3</div>
+      </div>
+    
+        
+      <div class="metric">
+        <div class="metric-value">0.146</div>
+        <div class="metric-label">Cleaned CER</div>
+        <div class="metric-note">removed 1 duplicated segments</div>
+      </div>
+    
+        
+      <div class="metric">
+        <div class="metric-value">separated whisper</div>
+        <div class="metric-label">Best route</div>
+        <div class="metric-note">CER 0.109</div>
+      </div>
+    
+      </div>
+      <div class="transcript-grid">
+        
+      <article class="transcript">
+        <div class="panel-head">
+          <h3>Reference transcript</h3>
+          <span>human-verified</span>
+        </div>
+        <pre>[SPEAKER_1] 你方是要，那它是怎么缓解我们的空虚的？ [SPEAKER_2] 它让你在那个时间段里拥有了自己。 [SPEAKER_1] 没问题，先不着急。 [SPEAKER_2] 哪怕这个自己是一个刷抖音的自己。 [SPEAKER_2] 我方这里再稍微解释一下。 [SPEAKER_1] 因为有一个前提性的问题没有讨论。 [SPEAKER_2] 其实布洛芬也是一种毒药。 [SPEAKER_1] 现在讲的熬夜，所谓的熬夜就是晚睡晚起，是吧？ [SPEAKER_2] 我方觉得晚睡晚起也是熬夜。 [SPEAKER_1] 好，我先聊晚睡晚起。 [SPEAKER_2] 晚睡早起也是熬夜了。 [SPEAKER_1] 既然你是晚睡晚起。 [SPEAKER_2] 因为你可以早睡早起。 [SPEAKER_1] 你上班的时间必定也晚。 [SPEAKER_2] 因为你可以为了身体健康。 [SPEAKER_1] 你下班的时间必定也晚。 [SPEAKER_1] 那你个人的生活空间必定也就这么点。 [SPEAKER_2] 早睡晚起。 [SPEAKER_1] 你是怎么多出额外的时间来过自己的生活的？ [SPEAKER_2] 不太一致。 [SPEAKER_2] 我可以给你解释。 [SPEAKER_1] 我的意思是，两点睡十点起。 [SPEAKER_2] 你比我多两个小时，但是你自己是不一样的吗？ [SPEAKER_2] 我可以给你解释。</pre>
+      </article>
+    
+        
+      <article class="transcript">
+        <div class="panel-head">
+          <h3>Mixed Whisper output</h3>
+          <span>asr output</span>
+        </div>
+        <pre>你方式要 那他是怎么缓解我们的风气他让你在那个时间段里拥有了自己没问题 没问题 什么招式他觉得自己是一个刷抖音的自己因为有一个前提性的话我说你再稍微解释一下他实在讲的熬夜所谓的熬夜就是晚睡晚睡不过分一是要好 我先聊晚睡晚睡晚睡晚起也是熬夜既然你是晚睡晚起晚睡早起也是熬夜了你上班的时间比你别晚因为你可以早睡早起你下班的时间比你别晚那你个人的生活空间比地牙要这么近怎么睡起来你是怎么多出额外的时间来过自己的不太一致我可以给你解释我的意思是两点睡十点你没有多两小时但是你自己的时候也多两小时我可以给你解释</pre>
+      </article>
+    
+        
+      <article class="transcript">
+        <div class="panel-head">
+          <h3>Separated speaker output</h3>
+          <span>speaker route</span>
+        </div>
+        <pre>Raw separated transcript JSON is not present in this checkout. The CER row is still shown from results/tables/cer_results.csv.</pre>
+      </article>
+    
+        
+      <article class="transcript">
+        <div class="panel-head">
+          <h3>Cleaned separated output</h3>
+          <span>postprocessed</span>
+        </div>
+        <pre>[SPEAKER_1] 你方式要 那他是怎么缓解我们的空虚的 [SPEAKER_2] 他让你在那个时间段里拥有了自己 [SPEAKER_1] 没问题 先不着急 [SPEAKER_2] 哪怕这个自己是一个刷抖音的自己 [SPEAKER_2] 我往这里再稍微解释一下 [SPEAKER_1] 因为有一个前提性的问题 没有讨论 [SPEAKER_2] 其实部落分也是一种 [SPEAKER_1] 实在讲的熬夜所谓的熬夜就是晚睡晚起 是吧 [SPEAKER_2] 刚觉得晚睡晚起也是熬夜 [SPEAKER_1] 好 我先聊晚睡晚起 [SPEAKER_2] 晚睡早起也是熬夜了 [SPEAKER_1] 既然你是晚睡晚起 [SPEAKER_2] 因为你可以早睡早起 [SPEAKER_1] 你上班的时间必定也晚 [SPEAKER_2] 因为你可以为了身体健康 [SPEAKER_1] 那你个人的生活空间必定也就这么点 [SPEAKER_2] 走睡干涉 [SPEAKER_1] 你是怎么多出额外的时间来过自己的生活的 [SPEAKER_2] 不太一致 [SPEAKER_2] 我可以给你解释 [SPEAKER_1] 我的意思是2点岁10点起 [SPEAKER_2] 你没有多两个小时 [SPEAKER_2] 但是你自己的时候 [SPEAKER_2] 你多两个小时 [SPEAKER_2] 我可以给你解释</pre>
+      </article>
+    
+      </div>
+      <p class="source">local audio + committed transcript JSON + committed CER CSV</p>
+    </section>
+    
+
+    <section class="case-card" id="NoOverlap">
+      <div class="case-top">
+        <div>
+          <p class="eyebrow">ASR transcript effect / NoOverlap</p>
+          <h2>No overlap: speaker-aware route is clean</h2>
+          <p class="lesson">The non-overlap baseline is useful in a live demo because the raw separated transcript is stored locally and easy to compare.</p>
+        </div>
+        <div class="audio-box">
+          <span>Play mixed audio</span>
+          <audio controls preload="metadata" src="../resources/mixed_audio/NoOverlap.wav"></audio>
+        </div>
+      </div>
+      <div class="metrics">
+        
+      <div class="metric">
+        <div class="metric-value">0.216</div>
+        <div class="metric-label">Mixed CER</div>
+        <div class="metric-note">direct Whisper on mixed audio</div>
+      </div>
+    
+        
+      <div class="metric">
+        <div class="metric-value">0.054</div>
+        <div class="metric-label">Separated CER</div>
+        <div class="metric-note">insertions 1, repetitions 3</div>
+      </div>
+    
+        
+      <div class="metric">
+        <div class="metric-value">0.090</div>
+        <div class="metric-label">Cleaned CER</div>
+        <div class="metric-note">removed 1 duplicated segments</div>
+      </div>
+    
+        
+      <div class="metric">
+        <div class="metric-value">separated whisper</div>
+        <div class="metric-label">Best route</div>
+        <div class="metric-note">CER 0.054</div>
+      </div>
+    
+      </div>
+      <div class="transcript-grid">
+        
+      <article class="transcript">
+        <div class="panel-head">
+          <h3>Reference transcript</h3>
+          <span>human-verified</span>
+        </div>
+        <pre>[SPEAKER_1] 你方是要，那它是怎么缓解我们的空虚的？ [SPEAKER_2] 它让你在那个时间段里拥有了自己。 [SPEAKER_1] 没问题，没问题，先不着急。 [SPEAKER_2] 哪怕这个自己是一个刷抖音的自己。 [SPEAKER_2] 我方这里再稍微解释一下。 [SPEAKER_1] 因为有一个前提性的问题没有讨论。 [SPEAKER_1] 现在讲的熬夜，所谓的熬夜就是晚睡晚起，是吧？ [SPEAKER_2] 其实布洛芬也是一种毒药。 [SPEAKER_1] 好，我先聊晚睡晚起。 [SPEAKER_2] 我方觉得晚睡晚起也是熬夜。 [SPEAKER_2] 晚睡早起也是熬夜了。 [SPEAKER_1] 既然你是晚睡晚起。 [SPEAKER_1] 你上班的时间必定也晚。 [SPEAKER_2] 因为你可以早睡早起。 [SPEAKER_1] 你下班的时间必定也晚。 [SPEAKER_2] 因为你可以为了身体健康。 [SPEAKER_1] 那你个人的生活空间必定也就这么点。 [SPEAKER_2] 早睡晚起。 [SPEAKER_1] 你是怎么多出额外的时间来过自己的生活的？ [SPEAKER_2] 不太一致。 [SPEAKER_2] 我可以给你解释。 [SPEAKER_1] 我的意思是，两点睡十点起。 [SPEAKER_2] 你没有多两个小时。 [SPEAKER_2] 但是你自己的时候是多两个。 [SPEAKER_2] 我可以给你解释。</pre>
+      </article>
+    
+        
+      <article class="transcript">
+        <div class="panel-head">
+          <h3>Mixed Whisper output</h3>
+          <span>asr output</span>
+        </div>
+        <pre>你方式要 那他是怎么缓解我们的空虚的他让你在那个时间段里拥有了自己没问题 没问题 先不着急哪怕这个自己是一个刷抖音的自己因为有一个前提性的问题 没有讨论我方这里再稍微解释一下实在讲的熬夜所谓的熬夜就是晚睡晚起 是吧其实部落分义是一种要好 我先聊晚睡晚起方觉得晚睡晚起也是熬夜既然你是晚睡晚起晚睡早起也上午夜了没问题上班的时间必定也晚因为你可以早睡早起下班的时间必定也晚因为你可以为了身体健康那你个人的生活空间必定也就这么点早睡晚起你是怎么多出额外的时间来过自己的生活的不太一致我可以给你解释我的意思是2点睡10点起你没有多两个小时但是你自己的时候我可以给你解释</pre>
+      </article>
+    
+        
+      <article class="transcript">
+        <div class="panel-head">
+          <h3>Separated speaker output</h3>
+          <span>speaker route</span>
+        </div>
+        <pre>[SPEAKER_1] 你方式要 那他是怎么缓解我们的空虚的 [SPEAKER_2] 他让你在那个时间段里拥有了自己 [SPEAKER_1] 没问题 没问题 先不着急 [SPEAKER_2] 哪怕这个自己是一个刷抖音的自己 [SPEAKER_2] 我往这里再稍微解释一下 [SPEAKER_1] 因为有一个前提性的问题 没有讨论 [SPEAKER_1] 实在讲的熬夜所谓的熬夜就是晚睡晚起 是吧 [SPEAKER_2] 其实部落分也是一种 [SPEAKER_1] 好 我先聊晚睡晚起 [SPEAKER_2] 我刚觉得晚睡晚起也是熬夜 [SPEAKER_2] 晚睡早起也是熬夜了 [SPEAKER_1] 既然你是晚睡晚起 [SPEAKER_1] 你上班的时间必定也晚 [SPEAKER_2] 因为你可以早睡早起 [SPEAKER_1] 你下班的时间必定也晚 [SPEAKER_2] 因为你可以为了身体健康 [SPEAKER_1] 那你个人的生活空间必定也就这么点 [SPEAKER_2] 早睡晚睡 [SPEAKER_1] 你是怎么多出额外的时间来过自己的生活的 [SPEAKER_2] 不太一致 [SPEAKER_2] 我可以给你解释 [SPEAKER_1] 我的意思是2点睡10点起 [SPEAKER_2] 你没有多两个小时 [SPEAKER_2] 但是你自己的时候是多两个 [SPEAKER_2] 我可以给你解释</pre>
+      </article>
+    
+        
+      <article class="transcript">
+        <div class="panel-head">
+          <h3>Cleaned separated output</h3>
+          <span>postprocessed</span>
+        </div>
+        <pre>[SPEAKER_1] 你方式要 那他是怎么缓解我们的空虚的 [SPEAKER_2] 他让你在那个时间段里拥有了自己 [SPEAKER_1] 没问题 没问题 先不着急 [SPEAKER_2] 哪怕这个自己是一个刷抖音的自己 [SPEAKER_2] 我往这里再稍微解释一下 [SPEAKER_1] 因为有一个前提性的问题 没有讨论 [SPEAKER_1] 实在讲的熬夜所谓的熬夜就是晚睡晚起 是吧 [SPEAKER_2] 其实部落分也是一种 [SPEAKER_1] 好 我先聊晚睡晚起 [SPEAKER_2] 我刚觉得晚睡晚起也是熬夜 [SPEAKER_2] 晚睡早起也是熬夜了 [SPEAKER_1] 既然你是晚睡晚起 [SPEAKER_1] 你上班的时间必定也晚 [SPEAKER_2] 因为你可以早睡早起 [SPEAKER_2] 因为你可以为了身体健康 [SPEAKER_1] 那你个人的生活空间必定也就这么点 [SPEAKER_2] 早睡晚睡 [SPEAKER_1] 你是怎么多出额外的时间来过自己的生活的 [SPEAKER_2] 不太一致 [SPEAKER_2] 我可以给你解释 [SPEAKER_1] 我的意思是2点睡10点起 [SPEAKER_2] 你没有多两个小时 [SPEAKER_2] 但是你自己的时候是多两个 [SPEAKER_2] 我可以给你解释</pre>
+      </article>
+    
+      </div>
+      <p class="source">local audio + committed transcript JSON + committed CER CSV</p>
+    </section>
+    
+
+    <section class="case-card" id="OppositeOverlap">
+      <div class="case-top">
+        <div>
+          <p class="eyebrow">ASR transcript effect / OppositeOverlap</p>
+          <h2>Opposite overlap: mixed ASR collapses</h2>
+          <p class="lesson">This case makes the routing story intuitive: the mixed transcript deletes a lot, while the separated route nearly matches the reference.</p>
+        </div>
+        <div class="audio-box">
+          <span>Play mixed audio</span>
+          <audio controls preload="metadata" src="../resources/mixed_audio/OppositeOverlap.wav"></audio>
+        </div>
+      </div>
+      <div class="metrics">
+        
+      <div class="metric">
+        <div class="metric-value">0.518</div>
+        <div class="metric-label">Mixed CER</div>
+        <div class="metric-note">direct Whisper on mixed audio</div>
+      </div>
+    
+        
+      <div class="metric">
+        <div class="metric-value">0.047</div>
+        <div class="metric-label">Separated CER</div>
+        <div class="metric-note">insertions 0, repetitions 3</div>
+      </div>
+    
+        
+      <div class="metric">
+        <div class="metric-value">0.083</div>
+        <div class="metric-label">Cleaned CER</div>
+        <div class="metric-note">removed 1 duplicated segments</div>
+      </div>
+    
+        
+      <div class="metric">
+        <div class="metric-value">separated whisper</div>
+        <div class="metric-label">Best route</div>
+        <div class="metric-note">CER 0.047</div>
+      </div>
+    
+      </div>
+      <div class="transcript-grid">
+        
+      <article class="transcript">
+        <div class="panel-head">
+          <h3>Reference transcript</h3>
+          <span>human-verified</span>
+        </div>
+        <pre>[SPEAKER_1] 你方是要，那它是怎么缓解我们的空虚的？ [SPEAKER_2] 它让你在那个时间段里拥有了自己。 [SPEAKER_1] 没问题，先不着急。 [SPEAKER_2] 哪怕这个自己是一个刷抖音的自己。 [SPEAKER_2] 我方这里再稍微解释一下。 [SPEAKER_1] 因为有一个前提性的问题没有讨论。 [SPEAKER_2] 其实布洛芬也是一种毒药。 [SPEAKER_1] 现在讲的熬夜，所谓的熬夜就是晚睡晚起，是吧？ [SPEAKER_2] 我方觉得晚睡晚起也是熬夜。 [SPEAKER_1] 好，我先聊晚睡晚起。 [SPEAKER_1] 既然你是晚睡晚起。 [SPEAKER_2] 晚睡早起也是熬夜了。 [SPEAKER_1] 你上班的时间必定也晚。 [SPEAKER_2] 因为你可以早睡早起。 [SPEAKER_1] 你下班的时间必定也晚。 [SPEAKER_2] 因为你可以为了身体健康。 [SPEAKER_2] 早睡晚起。 [SPEAKER_1] 那你个人的生活空间必定也就这么点。 [SPEAKER_2] 不太一致。 [SPEAKER_1] 你是怎么多出额外的时间来过自己的生活的？ [SPEAKER_2] 我可以给你解释。 [SPEAKER_1] 我的意思是，两点睡十点起。 [SPEAKER_2] 你没有多两个小时，但是你自己的时候有多两个吗？ [SPEAKER_2] 我可以给你解释。</pre>
+      </article>
+    
+        
+      <article class="transcript">
+        <div class="panel-head">
+          <h3>Mixed Whisper output</h3>
+          <span>asr output</span>
+        </div>
+        <pre>你方式要 那他是怎么玩他让你在那个时间段里拥有了自己没问题 没问题你先不着急他说自己是一个刷抖音的自己因为有一个前提你先有问题你先好好说实在讲的熬夜所谓的熬夜就是晚睡这不获分一种要熬夜到晚睡少夜晚睡早睡没问题你上班的时候是定期网你下班的时候是定期网那你个人的生活空间两岁晚睡你是怎么多出额外的时间我可以给你解释我什么意思是两点你没有多两点但是你自己的时候有多两的吗我可以给你解释</pre>
+      </article>
+    
+        
+      <article class="transcript">
+        <div class="panel-head">
+          <h3>Separated speaker output</h3>
+          <span>speaker route</span>
+        </div>
+        <pre>Raw separated transcript JSON is not present in this checkout. The CER row is still shown from results/tables/cer_results.csv.</pre>
+      </article>
+    
+        
+      <article class="transcript">
+        <div class="panel-head">
+          <h3>Cleaned separated output</h3>
+          <span>postprocessed</span>
+        </div>
+        <pre>[SPEAKER_1] 你方式要 那他是怎么缓解我们的空虚的 [SPEAKER_2] 他让你在那个时间段里拥有了自己 [SPEAKER_1] 没问题 先不着急 [SPEAKER_2] 哪怕这个自己是一个刷抖音的自己 [SPEAKER_2] 我往这里再稍微解释一下 [SPEAKER_1] 因为有一个前提性的问题 没有讨论 [SPEAKER_2] 其实部落分也是一种 [SPEAKER_1] 实在讲的熬夜所谓的熬夜就是晚睡晚起 是吧 [SPEAKER_2] 我刚觉得晚睡晚起也是熬夜 [SPEAKER_1] 好 我先聊晚睡晚起 [SPEAKER_1] 既然你是晚睡晚起 [SPEAKER_2] 晚睡早起也是熬夜了 [SPEAKER_1] 你上班的时间必定也晚 [SPEAKER_2] 因为你可以早睡早起 [SPEAKER_2] 因为你可以为了身体健康 [SPEAKER_2] 早睡晚睡 [SPEAKER_1] 那你个人的生活空间必定也就这么点 [SPEAKER_2] 不太一致 [SPEAKER_1] 你是怎么多出额外的时间来过自己的生活的 [SPEAKER_2] 我可以给你解释 [SPEAKER_1] 我的意思是两点睡十点起 [SPEAKER_2] 你没有多两个小时 [SPEAKER_2] 但是你自己的时候 [SPEAKER_2] 你多两个吗 [SPEAKER_2] 我可以给你解释</pre>
+      </article>
+    
+      </div>
+      <p class="source">local audio + committed transcript JSON + committed CER CSV</p>
+    </section>
+    
+  </main>
+</body>
+</html>

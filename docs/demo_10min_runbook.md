@@ -4,15 +4,19 @@
 
 The current system Python is `3.14` and lacks the project scientific/ASR dependencies (`PyYAML`, `numpy`, `scipy`, `soundfile`, `matplotlib`, Whisper-compatible ASR). A live ASR rerun is therefore not the reliable demo path on this machine.
 
-The recommended demo is a static GitHub-online evidence deck:
+The recommended demo has two stable local surfaces:
 
 ```bash
+python3 -m scripts.build_asr_effect_demo
 python3 -m scripts.build_static_demo
 python3 -m scripts.run_live_results_demo
+open demo/asr_effect.html
 open demo/index.html
 ```
 
-It rebuilds the HTML from the online GitHub `main` branch: README, `CONTRIBUTIONS.md`, implementation status, results index, contributor API, and raw GitHub figures. It does not call Whisper, NumPy, or Streamlit.
+`demo/asr_effect.html` is the direct teacher-facing ASR demo. It plays the local mixed audio and shows the verified reference transcript, mixed Whisper output, separated-speaker output when stored locally, cleaned separated output, and CER/error counts loaded from committed result tables. It does not rerun Whisper live; it visualizes the saved experiment artifacts so the presentation stays reliable.
+
+`demo/index.html` is the whole-project GitHub-online evidence deck. It rebuilds the HTML from the online GitHub `main` branch: README, `CONTRIBUTIONS.md`, implementation status, results index, contributor API, and raw GitHub figures. It does not call Whisper, NumPy, or Streamlit.
 
 For live result calculation, run `python3 -m scripts.run_live_results_demo`. This recomputes gold CER averages, best-by-case routing, error-type counts, speaker-aware CER, and synthetic silver averages from committed CSV tables. It does not rerun Whisper or LLM models, so it is safe for a short presentation.
 
@@ -43,8 +47,8 @@ If a teammate's research track cannot be rerun on this laptop, present it throug
 | 0:00-1:00 | Whole-project hook | Present the complete pipeline: data, separation, ASR, cleaning, routing, evaluation, frontier work. |
 | 1:00-2:20 | Contribution map and ledger | Show the six contribution lanes from `CONTRIBUTIONS.md`; make it clear this is team work. |
 | 2:20-3:00 | Team highlights | Emphasize Whisper/separation baseline, router_v2, evaluation, synthetic validation, LLM/RAG, and demo/visualization. |
-| 3:00-4:00 | Listen and guess | Play one or two gold audio clips in the route challenge. |
-| 4:00-4:45 | Stable result | Show router_v2 vs fixed routes on the five-case gold benchmark. |
+| 3:00-4:20 | Listen and read | Open `demo/asr_effect.html`; play LightOverlap and HeavyOverlap, then compare reference vs recognized text. |
+| 4:20-5:00 | Stable result | Run `python3 -m scripts.run_live_results_demo` and show router_v2/oracle-style best-by-case results from CSV. |
 | 4:45-5:30 | Evaluation contribution | Show why CER, speaker-aware CER, cpCER-lite, and error-type analysis matter. |
 | 5:30-6:10 | Router lesson | Show why separation is a route decision, not a universal rule. |
 | 6:10-6:50 | Frontier breadth | Cover compute-aware cascade, MeetEval/cpWER, speaker profile, LLM critic/RAG, external validation, and demo excellence. |
@@ -54,12 +58,12 @@ If a teammate's research track cannot be rerun on this laptop, present it throug
 
 ## Fun Interaction
 
-Use the second slide as a mini-game:
+Use `demo/asr_effect.html` as a mini-game:
 
 1. Play a clip.
 2. Ask the audience to vote: keep mixed, separate, clean, or review.
 3. Click the answer.
-4. Emphasize that the surprising cases are LightOverlap and MidOverlap, where separation can hurt.
+4. Emphasize that LightOverlap is the surprising failure case where separation hurts, while HeavyOverlap and OppositeOverlap are the intuitive success cases where separation helps.
 
 ## Speaker Notes
 
@@ -71,6 +75,6 @@ Use the second slide as a mini-game:
 
 ## Fallback
 
-If audio playback fails in a browser, skip the audio player and use the same slide as a route-choice quiz. The visual and table evidence still works offline.
+If audio playback fails in a browser, skip the audio player and use the transcript columns as a route-choice quiz. The reference text, ASR output, and CER table evidence still works offline.
 
 If a research track cannot be rerun locally, say: "This part is not being recomputed live on this laptop; the committed artifact is the evidence surface." Then show the linked artifact and continue. This is safer than attempting a slow model download or a dependency install during a 10 minute demo.

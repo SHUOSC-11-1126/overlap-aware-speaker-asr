@@ -257,9 +257,11 @@ def build_demo() -> str:
             {metric("Total demo", "10 min", "7 min slides + 3 min GitHub walkthrough")}
             {metric("Main proof", "data first", "do not rely on blurry screenshots")}
             {metric("Human contributors", str(len(human_contributors(contributors))), "from GitHub contributors API")}
+            {metric("Direct ASR page", "asr_effect.html", "play audio and compare recognized text")}
           </div>
           {compact_table(run_order_rows, ["Time", "Speaker focus", "What to show"], 8)}
           <p class="source big-source"><a href="{esc(online_source)}" target="_blank" rel="noreferrer">{esc(online_source)}</a></p>
+          <p class="source big-source"><a href="./asr_effect.html">Open local ASR transcript effect demo</a></p>
           {talk("Opening sentence", "This project asks when separation helps or hurts multi-speaker ASR, and the answer changes by overlap, model scale, noise, and downstream objective.")}
         </section>
         """,
@@ -595,6 +597,8 @@ def print_terminal_result_summary(readme: str, generated_html: str) -> None:
     print("-" * 78)
     print("Open manual demo:    http://127.0.0.1:8765/demo/index.html")
     print("Open autoplay demo:  http://127.0.0.1:8765/demo/index.html?autoplay=1&seconds=420")
+    print("Open ASR text demo:  http://127.0.0.1:8765/demo/asr_effect.html")
+    print("Build ASR text demo: python3 -m scripts.build_asr_effect_demo")
     print("Run live table calc: python3 -m scripts.run_live_results_demo")
     print("Honest sentence: the terminal run rebuilds the demo and parses published")
     print("GitHub evidence; it does not recompute the model experiments live.")
