@@ -595,6 +595,7 @@ def print_terminal_result_summary(readme: str, generated_html: str) -> None:
     print("-" * 78)
     print("Open manual demo:    http://127.0.0.1:8765/demo/index.html")
     print("Open autoplay demo:  http://127.0.0.1:8765/demo/index.html?autoplay=1&seconds=420")
+    print("Run live table calc: python3 -m scripts.run_live_results_demo")
     print("Honest sentence: the terminal run rebuilds the demo and parses published")
     print("GitHub evidence; it does not recompute the model experiments live.")
     print("=" * 78)

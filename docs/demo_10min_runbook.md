@@ -8,10 +8,13 @@ The recommended demo is a static GitHub-online evidence deck:
 
 ```bash
 python3 -m scripts.build_static_demo
+python3 -m scripts.run_live_results_demo
 open demo/index.html
 ```
 
 It rebuilds the HTML from the online GitHub `main` branch: README, `CONTRIBUTIONS.md`, implementation status, results index, contributor API, and raw GitHub figures. It does not call Whisper, NumPy, or Streamlit.
+
+For live result calculation, run `python3 -m scripts.run_live_results_demo`. This recomputes gold CER averages, best-by-case routing, error-type counts, speaker-aware CER, and synthetic silver averages from committed CSV tables. It does not rerun Whisper or LLM models, so it is safe for a short presentation.
 
 ## Whole-project Demo Rule
 
