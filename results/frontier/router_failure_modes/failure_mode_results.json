@@ -1,0 +1,118 @@
+{
+  "label": "experimental/frontier",
+  "rq": "RQ12: Router v2 failure-mode decomposition on AISHELL-4",
+  "closes_issue": 895,
+  "source_data": "results/external_sanity_check/aishell4/rq1_aishell4_validation_results.json",
+  "source_label": "external/sanity-check",
+  "method": "reanalysis only (no Whisper / no ASR run); CR recomputed from stored text via zlib",
+  "meeting_id": "M_R003S02C01",
+  "n_windows": 77,
+  "n_failure_windows": 11,
+  "router_v2_accuracy": 0.8571,
+  "total_routing_regret": 14.5,
+  "total_regret_vs_always_mixed": 2.5,
+  "avg_routing_regret": 0.188312,
+  "avg_regret_vs_always_mixed": 0.032468,
+  "cr_threshold": 2.4,
+  "cr_proxy_note": "max CR across per-speaker CONCATENATED separated text (lower bound on Whisper's per-segment max CR; conservative for H12b)",
+  "failure_modes": {
+    "separated_hallucination_cr_caught": {
+      "n_windows": 1,
+      "routing_regret": 0.666667,
+      "share_of_routing_regret": 0.045977,
+      "bootstrap_ci_95": [
+        0.0,
+        0.181818
+      ]
+    },
+    "separated_hallucination_cr_missed": {
+      "n_windows": 8,
+      "routing_regret": 9.833333,
+      "share_of_routing_regret": 0.678161,
+      "bootstrap_ci_95": [
+        0.333333,
+        1.0
+      ]
+    },
+    "mixed_hallucination": {
+      "n_windows": 2,
+      "routing_regret": 4.0,
+      "share_of_routing_regret": 0.275862,
+      "bootstrap_ci_95": [
+        0.0,
+        0.619048
+      ]
+    },
+    "wrong_route_nonhalluc": {
+      "n_windows": 0,
+      "routing_regret": 0,
+      "share_of_routing_regret": 0.0,
+      "bootstrap_ci_95": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "hallucination_shares": {
+    "separated_hallucination_regret": 10.5,
+    "separated_hallucination_share": 0.724138,
+    "any_hallucination_regret": 14.5,
+    "any_hallucination_share": 1.0
+  },
+  "cr_sensitivity": {
+    "n_separated_hallucination_windows": 37,
+    "n_cr_caught": 1,
+    "sensitivity": 0.027027,
+    "bootstrap_ci_95": [
+      0.0,
+      0.088235
+    ],
+    "h12b_supported": true
+  },
+  "multi_speaker": {
+    "n_failure_windows_multi_speaker": 2,
+    "routing_regret": 2.0,
+    "share_of_routing_regret": 0.137931
+  },
+  "silence_gate_addressable": {
+    "upper_bound_regret": 10.5,
+    "upper_bound_share": 0.724138,
+    "conservative_cr_caught_only_regret": 0.666667,
+    "conservative_cr_caught_only_share": 0.045977,
+    "h12c_verdict": "CANNOT CONFIRM (gate not run; reanalysis only). Upper bound 72.4% > 30%, but conservative (CR-caught-only) bound 4.6% < 30%. The CR evidence shows the hallucination is predominantly diverse (low CR), questioning whether the silence gate (designed for the repetitive confident-attractor) would fix it."
+  },
+  "router_vs_always_mixed_decomposition": {
+    "sep_picked": 25,
+    "sep_won": 16,
+    "sep_lost": 9,
+    "gain_from_sep_won": 8.0,
+    "loss_from_sep_lost": 10.5,
+    "net": -2.5,
+    "net_per_window": -0.032468,
+    "interpretation": "Router is worse than always-mixed because the 9 separated-picked hallucination losses (gross loss) exceed the 16 correct separated picks' gains. If the separated hallucination were eliminated, the router would beat always-mixed."
+  },
+  "hypothesis_verdicts": {
+    "H12a": {
+      "statement": "silence-gap hallucination > 50% of routing regret",
+      "separated_hallucination_share": 0.724138,
+      "any_hallucination_share": 1.0,
+      "supported": true
+    },
+    "H12b": {
+      "statement": "CR threshold (2.4) has < 50% sensitivity",
+      "sensitivity": 0.027027,
+      "bootstrap_ci_95": [
+        0.0,
+        0.088235
+      ],
+      "supported": true
+    },
+    "H12c": {
+      "statement": "silence-aware gate fixes > 30% of routing regret",
+      "upper_bound_share": 0.724138,
+      "conservative_share": 0.045977,
+      "supported": null,
+      "verdict": "CANNOT CONFIRM (gate not run; reanalysis only). Upper bound 72.4% > 30%, but conservative (CR-caught-only) bound 4.6% < 30%. The CR evidence shows the hallucination is predominantly diverse (low CR), questioning whether the silence gate (designed for the repetitive confident-attractor) would fix it."
+    }
+  }
+}
