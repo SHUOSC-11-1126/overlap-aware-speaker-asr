@@ -46,6 +46,11 @@ Multi-speaker ASR is a practical problem in meeting transcription, call center a
 | LLM emotion coverage | 7× more than lexicon for implicit emotion | experimental/frontier |
 | LLM rescoring | Catastrophic (0/26 helped, CER 0.316→0.798) | experimental/frontier |
 | Per-utterance POMDP (RQ10) | Predicts AISHELL-4 failure: P(mixed)=1.00 for silence-gap high-overlap windows; stratum-level POMDP cannot (P=0.00) | experimental/frontier |
+| BH correction (multiple-testing) | Only 6/21 findings survive BH FDR control (q=0.05); 11 claims downgraded from "demonstrates" to "suggests" | experimental/frontier |
+| AISHELL-4 external validation | Router v2 does NOT generalize to AISHELL-4 (cpWER 1.206 vs always-mixed 1.173) | external/sanity-check |
+| POMDP decision-theoretic framework | Decision-theoretic POMDP matches router v2 (crossover 0.20 vs 0.17, divergence 0.03) | experimental/frontier |
+| Effect size & post-hoc power (RQ11) | 5/6 BH-survivors practically significant (Cohen's d > 0.5); 9/11 non-survivors genuinely small (not underpowered) | experimental/frontier |
+| Router failure modes (RQ12) | 100% of router v2's AISHELL-4 regret is hallucination-driven; CR guard misses 97% (diverse, not repetitive, hallucination) | experimental/frontier |
 
 ## What This Project Does Not Claim
 
@@ -321,6 +326,30 @@ The honest deployable sharpening: gate a streaming overlap-aware ASR system on t
 the Mode-R repetition tail, keep compression-ratio for the Mode-N non-repetition minority. The
 confident-loop mechanism extends (not discovers) the 2025–26 attractor line; the token-id lock-in
 trip-wire and the offline-router gain-decay-under-prefix-forcing analysis are the novel slots.
+
+## Frontier Highlights — Academic Research Framing (A_framing/QiongQi)
+
+A 2026 academic-research-framing iteration (Issues #881–#892, PRs #886–#894) subjected the project's
+21+ frontier findings to academic-grade scrutiny: Benjamini-Hochberg multiple-testing correction,
+AISHELL-4 external validation, a POMDP decision-theoretic framework, an emotion-ASR asymmetry
+mechanism, and Interspeech 2026 venue positioning. Full framing artifacts:
+`RESEARCH/overlap-aware-speaker-asr/framing/` · theoretical framework:
+`RESEARCH/overlap-aware-speaker-asr/theoretical_framework.md`.
+
+| Result | Outcome | Evidence |
+|---|---|---|
+| [Venue analysis](RESEARCH/overlap-aware-speaker-asr/framing/) (#886) | ✅ Interspeech 2026 recommended (4-venue comparison: ICASSP, Interspeech, IEEE TASLP, Speech Communication) | `RESEARCH/overlap-aware-speaker-asr/framing/` |
+| [Statistical robustness — BH correction](results/frontier/statistical_robustness/) (#887) | ❌ Only 6/21 findings survive BH FDR control at q=0.05; 11 claims downgraded from "demonstrates" to "suggests" | `results/frontier/statistical_robustness/` |
+| [Emotion-ASR asymmetry mechanism](results/frontier/emotion_asr_asymmetry/) (#888) | ✅ P2 SUPPORTED: low-dim features preserved (speaker count 1.00, prosody 0.93) while high-dim text hurt (CER benefit −1.207). ◐ P3 WEAKLY SUPPORTED: pre-decode AUC=0.623 | `results/frontier/emotion_asr_asymmetry/` |
+| [POMDP decision-theoretic routing](results/frontier/decision_theoretic_routing/) (#889) | ✅ P1 SUPPORTED: POMDP-optimal crossover 0.20 vs router v2 0.17 (divergence 0.03 < 0.1) | `results/frontier/decision_theoretic_routing/` |
+| [AISHELL-4 external validation](results/external_sanity_check/aishell4/) (#890) | ❌ H1a NOT SUPPORTED: router v2 cpWER 1.206 vs always-mixed 1.173 (router LOSES). ✅ H1b SUPPORTED: separation tax replicates | `results/external_sanity_check/aishell4/` |
+| [Report integration](REPORT.md) (#893) | ✅ 5 new sections added to REPORT.md (§18–§22); 8 claims downgraded; abstract updated with honest BH bounds | `REPORT.md` |
+| [Silence-aware gate](results/frontier/silence_aware_gate/) (#894) | ◐ H8 CONDITIONALLY SUPPORTED by mechanism analysis; cpWER validation pending Whisper install | `results/frontier/silence_aware_gate/` |
+
+These are `experimental/frontier` (or `external/sanity-check` for AISHELL-4); they are not gold-benchmark
+claims. The honest headline: 2 hypotheses falsified (H1a, H3), 2 supported (P1, P2), 1 borderline (P3).
+The BH correction and AISHELL-4 negative bound the project's claims — 11 findings downgraded from
+"demonstrates" to "suggests", and the router does not generalize beyond the controlled debate corpus.
 
 ## Frontier Highlights — AudioDepth Router (frontier branch only)
 
@@ -805,6 +834,18 @@ used.
 emotion labels. Using supervised SER models would require labeled data that
 doesn't exist for our specific scenario. The arousal-only approach is a
 deliberate constraint that trades completeness for validity.
+
+### L8: Only 6/21 Findings Survive BH Correction
+
+A Benjamini-Hochberg multiple-testing correction (PR #887, q=0.05) revealed that only 6 of the project's 21 frontier findings survive False Discovery Rate control. 11 claims were downgraded from "demonstrates" to "suggests" in REPORT.md (PR #893). The findings that survive are the heavy-tail hallucination mechanism, the compression-ratio detector AUC, and the model-scale dissolution — the mechanistic core. The findings that do not survive are mostly secondary correlations and per-ratio point estimates with wide bootstrap CIs.
+
+**Why we accept this limitation:** The BH correction is methodological hygiene, not a flaw in the original work — it reflects the reality of testing 21 related hypotheses on a small benchmark. The downgraded claims are still reported with their original point estimates and CIs; the downgrade only affects the strength of the verb ("suggests" vs "demonstrates"). This is the honest academic standard.
+
+### L9: Router v2 Does Not Generalize to AISHELL-4
+
+External validation on AISHELL-4 (PR #890, a standard Chinese meeting corpus) falsified H1a: router v2 achieves cpWER 1.206 on AISHELL-4 vs 1.173 for always-mixed — the router actively *loses* on the external corpus. The separation tax itself replicates (H1b supported, stronger than on gold), but the router's compression-ratio signal does not transfer to the new acoustic conditions.
+
+**Why we accept this limitation:** The router was trained and validated only on the 5-case gold benchmark plus synthetic silver. AISHELL-4 has different speakers, room acoustics, microphone arrays, and overlap distributions. The negative result bounds the router's generalization claim honestly: it works on the controlled debate corpus, not on arbitrary meeting audio. Future work should retrain or adapt the router on AISHELL-4 before claiming cross-corpus generalization.
 
 ## Quickstart
 

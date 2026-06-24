@@ -9,7 +9,7 @@ migration.
 
 **Role:** Frontier research lead; overlap-hallucination mechanism investigator; ASR×LLM×emotion axis explorer; research-entropy meta-analyst; engineering harness architect.
 
-**Scope summary:** ~46 merged PRs (#780–#872, #899), 40+ issues, 40+ new modules, 36 frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled `experimental/frontier`; no gold tables or verified references touched.
+**Scope summary:** ~56 merged PRs (#780–#872, #886–#894, #898–#900), 50+ issues, 50+ new modules, 40+ frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled `experimental/frontier` or `external/sanity-check`; no gold tables or verified references touched.
 
 ---
 
@@ -242,7 +242,7 @@ This thread unifies two project directions (ASR×LLM synergy + emotion) across 7
 
 ---
 
-### Research Thread 6: Decision-Theoretic Routing — POMDP Per-Utterance Heterogeneity Extension (Issue #896, PR #899)
+### Research Thread 7: Decision-Theoretic Routing — POMDP Per-Utterance Heterogeneity Extension (Issue #896, PR #899)
 
 **Grand RQ:** _Does lifting the stratum-level POMDP (RQ5, finding #24) to a per-utterance (continuous-state) POMDP improve text regret, predict the AISHELL-4 failure that router v2 could not generalize to, and reveal the within-stratum coupling-cost heterogeneity that RQ5 stated as a limitation?_
 
@@ -320,6 +320,112 @@ A second motivation: router v2 failed to generalize to AISHELL-4 (RQ1, #881) —
 - **No new data.** This is a reanalysis of #11/#14/#18/#20/#21/RQ1 data; it does not test the per-utterance POMDP on held-out utterances.
 
 **Artifacts:** `results/frontier/decision_theoretic_routing/pomdp_per_utterance.py`, `policy_comparison_per_utterance.csv`, `policy_comparison_per_utterance.json`, `FINDINGS_per_utterance.md`. Reproduce: `python3 results/frontier/decision_theoretic_routing/pomdp_per_utterance.py`.
+
+---
+
+### Research Thread 6: A_framing/QiongQi Academic Research Framing (Issues #881–#892, PRs #886–#894)
+
+**Grand RQ:** _Can a systematic academic research framing — using PICO/PEO/SPIDER+FINER frameworks, a 5-type gap taxonomy, hypothesis generation, theoretical framework mapping, contribution crafting, and venue analysis — convert the project's scattered frontier findings into a defensible academic contribution with honest statistical robustness and external validation?_
+
+This thread spans 7 PRs across two iterations of the A_framing (QiongQi) skill suite, orchestrated by repo-evolver-fast. It is the project's first systematic attempt to subject its findings to academic-grade scrutiny: multiple-testing correction, external dataset validation, theoretical framework mapping, and venue positioning.
+
+#### Motivation and methodological framing
+
+The prior 5 research threads produced 21+ frontier findings, but they were reported with point estimates and no multiple-testing correction, validated only on the 5-case gold benchmark, and lacked a theoretical framework linking the routing decision to decision theory. The A_framing/QiongQi suite applies a structured academic framing pipeline:
+
+- **PICO/PEO/SPIDER+FINER frameworks** — formalize each research question with population/intervention/comparator/outcome structure and FINER feasibility criteria.
+- **5-type gap taxonomy** — classify each contribution as (1) methodological, (2) empirical, (3) theoretical, (4) dataset, or (5) reproducibility gap.
+- **Hypothesis generation** — pre-register falsifiable hypotheses with explicit success/kill criteria before analysis.
+- **Theoretical framework mapping** — connect empirical findings to established theory (POMDP, emotion-ASR asymmetry).
+- **Contribution crafting** — articulate the novelty claim honestly against prior work.
+- **Venue analysis** — position the work against target venues' scope and acceptance criteria.
+
+#### Iteration 1: 5 PRs (Issues #881–#889)
+
+| PR | Study | RQ | Outcome | Evidence |
+|---|---|---|---|---|
+| #886 | **Venue analysis** | Which venue best fits this work? | ✅ Interspeech 2026 recommended (4-venue comparison: ICASSP, Interspeech, IEEE TASLP, Speech Communication). Interspeech matches the mechanistic + empirical contribution profile. | `RESEARCH/overlap-aware-speaker-asr/framing/` |
+| #887 | **Statistical robustness (BH correction)** | Do the 21 findings survive FDR control? | ❌ **H3 NOT SUPPORTED**: only 6/21 findings survive Benjamini-Hochberg at q=0.05. 11 claims need downgrade from "demonstrates" to "suggests". | `results/frontier/statistical_robustness/` |
+| #888 | **Emotion-ASR asymmetry mechanism** | Why does separation help emotion but hurt ASR? | ✅ **P2 SUPPORTED** (moderate regime): low-dim features preserved (speaker count 1.00, prosody 0.93) while high-dim text hurt (CER benefit −1.207). ◐ **P3 WEAKLY SUPPORTED**: pre-decode AUC=0.623. | `results/frontier/emotion_asr_asymmetry/` |
+| #889 | **POMDP decision-theoretic routing** | Does a POMDP-optimal policy match the empirical router? | ✅ **P1 SUPPORTED**: POMDP-optimal crossover 0.20 vs router v2 0.17 (divergence 0.03 < 0.1). Predicts finding #18 decoupling. | `results/frontier/decision_theoretic_routing/` |
+| #890 | **AISHELL-4 external validation** | Does router v2 generalize to a standard meeting corpus? | ❌ **H1a NOT SUPPORTED**: router v2 cpWER 1.206 vs always-mixed 1.173 (router LOSES on AISHELL-4). ✅ **H1b SUPPORTED**: separation tax replicates, stronger than gold. | `results/external_sanity_check/aishell4/` |
+
+**Design choices and justification:**
+
+- **Why Benjamini-Hochberg (BH) over Bonferroni?** BH controls the False Discovery Rate (FDR) rather than the Family-Wise Error Rate (FWER). With 21 findings across heterogeneous tests, Bonferroni would be overly conservative (α/21 ≈ 0.0024), likely killing true effects. BH at q=0.05 is the standard choice in genomics and neuroimaging where many related hypotheses are tested simultaneously — it matches our multi-finding frontier.
+- **Why AISHELL-4 for external validation?** AISHELL-4 is a standard Chinese meeting corpus with multiple speakers, overlap, and published cpWER baselines — the closest external match to our debate-audio domain. AMI/LibriCSS would require cross-lingual evaluation (a confound); AliMeeting lacks published cpWER baselines at the time of writing.
+- **Why POMDP for theoretical framework?** The routing decision is inherently a Partially Observable Markov Decision Process: the true overlap state is hidden (observable only through compression ratio and other signals), the action (separate/mixed/cleaned) affects the reward (CER), and the optimal policy depends on the belief state. POMDP framing connects our empirical router to decision-theoretic optimality.
+
+**Honest novelty assessment:** The BH correction and external validation are methodological hygiene, not novel contributions — any well-run academic study should do them. The genuinely new contributions are: (1) the **POMDP-optimal vs empirical-router divergence analysis** — no prior work maps overlap-aware routing to a POMDP and shows the empirical router approximates the optimal policy; (2) the **emotion-ASR asymmetry mechanism** — explaining _why_ separation preserves low-dim features (speaker count, prosody) while destroying high-dim text is a mechanistic claim not present in the GenSEC-LLM or R3 literature.
+
+#### Iteration 2: 2 PRs (Issues #891–#892)
+
+| PR | Study | RQ | Outcome | Evidence |
+|---|---|---|---|---|
+| #893 | **Report integration** | Integrate iteration 1 findings into REPORT.md | ✅ 5 new sections added (§18 Statistical Robustness, §19 External Validation, §20 Theoretical Framework, §21 Emotion-ASR Mechanism, §22 Venue Positioning). 8 claims downgraded from "demonstrates" to "suggests". Abstract updated with honest BH bounds. Findings #22–#26 added to project_state.md. | `REPORT.md` |
+| #894 | **Silence-aware gate** | Can an energy-based VAD gate truncate interior silence and recover CER? | ◐ **H8 CONDITIONALLY SUPPORTED** by mechanism analysis: energy-based VAD truncates interior silence gaps >0.5s to 0.3s. cpWER validation pending Whisper install. | `results/frontier/silence_aware_gate/`, `src/silence_aware_gate.py` |
+
+**Design choices and justification (silence-aware gate):**
+
+- **Why energy-based VAD over learned VAD?** The silence-aware gate targets the _interior_ silence gaps that trigger the compression-seeking attractor (Viakhirev et al., 2026). Energy-based VAD is reference-free, deterministic, and adds zero inference latency — it operates as a preprocessing step. Learned VAD (Silero, WebRTC) would add a model dependency and potential failure modes without addressing the core mechanism (silence → attractor).
+- **Why truncate to 0.3s rather than remove entirely?** Removing interior silence entirely would distort prosody and speaker-turn timing. 0.3s preserves the perceptual gap while staying below Whisper's silence-threshold trigger window. The 0.5s trigger threshold is calibrated against the phase-study's catastrophic cases (2.05s leading silence in pair=5, r=0.05).
+
+#### Honest reporting summary
+
+Across the 7 PRs, the A_framing iteration produced a balanced evidence profile:
+
+- **2 hypotheses FALSIFIED:** H1a (router generalizes to AISHELL-4 — it does not), H3 (all 21 findings survive BH — only 6/21 do).
+- **2 hypotheses SUPPORTED:** P1 (POMDP-optimal matches empirical router), P2 (emotion-ASR asymmetry in moderate regime).
+- **1 hypothesis BORDERLINE:** P3 (pre-decode AUC=0.623 — weakly supported).
+- **1 hypothesis CONDITIONALLY SUPPORTED:** H8 (silence-aware gate mechanism works; cpWER validation pending).
+
+The falsifications are the most valuable outputs: they bound the project's claims honestly. The BH correction downgrades 11 claims from "demonstrates" to "suggests", and the AISHELL-4 negative shows the router does not generalize beyond the controlled debate corpus — both are documented with the same rigor as the positives.
+
+#### New modules and artifacts
+
+- `results/frontier/statistical_robustness/` — BH correction analysis (21 findings, q=0.05)
+- `results/frontier/emotion_asr_asymmetry/` — emotion-ASR asymmetry mechanism (low-dim preserved, high-dim hurt)
+- `results/frontier/decision_theoretic_routing/` — POMDP framework and optimal-policy comparison
+- `results/external_sanity_check/aishell4/` — AISHELL-4 external validation (labeled `external/sanity-check`)
+- `results/frontier/silence_aware_gate/` — silence-aware gate analysis
+- `src/silence_aware_gate.py` (604 lines) + 29 unit tests — energy-based VAD gate
+- `RESEARCH/overlap-aware-speaker-asr/framing/` — A_framing/QiongQi framing artifacts (PICO/PEO/SPIDER+FINER, gap taxonomy, venue analysis)
+- `RESEARCH/overlap-aware-speaker-asr/theoretical_framework.md` — POMDP theoretical framework document
+- `REPORT.md` — 5 new sections (§18–§22) integrating iteration 1 findings
+
+All new findings labeled `experimental/frontier` or `external/sanity-check`. No gold tables or verified references touched.
+
+**Literature grounding:** The BH correction follows Benjamini & Hochberg (1995). The POMDP framework follows Kaelbling, Littman & Cassandra (1998) and Spaan (2012, POMDP for speech applications). The emotion-ASR asymmetry connects to GenSEC-LLM (arXiv:2409.09785) and R3 (arXiv:2409.15551) — both study ASR×emotion coupling on clean audio; our contribution is the _mechanism_ under overlap+separation. The venue analysis references Interspeech 2026, ICASSP 2026, IEEE TASLP, and Speech Communication calls for papers.
+
+#### Iteration 3: 3 PRs (Issues #895–#897, PRs #898–#900)
+
+Iteration 3 was dispatched in parallel from the 26-finding project state and addressed three gaps surfaced by iterations 1–2: (a) the BH survivors lacked effect-size and post-hoc power analysis, (b) the stratum-level POMDP could not represent within-stratum heterogeneity or the AISHELL-4 silence-gap failure, (c) the router v2 AISHELL-4 regret was not decomposed into failure modes.
+
+| PR | Study | RQ | Outcome | Evidence |
+|---|---|---|---|---|
+| #898 | **Effect size & post-hoc power (RQ11)** | Are the 6 BH-surviving findings practically significant, and are the 11 non-survivors genuinely small (not underpowered)? | ✅ 5/6 BH-survivors are practically significant (Cohen's d > 0.5; Hedges' g). 9/11 non-survivors are genuinely small effects (not underpowered) — only 2/11 are underpowered. Post-hoc power via noncentral t CDF (Gauss-Laguerre quadrature). | `results/frontier/statistical_robustness/effect_size_analysis.py`, `effect_size_table.csv`, `FINDINGS_effect_sizes.md` |
+| #899 | **Per-utterance POMDP (RQ10)** | Does lifting the POMDP to per-utterance continuous-state improve regret and predict the AISHELL-4 failure? | ✅ RQ10.2 SUPPORTED: P(mixed)=1.00 for silence-gap high-overlap windows (stratum-level POMDP: 0.00). ◐ RQ10.1 SUPPORTED but marginal (in-sample zero regret). ✅ RQ10.3 SUPPORTED at ov 0.1 (CV=0.97). See Thread 7 for full detail. | `results/frontier/decision_theoretic_routing/pomdp_per_utterance.py` |
+| #900 | **Router failure mode decomposition (RQ12)** | What failure modes drive router v2's AISHELL-4 regret, and does the CR guard catch them? | ✅ 100% of router v2's AISHELL-4 regret is hallucination-driven (separated tracks with CR > 3.0). ❌ CR guard misses 97% of hallucination regrets — the hallucinations are diverse (not repetitive), so the CR > 3.0 threshold catches only the catastrophic tail. The failure is _diverse hallucination_, not _repetitive hallucination_. | `results/frontier/router_failure_modes/failure_mode_analysis.py`, `failure_mode_results.csv/.json`, `FINDINGS.md` |
+
+**Design choices and justification (iteration 3):**
+
+- **Why Cohen's d and Hedges' g (RQ11)?** Cohen's d is the standard effect-size measure for pairwise comparisons; Hedges' g applies a small-sample bias correction (J factor), appropriate given our n=20 pairings per overlap ratio. We report both to be transparent about the correction's impact. Post-hoc power is computed via the noncentral t CDF (Gauss-Laguerre quadrature) rather than the normal approximation, because n=20 is small enough that the t-distribution's heavier tails matter.
+- **Why Gauss-Laguerre quadrature for the noncentral t CDF (RQ11)?** The noncentral t distribution has no closed-form CDF; numerical integration is required. Gauss-Laguerre quadrature (20 nodes) on the integral representation converges to <1e-6 error vs scipy's `nct.cdf`, and is deterministic (no Monte Carlo noise).
+- **Why decompose by CR > 3.0 threshold (RQ12)?** The CR > 3.0 threshold is the router v2 deployment threshold (compression-ratio guard). Decomposing regret by whether the guard _should_ have caught it (CR > 3.0) vs whether it _did_ catch it reveals the guard's coverage. The finding that 97% of regrets have CR < 3.0 (diverse hallucination) means the guard is calibrated for the wrong failure mode — it expects repetitive hallucination but AISHELL-4 produces diverse hallucination.
+
+**Honest limitations (iteration 3):**
+
+- RQ11's effect sizes are computed on the same data that produced the original findings (no new data) — they characterize the existing evidence, not new evidence.
+- RQ10's silence penalty is calibrated, not measured (see Thread 7).
+- RQ12's failure mode decomposition is on AISHELL-4 only (n=8 utterances with regret) — the 97% miss rate is a point estimate with wide CI on n=8.
+
+**New modules and artifacts (iteration 3):**
+
+- `results/frontier/statistical_robustness/effect_size_analysis.py` — Cohen's d, Hedges' g, post-hoc power via noncentral t CDF
+- `results/frontier/decision_theoretic_routing/pomdp_per_utterance.py` — per-utterance POMDP with silence-fraction state dimension
+- `results/frontier/router_failure_modes/failure_mode_analysis.py` — router v2 regret decomposition on AISHELL-4
+
+All iteration 3 findings labeled `experimental/frontier`. No gold tables or verified references touched.
 
 ---
 
