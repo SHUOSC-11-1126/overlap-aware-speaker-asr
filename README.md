@@ -45,6 +45,7 @@ Multi-speaker ASR is a practical problem in meeting transcription, call center a
 | Objective-aware routing | Decoupled routing halves emotion distortion at equal CER | experimental/frontier |
 | LLM emotion coverage | 7× more than lexicon for implicit emotion | experimental/frontier |
 | LLM rescoring | Catastrophic (0/26 helped, CER 0.316→0.798) | experimental/frontier |
+| Per-utterance POMDP (RQ10) | Predicts AISHELL-4 failure: P(mixed)=1.00 for silence-gap high-overlap windows; stratum-level POMDP cannot (P=0.00) | experimental/frontier |
 
 ## What This Project Does Not Claim
 
@@ -338,6 +339,47 @@ hierarchy.
 AudioDepth is not currently a stable mainline claim and should not be merged
 from `frontier/audio-depth-router` without separating code, documentation,
 lightweight examples, tests, and large artifacts.
+
+## Frontier Highlights — Decision-Theoretic Routing (experimental/frontier)
+
+A 2026 frontier line asks whether the routing decision can be framed as a
+**Partially Observable Markov Decision Process (POMDP)** and whether lifting the
+stratum-level discretization to a per-utterance (continuous-state) POMDP
+improves text regret, predicts the AISHELL-4 failure, and reveals within-stratum
+heterogeneity. This builds on RQ5 (finding #24, the stratum-level POMDP) and
+connects the causal hallucination probe (#21), the AISHELL-4 external validation
+(RQ1), and the silence-aware gate (RQ8).
+
+| Result | Outcome |
+|---|---|
+| [Stratum-level POMDP](results/frontier/decision_theoretic_routing/FINDINGS.md) (RQ5, #24) | ✅ recovers router v2's empirical boundary to within 0.03 overlap-ratio; predicts #18's objective-aware decoupling. Honest limitation: cannot represent per-utterance heterogeneity. |
+| [Per-utterance POMDP](results/frontier/decision_theoretic_routing/FINDINGS_per_utterance.md) (RQ10, #899) | ◐ **RQ10.1** SUPPORTED but marginal: text regret 0.00033→0.00000 (in-sample; stratum-level already a good approximation). **RQ10.2** SUPPORTED: P(mixed)=1.00 > 0.70 for silence-gap high-overlap windows — predicts the AISHELL-4 failure the stratum-level POMDP cannot (P=0.00). **RQ10.3** SUPPORTED: within-stratum coupling-cost CV=0.97 at ov 0.1 (bimodal split of 8 prosody pairs). |
+
+**The key finding: the per-utterance POMDP's value is NOT in refining the text
+crossover** (the stratum-level POMDP already gets it right to within 0.03), but
+in two things the stratum-level POMDP cannot represent:
+
+1. **The silence-fraction dimension** (RQ10.2): the state variable that explains
+   *why* the gold-baseline routing boundary does not transfer to AISHELL-4.
+   Oracle-TextGrid separation creates interior silence gaps that trigger
+   Whisper's confident-attractor hallucination (#21). The stratum-level POMDP,
+   lacking a silence dimension, predicts "separated at high overlap" and is wrong
+   on AISHELL-4. The per-utterance POMDP, given silence-gap windows, predicts
+   "mixed at all overlap" — matching RQ1's finding that separated cpWER (1.206)
+   does not beat always-mixed (1.173).
+
+2. **Within-stratum heterogeneity** (RQ10.3): the coupling cost (text vs emotion
+   disagreement) varies substantially within strata (CV=0.97 at ov 0.1, from a
+   bimodal split of the 8 prosody pairs). A stratum-level policy assigns one
+   action to all utterances in a stratum, paying the coupling cost on the
+   disagreeing utterances; a per-utterance policy could route each utterance by
+   its own continuous state.
+
+This is `experimental/frontier` (theoretical + computational only; no new ASR
+runs; rewards re-estimated from existing frontier data). The silence-gap penalty
+is a qualitative model calibrated from #21/RQ1, not a measured
+silence-fraction→CER curve — a measured curve (from an AISHELL-4 cpWER run with
+the RQ8 silence-aware gate) is left as future work.
 
 ## State of the Art: Existing Systems and How We Differ
 

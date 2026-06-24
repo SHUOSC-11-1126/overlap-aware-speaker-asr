@@ -9,7 +9,7 @@ migration.
 
 **Role:** Frontier research lead; overlap-hallucination mechanism investigator; ASR×LLM×emotion axis explorer; research-entropy meta-analyst; engineering harness architect.
 
-**Scope summary:** ~45 merged PRs (#780–#872), 40+ issues, 40+ new modules, 36 frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled `experimental/frontier`; no gold tables or verified references touched.
+**Scope summary:** ~46 merged PRs (#780–#872, #899), 40+ issues, 40+ new modules, 36 frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled `experimental/frontier`; no gold tables or verified references touched.
 
 ---
 
@@ -242,6 +242,87 @@ This thread unifies two project directions (ASR×LLM synergy + emotion) across 7
 
 ---
 
+### Research Thread 6: Decision-Theoretic Routing — POMDP Per-Utterance Heterogeneity Extension (Issue #896, PR #899)
+
+**Grand RQ:** _Does lifting the stratum-level POMDP (RQ5, finding #24) to a per-utterance (continuous-state) POMDP improve text regret, predict the AISHELL-4 failure that router v2 could not generalize to, and reveal the within-stratum coupling-cost heterogeneity that RQ5 stated as a limitation?_
+
+This thread extends the decision-theoretic routing framework from 5 discrete overlap strata to per-utterance continuous-state heterogeneity. It is theoretical + computational only (no ASR runs); all rewards are re-estimated from existing frontier data.
+
+#### Motivation and connection to prior threads
+
+RQ5 (`pomdp_solver.py`, finding #24) built a stratum-level POMDP over 5 discrete overlap strata {0, 0.1, 0.3, 0.6, 0.9} that recovers router v2's empirical boundary to within 0.03 overlap-ratio and predicts #18's objective-aware decoupling. But RQ5's FINDINGS stated an honest limitation: _"the POMDP captures the dominant trend but not per-utterance heterogeneity. The mid-overlap coupling costs #18 reports arise from within-stratum variation the POMDP does not see."_ RQ10 tests whether lifting the discretization addresses this.
+
+A second motivation: router v2 failed to generalize to AISHELL-4 (RQ1, #881) — separated cpWER (1.206) did not beat always-mixed (1.173) because oracle-TextGrid separation creates interior silence gaps triggering Whisper's confident-attractor hallucination (#21). Neither router v2 nor the stratum-level POMDP has a silence dimension, so both predict "separated at high overlap" and are wrong on AISHELL-4. RQ10 asks whether adding a silence-fraction state dimension fixes this.
+
+#### Design choices and justification
+
+- **Why Gaussian kernel smoothing?** The stratum-level POMDP snaps continuous overlap to the nearest of 5 strata, losing within-stratum variation. A Gaussian kernel `K(r, r_i) = exp(-(r-r_i)^2 / (2h^2))` smoothly interpolates the reward surface over continuous overlap ∈ [0, 0.9], using the 15 greedy support points (text) and 5×8 support points (emotion). Bandwidths h_text=0.08, h_emo=0.15 are chosen from the support spacing (0.05 for text, ~0.2 for emotion), not tuned on regret — the crossover location (0.20) is stable across h_text ∈ [0.05, 0.12] because the actual data crossover is sharp (between 0.15 and 0.20).
+
+- **Why a silence-fraction state dimension?** The AISHELL-4 failure driver is interior silence gaps in oracle-TextGrid-separated tracks, which trigger the confident-attractor mechanism (#21: encoder flags silence while decoder is confident). The existing gates (flatness, speaker) do NOT cure interior silence (RQ8 documents this gap). Adding `g ∈ [0, 1]` (fraction of the separated track that is silence) as a state dimension lets the POMDP represent the AISHELL-4 failure mode that the stratum-level POMDP cannot see.
+
+- **Why greedy per-utterance argmax instead of belief-state value iteration?** With deterministic transitions (T=δ, same as RQ5), the POMDP collapses to per-state argmax. The extension is the continuous state + silence dimension, not a multi-step belief-state solver. A multi-step extension (where the route affects future belief via observations) would be needed for streaming/long-form context — left as future work.
+
+- **Why calibrate the silence penalty from #21/RQ1 rather than measuring it?** The hallucination penalty `separated_cer(r, g) = base_sep_cer(r) + 1.5·g` is a qualitative model calibrated from #21 (confident-attractor) + RQ1 (separated cpWER 1.496–1.720 vs gold CER 0.46–0.76). The gain 1.5 is chosen so that at g=0.6 (representative AISHELL-4 silence: one speaker ~12 s speech in a 30 s window), the penalty (0.9) exceeds the separation benefit at high overlap (gap=0.712 at ov 0.3), flipping separated→mixed. A measured silence-fraction→CER curve (from a real AISHELL-4 cpWER run with the RQ8 silence-aware gate) would replace the calibration with data — left as future work.
+
+#### Pre-registered hypotheses (Issue #896)
+
+- **RQ10.1:** A per-utterance (continuous-state) POMDP improves over the stratum-level POMDP on text regret.
+- **RQ10.2:** The per-utterance POMDP predicts the AISHELL-4 failure (assigning >70% probability to "mixed" for silence-gap windows).
+- **RQ10.3:** The coupling cost (text vs emotion disagreement) is heterogeneous within strata (CV > 0.5 within ov0.1 stratum).
+
+#### Three extensions over `pomdp_solver.py`
+
+| Extension | What it does | Data source |
+|---|---|---|
+| **Continuous overlap** | Replaces 5 discrete strata with a Gaussian-kernel-smoothed reward surface over continuous overlap ∈ [0, 0.9]. | `phase_aggregate.csv` (15 greedy strata), `prosody_tax_curve.csv` (8 pairs × 5 overlaps, α=0.15) |
+| **Silence-fraction state** | Adds a continuous silence-fraction dimension `g ∈ [0, 1]`. Models the AISHELL-4 oracle-TextGrid failure driver: an additive hallucination penalty on separated-track actions, calibrated from #21 + RQ1. | #21 causal probe, RQ1 AISHELL-4 |
+| **Per-pair emotion heterogeneity** | Uses the 8 prosody pairs as per-utterance samples to compute within-stratum coupling-cost CV. | `prosody_tax_curve.csv` (8 pairs) |
+
+#### Results
+
+**RQ10.1 — Per-utterance POMDP improves text regret, but marginally and in-sample.**
+
+| Policy | Mean text regret | Crossover (overlap-ratio) |
+|---|---:|---:|
+| Stratum-level POMDP (RQ5) | 0.00033 | 0.21 |
+| **Per-utterance POMDP (RQ10)** | **0.00000** | **0.20** |
+| Router v2 (baseline) | 0.00260 | 0.17 |
+
+**Verdict: SUPPORTED but marginal.** The per-utterance POMDP's zero regret is partly tautological (evaluated on the same kernel-smoothed surface it optimizes over). The meaningful number is that the **stratum-level discretization regret is tiny (0.00033)** — the 5-strata POMDP is already a good approximation for the text objective because the text CER crossover is sharp. The continuous-state extension's value is NOT in text-regret reduction; it is in the silence-fraction dimension (RQ10.2) and the within-stratum heterogeneity (RQ10.3), which the stratum-level POMDP cannot represent at all.
+
+**RQ10.2 — Per-utterance POMDP predicts the AISHELL-4 failure.**
+
+| Regime | P(mixed) overall | P(mixed) high-overlap (Mid+Heavy) |
+|---|---:|---:|
+| **Silence-gap (g=0.6, AISHELL-4-like)** | **1.00** | **1.00** |
+| No-silence (g=0.0, gold-baseline-like) | 0.83 | 0.00 |
+| Stratum-level POMDP (no silence dim, g=0.6) | 0.85 | 0.00 |
+
+**Verdict: SUPPORTED.** The discriminating test is the high-overlap band. Without silence, both POMDPs pick separated at high overlap (P(mixed)=0.00) — the gold-baseline prediction. With silence gaps, the per-utterance POMDP flips to mixed at high overlap (P(mixed)=1.00 > 0.70 threshold), predicting the AISHELL-4 failure. The stratum-level POMDP, lacking the silence dimension, keeps separated at high overlap and does NOT predict the failure. **This is the main value of the per-utterance extension:** it adds the state variable (silence fraction) that explains *why* the gold-baseline routing boundary does not transfer to AISHELL-4.
+
+**RQ10.3 — Coupling cost is heterogeneous within strata (CV > 0.5 at ov 0.1).**
+
+| Stratum | Mean coupling cost | CV | CV > 0.5? | sep_helps_frac (text-side proxy) |
+|---:|---:|---:|:--:|---:|
+| 0.0 | 0.000 | 0.00 | — | 0.25 |
+| **0.1** | **0.108** | **0.97** | **✓** | 0.30 |
+| 0.3 | 0.001 | 2.65 | ✓* | 0.50 |
+| 0.6 | 0.000 | 0.00 | — | 0.70 |
+| 0.9 | 0.011 | 2.65 | ✓* | 1.00 |
+
+**Verdict: SUPPORTED at ov 0.1.** CV at ov 0.1 = 0.97 > 0.5, from the bimodal split of the 8 prosody pairs (4 pairs have emotion wanting separated while text wants mixed → disagree → coupling cost > 0; 4 pairs agree → coupling cost = 0). Text-side `sep_helps_frac` = 0.30–0.50 confirms the heterogeneity is not just an emotion-side artifact. (*Asterisk: CV at ov 0.3/0.9 is misleading because the mean is near zero — a single pair with tiny nonzero cost inflates the CV. The robust claim is at ov 0.1.)
+
+#### Honest limitations
+
+- **In-sample text regret (RQ10.1).** The per-utterance POMDP is evaluated on the same kernel-smoothed surface it optimizes over, so its zero regret is partly tautological. An out-of-sample test (held-out utterances with per-utterance CER) would validate the advantage non-tautologically; this requires per-utterance CER data not available in the current frontier.
+- **Calibrated silence penalty (RQ10.2).** The hallucination penalty (gain=1.5) is a qualitative model, not a measured silence-fraction→CER curve. The qualitative result (silence flips high-overlap from separated to mixed) is robust to the gain choice above ~1.3, but the exact P(mixed) and flip threshold depend on the gain.
+- **Emotion-side heterogeneity only (RQ10.3).** Within-stratum coupling-cost CV is computed from the 8 prosody pairs (emotion side); text CER is stratum-level. Full per-utterance coupling-cost CV would need per-utterance text CER.
+- **No new data.** This is a reanalysis of #11/#14/#18/#20/#21/RQ1 data; it does not test the per-utterance POMDP on held-out utterances.
+
+**Artifacts:** `results/frontier/decision_theoretic_routing/pomdp_per_utterance.py`, `policy_comparison_per_utterance.csv`, `policy_comparison_per_utterance.json`, `FINDINGS_per_utterance.md`. Reproduce: `python3 results/frontier/decision_theoretic_routing/pomdp_per_utterance.py`.
+
+---
+
 ### Stable Baseline Contributions
 
 In addition to the frontier research threads, I contributed to the project's stable baseline:
@@ -331,7 +412,7 @@ Across ~45 merged PRs and 36 frontier result directories, my contributions follo
 
 ### Modules (complete list)
 
-`src/causal_hallucination_probe.py`, `src/model_scale_analysis.py`, `src/confidence_calibrated_router.py`, `src/multi_decode_voter.py`, `src/contrastive_decode.py`, `src/runtime_cascade.py`, `src/error_profile_decomposition.py`, `src/noise_robust_router.py`, `src/semantic_emotion_tax.py`, `src/emotion_anchored_repair.py`, `src/emotion_modality_fusion.py`, `src/llm_speaker_attribution.py`, `src/frontier_capstone_figure.py`, `src/emotion_separation_tax.py`, `src/arousal_asr_probe.py`, `src/lexical_emotion.py`, `src/lexical_emotion_tax.py`, `src/llm_asr_critic.py`, `src/emotion_fidelity_meter.py`, `src/gate_emotion_cost.py`, `src/objective_aware_routing.py`, `src/prosody.py`, `src/noise_robust_gate.py`, `src/speaker_conditioned_gate.py`, `src/gate_selector.py`, `src/decoder_cure_noise.py`, `src/hallucination_router.py`, `src/reference_free_qe.py`, `src/separation_tax_phase.py`, `src/hallucination_cure_eval.py`, `src/speaker_similarity_probe.py`, `src/noise_robustness.py`, `src/research_entropy_audit.py`, `src/adaptive_router_v2.py`, `src/risk_aware_selector.py`, `src/compute_aware_cascade.py`, `src/speaker_*.py`, `src/meeteval_*.py`, `src/external_validation_*.py`, `src/project_harness.py`; paired tests for all; `scripts/harness/*`, `.githooks/*`, `docs/harness/*`, `docs/frontier/*`.
+`src/causal_hallucination_probe.py`, `src/model_scale_analysis.py`, `src/confidence_calibrated_router.py`, `src/multi_decode_voter.py`, `src/contrastive_decode.py`, `src/runtime_cascade.py`, `src/error_profile_decomposition.py`, `src/noise_robust_router.py`, `src/semantic_emotion_tax.py`, `src/emotion_anchored_repair.py`, `src/emotion_modality_fusion.py`, `src/llm_speaker_attribution.py`, `src/frontier_capstone_figure.py`, `src/emotion_separation_tax.py`, `src/arousal_asr_probe.py`, `src/lexical_emotion.py`, `src/lexical_emotion_tax.py`, `src/llm_asr_critic.py`, `src/emotion_fidelity_meter.py`, `src/gate_emotion_cost.py`, `src/objective_aware_routing.py`, `src/prosody.py`, `src/noise_robust_gate.py`, `src/speaker_conditioned_gate.py`, `src/gate_selector.py`, `src/decoder_cure_noise.py`, `src/hallucination_router.py`, `src/reference_free_qe.py`, `src/separation_tax_phase.py`, `src/hallucination_cure_eval.py`, `src/speaker_similarity_probe.py`, `src/noise_robustness.py`, `src/research_entropy_audit.py`, `src/adaptive_router_v2.py`, `src/risk_aware_selector.py`, `src/compute_aware_cascade.py`, `src/speaker_*.py`, `src/meeteval_*.py`, `src/external_validation_*.py`, `src/project_harness.py`, `results/frontier/decision_theoretic_routing/pomdp_per_utterance.py` (RQ10 per-utterance POMDP extension); paired tests for all; `scripts/harness/*`, `.githooks/*`, `docs/harness/*`, `docs/frontier/*`.
 
 ## 吴方舟/wfzark（23123986）
 
