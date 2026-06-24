@@ -1,0 +1,181 @@
+{
+  "label": "experimental/frontier",
+  "rq": "RQ10",
+  "title": "POMDP per-utterance heterogeneity extension",
+  "builds_on": "RQ5 (pomdp_solver.py, finding #24)",
+  "method": {
+    "continuous_state": "overlap-ratio in [0, 0.9] (kernel-smoothed)",
+    "kernel": "Gaussian",
+    "bandwidth_text": 0.08,
+    "bandwidth_emotion": 0.15,
+    "text_support": "15 greedy overlap points (phase_aggregate.csv)",
+    "emotion_support": "8 pairs x 5 overlaps (prosody_tax_curve.csv, alpha=0.15)",
+    "silence_model": {
+      "hallucination_add": 1.5,
+      "mild_masking": 0.1,
+      "calibration": "RQ1 (aishell4) + #21 (causal hallucination probe)",
+      "applies_to": [
+        "separated",
+        "gate_flatness",
+        "gate_speaker"
+      ]
+    },
+    "solver": "greedy per-utterance argmax (deterministic T -> single-step)"
+  },
+  "rq10_1_text_regret": {
+    "verdict": "Per-utterance POMDP has ~0 text regret by construction (in-sample); the meaningful comparison is stratum-level discretization regret vs router-v2 threshold regret. See FINDINGS for honest framing.",
+    "mean_text_regret": {
+      "stratum": 0.00033,
+      "per_utterance": 0.0,
+      "router_v2": 0.0026
+    },
+    "crossover": {
+      "stratum_pomdp": 0.21,
+      "per_utterance_pomdp": 0.2,
+      "router_v2": 0.17
+    },
+    "n_grid_points": 91
+  },
+  "rq10_2_aishell4_prediction": {
+    "by_regime": {
+      "silence_gap": {
+        "silence_fraction": 0.6,
+        "p_mixed_per_utterance_overall": 1.0,
+        "p_mixed_stratum_overall": 0.8485,
+        "p_mixed_per_utterance_high_overlap": 1.0,
+        "p_mixed_stratum_high_overlap": 0.0,
+        "by_band": {
+          "HeavyOverlap": {
+            "n": 20,
+            "band_fraction": 0.0101,
+            "p_mixed_per_utterance": 1.0,
+            "p_mixed_stratum": 0.0
+          },
+          "LightOverlap": {
+            "n": 20,
+            "band_fraction": 0.3131,
+            "p_mixed_per_utterance": 1.0,
+            "p_mixed_stratum": 1.0
+          },
+          "MidOverlap": {
+            "n": 20,
+            "band_fraction": 0.1414,
+            "p_mixed_per_utterance": 1.0,
+            "p_mixed_stratum": 0.0
+          },
+          "NoOverlap": {
+            "n": 20,
+            "band_fraction": 0.5354,
+            "p_mixed_per_utterance": 1.0,
+            "p_mixed_stratum": 1.0
+          }
+        }
+      },
+      "no_silence": {
+        "silence_fraction": 0.0,
+        "p_mixed_per_utterance_overall": 0.8328,
+        "p_mixed_stratum_overall": 0.8485,
+        "p_mixed_per_utterance_high_overlap": 0.0,
+        "p_mixed_stratum_high_overlap": 0.0,
+        "by_band": {
+          "HeavyOverlap": {
+            "n": 20,
+            "band_fraction": 0.0101,
+            "p_mixed_per_utterance": 0.0,
+            "p_mixed_stratum": 0.0
+          },
+          "LightOverlap": {
+            "n": 20,
+            "band_fraction": 0.3131,
+            "p_mixed_per_utterance": 0.95,
+            "p_mixed_stratum": 1.0
+          },
+          "MidOverlap": {
+            "n": 20,
+            "band_fraction": 0.1414,
+            "p_mixed_per_utterance": 0.0,
+            "p_mixed_stratum": 0.0
+          },
+          "NoOverlap": {
+            "n": 20,
+            "band_fraction": 0.5354,
+            "p_mixed_per_utterance": 1.0,
+            "p_mixed_stratum": 1.0
+          }
+        }
+      }
+    },
+    "verdict": {
+      "predicts_failure_overall": true,
+      "predicts_failure_high_overlap": true,
+      "p_mixed_silence_gap_overall": 1.0,
+      "p_mixed_no_silence_overall": 0.8328,
+      "p_mixed_silence_gap_high_overlap": 1.0,
+      "p_mixed_no_silence_high_overlap": 0.0,
+      "p_mixed_stratum_silence_gap_high_overlap": 0.0,
+      "note": "The per-utterance POMDP adds a silence-fraction state dimension (calibrated from #21/RQ1). For silence-gap windows it flips the high-overlap route from separated to mixed, predicting the AISHELL-4 failure. The stratum-level POMDP lacks this dimension and keeps separated at high overlap."
+    }
+  },
+  "rq10_3_coupling_cost_heterogeneity": {
+    "cv_per_stratum": [
+      {
+        "stratum": 0.0,
+        "n_pairs": 8,
+        "mean_coupling_cost": 0.0,
+        "std_coupling_cost": 0.0,
+        "cv_coupling_cost": 0.0,
+        "cv_gt_0.5": false,
+        "sep_helps_frac": 0.25,
+        "text_route_heterogeneity": 0.5
+      },
+      {
+        "stratum": 0.1,
+        "n_pairs": 8,
+        "mean_coupling_cost": 0.10807,
+        "std_coupling_cost": 0.1051,
+        "cv_coupling_cost": 0.9725,
+        "cv_gt_0.5": true,
+        "sep_helps_frac": 0.3,
+        "text_route_heterogeneity": 0.4
+      },
+      {
+        "stratum": 0.3,
+        "n_pairs": 8,
+        "mean_coupling_cost": 0.00125,
+        "std_coupling_cost": 0.0033,
+        "cv_coupling_cost": 2.6458,
+        "cv_gt_0.5": true,
+        "sep_helps_frac": 0.5,
+        "text_route_heterogeneity": 0.0
+      },
+      {
+        "stratum": 0.6,
+        "n_pairs": 8,
+        "mean_coupling_cost": 0.0,
+        "std_coupling_cost": 0.0,
+        "cv_coupling_cost": 0.0,
+        "cv_gt_0.5": false,
+        "sep_helps_frac": 0.7,
+        "text_route_heterogeneity": 0.4
+      },
+      {
+        "stratum": 0.9,
+        "n_pairs": 8,
+        "mean_coupling_cost": 0.01062,
+        "std_coupling_cost": 0.0281,
+        "cv_coupling_cost": 2.6458,
+        "cv_gt_0.5": true,
+        "sep_helps_frac": 1.0,
+        "text_route_heterogeneity": 1.0
+      }
+    ],
+    "cv_at_ov0.1": 0.9725,
+    "heterogeneity_hypothesis_supported": true,
+    "note": "Within-stratum heterogeneity comes from the emotion side (8 prosody pairs); text CER is stratum-level. sep_helps_frac is the text-side heterogeneity proxy (fraction of the 20 cases where separated helps)."
+  },
+  "verdicts": {
+    "rq10_1_per_utterance_improves": true,
+    "rq10_2_predicts_aishell4_failure": true,
+    "rq10_3_cv_gt_0.5_at_ov0.1": true
+  }
+}
