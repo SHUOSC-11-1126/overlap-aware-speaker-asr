@@ -1,0 +1,6 @@
+overlap,noise,objective,pomdp_optimal,router_v2,match,text_cer_mixed,text_cer_sep,text_cer_gate_flatness,text_cer_gate_speaker,emo_dist_mixed,emo_dist_sep
+0.0,clean,text,mixed,mixed,True,0.4178,0.7584,0.7584,0.7584,0.0,0.0
+0.1,clean,text,mixed,mixed,True,0.458,1.4009,1.4009,1.4009,0.1514,0.0332
+0.3,clean,text,separated,separated,True,1.1945,0.4818,0.4818,0.4818,0.1741,0.0829
+0.6,clean,text,separated,separated,True,0.6212,0.4436,0.4436,0.4436,0.2626,0.1303
+0.9,clean,text,separated,separated,True,0.7544,0.4645,0.4645,0.4645,0.3102,0.1499

@@ -1,0 +1,305 @@
+{
+  "label": "experimental/frontier",
+  "rq": "RQ5",
+  "proposition": "P1",
+  "pomdp_definition": {
+    "states": {
+      "overlap_ratio": [
+        0.0,
+        0.1,
+        0.3,
+        0.6,
+        0.9
+      ],
+      "noise_type": [
+        "clean",
+        "white",
+        "pink",
+        "babble"
+      ],
+      "objective": [
+        "text",
+        "emotion",
+        "joint"
+      ]
+    },
+    "actions": [
+      "mixed",
+      "separated",
+      "gate_flatness",
+      "gate_speaker"
+    ],
+    "observations": [
+      "compression_ratio",
+      "spectral_flatness"
+    ],
+    "transition": "deterministic (T(s'|s,a) = delta(s',s)); the route fixes the output",
+    "reward": "R(s,a) = -(normalized_text_regret + lambda*normalized_emotion_regret)",
+    "solver": "value iteration (gamma=1.0; collapses to per-state argmax)",
+    "lambda_emotion": 1.0
+  },
+  "reward_estimation_sources": {
+    "text_cer_clean": "results/frontier/separation_tax/phase_aggregate.csv (greedy decoder)",
+    "text_cer_noisy": "findings #11/#12/#13 point estimates (noise_robust_gate, speaker_conditioned_gate, gate_selector)",
+    "emotion_distortion": "results/frontier/emotion_separation_tax/prosody_tax_curve.csv (alpha=0.15, realistic separator)",
+    "gate_emotion_cost": "finding #20 (gate_emotion_cost): flatness +0.057, speaker +0.023"
+  },
+  "verdict": {
+    "p1_supported": true,
+    "p1_divergence_overlap_ratio": 0.03,
+    "pomdp_optimal_crossover": 0.2,
+    "router_v2_crossover": 0.17,
+    "decoupling_predicted": true
+  },
+  "clean_text_comparison": [
+    {
+      "overlap": 0.0,
+      "noise": "clean",
+      "objective": "text",
+      "pomdp_optimal": "mixed",
+      "router_v2": "mixed",
+      "match": true,
+      "text_cer_mixed": 0.4178,
+      "text_cer_sep": 0.7584,
+      "text_cer_gate_flatness": 0.7584,
+      "text_cer_gate_speaker": 0.7584,
+      "emo_dist_mixed": 0.0,
+      "emo_dist_sep": 0.0
+    },
+    {
+      "overlap": 0.1,
+      "noise": "clean",
+      "objective": "text",
+      "pomdp_optimal": "mixed",
+      "router_v2": "mixed",
+      "match": true,
+      "text_cer_mixed": 0.458,
+      "text_cer_sep": 1.4009,
+      "text_cer_gate_flatness": 1.4009,
+      "text_cer_gate_speaker": 1.4009,
+      "emo_dist_mixed": 0.1514,
+      "emo_dist_sep": 0.0332
+    },
+    {
+      "overlap": 0.3,
+      "noise": "clean",
+      "objective": "text",
+      "pomdp_optimal": "separated",
+      "router_v2": "separated",
+      "match": true,
+      "text_cer_mixed": 1.1945,
+      "text_cer_sep": 0.4818,
+      "text_cer_gate_flatness": 0.4818,
+      "text_cer_gate_speaker": 0.4818,
+      "emo_dist_mixed": 0.1741,
+      "emo_dist_sep": 0.0829
+    },
+    {
+      "overlap": 0.6,
+      "noise": "clean",
+      "objective": "text",
+      "pomdp_optimal": "separated",
+      "router_v2": "separated",
+      "match": true,
+      "text_cer_mixed": 0.6212,
+      "text_cer_sep": 0.4436,
+      "text_cer_gate_flatness": 0.4436,
+      "text_cer_gate_speaker": 0.4436,
+      "emo_dist_mixed": 0.2626,
+      "emo_dist_sep": 0.1303
+    },
+    {
+      "overlap": 0.9,
+      "noise": "clean",
+      "objective": "text",
+      "pomdp_optimal": "separated",
+      "router_v2": "separated",
+      "match": true,
+      "text_cer_mixed": 0.7544,
+      "text_cer_sep": 0.4645,
+      "text_cer_gate_flatness": 0.4645,
+      "text_cer_gate_speaker": 0.4645,
+      "emo_dist_mixed": 0.3102,
+      "emo_dist_sep": 0.1499
+    }
+  ],
+  "decoupling_comparison": [
+    {
+      "overlap": 0.0,
+      "text_route": "mixed",
+      "emotion_route": "mixed",
+      "joint_route": "mixed",
+      "text_emotion_disagree": false
+    },
+    {
+      "overlap": 0.1,
+      "text_route": "mixed",
+      "emotion_route": "separated",
+      "joint_route": "separated",
+      "text_emotion_disagree": true
+    },
+    {
+      "overlap": 0.3,
+      "text_route": "separated",
+      "emotion_route": "separated",
+      "joint_route": "separated",
+      "text_emotion_disagree": false
+    },
+    {
+      "overlap": 0.6,
+      "text_route": "separated",
+      "emotion_route": "separated",
+      "joint_route": "separated",
+      "text_emotion_disagree": false
+    },
+    {
+      "overlap": 0.9,
+      "text_route": "separated",
+      "emotion_route": "separated",
+      "joint_route": "separated",
+      "text_emotion_disagree": false
+    }
+  ],
+  "noise_policy_table": [
+    {
+      "overlap": 0.0,
+      "noise": "clean",
+      "pomdp_text": "mixed",
+      "pomdp_emotion": "mixed",
+      "pomdp_joint": "mixed"
+    },
+    {
+      "overlap": 0.1,
+      "noise": "clean",
+      "pomdp_text": "mixed",
+      "pomdp_emotion": "separated",
+      "pomdp_joint": "separated"
+    },
+    {
+      "overlap": 0.3,
+      "noise": "clean",
+      "pomdp_text": "separated",
+      "pomdp_emotion": "separated",
+      "pomdp_joint": "separated"
+    },
+    {
+      "overlap": 0.6,
+      "noise": "clean",
+      "pomdp_text": "separated",
+      "pomdp_emotion": "separated",
+      "pomdp_joint": "separated"
+    },
+    {
+      "overlap": 0.9,
+      "noise": "clean",
+      "pomdp_text": "separated",
+      "pomdp_emotion": "separated",
+      "pomdp_joint": "separated"
+    },
+    {
+      "overlap": 0.0,
+      "noise": "white",
+      "pomdp_text": "mixed",
+      "pomdp_emotion": "mixed",
+      "pomdp_joint": "mixed"
+    },
+    {
+      "overlap": 0.1,
+      "noise": "white",
+      "pomdp_text": "mixed",
+      "pomdp_emotion": "separated",
+      "pomdp_joint": "mixed"
+    },
+    {
+      "overlap": 0.3,
+      "noise": "white",
+      "pomdp_text": "gate_flatness",
+      "pomdp_emotion": "separated",
+      "pomdp_joint": "separated"
+    },
+    {
+      "overlap": 0.6,
+      "noise": "white",
+      "pomdp_text": "mixed",
+      "pomdp_emotion": "separated",
+      "pomdp_joint": "separated"
+    },
+    {
+      "overlap": 0.9,
+      "noise": "white",
+      "pomdp_text": "gate_flatness",
+      "pomdp_emotion": "separated",
+      "pomdp_joint": "separated"
+    },
+    {
+      "overlap": 0.0,
+      "noise": "pink",
+      "pomdp_text": "mixed",
+      "pomdp_emotion": "mixed",
+      "pomdp_joint": "mixed"
+    },
+    {
+      "overlap": 0.1,
+      "noise": "pink",
+      "pomdp_text": "mixed",
+      "pomdp_emotion": "separated",
+      "pomdp_joint": "mixed"
+    },
+    {
+      "overlap": 0.3,
+      "noise": "pink",
+      "pomdp_text": "gate_flatness",
+      "pomdp_emotion": "separated",
+      "pomdp_joint": "separated"
+    },
+    {
+      "overlap": 0.6,
+      "noise": "pink",
+      "pomdp_text": "mixed",
+      "pomdp_emotion": "separated",
+      "pomdp_joint": "separated"
+    },
+    {
+      "overlap": 0.9,
+      "noise": "pink",
+      "pomdp_text": "mixed",
+      "pomdp_emotion": "separated",
+      "pomdp_joint": "separated"
+    },
+    {
+      "overlap": 0.0,
+      "noise": "babble",
+      "pomdp_text": "mixed",
+      "pomdp_emotion": "mixed",
+      "pomdp_joint": "mixed"
+    },
+    {
+      "overlap": 0.1,
+      "noise": "babble",
+      "pomdp_text": "mixed",
+      "pomdp_emotion": "separated",
+      "pomdp_joint": "mixed"
+    },
+    {
+      "overlap": 0.3,
+      "noise": "babble",
+      "pomdp_text": "gate_speaker",
+      "pomdp_emotion": "separated",
+      "pomdp_joint": "gate_speaker"
+    },
+    {
+      "overlap": 0.6,
+      "noise": "babble",
+      "pomdp_text": "gate_speaker",
+      "pomdp_emotion": "separated",
+      "pomdp_joint": "gate_speaker"
+    },
+    {
+      "overlap": 0.9,
+      "noise": "babble",
+      "pomdp_text": "gate_speaker",
+      "pomdp_emotion": "separated",
+      "pomdp_joint": "gate_speaker"
+    }
+  ]
+}
