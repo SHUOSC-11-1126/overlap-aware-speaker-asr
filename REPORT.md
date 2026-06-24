@@ -8,13 +8,29 @@ overlapping speech.
 This project studies a practical question in multi-speaker speech recognition:
 when should an ASR system keep the mixed audio, when should it run separated
 speaker tracks, and when should it escalate to a safer route? The answer is not
-"always separate." On the five-case gold benchmark, separated ASR is strongest
-for NoOverlap, HeavyOverlap, and OppositeOverlap, while mixed ASR is safer for
-LightOverlap and MidOverlap. The feature-based router v2 matches the post-hoc
-oracle average CER on the gold cases (`0.120042`) without using CER as an input
-feature. Synthetic silver and held-out split results show that the same story
-must remain evidence-labeled: route selection is promising, but robustness,
-external validation, and official meeting-style metrics still need care.
+"always separate." On the five-case gold benchmark, separated ASR tends to be
+strongest for NoOverlap, HeavyOverlap, and OppositeOverlap, while mixed ASR is
+safer for LightOverlap and MidOverlap. The feature-based router v2 matches the
+post-hoc oracle average CER on the gold cases (`0.120042`) without using CER as
+an input feature. Synthetic silver and held-out split results show that the same
+story must remain evidence-labeled: route selection is promising, but
+robustness, external validation, and official meeting-style metrics still need
+care.
+
+**Honest bounds (iteration 1 frontier integration).** Two iteration-1 audits
+narrow the project's claim surface and are reported honestly rather than
+softened. (1) A Benjamini-Hochberg multiple-comparison audit
+(`results/frontier/statistical_robustness/`) finds that only **6 of 17**
+directional frontier findings survive FDR correction at q=0.05; **11 claims are
+downgraded** from "demonstrates" to "suggests" throughout this report, and 9 of
+those are additionally underpowered (see §18). (2) An AISHELL-4 external
+validation (`results/external_sanity_check/aishell4/`) **falsifies H1a** —
+router v2 does not beat always-mixed on real meeting audio (cpWER 1.206 vs
+1.173) — while **supporting H1b** (the separation tax replicates, stronger than
+on gold). The gold-baseline "separated wins at HeavyOverlap" boundary does not
+transfer to oracle-TextGrid separation, which introduces silence gaps that
+trigger Whisper hallucination (see §19). These bounds do not invalidate the
+core routing thesis; they scope it.
 
 The team extended the baseline in several directions: boundary analysis for
 where separation helps or hurts, risk-aware final selection, compute-aware and
@@ -240,8 +256,8 @@ LOWESS-smoothed ΔCER curve). Two observations make this honest:
 2. **mean ≪ median in the transition band** (mean −0.94 vs median 0.00 at
    r=0.10) is the statistical signature of the heavy-tail mechanism: 6/600
    tracks blow up to CER up to 24×, driving the mean far below the typical
-   clip. This is why we report both — the median confirms the effect is *not*
-   uniform degradation.
+   clip. This is why we report both — the median suggests the effect is *not*
+   uniform degradation (BH-downgraded: F03 does not survive FDR correction; see §18).
 
 The detection AUC = 1.0 (compression ratio on 6 catastrophic vs 594 clean
 tracks) is a lower bound on separability, not a population estimate — with only
@@ -491,9 +507,9 @@ The project has several important limitations that bound the scope of its claims
 
 **Single language.** All evaluation is on Chinese audio. Cross-lingual generalization is unknown. Chinese is character-based (no word boundaries), making CER the natural metric; extending to English would require WER evaluation and different normalization.
 
-**No standard meeting benchmarks.** We do not evaluate on AMI, LibriCSS, AliMeeting, or AISHELL-4. Our controlled 5-case benchmark isolates the separation variable; standard benchmarks would introduce confounds (different speakers, room acoustics, microphone arrays).
+**No standard meeting benchmarks.** The original 5-case gold benchmark isolates the separation variable but does not cover standard meeting corpora. An AISHELL-4 external validation (§19, `external/sanity-check`) has now been run on one real meeting (M_R003S02C01, 77 windows): it confirms the separation tax (H1b supported) but falsifies router v2's generalization (H1a not supported). Full AMI/LibriCSS/AliMeeting coverage remains future work.
 
-**LLM rescoring failure.** The LLM rescoring experiment (0/26 helped, CER 0.316→0.798) shows that small LLMs rewrite rather than correct. This may not generalize to larger models or different prompting strategies. The 0.200 CER floor is not fixable by contextual understanding alone.
+**LLM rescoring failure.** The LLM rescoring experiment (0/26 helped, CER 0.316→0.798) suggests that small LLMs rewrite rather than correct (BH-downgraded: F17 does not survive FDR correction; see §18). This may not generalize to larger models or different prompting strategies. The 0.200 CER floor is not fixable by contextual understanding alone.
 
 **No real-time evaluation.** All evaluation is offline batch. Streaming ASR introduces latency constraints, partial hypotheses, and different error patterns.
 
@@ -512,9 +528,9 @@ Following standard research methodology (Wohlin et al., *Experimentation in Soft
 | Threat | What it risks | Mitigation in this project |
 |---|---|---|
 | **Confounding separator quality with separation effect** | If we used a real separator, CER changes could come from the separator, not separation itself. | We use **oracle separation** (ground-truth source tracks). This isolates the separation effect. The trade-off is that results are an *upper bound* — realistic separators will be worse. |
-| **CER leaking into routing** | A router that uses CER is cheating (CER requires the reference). | The contract ([`docs/harness/knowledge_base_contract.md`](docs/harness/knowledge_base_contract.md)) mechanically blocks changes to router-core code that reference evaluation modules. Router v2 uses only observable instability features. The ablation (Section 6.2) proves this. |
+| **CER leaking into routing** | A router that uses CER is cheating (CER requires the reference). | The contract ([`docs/harness/knowledge_base_contract.md`](docs/harness/knowledge_base_contract.md)) mechanically blocks changes to router-core code that reference evaluation modules. Router v2 uses only observable instability features. The ablation (Section 6.2) suggests this (F06 is BH-downgraded; see §18). |
 | **Model selection bias** | Cherry-picking the model that supports the hypothesis. | We pre-registered the model-size hypothesis (H3) *before* running the base/small experiments. The tiny→base→small progression was chosen on architectural grounds (1×/1.93×/6× compute), not on result favorability. |
-| **Multiple testing** | 15+ frontier experiments increase the chance of a false positive by chance. | Every frontier study declares kill criteria *before* running. 8 of 15 produced clean negatives — this is the expected distribution under honest reporting, not a multiple-testing artifact. We do not selectively report positives. |
+| **Multiple testing** | 15+ frontier experiments increase the chance of a false positive by chance. | A formal Benjamini-Hochberg audit (§18) now quantifies this: only 6 of 17 directional findings survive FDR correction at q=0.05, and 11 are downgraded to "suggests." This is no longer an unaddressed threat — it is a measured, reported bound. |
 
 ### 17.2 External Validity (does the finding generalize?)
 
@@ -523,14 +539,14 @@ Following standard research methodology (Wohlin et al., *Experimentation in Soft
 | **Small gold benchmark (n=5)** | Findings may not generalize beyond the 5 debate cases. | The phase study uses 600 synthetic oracle-separation conditions (20 pairings × 15 ratios) to test the *continuous* law, not just 5 points. The crossover r\* ≈ 0.17 reproduces across both gold and synthetic. |
 | **Single language (Chinese)** | Crossover may differ for English, tonal languages, etc. | Acknowledged as unaddressed. Chinese is character-based, making CER natural; English would need WER. Cross-lingual validation is future work. |
 | **Single corpus (one debate set)** | Speaker-specific acoustics may drive findings. | The synthetic phase study uses 11 con × 15 pro speaker pairings — 20 distinct pairings, not one. The heavy-tail mechanism (silent-track hallucination) is a Whisper property, not a speaker property. |
-| **No standard meeting benchmarks** | AMI/LibriCSS/AliMeeting may give different crossovers. | Acknowledged. Our controlled benchmark isolates the separation variable; standard benchmarks introduce room acoustics and microphone-array confounds. External validation is staged but not completed ([`resources/external_sanity_check/`](resources/external_sanity_check/)). |
+| **No standard meeting benchmarks** | AMI/LibriCSS/AliMeeting may give different crossovers. | Partially addressed: an AISHELL-4 external validation (§19, one meeting, 77 windows) confirms the separation tax replicates (H1b supported) but falsifies router v2 generalization (H1a not supported). The gold "separated wins at HeavyOverlap" boundary does not transfer to oracle-TextGrid separation. Full multi-corpus validation remains future work. |
 
 ### 17.3 Construct Validity (are we measuring what we claim?)
 
 | Threat | What it risks | Mitigation |
 |---|---|---|
 | **CER as the sole quality measure** | CER may miss speaker-attribution errors, fluency, or semantic fidelity. | We report **four** complementary metrics: CER, speaker-aware CER (per-speaker macro), cpCER-lite (permutation-invariant), and error-type decomposition (insertion/deletion/substitution/repetition). Each captures a different failure mode. |
-| **"Separation helps/hurts" is a mean-effect claim** | The mean hides the heavy tail; a median or typical-clip view could disagree. | We report **both** mean and median ΔCER (Section 6.1). The mean ≪ median gap is itself the *finding* — it proves the effect is tail-driven, not uniform. |
+| **"Separation helps/hurts" is a mean-effect claim** | The mean hides the heavy tail; a median or typical-clip view could disagree. | We report **both** mean and median ΔCER (Section 6.1). The mean ≪ median gap is itself the *finding* — it suggests the effect is tail-driven, not uniform (F03 is BH-downgraded; see §18). |
 | **Gain-invariant prosody as "emotion"** | Arousal-side prosody is not full emotion; valence is lexical only. | Acknowledged. We follow the dimensional tradition (Russell 1980; Scherer 2005) and explicitly scope claims to *arousal-side acoustic emotion*. The LLM semantic-emotion arm extends to valence but is labeled `experimental/frontier`. |
 | **Compression ratio as "hallucination" proxy** | CR could inflate for legitimate reasons (repetition in the source). | We validate CR against *manual* inspection of all 6 catastrophic tracks (Section RQ2 of [FINDINGS](results/frontier/separation_tax/FINDINGS.md)) — all 6 are genuine token-id repetition loops, not source-driven. AUC = 1.0 on 6 vs 594. |
 
@@ -545,7 +561,254 @@ Following standard research methodology (Wohlin et al., *Experimentation in Soft
 
 **Summary:** the threats analysis shows the project's claims are *mechanistic* and *conservative-bounded*, not *population-level* or *deployment-certified*. This is the honest scope of a research project with n=5 gold cases and n=600 synthetic conditions. The mitigations (oracle separation, reference-free router, four complementary metrics, bootstrap CIs, pre-registered kill criteria) are designed to bound each threat rather than eliminate it.
 
-## 18. Reproducibility
+## 18. Statistical Robustness — Benjamini-Hochberg Audit
+
+> **Label: `experimental/frontier`** — reanalysis only; no new data, no gold
+> tables modified. Full audit:
+> [`results/frontier/statistical_robustness/FINDINGS.md`](results/frontier/statistical_robustness/FINDINGS.md).
+
+The 21 numbered frontier findings (§project_state.md) were re-examined under a
+multiple-comparison and post-hoc power lens. This closes the "Multiple testing"
+threat flagged in §17.1 by *measuring* it rather than asserting it is handled.
+
+**Headline result.** Of the 17 directional findings in the BH family, only **6
+survive** Benjamini-Hochberg correction at q=0.05: F01 (low-overlap separation
+tax), F10 (compute cascade), F14 (emotion has no separation tax), F18
+(objective-aware decoupling), F19 (emotion-fidelity meter correlation), and F21
+(confident-attractor probe). Including the F15 null result (consistent with H0),
+7 of 21 findings are statistically supported. The pre-registered threshold (H3:
+≥15 of 21 survive) is **NOT SUPPORTED**.
+
+**11 claims downgraded.** The following findings do not survive BH correction
+and are cited as "suggests" rather than "demonstrates" throughout this report:
+
+| finding | short_name | raw_p | bh_adj_p | reason |
+|---|---|---:|---:|---|
+| F02 | gold_benefit_separation | 0.039 | 0.083 | BH fail; n=3, underpowered |
+| F03 | repetition_hallucination_mechanism | 0.078 | 0.115 | BH fail; underpowered |
+| F05 | router_v1_fails_synthetic | 0.102 | 0.116 | BH fail; underpowered |
+| F06 | router_v2_improves_synthetic | 0.193 | 0.205 | BH fail; underpowered |
+| F07 | risk_aware_not_best_cer | 0.089 | 0.115 | BH fail; n=5, underpowered |
+| F11 | noise_robust_gate_cure | 0.035 | 0.083 | BH fail; underpowered |
+| F12 | speaker_gate_moderate_babble | 0.094 | 0.115 | BH fail; underpowered |
+| F13 | gate_selector_falsified | 0.063 | 0.106 | BH fail (falsification claim) |
+| F16 | lexical_tax_cer_reproduction | 0.087 | 0.115 | BH fail; underpowered |
+| F17 | llm_repair_net_harm | 0.301 | 0.301 | BH fail; underpowered |
+| F20 | gate_emotion_cost_speaker_least | 0.056 | 0.106 | BH fail; underpowered |
+
+**9 of the 11 are additionally underpowered** (observed |effect| < MDE at 80%
+power): F02, F03, F05, F06, F07, F11, F12, F16, F17, F20. Their BH failure is
+therefore *ambiguous* — a non-rejection under low power is not evidence the
+effect is absent. Only F13 (a falsification claim whose non-significance is
+consistent with the project's conclusion) is comparatively well-powered.
+
+**Interpretation.** The frontier's quantitative backbone is real but narrow: a
+small set of large, well-powered effects (the compute cascade, the
+emotion-fidelity meter, the confident-attractor probe, objective-aware
+decoupling, the emotion separation non-tax, and the low-overlap separation tax)
+survive strict multiple-comparison control. The remaining claims are individually
+suggestive and would need larger n or stronger effects to clear the FDR bar. The
+project therefore presents its frontier as a mixture of *demonstrated* (6) and
+*suggested* (11) results, not as 21 uniformly demonstrated findings. The full
+machine-readable correction table is `correction_table.csv` in the audit
+directory; reproduce with `python3 results/frontier/statistical_robustness/bh_correction.py`.
+
+## 19. External Validation — AISHELL-4
+
+> **Label: `external/sanity-check`** — first external benchmark validation of
+> router v2. Does NOT overwrite gold references or gold tables. Full report:
+> [`results/external_sanity_check/aishell4/FINDINGS.md`](results/external_sanity_check/aishell4/FINDINGS.md).
+
+The overlap-aware router v2 was validated on a real AISHELL-4 meeting
+(M_R003S02C01, 38.5 min, 6 speakers, 77 windows of 30 s each) with cpWER
+evaluation via MeetEval. This is the first external benchmark test of the
+project's central routing thesis.
+
+### H1a — Router v2 beats always-mixed: NOT SUPPORTED
+
+Router v2 cpWER (1.206) is slightly *worse* than always-mixed (1.173); the
+paired bootstrap 95% CI [−0.152, +0.186] crosses zero. The router's NoOverlap
+rule (choose separated when the mixed transcript is long) does not transfer to
+AISHELL-4 because oracle-separated tracks with TextGrid boundaries carry silence
+that triggers Whisper hallucination, making separated worse than mixed even at
+NoOverlap.
+
+### H1b — Mixed < separated at low overlap: SUPPORTED (stronger than gold)
+
+Mixed ASR achieves lower cpWER than separated ASR at ALL overlap levels
+(NoOverlap Δ=+0.20, LightOverlap Δ=+0.64, MidOverlap Δ=+0.72), not just low
+overlap. The separation tax is more severe on real meeting audio than on the
+5-case gold benchmark.
+
+### Boundary condition (the most important finding)
+
+The gold-baseline routing boundary — "separated wins at HeavyOverlap" — does
+**NOT** transfer to AISHELL-4. On gold, separated was dramatically better at
+HeavyOverlap (CER 0.109 vs 0.387). On AISHELL-4, separated is worse even at
+HeavyOverlap (cpWER 1.667 vs 1.000). The difference is the separation paradigm:
+gold separated tracks are clean per-speaker audio; AISHELL-4 oracle-TextGrid
+separated tracks contain silence gaps that trigger the confident-attractor
+hallucination (#21). The routing boundary depends on **separation quality**, not
+just the overlap ratio.
+
+| metric | Gold (5 cases) | AISHELL-4 (77 windows) |
+|---|---:|---:|
+| Mixed CER/cpWER | 0.248 | 1.173 |
+| Separated CER/cpWER | 0.278 | 1.591 |
+| Router v2 CER/cpWER | 0.120 | 1.206 |
+| Separated wins at HeavyOverlap? | ✓ | ✗ |
+| Mixed wins at LightOverlap? | ✓ | ✓ |
+
+**Honest scope.** Single meeting, oracle separation (not a real separator),
+Whisper-tiny only. The H1a falsification is a boundary condition on the routing
+thesis, not a disproof of the core phenomenon — the separation tax replicates
+(H1b). The next step (Gap M2) should test a real separator (SepFormer) to
+determine whether "separated wins at high overlap" survives when the separator
+produces continuous speech without silence gaps.
+
+## 20. Theoretical Framework — POMDP Decision-Theoretic Routing
+
+> **Label: `experimental/frontier`** — theoretical + reanalysis only; no new
+> data. Full report:
+> [`results/frontier/decision_theoretic_routing/FINDINGS.md`](results/frontier/decision_theoretic_routing/FINDINGS.md).
+
+The project's grand question — *when should we separate?* — was answered
+empirically by router v2 (overlap-ratio + compression-ratio, crossover r\*≈0.17)
+but never formalized. A reviewer can ask "why this boundary and not another?"
+and the previous answer was only "the data says so." This study builds a
+decision-theoretic (POMDP) framework that derives the routing policy from first
+principles.
+
+### POMDP formalization
+
+| element | definition |
+|---|---|
+| **States** S | {overlap-ratio ∈ {0, 0.1, 0.3, 0.6, 0.9}} × {noise ∈ {clean, white, pink, babble}} × {objective ∈ {text, emotion, joint}} |
+| **Actions** A | {mixed, separated, gate_flatness, gate_speaker} |
+| **Observations** O | {compression_ratio, spectral_flatness} — reference-free decoder signals |
+| **Transition** T | deterministic: T(s′ \| s, a) = δ(s′, s) |
+| **Reward** R | R(s, a) = −(normalized_text_regret + λ · normalized_emotion_regret), λ = 1.0 |
+| **Solver** | Value iteration (γ=1.0); collapses to V(s) = max_a R(s, a) |
+
+All rewards are estimated from existing frontier data (#11 separation tax, #14
+emotion divergence, #18 equal-regret-axes design, #20 gate emotion cost). No
+data was invented.
+
+### P1 SUPPORTED — POMDP recovers router v2's boundary
+
+The POMDP-optimal text route (clean noise) matches router v2 at all 5 overlap
+strata. The crossover comparison:
+
+| | crossover (overlap-ratio) |
+|---|---:|
+| POMDP-optimal (text, clean) | 0.20 |
+| Router v2 empirical (r\*) | 0.17 |
+| **Divergence** | **0.03** |
+| **P1 verdict (divergence < 0.1)** | **SUPPORTED** |
+
+The first-principles POMDP, given only the separation-tax magnitudes and the
+emotion divergence, recovers router v2's empirical boundary to within 0.03
+overlap-ratio. This elevates the routing boundary from "the data says so" to "a
+decision-theoretic model predicts it."
+
+### The POMDP predicts #18's objective-aware decoupling
+
+The POMDP-optimal policy differs across objectives in exactly the band #14/#18
+identified: text wants mixed at ov 0.1 (avoid hallucination) while emotion wants
+separated (recover prosody) — the largest coupling cost (+0.119) is at ov 0.1,
+and zero coupling cost at the extremes (ov 0.0 and 0.9). The model independently
+rediscovers #18's design rule ("always read emotion from the separated track")
+from the reward structure, not by assumption.
+
+**Honest limitation.** The stratum-level discretization (5 overlap strata)
+captures the dominant trend but not per-utterance heterogeneity; the model
+predicts the sign pattern and the largest-cost stratum, not the exact
+mid-overlap magnitudes.
+
+## 21. Emotion-ASR Asymmetry Mechanism
+
+> **Label: `experimental/frontier`** — reanalysis of #14/#18/#21; no new data.
+> Full report:
+> [`results/frontier/emotion_asr_asymmetry/FINDINGS.md`](results/frontier/emotion_asr_asymmetry/FINDINGS.md).
+
+Finding #14 found an unexplained **asymmetry**: separation has NO emotion tax
+(prosody benefit ≥ 0 at every overlap) but a positive ASR tax at low/mid
+overlap. Finding #18 resolved this *operationally* (decouple: text from the ASR
+route, emotion from the separated track) but did not explain the *cause*. This
+study tests two propositions that explain *why* the same separation operation
+preserves prosody but injects text hallucination.
+
+### Mechanism — the dimensionality effect (P2)
+
+The dimensionality gap between prosody (~3 continuous dimensions) and text
+(~50,000 discrete tokens) is ~4 orders of magnitude. P2 predicts this gap is the
+cause: low-dimensional estimators average out additive separation artifacts;
+high-dimensional discrete decoders cannot.
+
+**P2 verdict — SUPPORTED (moderate regime) / BOUNDED (catastrophic regime).**
+At low/mid overlap where separation HURTS high-dim text (mean CER benefit
+−1.207), low-dimensional features are preserved: emotion prosody preserved in
+93% of hurt conditions, speaker count (1-integer summary) always preserved,
+binary transcript usability preserved in 64%. This is the pattern P2 predicts —
+**low-dim preserved, high-dim hurt** — and supports dimensionality as the cause
+of the #14 asymmetry.
+
+**The bound.** In the catastrophic confident-attractor regime (#21, 26
+conditions), even the 1-dimensional utterance-length feature is NOT preserved
+(mean compression_ratio = 17.9× vs 0.81× for clean). So P2 is **bounded**:
+dimensionality explains the *moderate* asymmetry (low-overlap tax) but not the
+*extreme* hallucination collapse, where the attractor distorts even 1-dim text
+features.
+
+### Pre-decode predictability (P3)
+
+**P3 verdict — BORDERLINE (weakly supported), best pre-decode LOO AUC = 0.623.**
+Using #21's 66 conditions, the best pre-decode leave-one-out classifier AUC is
+0.623 (no_speech_prob alone), marginally above the 0.6 threshold. The signal is
+weak (just 0.023 above threshold), the combined pre-decode model is below
+threshold (0.588), and the in-sample oracle-direction ceiling is 0.666. By
+contrast, post-decode detection is far stronger (compression_ratio LOO AUC
+0.846; full post-decode set 0.992). **The attractor is marginally predictable
+pre-decode but overwhelmingly a post-decode phenomenon.**
+
+### Operational implication
+
+The dimensionality result (P2) explains *why* the decoupled design of #18 works:
+emotion is recoverable from the separated track precisely because prosody is
+low-dimensional and robust to the artifacts that break the high-dimensional text
+decode. Pre-decode *prevention* of the attractor is at best weakly supported;
+post-decode *detection* (#21's compression-ratio + token-id lock-in union)
+remains the deployable cure.
+
+## 22. Venue Positioning
+
+> **Label: `experimental/frontier`** — analysis of venue fit, not a result
+> artifact. Full analysis:
+> [`RESEARCH/overlap-aware-speaker-asr/framing/venue_analysis.md`](RESEARCH/overlap-aware-speaker-asr/framing/venue_analysis.md).
+
+A four-venue comparison (ICASSP, Interspeech, IEEE TASLP, Speech Communication)
+reverse-engineers each venue's reviewer reward function against the project's
+contribution profile.
+
+**Primary target: Interspeech 2026.** The 2026 theme "Speaking Together"
+directly celebrates overlapping/multi-speaker speech — a near-perfect thematic
+match for the project's core question. Double-blind review raises credibility;
+the long-paper track (8+2 pages) accommodates the multi-finding story. At ~48%
+acceptance, Interspeech is selective but achievable.
+
+**Critical evidence path.** The minimum viable evidence for an Interspeech
+submission is: RQ1 (AISHELL-4 external validation — §19, now done) + RQ2 (one
+realistic-separator condition — open) + RQ3 (statistical robustness / CIs — §18,
+now done). The H1a falsification (§19) is not a blocker; it is an honest
+boundary condition that a double-blind reviewer will credit. The BH audit (§18)
+converts the "multiple testing" threat from an assertion into a measured bound.
+
+**Backup: ICASSP 2027** (4+1 pages, single-blind, confident-attractor focus).
+**Journal extension: IEEE TASLP** (full 21-finding story; requires RQ1–RQ4
+complete). The POMDP framework (§20) and emotion-ASR mechanism (§21) are the
+differentiators for the TASLP extension.
+
+## 23. Reproducibility
 
 Every key finding has a one-command reproduction path. The project is designed so that a reviewer can re-run any experiment from a clean checkout without manual steps beyond the environment setup in [docs/quickstart.md](docs/quickstart.md).
 
@@ -594,7 +857,7 @@ The contract ([`scripts/harness/contract_rules.py`](scripts/harness/contract_rul
 
 Every result CSV/JSON/PNG is committed to the repository (not generated at install time). The `results/frontier/*/FINDINGS.md` files document the exact command, parameters, and timestamp for each artifact. The `references/` directory contains the verified gold transcripts and is read-only by contract. Synthetic silver references are kept under `resources/synthetic_overlap*/references/` and are never mixed into gold claims.
 
-## 19. Conclusion
+## 24. Conclusion
 
 The project establishes a stable overlap-aware ASR baseline and extends it into
 a broader research system. The main result is selective separation: mixed ASR is
