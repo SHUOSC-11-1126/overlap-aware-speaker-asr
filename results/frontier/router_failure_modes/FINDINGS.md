@@ -219,6 +219,22 @@ AISHELL-4 failure mass. Resolving H12c requires running the gate on AISHELL-4 au
 5. **Whisper-tiny only.** A stronger model may hallucinate less and change the
    failure-mode mix.
 
+6. **Oracle and cpWER are utterance-level (whole Chinese string = 1 token).** The
+   "85.7% routing accuracy" (11/77 oracle-worse picks) and the entire 11-window
+   failure decomposition are computed against an utterance-level oracle, where each
+   speaker's full Chinese transcript counts as a single token. RQ30
+   (`results/frontier/meeteval_cpwer_validation/`, PR #935) later showed that 48% of
+   these 77 windows would have a *different* winner under char-level cpWER — the
+   per-window oracle flips on roughly half the windows when tokens are characters
+   instead of whole utterances. The failure-mode shares (diverse-hallucination 67.8%,
+   mixed-hallucination 27.6%, etc.) are therefore utterance-level quantities; a
+   char-level re-decomposition (RQ35) is the required follow-up before claiming the
+   "100% of routing regret is hallucination-driven" finding holds at character
+   granularity. The qualitative direction (CR does not transfer; hallucination
+   dominates) is robust because RQ30 showed the *direction* of mixed-vs-separated is
+   preserved, but the precise 11-window failure set and the per-mode regret shares
+   should be read as utterance-level.
+
 ## What this changes for the project
 
 1. **The router's failure is a hallucination problem, not a routing-logic problem.**

@@ -137,10 +137,16 @@ documented operational heuristics, not validated categories — see Limitations.
   2.4), mean lang-ent 0.91 bits. This is the real content of RQ12's "diverse"
   bucket.
 - **substitution_dominated (9, 24.3%)** — comparable-length single-script tracks
-  where cpWER > 1 is driven by character substitutions rather than length
-  inflation (e.g. w22, w30, w48). Mean CR 1.37, mean lang-ent 0.68. This is the
-  **hardest mode to detect** (any-detector coverage 55.6%): short, single-script,
-  low-entropy, low-TTR — no cheap surface signal flags it.
+  where cpWER > 1 is driven by *extra inserted speaker-streams* rather than length
+  inflation. The mode name refers to the per-character surface form (character
+  substitutions visible in the transcript text), not to the cpWER accounting: at
+  utterance-level cpWER each speaker's full text is a single token, so error_rate
+  > 1.0 is only achievable via insertions of extra speaker-segments, not via
+  character substitutions (see RQ30 tokenisation caveat in
+  `results/external_sanity_check/aishell4/FINDINGS.md`). Examples: w22, w30, w48.
+  Mean CR 1.37, mean lang-ent 0.68. This is the **hardest mode to detect**
+  (any-detector coverage 55.6%): short, single-script, low-entropy, low-TTR — no
+  cheap surface signal flags it.
 - **multilingual_mixing (4, 10.8%)** — the vivid case RQ12 quoted (w00, w51, w68,
   w73), mixing Han + Latin + Hiragana/Hangul. Highest mean cpWER (2.92) but the
   *minority* surface form. 100% caught by lang-ent (entropy 1.29–1.42 bits).

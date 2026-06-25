@@ -206,6 +206,17 @@ corrected > router v2). This is why H16b's bootstrap CI is entirely below 0.
    not used as routing input — the guards here are computed only from the hypothesis transcripts
    (lang-id entropy, length ratio, CR, script counts), which is the deployable signal surface.
 
+7. **cpWER is utterance-level (whole Chinese string = 1 token).** RQ30
+   (`results/frontier/meeteval_cpwer_validation/`, PR #935) later showed that the project's cpWER
+   pipeline passes each speaker's full Chinese utterance as a single token to MeetEval, so cpWER
+   > 1.0 here counts *extra inserted speaker-streams*, not character-level transcription errors.
+   The 1.043 ceiling, the 86.2% regret-gap recovery, and the per-window win/loss structure are all
+   utterance-level. RQ30 found that switching to char-level cpWER preserves the *direction* of the
+   mixed-vs-separated comparison but scrambles the per-window ordering — 48% of windows would have
+   a different char-level winner — so the 6-win/2-loss structure that drives H16a's borderline CI
+   could look different at character granularity. A char-level re-validation (RQ31) is the required
+   follow-up before claiming the corrected router's 1.043 ceiling is robust at character level.
+
 ## Reproducibility
 
 - Script: `python3 results/frontier/corrected_router_simulation/corrected_router_simulation.py`

@@ -305,6 +305,18 @@ windows at a time) is the minimum design that exposes the threshold instability.
    transcripts, which is the deployable signal surface. The hallucination label
    (`always_separated_cpwer > 1.0`) is used only for calibration and evaluation, not for routing.
 
+8. **cpWER is utterance-level (whole Chinese string = 1 token).** RQ30
+   (`results/frontier/meeteval_cpwer_validation/`, PR #935) showed that the project's cpWER
+   pipeline passes each speaker's full Chinese utterance as a single token, so cpWER > 1.0 here
+   measures *extra inserted speaker-streams* per window, not character-level transcription
+   accuracy. All thresholds, sensitivities, and cpWER recovery figures in this study are at the
+   utterance level. RQ30 found that switching to char-level cpWER preserves the *direction* of the
+   mixed-vs-separated comparison but scrambles the *per-window ordering* (48% of windows would
+   have a different char-level winner). The out-of-sample threshold stability and the "cpWER
+   generalises" claim above are therefore utterance-level only; a char-level re-validation
+   (RQ31/RQ35) is the required follow-up before claiming the corrected router generalises at
+   character granularity.
+
 ## Reproducibility
 
 - Script: `/opt/homebrew/bin/python3 results/frontier/out_of_sample_router/out_of_sample_router_analysis.py`

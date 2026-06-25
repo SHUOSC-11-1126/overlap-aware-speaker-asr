@@ -120,7 +120,7 @@ This is a **boundary condition** on the gold-baseline routing thesis: the "separ
 
 ### Why cpWER values are high (>1.0)
 
-Whisper-tiny is a small model (39M parameters) and the AISHELL-4 meeting audio is challenging (real meeting environment with background noise, overlapping speech, conversational Chinese). cpWER > 1.0 means the hypothesis contains more characters than the reference (insertions/hallucinations). This is expected for a tiny model on real meeting audio and does not invalidate the relative comparison between mixed and separated.
+Whisper-tiny is a small model (39M parameters) and the AISHELL-4 meeting audio is challenging (real meeting environment with background noise, overlapping speech, conversational Chinese). cpWER > 1.0 means the hypothesis contains more utterance-tokens (extra inserted speaker-streams) than the reference, not more characters — at utterance-level cpWER each speaker's full text is 1 token (see RQ30 tokenisation caveat above). This is expected for a tiny model on real meeting audio and does not invalidate the relative comparison between mixed and separated.
 
 ## Limitations
 

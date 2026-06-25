@@ -78,7 +78,11 @@ robust to the acoustic interference that devastates tiny.
 - Only 5 speaker pairs × 5 overlap ratios (quick mode). Full 15-ratio sweep
   recommended for publication.
 - Silver references (Whisper-small on clean snippets). The 0.200 base CER
-  may partly reflect that base is closer to the reference model.
+  was *initially* suspected to reflect model proximity to the reference model,
+  but the follow-up `results/frontier/reference_validity/FINDINGS.md` deep dive
+  empirically refutes this: base vs small produce 37.2% character-level
+  different text on clean audio (vs 50.3% for tiny vs small), so the 0.200 CER
+  reflects genuine transcription quality, not reference proximity.
 - Runtime data not captured (the runtime fields are 0.0 — a bug in the
   extraction; non-blocking for the CER analysis).
 - Only tiny vs base tested. Small model would strengthen the monotonicity claim.
