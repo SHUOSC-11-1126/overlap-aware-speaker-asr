@@ -1,0 +1,233 @@
+{
+  "label": "experimental/frontier",
+  "rq": "RQ21: Gold-benchmark detector comparison — CR vs language-id entropy",
+  "closes_issue": 916,
+  "method": "reanalysis only (no Whisper / no ASR run by this script); gold per-track text decoded once by decode_gold_tracks.py (Whisper-tiny greedy, matching separation_tax_phase) and cached; AISHELL-4 text read from existing JSON",
+  "gold_source_text": "results/frontier/gold_detector_comparison/gold_track_texts.json",
+  "gold_source_cer": "results/frontier/separation_tax/phase_curve.csv",
+  "aishell4_source": "results/external_sanity_check/aishell4/rq1_aishell4_validation_results.json",
+  "gold_hallucination_label": "cer_sepN > 5.0 OR cr_sepN_phase > 2.4",
+  "aishell4_hallucination_label": "always_separated_cpwer > 1.0",
+  "target_specificity": 0.9,
+  "aggregation_gold": "per-track (sep1 + sep2, 600 tracks); CR and lang-id computed from decoded text",
+  "aggregation_aishell4": "max across per-speaker separated transcripts (worst-case track), same as RQ13",
+  "gold_n_tracks": 600,
+  "gold_n_hallucinated": 5,
+  "gold_n_nonhallucinated": 595,
+  "aishell4_n_tracks": 77,
+  "aishell4_n_hallucinated": 37,
+  "aishell4_n_nonhallucinated": 40,
+  "detectors": {
+    "gold_cr": {
+      "dataset": "gold",
+      "detector": "compression_ratio",
+      "score_key": "cr",
+      "threshold": 15.818182,
+      "threshold_exact": 15.818181818181818,
+      "specificity": 1.0,
+      "specificity_ci_95": [
+        1.0,
+        1.0
+      ],
+      "sensitivity": 1.0,
+      "sensitivity_ci_95": [
+        1.0,
+        1.0
+      ],
+      "auc": 1.0,
+      "tp": 5,
+      "fp": 0,
+      "tn": 595,
+      "fn": 0,
+      "n_pos": 5,
+      "n_neg": 595
+    },
+    "gold_lang_id_entropy": {
+      "dataset": "gold",
+      "detector": "language_id_entropy",
+      "score_key": "lang_id_entropy",
+      "threshold": 0.863121,
+      "threshold_exact": 0.863120568566631,
+      "specificity": 0.991597,
+      "specificity_ci_95": [
+        0.983221,
+        0.998319
+      ],
+      "sensitivity": 0.0,
+      "sensitivity_ci_95": [
+        0.0,
+        0.0
+      ],
+      "auc": 0.439496,
+      "tp": 0,
+      "fp": 5,
+      "tn": 590,
+      "fn": 5,
+      "n_pos": 5,
+      "n_neg": 595
+    },
+    "aishell4_cr": {
+      "dataset": "aishell4",
+      "detector": "compression_ratio",
+      "score_key": "cr",
+      "threshold": 1.491639,
+      "threshold_exact": 1.491638795986622,
+      "specificity": 0.9,
+      "specificity_ci_95": [
+        0.8,
+        0.976744
+      ],
+      "sensitivity": 0.135135,
+      "sensitivity_ci_95": [
+        0.030303,
+        0.257143
+      ],
+      "auc": 0.617568,
+      "tp": 5,
+      "fp": 4,
+      "tn": 36,
+      "fn": 32,
+      "n_pos": 37,
+      "n_neg": 40
+    },
+    "aishell4_lang_id_entropy": {
+      "dataset": "aishell4",
+      "detector": "language_id_entropy",
+      "score_key": "lang_id_entropy",
+      "threshold": 0.409073,
+      "threshold_exact": 0.40907313904382653,
+      "specificity": 0.925,
+      "specificity_ci_95": [
+        0.833333,
+        1.0
+      ],
+      "sensitivity": 0.945946,
+      "sensitivity_ci_95": [
+        0.862069,
+        1.0
+      ],
+      "auc": 0.978378,
+      "tp": 35,
+      "fp": 3,
+      "tn": 37,
+      "fn": 2,
+      "n_pos": 37,
+      "n_neg": 40
+    }
+  },
+  "dataset_aware_switch": {
+    "policy": "dataset-aware switch (CR on gold, lang-id entropy on AISHELL-4)",
+    "gold_threshold_cr": 15.818182,
+    "aishell4_threshold_lang_id": 0.409073,
+    "gold_sensitivity": 1.0,
+    "gold_specificity": 1.0,
+    "gold_tp": 5,
+    "gold_fp": 0,
+    "gold_tn": 595,
+    "gold_fn": 0,
+    "aishell4_sensitivity": 0.945946,
+    "aishell4_specificity": 0.925,
+    "aishell4_tp": 35,
+    "aishell4_fp": 3,
+    "aishell4_tn": 37,
+    "aishell4_fn": 2,
+    "combined_sensitivity": 0.952381,
+    "combined_tp": 40,
+    "combined_n_pos": 42,
+    "combined_sensitivity_ci_95": [
+      0.875,
+      1.0
+    ]
+  },
+  "distribution_stats": {
+    "gold_cr_hallucinated": {
+      "n": 5,
+      "median": 16.333333,
+      "mean": 18.781028,
+      "min": 15.818182,
+      "max": 29.086957
+    },
+    "gold_cr_nonhallucinated": {
+      "n": 595,
+      "median": 0.731707,
+      "mean": 0.754599,
+      "min": 0.631579,
+      "max": 1.016949
+    },
+    "gold_lang_id_hallucinated": {
+      "n": 5,
+      "median": 0.0,
+      "mean": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "gold_lang_id_nonhallucinated": {
+      "n": 595,
+      "median": 0.0,
+      "mean": 0.057287,
+      "min": 0.0,
+      "max": 0.863121
+    },
+    "aishell4_cr_hallucinated": {
+      "n": 37,
+      "median": 1.102041,
+      "mean": 1.225774,
+      "min": 0.694444,
+      "max": 2.965517
+    },
+    "aishell4_cr_nonhallucinated": {
+      "n": 40,
+      "median": 1.093874,
+      "mean": 0.834158,
+      "min": 0.0,
+      "max": 2.30597
+    },
+    "aishell4_lang_id_hallucinated": {
+      "n": 37,
+      "median": 1.216316,
+      "mean": 1.115525,
+      "min": 0.143726,
+      "max": 1.750916
+    },
+    "aishell4_lang_id_nonhallucinated": {
+      "n": 40,
+      "median": 0.0,
+      "mean": 0.100895,
+      "min": 0.0,
+      "max": 0.94566
+    }
+  },
+  "hypothesis_verdicts": {
+    "H21a": {
+      "statement": "language-id entropy achieves < 50% sensitivity on gold's repetitive hallucination",
+      "sensitivity": 0.0,
+      "specificity": 0.991597,
+      "bootstrap_ci_95": [
+        0.0,
+        0.0
+      ],
+      "supported": true
+    },
+    "H21b": {
+      "statement": "CR achieves > 90% sensitivity on gold's repetitive hallucination at 90% specificity",
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "bootstrap_ci_95": [
+        1.0,
+        1.0
+      ],
+      "supported": true
+    },
+    "H21c": {
+      "statement": "dataset-aware switch (CR on gold, lang-id on AISHELL-4) achieves > 90% sensitivity on both",
+      "gold_sensitivity": 1.0,
+      "aishell4_sensitivity": 0.945946,
+      "combined_sensitivity": 0.952381,
+      "combined_ci_95": [
+        0.875,
+        1.0
+      ],
+      "supported": true
+    }
+  }
+}
