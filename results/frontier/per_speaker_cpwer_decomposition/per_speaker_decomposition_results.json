@@ -1,0 +1,3946 @@
+{
+  "label": "experimental/frontier",
+  "rq": "RQ37",
+  "closes_issue": "#944",
+  "meeteval_version": "0.4.3",
+  "method": "Reanalysis only.  For each of the 77 AISHELL-4 windows in results/external_sanity_check/aishell4/rq1_aishell4_validation_results.json (label external/sanity-check, meeting M_R003S02C01), ran MeetEval 0.4.3 cpwer with character-level tokenisation (' '.join(list(text)), the standard Chinese cpCER convention matching RQ30's char-level arm).  Used CPErrorRate.apply_assignment to fix the optimal ref<->hyp speaker mapping, then computed a per-speaker Levenshtein distance on the raw character strings.  Per-speaker errors sum to the cpWER aggregate (including unmatched-hypothesis insertions in a dedicated __unmatched_hyp__ bucket).  No Whisper / no ASR runs.",
+  "source_data": {
+    "path": "results/external_sanity_check/aishell4/rq1_aishell4_validation_results.json",
+    "label": "external/sanity-check",
+    "num_windows": 77,
+    "meeting_id": "M_R003S02C01"
+  },
+  "parameters": {
+    "top_k": 10,
+    "mode_s_window_ids": [
+      22,
+      30
+    ],
+    "tokenisation": "character-level (' '.join(list(text)))",
+    "worst_speaker_criterion": "highest per-speaker error COUNT (contribution to total cpWER errors)",
+    "share_denominator": "total_errors (real speakers + unmatched_hyp insertions)",
+    "gini_threshold_h37c": 0.3,
+    "share_threshold_h37a": 0.5,
+    "consistency_threshold_h37b": 0.5
+  },
+  "decomposition_invariants": {
+    "windows_processed": 77,
+    "windows_skipped_empty": 13,
+    "windows_decomposed": 64,
+    "per_speaker_sums_match_meetval": true,
+    "mismatch_count": 0
+  },
+  "hypotheses": {
+    "H37a": {
+      "statement": "One speaker contributes > 50% of total cpWER in the worst windows.",
+      "verdict": "SUPPORTED",
+      "max_worst_speaker_share": 0.9646017699115044,
+      "per_window_shares": [
+        0.49171270718232046,
+        0.6277372262773723,
+        0.47533632286995514,
+        0.8333333333333334,
+        0.7079646017699115,
+        0.5040322580645161,
+        0.9646017699115044,
+        0.8791208791208791,
+        0.9204545454545454,
+        0.7135678391959799
+      ],
+      "threshold": 0.5
+    },
+    "H37b": {
+      "statement": "The worst speaker is consistent across windows.",
+      "verdict": "SUPPORTED",
+      "most_common_worst_speaker": "001-M",
+      "consistency_fraction": 0.6,
+      "threshold": 0.5
+    },
+    "H37c": {
+      "statement": "Mode S windows have uniform per-speaker error (Gini < 0.3).",
+      "verdict": "SUPPORTED",
+      "mode_s_ginis": {
+        "22": 0.17241379310344826,
+        "30": 0.0
+      },
+      "threshold": 0.3
+    }
+  },
+  "top_10_windows": [
+    {
+      "window_id": 0,
+      "cpwer": 1.645455,
+      "total_errors": 181,
+      "total_length": 110,
+      "worst_speaker": "001-M",
+      "worst_speaker_share": 0.491713,
+      "unmatched_hyp_share": 0.0,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "errors": 89,
+          "ref_length": 82,
+          "cpwer": 1.085366,
+          "share_of_total_errors": 0.491713
+        },
+        {
+          "speaker": "002-M",
+          "errors": 5,
+          "ref_length": 5,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.027624
+        },
+        {
+          "speaker": "003-F",
+          "errors": 7,
+          "ref_length": 5,
+          "cpwer": 1.4,
+          "share_of_total_errors": 0.038674
+        },
+        {
+          "speaker": "004-F",
+          "errors": 32,
+          "ref_length": 6,
+          "cpwer": 5.333333,
+          "share_of_total_errors": 0.176796
+        },
+        {
+          "speaker": "005-F",
+          "errors": 21,
+          "ref_length": 6,
+          "cpwer": 3.5,
+          "share_of_total_errors": 0.116022
+        },
+        {
+          "speaker": "006-F",
+          "errors": 27,
+          "ref_length": 6,
+          "cpwer": 4.5,
+          "share_of_total_errors": 0.149171
+        }
+      ]
+    },
+    {
+      "window_id": 23,
+      "cpwer": 1.574713,
+      "total_errors": 137,
+      "total_length": 87,
+      "worst_speaker": "005-F",
+      "worst_speaker_share": 0.627737,
+      "unmatched_hyp_share": 0.0,
+      "per_speaker": [
+        {
+          "speaker": "005-F",
+          "errors": 86,
+          "ref_length": 81,
+          "cpwer": 1.061728,
+          "share_of_total_errors": 0.627737
+        },
+        {
+          "speaker": "006-F",
+          "errors": 51,
+          "ref_length": 6,
+          "cpwer": 8.5,
+          "share_of_total_errors": 0.372263
+        }
+      ]
+    },
+    {
+      "window_id": 65,
+      "cpwer": 1.13198,
+      "total_errors": 223,
+      "total_length": 197,
+      "worst_speaker": "001-M",
+      "worst_speaker_share": 0.475336,
+      "unmatched_hyp_share": 0.0,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "errors": 106,
+          "ref_length": 116,
+          "cpwer": 0.913793,
+          "share_of_total_errors": 0.475336
+        },
+        {
+          "speaker": "005-F",
+          "errors": 42,
+          "ref_length": 2,
+          "cpwer": 21.0,
+          "share_of_total_errors": 0.188341
+        },
+        {
+          "speaker": "006-F",
+          "errors": 75,
+          "ref_length": 79,
+          "cpwer": 0.949367,
+          "share_of_total_errors": 0.336323
+        }
+      ]
+    },
+    {
+      "window_id": 51,
+      "cpwer": 1.036145,
+      "total_errors": 258,
+      "total_length": 249,
+      "worst_speaker": "001-M",
+      "worst_speaker_share": 0.833333,
+      "unmatched_hyp_share": 0.0,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "errors": 215,
+          "ref_length": 226,
+          "cpwer": 0.951327,
+          "share_of_total_errors": 0.833333
+        },
+        {
+          "speaker": "004-F",
+          "errors": 37,
+          "ref_length": 21,
+          "cpwer": 1.761905,
+          "share_of_total_errors": 0.143411
+        },
+        {
+          "speaker": "005-F",
+          "errors": 6,
+          "ref_length": 2,
+          "cpwer": 3.0,
+          "share_of_total_errors": 0.023256
+        }
+      ]
+    },
+    {
+      "window_id": 21,
+      "cpwer": 1.0,
+      "total_errors": 113,
+      "total_length": 113,
+      "worst_speaker": "001-M",
+      "worst_speaker_share": 0.707965,
+      "unmatched_hyp_share": 0.0,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "errors": 80,
+          "ref_length": 80,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.707965
+        },
+        {
+          "speaker": "006-F",
+          "errors": 33,
+          "ref_length": 33,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.292035
+        }
+      ]
+    },
+    {
+      "window_id": 66,
+      "cpwer": 1.0,
+      "total_errors": 248,
+      "total_length": 248,
+      "worst_speaker": "001-M",
+      "worst_speaker_share": 0.504032,
+      "unmatched_hyp_share": 0.0,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "errors": 125,
+          "ref_length": 125,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.504032
+        },
+        {
+          "speaker": "005-F",
+          "errors": 105,
+          "ref_length": 105,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.423387
+        },
+        {
+          "speaker": "006-F",
+          "errors": 18,
+          "ref_length": 18,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.072581
+        }
+      ]
+    },
+    {
+      "window_id": 67,
+      "cpwer": 1.0,
+      "total_errors": 226,
+      "total_length": 226,
+      "worst_speaker": "005-F",
+      "worst_speaker_share": 0.964602,
+      "unmatched_hyp_share": 0.0,
+      "per_speaker": [
+        {
+          "speaker": "005-F",
+          "errors": 218,
+          "ref_length": 218,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.964602
+        },
+        {
+          "speaker": "006-F",
+          "errors": 8,
+          "ref_length": 8,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.035398
+        }
+      ]
+    },
+    {
+      "window_id": 15,
+      "cpwer": 0.994536,
+      "total_errors": 182,
+      "total_length": 183,
+      "worst_speaker": "006-F",
+      "worst_speaker_share": 0.879121,
+      "unmatched_hyp_share": 0.0,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "errors": 22,
+          "ref_length": 22,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.120879
+        },
+        {
+          "speaker": "006-F",
+          "errors": 160,
+          "ref_length": 161,
+          "cpwer": 0.993789,
+          "share_of_total_errors": 0.879121
+        }
+      ]
+    },
+    {
+      "window_id": 24,
+      "cpwer": 0.99435,
+      "total_errors": 176,
+      "total_length": 177,
+      "worst_speaker": "005-F",
+      "worst_speaker_share": 0.920455,
+      "unmatched_hyp_share": 0.0,
+      "per_speaker": [
+        {
+          "speaker": "005-F",
+          "errors": 162,
+          "ref_length": 163,
+          "cpwer": 0.993865,
+          "share_of_total_errors": 0.920455
+        },
+        {
+          "speaker": "006-F",
+          "errors": 14,
+          "ref_length": 14,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.079545
+        }
+      ]
+    },
+    {
+      "window_id": 48,
+      "cpwer": 0.99005,
+      "total_errors": 199,
+      "total_length": 201,
+      "worst_speaker": "001-M",
+      "worst_speaker_share": 0.713568,
+      "unmatched_hyp_share": 0.0,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "errors": 142,
+          "ref_length": 148,
+          "cpwer": 0.959459,
+          "share_of_total_errors": 0.713568
+        },
+        {
+          "speaker": "004-F",
+          "errors": 56,
+          "ref_length": 52,
+          "cpwer": 1.076923,
+          "share_of_total_errors": 0.281407
+        },
+        {
+          "speaker": "006-F",
+          "errors": 1,
+          "ref_length": 1,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.005025
+        }
+      ]
+    }
+  ],
+  "mode_s_windows": [
+    {
+      "window_id": 22,
+      "cpwer": 0.491525,
+      "num_speakers": 2,
+      "gini": 0.172414,
+      "per_speaker": [
+        {
+          "speaker": "005-F",
+          "errors": 57,
+          "ref_length": 117,
+          "cpwer": 0.487179,
+          "share_of_total_errors": 0.982759
+        },
+        {
+          "speaker": "006-F",
+          "errors": 1,
+          "ref_length": 1,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.017241
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      }
+    },
+    {
+      "window_id": 30,
+      "cpwer": 0.802691,
+      "num_speakers": 1,
+      "gini": 0.0,
+      "per_speaker": [
+        {
+          "speaker": "005-F",
+          "errors": 179,
+          "ref_length": 223,
+          "cpwer": 0.802691,
+          "share_of_total_errors": 1.0
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      }
+    }
+  ],
+  "all_windows": [
+    {
+      "window_id": 0,
+      "skipped": false,
+      "cpwer": 1.6454545454545455,
+      "total_errors": 181,
+      "total_length": 110,
+      "meetval_errors": 181,
+      "meetval_length": 110,
+      "reconstructed_errors": 181,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 82,
+          "hyp_length": 91,
+          "errors": 89,
+          "cpwer": 1.0853658536585367,
+          "share_of_total_errors": 0.49171270718232046
+        },
+        {
+          "speaker": "002-M",
+          "ref_length": 5,
+          "hyp_length": 4,
+          "errors": 5,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.027624309392265192
+        },
+        {
+          "speaker": "003-F",
+          "ref_length": 5,
+          "hyp_length": 7,
+          "errors": 7,
+          "cpwer": 1.4,
+          "share_of_total_errors": 0.03867403314917127
+        },
+        {
+          "speaker": "004-F",
+          "ref_length": 6,
+          "hyp_length": 35,
+          "errors": 32,
+          "cpwer": 5.333333333333333,
+          "share_of_total_errors": 0.17679558011049723
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 6,
+          "hyp_length": 22,
+          "errors": 21,
+          "cpwer": 3.5,
+          "share_of_total_errors": 0.11602209944751381
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 6,
+          "hyp_length": 27,
+          "errors": 27,
+          "cpwer": 4.5,
+          "share_of_total_errors": 0.14917127071823205
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "006-F"
+        ],
+        [
+          "002-M",
+          "005-F"
+        ],
+        [
+          "003-F",
+          "002-M"
+        ],
+        [
+          "004-F",
+          "004-F"
+        ],
+        [
+          "005-F",
+          "003-F"
+        ],
+        [
+          "006-F",
+          "001-M"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 89,
+      "worst_speaker_share": 0.49171270718232046,
+      "num_speakers": 6,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 1,
+      "skipped": true,
+      "cpwer": 0.0,
+      "total_errors": 0,
+      "total_length": 0,
+      "per_speaker": [],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": []
+    },
+    {
+      "window_id": 2,
+      "skipped": false,
+      "cpwer": 0.6637931034482759,
+      "total_errors": 77,
+      "total_length": 116,
+      "meetval_errors": 77,
+      "meetval_length": 116,
+      "reconstructed_errors": 77,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 116,
+          "hyp_length": 77,
+          "errors": 77,
+          "cpwer": 0.6637931034482759,
+          "share_of_total_errors": 1.0
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 77,
+      "worst_speaker_share": 1.0,
+      "num_speakers": 1,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 3,
+      "skipped": false,
+      "cpwer": 0.6705202312138728,
+      "total_errors": 116,
+      "total_length": 173,
+      "meetval_errors": 116,
+      "meetval_length": 173,
+      "reconstructed_errors": 116,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 173,
+          "hyp_length": 90,
+          "errors": 116,
+          "cpwer": 0.6705202312138728,
+          "share_of_total_errors": 1.0
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 116,
+      "worst_speaker_share": 1.0,
+      "num_speakers": 1,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 4,
+      "skipped": true,
+      "cpwer": 0.0,
+      "total_errors": 0,
+      "total_length": 0,
+      "per_speaker": [],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": []
+    },
+    {
+      "window_id": 5,
+      "skipped": false,
+      "cpwer": 0.9513888888888888,
+      "total_errors": 137,
+      "total_length": 144,
+      "meetval_errors": 137,
+      "meetval_length": 144,
+      "reconstructed_errors": 137,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 144,
+          "hyp_length": 35,
+          "errors": 137,
+          "cpwer": 0.9513888888888888,
+          "share_of_total_errors": 1.0
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 137,
+      "worst_speaker_share": 1.0,
+      "num_speakers": 1,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 6,
+      "skipped": false,
+      "cpwer": 0.8466257668711656,
+      "total_errors": 138,
+      "total_length": 163,
+      "meetval_errors": 138,
+      "meetval_length": 163,
+      "reconstructed_errors": 138,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 8,
+          "hyp_length": 4,
+          "errors": 8,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.057971014492753624
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 155,
+          "hyp_length": 75,
+          "errors": 130,
+          "cpwer": 0.8387096774193549,
+          "share_of_total_errors": 0.9420289855072463
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "006-F",
+          "006-F"
+        ]
+      ],
+      "worst_speaker": "006-F",
+      "worst_speaker_errors": 130,
+      "worst_speaker_share": 0.9420289855072463,
+      "num_speakers": 2,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 7,
+      "skipped": true,
+      "cpwer": 0.0,
+      "total_errors": 0,
+      "total_length": 0,
+      "per_speaker": [],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": []
+    },
+    {
+      "window_id": 8,
+      "skipped": false,
+      "cpwer": 0.9509803921568627,
+      "total_errors": 97,
+      "total_length": 102,
+      "meetval_errors": 97,
+      "meetval_length": 102,
+      "reconstructed_errors": 97,
+      "per_speaker": [
+        {
+          "speaker": "006-F",
+          "ref_length": 102,
+          "hyp_length": 34,
+          "errors": 97,
+          "cpwer": 0.9509803921568627,
+          "share_of_total_errors": 1.0
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "006-F",
+          "006-F"
+        ]
+      ],
+      "worst_speaker": "006-F",
+      "worst_speaker_errors": 97,
+      "worst_speaker_share": 1.0,
+      "num_speakers": 1,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 9,
+      "skipped": true,
+      "cpwer": 0.0,
+      "total_errors": 0,
+      "total_length": 0,
+      "per_speaker": [],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": []
+    },
+    {
+      "window_id": 10,
+      "skipped": true,
+      "cpwer": 0.0,
+      "total_errors": 0,
+      "total_length": 0,
+      "per_speaker": [],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": []
+    },
+    {
+      "window_id": 11,
+      "skipped": false,
+      "cpwer": 0.6939890710382514,
+      "total_errors": 127,
+      "total_length": 183,
+      "meetval_errors": 127,
+      "meetval_length": 183,
+      "reconstructed_errors": 127,
+      "per_speaker": [
+        {
+          "speaker": "006-F",
+          "ref_length": 183,
+          "hyp_length": 134,
+          "errors": 127,
+          "cpwer": 0.6939890710382514,
+          "share_of_total_errors": 1.0
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "006-F",
+          "006-F"
+        ]
+      ],
+      "worst_speaker": "006-F",
+      "worst_speaker_errors": 127,
+      "worst_speaker_share": 1.0,
+      "num_speakers": 1,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 12,
+      "skipped": false,
+      "cpwer": 0.6917808219178082,
+      "total_errors": 101,
+      "total_length": 146,
+      "meetval_errors": 101,
+      "meetval_length": 146,
+      "reconstructed_errors": 101,
+      "per_speaker": [
+        {
+          "speaker": "006-F",
+          "ref_length": 146,
+          "hyp_length": 99,
+          "errors": 101,
+          "cpwer": 0.6917808219178082,
+          "share_of_total_errors": 1.0
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "006-F",
+          "006-F"
+        ]
+      ],
+      "worst_speaker": "006-F",
+      "worst_speaker_errors": 101,
+      "worst_speaker_share": 1.0,
+      "num_speakers": 1,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 13,
+      "skipped": true,
+      "cpwer": 0.0,
+      "total_errors": 0,
+      "total_length": 0,
+      "per_speaker": [],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": []
+    },
+    {
+      "window_id": 14,
+      "skipped": false,
+      "cpwer": 0.8659217877094972,
+      "total_errors": 155,
+      "total_length": 179,
+      "meetval_errors": 155,
+      "meetval_length": 179,
+      "reconstructed_errors": 155,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 1,
+          "hyp_length": 1,
+          "errors": 1,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.0064516129032258064
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 178,
+          "hyp_length": 111,
+          "errors": 154,
+          "cpwer": 0.8651685393258427,
+          "share_of_total_errors": 0.9935483870967742
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "006-F",
+          "006-F"
+        ]
+      ],
+      "worst_speaker": "006-F",
+      "worst_speaker_errors": 154,
+      "worst_speaker_share": 0.9935483870967742,
+      "num_speakers": 2,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 15,
+      "skipped": false,
+      "cpwer": 0.994535519125683,
+      "total_errors": 182,
+      "total_length": 183,
+      "meetval_errors": 182,
+      "meetval_length": 183,
+      "reconstructed_errors": 182,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 22,
+          "hyp_length": 0,
+          "errors": 22,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.12087912087912088
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 161,
+          "hyp_length": 2,
+          "errors": 160,
+          "cpwer": 0.9937888198757764,
+          "share_of_total_errors": 0.8791208791208791
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          null
+        ],
+        [
+          "006-F",
+          "001-M"
+        ]
+      ],
+      "worst_speaker": "006-F",
+      "worst_speaker_errors": 160,
+      "worst_speaker_share": 0.8791208791208791,
+      "num_speakers": 2,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 16,
+      "skipped": false,
+      "cpwer": 0.9603960396039604,
+      "total_errors": 194,
+      "total_length": 202,
+      "meetval_errors": 194,
+      "meetval_length": 202,
+      "reconstructed_errors": 194,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 78,
+          "hyp_length": 103,
+          "errors": 90,
+          "cpwer": 1.1538461538461537,
+          "share_of_total_errors": 0.4639175257731959
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 124,
+          "hyp_length": 98,
+          "errors": 104,
+          "cpwer": 0.8387096774193549,
+          "share_of_total_errors": 0.5360824742268041
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "006-F",
+          "006-F"
+        ]
+      ],
+      "worst_speaker": "006-F",
+      "worst_speaker_errors": 104,
+      "worst_speaker_share": 0.5360824742268041,
+      "num_speakers": 2,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 17,
+      "skipped": false,
+      "cpwer": 0.89568345323741,
+      "total_errors": 249,
+      "total_length": 278,
+      "meetval_errors": 249,
+      "meetval_length": 278,
+      "reconstructed_errors": 249,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 148,
+          "hyp_length": 104,
+          "errors": 122,
+          "cpwer": 0.8243243243243243,
+          "share_of_total_errors": 0.4899598393574297
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 109,
+          "hyp_length": 57,
+          "errors": 107,
+          "cpwer": 0.981651376146789,
+          "share_of_total_errors": 0.42971887550200805
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 21,
+          "hyp_length": 5,
+          "errors": 20,
+          "cpwer": 0.9523809523809523,
+          "share_of_total_errors": 0.08032128514056225
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "005-F",
+          "005-F"
+        ],
+        [
+          "006-F",
+          "006-F"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 122,
+      "worst_speaker_share": 0.4899598393574297,
+      "num_speakers": 3,
+      "overlap_label": "MidOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 18,
+      "skipped": false,
+      "cpwer": 0.9010238907849829,
+      "total_errors": 264,
+      "total_length": 293,
+      "meetval_errors": 264,
+      "meetval_length": 293,
+      "reconstructed_errors": 264,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 194,
+          "hyp_length": 121,
+          "errors": 163,
+          "cpwer": 0.8402061855670103,
+          "share_of_total_errors": 0.6174242424242424
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 93,
+          "hyp_length": 63,
+          "errors": 91,
+          "cpwer": 0.978494623655914,
+          "share_of_total_errors": 0.3446969696969697
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 6,
+          "hyp_length": 10,
+          "errors": 10,
+          "cpwer": 1.6666666666666667,
+          "share_of_total_errors": 0.03787878787878788
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "005-F",
+          "005-F"
+        ],
+        [
+          "006-F",
+          "006-F"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 163,
+      "worst_speaker_share": 0.6174242424242424,
+      "num_speakers": 3,
+      "overlap_label": "HeavyOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 19,
+      "skipped": false,
+      "cpwer": 0.9146919431279621,
+      "total_errors": 193,
+      "total_length": 211,
+      "meetval_errors": 193,
+      "meetval_length": 211,
+      "reconstructed_errors": 193,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 208,
+          "hyp_length": 94,
+          "errors": 179,
+          "cpwer": 0.8605769230769231,
+          "share_of_total_errors": 0.927461139896373
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 3,
+          "hyp_length": 14,
+          "errors": 14,
+          "cpwer": 4.666666666666667,
+          "share_of_total_errors": 0.07253886010362694
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "006-F",
+          "006-F"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 179,
+      "worst_speaker_share": 0.927461139896373,
+      "num_speakers": 2,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 20,
+      "skipped": false,
+      "cpwer": 0.8983050847457628,
+      "total_errors": 159,
+      "total_length": 177,
+      "meetval_errors": 159,
+      "meetval_length": 177,
+      "reconstructed_errors": 159,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 109,
+          "hyp_length": 72,
+          "errors": 92,
+          "cpwer": 0.8440366972477065,
+          "share_of_total_errors": 0.5786163522012578
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 68,
+          "hyp_length": 41,
+          "errors": 67,
+          "cpwer": 0.9852941176470589,
+          "share_of_total_errors": 0.42138364779874216
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "006-F",
+          "006-F"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 92,
+      "worst_speaker_share": 0.5786163522012578,
+      "num_speakers": 2,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 21,
+      "skipped": false,
+      "cpwer": 1.0,
+      "total_errors": 113,
+      "total_length": 113,
+      "meetval_errors": 113,
+      "meetval_length": 113,
+      "reconstructed_errors": 113,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 80,
+          "hyp_length": 8,
+          "errors": 80,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.7079646017699115
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 33,
+          "hyp_length": 0,
+          "errors": 33,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.2920353982300885
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "006-F",
+          null
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 80,
+      "worst_speaker_share": 0.7079646017699115,
+      "num_speakers": 2,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 22,
+      "skipped": false,
+      "cpwer": 0.4915254237288136,
+      "total_errors": 58,
+      "total_length": 118,
+      "meetval_errors": 58,
+      "meetval_length": 118,
+      "reconstructed_errors": 58,
+      "per_speaker": [
+        {
+          "speaker": "005-F",
+          "ref_length": 117,
+          "hyp_length": 96,
+          "errors": 57,
+          "cpwer": 0.48717948717948717,
+          "share_of_total_errors": 0.9827586206896551
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 1,
+          "hyp_length": 0,
+          "errors": 1,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.017241379310344827
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "005-F",
+          "005-F"
+        ],
+        [
+          "006-F",
+          null
+        ]
+      ],
+      "worst_speaker": "005-F",
+      "worst_speaker_errors": 57,
+      "worst_speaker_share": 0.9827586206896551,
+      "num_speakers": 2,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 23,
+      "skipped": false,
+      "cpwer": 1.5747126436781609,
+      "total_errors": 137,
+      "total_length": 87,
+      "meetval_errors": 137,
+      "meetval_length": 87,
+      "reconstructed_errors": 137,
+      "per_speaker": [
+        {
+          "speaker": "005-F",
+          "ref_length": 81,
+          "hyp_length": 87,
+          "errors": 86,
+          "cpwer": 1.0617283950617284,
+          "share_of_total_errors": 0.6277372262773723
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 6,
+          "hyp_length": 53,
+          "errors": 51,
+          "cpwer": 8.5,
+          "share_of_total_errors": 0.3722627737226277
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "005-F",
+          "006-F"
+        ],
+        [
+          "006-F",
+          "005-F"
+        ]
+      ],
+      "worst_speaker": "005-F",
+      "worst_speaker_errors": 86,
+      "worst_speaker_share": 0.6277372262773723,
+      "num_speakers": 2,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 24,
+      "skipped": false,
+      "cpwer": 0.9943502824858758,
+      "total_errors": 176,
+      "total_length": 177,
+      "meetval_errors": 176,
+      "meetval_length": 177,
+      "reconstructed_errors": 176,
+      "per_speaker": [
+        {
+          "speaker": "005-F",
+          "ref_length": 163,
+          "hyp_length": 3,
+          "errors": 162,
+          "cpwer": 0.9938650306748467,
+          "share_of_total_errors": 0.9204545454545454
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 14,
+          "hyp_length": 0,
+          "errors": 14,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.07954545454545454
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "005-F",
+          "006-F"
+        ],
+        [
+          "006-F",
+          null
+        ]
+      ],
+      "worst_speaker": "005-F",
+      "worst_speaker_errors": 162,
+      "worst_speaker_share": 0.9204545454545454,
+      "num_speakers": 2,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 25,
+      "skipped": false,
+      "cpwer": 0.6638655462184874,
+      "total_errors": 158,
+      "total_length": 238,
+      "meetval_errors": 158,
+      "meetval_length": 238,
+      "reconstructed_errors": 158,
+      "per_speaker": [
+        {
+          "speaker": "005-F",
+          "ref_length": 214,
+          "hyp_length": 135,
+          "errors": 132,
+          "cpwer": 0.616822429906542,
+          "share_of_total_errors": 0.8354430379746836
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 24,
+          "hyp_length": 26,
+          "errors": 26,
+          "cpwer": 1.0833333333333333,
+          "share_of_total_errors": 0.16455696202531644
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "005-F",
+          "005-F"
+        ],
+        [
+          "006-F",
+          "006-F"
+        ]
+      ],
+      "worst_speaker": "005-F",
+      "worst_speaker_errors": 132,
+      "worst_speaker_share": 0.8354430379746836,
+      "num_speakers": 2,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 26,
+      "skipped": false,
+      "cpwer": 0.8565022421524664,
+      "total_errors": 191,
+      "total_length": 223,
+      "meetval_errors": 191,
+      "meetval_length": 223,
+      "reconstructed_errors": 191,
+      "per_speaker": [
+        {
+          "speaker": "005-F",
+          "ref_length": 213,
+          "hyp_length": 125,
+          "errors": 163,
+          "cpwer": 0.7652582159624414,
+          "share_of_total_errors": 0.8534031413612565
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 10,
+          "hyp_length": 28,
+          "errors": 28,
+          "cpwer": 2.8,
+          "share_of_total_errors": 0.14659685863874344
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "005-F",
+          "005-F"
+        ],
+        [
+          "006-F",
+          "006-F"
+        ]
+      ],
+      "worst_speaker": "005-F",
+      "worst_speaker_errors": 163,
+      "worst_speaker_share": 0.8534031413612565,
+      "num_speakers": 2,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 27,
+      "skipped": false,
+      "cpwer": 0.6962025316455697,
+      "total_errors": 165,
+      "total_length": 237,
+      "meetval_errors": 165,
+      "meetval_length": 237,
+      "reconstructed_errors": 165,
+      "per_speaker": [
+        {
+          "speaker": "005-F",
+          "ref_length": 237,
+          "hyp_length": 142,
+          "errors": 165,
+          "cpwer": 0.6962025316455697,
+          "share_of_total_errors": 1.0
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "005-F",
+          "005-F"
+        ]
+      ],
+      "worst_speaker": "005-F",
+      "worst_speaker_errors": 165,
+      "worst_speaker_share": 1.0,
+      "num_speakers": 1,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 28,
+      "skipped": false,
+      "cpwer": 0.9537037037037037,
+      "total_errors": 103,
+      "total_length": 108,
+      "meetval_errors": 103,
+      "meetval_length": 108,
+      "reconstructed_errors": 103,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 45,
+          "hyp_length": 9,
+          "errors": 45,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.4368932038834951
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 57,
+          "hyp_length": 23,
+          "errors": 52,
+          "cpwer": 0.9122807017543859,
+          "share_of_total_errors": 0.5048543689320388
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 6,
+          "hyp_length": 0,
+          "errors": 6,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.05825242718446602
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "005-F",
+          "005-F"
+        ],
+        [
+          "006-F",
+          null
+        ]
+      ],
+      "worst_speaker": "005-F",
+      "worst_speaker_errors": 52,
+      "worst_speaker_share": 0.5048543689320388,
+      "num_speakers": 3,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 29,
+      "skipped": false,
+      "cpwer": 0.8680555555555556,
+      "total_errors": 125,
+      "total_length": 144,
+      "meetval_errors": 125,
+      "meetval_length": 144,
+      "reconstructed_errors": 125,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 89,
+          "hyp_length": 4,
+          "errors": 89,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.712
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 55,
+          "hyp_length": 26,
+          "errors": 36,
+          "cpwer": 0.6545454545454545,
+          "share_of_total_errors": 0.288
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "005-F",
+          "005-F"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 89,
+      "worst_speaker_share": 0.712,
+      "num_speakers": 2,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 30,
+      "skipped": false,
+      "cpwer": 0.8026905829596412,
+      "total_errors": 179,
+      "total_length": 223,
+      "meetval_errors": 179,
+      "meetval_length": 223,
+      "reconstructed_errors": 179,
+      "per_speaker": [
+        {
+          "speaker": "005-F",
+          "ref_length": 223,
+          "hyp_length": 153,
+          "errors": 179,
+          "cpwer": 0.8026905829596412,
+          "share_of_total_errors": 1.0
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "005-F",
+          "005-F"
+        ]
+      ],
+      "worst_speaker": "005-F",
+      "worst_speaker_errors": 179,
+      "worst_speaker_share": 1.0,
+      "num_speakers": 1,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 31,
+      "skipped": false,
+      "cpwer": 0.9683257918552036,
+      "total_errors": 214,
+      "total_length": 221,
+      "meetval_errors": 214,
+      "meetval_length": 221,
+      "reconstructed_errors": 214,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 60,
+          "hyp_length": 44,
+          "errors": 59,
+          "cpwer": 0.9833333333333333,
+          "share_of_total_errors": 0.2757009345794392
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 161,
+          "hyp_length": 30,
+          "errors": 155,
+          "cpwer": 0.9627329192546584,
+          "share_of_total_errors": 0.7242990654205608
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "005-F",
+          "005-F"
+        ]
+      ],
+      "worst_speaker": "005-F",
+      "worst_speaker_errors": 155,
+      "worst_speaker_share": 0.7242990654205608,
+      "num_speakers": 2,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 32,
+      "skipped": false,
+      "cpwer": 0.8090452261306532,
+      "total_errors": 161,
+      "total_length": 199,
+      "meetval_errors": 161,
+      "meetval_length": 199,
+      "reconstructed_errors": 161,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 79,
+          "hyp_length": 28,
+          "errors": 78,
+          "cpwer": 0.9873417721518988,
+          "share_of_total_errors": 0.484472049689441
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 105,
+          "hyp_length": 64,
+          "errors": 68,
+          "cpwer": 0.6476190476190476,
+          "share_of_total_errors": 0.422360248447205
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 15,
+          "hyp_length": 0,
+          "errors": 15,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.09316770186335403
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "005-F",
+          "005-F"
+        ],
+        [
+          "006-F",
+          null
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 78,
+      "worst_speaker_share": 0.484472049689441,
+      "num_speakers": 3,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 33,
+      "skipped": false,
+      "cpwer": 0.9760765550239234,
+      "total_errors": 204,
+      "total_length": 209,
+      "meetval_errors": 204,
+      "meetval_length": 209,
+      "reconstructed_errors": 204,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 111,
+          "hyp_length": 91,
+          "errors": 108,
+          "cpwer": 0.972972972972973,
+          "share_of_total_errors": 0.5294117647058824
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 73,
+          "hyp_length": 10,
+          "errors": 71,
+          "cpwer": 0.9726027397260274,
+          "share_of_total_errors": 0.3480392156862745
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 25,
+          "hyp_length": 0,
+          "errors": 25,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.12254901960784313
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "005-F"
+        ],
+        [
+          "005-F",
+          "006-F"
+        ],
+        [
+          "006-F",
+          null
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 108,
+      "worst_speaker_share": 0.5294117647058824,
+      "num_speakers": 3,
+      "overlap_label": "MidOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 34,
+      "skipped": false,
+      "cpwer": 0.9779005524861878,
+      "total_errors": 177,
+      "total_length": 181,
+      "meetval_errors": 177,
+      "meetval_length": 181,
+      "reconstructed_errors": 177,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 67,
+          "hyp_length": 25,
+          "errors": 67,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.3785310734463277
+        },
+        {
+          "speaker": "004-F",
+          "ref_length": 102,
+          "hyp_length": 42,
+          "errors": 98,
+          "cpwer": 0.9607843137254902,
+          "share_of_total_errors": 0.5536723163841808
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 12,
+          "hyp_length": 0,
+          "errors": 12,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.06779661016949153
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "004-F",
+          "004-F"
+        ],
+        [
+          "005-F",
+          null
+        ]
+      ],
+      "worst_speaker": "004-F",
+      "worst_speaker_errors": 98,
+      "worst_speaker_share": 0.5536723163841808,
+      "num_speakers": 3,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 35,
+      "skipped": false,
+      "cpwer": 0.9622641509433962,
+      "total_errors": 102,
+      "total_length": 106,
+      "meetval_errors": 102,
+      "meetval_length": 106,
+      "reconstructed_errors": 102,
+      "per_speaker": [
+        {
+          "speaker": "004-F",
+          "ref_length": 106,
+          "hyp_length": 48,
+          "errors": 102,
+          "cpwer": 0.9622641509433962,
+          "share_of_total_errors": 1.0
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "004-F",
+          "004-F"
+        ]
+      ],
+      "worst_speaker": "004-F",
+      "worst_speaker_errors": 102,
+      "worst_speaker_share": 1.0,
+      "num_speakers": 1,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 36,
+      "skipped": false,
+      "cpwer": 0.672514619883041,
+      "total_errors": 115,
+      "total_length": 171,
+      "meetval_errors": 115,
+      "meetval_length": 171,
+      "reconstructed_errors": 115,
+      "per_speaker": [
+        {
+          "speaker": "004-F",
+          "ref_length": 171,
+          "hyp_length": 93,
+          "errors": 115,
+          "cpwer": 0.672514619883041,
+          "share_of_total_errors": 1.0
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "004-F",
+          "004-F"
+        ]
+      ],
+      "worst_speaker": "004-F",
+      "worst_speaker_errors": 115,
+      "worst_speaker_share": 1.0,
+      "num_speakers": 1,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 37,
+      "skipped": false,
+      "cpwer": 0.626984126984127,
+      "total_errors": 79,
+      "total_length": 126,
+      "meetval_errors": 79,
+      "meetval_length": 126,
+      "reconstructed_errors": 79,
+      "per_speaker": [
+        {
+          "speaker": "004-F",
+          "ref_length": 126,
+          "hyp_length": 111,
+          "errors": 79,
+          "cpwer": 0.626984126984127,
+          "share_of_total_errors": 1.0
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "004-F",
+          "004-F"
+        ]
+      ],
+      "worst_speaker": "004-F",
+      "worst_speaker_errors": 79,
+      "worst_speaker_share": 1.0,
+      "num_speakers": 1,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 38,
+      "skipped": false,
+      "cpwer": 0.7985611510791367,
+      "total_errors": 111,
+      "total_length": 139,
+      "meetval_errors": 111,
+      "meetval_length": 139,
+      "reconstructed_errors": 111,
+      "per_speaker": [
+        {
+          "speaker": "004-F",
+          "ref_length": 139,
+          "hyp_length": 77,
+          "errors": 111,
+          "cpwer": 0.7985611510791367,
+          "share_of_total_errors": 1.0
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "004-F",
+          "004-F"
+        ]
+      ],
+      "worst_speaker": "004-F",
+      "worst_speaker_errors": 111,
+      "worst_speaker_share": 1.0,
+      "num_speakers": 1,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 39,
+      "skipped": false,
+      "cpwer": 0.6744186046511628,
+      "total_errors": 58,
+      "total_length": 86,
+      "meetval_errors": 58,
+      "meetval_length": 86,
+      "reconstructed_errors": 58,
+      "per_speaker": [
+        {
+          "speaker": "004-F",
+          "ref_length": 86,
+          "hyp_length": 57,
+          "errors": 58,
+          "cpwer": 0.6744186046511628,
+          "share_of_total_errors": 1.0
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "004-F",
+          "004-F"
+        ]
+      ],
+      "worst_speaker": "004-F",
+      "worst_speaker_errors": 58,
+      "worst_speaker_share": 1.0,
+      "num_speakers": 1,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 40,
+      "skipped": false,
+      "cpwer": 0.5,
+      "total_errors": 39,
+      "total_length": 78,
+      "meetval_errors": 39,
+      "meetval_length": 78,
+      "reconstructed_errors": 39,
+      "per_speaker": [
+        {
+          "speaker": "004-F",
+          "ref_length": 78,
+          "hyp_length": 61,
+          "errors": 39,
+          "cpwer": 0.5,
+          "share_of_total_errors": 1.0
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "004-F",
+          "004-F"
+        ]
+      ],
+      "worst_speaker": "004-F",
+      "worst_speaker_errors": 39,
+      "worst_speaker_share": 1.0,
+      "num_speakers": 1,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 41,
+      "skipped": false,
+      "cpwer": 0.9557522123893806,
+      "total_errors": 108,
+      "total_length": 113,
+      "meetval_errors": 108,
+      "meetval_length": 113,
+      "reconstructed_errors": 108,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 45,
+          "hyp_length": 30,
+          "errors": 44,
+          "cpwer": 0.9777777777777777,
+          "share_of_total_errors": 0.4074074074074074
+        },
+        {
+          "speaker": "004-F",
+          "ref_length": 68,
+          "hyp_length": 41,
+          "errors": 64,
+          "cpwer": 0.9411764705882353,
+          "share_of_total_errors": 0.5925925925925926
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "004-F",
+          "004-F"
+        ]
+      ],
+      "worst_speaker": "004-F",
+      "worst_speaker_errors": 64,
+      "worst_speaker_share": 0.5925925925925926,
+      "num_speakers": 2,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 42,
+      "skipped": false,
+      "cpwer": 0.989010989010989,
+      "total_errors": 180,
+      "total_length": 182,
+      "meetval_errors": 180,
+      "meetval_length": 182,
+      "reconstructed_errors": 180,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 118,
+          "hyp_length": 50,
+          "errors": 116,
+          "cpwer": 0.9830508474576272,
+          "share_of_total_errors": 0.6444444444444445
+        },
+        {
+          "speaker": "004-F",
+          "ref_length": 64,
+          "hyp_length": 0,
+          "errors": 64,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.35555555555555557
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "004-F"
+        ],
+        [
+          "004-F",
+          null
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 116,
+      "worst_speaker_share": 0.6444444444444445,
+      "num_speakers": 2,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 43,
+      "skipped": false,
+      "cpwer": 0.9389671361502347,
+      "total_errors": 200,
+      "total_length": 213,
+      "meetval_errors": 200,
+      "meetval_length": 213,
+      "reconstructed_errors": 200,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 99,
+          "hyp_length": 80,
+          "errors": 97,
+          "cpwer": 0.9797979797979798,
+          "share_of_total_errors": 0.485
+        },
+        {
+          "speaker": "004-F",
+          "ref_length": 24,
+          "hyp_length": 11,
+          "errors": 24,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.12
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 90,
+          "hyp_length": 85,
+          "errors": 79,
+          "cpwer": 0.8777777777777778,
+          "share_of_total_errors": 0.395
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "004-F",
+          "004-F"
+        ],
+        [
+          "005-F",
+          "005-F"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 97,
+      "worst_speaker_share": 0.485,
+      "num_speakers": 3,
+      "overlap_label": "MidOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 44,
+      "skipped": false,
+      "cpwer": 0.8660287081339713,
+      "total_errors": 181,
+      "total_length": 209,
+      "meetval_errors": 181,
+      "meetval_length": 209,
+      "reconstructed_errors": 181,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 128,
+          "hyp_length": 19,
+          "errors": 127,
+          "cpwer": 0.9921875,
+          "share_of_total_errors": 0.7016574585635359
+        },
+        {
+          "speaker": "004-F",
+          "ref_length": 6,
+          "hyp_length": 0,
+          "errors": 6,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.03314917127071823
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 75,
+          "hyp_length": 51,
+          "errors": 48,
+          "cpwer": 0.64,
+          "share_of_total_errors": 0.26519337016574585
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "004-F",
+          null
+        ],
+        [
+          "005-F",
+          "005-F"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 127,
+      "worst_speaker_share": 0.7016574585635359,
+      "num_speakers": 3,
+      "overlap_label": "MidOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 45,
+      "skipped": false,
+      "cpwer": 0.9796954314720813,
+      "total_errors": 193,
+      "total_length": 197,
+      "meetval_errors": 193,
+      "meetval_length": 197,
+      "reconstructed_errors": 193,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 80,
+          "hyp_length": 65,
+          "errors": 78,
+          "cpwer": 0.975,
+          "share_of_total_errors": 0.40414507772020725
+        },
+        {
+          "speaker": "003-F",
+          "ref_length": 61,
+          "hyp_length": 35,
+          "errors": 60,
+          "cpwer": 0.9836065573770492,
+          "share_of_total_errors": 0.31088082901554404
+        },
+        {
+          "speaker": "004-F",
+          "ref_length": 46,
+          "hyp_length": 12,
+          "errors": 45,
+          "cpwer": 0.9782608695652174,
+          "share_of_total_errors": 0.23316062176165803
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 10,
+          "hyp_length": 0,
+          "errors": 10,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.05181347150259067
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "004-F"
+        ],
+        [
+          "003-F",
+          "001-M"
+        ],
+        [
+          "004-F",
+          "005-F"
+        ],
+        [
+          "005-F",
+          null
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 78,
+      "worst_speaker_share": 0.40414507772020725,
+      "num_speakers": 4,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 46,
+      "skipped": false,
+      "cpwer": 0.8224852071005917,
+      "total_errors": 139,
+      "total_length": 169,
+      "meetval_errors": 139,
+      "meetval_length": 169,
+      "reconstructed_errors": 139,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 71,
+          "hyp_length": 0,
+          "errors": 71,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.5107913669064749
+        },
+        {
+          "speaker": "003-F",
+          "ref_length": 98,
+          "hyp_length": 66,
+          "errors": 68,
+          "cpwer": 0.6938775510204082,
+          "share_of_total_errors": 0.4892086330935252
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          null
+        ],
+        [
+          "003-F",
+          "003-F"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 71,
+      "worst_speaker_share": 0.5107913669064749,
+      "num_speakers": 2,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 47,
+      "skipped": false,
+      "cpwer": 0.9883040935672515,
+      "total_errors": 169,
+      "total_length": 171,
+      "meetval_errors": 169,
+      "meetval_length": 171,
+      "reconstructed_errors": 169,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 135,
+          "hyp_length": 85,
+          "errors": 131,
+          "cpwer": 0.9703703703703703,
+          "share_of_total_errors": 0.7751479289940828
+        },
+        {
+          "speaker": "003-F",
+          "ref_length": 6,
+          "hyp_length": 0,
+          "errors": 6,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.03550295857988166
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 10,
+          "hyp_length": 12,
+          "errors": 12,
+          "cpwer": 1.2,
+          "share_of_total_errors": 0.07100591715976332
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 20,
+          "hyp_length": 17,
+          "errors": 20,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.11834319526627218
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "003-F"
+        ],
+        [
+          "003-F",
+          null
+        ],
+        [
+          "005-F",
+          "005-F"
+        ],
+        [
+          "006-F",
+          "006-F"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 131,
+      "worst_speaker_share": 0.7751479289940828,
+      "num_speakers": 4,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 48,
+      "skipped": false,
+      "cpwer": 0.9900497512437811,
+      "total_errors": 199,
+      "total_length": 201,
+      "meetval_errors": 199,
+      "meetval_length": 201,
+      "reconstructed_errors": 199,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 148,
+          "hyp_length": 81,
+          "errors": 142,
+          "cpwer": 0.9594594594594594,
+          "share_of_total_errors": 0.7135678391959799
+        },
+        {
+          "speaker": "004-F",
+          "ref_length": 52,
+          "hyp_length": 59,
+          "errors": 56,
+          "cpwer": 1.0769230769230769,
+          "share_of_total_errors": 0.2814070351758794
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 1,
+          "hyp_length": 0,
+          "errors": 1,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.005025125628140704
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "004-F",
+          "004-F"
+        ],
+        [
+          "006-F",
+          null
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 142,
+      "worst_speaker_share": 0.7135678391959799,
+      "num_speakers": 3,
+      "overlap_label": "MidOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 49,
+      "skipped": false,
+      "cpwer": 0.9302325581395349,
+      "total_errors": 200,
+      "total_length": 215,
+      "meetval_errors": 200,
+      "meetval_length": 215,
+      "reconstructed_errors": 200,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 169,
+          "hyp_length": 68,
+          "errors": 142,
+          "cpwer": 0.8402366863905325,
+          "share_of_total_errors": 0.71
+        },
+        {
+          "speaker": "004-F",
+          "ref_length": 10,
+          "hyp_length": 4,
+          "errors": 9,
+          "cpwer": 0.9,
+          "share_of_total_errors": 0.045
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 16,
+          "hyp_length": 16,
+          "errors": 16,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.08
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 20,
+          "hyp_length": 35,
+          "errors": 33,
+          "cpwer": 1.65,
+          "share_of_total_errors": 0.165
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "004-F",
+          "004-F"
+        ],
+        [
+          "005-F",
+          "006-F"
+        ],
+        [
+          "006-F",
+          "005-F"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 142,
+      "worst_speaker_share": 0.71,
+      "num_speakers": 4,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 50,
+      "skipped": true,
+      "cpwer": 0.0,
+      "total_errors": 0,
+      "total_length": 0,
+      "per_speaker": [],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": []
+    },
+    {
+      "window_id": 51,
+      "skipped": false,
+      "cpwer": 1.036144578313253,
+      "total_errors": 258,
+      "total_length": 249,
+      "meetval_errors": 258,
+      "meetval_length": 249,
+      "reconstructed_errors": 258,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 226,
+          "hyp_length": 103,
+          "errors": 215,
+          "cpwer": 0.9513274336283186,
+          "share_of_total_errors": 0.8333333333333334
+        },
+        {
+          "speaker": "004-F",
+          "ref_length": 21,
+          "hyp_length": 37,
+          "errors": 37,
+          "cpwer": 1.7619047619047619,
+          "share_of_total_errors": 0.1434108527131783
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 2,
+          "hyp_length": 6,
+          "errors": 6,
+          "cpwer": 3.0,
+          "share_of_total_errors": 0.023255813953488372
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "004-F",
+          "005-F"
+        ],
+        [
+          "005-F",
+          "004-F"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 215,
+      "worst_speaker_share": 0.8333333333333334,
+      "num_speakers": 3,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 52,
+      "skipped": false,
+      "cpwer": 0.7528735632183908,
+      "total_errors": 131,
+      "total_length": 174,
+      "meetval_errors": 131,
+      "meetval_length": 174,
+      "reconstructed_errors": 131,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 159,
+          "hyp_length": 96,
+          "errors": 114,
+          "cpwer": 0.7169811320754716,
+          "share_of_total_errors": 0.8702290076335878
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 6,
+          "hyp_length": 1,
+          "errors": 6,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.04580152671755725
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 9,
+          "hyp_length": 11,
+          "errors": 11,
+          "cpwer": 1.2222222222222223,
+          "share_of_total_errors": 0.08396946564885496
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "005-F",
+          "006-F"
+        ],
+        [
+          "006-F",
+          "005-F"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 114,
+      "worst_speaker_share": 0.8702290076335878,
+      "num_speakers": 3,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 53,
+      "skipped": false,
+      "cpwer": 0.9591836734693877,
+      "total_errors": 188,
+      "total_length": 196,
+      "meetval_errors": 188,
+      "meetval_length": 196,
+      "reconstructed_errors": 188,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 162,
+          "hyp_length": 85,
+          "errors": 154,
+          "cpwer": 0.9506172839506173,
+          "share_of_total_errors": 0.8191489361702128
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 34,
+          "hyp_length": 0,
+          "errors": 34,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.18085106382978725
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "006-F"
+        ],
+        [
+          "006-F",
+          null
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 154,
+      "worst_speaker_share": 0.8191489361702128,
+      "num_speakers": 2,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 54,
+      "skipped": true,
+      "cpwer": 0.0,
+      "total_errors": 0,
+      "total_length": 0,
+      "per_speaker": [],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": []
+    },
+    {
+      "window_id": 55,
+      "skipped": false,
+      "cpwer": 0.941747572815534,
+      "total_errors": 194,
+      "total_length": 206,
+      "meetval_errors": 194,
+      "meetval_length": 206,
+      "reconstructed_errors": 194,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 62,
+          "hyp_length": 23,
+          "errors": 60,
+          "cpwer": 0.967741935483871,
+          "share_of_total_errors": 0.30927835051546393
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 139,
+          "hyp_length": 61,
+          "errors": 128,
+          "cpwer": 0.920863309352518,
+          "share_of_total_errors": 0.6597938144329897
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 5,
+          "hyp_length": 6,
+          "errors": 6,
+          "cpwer": 1.2,
+          "share_of_total_errors": 0.030927835051546393
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "005-F"
+        ],
+        [
+          "005-F",
+          "001-M"
+        ],
+        [
+          "006-F",
+          "006-F"
+        ]
+      ],
+      "worst_speaker": "005-F",
+      "worst_speaker_errors": 128,
+      "worst_speaker_share": 0.6597938144329897,
+      "num_speakers": 3,
+      "overlap_label": "MidOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 56,
+      "skipped": false,
+      "cpwer": 0.8634361233480177,
+      "total_errors": 196,
+      "total_length": 227,
+      "meetval_errors": 196,
+      "meetval_length": 227,
+      "reconstructed_errors": 196,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 168,
+          "hyp_length": 0,
+          "errors": 168,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.8571428571428571
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 59,
+          "hyp_length": 50,
+          "errors": 28,
+          "cpwer": 0.4745762711864407,
+          "share_of_total_errors": 0.14285714285714285
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          null
+        ],
+        [
+          "005-F",
+          "005-F"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 168,
+      "worst_speaker_share": 0.8571428571428571,
+      "num_speakers": 2,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 57,
+      "skipped": false,
+      "cpwer": 0.9836956521739131,
+      "total_errors": 181,
+      "total_length": 184,
+      "meetval_errors": 181,
+      "meetval_length": 184,
+      "reconstructed_errors": 181,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 137,
+          "hyp_length": 55,
+          "errors": 135,
+          "cpwer": 0.9854014598540146,
+          "share_of_total_errors": 0.7458563535911602
+        },
+        {
+          "speaker": "002-M",
+          "ref_length": 47,
+          "hyp_length": 19,
+          "errors": 46,
+          "cpwer": 0.9787234042553191,
+          "share_of_total_errors": 0.2541436464088398
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "002-M"
+        ],
+        [
+          "002-M",
+          "001-M"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 135,
+      "worst_speaker_share": 0.7458563535911602,
+      "num_speakers": 2,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 58,
+      "skipped": false,
+      "cpwer": 0.8193548387096774,
+      "total_errors": 127,
+      "total_length": 155,
+      "meetval_errors": 127,
+      "meetval_length": 155,
+      "reconstructed_errors": 127,
+      "per_speaker": [
+        {
+          "speaker": "002-M",
+          "ref_length": 155,
+          "hyp_length": 81,
+          "errors": 127,
+          "cpwer": 0.8193548387096774,
+          "share_of_total_errors": 1.0
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "002-M",
+          "002-M"
+        ]
+      ],
+      "worst_speaker": "002-M",
+      "worst_speaker_errors": 127,
+      "worst_speaker_share": 1.0,
+      "num_speakers": 1,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "separated"
+    },
+    {
+      "window_id": 59,
+      "skipped": false,
+      "cpwer": 0.7834394904458599,
+      "total_errors": 123,
+      "total_length": 157,
+      "meetval_errors": 123,
+      "meetval_length": 157,
+      "reconstructed_errors": 123,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 36,
+          "hyp_length": 0,
+          "errors": 36,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.2926829268292683
+        },
+        {
+          "speaker": "002-M",
+          "ref_length": 121,
+          "hyp_length": 84,
+          "errors": 87,
+          "cpwer": 0.71900826446281,
+          "share_of_total_errors": 0.7073170731707317
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          null
+        ],
+        [
+          "002-M",
+          "002-M"
+        ]
+      ],
+      "worst_speaker": "002-M",
+      "worst_speaker_errors": 87,
+      "worst_speaker_share": 0.7073170731707317,
+      "num_speakers": 2,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 60,
+      "skipped": true,
+      "cpwer": 0.0,
+      "total_errors": 0,
+      "total_length": 0,
+      "per_speaker": [],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": []
+    },
+    {
+      "window_id": 61,
+      "skipped": false,
+      "cpwer": 0.7712765957446809,
+      "total_errors": 145,
+      "total_length": 188,
+      "meetval_errors": 145,
+      "meetval_length": 188,
+      "reconstructed_errors": 145,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 184,
+          "hyp_length": 93,
+          "errors": 141,
+          "cpwer": 0.7663043478260869,
+          "share_of_total_errors": 0.9724137931034482
+        },
+        {
+          "speaker": "002-M",
+          "ref_length": 4,
+          "hyp_length": 0,
+          "errors": 4,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.027586206896551724
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "002-M",
+          null
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 141,
+      "worst_speaker_share": 0.9724137931034482,
+      "num_speakers": 2,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 62,
+      "skipped": true,
+      "cpwer": 0.0,
+      "total_errors": 0,
+      "total_length": 0,
+      "per_speaker": [],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": []
+    },
+    {
+      "window_id": 63,
+      "skipped": false,
+      "cpwer": 0.9854368932038835,
+      "total_errors": 203,
+      "total_length": 206,
+      "meetval_errors": 203,
+      "meetval_length": 206,
+      "reconstructed_errors": 203,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 128,
+          "hyp_length": 63,
+          "errors": 125,
+          "cpwer": 0.9765625,
+          "share_of_total_errors": 0.6157635467980296
+        },
+        {
+          "speaker": "002-M",
+          "ref_length": 78,
+          "hyp_length": 0,
+          "errors": 78,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.3842364532019704
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "002-M"
+        ],
+        [
+          "002-M",
+          null
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 125,
+      "worst_speaker_share": 0.6157635467980296,
+      "num_speakers": 2,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 64,
+      "skipped": true,
+      "cpwer": 0.0,
+      "total_errors": 0,
+      "total_length": 0,
+      "per_speaker": [],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": []
+    },
+    {
+      "window_id": 65,
+      "skipped": false,
+      "cpwer": 1.131979695431472,
+      "total_errors": 223,
+      "total_length": 197,
+      "meetval_errors": 223,
+      "meetval_length": 197,
+      "reconstructed_errors": 223,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 116,
+          "hyp_length": 56,
+          "errors": 106,
+          "cpwer": 0.9137931034482759,
+          "share_of_total_errors": 0.47533632286995514
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 2,
+          "hyp_length": 42,
+          "errors": 42,
+          "cpwer": 21.0,
+          "share_of_total_errors": 0.18834080717488788
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 79,
+          "hyp_length": 51,
+          "errors": 75,
+          "cpwer": 0.9493670886075949,
+          "share_of_total_errors": 0.336322869955157
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "005-F",
+          "006-F"
+        ],
+        [
+          "006-F",
+          "005-F"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 106,
+      "worst_speaker_share": 0.47533632286995514,
+      "num_speakers": 3,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 66,
+      "skipped": false,
+      "cpwer": 1.0,
+      "total_errors": 248,
+      "total_length": 248,
+      "meetval_errors": 248,
+      "meetval_length": 248,
+      "reconstructed_errors": 248,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 125,
+          "hyp_length": 7,
+          "errors": 125,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.5040322580645161
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 105,
+          "hyp_length": 0,
+          "errors": 105,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.42338709677419356
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 18,
+          "hyp_length": 0,
+          "errors": 18,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.07258064516129033
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "005-F",
+          null
+        ],
+        [
+          "006-F",
+          null
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 125,
+      "worst_speaker_share": 0.5040322580645161,
+      "num_speakers": 3,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 67,
+      "skipped": false,
+      "cpwer": 1.0,
+      "total_errors": 226,
+      "total_length": 226,
+      "meetval_errors": 226,
+      "meetval_length": 226,
+      "reconstructed_errors": 226,
+      "per_speaker": [
+        {
+          "speaker": "005-F",
+          "ref_length": 218,
+          "hyp_length": 2,
+          "errors": 218,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.9646017699115044
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 8,
+          "hyp_length": 0,
+          "errors": 8,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.035398230088495575
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "005-F",
+          "006-F"
+        ],
+        [
+          "006-F",
+          null
+        ]
+      ],
+      "worst_speaker": "005-F",
+      "worst_speaker_errors": 218,
+      "worst_speaker_share": 0.9646017699115044,
+      "num_speakers": 2,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 68,
+      "skipped": false,
+      "cpwer": 0.9689655172413794,
+      "total_errors": 281,
+      "total_length": 290,
+      "meetval_errors": 281,
+      "meetval_length": 290,
+      "reconstructed_errors": 281,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 99,
+          "hyp_length": 47,
+          "errors": 95,
+          "cpwer": 0.9595959595959596,
+          "share_of_total_errors": 0.33807829181494664
+        },
+        {
+          "speaker": "004-F",
+          "ref_length": 25,
+          "hyp_length": 23,
+          "errors": 25,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.08896797153024912
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 164,
+          "hyp_length": 64,
+          "errors": 159,
+          "cpwer": 0.9695121951219512,
+          "share_of_total_errors": 0.5658362989323843
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 2,
+          "hyp_length": 2,
+          "errors": 2,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.0071174377224199285
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "004-F",
+          "005-F"
+        ],
+        [
+          "005-F",
+          "004-F"
+        ],
+        [
+          "006-F",
+          "006-F"
+        ]
+      ],
+      "worst_speaker": "005-F",
+      "worst_speaker_errors": 159,
+      "worst_speaker_share": 0.5658362989323843,
+      "num_speakers": 4,
+      "overlap_label": "MidOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 69,
+      "skipped": false,
+      "cpwer": 0.8663366336633663,
+      "total_errors": 175,
+      "total_length": 202,
+      "meetval_errors": 175,
+      "meetval_length": 202,
+      "reconstructed_errors": 175,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 55,
+          "hyp_length": 51,
+          "errors": 55,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.3142857142857143
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 147,
+          "hyp_length": 77,
+          "errors": 120,
+          "cpwer": 0.8163265306122449,
+          "share_of_total_errors": 0.6857142857142857
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "005-F",
+          "005-F"
+        ]
+      ],
+      "worst_speaker": "005-F",
+      "worst_speaker_errors": 120,
+      "worst_speaker_share": 0.6857142857142857,
+      "num_speakers": 2,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 70,
+      "skipped": false,
+      "cpwer": 0.9732620320855615,
+      "total_errors": 182,
+      "total_length": 187,
+      "meetval_errors": 182,
+      "meetval_length": 187,
+      "reconstructed_errors": 182,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 16,
+          "hyp_length": 0,
+          "errors": 16,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.08791208791208792
+        },
+        {
+          "speaker": "004-F",
+          "ref_length": 41,
+          "hyp_length": 36,
+          "errors": 41,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.22527472527472528
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 130,
+          "hyp_length": 54,
+          "errors": 125,
+          "cpwer": 0.9615384615384616,
+          "share_of_total_errors": 0.6868131868131868
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          null
+        ],
+        [
+          "004-F",
+          "004-F"
+        ],
+        [
+          "005-F",
+          "005-F"
+        ]
+      ],
+      "worst_speaker": "005-F",
+      "worst_speaker_errors": 125,
+      "worst_speaker_share": 0.6868131868131868,
+      "num_speakers": 3,
+      "overlap_label": "MidOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 71,
+      "skipped": true,
+      "cpwer": 0.0,
+      "total_errors": 0,
+      "total_length": 0,
+      "per_speaker": [],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": []
+    },
+    {
+      "window_id": 72,
+      "skipped": false,
+      "cpwer": 0.9552845528455285,
+      "total_errors": 235,
+      "total_length": 246,
+      "meetval_errors": 235,
+      "meetval_length": 246,
+      "reconstructed_errors": 235,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 52,
+          "hyp_length": 32,
+          "errors": 50,
+          "cpwer": 0.9615384615384616,
+          "share_of_total_errors": 0.2127659574468085
+        },
+        {
+          "speaker": "004-F",
+          "ref_length": 30,
+          "hyp_length": 0,
+          "errors": 30,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.1276595744680851
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 138,
+          "hyp_length": 79,
+          "errors": 130,
+          "cpwer": 0.9420289855072463,
+          "share_of_total_errors": 0.5531914893617021
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 26,
+          "hyp_length": 2,
+          "errors": 25,
+          "cpwer": 0.9615384615384616,
+          "share_of_total_errors": 0.10638297872340426
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "004-F",
+          null
+        ],
+        [
+          "005-F",
+          "006-F"
+        ],
+        [
+          "006-F",
+          "004-F"
+        ]
+      ],
+      "worst_speaker": "005-F",
+      "worst_speaker_errors": 130,
+      "worst_speaker_share": 0.5531914893617021,
+      "num_speakers": 4,
+      "overlap_label": "MidOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 73,
+      "skipped": false,
+      "cpwer": 0.967391304347826,
+      "total_errors": 178,
+      "total_length": 184,
+      "meetval_errors": 178,
+      "meetval_length": 184,
+      "reconstructed_errors": 178,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 77,
+          "hyp_length": 49,
+          "errors": 74,
+          "cpwer": 0.961038961038961,
+          "share_of_total_errors": 0.4157303370786517
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 84,
+          "hyp_length": 55,
+          "errors": 81,
+          "cpwer": 0.9642857142857143,
+          "share_of_total_errors": 0.4550561797752809
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 23,
+          "hyp_length": 5,
+          "errors": 23,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.12921348314606743
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "005-F",
+          "005-F"
+        ],
+        [
+          "006-F",
+          "006-F"
+        ]
+      ],
+      "worst_speaker": "005-F",
+      "worst_speaker_errors": 81,
+      "worst_speaker_share": 0.4550561797752809,
+      "num_speakers": 3,
+      "overlap_label": "LightOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 74,
+      "skipped": false,
+      "cpwer": 0.9873417721518988,
+      "total_errors": 234,
+      "total_length": 237,
+      "meetval_errors": 234,
+      "meetval_length": 237,
+      "reconstructed_errors": 234,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 166,
+          "hyp_length": 49,
+          "errors": 159,
+          "cpwer": 0.9578313253012049,
+          "share_of_total_errors": 0.6794871794871795
+        },
+        {
+          "speaker": "004-F",
+          "ref_length": 19,
+          "hyp_length": 12,
+          "errors": 19,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.0811965811965812
+        },
+        {
+          "speaker": "005-F",
+          "ref_length": 18,
+          "hyp_length": 0,
+          "errors": 18,
+          "cpwer": 1.0,
+          "share_of_total_errors": 0.07692307692307693
+        },
+        {
+          "speaker": "006-F",
+          "ref_length": 34,
+          "hyp_length": 39,
+          "errors": 38,
+          "cpwer": 1.1176470588235294,
+          "share_of_total_errors": 0.1623931623931624
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ],
+        [
+          "004-F",
+          "004-F"
+        ],
+        [
+          "005-F",
+          null
+        ],
+        [
+          "006-F",
+          "005-F"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 159,
+      "worst_speaker_share": 0.6794871794871795,
+      "num_speakers": 4,
+      "overlap_label": "MidOverlap",
+      "router_v2_method": "mixed"
+    },
+    {
+      "window_id": 75,
+      "skipped": true,
+      "cpwer": 0.0,
+      "total_errors": 0,
+      "total_length": 0,
+      "per_speaker": [],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": []
+    },
+    {
+      "window_id": 76,
+      "skipped": false,
+      "cpwer": 0.8985507246376812,
+      "total_errors": 124,
+      "total_length": 138,
+      "meetval_errors": 124,
+      "meetval_length": 138,
+      "reconstructed_errors": 124,
+      "per_speaker": [
+        {
+          "speaker": "001-M",
+          "ref_length": 138,
+          "hyp_length": 72,
+          "errors": 124,
+          "cpwer": 0.8985507246376812,
+          "share_of_total_errors": 1.0
+        }
+      ],
+      "unmatched_hyp": {
+        "errors": 0,
+        "hyp_length": 0,
+        "share_of_total_errors": 0.0
+      },
+      "assignment": [
+        [
+          "001-M",
+          "001-M"
+        ]
+      ],
+      "worst_speaker": "001-M",
+      "worst_speaker_errors": 124,
+      "worst_speaker_share": 1.0,
+      "num_speakers": 1,
+      "overlap_label": "NoOverlap",
+      "router_v2_method": "mixed"
+    }
+  ],
+  "explanation": "H37a SUPPORTED: the worst speaker's share of total cpWER errors reaches 96.5% in the top-10 windows (threshold > 50%).  H37b SUPPORTED: the worst speaker is '001-M' in 60% of the top-10 windows (threshold > 50%).  H37c SUPPORTED: Mode S window Gini coefficients -- window 22: 0.172, window 30: 0.000 (threshold < 0.30).  Decomposition invariant holds: per-speaker error counts plus unmatched-hypothesis insertions sum to MeetEval's cpwer.errors for every window (0 mismatches across 77 windows).",
+  "references": [
+    "MeetEval: https://github.com/fgnt/meeteval",
+    "cpWER: concatenated minimum-permutation WER (NIST OpenKiwi / WER for meeting transcription)",
+    "Source data: results/external_sanity_check/aishell4/rq1_aishell4_validation_results.json (RQ1, PR #890)",
+    "RQ30 char-level cpWER validation: results/frontier/meeteval_cpwer_validation/ (PR #935)",
+    "RQ22 separator-failure detector (Mode S = windows 22, 30): results/frontier/separator_failure_detector/ (PR #921)"
+  ]
+}
