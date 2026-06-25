@@ -1,0 +1,10 @@
+bound_type,value,source,note
+gaussian_rq17,0.435,RQ17 (PR #913),"Gaussian equal-variance; INVALID (below empirical, non-Gaussian)."
+empirical_lzroc_in_sample,0.648649,RQ17 (PR #913),In-sample LZ-ROC; optimistic (threshold on n=64).
+dv_pinsker_primary_rq20,0.729,RQ20 (PR #918),DV/Pinsker primary D(P||Q); conservative ceiling (>= empirical).
+dv_pinsker_min_dir_rq20,0.636,RQ20 (PR #918),Min-direction Pinsker; below empirical (optimism).
+binary_kl_in_sample_rq20,0.555,RQ20 (PR #918),Binary-KL at in-sample FPR; below empirical (optimism).
+cv_binary_kl_kfold5_rq24,0.639,RQ24 (PR #925),CV binary-KL (K=5); below empirical (overcorrection).
+bootstrap_oob_binary_kl,0.648301,this study (pure OOB),Binary-KL at pure OOB FPR; pessimistic reference.
+bootstrap_632_binary_kl,0.603442,this study (.632),Binary-KL at .632 FPR; fixed 0.368/0.632 blend.
+bootstrap_632plus_binary_kl,0.648301,this study (.632+),Binary-KL at .632+ FPR; adaptive blend (Efron & Tibshirani 1997).
