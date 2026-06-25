@@ -30,6 +30,16 @@ in the $k = 1$ case and extends it linearly in $k$.
 | H18b: tight on AISHELL-4 within 10% at $g = 0.2$, $k = 2$ | **SUPPORTED** | relative error $0.008 < 0.10$ (uniform form); per-piece form is a valid upper bound, $2.6\times$ loose |
 | H18c: $k$-dependent sample complexity $n \geq O(\sqrt{k \cdot L / \varepsilon})$ | **SUPPORTED** | ratio converges to $\sqrt{2} = 1.4142$ as $\varepsilon \to 0$ |
 
+**Note on the two forms of Bound 5 at $g = 0.2$.** The uniform form
+($k L d^2 / 2D = 0.04635$) is $0.8\%$ *below* the empirical regret ($0.04672$) — it is a
+tight estimate, not a strict upper bound at this point, because the uniform $d$ underestimates
+the missed crossover's contribution. The per-piece form ($\sum L_i d_i^2 / 2D = 0.1213$) is a
+valid upper bound ($0.1213 \geq 0.04672$) but $2.6\times$ loose, because the second
+crossover's Lipschitz bound overestimates the actual integral ($|\Delta|$ grows sub-linearly
+on the wide missed region $[r_2^*, D]$). H18b's criterion is "relative error $< 0.10$", which
+the uniform form satisfies; both forms are reported for transparency, and the per-piece form
+guarantees $\text{Regret} \leq \text{bound}$.
+
 **AISHELL-4 failure explanation (quantitative).** The $k(g)$ transition
 ($k: 1 \to 2 \to 0$ as $g$ increases) is the quantitative signature of the failure.
 At $g = 0.2$ ($k = 2$), Bound 5 is *tight* (within 0.8%) and the regret is $0.047$ — the

@@ -204,6 +204,14 @@ $$\text{Regret} \;\leq\; \frac{L \, h^2}{2 \, D} \int_0^1 k(g) \, dg$$
 where $k(g)$ is the number of sign-changes at silence $g$ and $h = D / n$. Since $k(g)$ is
 piecewise constant, the integral is computed numerically.
 
+**Discretization note.** The integral $\int_0^1 k(g) \, dg$ is evaluated by sampling $g$ at
+step $0.025$ (41 points, matching the `k_curve` field in `bound_verification.json`). On each
+sample interval $[g_i, g_{i+1})$ the function $k(g)$ is constant, so the integral is the
+sum $\sum_i k(g_i) \cdot (g_{i+1} - g_i)$ (equivalent to the trapezoid rule for a
+piecewise-constant integrand). The piecewise-constant structure of $k(g)$ means the step
+$0.025$ is sufficient — finer sampling does not change the result, only the location of the
+transition points $g = 0.15, 0.325$ matters.
+
 **Empirical $k(g)$ curve** (step $0.025$):
 
 | $g$ range | $k(g)$ |

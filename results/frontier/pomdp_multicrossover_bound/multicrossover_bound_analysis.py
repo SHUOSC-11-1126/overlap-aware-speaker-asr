@@ -71,6 +71,21 @@ import numpy as np
 # ------------------------------------------------------------------
 HERE = Path(__file__).resolve().parent
 DTR = HERE.parent / "decision_theoretic_routing"
+# Explicit path validation: fail loudly with a clear message if the sibling
+# RQ5/RQ10 modules are missing (e.g. wrong CWD, renamed directory), rather
+# than silently importing a wrong-version module from elsewhere on sys.path.
+if not (DTR / "pomdp_solver.py").exists():
+    raise FileNotFoundError(
+        f"pomdp_solver.py not found at {DTR}. "
+        "Run from the repo root, e.g. "
+        "'python3 results/frontier/pomdp_multicrossover_bound/multicrossover_bound_analysis.py'."
+    )
+if not (DTR / "pomdp_per_utterance.py").exists():
+    raise FileNotFoundError(
+        f"pomdp_per_utterance.py not found at {DTR}. "
+        "Run from the repo root, e.g. "
+        "'python3 results/frontier/pomdp_multicrossover_bound/multicrossover_bound_analysis.py'."
+    )
 sys.path.insert(0, str(DTR))
 import pomdp_solver as base  # noqa: E402
 import pomdp_per_utterance as pu  # noqa: E402
