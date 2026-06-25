@@ -1,0 +1,199 @@
+{
+  "label": "experimental/frontier",
+  "rq": "RQ26: Hallucination mode distribution shift — why the dataset prior matters",
+  "closes_issue": 927,
+  "method": "reanalysis only (no Whisper / no ASR run by this script); gold features loaded from comparison_results.csv (RQ21); AISHELL-4 features computed on concatenated separated text (cr) and max across per-speaker texts (lang_id) from rq1_aishell4_validation_results.json, matching RQ23's aggregation exactly",
+  "gold_source": "results/frontier/gold_detector_comparison/comparison_results.csv",
+  "aishell4_source": "results/external_sanity_check/aishell4/rq1_aishell4_validation_results.json",
+  "mode_definitions": {
+    "Mode_R": "hallucinated AND cr > 2.4",
+    "Mode_S": "hallucinated AND lang_id_entropy < 0.409073 AND cr <= 2.4",
+    "Diverse": "hallucinated AND lang_id_entropy >= 0.409073",
+    "Non-hallucinated": "not hallucinated"
+  },
+  "aggregation_note": "AISHELL-4 uses RQ23's hybrid aggregation: cr on concatenated separated text (per the RQ23 spec; concatenation dilutes single-speaker repetition so no window exceeds the cr > 2.4 Mode R boundary) and lang_id_entropy as max across speakers (the 0.409 threshold was calibrated on max-aggregated entropy in RQ21). Gold uses per-track values from RQ21's CSV. This reproduces the pre-registered mode labels exactly.",
+  "thresholds": {
+    "gold_cr_threshold": 15.818182,
+    "lang_id_threshold": 0.409073,
+    "cr_mode_threshold": 2.4,
+    "aishell4_cpwer_halluc": 1.0
+  },
+  "counts": {
+    "total_tracks": 677,
+    "gold_tracks": 600,
+    "gold_hallucinated": 5,
+    "gold_nonhallucinated": 595,
+    "aishell4_tracks": 77,
+    "aishell4_hallucinated": 37,
+    "aishell4_nonhallucinated": 40,
+    "mode_counts_by_dataset": {
+      "gold": {
+        "Mode_R": 5,
+        "Mode_S": 0,
+        "Diverse": 0,
+        "Non-hallucinated": 595
+      },
+      "aishell4": {
+        "Mode_R": 0,
+        "Mode_S": 2,
+        "Diverse": 35,
+        "Non-hallucinated": 40
+      }
+    }
+  },
+  "h26a_chi_squared": {
+    "contingency_table_rows": [
+      "gold",
+      "aishell4"
+    ],
+    "contingency_table_cols": [
+      "Mode_R",
+      "Mode_S+Diverse",
+      "Non-hallucinated"
+    ],
+    "observed": [
+      [
+        5.0,
+        0.0,
+        595.0
+      ],
+      [
+        0.0,
+        37.0,
+        40.0
+      ]
+    ],
+    "expected": [
+      [
+        4.431314623338257,
+        32.7917282127031,
+        562.7769571639586
+      ],
+      [
+        0.568685376661743,
+        4.208271787296898,
+        72.22304283604136
+      ]
+    ],
+    "chi2": 305.174994,
+    "df": 2,
+    "p_value": 5.396249704799166e-67,
+    "cramers_v": 0.671398,
+    "n": 677.0,
+    "min_expected": 0.568685,
+    "n_cells_below_5": 3,
+    "n_cells": 6,
+    "p_value_method": "analytical via regularized lower incomplete gamma (numpy + stdlib)"
+  },
+  "h26b_oracle_detector": {
+    "policy": "Mode R -> CR detector (>= 15.818); Diverse -> lang-id (>= 0.409); Mode S -> unresolvable; Non-hallucinated -> none",
+    "uses_true_mode_labels": true,
+    "gold_sensitivity": 1.0,
+    "gold_sensitivity_ci_95": [
+      1.0,
+      1.0
+    ],
+    "gold_tp": 5,
+    "gold_n_hallucinated": 5,
+    "aishell4_sensitivity": 0.945946,
+    "aishell4_sensitivity_ci_95": [
+      0.864865,
+      1.0
+    ],
+    "aishell4_tp": 35,
+    "aishell4_n_hallucinated": 37,
+    "oracle_by_mode": {
+      "Mode_R": {
+        "n": 5,
+        "flagged": 5,
+        "hallucinated": 5
+      },
+      "Mode_S": {
+        "n": 2,
+        "flagged": 0,
+        "hallucinated": 2
+      },
+      "Diverse": {
+        "n": 35,
+        "flagged": 35,
+        "hallucinated": 35
+      },
+      "Non-hallucinated": {
+        "n": 635,
+        "flagged": 0,
+        "hallucinated": 0
+      }
+    },
+    "comparison_rq23_classifier": {
+      "rq23_gold_sensitivity": 1.0,
+      "rq23_aishell4_sensitivity": 0.811,
+      "gap_aishell4_pp": 13.49,
+      "note": "RQ23 classifier (no dataset prior) achieved 81.1% on AISHELL-4; oracle (true modes) achieves the value above"
+    }
+  },
+  "h26c_kde_overlap": {
+    "groups": {
+      "f": "Diverse hallucinated (AISHELL-4, lang_id_entropy)",
+      "g": "Non-hallucinated (AISHELL-4, lang_id_entropy)"
+    },
+    "overlap_coefficient": 0.079824,
+    "integral_min": 0.147847,
+    "integral_max": 1.852153,
+    "bandwidth_f": 0.174048,
+    "bandwidth_g": 0.126071,
+    "n_f": 35,
+    "n_g": 40,
+    "diverse_summary": {
+      "min": 0.40907313904382653,
+      "max": 1.7509155979504167,
+      "mean": 1.165938175112013,
+      "median": 1.2406705316766884,
+      "std": 0.3343302060693705
+    },
+    "nonhall_summary": {
+      "min": 0.0,
+      "max": 0.9456603046006401,
+      "mean": 0.10089455188184718,
+      "median": 0.0,
+      "std": 0.2487267685243379
+    },
+    "nonhall_above_threshold": 3,
+    "diverse_above_threshold": 35,
+    "method": "Gaussian KDE, Scott's bandwidth (h = 1.06 * sigma * n^(-1/5)), overlap = int min(f,g) / int max(f,g)"
+  },
+  "hypothesis_verdicts": {
+    "H26a": {
+      "statement": "Mode distribution differs significantly between gold and AISHELL-4 (chi-squared p < 0.05)",
+      "kill_criterion": "p >= 0.05",
+      "chi2": 305.174994,
+      "df": 2,
+      "p_value": 5.396249704799166e-67,
+      "cramers_v": 0.671398,
+      "supported": true,
+      "killed": false
+    },
+    "H26b": {
+      "statement": "Oracle mode-routed detector (using TRUE mode labels) achieves > 90% sensitivity on both gold and AISHELL-4",
+      "kill_criterion": "oracle <= 90% on either",
+      "gold_sensitivity": 1.0,
+      "gold_ci_95": [
+        1.0,
+        1.0
+      ],
+      "aishell4_sensitivity": 0.945946,
+      "aishell4_ci_95": [
+        0.864865,
+        1.0
+      ],
+      "supported": true,
+      "killed": false
+    },
+    "H26c": {
+      "statement": "Diverse-vs-Non-hallucinated confusion is driven by lang-id entropy overlap > 30%",
+      "kill_criterion": "overlap <= 30%",
+      "overlap_coefficient": 0.079824,
+      "supported": false,
+      "killed": true
+    }
+  }
+}
