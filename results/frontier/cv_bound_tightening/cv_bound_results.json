@@ -1,0 +1,331 @@
+{
+  "label": "experimental/frontier",
+  "rq": "RQ24: Cross-validated binary-KL bound tightening",
+  "closes_issue": 922,
+  "source_data": "results/frontier/info_theoretic_detector_bound/bound_verification.csv",
+  "source_label": "experimental/frontier (RQ17, PR #913)",
+  "builds_on": "RQ17 (PR #913), RQ20 (PR #918)",
+  "method": "reanalysis only (no Whisper / no ASR run); reuses RQ17's per-track LZ78 entropy rates and RQ20's k-NN KL estimator. De-optimises the LZ-ROC threshold via K-fold (K=5) and leave-one-out cross-validation, then inverts the binary data-processing inequality d(TPR||FPR) <= D(P||Q) (bisection, tol 1e-6) at the CV-de-optimised FPR to obtain the CV binary-KL bound.",
+  "target_specificity": 0.9,
+  "seed": 42,
+  "bisect_tolerance": 1e-06,
+  "k_primary": 3,
+  "k_folds": 5,
+  "n_windows_total": 77,
+  "n_nonempty_tracks": 64,
+  "n_hallucinated_nonempty": 37,
+  "n_nonhallucinated_nonempty": 27,
+  "empirical_lzroc_operating_point": {
+    "threshold_bits_per_char": 4.95485,
+    "threshold_reported": 4.9549,
+    "specificity": 0.925926,
+    "fpr": 0.074074,
+    "sensitivity": 0.648649,
+    "k_detected": 24,
+    "n_pos": 37,
+    "fp": 2,
+    "n_neg": 27,
+    "matches_rq17_0_649": true
+  },
+  "kl_divergence_estimates_nats": {
+    "D_P_given_Q_knn": {
+      "k1": 1.163052,
+      "k3": 0.792152,
+      "k5": 0.526319
+    },
+    "primary_D_P_given_Q_k3": 0.792152,
+    "matches_rq20_0_792": true,
+    "estimator": "Wang-Kulkarni-Verdu (2009) k-NN; threshold-independent"
+  },
+  "in_sample_binary_kl_bound_rq20_reproduction": {
+    "fpr": 0.074074,
+    "bound": 0.555181,
+    "matches_rq20_0_555": true
+  },
+  "cv_results": {
+    "kfold5": {
+      "method": "5-fold stratified CV",
+      "k": 5,
+      "seed": 42,
+      "per_fold": [
+        {
+          "fold": 0,
+          "n_train": 50,
+          "n_test": 14,
+          "n_test_pos": 8,
+          "n_test_neg": 6,
+          "train_threshold": 4.9600636360102905,
+          "train_sensitivity": 0.6896551724137931,
+          "train_specificity": 0.9047619047619048,
+          "tp": 3,
+          "fp": 0,
+          "tn": 6,
+          "fn": 5,
+          "tpr": 0.375,
+          "fpr": 0.0,
+          "specificity": 1.0
+        },
+        {
+          "fold": 1,
+          "n_train": 50,
+          "n_test": 14,
+          "n_test_pos": 8,
+          "n_test_neg": 6,
+          "train_threshold": 4.954850462901247,
+          "train_sensitivity": 0.5862068965517241,
+          "train_specificity": 0.9047619047619048,
+          "tp": 7,
+          "fp": 0,
+          "tn": 6,
+          "fn": 1,
+          "tpr": 0.875,
+          "fpr": 0.0,
+          "specificity": 1.0
+        },
+        {
+          "fold": 2,
+          "n_train": 52,
+          "n_test": 12,
+          "n_test_pos": 7,
+          "n_test_neg": 5,
+          "train_threshold": 4.885188374834356,
+          "train_sensitivity": 0.7,
+          "train_specificity": 0.9090909090909091,
+          "tp": 4,
+          "fp": 1,
+          "tn": 4,
+          "fn": 3,
+          "tpr": 0.5714285714285714,
+          "fpr": 0.2,
+          "specificity": 0.8
+        },
+        {
+          "fold": 3,
+          "n_train": 52,
+          "n_test": 12,
+          "n_test_pos": 7,
+          "n_test_neg": 5,
+          "train_threshold": 4.844496306112205,
+          "train_sensitivity": 0.7,
+          "train_specificity": 0.9090909090909091,
+          "tp": 5,
+          "fp": 1,
+          "tn": 4,
+          "fn": 2,
+          "tpr": 0.7142857142857143,
+          "fpr": 0.2,
+          "specificity": 0.8
+        },
+        {
+          "fold": 4,
+          "n_train": 52,
+          "n_test": 12,
+          "n_test_pos": 7,
+          "n_test_neg": 5,
+          "train_threshold": 4.844496306112205,
+          "train_sensitivity": 0.7,
+          "train_specificity": 0.9090909090909091,
+          "tp": 5,
+          "fp": 1,
+          "tn": 4,
+          "fn": 2,
+          "tpr": 0.7142857142857143,
+          "fpr": 0.2,
+          "specificity": 0.8
+        }
+      ],
+      "thresholds": [
+        4.960064,
+        4.95485,
+        4.885188,
+        4.844496,
+        4.844496
+      ],
+      "threshold_mean": 4.897819,
+      "threshold_std": 0.050937,
+      "micro_tpr": 0.648649,
+      "micro_fpr": 0.111111,
+      "micro_specificity": 0.888889,
+      "macro_tpr": 0.65,
+      "macro_fpr": 0.12,
+      "total_tp": 24,
+      "total_fp": 3,
+      "total_tn": 24,
+      "total_fn": 13,
+      "binary_kl_bound": 0.638848
+    },
+    "loo": {
+      "method": "leave-one-out CV",
+      "k": 64,
+      "threshold_mean": 4.949759,
+      "threshold_std": 0.023353,
+      "micro_tpr": 0.621622,
+      "micro_fpr": 0.111111,
+      "micro_specificity": 0.888889,
+      "total_tp": 23,
+      "total_fp": 3,
+      "total_tn": 24,
+      "total_fn": 14,
+      "binary_kl_bound": 0.638848
+    }
+  },
+  "bound_comparison_table": [
+    {
+      "bound_type": "gaussian_rq17",
+      "value": 0.435,
+      "source": "RQ17 (PR #913)",
+      "note": "Gaussian equal-variance; INVALID (below empirical, non-Gaussian)."
+    },
+    {
+      "bound_type": "empirical_lzroc_in_sample",
+      "value": 0.648649,
+      "source": "RQ17 (PR #913)",
+      "note": "In-sample LZ-ROC; optimistic (threshold on n=64)."
+    },
+    {
+      "bound_type": "dv_pinsker_primary_rq20",
+      "value": 0.729,
+      "source": "RQ20 (PR #918)",
+      "note": "DV/Pinsker primary D(P||Q); conservative ceiling (>= empirical)."
+    },
+    {
+      "bound_type": "dv_pinsker_min_dir_rq20",
+      "value": 0.636,
+      "source": "RQ20 (PR #918)",
+      "note": "Min-direction Pinsker; below empirical (optimism)."
+    },
+    {
+      "bound_type": "binary_kl_in_sample_rq20",
+      "value": 0.555,
+      "source": "RQ20 (PR #918)",
+      "note": "Binary-KL at in-sample FPR; below empirical (optimism)."
+    },
+    {
+      "bound_type": "cv_binary_kl_kfold5",
+      "value": 0.638848,
+      "source": "this study (K=5 CV)",
+      "note": "Binary-KL at CV-de-optimised FPR; de-optimised ceiling."
+    },
+    {
+      "bound_type": "cv_binary_kl_loo",
+      "value": 0.638848,
+      "source": "this study (LOO CV)",
+      "note": "Binary-KL at LOO-de-optimised FPR; extreme de-optimisation."
+    },
+    {
+      "bound_type": "cv_empirical_lzroc_kfold5",
+      "value": 0.648649,
+      "source": "this study (K=5 CV)",
+      "note": "CV-de-optimised empirical sensitivity (no KL inversion)."
+    },
+    {
+      "bound_type": "cv_empirical_lzroc_loo",
+      "value": 0.621622,
+      "source": "this study (LOO CV)",
+      "note": "LOO-de-optimised empirical sensitivity (no KL inversion)."
+    }
+  ],
+  "convergence_h24c": {
+    "subsampling_sizes": [
+      40,
+      50,
+      60,
+      64
+    ],
+    "rows": [
+      {
+        "n_target": 40,
+        "n_pos": 23,
+        "n_neg": 17,
+        "n_total": 40,
+        "cv_binary_kl_bound_mean": 0.5925708263326372,
+        "cv_binary_kl_bound_std": 0.14442052300221947,
+        "cv_tpr_mean": 0.6232608695652173,
+        "cv_fpr_mean": 0.12,
+        "d_pq_k3_mean": 0.6845613047855585,
+        "n_resample": 200,
+        "asymptote_n_inf": 0.7886041041480015,
+        "extrapolation_slope": -8.286166222119997
+      },
+      {
+        "n_target": 50,
+        "n_pos": 29,
+        "n_neg": 21,
+        "n_total": 50,
+        "cv_binary_kl_bound_mean": 0.5867536098892896,
+        "cv_binary_kl_bound_std": 0.08658932121489356,
+        "cv_tpr_mean": 0.6027586206896552,
+        "cv_fpr_mean": 0.1038095238095238,
+        "d_pq_k3_mean": 0.7195043253299827,
+        "n_resample": 200,
+        "asymptote_n_inf": 0.7886041041480015,
+        "extrapolation_slope": -8.286166222119997
+      },
+      {
+        "n_target": 60,
+        "n_pos": 35,
+        "n_neg": 25,
+        "n_total": 60,
+        "cv_binary_kl_bound_mean": 0.650501333779335,
+        "cv_binary_kl_bound_std": 0.0603434738340467,
+        "cv_tpr_mean": 0.6531428571428571,
+        "cv_fpr_mean": 0.12480000000000004,
+        "d_pq_k3_mean": 0.7638463690405396,
+        "n_resample": 200,
+        "asymptote_n_inf": 0.7886041041480015,
+        "extrapolation_slope": -8.286166222119997
+      },
+      {
+        "n_target": 64,
+        "n_pos": 37,
+        "n_neg": 27,
+        "n_total": 64,
+        "cv_binary_kl_bound_mean": 0.6591327569273766,
+        "cv_binary_kl_bound_std": 0.05060530484799632,
+        "cv_tpr_mean": 0.6493243243243243,
+        "cv_fpr_mean": 0.12333333333333334,
+        "d_pq_k3_mean": 0.79215194944565,
+        "n_resample": 200,
+        "asymptote_n_inf": 0.7886041041480015,
+        "extrapolation_slope": -8.286166222119997
+      }
+    ],
+    "asymptote_n_inf": 0.788604,
+    "gap_n64_vs_inf": 0.129471,
+    "extrapolation_method": "linear fit of bound vs 1/n using two largest sizes",
+    "n_resample": 200
+  },
+  "hypothesis_verdicts": {
+    "H24a": {
+      "statement": "The CV binary-KL bound is < 0.729 (tighter than RQ20's primary Pinsker). Kill: CV binary-KL >= 0.729.",
+      "cv_binary_kl_kfold5": 0.638848,
+      "pass": true,
+      "kill": false,
+      "supported": true
+    },
+    "H24b": {
+      "statement": "The CV binary-KL bound is >= 0.649 (still valid -- above empirical LZ-ROC). Kill: CV binary-KL < 0.649.",
+      "cv_binary_kl_kfold5": 0.638848,
+      "pass": false,
+      "kill": true,
+      "supported": false
+    },
+    "H24c": {
+      "statement": "The CV bound converges at n=64 (within 10pp of n=infinity asymptote). Kill: |bound(n=64) - bound(n=inf)| > 0.10.",
+      "bound_n64": 0.659133,
+      "bound_n_inf": 0.788604,
+      "gap": 0.129471,
+      "pass": false,
+      "kill": true,
+      "supported": false
+    }
+  },
+  "references": {
+    "gaussian_rq17": 0.435,
+    "empirical_lzroc_rq17": 0.649,
+    "dv_pinsker_primary_rq20": 0.729,
+    "dv_pinsker_min_dir_rq20": 0.636,
+    "binary_kl_in_sample_rq20": 0.555,
+    "d_primary_rq20_nats": 0.792
+  }
+}

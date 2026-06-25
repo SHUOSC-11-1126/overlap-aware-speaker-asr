@@ -1,0 +1,10 @@
+bound_type,value,source,note
+gaussian_rq17,0.435,RQ17 (PR #913),"Gaussian equal-variance; INVALID (below empirical, non-Gaussian)."
+empirical_lzroc_in_sample,0.648649,RQ17 (PR #913),In-sample LZ-ROC; optimistic (threshold on n=64).
+dv_pinsker_primary_rq20,0.729,RQ20 (PR #918),DV/Pinsker primary D(P||Q); conservative ceiling (>= empirical).
+dv_pinsker_min_dir_rq20,0.636,RQ20 (PR #918),Min-direction Pinsker; below empirical (optimism).
+binary_kl_in_sample_rq20,0.555,RQ20 (PR #918),Binary-KL at in-sample FPR; below empirical (optimism).
+cv_binary_kl_kfold5,0.638848,this study (K=5 CV),Binary-KL at CV-de-optimised FPR; de-optimised ceiling.
+cv_binary_kl_loo,0.638848,this study (LOO CV),Binary-KL at LOO-de-optimised FPR; extreme de-optimisation.
+cv_empirical_lzroc_kfold5,0.648649,this study (K=5 CV),CV-de-optimised empirical sensitivity (no KL inversion).
+cv_empirical_lzroc_loo,0.621622,this study (LOO CV),LOO-de-optimised empirical sensitivity (no KL inversion).
