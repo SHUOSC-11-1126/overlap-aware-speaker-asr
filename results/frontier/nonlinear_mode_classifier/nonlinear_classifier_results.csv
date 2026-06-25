@@ -1,0 +1,15 @@
+metric,rq23_linear,rf_nonlinear,delta
+loo_accuracy,0.957164,0.968981,0.011817
+loo_accuracy_correct,648,656,8
+wilson_ci_lo,0.939157,0.953046,
+wilson_ci_hi,0.970012,0.979624,
+majority_baseline,0.937962,0.937962,
+off_diagonal_total,29,21,-8
+off_diagonal_diverse_nonhalluc,17,17,0
+a4_sensitivity_task_def,0.837838,0.864865,0.027027
+a4_sensitivity_rq23_orig,0.810811,0.864865,
+feature_importance_cr,,0.424334,
+feature_importance_lang_id_entropy,,0.256838,
+feature_importance_length_ratio,,0.12807,
+feature_importance_content_similarity,,0.079843,
+feature_importance_num_speakers,,0.110914,

@@ -1,0 +1,253 @@
+{
+  "label": "experimental/frontier",
+  "rq": "RQ28: Non-linear mode classifier -- random forest to close the 13.5pp gap from RQ23",
+  "closes_issue": 932,
+  "method": "reanalysis only (no Whisper / no ASR run); loads the EXACT same per-track feature matrix and mode labels from RQ23's mode_classifier_results.csv and trains a numpy-only random forest (CART + bootstrap aggregation) with the same LOO-CV protocol. No features are recomputed.",
+  "source_data": "results/frontier/per_track_mode_classifier/mode_classifier_results.csv",
+  "classifier": {
+    "model": "random forest (CART decision trees + bootstrap aggregation)",
+    "implementation": "numpy only (no sklearn)",
+    "n_trees": 100,
+    "max_depth": 10,
+    "min_samples_split": 5,
+    "split_criterion": "weighted Gini impurity",
+    "class_weight": "sqrt",
+    "class_weight_note": "sqrt inverse-frequency sample weights in Gini computation, matching RQ23's linear classifier protocol. Weights are computed per training fold (no leakage from held-out sample).",
+    "bootstrap": "n samples drawn with replacement from n (standard bootstrap)",
+    "prediction": "majority vote across trees",
+    "cv": "leave-one-out (677 folds)",
+    "seed": 42,
+    "features": [
+      "cr",
+      "lang_id_entropy",
+      "length_ratio",
+      "content_similarity",
+      "num_speakers"
+    ],
+    "n_features": 5,
+    "n_classes": 4,
+    "runtime_seconds": 320.4
+  },
+  "counts": {
+    "total_tracks": 677,
+    "gold_tracks": 600,
+    "aishell4_tracks": 77,
+    "aishell4_hallucinated": 37,
+    "mode_counts": {
+      "Mode_R": 5,
+      "Mode_S": 2,
+      "Diverse": 35,
+      "Non-hallucinated": 635
+    }
+  },
+  "hypotheses": {
+    "H28a": {
+      "statement": "RF LOO accuracy > 0.957164 (RQ23 linear baseline)",
+      "kill_criterion": "accuracy <= 0.957164",
+      "rf_accuracy": 0.968981,
+      "rq23_accuracy": 0.957164,
+      "supported": true,
+      "killed": false
+    },
+    "H28b": {
+      "statement": "RF AISHELL-4 mode-routed sensitivity > 90%",
+      "kill_criterion": "sensitivity <= 90%",
+      "rf_sensitivity": 0.864865,
+      "rf_tp": 32,
+      "rf_n_hallucinated": 37,
+      "rq23_sensitivity": 0.837838,
+      "supported": false,
+      "killed": true
+    },
+    "H28c": {
+      "statement": "Total off-diagonal errors decrease by >= 50% (from 29 to <= 14)",
+      "kill_criterion": "off-diagonal > 14",
+      "rf_off_diagonal": 21,
+      "rq23_off_diagonal": 29,
+      "rf_diverse_nonhalluc_offdiag": 17,
+      "rq23_diverse_nonhalluc_offdiag": 17,
+      "supported": false,
+      "killed": true
+    }
+  },
+  "loo_accuracy": {
+    "correct": 656,
+    "n": 677,
+    "accuracy": 0.968981,
+    "wilson_ci_95": [
+      0.953046,
+      0.979624
+    ],
+    "majority_class_baseline": 0.937962,
+    "beats_baseline": true
+  },
+  "confusion_matrix": {
+    "row_order": [
+      "Mode_R",
+      "Mode_S",
+      "Diverse",
+      "Non-hallucinated"
+    ],
+    "col_order": [
+      "Mode_R",
+      "Mode_S",
+      "Diverse",
+      "Non-hallucinated"
+    ],
+    "matrix": [
+      [
+        5,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        32,
+        3
+      ],
+      [
+        1,
+        1,
+        14,
+        619
+      ]
+    ],
+    "off_diagonal": 21,
+    "diverse_nonhalluc_offdiag": 17
+  },
+  "per_class_metrics": [
+    {
+      "class": "Mode_R",
+      "tp": 5,
+      "fp": 1,
+      "fn": 0,
+      "precision": 0.833333,
+      "recall": 1.0,
+      "f1": 0.909091,
+      "support": 5
+    },
+    {
+      "class": "Mode_S",
+      "tp": 0,
+      "fp": 1,
+      "fn": 2,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 2
+    },
+    {
+      "class": "Diverse",
+      "tp": 32,
+      "fp": 14,
+      "fn": 3,
+      "precision": 0.695652,
+      "recall": 0.914286,
+      "f1": 0.790123,
+      "support": 35
+    },
+    {
+      "class": "Non-hallucinated",
+      "tp": 619,
+      "fp": 5,
+      "fn": 16,
+      "precision": 0.991987,
+      "recall": 0.974803,
+      "f1": 0.98332,
+      "support": 635
+    }
+  ],
+  "aishell4_mode_routed_sensitivity": {
+    "task_definition": {
+      "description": "route to mixed if predicted_mode in {Mode_R, Mode_S, Diverse}; sensitivity = (truly hallucinated AND predicted hallucinated) / (truly hallucinated)",
+      "rf_sensitivity": 0.864865,
+      "rf_tp": 32,
+      "rf_ci_95": [
+        0.720223,
+        0.940868
+      ],
+      "rq23_sensitivity": 0.837838,
+      "rq23_tp": 31
+    },
+    "rq23_original_definition": {
+      "description": "RQ23's mode_routed_detect: Mode R -> CR >= 15.818, Diverse -> lang_id >= 0.409, Mode S / Non-hallucinated -> not flagged",
+      "rf_sensitivity": 0.864865,
+      "rf_tp": 32,
+      "rq23_sensitivity": 0.810811,
+      "rq23_tp": 30
+    }
+  },
+  "feature_importances": {
+    "cr": 0.424334,
+    "lang_id_entropy": 0.256838,
+    "length_ratio": 0.12807,
+    "content_similarity": 0.079843,
+    "num_speakers": 0.110914
+  },
+  "comparison_to_rq23": {
+    "accuracy_delta": 0.011817,
+    "a4_sensitivity_delta_task_def": 0.027027,
+    "off_diagonal_delta": -8,
+    "diverse_nonhalluc_offdiag_delta": 0,
+    "rq23_loo_accuracy": 0.957164,
+    "rf_loo_accuracy": 0.968981,
+    "rq23_off_diagonal": 29,
+    "rf_off_diagonal": 21,
+    "rq23_a4_sensitivity_task": 0.837838,
+    "rf_a4_sensitivity_task": 0.864865
+  },
+  "rq23_confusion_matrix_for_reference": {
+    "row_order": [
+      "Mode_R",
+      "Mode_S",
+      "Diverse",
+      "Non-hallucinated"
+    ],
+    "col_order": [
+      "Mode_R",
+      "Mode_S",
+      "Diverse",
+      "Non-hallucinated"
+    ],
+    "matrix": [
+      [
+        5,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        1,
+        30,
+        4
+      ],
+      [
+        0,
+        9,
+        13,
+        613
+      ]
+    ],
+    "off_diagonal": 29
+  },
+  "references": [
+    "RQ23: PR #924, results/frontier/per_track_mode_classifier/",
+    "RQ26: PR #930 (confirmed bottleneck is classifier accuracy, not routing)",
+    "RQ21: PR #917 (CR + lang-id detector comparison, threshold calibration)"
+  ]
+}
