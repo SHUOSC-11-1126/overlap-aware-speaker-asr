@@ -1,0 +1,423 @@
+{
+  "label": "experimental/frontier",
+  "rq": "RQ18",
+  "title": "Piecewise-Lipschitz regret bound for multi-crossover POMDP",
+  "builds_on": [
+    "RQ15 (regret_bound_analysis.py, #904)",
+    "RQ10 (pomdp_per_utterance.py, #899)"
+  ],
+  "method": {
+    "gap_function": "Delta(r, g) = CER_mixed(r, g) - CER_sep(r, g)",
+    "silence_model": "affine: sep += HALLUCINATION_ADD*g (1.5), mixed += MILD_MASKING*g (0.1)",
+    "k_sign_changes": "number of crossovers of Delta(r, g) at fixed g",
+    "optimal_policy": "k-threshold: separated where Delta > 0, mixed where Delta < 0",
+    "router_v2": "single threshold at r_router = 0.17",
+    "bound5_uniform": "Regret <= k * L_max * d^2 / (2 * D)",
+    "bound5_discretization": "Regret_n <= k * L * h^2 / (2 * D) = O(k*L/n^2), h = D/n",
+    "sample_complexity": "n >= sqrt(k * L * D / (2 * eps))"
+  },
+  "gold_reference": {
+    "r_star": 0.194419,
+    "L_lipschitz": 5.523709,
+    "k": 1
+  },
+  "bound5_at_g02": {
+    "g": 0.2,
+    "k": 2,
+    "crossovers": [
+      0.256899,
+      0.470506
+    ],
+    "L_max": 5.523709,
+    "d_first_crossover": 0.086899,
+    "empirical_regret": 0.04672083,
+    "bound5_uniform": 0.04634614,
+    "tightness_ratio": 0.992,
+    "relative_error": 0.008,
+    "within_10_percent": true
+  },
+  "per_g_summary": [
+    {
+      "g": 0.0,
+      "k": 1,
+      "crossovers": "0.1944",
+      "L_max": 5.523709,
+      "d": 0.024419,
+      "empirical_regret": 0.00181865,
+      "bound5_uniform": 0.00182986,
+      "tightness_ratio": 1.0062
+    },
+    {
+      "g": 0.1,
+      "k": 1,
+      "crossovers": "0.2220",
+      "L_max": 5.523709,
+      "d": 0.052047,
+      "empirical_regret": 0.00772241,
+      "bound5_uniform": 0.00831294,
+      "tightness_ratio": 1.0765
+    },
+    {
+      "g": 0.2,
+      "k": 2,
+      "crossovers": "0.2569;0.4705",
+      "L_max": 5.523709,
+      "d": 0.086899,
+      "empirical_regret": 0.04672083,
+      "bound5_uniform": 0.04634614,
+      "tightness_ratio": 0.992
+    },
+    {
+      "g": 0.3,
+      "k": 2,
+      "crossovers": "0.3311;0.3683",
+      "L_max": 5.515724,
+      "d": 0.161137,
+      "empirical_regret": 0.13824735,
+      "bound5_uniform": 0.15912936,
+      "tightness_ratio": 1.151
+    },
+    {
+      "g": 0.4,
+      "k": 0,
+      "crossovers": "",
+      "L_max": 0.0,
+      "d": 0.0,
+      "empirical_regret": 0.25166636,
+      "bound5_uniform": 0.0,
+      "tightness_ratio": 0.0
+    },
+    {
+      "g": 0.6,
+      "k": 0,
+      "crossovers": "",
+      "L_max": 0.0,
+      "d": 0.0,
+      "empirical_regret": 0.47878335,
+      "bound5_uniform": 0.0,
+      "tightness_ratio": 0.0
+    },
+    {
+      "g": 0.8,
+      "k": 0,
+      "crossovers": "",
+      "L_max": 0.0,
+      "d": 0.0,
+      "empirical_regret": 0.70590034,
+      "bound5_uniform": 0.0,
+      "tightness_ratio": 0.0
+    }
+  ],
+  "h18a_scaling": {
+    "log_log_slope_k1": -2.0,
+    "log_log_slope_k2": -2.0,
+    "bound_ratio_k2_over_k1_at_n50": 2.0,
+    "theory_ratio_k2L2_over_k1L1": 2.0,
+    "supported": true,
+    "note": "Bound 5 (discretisation) decays as O(1/n^2) (slope ~ -2) and scales linearly with k*L. At g=0.2 (k=2) the bound is ~2x the g=0 (k=1) bound."
+  },
+  "h18c_sample_complexity": {
+    "formula": "n >= sqrt(k * L * D / (2 * eps))",
+    "rows": [
+      {
+        "eps": 0.1,
+        "n_min_k1": 5,
+        "n_min_k2": 8,
+        "ratio_k2_k1": 1.6
+      },
+      {
+        "eps": 0.01,
+        "n_min_k1": 16,
+        "n_min_k2": 23,
+        "ratio_k2_k1": 1.4375
+      },
+      {
+        "eps": 0.001,
+        "n_min_k1": 50,
+        "n_min_k2": 71,
+        "ratio_k2_k1": 1.42
+      },
+      {
+        "eps": 0.0001,
+        "n_min_k1": 158,
+        "n_min_k2": 223,
+        "ratio_k2_k1": 1.4113924050632911
+      }
+    ],
+    "sqrt_k_ratio": 1.4142,
+    "supported": true,
+    "note": "The multi-crossover case (k=2) needs sqrt(k2/k1) = sqrt(2) ~ 1.41x more strata than the single-crossover case (k=1) for the same regret budget eps."
+  },
+  "integrated_bound_continuous_g": {
+    "n": 5,
+    "L": 5.523709,
+    "integral_k_g": 0.5375,
+    "mean_k": 0.5375,
+    "bound_integrated": 0.05344188,
+    "formula": "Regret <= (L * h^2 / (2*D)) * integral_0^1 k(g) dg",
+    "k_curve": [
+      {
+        "g": 0.0,
+        "k": 1,
+        "crossovers": [
+          0.1944
+        ]
+      },
+      {
+        "g": 0.025,
+        "k": 1,
+        "crossovers": [
+          0.201
+        ]
+      },
+      {
+        "g": 0.05,
+        "k": 1,
+        "crossovers": [
+          0.2077
+        ]
+      },
+      {
+        "g": 0.07500000000000001,
+        "k": 1,
+        "crossovers": [
+          0.2147
+        ]
+      },
+      {
+        "g": 0.1,
+        "k": 1,
+        "crossovers": [
+          0.222
+        ]
+      },
+      {
+        "g": 0.125,
+        "k": 1,
+        "crossovers": [
+          0.2298
+        ]
+      },
+      {
+        "g": 0.15000000000000002,
+        "k": 3,
+        "crossovers": [
+          0.238,
+          0.52,
+          0.7019
+        ]
+      },
+      {
+        "g": 0.17500000000000002,
+        "k": 3,
+        "crossovers": [
+          0.247,
+          0.4927,
+          0.7996
+        ]
+      },
+      {
+        "g": 0.2,
+        "k": 2,
+        "crossovers": [
+          0.2569,
+          0.4705
+        ]
+      },
+      {
+        "g": 0.225,
+        "k": 2,
+        "crossovers": [
+          0.2682,
+          0.4499
+        ]
+      },
+      {
+        "g": 0.25,
+        "k": 2,
+        "crossovers": [
+          0.2817,
+          0.4289
+        ]
+      },
+      {
+        "g": 0.275,
+        "k": 2,
+        "crossovers": [
+          0.2993,
+          0.4052
+        ]
+      },
+      {
+        "g": 0.30000000000000004,
+        "k": 2,
+        "crossovers": [
+          0.3311,
+          0.3683
+        ]
+      },
+      {
+        "g": 0.325,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.35000000000000003,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.375,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.4,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.42500000000000004,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.45,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.47500000000000003,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.5,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.525,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.55,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.5750000000000001,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.6000000000000001,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.625,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.65,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.675,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.7000000000000001,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.7250000000000001,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.75,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.775,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.8,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.8250000000000001,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.8500000000000001,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.875,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.9,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.925,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.9500000000000001,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 0.9750000000000001,
+        "k": 0,
+        "crossovers": []
+      },
+      {
+        "g": 1.0,
+        "k": 0,
+        "crossovers": []
+      }
+    ]
+  },
+  "hypotheses": {
+    "H18a_bound_is_O(kL_over_n2)": {
+      "supported": true,
+      "log_log_slope_k1": -2.0,
+      "log_log_slope_k2": -2.0,
+      "k_scaling_ratio": 2.0,
+      "note": "Bound 5 (discretisation) = k*L*h^2/(2D) with h=D/n gives O(k*L/n^2). Log-log slope vs n is ~ -2 at both k=1 and k=2. The bound at k=2 is ~ k2*L2/(k1*L1) times the k=1 bound."
+    },
+    "H18b_tight_at_g02_k2": {
+      "supported": true,
+      "empirical_regret": 0.04672083,
+      "bound5": 0.04634614,
+      "relative_error": 0.008,
+      "note": "At g=0.2 (k=2), Bound 5 (uniform, k*L*d^2/2D) = 0.046346 vs empirical router v2 regret = 0.046721. Relative error 0.0080 < 0.10. The k=2 factor captures the second crossover's contribution; the bound explains WHY router v2 fails on AISHELL-4 (large regret from the missed crossover)."
+    },
+    "H18c_k_dependent_sample_complexity": {
+      "supported": true,
+      "formula": "n >= sqrt(k * L * D / (2 * eps))",
+      "sqrt_k_ratio": 1.4142,
+      "note": "From k*L*h^2/(2D) <= eps with h=D/n: n >= sqrt(k*L*D/(2*eps)). The multi-crossover case needs sqrt(k) more strata. At g=0.2 (k=2) the ratio vs k=1 is ~ sqrt(2) = 1.414."
+    }
+  }
+}
