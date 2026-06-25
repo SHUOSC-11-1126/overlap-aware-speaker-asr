@@ -60,6 +60,9 @@ Multi-speaker ASR is a practical problem in meeting transcription, call center a
 | Mode S detector (RQ19) | Content-similarity catches 0% of Mode S at 90% specificity (H19a/b NOT SUPPORTED); distinct profile confirmed (perm p=0.0294, H19c SUPPORTED) — transcript-only ceiling reached | experimental/frontier |
 | Non-parametric detector bound (RQ20) | Donsker-Varadhan/Pinsker bound 72.9% is the only non-trivial valid ceiling on repetition-detector sensitivity; Bernstein/DKW trivial (100%) at n=37 (H20a/b/c SUPPORTED via DV) | experimental/frontier |
 | Gold-benchmark detector comparison (RQ21) | CR 100% on gold (repetitive), lang-id 0% on gold, lang-id 94.6% on AISHELL-4 (diverse) — complementary, not competitive; dataset-aware switch 95.2% combined | experimental/frontier |
+| Separator-failure detector (RQ22) | Per-speaker transcript structure catches 0% of Mode S at 90% specificity (H22a/b/c all NOT SUPPORTED) — structural confound reproduced: Mode S's per-speaker profile is the same as clean single-speaker non-hallucinated tracks | experimental/frontier |
+| Per-track mode classifier (RQ23) | LOO accuracy 95.7% > 80% (H23a SUPPORTED); mode-routed detector 81.1% on AISHELL-4 ≤ 90% (H23b NOT SUPPORTED) — dataset prior worth 13.5pp; Diverse↔Non-hallucinated is the load-bearing confusion (H23c SUPPORTED) | experimental/frontier |
+| CV bound tightening (RQ24) | CV binary-KL bound 0.639 < 0.729 (H24a SUPPORTED, tighter) but < 0.649 (H24b NOT SUPPORTED, invalid — overcorrects); convergence gap 0.130 > 0.10 (H24c NOT SUPPORTED); DV/Pinsker primary 0.729 remains the only valid ceiling | experimental/frontier |
 
 ## What This Project Does Not Claim
 
@@ -361,18 +364,24 @@ The project's 21+ frontier findings were subjected to academic-grade scrutiny: B
 | [Mode S detector](results/frontier/mode_s_detector/) (#919) | ❌ H19a NOT SUPPORTED: 0% sensitivity at 90% specificity. ❌ H19b NOT SUPPORTED: combined 94.6% < 95%. ✅ H19c SUPPORTED: Mode S has distinct content-similarity profile (perm p=0.0294) — near-duplicate of mixed, not gibberish | `results/frontier/mode_s_detector/` |
 | [Non-parametric detector bound](results/frontier/nonparametric_detector_bound/) (#918) | ✅ H20a/b/c SUPPORTED via Donsker-Varadhan/Pinsker: bound 72.9% valid and within 10pp of empirical 64.9%; Bernstein/DKW trivial at n=37; Gaussian bound (43.5%) was invalid | `results/frontier/nonparametric_detector_bound/` |
 | [Gold-benchmark detector comparison](results/frontier/gold_detector_comparison/) (#917) | ✅ H21a/b/c SUPPORTED: CR 100% on gold (repetitive loops), lang-id 0% on gold; dataset-aware switch achieves 100% (gold) + 94.6% (AISHELL-4) = 95.2% combined — complementary, not competitive | `results/frontier/gold_detector_comparison/` |
+| [Separator-failure detector](results/frontier/separator_failure_detector/) (#923) | ❌ H22a NOT SUPPORTED: 0% sensitivity at 90% spec. ❌ H22b NOT SUPPORTED: combined 94.6% ≤ 94.6%. ❌ H22c NOT SUPPORTED: 0/7 features distinct (all perm p ≥ 0.05). Per-speaker structure reproduces the RQ19 confound: Mode S's profile = clean single-speaker profile | `results/frontier/separator_failure_detector/` |
+| [Per-track mode classifier](results/frontier/per_track_mode_classifier/) (#924) | ✅ H23a SUPPORTED: 95.7% LOO accuracy > 80%. ❌ H23b NOT SUPPORTED: AISHELL-4 81.1% ≤ 90% (dataset prior worth 13.5pp). ✅ H23c SUPPORTED: 29 off-diagonal errors — Diverse↔Non-hallucinated is the load-bearing confusion | `results/frontier/per_track_mode_classifier/` |
+| [CV bound tightening](results/frontier/cv_bound_tightening/) (#925) | ✅ H24a SUPPORTED: CV binary-KL 0.639 < 0.729 (tighter). ❌ H24b NOT SUPPORTED: 0.639 < 0.649 (invalid — CV overcorrects). ❌ H24c NOT SUPPORTED: gap 0.130 > 0.10 (asymptote 0.789 > 0.729). DV/Pinsker primary 0.729 remains the only valid ceiling | `results/frontier/cv_bound_tightening/` |
 
 These are `experimental/frontier` (or `external/sanity-check` for AISHELL-4); they are not gold-benchmark
-claims. The honest headline: 7 hypotheses falsified (H1a, H3, H13b, H14a, H17a, H19a, H19b), 18 supported (P1, P2, H13a, H13c, H14b, H14c, H15a-c, H16a-c, H17b, H17c, H18a-c, H19c, H20a-c, H21a-c), 1 borderline (P3).
+claims. The honest headline: 13 hypotheses falsified (H1a, H3, H13b, H14a, H17a, H19a, H19b, H22a, H22b, H22c, H23b, H24b, H24c), 21 supported (P1, P2, H13a, H13c, H14b, H14c, H15a-c, H16a-c, H17b, H17c, H18a-c, H19c, H20a-c, H21a-c, H23a, H23c, H24a), 1 borderline (P3).
 The BH correction and AISHELL-4 negative bound the project's claims — 11 findings downgraded from
 "demonstrates" to "suggests", and the router does not generalize beyond the controlled debate corpus.
 The diverse hallucination detector (language-id entropy, 94.6% sensitivity), the corrected-router
 simulation (cpWER 1.043, recovering 86% of the regret gap), the information-theoretic detector bound
 (repetition-based detectors capped at ~65%), the multi-crossover POMDP regret bound (O(k·L/n²)
 tight at 0.8%), the Mode S residual analysis (transcript-only ceiling reached), the non-parametric
-Donsker-Varadhan/Pinsker bound (72.9% valid ceiling), and the gold-vs-AISHELL-4 detector comparison
-(dataset-aware switch 95.2%) together establish both a deployable fix, a theoretical explanation for
-why the fix is needed, and a documented residual that no surface detector can close.
+Donsker-Varadhan/Pinsker bound (72.9% valid ceiling), the gold-vs-AISHELL-4 detector comparison
+(dataset-aware switch 95.2%), the separator-failure detector (per-speaker structure also cannot catch
+Mode S — the confound is structural), the per-track mode classifier (95.7% LOO accuracy but the
+dataset prior is worth 13.5pp on AISHELL-4), and the CV bound tightening (overcorrects — DV/Pinsker
+0.729 remains the only valid ceiling) together establish both a deployable fix, a theoretical
+explanation for why the fix is needed, and a documented residual that no surface detector can close.
 
 ## Frontier Highlights — AudioDepth Router (frontier branch only)
 
