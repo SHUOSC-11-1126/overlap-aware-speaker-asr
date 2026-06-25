@@ -1,0 +1,145 @@
+{
+  "label": "experimental/frontier",
+  "rq": "RQ15",
+  "title": "POMDP regret bound analysis",
+  "builds_on": [
+    "RQ5 (pomdp_solver.py, #889)",
+    "RQ10 (pomdp_per_utterance.py, #899)"
+  ],
+  "pomdp_formalization": {
+    "states": "s = (overlap r, silence g)",
+    "actions": "a in {mixed, separated}",
+    "reward": "R(s, a) = -CER(s, a)  (higher is better)",
+    "transitions": "deterministic T(s'|s,a) = delta(s', s)",
+    "gap_function": "Delta(r) = R(r, sep) - R(r, mixed) = CER_mixed(r) - CER_sep(r)",
+    "optimal_policy": "threshold at r* where Delta(r*) = 0, Delta'(r*) > 0"
+  },
+  "gold_estimates": {
+    "r_star": 0.194419,
+    "delta_prime_at_rstar": 5.382499,
+    "delta_prime2_at_rstar": -15.937179,
+    "M_sup_delta_prime2_near_rstar": 53.285501,
+    "L_lipschitz_sup_delta_prime_near_rstar": 5.523709
+  },
+  "empirical_regrets": {
+    "router_v2_mean": 0.0018186480336873333,
+    "router_v2_max": 0.1340010324025429,
+    "stratum_pomdp_mean": 9.423457686308125e-05,
+    "rq5_router_v2_reference": 0.0026,
+    "rq10_stratum_reference": 0.00033
+  },
+  "bound1_discretization_n5": {
+    "n": 5,
+    "stratum_width_h": 0.18,
+    "L_lipschitz": 5.52370864669971,
+    "delta_prime_at_rstar": 5.382499212344782,
+    "curvature_M": 53.285500964395105,
+    "bound_lipschitz": 0.09942675564059478,
+    "bound_linear": 0.09688498582220607,
+    "bound_curvature": 0.014387085260386678,
+    "bound_curvature_refined": 0.11127207108259275,
+    "bound_total": 0.09942675564059478
+  },
+  "bound2_router_threshold": {
+    "r_router": 0.17,
+    "r_star": 0.19441909235305946,
+    "mislocalization_d": 0.024419092353059446,
+    "L_lipschitz": 5.52370864669971,
+    "delta_prime_at_rstar": 5.382499212344782,
+    "curvature_M": 53.285500964395105,
+    "bound_lipschitz": 0.0018298575946995915,
+    "bound_linear": 0.0017830786690855509,
+    "bound_curvature": 0.00014368248993309207,
+    "bound_curvature_refined": 0.0019267611590186428,
+    "bound_total": 0.0018298575946995915
+  },
+  "bound3_aishell4_vacuity": {
+    "by_silence": [
+      {
+        "silence_fraction_g": 0.0,
+        "n_sign_changes": 1,
+        "crossovers": [
+          0.1944
+        ],
+        "sharp_crossover_holds": true,
+        "delta_at_r_high": 0.2736,
+        "separated_wins_at_high_overlap": true
+      },
+      {
+        "silence_fraction_g": 0.2,
+        "n_sign_changes": 2,
+        "crossovers": [
+          0.2569,
+          0.4705
+        ],
+        "sharp_crossover_holds": false,
+        "delta_at_r_high": -0.0064,
+        "separated_wins_at_high_overlap": false
+      },
+      {
+        "silence_fraction_g": 0.4,
+        "n_sign_changes": 0,
+        "crossovers": [],
+        "sharp_crossover_holds": false,
+        "delta_at_r_high": -0.2864,
+        "separated_wins_at_high_overlap": false
+      },
+      {
+        "silence_fraction_g": 0.6,
+        "n_sign_changes": 0,
+        "crossovers": [],
+        "sharp_crossover_holds": false,
+        "delta_at_r_high": -0.5664,
+        "separated_wins_at_high_overlap": false
+      },
+      {
+        "silence_fraction_g": 0.8,
+        "n_sign_changes": 0,
+        "crossovers": [],
+        "sharp_crossover_holds": false,
+        "delta_at_r_high": -0.8464,
+        "separated_wins_at_high_overlap": false
+      }
+    ],
+    "gold_sign_changes": 1,
+    "aishell4_sign_changes": 0,
+    "g02_sign_changes": 2,
+    "h15b_supported": true,
+    "note": "On gold (g=0) Delta(r) has a single sign-change at r*~0.19, so the sharp-crossover curvature bound holds. Adding the silence dimension breaks the assumption in two ways as g grows: (i) at g=0.2 a SECOND sign-change appears (Delta goes + then - at high overlap, two crossovers), so there is no single r* to localize; (ii) at g>=0.4 the silence penalty dominates and Delta is negative everywhere (0 sign-changes, separated never wins), so the crossover vanishes entirely. At the AISHELL-4-like regime g=0.6 the gap is entirely negative (0 sign-changes). In both regimes the sharp-crossover assumption fails and Bounds 1 & 2 are vacuous: the O(1/n^2) bound has no single r* to anchor its constant."
+  },
+  "bound4_lipschitz_restored_n5": {
+    "n": 5,
+    "L": 1.5,
+    "h_r": 0.18,
+    "h_g": 0.2,
+    "bound_overlap_term": 0.09688498582220607,
+    "bound_silence_term": 0.030000000000000006,
+    "bound_total": 0.1268849858222061
+  },
+  "lipschitz_constant": {
+    "L_model": 1.5,
+    "L_empirical": 1.500000000000002,
+    "note": "The silence-gap penalty is affine in g (RQ10 model), so the reward is exactly L-Lipschitz with L = max(|dR_sep/dg|, |dR_mixed/dg|) = max(HALLUCINATION_ADD=1.5, MILD_MASKING=0.1) = 1.5. Empirical estimate from the grid agrees."
+  },
+  "hypotheses": {
+    "H15a_regret_O(1/n)_on_gold": {
+      "supported": true,
+      "log_log_slope": -2.0,
+      "note": "Derived the tighter O(1/n^2) curvature bound, which implies O(1/n). The log-log slope of the bound vs n is ~ -2."
+    },
+    "H15b_bound_breaks_on_aishell4": {
+      "supported": true,
+      "gold_sign_changes": 1,
+      "g02_sign_changes": 2,
+      "aishell4_sign_changes": 0,
+      "note": "On gold (g=0) Delta(r) has a single sign-change at r*~0.19, so the sharp-crossover curvature bound holds. Adding the silence dimension breaks the assumption in two ways as g grows: (i) at g=0.2 a SECOND sign-change appears (Delta goes + then - at high overlap, two crossovers), so there is no single r* to localize; (ii) at g>=0.4 the silence penalty dominates and Delta is negative everywhere (0 sign-changes, separated never wins), so the crossover vanishes entirely. At the AISHELL-4-like regime g=0.6 the gap is entirely negative (0 sign-changes). In both regimes the sharp-crossover assumption fails and Bounds 1 & 2 are vacuous: the O(1/n^2) bound has no single r* to anchor its constant."
+    },
+    "H15c_lipschitz_restores_bound": {
+      "supported": true,
+      "L_model": 1.5,
+      "L_empirical": 1.500000000000002,
+      "log_log_slope": -2.0,
+      "note": "With L-Lipschitz silence reward, the per-utterance POMDP on the (r, g) grid restores an O(L/n^2) bound."
+    }
+  }
+}
