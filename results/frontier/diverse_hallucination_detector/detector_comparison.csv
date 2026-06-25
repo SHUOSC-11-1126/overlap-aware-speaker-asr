@@ -1,0 +1,6 @@
+detector,hypothesis,threshold,specificity,sensitivity,sensitivity_ci_lo,sensitivity_ci_hi,tp,fp,tn,fn,n_pos,n_neg
+compression_ratio,H13_baseline,1.491639,0.9,0.135135,0.030303,0.257143,5,4,36,32,37,40
+language_id_entropy,H13a,0.409073,0.925,0.945946,0.862069,1.0,35,3,37,2,37,40
+token_type_diversity,H13b,2.0,1.0,0.0,0.0,0.0,0,0,40,37,37,40
+char_set_diversity,,0.363636,0.9,0.135135,0.030303,0.257143,5,4,36,32,37,40
+ensemble_logistic_regression,H13c,0.42057,0.95,0.945946,0.862069,1.0,35,2,38,2,37,40
