@@ -1,0 +1,474 @@
+{
+  "label": "experimental/frontier",
+  "rq": "RQ35: Char-level cpWER failure-mode characterisation on AISHELL-4",
+  "closes_issue": 942,
+  "meeteval_version": "0.4.3",
+  "source_data": {
+    "path": "results/external_sanity_check/aishell4/rq1_aishell4_validation_results.json",
+    "label": "external/sanity-check",
+    "num_windows": 77,
+    "meeting_id": "M_R003S02C01"
+  },
+  "method": "Reanalysis only (no Whisper / no ASR run). Re-ran MeetEval 0.4.3 on the stored AISHELL-4 transcripts at two tokenisation granularities: char-level (space between each Chinese character -- standard cpCER) and utterance-level (each speaker's whole string = 1 token -- the project's stored convention, RQ30). cpwer for separated (multi vs multi), orcwer for mixed (single channel vs multi ref), matching RQ30 so the char-level aggregate reproduces RQ30's baseline. CPErrorRate.substitutions/insertions/deletions provide the error-type decomposition.",
+  "mode_s_windows": [
+    22,
+    30
+  ],
+  "mode_s_source": "RQ19 (results/frontier/mode_s_detector/, PR #919): hallucinated AND lang_id_entropy<0.409 AND length_ratio<2.0 AND cr<2.4 -> exactly w22, w30",
+  "rq12_failure_windows": [
+    0,
+    5,
+    8,
+    18,
+    22,
+    26,
+    29,
+    30,
+    31,
+    41,
+    42
+  ],
+  "aggregate_cpwer": {
+    "char_level": {
+      "always_mixed": 0.910577,
+      "always_separated": 0.915831,
+      "router_v2": 0.922196,
+      "oracle_best": 0.876847
+    },
+    "utterance_level": {
+      "always_mixed": 1.17316,
+      "always_separated": 1.590909,
+      "router_v2": 1.205628,
+      "oracle_best": 1.017316
+    },
+    "rq30_char_baseline": {
+      "always_separated": 0.915831
+    },
+    "sanity": "char-level always_separated matches RQ30's 0.915831"
+  },
+  "H35a_ranking": {
+    "statement": "Top-10 worst by char-level separated cpWER differ from top-10 by utterance-level (Spearman rho < 0.5).",
+    "spearman_rho_char_vs_utter_separated_all_windows": {
+      "rho": 0.107821,
+      "p": 0.350625
+    },
+    "char_top10_window_ids": [
+      0,
+      1,
+      4,
+      7,
+      9,
+      10,
+      13,
+      23,
+      51,
+      65
+    ],
+    "utter_top10_window_ids": [
+      11,
+      23,
+      26,
+      42,
+      45,
+      53,
+      63,
+      68,
+      73,
+      76
+    ],
+    "top10_overlap": {
+      "intersection": [
+        23
+      ],
+      "intersection_size": 1,
+      "union_size": 19,
+      "jaccard": 0.05263157894736842
+    },
+    "char_active_top10_window_ids": [
+      0,
+      15,
+      21,
+      23,
+      24,
+      48,
+      51,
+      65,
+      66,
+      67
+    ],
+    "verdict": "SUPPORTED",
+    "supported": true
+  },
+  "H35b_error_mix": {
+    "statement": "At char-level, substitution errors dominate over insertion errors (char-level counts character edits, not speaker-stream insertions).",
+    "char_level_failure_windows_sep_breakdown": {
+      "substitutions": 2082,
+      "insertions": 161,
+      "deletions": 3190,
+      "errors": 5433,
+      "length": 5923,
+      "n_windows": 36
+    },
+    "utterance_level_same_windows_sep_breakdown": {
+      "substitutions": 64,
+      "insertions": 67,
+      "deletions": 14,
+      "errors": 145,
+      "length": 78,
+      "n_windows": 36
+    },
+    "char_level_top10_sep_breakdown": {
+      "substitutions": 393,
+      "insertions": 192,
+      "deletions": 214,
+      "errors": 799,
+      "length": 643,
+      "n_windows": 10
+    },
+    "char_level_all_active_sep_breakdown": {
+      "substitutions": 4194,
+      "insertions": 341,
+      "deletions": 5921,
+      "errors": 10456,
+      "length": 11611,
+      "n_windows": 64
+    },
+    "utterance_level_all_active_sep_breakdown": {
+      "substitutions": 119,
+      "insertions": 117,
+      "deletions": 27,
+      "errors": 263,
+      "length": 146,
+      "n_windows": 64
+    },
+    "subs_gt_ins_char_failure": true,
+    "subs_gt_ins_char_top10": true,
+    "subs_gt_ins_char_all_active": true,
+    "subs_gt_ins_utter_same_windows": false,
+    "verdict": "SUPPORTED",
+    "supported": true
+  },
+  "H35c_mode_s": {
+    "statement": "Mode S windows (w22, w30) remain in the top-10 worst at char-level.",
+    "mode_s_in_char_top10_all_windows": {
+      "22": false,
+      "30": false
+    },
+    "mode_s_in_char_top10_active_only": {
+      "22": false,
+      "30": false
+    },
+    "mode_s_char_rank_all_windows": {
+      "22": 77,
+      "30": 62
+    },
+    "mode_s_char_rank_active_only": {
+      "22": 64,
+      "30": 49
+    },
+    "char_top10_window_ids": [
+      0,
+      1,
+      4,
+      7,
+      9,
+      10,
+      13,
+      23,
+      51,
+      65
+    ],
+    "char_active_top10_window_ids": [
+      0,
+      15,
+      21,
+      23,
+      24,
+      48,
+      51,
+      65,
+      66,
+      67
+    ],
+    "verdict": "NOT SUPPORTED",
+    "supported": false
+  },
+  "failure_windows": {
+    "char_level": {
+      "n_failure_windows": 36,
+      "router_accuracy": 0.5325,
+      "failure_window_ids": [
+        0,
+        1,
+        5,
+        6,
+        8,
+        11,
+        15,
+        16,
+        17,
+        20,
+        24,
+        25,
+        26,
+        28,
+        29,
+        32,
+        35,
+        39,
+        42,
+        44,
+        47,
+        49,
+        53,
+        55,
+        56,
+        57,
+        58,
+        59,
+        62,
+        63,
+        70,
+        72,
+        73,
+        74,
+        75,
+        76
+      ],
+      "total_routing_regret": 3.491851,
+      "mode_mix": {
+        "separated_hallucination_cr_caught": {
+          "n_windows": 0,
+          "regret": 0,
+          "share_of_regret": 0.0
+        },
+        "separated_hallucination_cr_missed": {
+          "n_windows": 1,
+          "regret": 0.681818,
+          "share_of_regret": 0.19526
+        },
+        "mixed_hallucination": {
+          "n_windows": 0,
+          "regret": 0,
+          "share_of_regret": 0.0
+        },
+        "wrong_route_nonhalluc": {
+          "n_windows": 35,
+          "regret": 2.810033,
+          "share_of_regret": 0.80474
+        }
+      }
+    },
+    "utterance_level": {
+      "n_failure_windows": 11,
+      "router_accuracy": 0.8571,
+      "failure_window_ids": [
+        0,
+        5,
+        8,
+        18,
+        22,
+        26,
+        29,
+        30,
+        31,
+        41,
+        42
+      ],
+      "total_routing_regret": 14.5,
+      "mode_mix": {
+        "separated_hallucination_cr_caught": {
+          "n_windows": 1,
+          "regret": 0.666667,
+          "share_of_regret": 0.045977
+        },
+        "separated_hallucination_cr_missed": {
+          "n_windows": 8,
+          "regret": 9.833333,
+          "share_of_regret": 0.678161
+        },
+        "mixed_hallucination": {
+          "n_windows": 2,
+          "regret": 4.0,
+          "share_of_regret": 0.275862
+        },
+        "wrong_route_nonhalluc": {
+          "n_windows": 0,
+          "regret": 0,
+          "share_of_regret": 0.0
+        }
+      },
+      "rq12_failure_window_ids": [
+        0,
+        5,
+        8,
+        18,
+        22,
+        26,
+        29,
+        30,
+        31,
+        41,
+        42
+      ],
+      "matches_rq12": true
+    },
+    "overlap_char_vs_utter": {
+      "intersection": [
+        0,
+        5,
+        8,
+        26,
+        29,
+        42
+      ],
+      "intersection_size": 6,
+      "union_size": 41,
+      "jaccard": 0.14634146341463414
+    }
+  },
+  "top10_char_worst_detail": [
+    {
+      "rank": 1,
+      "window_id": 0,
+      "char_sep_cpwer": 1.645455,
+      "is_mode_s": false,
+      "is_rq12_failure": true
+    },
+    {
+      "rank": 2,
+      "window_id": 23,
+      "char_sep_cpwer": 1.574713,
+      "is_mode_s": false,
+      "is_rq12_failure": false
+    },
+    {
+      "rank": 3,
+      "window_id": 65,
+      "char_sep_cpwer": 1.13198,
+      "is_mode_s": false,
+      "is_rq12_failure": false
+    },
+    {
+      "rank": 4,
+      "window_id": 51,
+      "char_sep_cpwer": 1.036145,
+      "is_mode_s": false,
+      "is_rq12_failure": false
+    },
+    {
+      "rank": 5,
+      "window_id": 1,
+      "char_sep_cpwer": 1.0,
+      "is_mode_s": false,
+      "is_rq12_failure": false
+    },
+    {
+      "rank": 6,
+      "window_id": 4,
+      "char_sep_cpwer": 1.0,
+      "is_mode_s": false,
+      "is_rq12_failure": false
+    },
+    {
+      "rank": 7,
+      "window_id": 7,
+      "char_sep_cpwer": 1.0,
+      "is_mode_s": false,
+      "is_rq12_failure": false
+    },
+    {
+      "rank": 8,
+      "window_id": 9,
+      "char_sep_cpwer": 1.0,
+      "is_mode_s": false,
+      "is_rq12_failure": false
+    },
+    {
+      "rank": 9,
+      "window_id": 10,
+      "char_sep_cpwer": 1.0,
+      "is_mode_s": false,
+      "is_rq12_failure": false
+    },
+    {
+      "rank": 10,
+      "window_id": 13,
+      "char_sep_cpwer": 1.0,
+      "is_mode_s": false,
+      "is_rq12_failure": false
+    }
+  ],
+  "top10_char_active_worst_detail": [
+    {
+      "rank": 1,
+      "window_id": 0,
+      "char_sep_cpwer": 1.645455,
+      "is_mode_s": false,
+      "is_rq12_failure": true
+    },
+    {
+      "rank": 2,
+      "window_id": 23,
+      "char_sep_cpwer": 1.574713,
+      "is_mode_s": false,
+      "is_rq12_failure": false
+    },
+    {
+      "rank": 3,
+      "window_id": 65,
+      "char_sep_cpwer": 1.13198,
+      "is_mode_s": false,
+      "is_rq12_failure": false
+    },
+    {
+      "rank": 4,
+      "window_id": 51,
+      "char_sep_cpwer": 1.036145,
+      "is_mode_s": false,
+      "is_rq12_failure": false
+    },
+    {
+      "rank": 5,
+      "window_id": 21,
+      "char_sep_cpwer": 1.0,
+      "is_mode_s": false,
+      "is_rq12_failure": false
+    },
+    {
+      "rank": 6,
+      "window_id": 66,
+      "char_sep_cpwer": 1.0,
+      "is_mode_s": false,
+      "is_rq12_failure": false
+    },
+    {
+      "rank": 7,
+      "window_id": 67,
+      "char_sep_cpwer": 1.0,
+      "is_mode_s": false,
+      "is_rq12_failure": false
+    },
+    {
+      "rank": 8,
+      "window_id": 15,
+      "char_sep_cpwer": 0.994536,
+      "is_mode_s": false,
+      "is_rq12_failure": false
+    },
+    {
+      "rank": 9,
+      "window_id": 24,
+      "char_sep_cpwer": 0.99435,
+      "is_mode_s": false,
+      "is_rq12_failure": false
+    },
+    {
+      "rank": 10,
+      "window_id": 48,
+      "char_sep_cpwer": 0.99005,
+      "is_mode_s": false,
+      "is_rq12_failure": false
+    }
+  ]
+}
