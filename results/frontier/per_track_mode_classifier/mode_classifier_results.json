@@ -1,0 +1,363 @@
+{
+  "label": "experimental/frontier",
+  "rq": "RQ23: Per-track mode classifier — transcript-feature routing without a dataset prior",
+  "closes_issue": 921,
+  "method": "reanalysis only (no Whisper / no ASR run by this script); gold features loaded from comparison_results.csv (RQ21) plus gold_track_texts.json for length_ratio and content_similarity; AISHELL-4 features computed on concatenated separated text from rq1_aishell4_validation_results.json",
+  "gold_source": "results/frontier/gold_detector_comparison/comparison_results.csv",
+  "gold_text_source": "results/frontier/gold_detector_comparison/gold_track_texts.json",
+  "aishell4_source": "results/external_sanity_check/aishell4/rq1_aishell4_validation_results.json",
+  "mode_definitions": {
+    "Mode_R": "hallucinated AND cr > 2.4",
+    "Mode_S": "hallucinated AND lang_id_entropy < 0.409073 AND cr <= 2.4",
+    "Diverse": "hallucinated AND lang_id_entropy >= 0.409073",
+    "Non-hallucinated": "not hallucinated"
+  },
+  "mode_label_note": "Mode labels are derived in-sample from the same cr/lang_id_entropy features used as classifier inputs (see Limitations). This is a known circularity: the labels are deterministic functions of two of the five features.",
+  "feature_notes": {
+    "cr": "gold: per-track (from RQ21 CSV); aishell4: concatenated separated text (per RQ23 spec)",
+    "lang_id_entropy": "gold: per-track (from RQ21 CSV); aishell4: max across per-speaker texts (matching RQ21 threshold calibration)",
+    "length_ratio": "gold: track_len / (sep1+sep2) proxy (no stored mixed text); aishell4: sep_total / mixed_text_len",
+    "content_similarity": "gold: Jaccard(sep1, sep2) proxy; aishell4: Jaccard(sep_concat, mixed)",
+    "num_speakers": "gold: 2; aishell4: per-window count"
+  },
+  "aggregation_note": "AISHELL-4 uses a hybrid aggregation: cr on concatenated text (per the RQ23 spec; concatenation dilutes single-speaker repetition so no window exceeds the cr > 2.4 Mode R boundary) and lang_id_entropy as max across speakers (the 0.409 threshold was calibrated on max-aggregated entropy in RQ21). This reproduces the pre-registered 2 Mode S / 35 Diverse split exactly. Gold uses per-track values from RQ21's CSV.",
+  "classifier": {
+    "model": "multinomial logistic regression (softmax + L2)",
+    "implementation": "numpy only (no sklearn)",
+    "features": [
+      "cr",
+      "lang_id_entropy",
+      "length_ratio",
+      "content_similarity",
+      "num_speakers"
+    ],
+    "n_features": 5,
+    "n_classes": 4,
+    "standardization": "leave-one-out z-score (mean/std from training fold only)",
+    "class_balancing": "sqrt inverse-frequency sample weights (635/42 imbalance)",
+    "learning_rate": 0.5,
+    "n_steps": 3000,
+    "l2": 0.01,
+    "cv": "leave-one-out (677 folds)"
+  },
+  "counts": {
+    "total_tracks": 677,
+    "gold_tracks": 600,
+    "gold_hallucinated": 5,
+    "aishell4_tracks": 77,
+    "aishell4_hallucinated": 37,
+    "mode_counts": {
+      "Mode_R": 5,
+      "Mode_S": 2,
+      "Diverse": 35,
+      "Non-hallucinated": 635
+    },
+    "aishell4_mode_s_window_ids": [
+      "22",
+      "30"
+    ],
+    "aishell4_diverse_count": 35
+  },
+  "loo_accuracy": {
+    "correct": 648,
+    "n": 677,
+    "accuracy": 0.957164,
+    "wilson_ci_95": [
+      0.939157,
+      0.970012
+    ],
+    "majority_class_baseline": 0.937962,
+    "baseline_correct": 635,
+    "beats_baseline": true
+  },
+  "confusion_matrix": {
+    "row_order": [
+      "Mode_R",
+      "Mode_S",
+      "Diverse",
+      "Non-hallucinated"
+    ],
+    "col_order": [
+      "Mode_R",
+      "Mode_S",
+      "Diverse",
+      "Non-hallucinated"
+    ],
+    "matrix": [
+      [
+        5,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        1,
+        30,
+        4
+      ],
+      [
+        0,
+        9,
+        13,
+        613
+      ]
+    ],
+    "off_diagonal": 29
+  },
+  "per_class_metrics": [
+    {
+      "class": "Mode_R",
+      "tp": 5,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+    },
+    {
+      "class": "Mode_S",
+      "tp": 0,
+      "fp": 10,
+      "fn": 2,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 2
+    },
+    {
+      "class": "Diverse",
+      "tp": 30,
+      "fp": 13,
+      "fn": 5,
+      "precision": 0.697674,
+      "recall": 0.857143,
+      "f1": 0.769231,
+      "support": 35
+    },
+    {
+      "class": "Non-hallucinated",
+      "tp": 613,
+      "fp": 6,
+      "fn": 22,
+      "precision": 0.990307,
+      "recall": 0.965354,
+      "f1": 0.977671,
+      "support": 635
+    }
+  ],
+  "mode_routed_detector": {
+    "policy": "Mode R -> CR (>= 15.818); Diverse -> lang-id (>= 0.409); Mode S -> unresolvable; Non-hallucinated -> none",
+    "cr_threshold": 15.818182,
+    "lang_id_threshold": 0.409073,
+    "gold_sensitivity": 1.0,
+    "gold_sensitivity_ci_95": [
+      1.0,
+      1.0
+    ],
+    "gold_tp": 5,
+    "gold_n_hallucinated": 5,
+    "aishell4_sensitivity": 0.810811,
+    "aishell4_sensitivity_ci_95": [
+      0.675676,
+      0.918919
+    ],
+    "a4_tp": 30,
+    "a4_n_hallucinated": 37,
+    "uses_dataset_prior": false
+  },
+  "feature_distribution_by_mode": {
+    "Mode_R": {
+      "cr": {
+        "n": 5,
+        "median": 16.333333,
+        "mean": 18.781028,
+        "min": 15.818182,
+        "max": 29.086957
+      },
+      "lang_id_entropy": {
+        "n": 5,
+        "median": 0.0,
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "length_ratio": {
+        "n": 5,
+        "median": 0.956098,
+        "mean": 0.94518,
+        "min": 0.920635,
+        "max": 0.956098
+      },
+      "content_similarity": {
+        "n": 5,
+        "median": 0.071429,
+        "mean": 0.064622,
+        "min": 0.05,
+        "max": 0.071429
+      },
+      "num_speakers": {
+        "n": 5,
+        "median": 2.0,
+        "mean": 2.0,
+        "min": 2.0,
+        "max": 2.0
+      }
+    },
+    "Mode_S": {
+      "cr": {
+        "n": 2,
+        "median": 1.429782,
+        "mean": 1.429782,
+        "min": 1.367925,
+        "max": 1.491639
+      },
+      "lang_id_entropy": {
+        "n": 2,
+        "median": 0.233289,
+        "mean": 0.233289,
+        "min": 0.143726,
+        "max": 0.322852
+      },
+      "length_ratio": {
+        "n": 2,
+        "median": 1.02375,
+        "mean": 1.02375,
+        "min": 1.020833,
+        "max": 1.026667
+      },
+      "content_similarity": {
+        "n": 2,
+        "median": 0.708819,
+        "mean": 0.708819,
+        "min": 0.659574,
+        "max": 0.758065
+      },
+      "num_speakers": {
+        "n": 2,
+        "median": 1.5,
+        "mean": 1.5,
+        "min": 1.0,
+        "max": 2.0
+      }
+    },
+    "Diverse": {
+      "cr": {
+        "n": 35,
+        "median": 1.16,
+        "mean": 1.163462,
+        "min": 0.694444,
+        "max": 1.698462
+      },
+      "lang_id_entropy": {
+        "n": 35,
+        "median": 1.240671,
+        "mean": 1.165938,
+        "min": 0.409073,
+        "max": 1.750916
+      },
+      "length_ratio": {
+        "n": 35,
+        "median": 0.0,
+        "mean": 0.846742,
+        "min": 0.0,
+        "max": 6.689655
+      },
+      "content_similarity": {
+        "n": 35,
+        "median": 0.0,
+        "mean": 0.084262,
+        "min": 0.0,
+        "max": 0.504587
+      },
+      "num_speakers": {
+        "n": 35,
+        "median": 3.0,
+        "mean": 2.685714,
+        "min": 1.0,
+        "max": 6.0
+      }
+    },
+    "Non-hallucinated": {
+      "cr": {
+        "n": 635,
+        "median": 0.731707,
+        "mean": 0.757758,
+        "min": 0.0,
+        "max": 2.02349
+      },
+      "lang_id_entropy": {
+        "n": 635,
+        "median": 0.0,
+        "mean": 0.060034,
+        "min": 0.0,
+        "max": 0.94566
+      },
+      "length_ratio": {
+        "n": 635,
+        "median": 0.5,
+        "mean": 0.496202,
+        "min": 0.0,
+        "max": 1.216216
+      },
+      "content_similarity": {
+        "n": 635,
+        "median": 0.058824,
+        "mean": 0.085812,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "num_speakers": {
+        "n": 635,
+        "median": 2.0,
+        "mean": 1.979528,
+        "min": 1.0,
+        "max": 3.0
+      }
+    }
+  },
+  "hypothesis_verdicts": {
+    "H23a": {
+      "statement": "per-track mode classifier achieves > 80% accuracy (LOO) on 4-class task",
+      "kill_criterion": "accuracy <= 70%",
+      "accuracy": 0.957164,
+      "wilson_ci_95": [
+        0.939157,
+        0.970012
+      ],
+      "majority_baseline": 0.937962,
+      "supported": true,
+      "killed": false
+    },
+    "H23b": {
+      "statement": "mode-routed detector achieves > 90% sensitivity on both gold and AISHELL-4 without a dataset prior",
+      "kill_criterion": "sensitivity <= 90% on either dataset",
+      "gold_sensitivity": 1.0,
+      "gold_ci_95": [
+        1.0,
+        1.0
+      ],
+      "aishell4_sensitivity": 0.810811,
+      "aishell4_ci_95": [
+        0.675676,
+        0.918919
+      ],
+      "supported": false,
+      "killed": true
+    },
+    "H23c": {
+      "statement": "confusion matrix reveals confusable modes",
+      "kill_criterion": "confusion matrix is diagonal (no confusable modes)",
+      "off_diagonal_errors": 29,
+      "supported": true,
+      "killed": false
+    }
+  }
+}
