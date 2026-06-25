@@ -57,6 +57,9 @@ Multi-speaker ASR is a practical problem in meeting transcription, call center a
 | Corrected-router simulation (RQ16) | Language-id entropy alone recovers AISHELL-4 cpWER to 1.043 (vs always-mixed 1.173, router v2 1.206, oracle 1.017) — recovers 86% of router v2's regret gap | experimental/frontier |
 | Info-theoretic detector bound (RQ17) | Repetition-based detectors are fundamentally capped at ~65% sensitivity (empirical DPI bound); CR's 13.5% is well below even the Gaussian bound (43.5%); language-id entropy (94.6%) exceeds the Bayes-optimal bigram LRT (75.7%) | experimental/frontier |
 | Multi-crossover POMDP bound (RQ18) | Piecewise-Lipschitz bound O(k·L/n²) is tight on AISHELL-4 at k=2 (0.8% gap); sample complexity n ≥ O(√(k·L/ε)) — √k more strata needed vs single-crossover | experimental/frontier |
+| Mode S detector (RQ19) | Content-similarity catches 0% of Mode S at 90% specificity (H19a/b NOT SUPPORTED); distinct profile confirmed (perm p=0.0294, H19c SUPPORTED) — transcript-only ceiling reached | experimental/frontier |
+| Non-parametric detector bound (RQ20) | Donsker-Varadhan/Pinsker bound 72.9% is the only non-trivial valid ceiling on repetition-detector sensitivity; Bernstein/DKW trivial (100%) at n=37 (H20a/b/c SUPPORTED via DV) | experimental/frontier |
+| Gold-benchmark detector comparison (RQ21) | CR 100% on gold (repetitive), lang-id 0% on gold, lang-id 94.6% on AISHELL-4 (diverse) — complementary, not competitive; dataset-aware switch 95.2% combined | experimental/frontier |
 
 ## What This Project Does Not Claim
 
@@ -355,16 +358,21 @@ The project's 21+ frontier findings were subjected to academic-grade scrutiny: B
 | [Corrected-router simulation](results/frontier/corrected_router_simulation/) (#912) | ✅ H16a/b/c SUPPORTED: language-id entropy alone recovers AISHELL-4 cpWER to 1.043 (vs always-mixed 1.173); silence and mode guards redundant; residual 2 monoscript hallucinations escape all surface detectors | `results/frontier/corrected_router_simulation/` |
 | [Info-theoretic detector bound](results/frontier/info_theoretic_detector_bound/) (#913) | ❌ H17a NOT SUPPORTED: bound is 43.5% (Gaussian) / 64.9% (empirical DPI), not < 30%. ✅ H17b SUPPORTED: bound determined by entropy-rate gap (Δ_H = +0.914 bits/char). ✅ H17c SUPPORTED: language-id entropy (94.6%) exceeds Bayes-optimal bigram LRT (75.7%) | `results/frontier/info_theoretic_detector_bound/` |
 | [Multi-crossover POMDP bound](results/frontier/pomdp_multicrossover_bound/) (#911) | ✅ H18a/b/c SUPPORTED: piecewise-Lipschitz bound O(k·L/n²) tight on AISHELL-4 at k=2 (0.8% gap); sample complexity n ≥ O(√(k·L/ε)) | `results/frontier/pomdp_multicrossover_bound/` |
+| [Mode S detector](results/frontier/mode_s_detector/) (#919) | ❌ H19a NOT SUPPORTED: 0% sensitivity at 90% specificity. ❌ H19b NOT SUPPORTED: combined 94.6% < 95%. ✅ H19c SUPPORTED: Mode S has distinct content-similarity profile (perm p=0.0294) — near-duplicate of mixed, not gibberish | `results/frontier/mode_s_detector/` |
+| [Non-parametric detector bound](results/frontier/nonparametric_detector_bound/) (#918) | ✅ H20a/b/c SUPPORTED via Donsker-Varadhan/Pinsker: bound 72.9% valid and within 10pp of empirical 64.9%; Bernstein/DKW trivial at n=37; Gaussian bound (43.5%) was invalid | `results/frontier/nonparametric_detector_bound/` |
+| [Gold-benchmark detector comparison](results/frontier/gold_detector_comparison/) (#917) | ✅ H21a/b/c SUPPORTED: CR 100% on gold (repetitive loops), lang-id 0% on gold; dataset-aware switch achieves 100% (gold) + 94.6% (AISHELL-4) = 95.2% combined — complementary, not competitive | `results/frontier/gold_detector_comparison/` |
 
 These are `experimental/frontier` (or `external/sanity-check` for AISHELL-4); they are not gold-benchmark
-claims. The honest headline: 5 hypotheses falsified (H1a, H3, H13b, H14a, H17a), 13 supported (P1, P2, H13a, H13c, H14b, H14c, H15a-c, H16a-c, H17b, H17c, H18a-c), 1 borderline (P3).
+claims. The honest headline: 7 hypotheses falsified (H1a, H3, H13b, H14a, H17a, H19a, H19b), 18 supported (P1, P2, H13a, H13c, H14b, H14c, H15a-c, H16a-c, H17b, H17c, H18a-c, H19c, H20a-c, H21a-c), 1 borderline (P3).
 The BH correction and AISHELL-4 negative bound the project's claims — 11 findings downgraded from
 "demonstrates" to "suggests", and the router does not generalize beyond the controlled debate corpus.
 The diverse hallucination detector (language-id entropy, 94.6% sensitivity), the corrected-router
 simulation (cpWER 1.043, recovering 86% of the regret gap), the information-theoretic detector bound
-(repetition-based detectors capped at ~65%), and the multi-crossover POMDP regret bound (O(k·L/n²)
-tight at 0.8%) together establish both a deployable fix and a theoretical explanation for why the
-fix is needed.
+(repetition-based detectors capped at ~65%), the multi-crossover POMDP regret bound (O(k·L/n²)
+tight at 0.8%), the Mode S residual analysis (transcript-only ceiling reached), the non-parametric
+Donsker-Varadhan/Pinsker bound (72.9% valid ceiling), and the gold-vs-AISHELL-4 detector comparison
+(dataset-aware switch 95.2%) together establish both a deployable fix, a theoretical explanation for
+why the fix is needed, and a documented residual that no surface detector can close.
 
 ## Frontier Highlights — AudioDepth Router (frontier branch only)
 
