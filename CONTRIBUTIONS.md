@@ -9,7 +9,7 @@ migration.
 
 **Role:** Frontier research lead; overlap-hallucination mechanism investigator; ASR×LLM×emotion axis explorer; research-entropy meta-analyst; engineering harness architect.
 
-**Scope summary:** ~74 merged PRs (#780–#872, #886–#894, #898–#900, #905–#907, #911–#913, #917–#919, #923–#925, #929–#931, #935–#937), 70+ issues, 70+ new modules, 60+ frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled `experimental/frontier` or `external/sanity-check`; no gold tables or verified references touched.
+**Scope summary:** ~76 merged PRs (#780–#872, #886–#894, #898–#900, #905–#907, #911–#913, #917–#919, #923–#925, #929–#931, #935–#937, #946–#947), 70+ issues, 70+ new modules, 60+ frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled `experimental/frontier` or `external/sanity-check`; no gold tables or verified references touched.
 
 ---
 
@@ -595,6 +595,34 @@ Three final follow-ups in this thread: can a non-linear classifier close the 13.
 - `results/frontier/meeteval_cpwer_validation/meeteval_validation_analysis.py` — MeetEval 0.4.3 compatibility check, word-level vs char-level tokenisation comparison, per-window Spearman ρ, winner disagreement analysis
 
 All findings labeled `experimental/frontier` or `external/sanity-check`. No gold tables or verified references touched.
+
+#### Metadata Mode S detector and per-speaker cpWER decomposition
+
+Two follow-ups attacking the Mode S residual from different angles: can runtime/duration/segment metadata catch Mode S where transcript-content features (RQ19/RQ22) all failed, and which speaker actually contributes the cpWER error mass that the utterance-level metric hides?
+
+| PR | Study | RQ | Outcome | Evidence |
+|---|---|---|---|---|
+| #947 | **Metadata-only Mode S detector (RQ33)** | Can 10 metadata features (runtime, duration, segment counts, speaker lengths) catch Mode S without reading transcript content? | ✅ **H33a SUPPORTED but fragile**: combined metadata LR catches both Mode S windows at 100% specificity, but only 1/9 L2 regularisation values achieve this — the other 8 collapse to 50%. With n=2 Mode S, L2 cannot be tuned by cross-validation. ✅ **H33b SUPPORTED (robust)**: ensemble (metadata LR OR lang-id entropy) achieves 100% sensitivity on all 37 AISHELL-4 hallucinated tracks at 92.5% specificity; 9/9 L2 values yield ensemble sensitivity > 95%. Metadata LR adds the 2 Mode S tracks over lang-id alone (94.6% → 100%). ❌ **H33c NOT SUPPORTED**: only 2 of 10 features have permutation p < 0.05 (`avg_speaker_length_sep` p=0.003, `mix_total_chars` p=0.017). Mode S's metadata is too heterogeneous (window 22 runtime_ratio 7.05 vs window 30 runtime_ratio 0.99). | `results/frontier/metadata_mode_s_detector/` |
+| #946 | **Per-speaker cpWER decomposition (RQ37)** | Which speaker contributes most to cpWER, and is the error concentrated or spread evenly? | ✅ **H37a SUPPORTED**: max worst-speaker share = 96.5% (window 67, speaker 005-F) in the top-10 worst windows — error is highly concentrated, not uniform. ✅ **H37b SUPPORTED**: speaker `001-M` is the worst in 6/10 = 60% of top-10 windows — a consistent speaker-specific failure mode, not random. ✅ **H37c SUPPORTED with caveat**: Mode S windows 22 (Gini=0.17) and 30 (Gini=0.00) both < 0.3. **Decomposition invariant holds exactly:** per-speaker error counts plus unmatched-hypothesis insertions sum to MeetEval's `cpwer.errors` for all 64 decomposed windows (0 mismatches). | `results/frontier/per_speaker_cpwer_decomposition/` |
+
+**Design choices and justification:**
+
+- **Why metadata-only (RQ33)?** RQ19 (content-similarity), RQ22 (per-speaker transcript structure), and RQ23 (per-track mode classifier) all hit 0% sensitivity on Mode S at 90% specificity using transcript *content* features. Metadata (runtime, segment count, speaker lengths) is a fundamentally different signal surface that an ASR system has for free — no transcript reading required. The 10-feature logistic regression is numpy-only (gradient descent with L2 regularisation, leave-one-out CV). The key finding is that `avg_speaker_length_sep` (threshold 98 chars) is the *first single feature* to catch both Mode S windows, but its 4 false positives are themselves clean single-speaker long tracks (windows 12, 16, 27, 37) — reproducing the structural confound that Mode S's profile is indistinguishable from clean single-speaker non-hallucinated tracks.
+- **Why per-speaker decomposition (RQ37)?** The project's cpWER is computed at the utterance level (each speaker's full text = 1 token, per RQ30), which hides *which* speaker is responsible for the error. The decomposition uses MeetEval's `CPErrorRate.apply_assignment` to get per-speaker error counts, then sums them as an invariant check. The non-obvious implementation detail: MeetEval's `str.split()` tokenisation requires stripping whitespace from aligned texts before computing Levenshtein, because hyp transcripts contain internal spaces that MeetEval collapses. The Gini coefficient on cpWER *rates* has a documented caveat — window 22 has 98.3% of absolute errors on speaker 005-F, but because the 1-char 006-F reference yields cpWER=1.0 (vs 005-F's 0.49) the cpWER values look "uniform". The Gini verdict is technically correct but should be read alongside per-speaker error shares.
+
+**Honest limitations:**
+
+- RQ33's H33a is fragile: with only n=2 Mode S windows, L2 regularisation cannot be tuned by cross-validation, and 8/9 L2 values collapse to 50% sensitivity. The ensemble result (H33b) is robust because it ORs metadata with lang-id entropy, so even when metadata LR fails, lang-id catches the diverse hallucination. The deployable takeaway is the ensemble, not the metadata LR alone.
+- RQ37's Gini coefficient on cpWER *rates* obscures error concentration when reference lengths differ wildly (the rate-vs-count caveat above). The decomposition invariant (per-speaker errors + insertions = total cpwer.errors) is exact and verified on 64 windows; 13 windows were skipped for empty ref/hyp. The speaker-specific finding (001-M worst in 60% of top-10) is based on n=10 top windows and should be read as indicative, not precise.
+
+**New modules and artifacts:**
+
+- `results/frontier/metadata_mode_s_detector/metadata_detector_analysis.py` — 10-feature metadata LR (numpy-only), L2 sweep, ensemble with lang-id, permutation test, bootstrap CIs
+- `src/per_speaker_decomposition.py` — testable helpers: `to_char_level`, `char_edit_distance`, `gini_coefficient`, `decompose_cpwer_per_speaker` (MeetEval bridge), `rank_windows_by_cpwer`, `worst_speaker`
+- `results/frontier/per_speaker_cpwer_decomposition/per_speaker_decomposition_analysis.py` — main runner, loads 77-window AISHELL-4 JSON, evaluates H37a/b/c
+- `tests/test_metadata_mode_s_detector.py` (71 tests), `tests/test_per_speaker_decomposition.py` (48 tests)
+
+All findings labeled `experimental/frontier`. No gold tables or verified references touched.
 
 ---
 
