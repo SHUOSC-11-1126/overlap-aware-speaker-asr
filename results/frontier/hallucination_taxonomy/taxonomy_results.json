@@ -1,0 +1,192 @@
+{
+  "label": "experimental/frontier",
+  "rq": "RQ14: Hallucination taxonomy on AISHELL-4 (37 hallucinated separated tracks)",
+  "closes_issue": 902,
+  "builds_on": "RQ12 (results/frontier/router_failure_modes/, PR #900)",
+  "source_data": "results/external_sanity_check/aishell4/rq1_aishell4_validation_results.json",
+  "source_label": "external/sanity-check",
+  "method": "reanalysis only (no Whisper / no ASR run); CR recomputed from stored text via zlib; script counts / entropy / TTR from per-speaker concatenated separated text; numpy + stdlib only",
+  "meeting_id": "M_R003S02C01",
+  "n_windows": 77,
+  "n_hallucinated_separated": 37,
+  "hallucination_definition": "always_separated_cpwer > 1.0 (matches RQ12)",
+  "thresholds": {
+    "cr_threshold": 2.4,
+    "multilingual_script_min": 3,
+    "insertion_length_ratio": 2.0,
+    "substitution_length_ratio_lo": 1.0,
+    "lang_entropy_bits": 0.5,
+    "ttr_threshold": 0.7
+  },
+  "mode_precedence": [
+    "1. multilingual_mixing (>= 3 distinct scripts)",
+    "2. repetition (max CR > 2.4)",
+    "3. insertion_dominated (length_ratio > 2.0)",
+    "4. substitution_dominated (1.0 <= length_ratio <= 2.0)",
+    "5. semantic_drift (length_ratio < 1.0)"
+  ],
+  "cr_proxy_note": "max CR across per-speaker CONCATENATED separated text (lower bound on Whisper's per-segment max CR; same proxy as RQ12, conservative for CR sensitivity)",
+  "length_ratio_note": "separated_total_length / max(mixed_text_length, 1). When the mixed track is empty (common at NoOverlap silence gaps) this collapses to separated_total_length, which is >> 2.0 for hallucinated windows, so those long-transcript cases classify as insertion_dominated. The 2.0 cut sits in an empirical gap in the data (no ratios between ~1.7 and ~2.4 except a few clearly-longer outliers).",
+  "mode_stats": {
+    "multilingual_mixing": {
+      "count": 4,
+      "proportion": 0.108108,
+      "mean_cpwer": 2.916666,
+      "mean_cr": 1.103175,
+      "mean_cr_ci_95": [
+        0.974625,
+        1.22605
+      ],
+      "mean_ttr": 0.689125,
+      "mean_lang_entropy_bits": 1.294025,
+      "proportion_ci_95": [
+        0.027027,
+        0.216216
+      ]
+    },
+    "repetition": {
+      "count": 1,
+      "proportion": 0.027027,
+      "mean_cpwer": 1.666667,
+      "mean_cr": 2.9655,
+      "mean_cr_ci_95": [
+        2.9655,
+        2.9655
+      ],
+      "mean_ttr": 0.4639,
+      "mean_lang_entropy_bits": 0.5451,
+      "proportion_ci_95": [
+        0.0,
+        0.081081
+      ]
+    },
+    "insertion_dominated": {
+      "count": 19,
+      "proportion": 0.513514,
+      "mean_cpwer": 2.109649,
+      "mean_cr": 1.150226,
+      "mean_cr_ci_95": [
+        1.028037,
+        1.291197
+      ],
+      "mean_ttr": 0.730795,
+      "mean_lang_entropy_bits": 0.906589,
+      "proportion_ci_95": [
+        0.351351,
+        0.675676
+      ]
+    },
+    "substitution_dominated": {
+      "count": 9,
+      "proportion": 0.243243,
+      "mean_cpwer": 2.148148,
+      "mean_cr": 1.374611,
+      "mean_cr_ci_95": [
+        1.201855,
+        1.571148
+      ],
+      "mean_ttr": 0.636644,
+      "mean_lang_entropy_bits": 0.675233,
+      "proportion_ci_95": [
+        0.108108,
+        0.378378
+      ]
+    },
+    "semantic_drift": {
+      "count": 4,
+      "proportion": 0.108108,
+      "mean_cpwer": 2.4375,
+      "mean_cr": 0.937325,
+      "mean_cr_ci_95": [
+        0.91585,
+        0.960325
+      ],
+      "mean_ttr": 0.772875,
+      "mean_lang_entropy_bits": 1.106,
+      "proportion_ci_95": [
+        0.027027,
+        0.216216
+      ]
+    }
+  },
+  "detectability_matrix": {
+    "multilingual_mixing": {
+      "n": 4,
+      "cr_gt_2.4": 0.0,
+      "lang_entropy_gt_0.5": 1.0,
+      "ttr_gt_0.7": 0.25,
+      "any_detector": 1.0
+    },
+    "repetition": {
+      "n": 1,
+      "cr_gt_2.4": 1.0,
+      "lang_entropy_gt_0.5": 1.0,
+      "ttr_gt_0.7": 0.0,
+      "any_detector": 1.0
+    },
+    "insertion_dominated": {
+      "n": 19,
+      "cr_gt_2.4": 0.0,
+      "lang_entropy_gt_0.5": 0.894737,
+      "ttr_gt_0.7": 0.578947,
+      "any_detector": 0.894737
+    },
+    "substitution_dominated": {
+      "n": 9,
+      "cr_gt_2.4": 0.0,
+      "lang_entropy_gt_0.5": 0.555556,
+      "ttr_gt_0.7": 0.333333,
+      "any_detector": 0.555556
+    },
+    "semantic_drift": {
+      "n": 4,
+      "cr_gt_2.4": 0.0,
+      "lang_entropy_gt_0.5": 0.75,
+      "ttr_gt_0.7": 0.5,
+      "any_detector": 1.0
+    }
+  },
+  "overall_detector_coverage": {
+    "n": 37,
+    "cr_gt_2.4": 0.027027,
+    "lang_entropy_gt_0.5": 0.810811,
+    "ttr_gt_0.7": 0.459459,
+    "any_detector": 0.837838
+  },
+  "hypothesis_verdicts": {
+    "H14a": {
+      "statement": "multilingual mixing > 50% of hallucinated separated tracks",
+      "multilingual_proportion": 0.108108,
+      "multilingual_ci_95": [
+        0.027027,
+        0.216216
+      ],
+      "supported": false
+    },
+    "H14b": {
+      "statement": "repetition (CR > 2.4) < 10% of hallucinated separated tracks",
+      "repetition_proportion": 0.027027,
+      "repetition_ci_95": [
+        0.0,
+        0.081081
+      ],
+      "supported": true
+    },
+    "H14c": {
+      "statement": "modes have distinct CR profiles (permutation p < 0.05)",
+      "observed_between_group_ss": 3.727394,
+      "null_mean_between_group_ss": 0.677725,
+      "permutation_p_value": 0.0016,
+      "n_permutations": 10000,
+      "supported": true
+    }
+  },
+  "limitations": [
+    "Single meeting (M_R003S02C01); n=37 hallucinated tracks; bootstrap CIs on mode proportions are wide (some modes have 1-4 members).",
+    "Mode assignment uses documented length-ratio heuristics; the substitution/insertion boundary (ratio=2.0) and substitution/drift boundary (ratio=1.0) are approximate operational cuts, not validated categories.",
+    "CR is a lower-bound proxy on concatenated per-speaker text (see RQ12); true Whisper per-segment CR may be higher, so repetition-mode undercount is conservative.",
+    "Language-id entropy is script-based, not a true language identifier; it cannot distinguish e.g. English-only from Han-only drift within a single script.",
+    "Semantic drift is a residual catch-all (single-script, not repetition, short relative to mixed); 'semantically unrelated' is not measured directly (no embeddings) — it is inferred from low length ratio + single script.",
+    "Oracle-TextGrid separation; a real separator may produce a different mode mix. Whisper-tiny only."
+  ]
+}
