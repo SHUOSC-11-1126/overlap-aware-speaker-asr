@@ -1,0 +1,2708 @@
+{
+  "label": "experimental/frontier",
+  "asr_model": "whisper-tiny",
+  "config": "greedy",
+  "n_conditions": 300,
+  "tracks": [
+    {
+      "pair_id": 0,
+      "con": "con_001.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間斷力擁有了自己",
+      "sep2_text": "你方是要,那它是怎么环节我们的空区的"
+    },
+    {
+      "pair_id": 0,
+      "con": "con_001.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間斷力擁有了自己",
+      "sep2_text": "你方是要,那它是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 0,
+      "con": "con_001.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間斷力擁有了自己",
+      "sep2_text": "你方是要那它是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 0,
+      "con": "con_001.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間斷力擁有了自己",
+      "sep2_text": "你方是要,那它是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 0,
+      "con": "con_001.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間斷力擁有了自己",
+      "sep2_text": "你方是要那它是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 0,
+      "con": "con_001.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間斷力擁有了自己",
+      "sep2_text": "你方是要那它是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 0,
+      "con": "con_001.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間斷力擁有了自己",
+      "sep2_text": "你方是要那它是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 0,
+      "con": "con_001.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間段裡擁有了自己",
+      "sep2_text": "你方是要那它是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 0,
+      "con": "con_001.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間段裡擁有了自己",
+      "sep2_text": "你方是要那它是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 0,
+      "con": "con_001.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間斷力擁有了自己",
+      "sep2_text": "你方是要那它是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 0,
+      "con": "con_001.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間段裡擁有了自己",
+      "sep2_text": "你方是要那它是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 0,
+      "con": "con_001.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間斷力擁有了自己",
+      "sep2_text": "你方是要那它是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 0,
+      "con": "con_001.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間段裡擁有了自己",
+      "sep2_text": "你方是要,那它是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 0,
+      "con": "con_001.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間段裡擁有了自己",
+      "sep2_text": "你方是要那他是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 0,
+      "con": "con_001.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間段裡擁有了自己",
+      "sep2_text": "你方是要那他是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 1,
+      "con": "con_002.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你下半的时间必定也晚"
+    },
+    {
+      "pair_id": 1,
+      "con": "con_002.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "拿他自己是一个刷斗音的自己",
+      "sep2_text": "你下班的時間必定也晚"
+    },
+    {
+      "pair_id": 1,
+      "con": "con_002.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你下半的时间必定也晚"
+    },
+    {
+      "pair_id": 1,
+      "con": "con_002.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你下班的時間必定也晚"
+    },
+    {
+      "pair_id": 1,
+      "con": "con_002.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你下班的時間必定也晚"
+    },
+    {
+      "pair_id": 1,
+      "con": "con_002.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "拿他自己是一个刷斗音的自己",
+      "sep2_text": "你下班的時間必定也晚"
+    },
+    {
+      "pair_id": 1,
+      "con": "con_002.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "下班的時間必定也晚"
+    },
+    {
+      "pair_id": 1,
+      "con": "con_002.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你下班的時間必定也晚"
+    },
+    {
+      "pair_id": 1,
+      "con": "con_002.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你下班的時間必定也晚"
+    },
+    {
+      "pair_id": 1,
+      "con": "con_002.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你下半的时间必定也晚"
+    },
+    {
+      "pair_id": 1,
+      "con": "con_002.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "拿他這個自己是一個刷刀英的自己",
+      "sep2_text": "你下班的時間必定也晚"
+    },
+    {
+      "pair_id": 1,
+      "con": "con_002.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你下班的時間必定也晚"
+    },
+    {
+      "pair_id": 1,
+      "con": "con_002.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "拿他這個自己是一個刷刀英的自己",
+      "sep2_text": "你下半的时间必定也晚"
+    },
+    {
+      "pair_id": 1,
+      "con": "con_002.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你下半的时间必定也晚"
+    },
+    {
+      "pair_id": 1,
+      "con": "con_002.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你下半的时间必定也晚"
+    },
+    {
+      "pair_id": 2,
+      "con": "con_003.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我说的两个小事"
+    },
+    {
+      "pair_id": 2,
+      "con": "con_003.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 2,
+      "con": "con_003.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 2,
+      "con": "con_003.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 2,
+      "con": "con_003.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 2,
+      "con": "con_003.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 2,
+      "con": "con_003.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 2,
+      "con": "con_003.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我说的两个小时啊"
+    },
+    {
+      "pair_id": 2,
+      "con": "con_003.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 2,
+      "con": "con_003.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 2,
+      "con": "con_003.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 2,
+      "con": "con_003.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 2,
+      "con": "con_003.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 2,
+      "con": "con_003.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 2,
+      "con": "con_003.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 3,
+      "con": "con_004.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "你上班的時間必定也往"
+    },
+    {
+      "pair_id": 3,
+      "con": "con_004.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "你上班的時間必定也往"
+    },
+    {
+      "pair_id": 3,
+      "con": "con_004.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "你上班的时间必定也网"
+    },
+    {
+      "pair_id": 3,
+      "con": "con_004.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "你上班的时间必定也网"
+    },
+    {
+      "pair_id": 3,
+      "con": "con_004.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "你上班的時間必定也往"
+    },
+    {
+      "pair_id": 3,
+      "con": "con_004.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "你上班的時間必定也往"
+    },
+    {
+      "pair_id": 3,
+      "con": "con_004.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "你上班的时间必定也网"
+    },
+    {
+      "pair_id": 3,
+      "con": "con_004.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "你上班的時間必定也往"
+    },
+    {
+      "pair_id": 3,
+      "con": "con_004.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "你上班的時間必定也往"
+    },
+    {
+      "pair_id": 3,
+      "con": "con_004.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "你上班的时间必定也网"
+    },
+    {
+      "pair_id": 3,
+      "con": "con_004.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "你上班的时间必定也网"
+    },
+    {
+      "pair_id": 3,
+      "con": "con_004.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "你上班的時間必定也往"
+    },
+    {
+      "pair_id": 3,
+      "con": "con_004.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "你上班的时间必定也网"
+    },
+    {
+      "pair_id": 3,
+      "con": "con_004.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "是不落身意的",
+      "sep2_text": "你上班的時間必定也往"
+    },
+    {
+      "pair_id": 3,
+      "con": "con_004.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "是不落身意的",
+      "sep2_text": "你上班的時間必定也往"
+    },
+    {
+      "pair_id": 4,
+      "con": "con_005.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少衣",
+      "sep2_text": "是长时间是你制的没错吧"
+    },
+    {
+      "pair_id": 4,
+      "con": "con_005.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少液",
+      "sep2_text": "至长时间是一致的没错吧吧"
+    },
+    {
+      "pair_id": 4,
+      "con": "con_005.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗手液",
+      "sep2_text": "至长时间是你知的没错吧吧"
+    },
+    {
+      "pair_id": 4,
+      "con": "con_005.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗手液",
+      "sep2_text": "至常时间是你知的没错吧"
+    },
+    {
+      "pair_id": 4,
+      "con": "con_005.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少衣",
+      "sep2_text": "至长时间是一致的没错吧吧"
+    },
+    {
+      "pair_id": 4,
+      "con": "con_005.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少衣",
+      "sep2_text": "至长时间是你知的没错吧吧"
+    },
+    {
+      "pair_id": 4,
+      "con": "con_005.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少衣",
+      "sep2_text": "市场时间是你制的没错吧"
+    },
+    {
+      "pair_id": 4,
+      "con": "con_005.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少衣",
+      "sep2_text": "至长时间是一致的没错吧"
+    },
+    {
+      "pair_id": 4,
+      "con": "con_005.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少衣",
+      "sep2_text": "至长时间是你知的没错吧吧"
+    },
+    {
+      "pair_id": 4,
+      "con": "con_005.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少衣",
+      "sep2_text": "市场时间是你制的没错吧"
+    },
+    {
+      "pair_id": 4,
+      "con": "con_005.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少衣",
+      "sep2_text": "至长时间是一致的没错吧"
+    },
+    {
+      "pair_id": 4,
+      "con": "con_005.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少衣",
+      "sep2_text": "市场时间是一致的没错吧"
+    },
+    {
+      "pair_id": 4,
+      "con": "con_005.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少液",
+      "sep2_text": "至常时间是你知的没错吧"
+    },
+    {
+      "pair_id": 4,
+      "con": "con_005.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少液",
+      "sep2_text": "至常时间是一致的没错吧"
+    },
+    {
+      "pair_id": 4,
+      "con": "con_005.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完喜少也有",
+      "sep2_text": "至常是一致的没错吧"
+    },
+    {
+      "pair_id": 5,
+      "con": "con_006.wav",
+      "pro": "pro_006.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "接你是晚上睡完 起地地"
+    },
+    {
+      "pair_id": 5,
+      "con": "con_006.wav",
+      "pro": "pro_006.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里"
+    },
+    {
+      "pair_id": 5,
+      "con": "con_006.wav",
+      "pro": "pro_006.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里"
+    },
+    {
+      "pair_id": 5,
+      "con": "con_006.wav",
+      "pro": "pro_006.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里你是不是在那里"
+    },
+    {
+      "pair_id": 5,
+      "con": "con_006.wav",
+      "pro": "pro_006.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你今天你是晚上睡完 起帝帝"
+    },
+    {
+      "pair_id": 5,
+      "con": "con_006.wav",
+      "pro": "pro_006.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你今天你是晚上睡完 起帝帝帝"
+    },
+    {
+      "pair_id": 5,
+      "con": "con_006.wav",
+      "pro": "pro_006.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "接你是晚上睡完几天"
+    },
+    {
+      "pair_id": 5,
+      "con": "con_006.wav",
+      "pro": "pro_006.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "接你是晚上睡完 起地地"
+    },
+    {
+      "pair_id": 5,
+      "con": "con_006.wav",
+      "pro": "pro_006.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "接你是晚上睡完几滴滴"
+    },
+    {
+      "pair_id": 5,
+      "con": "con_006.wav",
+      "pro": "pro_006.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "既然你是晚上睡完 既定"
+    },
+    {
+      "pair_id": 5,
+      "con": "con_006.wav",
+      "pro": "pro_006.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "既然你是晚上睡完 既定"
+    },
+    {
+      "pair_id": 5,
+      "con": "con_006.wav",
+      "pro": "pro_006.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "把揮早起也睡不夜了",
+      "sep2_text": "既然你是晚上睡完奇的地"
+    },
+    {
+      "pair_id": 5,
+      "con": "con_006.wav",
+      "pro": "pro_006.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "既然你是晚上的晚期的地"
+    },
+    {
+      "pair_id": 5,
+      "con": "con_006.wav",
+      "pro": "pro_006.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "把睡早起也睡不夜了",
+      "sep2_text": "既然你是晚上睡完 既定"
+    },
+    {
+      "pair_id": 5,
+      "con": "con_006.wav",
+      "pro": "pro_006.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "把睡早起也睡不夜了",
+      "sep2_text": "既然你是晚上睡完奇的地"
+    },
+    {
+      "pair_id": 6,
+      "con": "con_007.wav",
+      "pro": "pro_013.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我能购人可以吃配的"
+    },
+    {
+      "pair_id": 6,
+      "con": "con_007.wav",
+      "pro": "pro_013.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我能购一人可以吃配的这"
+    },
+    {
+      "pair_id": 6,
+      "con": "con_007.wav",
+      "pro": "pro_013.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我能购一人可以吃配的"
+    },
+    {
+      "pair_id": 6,
+      "con": "con_007.wav",
+      "pro": "pro_013.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我的個人可以吃配的"
+    },
+    {
+      "pair_id": 6,
+      "con": "con_007.wav",
+      "pro": "pro_013.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我的個人可以吃配的"
+    },
+    {
+      "pair_id": 6,
+      "con": "con_007.wav",
+      "pro": "pro_013.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我的個人可以吃配的"
+    },
+    {
+      "pair_id": 6,
+      "con": "con_007.wav",
+      "pro": "pro_013.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我的個人可以吃配的"
+    },
+    {
+      "pair_id": 6,
+      "con": "con_007.wav",
+      "pro": "pro_013.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我的個人可以吃配的"
+    },
+    {
+      "pair_id": 6,
+      "con": "con_007.wav",
+      "pro": "pro_013.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我的個人可以吃配的"
+    },
+    {
+      "pair_id": 6,
+      "con": "con_007.wav",
+      "pro": "pro_013.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我的個人可以吃配的"
+    },
+    {
+      "pair_id": 6,
+      "con": "con_007.wav",
+      "pro": "pro_013.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我的個人可以吃配的"
+    },
+    {
+      "pair_id": 6,
+      "con": "con_007.wav",
+      "pro": "pro_013.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我的個人可以吃配的"
+    },
+    {
+      "pair_id": 6,
+      "con": "con_007.wav",
+      "pro": "pro_013.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我的個人可以吃配的"
+    },
+    {
+      "pair_id": 6,
+      "con": "con_007.wav",
+      "pro": "pro_013.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我的個人可以吃配的"
+    },
+    {
+      "pair_id": 6,
+      "con": "con_007.wav",
+      "pro": "pro_013.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我的個人可以吃配的"
+    },
+    {
+      "pair_id": 7,
+      "con": "con_008.wav",
+      "pro": "pro_005.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了身體見的朋友",
+      "sep2_text": "好 我先聊完睡完起"
+    },
+    {
+      "pair_id": 7,
+      "con": "con_008.wav",
+      "pro": "pro_005.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了生體界的同學",
+      "sep2_text": "好 我先聊完睡完起"
+    },
+    {
+      "pair_id": 7,
+      "con": "con_008.wav",
+      "pro": "pro_005.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了身體見的朋友",
+      "sep2_text": "好 我先聊完睡完起"
+    },
+    {
+      "pair_id": 7,
+      "con": "con_008.wav",
+      "pro": "pro_005.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了身體見的朋友",
+      "sep2_text": "好 我先聊完睡完起"
+    },
+    {
+      "pair_id": 7,
+      "con": "con_008.wav",
+      "pro": "pro_005.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了身體見的朋友",
+      "sep2_text": "好 我先聊完睡完起"
+    },
+    {
+      "pair_id": 7,
+      "con": "con_008.wav",
+      "pro": "pro_005.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了身體見的朋友",
+      "sep2_text": "好 我先聊完睡完起"
+    },
+    {
+      "pair_id": 7,
+      "con": "con_008.wav",
+      "pro": "pro_005.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了身體見的朋友",
+      "sep2_text": "好 我先聊完睡完起"
+    },
+    {
+      "pair_id": 7,
+      "con": "con_008.wav",
+      "pro": "pro_005.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了生體界的同學",
+      "sep2_text": "好 我先聊完睡完起"
+    },
+    {
+      "pair_id": 7,
+      "con": "con_008.wav",
+      "pro": "pro_005.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了生體界的同學",
+      "sep2_text": "好 我先聊完睡完起"
+    },
+    {
+      "pair_id": 7,
+      "con": "con_008.wav",
+      "pro": "pro_005.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了生體界的同學",
+      "sep2_text": "好 我先聊完睡完洗"
+    },
+    {
+      "pair_id": 7,
+      "con": "con_008.wav",
+      "pro": "pro_005.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了生體界的同學",
+      "sep2_text": "好 我先聊完睡完洗"
+    },
+    {
+      "pair_id": 7,
+      "con": "con_008.wav",
+      "pro": "pro_005.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了生體界的同學",
+      "sep2_text": "好 我先聊完睡完起"
+    },
+    {
+      "pair_id": 7,
+      "con": "con_008.wav",
+      "pro": "pro_005.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了生體界的同學",
+      "sep2_text": "好 我先聊完睡完起"
+    },
+    {
+      "pair_id": 7,
+      "con": "con_008.wav",
+      "pro": "pro_005.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了生體界的同學",
+      "sep2_text": "好 我先聊完睡完起"
+    },
+    {
+      "pair_id": 7,
+      "con": "con_008.wav",
+      "pro": "pro_005.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了生體界的同學",
+      "sep2_text": "好 我先聊完睡完起"
+    },
+    {
+      "pair_id": 8,
+      "con": "con_009.wav",
+      "pro": "pro_012.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "跟八點水六點速度"
+    },
+    {
+      "pair_id": 8,
+      "con": "con_009.wav",
+      "pro": "pro_012.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "跟八點水六點速度"
+    },
+    {
+      "pair_id": 8,
+      "con": "con_009.wav",
+      "pro": "pro_012.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "跟八點水六點速度"
+    },
+    {
+      "pair_id": 8,
+      "con": "con_009.wav",
+      "pro": "pro_012.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "跟八點水六點速"
+    },
+    {
+      "pair_id": 8,
+      "con": "con_009.wav",
+      "pro": "pro_012.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "跟八點水六點速度"
+    },
+    {
+      "pair_id": 8,
+      "con": "con_009.wav",
+      "pro": "pro_012.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "跟8点水6点速"
+    },
+    {
+      "pair_id": 8,
+      "con": "con_009.wav",
+      "pro": "pro_012.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "跟八點水六點速度"
+    },
+    {
+      "pair_id": 8,
+      "con": "con_009.wav",
+      "pro": "pro_012.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "跟8点水6点速"
+    },
+    {
+      "pair_id": 8,
+      "con": "con_009.wav",
+      "pro": "pro_012.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "跟8点水6点速度"
+    },
+    {
+      "pair_id": 8,
+      "con": "con_009.wav",
+      "pro": "pro_012.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "跟8点水6点速"
+    },
+    {
+      "pair_id": 8,
+      "con": "con_009.wav",
+      "pro": "pro_012.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "跟8点水6点速度"
+    },
+    {
+      "pair_id": 8,
+      "con": "con_009.wav",
+      "pro": "pro_012.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "跟8点水6点速度"
+    },
+    {
+      "pair_id": 8,
+      "con": "con_009.wav",
+      "pro": "pro_012.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "跟8点水6点速度"
+    },
+    {
+      "pair_id": 8,
+      "con": "con_009.wav",
+      "pro": "pro_012.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "跟8点水6点速"
+    },
+    {
+      "pair_id": 8,
+      "con": "con_009.wav",
+      "pro": "pro_012.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "跟8点水6点速"
+    },
+    {
+      "pair_id": 9,
+      "con": "con_010.wav",
+      "pro": "pro_004.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "不太一致 我给你几个",
+      "sep2_text": "只在講的奧業嘴道業就是晚上睡晚起 是吧"
+    },
+    {
+      "pair_id": 9,
+      "con": "con_010.wav",
+      "pro": "pro_004.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "不太一致 我给你几个",
+      "sep2_text": "只在講的奧業嘴道業就是萬歲萬喜 是吧"
+    },
+    {
+      "pair_id": 9,
+      "con": "con_010.wav",
+      "pro": "pro_004.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "不太一致 我给你几个",
+      "sep2_text": "只在講的奧業嘴道業就是萬歲萬喜 是吧"
+    },
+    {
+      "pair_id": 9,
+      "con": "con_010.wav",
+      "pro": "pro_004.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "不太一致 我给你几个",
+      "sep2_text": "只在講的奧業嘴道業就是萬歲萬喜 是吧"
+    },
+    {
+      "pair_id": 9,
+      "con": "con_010.wav",
+      "pro": "pro_004.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "不太一致 我给你几个",
+      "sep2_text": "只在講的熬夜嘴道夜就是晚上睡晚起 是吧"
+    },
+    {
+      "pair_id": 9,
+      "con": "con_010.wav",
+      "pro": "pro_004.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "不太一致 我给你几个",
+      "sep2_text": "只在講的奧業嘴道業就是萬歲萬喜 是吧"
+    },
+    {
+      "pair_id": 9,
+      "con": "con_010.wav",
+      "pro": "pro_004.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "不太一致 我给给你几个",
+      "sep2_text": "只在講的奧業嘴道業就是萬歲完喜 是吧"
+    },
+    {
+      "pair_id": 9,
+      "con": "con_010.wav",
+      "pro": "pro_004.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "不太一致 我给给你几个",
+      "sep2_text": "只在講的奧業嘴道業就是萬歲完喜 是吧"
+    },
+    {
+      "pair_id": 9,
+      "con": "con_010.wav",
+      "pro": "pro_004.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "不太一致 我给给你几个",
+      "sep2_text": "只在講的奧業嘴道業就是萬歲完喜 是吧"
+    },
+    {
+      "pair_id": 9,
+      "con": "con_010.wav",
+      "pro": "pro_004.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "不太一致 我给给你几个",
+      "sep2_text": "只在講的奧業嘴道業就是萬歲萬喜 是吧"
+    },
+    {
+      "pair_id": 9,
+      "con": "con_010.wav",
+      "pro": "pro_004.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "不太一致 我给给你几个",
+      "sep2_text": "只在講的奧業嘴道業就是萬歲萬喜 是吧"
+    },
+    {
+      "pair_id": 9,
+      "con": "con_010.wav",
+      "pro": "pro_004.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "不太一致 我给给你几个",
+      "sep2_text": "只在講的奧業嘴道業就是萬歲萬喜 是吧"
+    },
+    {
+      "pair_id": 9,
+      "con": "con_010.wav",
+      "pro": "pro_004.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "不太一致 我给给你几个",
+      "sep2_text": "只在講的奧業嘴道業就是萬歲萬喜 是吧"
+    },
+    {
+      "pair_id": 9,
+      "con": "con_010.wav",
+      "pro": "pro_004.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "不太一致 我给给你几个",
+      "sep2_text": "只在講的奧業嘴的奧業就是萬歲萬喜 是吧"
+    },
+    {
+      "pair_id": 9,
+      "con": "con_010.wav",
+      "pro": "pro_004.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "不太一致 我给给你几个",
+      "sep2_text": "只在講的奧業嘴的奧業就是萬歲萬喜 是吧"
+    },
+    {
+      "pair_id": 10,
+      "con": "con_011.wav",
+      "pro": "pro_011.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "你没有多两小时但是你自己的什么时候我给你解释",
+      "sep2_text": "不然是两点水10点纸"
+    },
+    {
+      "pair_id": 10,
+      "con": "con_011.wav",
+      "pro": "pro_011.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "你没有多两小时但是你自己的什么时候我给你解释",
+      "sep2_text": "这就是两点十点起"
+    },
+    {
+      "pair_id": 10,
+      "con": "con_011.wav",
+      "pro": "pro_011.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "你没有多两小时但是你自己的什么时候我给你解释",
+      "sep2_text": "不然是两点水10点纸"
+    },
+    {
+      "pair_id": 10,
+      "con": "con_011.wav",
+      "pro": "pro_011.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "你没有多两小时但是你自己的什么时候我给你解释",
+      "sep2_text": "我们又不是两点水十点起"
+    },
+    {
+      "pair_id": 10,
+      "con": "con_011.wav",
+      "pro": "pro_011.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "你没有多两小时但是你自己的什么时候我给你解释",
+      "sep2_text": "不一分是两点十点起"
+    },
+    {
+      "pair_id": 10,
+      "con": "con_011.wav",
+      "pro": "pro_011.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "你没有多两小时但是你自己的什么时候我给你解释",
+      "sep2_text": "我们又不是两点十点起"
+    },
+    {
+      "pair_id": 10,
+      "con": "con_011.wav",
+      "pro": "pro_011.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "你没有多两小时但是你自己的什么时候我给你解释",
+      "sep2_text": "不一分是两点十点纸"
+    },
+    {
+      "pair_id": 10,
+      "con": "con_011.wav",
+      "pro": "pro_011.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "你没有多两小时但是你自己的什么时候我给你解释",
+      "sep2_text": "我们又不是两点十点起"
+    },
+    {
+      "pair_id": 10,
+      "con": "con_011.wav",
+      "pro": "pro_011.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "你没有多两小时但是你自己的什么时候我给你解释",
+      "sep2_text": "我们又不是两点水10点级"
+    },
+    {
+      "pair_id": 10,
+      "con": "con_011.wav",
+      "pro": "pro_011.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "你没有多两小时但是你自己的什么时候我给你解释",
+      "sep2_text": "我们一分是两点十点级"
+    },
+    {
+      "pair_id": 10,
+      "con": "con_011.wav",
+      "pro": "pro_011.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "你没有多两小时但是你自己的什么时候我给你解释",
+      "sep2_text": "这次是两点十点纸"
+    },
+    {
+      "pair_id": 10,
+      "con": "con_011.wav",
+      "pro": "pro_011.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "你没有多两小时但是你自己的什么时候我给你解释",
+      "sep2_text": "我们一分是两点十点级"
+    },
+    {
+      "pair_id": 10,
+      "con": "con_011.wav",
+      "pro": "pro_011.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "你没有多两小时但是你自己的什么时候我给你解释",
+      "sep2_text": "这次是两点十点级"
+    },
+    {
+      "pair_id": 10,
+      "con": "con_011.wav",
+      "pro": "pro_011.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "你没有多两小时但是你自己的什么时候我给你解释",
+      "sep2_text": "我们又不是两点十点级"
+    },
+    {
+      "pair_id": 10,
+      "con": "con_011.wav",
+      "pro": "pro_011.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "你没有多两小时但是你自己的什么时候我给你解释",
+      "sep2_text": "两点十点纸"
+    },
+    {
+      "pair_id": 11,
+      "con": "con_001.wav",
+      "pro": "pro_003.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間斷力擁有了自己",
+      "sep2_text": "你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么你不想说什么"
+    },
+    {
+      "pair_id": 11,
+      "con": "con_001.wav",
+      "pro": "pro_003.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間段裡擁有了自己",
+      "sep2_text": "你以為有一個前提性的問題沒有討論卡"
+    },
+    {
+      "pair_id": 11,
+      "con": "con_001.wav",
+      "pro": "pro_003.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間斷力擁有了自己",
+      "sep2_text": "你不想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想想"
+    },
+    {
+      "pair_id": 11,
+      "con": "con_001.wav",
+      "pro": "pro_003.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間段裡擁有了自己",
+      "sep2_text": "你以為有一個前期性的問題沒有討論卡"
+    },
+    {
+      "pair_id": 11,
+      "con": "con_001.wav",
+      "pro": "pro_003.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間斷力擁有了自己",
+      "sep2_text": "你以為有一個前提性的問題沒有討論卡"
+    },
+    {
+      "pair_id": 11,
+      "con": "con_001.wav",
+      "pro": "pro_003.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間斷力擁有了自己",
+      "sep2_text": "你以為有一個前提性的問題沒有討論"
+    },
+    {
+      "pair_id": 11,
+      "con": "con_001.wav",
+      "pro": "pro_003.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間段裡擁有了自己",
+      "sep2_text": "你没有一个前提性的问题没有讨论卡"
+    },
+    {
+      "pair_id": 11,
+      "con": "con_001.wav",
+      "pro": "pro_003.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間斷力擁有了自己",
+      "sep2_text": "你以为有一个前提性的问题没有讨论卡"
+    },
+    {
+      "pair_id": 11,
+      "con": "con_001.wav",
+      "pro": "pro_003.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間段裡擁有了自己",
+      "sep2_text": "你没有一个前提性的问题没有讨论卡"
+    },
+    {
+      "pair_id": 11,
+      "con": "con_001.wav",
+      "pro": "pro_003.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間斷力擁有了自己",
+      "sep2_text": "你以為有一個前提性的問題沒有吵輪卡"
+    },
+    {
+      "pair_id": 11,
+      "con": "con_001.wav",
+      "pro": "pro_003.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間段裡擁有了自己",
+      "sep2_text": "你没有一个前提性的问题没有讨论卡"
+    },
+    {
+      "pair_id": 11,
+      "con": "con_001.wav",
+      "pro": "pro_003.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間段裡擁有了自己",
+      "sep2_text": "你没有一个前提性的问题没有讨论卡"
+    },
+    {
+      "pair_id": 11,
+      "con": "con_001.wav",
+      "pro": "pro_003.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間段裡擁有了自己",
+      "sep2_text": "你以为有一个前提性的问题没有讨论卡"
+    },
+    {
+      "pair_id": 11,
+      "con": "con_001.wav",
+      "pro": "pro_003.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間段裡擁有了自己",
+      "sep2_text": "你没有一个前提性的问题没有讨论"
+    },
+    {
+      "pair_id": 11,
+      "con": "con_001.wav",
+      "pro": "pro_003.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "他讓你在那個時間斷力擁有了自己",
+      "sep2_text": "你以为有一个前提性的问题没有讨论卡"
+    },
+    {
+      "pair_id": 12,
+      "con": "con_002.wav",
+      "pro": "pro_010.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "拿他自己是一个刷斗音的自己",
+      "sep2_text": "你不是怎么多出额外的时间来过自己的生活呢"
+    },
+    {
+      "pair_id": 12,
+      "con": "con_002.wav",
+      "pro": "pro_010.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "拿他自己是一个刷斗音的自己",
+      "sep2_text": "你怎么多出额外的时间来过自己的生活了吗"
+    },
+    {
+      "pair_id": 12,
+      "con": "con_002.wav",
+      "pro": "pro_010.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "拿他自己是一个刷斗音的自己",
+      "sep2_text": "你怎么多出了额外的时间来过自己的生活呢"
+    },
+    {
+      "pair_id": 12,
+      "con": "con_002.wav",
+      "pro": "pro_010.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你怎么多出额外的时间来过自己的生活呢"
+    },
+    {
+      "pair_id": 12,
+      "con": "con_002.wav",
+      "pro": "pro_010.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你怎么多出额外的时间来过自己的生活了吗"
+    },
+    {
+      "pair_id": 12,
+      "con": "con_002.wav",
+      "pro": "pro_010.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你怎么多出额外的时间来过自己的生活了"
+    },
+    {
+      "pair_id": 12,
+      "con": "con_002.wav",
+      "pro": "pro_010.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你怎么多出额外的时间来过自己的生活呢"
+    },
+    {
+      "pair_id": 12,
+      "con": "con_002.wav",
+      "pro": "pro_010.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你怎么多出额外的时间来过自己的生活呢"
+    },
+    {
+      "pair_id": 12,
+      "con": "con_002.wav",
+      "pro": "pro_010.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你怎么多出额外的时间来过自己的生活了"
+    },
+    {
+      "pair_id": 12,
+      "con": "con_002.wav",
+      "pro": "pro_010.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你怎么多出额外的时间来过自己的生活呢"
+    },
+    {
+      "pair_id": 12,
+      "con": "con_002.wav",
+      "pro": "pro_010.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你怎么多出额外的时间来过自己的生活呢"
+    },
+    {
+      "pair_id": 12,
+      "con": "con_002.wav",
+      "pro": "pro_010.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你怎么多出额外的时间来过自己的生活呢"
+    },
+    {
+      "pair_id": 12,
+      "con": "con_002.wav",
+      "pro": "pro_010.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你怎么多出额外的时间来过自己的生活"
+    },
+    {
+      "pair_id": 12,
+      "con": "con_002.wav",
+      "pro": "pro_010.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你是怎么多出额外的时间来过自己的生活的吗"
+    },
+    {
+      "pair_id": 12,
+      "con": "con_002.wav",
+      "pro": "pro_010.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "拿他这个自己是一个刷斗音的自己",
+      "sep2_text": "你是怎么多出额外的时间来过自己的生活的吗"
+    },
+    {
+      "pair_id": 13,
+      "con": "con_003.wav",
+      "pro": "pro_002.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我没问题没有问题先不着急急"
+    },
+    {
+      "pair_id": 13,
+      "con": "con_003.wav",
+      "pro": "pro_002.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我没问题没有问题先不着急"
+    },
+    {
+      "pair_id": 13,
+      "con": "con_003.wav",
+      "pro": "pro_002.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我没问题没有问题先不着急"
+    },
+    {
+      "pair_id": 13,
+      "con": "con_003.wav",
+      "pro": "pro_002.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "你是不是在那裡我沒有問題沒有問題先不著急"
+    },
+    {
+      "pair_id": 13,
+      "con": "con_003.wav",
+      "pro": "pro_002.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我没问题没有你先不着急"
+    },
+    {
+      "pair_id": 13,
+      "con": "con_003.wav",
+      "pro": "pro_002.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我没问题没有你先不着急"
+    },
+    {
+      "pair_id": 13,
+      "con": "con_003.wav",
+      "pro": "pro_002.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我没问题没有你先不着急"
+    },
+    {
+      "pair_id": 13,
+      "con": "con_003.wav",
+      "pro": "pro_002.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我没问题没有你先不着急"
+    },
+    {
+      "pair_id": 13,
+      "con": "con_003.wav",
+      "pro": "pro_002.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我没问题没有你先不着急"
+    },
+    {
+      "pair_id": 13,
+      "con": "con_003.wav",
+      "pro": "pro_002.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我没问题没有问题先不着急"
+    },
+    {
+      "pair_id": 13,
+      "con": "con_003.wav",
+      "pro": "pro_002.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我没问题没有问题先不着急"
+    },
+    {
+      "pair_id": 13,
+      "con": "con_003.wav",
+      "pro": "pro_002.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我没问题没有你先不着急"
+    },
+    {
+      "pair_id": 13,
+      "con": "con_003.wav",
+      "pro": "pro_002.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我没问题没有问题先不着急"
+    },
+    {
+      "pair_id": 13,
+      "con": "con_003.wav",
+      "pro": "pro_002.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我没问题没有问题先不着急"
+    },
+    {
+      "pair_id": 13,
+      "con": "con_003.wav",
+      "pro": "pro_002.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "我忘记在收一句视频",
+      "sep2_text": "我没问题没有问题 先不着急"
+    },
+    {
+      "pair_id": 14,
+      "con": "con_004.wav",
+      "pro": "pro_009.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "那你個人的生活空間必定也就這麼簡單"
+    },
+    {
+      "pair_id": 14,
+      "con": "con_004.wav",
+      "pro": "pro_009.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "那你个人的生活空间必定也就这么近"
+    },
+    {
+      "pair_id": 14,
+      "con": "con_004.wav",
+      "pro": "pro_009.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "那你個人的生活空間必定也就這麼簡單"
+    },
+    {
+      "pair_id": 14,
+      "con": "con_004.wav",
+      "pro": "pro_009.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "那你個人的生活空間必定也就這麼簡單"
+    },
+    {
+      "pair_id": 14,
+      "con": "con_004.wav",
+      "pro": "pro_009.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "那你個人的生活空間必定也就這麼簡單"
+    },
+    {
+      "pair_id": 14,
+      "con": "con_004.wav",
+      "pro": "pro_009.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "那你个人的生活空间必定也就这么近"
+    },
+    {
+      "pair_id": 14,
+      "con": "con_004.wav",
+      "pro": "pro_009.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "那你個人的生活空間必定也就這麼簡單"
+    },
+    {
+      "pair_id": 14,
+      "con": "con_004.wav",
+      "pro": "pro_009.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "那你個人的生活空間必定也就這麼簡單"
+    },
+    {
+      "pair_id": 14,
+      "con": "con_004.wav",
+      "pro": "pro_009.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "那你個人的生活空間必定也就這麼簡單"
+    },
+    {
+      "pair_id": 14,
+      "con": "con_004.wav",
+      "pro": "pro_009.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "那你个人的生活空间必定也就这么近"
+    },
+    {
+      "pair_id": 14,
+      "con": "con_004.wav",
+      "pro": "pro_009.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "那你個人的生活空間必定也就這麼簡單"
+    },
+    {
+      "pair_id": 14,
+      "con": "con_004.wav",
+      "pro": "pro_009.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "那你個人的生活空間必定也就這麼簡單"
+    },
+    {
+      "pair_id": 14,
+      "con": "con_004.wav",
+      "pro": "pro_009.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "那你個人的生活空間必定也就這麼簡單"
+    },
+    {
+      "pair_id": 14,
+      "con": "con_004.wav",
+      "pro": "pro_009.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "那你個人的生活空間必定也就這麼簡單"
+    },
+    {
+      "pair_id": 14,
+      "con": "con_004.wav",
+      "pro": "pro_009.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "是不落心意的",
+      "sep2_text": "那你個人的生活空間必定也就這麼簡單"
+    },
+    {
+      "pair_id": 15,
+      "con": "con_005.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少液",
+      "sep2_text": "你方是要那它是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 15,
+      "con": "con_005.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少液",
+      "sep2_text": "你方是要那它是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 15,
+      "con": "con_005.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少液",
+      "sep2_text": "你方是要那它是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 15,
+      "con": "con_005.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少衣",
+      "sep2_text": "你方是要,那它是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 15,
+      "con": "con_005.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少液",
+      "sep2_text": "你方是要那他是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 15,
+      "con": "con_005.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少衣",
+      "sep2_text": "你方是要那它是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 15,
+      "con": "con_005.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少液",
+      "sep2_text": "你方是要那他是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 15,
+      "con": "con_005.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少液",
+      "sep2_text": "你方是要那他是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 15,
+      "con": "con_005.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少衣",
+      "sep2_text": "你方是要,那它是怎么环节我们的空区的"
+    },
+    {
+      "pair_id": 15,
+      "con": "con_005.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少液",
+      "sep2_text": "你方是要那他是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 15,
+      "con": "con_005.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少衣",
+      "sep2_text": "你方是要那他是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 15,
+      "con": "con_005.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少衣",
+      "sep2_text": "你方是要那他是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 15,
+      "con": "con_005.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少衣",
+      "sep2_text": "你方是要那他是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 15,
+      "con": "con_005.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少衣",
+      "sep2_text": "你方是要,那它是怎么环节我们的空虚的"
+    },
+    {
+      "pair_id": 15,
+      "con": "con_005.wav",
+      "pro": "pro_001.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "都觉得晚睡完洗少衣",
+      "sep2_text": "你方是要那他是怎么环节我们的空区的"
+    },
+    {
+      "pair_id": 16,
+      "con": "con_006.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你下班的時間必定也晚"
+    },
+    {
+      "pair_id": 16,
+      "con": "con_006.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你下班的時間必定也晚"
+    },
+    {
+      "pair_id": 16,
+      "con": "con_006.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你下半的时间必定也晚"
+    },
+    {
+      "pair_id": 16,
+      "con": "con_006.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你下班的時間必定也晚"
+    },
+    {
+      "pair_id": 16,
+      "con": "con_006.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你下半的时间必定也晚"
+    },
+    {
+      "pair_id": 16,
+      "con": "con_006.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你下班的時間必定也晚"
+    },
+    {
+      "pair_id": 16,
+      "con": "con_006.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你下班的時間必定也晚"
+    },
+    {
+      "pair_id": 16,
+      "con": "con_006.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你下半的时间必定也晚"
+    },
+    {
+      "pair_id": 16,
+      "con": "con_006.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你下班的時間必定也晚"
+    },
+    {
+      "pair_id": 16,
+      "con": "con_006.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你下班的時間必定也晚"
+    },
+    {
+      "pair_id": 16,
+      "con": "con_006.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你下半的时间必定也晚"
+    },
+    {
+      "pair_id": 16,
+      "con": "con_006.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你下半的时间必定也晚"
+    },
+    {
+      "pair_id": 16,
+      "con": "con_006.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你下班的時間必定也晚"
+    },
+    {
+      "pair_id": 16,
+      "con": "con_006.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "把揮早起也算不贏了",
+      "sep2_text": "你下半的时间必定也网"
+    },
+    {
+      "pair_id": 16,
+      "con": "con_006.wav",
+      "pro": "pro_008.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "把揮早起也睡不夜了",
+      "sep2_text": "你下半的時間必定也晚"
+    },
+    {
+      "pair_id": 17,
+      "con": "con_007.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我说的两个小事"
+    },
+    {
+      "pair_id": 17,
+      "con": "con_007.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我说的两个小事"
+    },
+    {
+      "pair_id": 17,
+      "con": "con_007.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 17,
+      "con": "con_007.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 17,
+      "con": "con_007.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 17,
+      "con": "con_007.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 17,
+      "con": "con_007.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 17,
+      "con": "con_007.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 17,
+      "con": "con_007.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 17,
+      "con": "con_007.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 17,
+      "con": "con_007.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 17,
+      "con": "con_007.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 17,
+      "con": "con_007.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我说的两个小时"
+    },
+    {
+      "pair_id": 17,
+      "con": "con_007.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我说的两个小事啊"
+    },
+    {
+      "pair_id": 17,
+      "con": "con_007.wav",
+      "pro": "pro_015.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "因为你可以找睡早期",
+      "sep2_text": "我说的两个小时啊"
+    },
+    {
+      "pair_id": 18,
+      "con": "con_008.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了身體見的朋友",
+      "sep2_text": "你上班的時間必定也往"
+    },
+    {
+      "pair_id": 18,
+      "con": "con_008.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了身體見的朋友",
+      "sep2_text": "你上班的時間必定也往"
+    },
+    {
+      "pair_id": 18,
+      "con": "con_008.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了身體見的朋友",
+      "sep2_text": "你上班的時間必定也往"
+    },
+    {
+      "pair_id": 18,
+      "con": "con_008.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了身體見的朋友",
+      "sep2_text": "你上班的時間必定也往"
+    },
+    {
+      "pair_id": 18,
+      "con": "con_008.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了身體見的朋友",
+      "sep2_text": "你上班的时间必定也网"
+    },
+    {
+      "pair_id": 18,
+      "con": "con_008.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了身體見的朋友",
+      "sep2_text": "你上班的時間必定也往"
+    },
+    {
+      "pair_id": 18,
+      "con": "con_008.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了生體界的同學",
+      "sep2_text": "你上班的时间必定也网"
+    },
+    {
+      "pair_id": 18,
+      "con": "con_008.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了身體見的朋友",
+      "sep2_text": "你上班的时间必定也网"
+    },
+    {
+      "pair_id": 18,
+      "con": "con_008.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了生體界的同學",
+      "sep2_text": "你上班的时间必定也网"
+    },
+    {
+      "pair_id": 18,
+      "con": "con_008.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了生體界的同學",
+      "sep2_text": "你上班的时间必定也网"
+    },
+    {
+      "pair_id": 18,
+      "con": "con_008.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了生體界的同學",
+      "sep2_text": "你上班的時間必定也往"
+    },
+    {
+      "pair_id": 18,
+      "con": "con_008.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了生體界的同學",
+      "sep2_text": "你上班的時間必定也往"
+    },
+    {
+      "pair_id": 18,
+      "con": "con_008.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了生體界的同學",
+      "sep2_text": "你上班的时间必定也网"
+    },
+    {
+      "pair_id": 18,
+      "con": "con_008.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了生體界的同學",
+      "sep2_text": "你上班的時間必定也往"
+    },
+    {
+      "pair_id": 18,
+      "con": "con_008.wav",
+      "pro": "pro_007.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "你願你可以為了生體界的同學",
+      "sep2_text": "你上班的時間必定也往"
+    },
+    {
+      "pair_id": 19,
+      "con": "con_009.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.0,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "至长时间是你知的没错吧"
+    },
+    {
+      "pair_id": 19,
+      "con": "con_009.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.05,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "市场时间是一致的没错吧"
+    },
+    {
+      "pair_id": 19,
+      "con": "con_009.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.1,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "至常是一致的没错吧"
+    },
+    {
+      "pair_id": 19,
+      "con": "con_009.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.15,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "市场时间是一致的没错吧"
+    },
+    {
+      "pair_id": 19,
+      "con": "con_009.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.2,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "至常是一致的没错吧"
+    },
+    {
+      "pair_id": 19,
+      "con": "con_009.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.25,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "至常是一致的没错爸爸"
+    },
+    {
+      "pair_id": 19,
+      "con": "con_009.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.3,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "至常是一致的没错吧"
+    },
+    {
+      "pair_id": 19,
+      "con": "con_009.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.35,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "至常是监视你知得没错吧吧"
+    },
+    {
+      "pair_id": 19,
+      "con": "con_009.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.4,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "至常是一致的没错吧"
+    },
+    {
+      "pair_id": 19,
+      "con": "con_009.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.45,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "至常时间是你知得没错吧吧"
+    },
+    {
+      "pair_id": 19,
+      "con": "con_009.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.5,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "至常是一致的没错吧"
+    },
+    {
+      "pair_id": 19,
+      "con": "con_009.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.6,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "市場時間是一致的沒錯吧"
+    },
+    {
+      "pair_id": 19,
+      "con": "con_009.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.7,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "市場時間是你製的沒錯吧"
+    },
+    {
+      "pair_id": 19,
+      "con": "con_009.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.8,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "市場時間是你製的沒錯吧吧"
+    },
+    {
+      "pair_id": 19,
+      "con": "con_009.wav",
+      "pro": "pro_014.wav",
+      "overlap_ratio": 0.9,
+      "config": "greedy",
+      "sep1_text": "咬水满水",
+      "sep2_text": "至常是一致的没错爸爸"
+    }
+  ]
+}
