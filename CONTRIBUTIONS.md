@@ -9,7 +9,7 @@ migration.
 
 **Role:** Frontier research lead; overlap-hallucination mechanism investigator; ASR×LLM×emotion axis explorer; research-entropy meta-analyst; engineering harness architect.
 
-**Scope summary:** ~85 merged PRs (#780–#872, #886–#894, #898–#900, #905–#907, #911–#913, #917–#919, #923–#925, #929–#931, #935–#937, #946–#951, #956–#957, #959–#963), 70+ issues, 70+ new modules, 65+ frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled `experimental/frontier` or `external/sanity-check`; no gold tables or verified references touched.
+**Scope summary:** ~90 merged PRs (#780–#872, #886–#894, #898–#900, #905–#907, #911–#913, #917–#919, #923–#925, #929–#931, #935–#937, #946–#951, #956–#957, #959–#968), 70+ issues, 75+ new modules, 70+ frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled `experimental/frontier` or `external/sanity-check`; no gold tables or verified references touched.
 
 ---
 
@@ -878,6 +878,146 @@ RQ25 (PR #929) showed the corrected router's lang-id entropy threshold is bimoda
 - `results/frontier/bootstrap_threshold_stability/bootstrap_threshold_results.csv/json` — per-bootstrap table (10,000 rows) + full summary with `per_bootstrap` arrays
 - `tests/test_bootstrap_threshold.py` — 38 tests (all passing) pinning `bootstrap_indices`, `calibrate_threshold_at_spec`, `percentile_interval`, `out_of_bag_cpwer`, detector primitives, and in-sample reproduction of RQ25's 0.38 threshold
 - numpy + stdlib only (no scipy / sklearn / Whisper / meeteval); runtime ≈ 13 s
+
+All findings labeled `experimental/frontier`. No gold tables or verified references touched.
+
+---
+
+#### Multi-meeting threshold stability — does the 6-modality resolve with more data?
+
+RQ44's 6-modal threshold distribution at n=77 left open whether the modality is a small-sample artefact or a structural property. RQ45 simulates multi-meeting calibration by bootstrap-aggregating across n=77→1232 windows (2×, 4×, 8×, 16× pooling of the single AISHELL-4 meeting) and tracking the threshold distribution's modality and percentile-interval width.
+
+| PR | Study | RQ | Outcome | Evidence |
+|---|---|---|---|---|
+| #964 | **Multi-meeting threshold stability (RQ45)** | Does the 6-modality resolve with more data? | ✅ **H45a SUPPORTED** (modality converges 5→2→2→1→1 across n=77→1232; at n=616 the distribution is unimodal at 0.38). ❌ **H45b KILLED** (2.5/97.5 width 0.49 > 0.20 at n=616 — a rare 0.87 "bad" mode persists above the 2.5% tail bar). ✅ **H45c SUPPORTED** but not meaningful (median OOB cpWER 1.000, but only 45/2000 resamples had non-empty OOB at n=616 — the OOB signal vanishes as pooling grows). | `results/frontier/multi_meeting_threshold/` |
+
+**Design choices and justification:**
+
+- **Why simulate multi-meeting by pooling?** AISHELL-4 provides one meeting (M_R003S02C01, 77 windows). True multi-meeting calibration would require additional meetings, which are not in the corpus. Pooling with replacement is the strongest available proxy: it tests whether the modality is a property of n=77 or of the underlying window distribution.
+- **Why does mode-count convergence precede width convergence?** The 0.87 mode corresponds to resamples where the calibration rule's tie-breaker picks a high-specificity operating point. As n grows the rule's output stabilises on 0.38 (mode convergence), but the 0.87 mode remains reachable in ≥2.5% of resamples because it is a deterministic function of which windows land in the resample. Width convergence requires the 0.87 mode to drop below 2.5%, which needs more data than mode convergence.
+
+**Honest limitations:**
+
+- Pooling one meeting 16× is not the same as 16 independent meetings. The convergence pattern is a lower bound on the multi-meeting sample size needed; true multi-meeting calibration may converge faster (independent meetings) or slower (correlated meetings).
+- The OOB signal vanishes at large n because pooled resamples cover nearly all windows — at n=616 the expected OOB size is 2.27 windows. H45c is therefore not a meaningful test of generalisation at large n; it is reported for completeness.
+
+**New modules and artifacts:**
+
+- `results/frontier/multi_meeting_threshold/multi_meeting_threshold.py` — pooled-bootstrap with modality and width tracking across 5 sample sizes
+- `results/frontier/multi_meeting_threshold/multi_meeting_threshold_results.json` — per-sample-size summary with mode counts, widths, OOB cpWER
+- `tests/test_multi_meeting_threshold.py` — 56 tests pinning pooling, modality convergence, width convergence, OOB vanishing
+- numpy + stdlib only; runtime ≈ 90 s
+
+---
+
+#### Bootstrap Pareto frontier — is the RQ43 cascade operating point robust?
+
+RQ43 (PR #959) identified a 3-tier cascade (tiny→KL→base) at KL=3.30 as the operating point, but did not quantify the operating point's robustness across bootstrap resamples. RQ46 builds a 16-point Pareto frontier (KL thresholds 2.0–5.0) with BCa CIs on cpWER, compute, and dominance fraction across B=10,000 resamples.
+
+| PR | Study | RQ | Outcome | Evidence |
+|---|---|---|---|---|
+| #966 | **Bootstrap Pareto frontier (RQ46)** | Is the RQ43 operating point robust? | ❌ **H46a KILLED** (5 killer points at KL≥4.0 — low-escalation tail cpWER CI crosses baseline 1.5909). ✅ **H46b SUPPORTED** (compute CI < 1.93× at all 14 points — compute bound holds across the frontier). ❌ **H46c KILLED** (4 killer points at KL≥4.5 — cpWER dominance <95%). ✅ **RQ43 operating point robust** (KL=3.30: cpWER CI [0.7674, 1.0163] entirely below baseline, 100% dominance). | `results/frontier/bootstrap_pareto/` |
+
+**Design choices and justification:**
+
+- **Why a 16-point frontier?** RQ43 reported a single operating point. A bootstrap frontier tests whether nearby operating points are statistically distinguishable from RQ43's, or whether the choice of KL=3.30 is fragile. 16 points across KL=2.0–5.0 covers the practical range (below 2.0 the cascade escalates everything to base; above 5.0 it escalates nothing).
+- **Why three kill criteria?** A robust operating point must (a) beat the baseline within its CI, (b) stay within the compute budget, and (c) dominate the baseline in the majority of resamples. H46a–c test these three robustness properties separately. RQ43's KL=3.30 satisfies all three; the low-escalation tail (KL≥4.0) fails (a) and (c) — these are the points where the KL gate lets too many hallucinations through to base, inflating cpWER.
+
+**Honest limitations:**
+
+- The frontier is over a single meeting's 77 windows. The 5 killer points at KL≥4.0 are a property of this meeting's hallucination distribution; a different meeting might shift the killer region.
+- Compute is measured in relative Whisper-base units (tiny=0.125×, base=1.0×). Real-world compute includes fixed costs (model loading, batching) not captured here; the 1.93× budget is a compute-only proxy.
+
+**New modules and artifacts:**
+
+- `results/frontier/bootstrap_pareto/bootstrap_pareto_analysis.py` — 16-point Pareto with BCa CIs on cpWER, compute, dominance
+- `results/frontier/bootstrap_pareto/bootstrap_pareto_results.csv/json` — per-KL-threshold table (16 rows) with CIs and killer flags
+- `tests/test_bootstrap_pareto.py` — 50 tests pinning frontier construction, BCa CI, dominance, killer detection
+- numpy + stdlib only; runtime ≈ 45 s
+
+---
+
+#### Tied-cpWER window characterisation — what are the no-op windows?
+
+RQ44's OOB cpWER distribution was bimodal because 5 over-flagged clean windows had `mixed_cpwer == separated_cpwer == 1.0` (tied cpWER). RQ47 characterises the full set of tied windows operationally: `abs(always_mixed_cpwer - always_separated_cpwer) < 1e-6`.
+
+| PR | Study | RQ | Outcome | Evidence |
+|---|---|---|---|---|
+| #967 | **Tied-cpWER window characterisation (RQ47)** | What are the no-op windows? | ✅ **H47a SUPPORTED** (tied windows have fewer active speakers, Mann-Whitney p=6.0e-06, r=-0.578). ❌ **H47b KILLED** (overlap ratio not significant, p=0.074). ✅ **H47c SUPPORTED** (metadata-only LOO-CV AUC=0.873 > 0.70). | `results/frontier/tied_cpwer_characterisation/` |
+
+**Key finding:** The operational definition yields **35 tied windows**, not the 5 mentioned in RQ44's analysis. The 5 were the over-flagged clean windows in RQ44's specific bad-threshold resamples; the full tied set is 35. The discrepancy is documented transparently in the analysis module, test module, and FINDINGS.md.
+
+**Design choices and justification:**
+
+- **Why metadata-only classification?** Tied windows are no-ops for the router (mixed and separated give identical cpWER). If they can be identified from meeting metadata (speaker count, overlap ratio, lang-id entropy) without running ASR, the router can skip them entirely, saving compute. H47c tests whether metadata is sufficient.
+- **Why is lang_id_entropy the strongest discriminator?** Tied windows are silence/single-speaker windows where neither mixed nor separated ASR has anything to separate. Low lang-id entropy (monoscript Han) is the signature of clean single-speaker Chinese — the corrected router's detector already concentrates its decisions on the actionable (non-tied) windows. This is a validation of the detector's design, not a new signal.
+
+**Honest limitations:**
+
+- The 35 tied windows are a property of this meeting's window composition. A meeting with more overlap would have fewer tied windows; a meeting with more silence would have more. The 45.5% tied fraction is not a population estimate.
+- H47c's AUC=0.873 is in-sample LOO-CV. The metadata features (active speaker count, overlap ratio, lang-id entropy) are all computed from the ASR output, so this is not a pre-ASR classifier — it is a characterisation of which windows the router can safely skip post-ASR.
+
+**New modules and artifacts:**
+
+- `results/frontier/tied_cpwer_characterisation/tied_cpwer_analysis.py` — tied-window identification, statistical characterisation, metadata-only LOO-CV
+- `results/frontier/tied_cpwer_characterisation/tied_cpwer_results.json` — per-window tied flag, metadata features, LOO-CV metrics
+- `tests/test_tied_cpwer.py` — 56 tests pinning tied identification (35 windows), Mann-Whitney, LOO-CV AUC
+- numpy + stdlib only; runtime ≈ 8 s
+
+---
+
+#### Calibration rule comparison — can a different rule reduce the 6-modality?
+
+RQ44's 6-modal threshold distribution was produced by the "max sensitivity at ≥90% specificity" rule. RQ48 compares three alternative calibration rules — Youden's J, F1 maximisation, and cost-aware (asymmetric cost of cpWER>1.10) — on the same bootstrap framework.
+
+| PR | Study | RQ | Outcome | Evidence |
+|---|---|---|---|---|
+| #965 | **Calibration rule comparison (RQ48)** | Can a different rule reduce the 6-modality? | ✅ **H48a SUPPORTED** (Youden's J: 3 modes vs 6). ✅ **H48b SUPPORTED** (F1: 2 modes vs 6). ❌ **H48c KILLED** (cost-aware: 2 modes but OOB cpWER 1.063 > 1.056 — over-fits to the cost function). | `results/frontier/calibration_rule_comparison/` |
+
+**Design choices and justification:**
+
+- **Why these three rules?** Youden's J (maximises TPR−FPR) is the standard non-parametric rule. F1 (maximises harmonic mean of precision and recall) is the standard imbalanced-data rule. Cost-aware (minimises expected cpWER with asymmetric cost for >1.10) is the deployment-driven rule. Together they span the three common calibration philosophies.
+- **Why does cost-aware over-fit?** The cost function encodes the 1.10 kill threshold, which is derived from this meeting's cpWER distribution. The cost-aware rule collapses the width to 0.32 (vs 0.94 for the original rule) by concentrating thresholds at 0.33–0.38, but the OOB cpWER at 1.063 is worse than RQ44's 1.056 — the rule has learned the in-bag cost structure at the expense of out-of-bag generalisation. This is the classic over-fitting pattern: a more aggressive rule on in-sample data does not generalise.
+
+**Honest limitations:**
+
+- All four rules (original + 3 alternatives) are calibrated on the same 77 windows. The modality comparison is therefore a property of this meeting's window composition, not a population-level claim about the rules.
+- The deployable recommendation (use 0.38) is unchanged across all four rules — the median threshold is robust to the calibration rule. The 6-modality is a property of the calibration rule's sensitivity to resample composition, not of the rule itself.
+
+**New modules and artifacts:**
+
+- `results/frontier/calibration_rule_comparison/calibration_rule_analysis.py` — 4-rule comparison with bootstrap modality, width, OOB cpWER
+- `results/frontier/calibration_rule_comparison/calibration_rule_results.json` — per-rule summary with mode counts, widths, OOB cpWER
+- `tests/test_calibration_rule.py` — 42 tests pinning all 4 rules' calibration, modality, width, OOB cpWER
+- numpy + stdlib only; runtime ≈ 60 s
+
+---
+
+#### Speaker-count stratified threshold — does stratification reduce modality?
+
+RQ38 (PR #948) showed hallucination rate is monotone in speaker count (ρ=+0.611). RQ49 tests whether stratifying the threshold calibration by speaker count (≤2 vs >2) reduces the 6-modality found in RQ44.
+
+| PR | Study | RQ | Outcome | Evidence |
+|---|---|---|---|---|
+| #968 | **Speaker-count stratified threshold (RQ49)** | Does stratification reduce modality? | ❌ **H49a KILLED** (≤2-speaker stratum has 4 modes — Mode S's home stratum retains the modality). ✅ **H49b SUPPORTED** degenerate (>2-speaker bimodal but small-sample artifact, n=31). ✅ **H49c technically SUPPORTED** but substantively a tie (combined OOB cpWER 1.0556 = RQ44's 1.0556, no improvement). | `results/frontier/stratified_threshold/` |
+
+**Design choices and justification:**
+
+- **Why ≤2 vs >2 stratification?** RQ38 showed Mode S only occurs with ≤2 speakers. If the 6-modality is driven by Mode S windows, stratifying them out should reduce the >2-speaker stratum to unimodality. H49a tests this directly.
+- **Why does H49a fail?** The ≤2-speaker stratum (n=46) contains both Mode S windows AND the high-entropy clean windows that produce the 0.87 and 0.95 modes. Stratifying by speaker count does not isolate Mode S — it concentrates the modality-producing windows into a smaller stratum, where the modality is more pronounced (4 modes, not fewer). The 6-modality is a property of the calibration rule's interaction with the window distribution, not of the speaker count.
+- **Why is H49c a tie?** The combined OOB cpWER (1.0556) matches RQ44's pooled value exactly because the stratified thresholds route the same windows to the same routes — the stratification changes which threshold is applied to which window, but the routing decisions are unchanged. Stratification is not an effective lever.
+
+**Honest limitations:**
+
+- The >2-speaker stratum (n=31) is too small for stable calibration — H49b's bimodality is a small-sample artifact, not a property of the stratum.
+- Only speaker count is tested as a stratification variable. Other stratification variables (overlap ratio, lang-id entropy band) might be more effective, but RQ47's findings suggest lang-id entropy is already the strongest discriminator and the corrected router already concentrates decisions on actionable windows.
+
+**New modules and artifacts:**
+
+- `results/frontier/stratified_threshold/stratified_threshold_analysis.py` — speaker-count stratified bootstrap with modality, width, OOB cpWER
+- `results/frontier/stratified_threshold/stratified_threshold_results.json` — per-stratum summary with mode counts, widths, OOB cpWER
+- `tests/test_stratified_threshold.py` — 51 tests pinning stratification, modality, width, OOB cpWER
+- numpy + stdlib only; runtime ≈ 30 s
 
 All findings labeled `experimental/frontier`. No gold tables or verified references touched.
 
