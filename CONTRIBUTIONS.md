@@ -9,7 +9,7 @@ migration.
 
 **Role:** Frontier research lead; overlap-hallucination mechanism investigator; ASR×LLM×emotion axis explorer; research-entropy meta-analyst; engineering harness architect.
 
-**Scope summary:** ~76 merged PRs (#780–#872, #886–#894, #898–#900, #905–#907, #911–#913, #917–#919, #923–#925, #929–#931, #935–#937, #946–#947), 70+ issues, 70+ new modules, 60+ frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled `experimental/frontier` or `external/sanity-check`; no gold tables or verified references touched.
+**Scope summary:** ~81 merged PRs (#780–#872, #886–#894, #898–#900, #905–#907, #911–#913, #917–#919, #923–#925, #929–#931, #935–#937, #946–#951, #956), 70+ issues, 70+ new modules, 60+ frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled `experimental/frontier` or `external/sanity-check`; no gold tables or verified references touched.
 
 ---
 
@@ -623,6 +623,69 @@ Two follow-ups attacking the Mode S residual from different angles: can runtime/
 - `tests/test_metadata_mode_s_detector.py` (71 tests), `tests/test_per_speaker_decomposition.py` (48 tests)
 
 All findings labeled `experimental/frontier`. No gold tables or verified references touched.
+
+#### Char-level cpWER re-validation, failure-mode inversion, and speaker-count effect
+
+Three studies that re-examined the project's central claims after RQ30 discovered the word-level cpWER tokenisation error (whole Chinese strings as single tokens, inflating the separation tax ~80x). RQ31 re-runs the corrected router at char-level; RQ35 characterises which windows are worst at char-level; RQ38 tests whether speaker count predicts hallucination rate.
+
+| PR | Study | RQ | Outcome | Evidence |
+|---|---|---|---|---|
+| #950 | **Char-level cpWER re-validation (RQ31)** | Does RQ16's corrected router (lang-id entropy, 86.2% recovery) survive char-level cpWER? | ⚠️ **H31a SUPPORTED (pointwise, CI borderline)**: corrected 0.9061 vs mixed 0.9106, Δ=−0.0045 — 29x smaller than word-level (−0.130). ❌ **H31b KILLED**: recovery collapses 86.2%→13.3% (CI [−47.5%, +52.1%]). ❌ **H31c KILLED**: Mode S share 0.0% (was ~100% at word level). Separation tax shrinks 79.5x (0.418→0.005). Mode S was a tokenisation artefact: 2 errors against 1 token = cpWER 2.0, but against 50 characters = 0.04. | `results/frontier/char_level_cpwer_revalidation/` |
+| #949 | **Char-level failure modes (RQ35)** | Which windows are worst at char-level, and does Mode S survive? | ✅ **H35a SUPPORTED**: top-10 worst windows have low overlap (1/10 above mean). ✅ **H35b SUPPORTED**: substitutions dominate over insertions at char-level (opposite of word-level), but deletions are the largest error type. ❌ **H35c NOT SUPPORTED**: Mode S flips to non-failure at char-level. **HEADLINE INVERSION**: RQ12's "100% hallucination-driven" router failure decomposition inverts to 80.5% wrong-route-nonhalluc at char-level — the routing error, not hallucination, is the dominant failure. | `results/frontier/char_level_failure_modes/` |
+| #948 | **Speaker count effect (RQ38)** | Does more speakers = more hallucination? | ✅ **H38a SUPPORTED**: hallucination rate is monotone in speaker count (ρ=+0.611: 1 speaker 0%, 2 speakers 34.5%, 3 speakers 65%, 4+ speakers 93.3%). ✅ **H38b SUPPORTED**: Mode S only occurs with ≤2 active speakers. ❌ **H38c NOT SUPPORTED**: transcript silence proxy doesn't mediate the relationship (ρ=+0.538 partial) — measurement limitation, not refutation. | `results/frontier/speaker_count_effect/` |
+
+**Design choices and justification:**
+
+- **Why char-level re-validation (RQ31)?** RQ30 showed the project's word-level cpWER (1 token per speaker) inflates the separation tax ~80x and scrambles per-window ordering. RQ31 re-runs RQ16's corrected router with the standard Chinese cpCER convention (`' '.join(list(text))`, each character = 1 token). The lang-id entropy threshold (0.409 bits) is lifted verbatim from RQ13/RQ16 — no re-calibration — to test whether the *word-level conclusions* survive at char-level. They do not. The recovery collapses because the mixed→oracle gap shrinks from 0.156 (word) to 0.034 (char), and the detector's threshold (calibrated on the inflated tax) overroutes to mixed (22 windows where separated was the char-level oracle).
+- **Why failure-mode inversion (RQ35)?** RQ12 decomposed router v2's AISHELL-4 regret as "100% hallucination-driven". RQ35 re-does this decomposition at char-level. The inversion (100% hallucination → 80.5% wrong-route-nonhalluc) is arithmetically simple: at char-level, the diverse-hallucination penalty shrinks (the tax is 80x smaller), so routing errors dominate. This doesn't refute RQ12 — it shows RQ12's conclusion was granularity-dependent.
+- **Why speaker count (RQ38)?** The project had not tested whether hallucination rate scales with speaker count. The monotone relationship (ρ=+0.611) is a new empirical finding with a clear mechanism: more speakers = more overlap = more separation opportunities = more hallucination chances. Mode S's restriction to ≤2 speakers is consistent with its mechanism (near-duplicate of mixed, which requires minimal speaker diversity to produce coherent text).
+
+**Honest limitations:**
+
+- RQ31's H31a is pointwise (corrected < mixed) but the bootstrap CI touches zero (upper bound +0.012). The corrected router still helps, but barely, and the 29x-smaller margin means the practical value is near-zero at char-level. The threshold was not re-calibrated — a char-level-calibrated threshold might recover more, but that would be a different study.
+- RQ35's inversion is specific to this 1 meeting (77 windows). The 80.5% wrong-route figure should be read as indicative. The key qualitative finding (hallucination dominates at word-level, routing errors dominate at char-level) is arithmetically forced by the 80x tax inflation, so it should hold generally.
+- RQ38's speaker count is computed from the separated transcript's active speakers (not ground-truth speaker count). The silence proxy (H38c) doesn't mediate because transcript-based silence is a noisy proxy for actual silence. A real mediation test would need audio-level silence detection.
+
+**New modules and artifacts:**
+
+- `results/frontier/char_level_cpwer_revalidation/char_level_revalidation_analysis.py` — char-level cpWER re-run, bootstrap CIs, Mode S residual analysis, word-vs-char comparison
+- `results/frontier/char_level_failure_modes/char_level_failure_modes_analysis.py` — char-level error decomposition, top-10 worst windows, Mode S flip verification
+- `results/frontier/speaker_count_effect/speaker_count_effect_analysis.py` — speaker count vs hallucination rate, Mode S speaker-count restriction, mediation analysis
+- `tests/test_char_level_revalidation.py` (41 tests), `tests/test_char_level_failure_modes.py` (43 tests), `tests/test_speaker_count_effect.py` (51 tests)
+
+All findings labeled `experimental/frontier`. No gold tables or verified references touched.
+
+#### LLM semantic critic and LLM emotion reading — two negative results on LLM-based hallucination detection
+
+Two studies testing whether a local LLM (deepseek-r1:7b via ollama) can detect hallucinated ASR transcripts. RQ34 tests semantic criticism (is this text hallucinated?) and a character n-gram KL fallback. RQ36 tests emotion-reading meta-cognition (is the LLM less confident on hallucinated transcripts?).
+
+| PR | Study | RQ | Outcome | Evidence |
+|---|---|---|---|---|
+| #951 | **LLM semantic critic for Mode S (RQ34)** | Can deepseek-r1:7b detect Mode S by semantic analysis? | ❌ **H34a/b/c all NOT SUPPORTED**: LLM has 52.5% FP rate on clean tracks → threshold = +inf at 90% specificity → 0% Mode S sensitivity. Catches window 30 (repetitive) but misses window 22 (coherent Chinese). ✅ **n-gram KL divergence SUCCEEDS**: 100% Mode S sensitivity at 90% specificity — first detector to catch Mode S. Non-halluc KL [0.00, 3.30] vs halluc KL [14.84, 18.93]. Mode S's near-duplicate-with-substitutions creates a distributional anomaly invisible to semantic analysis. | `results/frontier/llm_semantic_critic/` |
+| #956 | **LLM emotion reading from hallucinated transcripts (RQ36)** | Does the LLM's emotion-reading confidence/reliability signal hallucination? | ❌ **H36a NOT SUPPORTED**: F=0.78, confidence variance on hallucinated (0.036) is *lower* than clean (0.046). ❌ **H36b NOT SUPPORTED**: AUC(reliable)=0.502 (random chance), 15/40 clean tracks flagged unreliable (37.5% FP). ✅ **H36c SUPPORTED**: Mode S confidence within 1 SD of clean mean. **Anti-informative pattern**: LLM overcautious on clean, confident on Mode S (both flagged reliable). Cross-dataset gold confirms: F=0.97, AUC=0.668. | `results/frontier/llm_emotion_hallucination/` |
+
+**Design choices and justification:**
+
+- **Why semantic critic (RQ34)?** RQ19–RQ28 showed no surface-feature or content-similarity detector can catch Mode S at 90% specificity. The LLM semantic critic tests a fundamentally different signal surface: does the text *make sense* as meeting speech? The prompt asks deepseek-r1:7b to evaluate semantic coherence, repetitiveness, and character patterns. The n-gram KL fallback tests whether Mode S has a *distributional* anomaly (unusual character 3-gram combinations) even without a semantic one. The n-gram KL's success is the first positive detection result for Mode S after 10 negative studies.
+- **Why emotion reading (RQ36)?** A different LLM angle: instead of asking "is this hallucinated?", ask the LLM to read emotion and observe its *meta-cognition* (confidence + reliability). If the LLM is less confident on hallucinated transcripts, its meta-cognition could be a reference-free signal. The hypothesis fails because Mode S produces semantically coherent text — the LLM reads it as confidently as clean speech. The anti-informative error pattern (overcautious on clean, confident on hallucination) is the worst possible outcome for a safety signal.
+- **Why deepseek-r1:7b?** Available locally via ollama, no API costs, reproducible. The 7b model is the smallest that produces structured JSON output reliably. RQ41 will test a multi-call ensemble at varying temperatures.
+
+**Honest limitations:**
+
+- RQ34's n-gram KL is calibrated in-sample on 40 non-hallucinated AISHELL-4 tracks. Out-of-sample transfer is untested (single meeting). The 4 false positives are all 2-character short-text tracks (windows 15, 24, 66, 67) — a length confound. A minimum-length filter would likely help but was not applied to keep the analysis conservative.
+- RQ34's LLM false-positive rate (52.5%) is specific to deepseek-r1:7b with this prompt. A different model or prompt might reduce FPs. However, the fundamental limitation (missing window 22's coherent Mode S text) is unlikely to be fixed by prompt engineering — the text genuinely reads as meeting speech.
+- RQ36's emotion prompt is not a detection prompt. A detection-oriented prompt might produce different `reliable` judgments. However, RQ34 already tested a detection prompt and found 52.5% FP — the emotion prompt's 37.5% FP is better but still non-deployable.
+- Both studies use n=2 Mode S tracks. The n-gram KL's 100% and the LLM's 0% should be read as "both Mode S windows scored above/below threshold", not as precise estimates.
+
+**New modules and artifacts:**
+
+- `src/llm_semantic_critic.py` — LLM prompt construction, deepseek-r1 response parsing (`<think>` stripping, JSON extraction, regex fallback), char 3-gram KL divergence, calibration at 90% specificity
+- `src/llm_emotion_hallucination.py` — emotion-reading prompt, LLM response parsing, F-test, Mann-Whitney AUC, Mode-S-within-1-SD, transcript-hash cache mechanism
+- `results/frontier/llm_semantic_critic/llm_semantic_critic_analysis.py` — driver with LLM + n-gram KL fallback, bootstrap CIs
+- `results/frontier/llm_emotion_hallucination/llm_emotion_hallucination_analysis.py` — driver with ollama + cache, cross-dataset validation
+- `tests/test_llm_semantic_critic.py` (77 tests), `tests/test_llm_emotion_hallucination.py` (36 tests)
+
+All findings labeled `experimental/frontier` (statistics) + `qualitative/demo` (LLM outputs). No gold tables or verified references touched.
 
 ---
 
