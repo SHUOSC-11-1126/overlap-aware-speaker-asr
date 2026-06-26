@@ -1,0 +1,5 @@
+rule,hypothesis,in_sample_threshold,in_sample_expected_cpwer,thr_median,thr_p2_5,thr_p97_5,thr_interval_width,thr_n_unique,thr_n_modes_5pct,oob_cpwer_median,oob_cpwer_mean,oob_cpwer_p2_5,oob_cpwer_p97_5,oob_frac_below_1_10,hypothesis_supported
+max_sens_at_90_spec,,0.38,1.04329,0.38,0.01,0.95,0.94,6,5,1.053922,1.068022,1.0,1.204332,0.763,
+youdens_j,H48a,0.38,1.04329,0.38,0.01,0.95,0.94,6,3,1.051104,1.060793,1.0,1.190476,0.81,yes
+f1,H48b,0.38,1.04329,0.38,0.01,0.95,0.94,6,2,1.051282,1.062112,1.0,1.198952,0.7905,yes
+cost_aware,H48c,0.33,1.04329,0.33,0.01,0.33,0.32,3,2,1.063218,1.071153,1.0,1.147454,0.636,no
