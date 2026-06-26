@@ -1,0 +1,956 @@
+{
+  "81d4e5cb08885077": {
+    "emotion": "sad",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 0.6,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "it's hard to understand, I'm skeptical about its accuracy as a reliable source.\n</think>\n\n```json\n{\n  \"emotion\": \"sad\",\n  \"arousal\": 2,\n  \"valence\": 3,\n  \"confidence\": 0.6,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "7a4c7717c71f7f8a": {
+    "emotion": "neutral",
+    "arousal": 4,
+    "valence": 4,
+    "confidence": 0.6,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "cators, I'll settle on valence as 4 (positive) and arousal around 3-4.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral/happy\",\n  \"arousal\": 4,\n  \"valence\": 4,\n  \"confidence\": 0.6,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "816d0a84879b812e": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 4,
+    "confidence": 0.8,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "于自信或不确定的感觉，所以confidence可能是0.8，比较可靠。最后，这个发言稿的内容清晰明确，没有明显错误，reliable可以标记为true。\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 4,\n  \"confidence\": 0.8,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "fc09d57b193ad2b0": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 0.6,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "egative leaning due to possible ambiguities, but not strongly sad or happy.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 3,\n  \"confidence\": 0.6,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "2afd44a8d9361596": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.95,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "slightly negative as there's a cautious optimism but no clear sadness or happiness. The speaker appears confident in their words (high confidence) and the transcript is reliable given its coherence.\n\n"
+  },
+  "93af4749c8344942": {
+    "emotion": "neutral",
+    "arousal": 4,
+    "valence": 5,
+    "confidence": 0.98,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "indicating a positive emotion. There are no negative elements or signs of distress.\n\n```json\n{\n  \"emotion\": \"positive\",\n  \"arousal\": 4,\n  \"valence\": 5,\n  \"confidence\": 0.98,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "d66d460b5133d382": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 4,
+    "confidence": 0.2,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "\n\n信心程度方面，考虑到信息不完整，很难判断其可靠性，只能打低一点，比如0.2。\n\n最后，关于可靠性的判断，由于内容缺失和句子结构混乱，可能不够可靠。\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 4,\n  \"confidence\": 0.2,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "f591bc0debf93bba": {
+    "emotion": "sad",
+    "arousal": 1,
+    "valence": 2,
+    "confidence": 0.8,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "结构不完整，但整体上是清晰的，所以判断是可靠的。\n\n综上所述，这位说话者的情绪应该是负面的，可能是愤怒或失望。考虑到具体情境中没有明显的愤怒词汇，更倾向于失望。\n</think>\n\n```json\n{\n  \"emotion\": \"sad\",\n  \"arousal\": 1,\n  \"valence\": 2,\n  \"confidence\": 0.8,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "1013635599ba4bf5": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.8,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "8，表示比较有信心。\n\n最后，关于可靠性，因为内容较为简短且没有明显的偏离主题，所以可以认为这个演讲稿还是比较可靠的，reliable设为true。\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 2.5,\n  \"confidence\": 0.8,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "4b366518b7b3107c": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 4,
+    "confidence": 0.8,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "上，演讲内容看起来像是会议记录的一部分，可能比较客观，没有明显的漏洞或错误，所以决定给予较高的信心值0.8。最后，考虑到信息没有明显矛盾，判断是可靠的。\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 4,\n  \"confidence\": 0.8,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "e998bb244acab7eb": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 0.2,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "on analysis.\n\nPutting it all together, I'll structure the JSON accordingly.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 3,\n  \"confidence\": 0.2,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "4997c4cf7a167a86": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.95,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "sed on their frustration, confusion, and impatience as described in the transcript. \n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 2,\n  \"confidence\": 0.95,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "1eeca0e5036fb53e": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 0.95,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": " expressing statements without strong emotional inclination. The context suggests they are discussing various topics casually and professionally, making the transcript reliable for emotion analysis.\n\n"
+  },
+  "b106df63a32b0ef2": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 3,
+    "confidence": 0.5,
+    "reliable": true,
+    "parsed_ok": false,
+    "_raw_preview": "对情况但是那个就是谁又的商品有一个是对你穿过了发展起球了我要找到这个起球的原因到底是发生来的你同意翻的牛肉 Yangiyang醋你可以翻的牛肉”这部分内容看起来像是在讨论工作中的困难，提到了“发展起球”，可能是指团队合作中的问题或障碍。\n\n然后，“我要找到这个起球的原因到底是发生来的你同意翻的牛肉 Yangiyang醋你可以翻的牛肉哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦\n\n"
+  },
+  "d1d0c709adfcf3bd": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.85,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "nter around frustration with some negative aspects and moderate arousal.\n</think>\n\n```json\n{\n  \"emotion\": \"frustrated\",\n  \"arousal\": 3,\n  \"valence\": 2,\n  \"confidence\": 0.85,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "c04560c2ecb6f6d3": {
+    "emotion": "sad",
+    "arousal": 3,
+    "valence": 1,
+    "confidence": 0.95,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "ker expresses a mix of sadness and mild surprise, indicating a negative emotional state.\n\n```json\n{\n  \"emotion\": \"sad\",\n  \"arousal\": 3,\n  \"valence\": 1,\n  \"confidence\": 0.95,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "e1976592d11d6c53": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 3,
+    "confidence": 0.85,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "seems to be a professional legal discussion without any emotional language or cues. \n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 3,\n  \"confidence\": 0.85,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "8663fb11768b16b3": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.6,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "sal, slightly positive valence, medium confidence, and moderate reliability.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 2,\n  \"confidence\": 0.6,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "f645b0d0674cd2d3": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 4,
+    "confidence": 0.95,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "oderate due to routine tasks, and confidence is high as they seem prepared.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 4,\n  \"confidence\": 0.95,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "c3346a174ade00b3": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 0.6,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": " additional information, it's only a partial view of their emotional state.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 3,\n  \"confidence\": 0.6,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "8b93b7b59ba91bb7": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 0.8,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "t also lacks obvious negative sentiments such as sadness or anger.\n\n**JSON Response:**\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 3,\n  \"confidence\": 0.8,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "f2106d54f0bafe8a": {
+    "emotion": "sad",
+    "arousal": 3,
+    "valence": 1,
+    "confidence": 0.8,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "r than an actual recorded talk, so I'm not entirely sure about its reliability.\n</think>\n\n```json\n{\n  \"emotion\": \"sad\",\n  \"arousal\": 3,\n  \"valence\": 1,\n  \"confidence\": 0.8,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "782fc66a3350e6b0": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.8,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "，没有明显的攻击性或极端情绪。所以可以认为这句话是比较可靠的，可靠值定为0.8。\n\n综合以上分析，这位说话者的情绪状态应该是中性的负面，稍微带点生气。\n</think>\n\n```json\n{\n  \"emotion\": \"negative\",\n  \"arousal\": 3,\n  \"valence\": 2,\n  \"confidence\": 0.8,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "9b7902d959f22238": {
+    "emotion": "angry",
+    "arousal": 4,
+    "valence": 1,
+    "confidence": 0.65,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "usion in the message, it's a bit unreliable, so maybe set reliable as false.\n</think>\n\n```json\n{\n  \"emotion\": \"angry\",\n  \"arousal\": 4,\n  \"valence\": 1,\n  \"confidence\": 0.65,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "3684d3fa75523ac8": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 4,
+    "confidence": 0.9,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "ere are reasons to doubt its source, I'd say it's reliable. So, set to true.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 4,\n  \"confidence\": 0.9,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "e155e20c9cd61e42": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 4,
+    "confidence": 0.8,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "明显的漏洞或错误，因此 reliability 设置为true。\n</think>\n\n```json\n{\n  \"emotion\": \"neutral/happy/angry/sad/surprised/fearful/disgusted\",\n  \"arousal\": 2,\n  \"valence\": 4,\n  \"confidence\": 0.8,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "b1f321192cbca02c": {
+    "emotion": "angry",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.6,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "ly miswritten excerpt, I'm less confident. So confidence might be around 0.6.\n</think>\n\n```json\n{\n  \"emotion\": \"angry\",\n  \"arousal\": 3,\n  \"valence\": 2,\n  \"confidence\": 0.6,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "b0275b0512b9da8c": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 3,
+    "confidence": 0.85,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "ence可以设为0.85左右。\n\n最后，是否可靠。由于内容是演讲的一部分，且技术性较强，作为会议记录，应该是可信的，所以reliable设为true。\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 3,\n  \"confidence\": 0.85,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "818b210a966049c2": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 4,
+    "confidence": 0.7,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "由于存在明显的拼写错误和语法问题，可能存在误解或情绪失真，所以 reliability 应该是false。\n\n最后，综合以上分析，确定情绪状态为中立。\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 4,\n  \"confidence\": 0.7,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "423cfc0b25eba7d7": {
+    "emotion": "sad",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.5,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": " indicates a moderate sadness due to personal struggles expressed alongside encouragement for others. The confidence in this assessment is moderate, considering the mixed emotional elements present.\n\n"
+  },
+  "6c4a9f285391e1d0": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 4,
+    "confidence": 0.7,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "iable since the text seems coherent despite the challenges of translating.\n</think>\n\n```json\n{\n  \"emotion\": \"sad/angry\",\n  \"arousal\": 2,\n  \"valence\": 4,\n  \"confidence\": 0.7,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "7d7986a85e2d15cc": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 3,
+    "confidence": 0.95,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "eliable\": true\n}\n```\n\nThe speaker presents a neutral stance, discussing work tasks without strong emotional expressions. The analysis is confident due to clear context despite some language nuances.\n\n"
+  },
+  "e274a3d43d28203b": {
+    "emotion": "happy",
+    "arousal": 3,
+    "valence": 4,
+    "confidence": 0.95,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "ion is accurate, I'll assume it's reliable based on clear language.\n</think>\n\n```json\n{\n    \"emotion\": \"happy\",\n    \"arousal\": 3,\n    \"valence\": 4,\n    \"confidence\": 0.95,\n    \"reliable\": true\n}\n```\n\n"
+  },
+  "ce00b0d6b005d0b0": {
+    "emotion": "neutral",
+    "arousal": 1,
+    "valence": 3,
+    "confidence": 0.9,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": ", focused communication. The transcript seems reliable for emotion analysis.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 1,\n  \"valence\": 3,\n  \"confidence\": 0.9,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "9aa27aecb9397bdb": {
+    "emotion": "sad",
+    "arousal": 2,
+    "valence": 1,
+    "confidence": 0.95,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "*: The speech seems coherent and based on actual experiences, so yes, reliable.\n</think>\n\n```json\n{\n  \"emotion\": \"sad\",\n  \"arousal\": 2,\n  \"valence\": 1,\n  \"confidence\": 0.95,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "30c2978a934f5d88": {
+    "emotion": "neutral",
+    "arousal": 1,
+    "valence": 3,
+    "confidence": 0.95,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "stance without strong positive or negative feelings. The analysis is highly confident due to the formal context and the factual nature of the discussion, making it reliable for emotional assessment.\n\n"
+  },
+  "f98ffe9e3886327c": {
+    "emotion": "sad",
+    "arousal": 4,
+    "valence": 3,
+    "confidence": 0.7,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "The speaker expresses concern and caution, indicating a moderate negative arousal level with a slightly sad valence. The analysis is somewhat confident but not entirely certain due to unclear terms.\n\n"
+  },
+  "1928d4bf63dd69a4": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 0.7,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": " the speech isn't clear, making it unreliable for accurate emotion reading.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 3,\n  \"confidence\": 0.7,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "85e53280cd845d23": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.85,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "情绪并没有明显的愤怒、悲伤或恐惧感。更多的是对某种情况的不满和急切，可能带有轻微的生气。因此，我判断这位讲话者的情绪偏向中性，没有特别强烈的情感波动。\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 2,\n  \"confidence\": 0.85,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "5b07732bfd45e14b": {
+    "emotion": "neutral",
+    "arousal": 1,
+    "valence": 3,
+    "confidence": 0.95,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "analysis is high.\n</think>\n\nBased on the given transcript, here's the JSON response:\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 1,\n  \"valence\": 3,\n  \"confidence\": 0.95,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "e2f5f0db01d2b8c8": {
+    "emotion": "sad",
+    "arousal": 3,
+    "valence": 4,
+    "confidence": 0.9,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": " negative language related to personal issues such as relationships and health concerns. \n\n```json\n{\n  \"emotion\": \"sad\",\n  \"arousal\": 3,\n  \"valence\": 4,\n  \"confidence\": 0.9,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "7ab9e4fb5244be34": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 1,
+    "confidence": 0.65,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "。这段文字是会议记录，缺乏其他信息如肢体语言或声音变化，因此可靠性较低，设为false。\n\n综合以上分析，我应该给出一个JSON对象反映这些评估。\n</think>\n\n```json\n{\n  \"emotion\": \"negative\",\n  \"arousal\": 3,\n  \"valence\": 1,\n  \"confidence\": 0.65,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "5beef9ed0c853d6f": {
+    "emotion": "neutral",
+    "arousal": 4,
+    "valence": 2,
+    "confidence": 0.6,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "gative with moderate confidence.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral/happy/angry/sad/surprised/fearful/disgusted\",\n  \"arousal\": 4,\n  \"valence\": 2,\n  \"confidence\": 0.6,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "3bfc10b8a94da0c0": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.95,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "'s coherent, though the emotions are subtle.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral/neutral-slightly-disinterested\",\n  \"arousal\": 3,\n  \"valence\": 2,\n  \"confidence\": 0.95,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "16b970a73cd60e2e": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 4,
+    "confidence": 0.6,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "ion. The valence leans slightly towards positive due to the excitement of moving quickly but overall feels negative. The transcript's reliability is questionable due to unclear language and context.\n\n"
+  },
+  "1861abbdfc3e0fd9": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.2,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "uncertainty makes it difficult to assign definite emotions with confidence.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 2,\n  \"confidence\": 0.2,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "2aaa9eddab1cc144": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 3,
+    "confidence": 0.95,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": " emotional tone. The confidence is high due to the clear message structure.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 3,\n  \"confidence\": 0.95,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "436552d9115b0272": {
+    "emotion": "neutral",
+    "arousal": 1,
+    "valence": 1,
+    "confidence": 0.9,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "l\", arousal and valence at the lowest levels, high confidence, and reliable.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 1,\n  \"valence\": 1,\n  \"confidence\": 0.9,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "40e489ac0a6bf631": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 4,
+    "confidence": 0.6,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "误导性或含糊之处。\n\n最后，reliable是是否可信，因为有很多不清晰的内容，可能存在信息错误或者故意模糊的情况，因此判断为 unreliable。\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 4,\n  \"confidence\": 0.6,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "8b0c8c01626f7b22": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 3,
+    "confidence": 0.4,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "m discussing potential events, and low confidence in expressing emotions clearly.\n\n```json\n{\n  \"emotion\": \"neutral/sad\",\n  \"arousal\": 3,\n  \"valence\": 3,\n  \"confidence\": 0.4,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "84349e4784dc54b8": {
+    "emotion": "angry",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.95,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "ate is negative, with a moderate level of arousal due to the context of recent events.\n\n```json\n{\n  \"emotion\": \"angry\",\n  \"arousal\": 3,\n  \"valence\": 2,\n  \"confidence\": 0.95,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "529f313d98c26026": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 3,
+    "confidence": 1.0,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "ummarizing, the speaker has a neutral emotional state with moderate arousal.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 3,\n  \"confidence\": 1.0,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "2dda1f45559c5c2e": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.7,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "t, and old visitors. The language used is neutral without expressing strong emotions.\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 2,\n  \"confidence\": 0.7,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "269cfada6569ff0c": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 4,
+    "confidence": 0.7,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "idence方面，因为有负面词汇存在，我给予70%的置信度。最后，可靠性的判定，虽然有些地方可能让人误解，但整体信息还是可以理解的，所以选择true。\n</think>\n\n```json\n{\n  \"emotion\": \"negative\",\n  \"arousal\": 2,\n  \"valence\": 4,\n  \"confidence\": 0.7,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "9638858ac1693554": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.7,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "ed emotions but isn't perfectly clear, so I'll say it's somewhat reliable.\n</think>\n\n```json\n{\n  \"emotion\": \"sad/angry\",\n  \"arousal\": 3,\n  \"valence\": 2,\n  \"confidence\": 0.7,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "c39d3d558bb23891": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.4,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "onfidence around 0.4 (low), and reliability slightly reliable.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral/sad/uncertain\",\n  \"arousal\": 3,\n  \"valence\": 2,\n  \"confidence\": 0.4,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "1cf14d31f613950a": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 4,
+    "confidence": 0.6,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "结构混乱，无法准确判断具体情绪；情绪强度较低，大约在3分左右；值方面可能偏向中间，但整体情绪不明确；对可靠性有信心吗？由于内容混乱，可能需要打个折扣。\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 4,\n  \"confidence\": 0.6,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "a9b21d00b7056bd2": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 4,
+    "confidence": 0.7,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "because it's motivational but not overly so. Confidence at 0.7 and reliable.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 4,\n  \"confidence\": 0.7,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "6b4c2510fb1be5fe": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 0.75,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "nce neutral (3), confidence moderate (0.75), and reliability probably true.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 3,\n  \"confidence\": 0.75,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "8aea8e5e593d4652": {
+    "emotion": "sad",
+    "arousal": 2,
+    "valence": 4,
+    "confidence": 0.6,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "Reliability is questionable because of the broken language and unclear context.\n</think>\n\n```json\n{\n  \"emotion\": \"sad\",\n  \"arousal\": 2,\n  \"valence\": 4,\n  \"confidence\": 0.6,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "dfe67a7e7ede487c": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 4,
+    "confidence": 0.75,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "（0.75）。\n- **可靠性**：这个发言稿是可靠的，因为虽然有一些专业术语和复杂表达，但整体情绪没有明显的情绪爆发。\n\n分析过程中注意到发言稿中提到了客户关系、价格策略等专业领域内容，但总体情绪较为平稳。尽管有提到“ danger”或潜在的客户问题，但语气较为冷静和谨慎，没有表现出过激的情绪反应。因此，整体情感状态被判断为中性，显示出一定的价值感和对未来的预测性担忧，但没有极端的情感波动。\n\n"
+  },
+  "43269ae4c93bf215": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 0.7,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "fidence定为0.7。最后，reliable方面，由于有很多错别字和语法错误，导致内容难以理解，可能会影响情绪判断的准确性，所以设置为false。\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 3,\n  \"confidence\": 0.7,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "1490941fbe2e31ed": {
+    "emotion": "neutral",
+    "arousal": 5,
+    "valence": 3,
+    "confidence": 0.4,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "r, which might make it harder to pinpoint exact emotions reliably.\n</think>\n\n```json\n{\n  \"emotion\": \"angry/frustrated\",\n  \"arousal\": 5,\n  \"valence\": 3,\n  \"confidence\": 0.4,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "846bdf378df74b89": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 4,
+    "confidence": 0.85,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "清晰，可信度较高。不过，敏感话题的表达可能带来一定的误解风险，但整体上还是可靠的，因此定为true。\n\n最后，综合以上分析，给出一个JSON结果。\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 4.0,\n  \"confidence\": 0.85,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "375bda28b23605ac": {
+    "emotion": "neutral",
+    "arousal": 4,
+    "valence": 3,
+    "confidence": 0.3,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "的程度，4分。同样，对于置信度评分，由于文本质量不高，我给出0.3。\n\n最后，关于可靠性的判断，这段讲话稿存在大量缺失信息和打字错误，因此可靠性较低。\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 4,\n  \"valence\": 3,\n  \"confidence\": 0.3,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "902c8668f7838d42": {
+    "emotion": "happy",
+    "arousal": 4,
+    "valence": 5,
+    "confidence": 0.8,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "ional setting, I can assume it's reliable enough to assess emotion accurately.\n</think>\n\n```json\n{\n  \"emotion\": \"happy\",\n  \"arousal\": 4,\n  \"valence\": 5,\n  \"confidence\": 0.8,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "de5a3c8abc4c5ab8": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 0.85,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "l emotion with low arousal, neutral valence, high confidence, and reliable.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 3,\n  \"confidence\": 0.85,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "485a38fc42167dfb": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 2,
+    "confidence": 0.5,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "\n\n最后，关于 reliable，由于演讲稿中没有实质内容，难以评估其可靠性。因此，设置为false更为合理，因为这些信息无法提供有效的情绪分析依据。\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 2,\n  \"confidence\": 0.5,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "c1977c60feb93f00": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.8,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "传达准确的信息，所以这个部分应该是可靠的。\n\n综合以上分析，我会给出一个JSON结果，显示中性或稍微负面的情绪，较低的紧张度，较高的信心，并标记为可靠。\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 2,\n  \"confidence\": 0.8,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "6fa601969375f473": {
+    "emotion": "neutral",
+    "arousal": 1,
+    "valence": 2,
+    "confidence": 0.8,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "vide any information that the speaker is lying or making up something, so it's reliable.\n</think>\n\n```json\n{\"emotion\": \"neutral\", \"arousal\": 1, \"valence\": 2, \"confidence\": 0.8, \"reliable\": true}\n```\n\n"
+  },
+  "9ed2f53f6c3fe7a5": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 0.5,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "cript, which further supports that it's difficult to interpret emotionally.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 3,\n  \"confidence\": 0.5,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "aef389fe87bf03ec": {
+    "emotion": "neutral",
+    "arousal": 4,
+    "valence": 4,
+    "confidence": 0.9,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "\"arousal\": 4,\n  \"valence\": 4,\n  \"confidence\": 0.9,\n  \"reliable\": true\n}\n```\n\nThe speaker uses playful and clever language to engage the audience, indicating an excited and confident emotional state.\n\n"
+  },
+  "7dbe9a13fb5b6f72": {
+    "emotion": "neutral",
+    "arousal": 4,
+    "valence": 3,
+    "confidence": 0.7,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": " valence is at 2 (sad) if it's more about feeling down about the schedule.\n</think>\n\n```json\n{\n  \"emotion\": \"angry/sad\",\n  \"arousal\": 4,\n  \"valence\": 3,\n  \"confidence\": 0.7,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "9afc7c1b4047bb61": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.9,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "ation based on context, so this transcript is reliable for emotion analysis.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 2,\n  \"confidence\": 0.9,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "32192755b02aac68": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 4,
+    "confidence": 0.9,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "可靠用于情绪分析。整体来看，这句话是比较明确和简洁的，虽然有点幽默，但没有涉及到敏感或模糊的内容，所以我判断它是可靠的。\n</think>\n\n```json\n{\n  \"emotion\": \"neutral/gentle/humorous\",\n  \"arousal\": 3,\n  \"valence\": 4,\n  \"confidence\": 0.9,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "403a9ac9550a7477": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.8,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "ative. Confidence might be 0.8 if they're certain about the times mentioned.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 2,\n  \"confidence\": 0.8,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "1740ef50d8f94c72": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.5,
+    "reliable": false,
+    "parsed_ok": false,
+    "_raw_preview": ": false\n}\n```\n\nThis indicates a neutral emotional state with moderate arousal and valence. The transcript is not reliable for detailed emotion analysis due to lack of context or specific indicators.\n\n"
+  },
+  "8955875bf0c8c48a": {
+    "emotion": "neutral",
+    "arousal": 1,
+    "valence": 1,
+    "confidence": 0.7,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "and reliability is also low because the transcript lacks necessary details.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 1,\n  \"valence\": 1,\n  \"confidence\": 0.7,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "1db18fbf7313b65d": {
+    "emotion": "angry",
+    "arousal": 4,
+    "valence": 3,
+    "confidence": 0.95,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "er likely feels angry or frustrated. So, I'll go with \"angry\" as the emotion.\n</think>\n\n```json\n{\n  \"emotion\": \"angry\",\n  \"arousal\": 4,\n  \"valence\": 3,\n  \"confidence\": 0.95,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "ed664b9107a0f5e1": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.8,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "nclear wording.\n\nSo final assessment is Neutral with some underlying doubt.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 2,\n  \"confidence\": 0.8,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "1b3a2766c1d9d073": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.9,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "all together: Neutral emotion with low arousal, slightly negative valence.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 2.5,\n  \"confidence\": 0.9,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "fb2d4f9945b03f61": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 0.9,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "n. Arousal is calm at 2, confidence is high at 0.9, and reliability is true.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 3,\n  \"confidence\": 0.9,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "53cbfa0646202772": {
+    "emotion": "sad",
+    "arousal": 3,
+    "valence": 4,
+    "confidence": 0.95,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "e is simple and makes sense semantically, so I'd say yes, it's reliable enough.\n</think>\n\n```json\n{\n  \"emotion\": \"sad\",\n  \"arousal\": 3,\n  \"valence\": 4,\n  \"confidence\": 0.95,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "a5ddbb4ac5d0694c": {
+    "emotion": "neutral",
+    "arousal": 1,
+    "valence": 1,
+    "confidence": 0.7,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "e.\n\nPutting it all together, the emotion is likely neutral with low arousal and valence.\n</think>\n\n```json\n{\"emotion\": \"neutral\", \"arousal\": 1, \"valence\": 1, \"confidence\": 0.7, \"reliable\": true}\n```\n\n"
+  },
+  "2474c92d5d4d32a6": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.8,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "rate arousal, neutral valence, high confidence (0.8), and somewhat reliable.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 2,\n  \"confidence\": 0.8,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "2d6a347b8036f35e": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 3,
+    "confidence": 0.9,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "s neutral with moderate arousal and valence, high confidence, and a reliable transcript.\n</think>\n\n```json\n{\"emotion\": \"neutral\", \"arousal\": 3, \"valence\": 3, \"confidence\": 0.9, \"reliable\": true}\n```\n\n"
+  },
+  "18ee73c6cf802d4a": {
+    "emotion": "happy",
+    "arousal": 3,
+    "valence": 4,
+    "confidence": 0.9,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "\n信心评分方面，因为讲话内容简单明确，并且情绪稳定，所以信心很高，给0.9。最后，可靠性的判断，这个转录看起来真实自然，说话人表达清楚，所以标记为true。\n</think>\n\n```json\n{\n  \"emotion\": \"happy\",\n  \"arousal\": 3,\n  \"valence\": 4,\n  \"confidence\": 0.9,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "ec39ad29f607411f": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 4,
+    "confidence": 0.85,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "ut expressing strong emotions like surprise or fear. They affirm a point neutrally.\n\n```json\n{\n  \"emotion\": \"positive\",\n  \"arousal\": 3,\n  \"valence\": 4,\n  \"confidence\": 0.85,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "648ccdc4505caf1e": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 0.4,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "iability remains true.\n\nSo the JSON response should reflect these judgments.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 3,\n  \"confidence\": 0.4,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "e7c688a18ee7cb1d": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 2,
+    "confidence": 0.75,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "cause there are uncertainties in context and translation.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral/slightly negative\",\n  \"arousal\": 2,\n  \"valence\": 2,\n  \"confidence\": 0.75,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "ab37b082e5b2a935": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 4,
+    "confidence": 0.7,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "provided, so I'll assume it's reliable unless there are red flags.\n</think>\n\n```json\n{\n    \"emotion\": \"neutral\",\n    \"arousal\": 2,\n    \"valence\": 4,\n    \"confidence\": 0.7,\n    \"reliable\": true\n}\n```\n\n"
+  },
+  "62cf98a209a74800": {
+    "emotion": "neutral",
+    "arousal": 1,
+    "valence": 3,
+    "confidence": 0.4,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": "out context, I'm uncertain if we can reliably determine emotions from this.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 1,\n  \"valence\": 3,\n  \"confidence\": 0.4,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "244ccb8f046b24e7": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 4,
+    "confidence": 0.95,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "**: 2 (calm)\n- **Valence**: 4 (positive)\n- **Confidence**: 0.95\n- **Reliable**: true\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 4,\n  \"confidence\": 0.95,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "52d39b6ff9fc3839": {
+    "emotion": "happy",
+    "arousal": 2,
+    "valence": 4,
+    "confidence": 0.85,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "ether: emotion is happy, arousal 2, valence 4, confidence 0.85, and reliable.\n</think>\n\n```json\n{\n  \"emotion\": \"happy\",\n  \"arousal\": 2,\n  \"valence\": 4,\n  \"confidence\": 0.85,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "de9460160f7cdafb": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 0.8,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": " sentiment. The arousal isn't high either since it's a simple announcement.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 3,\n  \"confidence\": 0.8,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "901af8411793775b": {
+    "emotion": "angry",
+    "arousal": 3,
+    "valence": 4,
+    "confidence": 0.6,
+    "reliable": false,
+    "parsed_ok": true,
+    "_raw_preview": " so I'll default to unreliable.\n\nSo, compiling all that into a JSON response.\n</think>\n\n```json\n{\n  \"emotion\": \"angry\",\n  \"arousal\": 3,\n  \"valence\": 4,\n  \"confidence\": 0.6,\n  \"reliable\": false\n}\n```\n\n"
+  },
+  "24dc1c30edd15362": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 0.85,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "onal cues. The term \"前提性问题\" relates to discussion points and doesn't convey emotion.\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 3,\n  \"confidence\": 0.85,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "ef090f12c2dcf772": {
+    "emotion": "happy",
+    "arousal": 4,
+    "valence": 5,
+    "confidence": 0.85,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "is happy, with arousal at 4, valence positive, confidence 0.85, and reliable.\n</think>\n\n```json\n{\n  \"emotion\": \"happy\",\n  \"arousal\": 4,\n  \"valence\": 5,\n  \"confidence\": 0.85,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "be5d6ca14e5fa95d": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 1.0,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "anscript is clear and directly translated, so yes, it's reliable for emotional analysis.\n</think>\n\n```json\n{\"emotion\": \"neutral\", \"arousal\": 2, \"valence\": 3, \"confidence\": 1.0, \"reliable\": true}\n```\n\n"
+  },
+  "d9092ac49af27f3e": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 4,
+    "confidence": 0.85,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "dicating they are trying to maintain composure rather than express strong emotions. \n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 4,\n  \"confidence\": 0.85,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "2b33ac137451637a": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 0.6,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "6 (Moderate confidence due to limited context in the transcript)\n- **Reliable**: True\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 3,\n  \"confidence\": 0.6,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "2e52f16969892a91": {
+    "emotion": "sad",
+    "arousal": 3,
+    "valence": 2,
+    "confidence": 0.7,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "ng a thought that relates to their emotional state without direct emotion words.\n</think>\n\n```json\n{\n  \"emotion\": \"sad\",\n  \"arousal\": 3,\n  \"valence\": 2,\n  \"confidence\": 0.7,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "455b60394f3dc721": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 0.3,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": " no emotional cues such as exclamations, negatives, positives, fears, joys, or hates.\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 3,\n  \"confidence\": 0.3,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "4b8c22f3e80ad620": {
+    "emotion": "neutral",
+    "arousal": 2,
+    "valence": 3,
+    "confidence": 0.7,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "ranscript doesn't provide enough info to determine reliability definitively.\n</think>\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 2,\n  \"valence\": 3,\n  \"confidence\": 0.7,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "54da211ddf6f0eda": {
+    "emotion": "neutral",
+    "arousal": 3,
+    "valence": 3,
+    "confidence": 0.85,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": " no signs of surprise, fear, or disgust, so the emotion is categorized as \"neutral.\"\n\n```json\n{\n  \"emotion\": \"neutral\",\n  \"arousal\": 3,\n  \"valence\": 3,\n  \"confidence\": 0.85,\n  \"reliable\": true\n}\n```\n\n"
+  },
+  "5573126966d66654": {
+    "emotion": "happy",
+    "arousal": 3,
+    "valence": 4,
+    "confidence": 0.7,
+    "reliable": true,
+    "parsed_ok": true,
+    "_raw_preview": "r appears to be expressing approval and satisfaction with how someone else knows them. \n\n```json\n{\n  \"emotion\": \"happy\",\n  \"arousal\": 3,\n  \"valence\": 4,\n  \"confidence\": 0.7,\n  \"reliable\": true\n}\n```\n\n"
+  }
+}
