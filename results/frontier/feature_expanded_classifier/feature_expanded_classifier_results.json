@@ -1,0 +1,302 @@
+{
+  "label": "experimental/frontier",
+  "rq": "RQ32: Feature expansion for Diverse<->Non-hallucinated classification",
+  "closes_issue": 939,
+  "method": "reanalysis only (no Whisper / no ASR run); loads the EXACT same per-track feature matrix and mode labels from RQ23's mode_classifier_results.csv (677 tracks), augments the 5 original transcript features with 7 metadata features extracted from the AISHELL-4 validation windows (runtime_ratio, sep_total_chars, mix_total_chars, char_ratio, num_active_speakers_sep, avg_speaker_length_sep, length_entropy_speakers) plus a has_metadata binary indicator (0 for gold, 1 for AISHELL-4), and trains a numpy-only random forest identical to RQ28 (100 trees, max_depth=10, sqrt class weighting, LOO-CV).",
+  "source_data": {
+    "rq23_csv": "results/frontier/per_track_mode_classifier/mode_classifier_results.csv",
+    "aishell4_json": "results/external_sanity_check/aishell4/rq1_aishell4_validation_results.json"
+  },
+  "classifier": {
+    "model": "random forest (CART decision trees + bootstrap aggregation)",
+    "implementation": "numpy only (no sklearn), identical to RQ28",
+    "n_trees": 100,
+    "max_depth": 10,
+    "min_samples_split": 5,
+    "split_criterion": "weighted Gini impurity",
+    "class_weight": "sqrt",
+    "class_weight_note": "sqrt inverse-frequency sample weights in Gini computation, matching RQ23/RQ28. Weights computed per training fold.",
+    "bootstrap": "n samples drawn with replacement from n (standard bootstrap)",
+    "prediction": "majority vote across trees",
+    "cv": "leave-one-out (677 folds)",
+    "seed": 42,
+    "features": [
+      "cr",
+      "lang_id_entropy",
+      "length_ratio",
+      "content_similarity",
+      "num_speakers",
+      "runtime_ratio",
+      "sep_total_chars",
+      "mix_total_chars",
+      "char_ratio",
+      "num_active_speakers_sep",
+      "avg_speaker_length_sep",
+      "length_entropy_speakers",
+      "has_metadata"
+    ],
+    "original_features": [
+      "cr",
+      "lang_id_entropy",
+      "length_ratio",
+      "content_similarity",
+      "num_speakers"
+    ],
+    "metadata_features": [
+      "runtime_ratio",
+      "sep_total_chars",
+      "mix_total_chars",
+      "char_ratio",
+      "num_active_speakers_sep",
+      "avg_speaker_length_sep",
+      "length_entropy_speakers"
+    ],
+    "indicator_feature": "has_metadata",
+    "n_features": 13,
+    "n_classes": 4,
+    "runtime_seconds": 443.1
+  },
+  "counts": {
+    "total_tracks": 677,
+    "gold_tracks": 600,
+    "aishell4_tracks": 77,
+    "aishell4_with_metadata": 77,
+    "aishell4_hallucinated": 37,
+    "mode_counts": {
+      "Mode_R": 5,
+      "Mode_S": 2,
+      "Diverse": 35,
+      "Non-hallucinated": 635
+    }
+  },
+  "metadata_feature_extraction": {
+    "runtime_ratio": "separated_runtime_sec / mixed_runtime_sec (0 if mix runtime is 0)",
+    "sep_total_chars": "separated_total_length from AISHELL-4 window",
+    "mix_total_chars": "mixed_text_length from AISHELL-4 window",
+    "char_ratio": "sep_total_chars / mix_total_chars (0 if mix_total_chars is 0)",
+    "num_active_speakers_sep": "count of non-empty speaker segments in separated_text_per_speaker",
+    "avg_speaker_length_sep": "mean char length of non-empty speaker segments (0 if none)",
+    "length_entropy_speakers": "Shannon entropy (nats, base e) of non-zero per-speaker length distribution (0 if < 2 active speakers)",
+    "has_metadata": "1.0 for AISHELL-4 tracks, 0.0 for gold tracks (metadata features set to 0.0 for gold)",
+    "note": "For gold tracks, all 7 metadata features are 0.0 and has_metadata=0.0. The RF must learn to ignore the metadata block for gold tracks and rely on the 5 original features."
+  },
+  "hypotheses": {
+    "H32a": {
+      "statement": "Expanded-feature RF LOO accuracy > 0.968981 (RQ28 5-feature RF)",
+      "kill_criterion": "accuracy <= 0.968981",
+      "rf32_accuracy": 0.970458,
+      "rq28_accuracy": 0.968981,
+      "rq23_accuracy": 0.957164,
+      "supported": true,
+      "killed": false
+    },
+    "H32b": {
+      "statement": "AISHELL-4 mode-routed sensitivity > 90%",
+      "kill_criterion": "sensitivity <= 90%",
+      "rf32_sensitivity": 0.864865,
+      "rf32_tp": 32,
+      "rf32_n_hallucinated": 37,
+      "rq28_sensitivity": 0.864865,
+      "rq23_sensitivity": 0.837838,
+      "supported": false,
+      "killed": true
+    },
+    "H32c": {
+      "statement": "Diverse<->Non-hallucinated off-diagonal < 17 (RQ28)",
+      "kill_criterion": "off-diagonal >= 17",
+      "rf32_diverse_nonhalluc_offdiag": 18,
+      "rq28_diverse_nonhalluc_offdiag": 17,
+      "rq23_diverse_nonhalluc_offdiag": 17,
+      "supported": false,
+      "killed": true
+    }
+  },
+  "loo_accuracy": {
+    "correct": 657,
+    "n": 677,
+    "accuracy": 0.970458,
+    "wilson_ci_95": [
+      0.954811,
+      0.980796
+    ],
+    "majority_class_baseline": 0.937962,
+    "beats_baseline": true
+  },
+  "confusion_matrix": {
+    "row_order": [
+      "Mode_R",
+      "Mode_S",
+      "Diverse",
+      "Non-hallucinated"
+    ],
+    "col_order": [
+      "Mode_R",
+      "Mode_S",
+      "Diverse",
+      "Non-hallucinated"
+    ],
+    "matrix": [
+      [
+        5,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        32,
+        3
+      ],
+      [
+        0,
+        0,
+        15,
+        620
+      ]
+    ],
+    "off_diagonal": 20,
+    "diverse_nonhalluc_offdiag": 18
+  },
+  "per_class_metrics": [
+    {
+      "class": "Mode_R",
+      "tp": 5,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+    },
+    {
+      "class": "Mode_S",
+      "tp": 0,
+      "fp": 0,
+      "fn": 2,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 2
+    },
+    {
+      "class": "Diverse",
+      "tp": 32,
+      "fp": 15,
+      "fn": 3,
+      "precision": 0.680851,
+      "recall": 0.914286,
+      "f1": 0.780488,
+      "support": 35
+    },
+    {
+      "class": "Non-hallucinated",
+      "tp": 620,
+      "fp": 5,
+      "fn": 15,
+      "precision": 0.992,
+      "recall": 0.976378,
+      "f1": 0.984127,
+      "support": 635
+    }
+  ],
+  "aishell4_mode_routed_sensitivity": {
+    "description": "route to mixed if predicted_mode in {Mode_R, Mode_S, Diverse}; sensitivity = (truly hallucinated AND predicted hallucinated) / (truly hallucinated)",
+    "rf32_sensitivity": 0.864865,
+    "rf32_tp": 32,
+    "rf32_ci_95": [
+      0.720223,
+      0.940868
+    ],
+    "rq28_sensitivity": 0.864865,
+    "rq23_sensitivity": 0.837838
+  },
+  "feature_importances": {
+    "cr": 0.476794,
+    "lang_id_entropy": 0.057539,
+    "length_ratio": 0.025634,
+    "content_similarity": 0.076359,
+    "num_speakers": 0.0223,
+    "runtime_ratio": 0.16172,
+    "sep_total_chars": 0.124229,
+    "mix_total_chars": 0.008825,
+    "char_ratio": 0.000632,
+    "num_active_speakers_sep": 0.005107,
+    "avg_speaker_length_sep": 0.035238,
+    "length_entropy_speakers": 0.005622,
+    "has_metadata": 0.0
+  },
+  "comparison_to_rq28": {
+    "accuracy_delta": 0.001477,
+    "a4_sensitivity_delta": 0.0,
+    "off_diagonal_delta": -1,
+    "diverse_nonhalluc_offdiag_delta": 1,
+    "rq28_loo_accuracy": 0.968981,
+    "rf32_loo_accuracy": 0.970458,
+    "rq28_off_diagonal": 21,
+    "rf32_off_diagonal": 20,
+    "rq28_diverse_nonhalluc_offdiag": 17,
+    "rf32_diverse_nonhalluc_offdiag": 18,
+    "rq28_a4_sensitivity": 0.864865,
+    "rf32_a4_sensitivity": 0.864865
+  },
+  "comparison_to_rq23": {
+    "accuracy_delta": 0.013294,
+    "a4_sensitivity_delta": 0.027027,
+    "off_diagonal_delta": -9,
+    "diverse_nonhalluc_offdiag_delta": 1
+  },
+  "rq23_confusion_matrix_for_reference": {
+    "row_order": [
+      "Mode_R",
+      "Mode_S",
+      "Diverse",
+      "Non-hallucinated"
+    ],
+    "col_order": [
+      "Mode_R",
+      "Mode_S",
+      "Diverse",
+      "Non-hallucinated"
+    ],
+    "matrix": [
+      [
+        5,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        1,
+        30,
+        4
+      ],
+      [
+        0,
+        9,
+        13,
+        613
+      ]
+    ],
+    "off_diagonal": 29,
+    "diverse_nonhalluc_offdiag": 17
+  },
+  "references": [
+    "RQ23: PR #924, results/frontier/per_track_mode_classifier/ (linear, 5 features, 95.7% LOO)",
+    "RQ28: PR #933, results/frontier/nonlinear_mode_classifier/ (RF, 5 features, 96.9% LOO, 17 Diverse<->Non-halluc off-diag)",
+    "AISHELL-4: results/external_sanity_check/aishell4/rq1_aishell4_validation_results.json"
+  ]
+}
