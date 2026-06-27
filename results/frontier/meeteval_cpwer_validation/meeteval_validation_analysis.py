@@ -49,8 +49,13 @@ from typing import Any
 warnings.filterwarnings("ignore")  # MeetEval prints "Assuming sort=False" spam
 
 from scipy.stats import spearmanr
-import meeteval
-from meeteval.wer import cpwer, orcwer
+try:
+    import meeteval
+    from meeteval.wer import cpwer, orcwer
+except ImportError:  # pure helpers can still be tested without MeetEval
+    meeteval = None
+    cpwer = None
+    orcwer = None
 
 # --------------------------------------------------------------------------- paths
 PROJECT_ROOT = Path(__file__).resolve().parents[3]

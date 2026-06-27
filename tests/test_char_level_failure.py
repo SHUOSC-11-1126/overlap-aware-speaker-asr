@@ -43,6 +43,10 @@ from char_level_failure_analysis import (  # noqa: E402
     total_error_breakdown,
 )
 
+# MeetEval availability guards the cpwer/orcwer decomposition tests.
+import importlib.util as _ilu  # noqa: E402
+HAS_MEETEVAL = _ilu.find_spec("meeteval") is not None
+
 
 # ----------------------------------------------------------------- tokenisation
 class TestToCharLevel(unittest.TestCase):
@@ -94,6 +98,7 @@ class TestBuildMixedSegment(unittest.TestCase):
 
 
 # --------------------------------------------------------- cpwer decomposition
+@unittest.skipUnless(HAS_MEETEVAL, "meeteval not installed")
 class TestComputeCpwerWithDecomp(unittest.TestCase):
     def test_perfect_match_is_zero_error(self) -> None:
         out = compute_cpwer_with_decomp({"A": "你好"}, {"A": "你好"}, char_level=True)
@@ -147,6 +152,7 @@ class TestComputeCpwerWithDecomp(unittest.TestCase):
 
 
 # --------------------------------------------------------- orcwer decomposition
+@unittest.skipUnless(HAS_MEETEVAL, "meeteval not installed")
 class TestComputeOrcwerWithDecomp(unittest.TestCase):
     def test_perfect_single_speaker(self) -> None:
         out = compute_orcwer_with_decomp({"A": "你好"}, "你好", char_level=True)
