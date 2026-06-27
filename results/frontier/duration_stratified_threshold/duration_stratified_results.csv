@@ -1,0 +1,5 @@
+stratum,n_windows,n_hallucinated,hallucination_rate,thr_median,thr_p2_5,thr_p97_5,thr_width,thr_n_unique,thr_n_modes_5pct,oob_cpwer_median,oob_cpwer_mean,oob_cpwer_frac_below_1_10
+pooled_matched_b10000,77,37,0.480519,0.38,0.01,0.95,0.94,6,5,1.055556,1.069153,0.7604
+stratum1_short,39,10,0.25641,0.33,0.01,0.84,0.83,3,3,1.041667,1.104309,0.6193
+stratum2_long,38,27,0.710526,0.95,0.33,0.95,0.62,5,3,1.098039,1.114358,0.5022
+combined_stratified,77,37,0.480519,0.33,0.01,0.84,0.83,3,3,1.106061,1.109208,0.4687
