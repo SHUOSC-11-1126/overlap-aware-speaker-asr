@@ -1,0 +1,6 @@
+rule,n_modes_5pct,interval_width,median_oob_cpwer,over_fits,hypothesis_supported
+max_sens_at_90_spec (RQ48 baseline),5,0.94,1.0539,False,
+youdens_j (RQ48),3,0.94,1.0511,False,
+f1 (RQ48),2,0.94,1.0513,False,
+cost_aware (RQ48),2,0.32,1.0632,True,
+"hybrid (RQ51, this work)",3,0.84,1.070513,True,partial
