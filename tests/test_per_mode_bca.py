@@ -500,8 +500,13 @@ class SubsetBcaTest(unittest.TestCase):
 
 
 # ============================================================ _compute_window_cpwer
+@unittest.skipUnless(HAS_MEETEVAL, "MeetEval not installed")
 class ComputeWindowCpwerTest(unittest.TestCase):
-    """_compute_window_cpwer: word-level fields + mode classification."""
+    """_compute_window_cpwer: word-level fields + mode classification.
+
+    Guarded because _compute_window_cpwer calls safe_cpwer/safe_orcwer for the
+    char-level fields, which require MeetEval.
+    """
 
     def test_compute_window_word_level_fields(self) -> None:
         w = _make_window(
