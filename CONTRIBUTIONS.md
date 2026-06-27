@@ -9,7 +9,7 @@ migration.
 
 **Role:** Frontier research lead; overlap-hallucination mechanism investigator; ASR×LLM×emotion axis explorer; research-entropy meta-analyst; engineering harness architect.
 
-**Scope summary:** ~90 merged PRs (#780–#872, #886–#894, #898–#900, #905–#907, #911–#913, #917–#919, #923–#925, #929–#931, #935–#937, #946–#951, #956–#957, #959–#968), 70+ issues, 75+ new modules, 70+ frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled `experimental/frontier` or `external/sanity-check`; no gold tables or verified references touched.
+**Scope summary:** ~95 merged PRs (#780–#872, #886–#894, #898–#900, #905–#907, #911–#913, #917–#919, #923–#925, #929–#931, #935–#937, #946–#951, #956–#973), 80+ issues, 80+ new modules, 75+ frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled `experimental/frontier` or `external/sanity-check`; no gold tables or verified references touched.
 
 ---
 
@@ -1018,6 +1018,89 @@ RQ38 (PR #948) showed hallucination rate is monotone in speaker count (ρ=+0.611
 - `results/frontier/stratified_threshold/stratified_threshold_results.json` — per-stratum summary with mode counts, widths, OOB cpWER
 - `tests/test_stratified_threshold.py` — 51 tests pinning stratification, modality, width, OOB cpWER
 - numpy + stdlib only; runtime ≈ 30 s
+
+All findings labeled `experimental/frontier`. No gold tables or verified references touched.
+
+---
+
+#### Tied-window exclusion corrected-router — does removing no-op windows change the oracle-verdict?
+
+RQ47 (PR #967) found 35 of 77 AISHELL-4 windows are "tied" (mixed and separated cpWER identical). RQ39 (PR #960) found the corrected router's BCa CI includes oracle. RQ50 asks whether excluding the 35 no-op windows changes this conclusion.
+
+| PR | Study | RQ | Outcome | Evidence |
+|---|---|---|---|---|
+| #969 | **Tied-window exclusion corrected-router (RQ50)** | Does excluding tied windows change the oracle-verdict? | ❌ **H50a KILLED** (non-tied BCa CI [1.0119, 1.1548] still includes oracle 1.0238 — RQ39's verdict robust). ❌ **H50b KILLED** (non-tied BCa width 0.1429 > RQ39 width 0.0844 — CI WIDENED by 69%; tied windows were variance-reducing anchors, not noise). ✅ **H50c SUPPORTED** (improvement over mixed nearly doubles on non-tied: 0.238 vs 0.130, ~1.83× — the router's advantage is concentrated on actionable windows). | `results/frontier/tied_window_exclusion/` |
+
+**Key insight:** The all-windows CI was optimistically narrow. The 35 tied windows (34 at exactly cpWER=1.0) anchor the variance downward. Removing them reveals the corrected router's true uncertainty on the 42 actionable windows — which is wider and still includes oracle. This is a cautionary finding: variance-reducing no-ops can mask the true difficulty of the routing problem.
+
+**Honest limitations:**
+
+- n=42 non-tied windows is a small sample for BCa bootstrap. The widened CI partly reflects the smaller sample size, not just the removal of anchors.
+- The tied definition (`abs(mixed - sep) < 1e-6`) is a hard threshold. Windows with `abs(mixed - sep) = 0.002` are "non-tied" but nearly no-op; a softer definition might change the CI width.
+
+**New modules:** `tied_window_exclusion_analysis.py`, `tied_window_exclusion_results.json/csv`, `tests/test_tied_window_exclusion.py` (65 tests). numpy + stdlib only; runtime ≈ 15 s.
+
+---
+
+#### Hybrid calibration rule — can F1 + cost-aware achieve both mode reduction and width reduction?
+
+RQ48 (PR #965) found F1 reduces modes to 2 but not width (0.94); cost-aware reduces width to 0.32 but over-fits (OOB 1.063). RQ51 tests a hybrid: F1 for mode reduction + cost-aware refinement within F1's ±0.1 neighbourhood.
+
+| PR | Study | RQ | Outcome | Evidence |
+|---|---|---|---|---|
+| #972 | **Hybrid calibration rule (RQ51)** | Can a hybrid rule achieve both 2 modes AND width < 0.32? | ❌ **H51a KILLED** (3 modes, not ≤2 — cost-aware splits F1's 0.38 mode into 0.33+0.28). ❌ **H51b KILLED** (width 0.84, not <0.32 — inherits F1's rare 0.95 picks). ❌ **H51c KILLED** (OOB cpWER 1.071, not ≤1.056 — over-fits worse than pure cost-aware). | `results/frontier/hybrid_calibration_rule/` |
+
+**Key insight:** The hybrid combines weaknesses rather than strengths. The cost-aware refinement splits F1's dominant 0.38 mode (because the in-bag cost surface is flat enough that resample composition flips the argmin between 0.33 and 0.28). The hybrid inherits F1's rare high-threshold picks (0.95 at 3.3%), keeping the 97.5th percentile at 0.85. And the dual pathology — 0.01 mode over-flags clean OOB, 0.28 mode under-flags hallucinated OOB — produces worse over-fitting than pure cost-aware.
+
+**Actionable conclusion:** Deploy 0.38 (unchanged from RQ44/RQ48). The 0.01 mode is a detector limitation (Mode S) that no calibration rule — pure, smooth, cost-aware, or hybrid — can remove.
+
+**New modules:** `hybrid_calibration_analysis.py`, `hybrid_calibration_results.json/csv`, `tests/test_hybrid_calibration.py` (63 tests). numpy + stdlib only; runtime ≈ 60 s.
+
+---
+
+#### LLM chain-of-thought critic for Mode S — can structured reasoning overcome the bias?
+
+RQ34 (zero-shot, PR #951) failed at 52.5% FP. RQ41 (ensemble, PR #961) failed worse at 62.5% FP. RQ52 tests chain-of-thought prompting: the LLM is asked to reason through 5 steps (language, repetition, coherence, insertion, verdict) before giving a verdict.
+
+| PR | Study | RQ | Outcome | Evidence |
+|---|---|---|---|---|
+| #973 | **LLM chain-of-thought critic for Mode S (RQ52)** | Can CoT overcome the 50% FP rate? | ❌ **H52a KILLED** (0% Mode S sensitivity — CoT suppresses the gut reaction that catches window 30). ✅ **H52b SUPPORTED** (FP 35.0% < 50% — CoT is more conservative). ❌ **H52c KILLED** (AUC 0.552 near chance, below RQ34's 0.563). | `results/frontier/llm_cot_critic/` |
+
+**Key insight:** CoT makes Mode S detection *worse*, not better. The 5-step reasoning leads the LLM to correctly identify that Mode S text is monolingual, mostly coherent, and not obviously repetitive — then conclude "clean" with high confidence (0.90 for window 22, 0.98 for window 30). Zero-shot's gut reaction catches window 30; CoT suppresses it by requiring the LLM to cite specific artifacts that Mode S (by definition) lacks. The LLM's bias is not a reasoning failure — it's a *perceptual* failure that structured reasoning reinforces rather than corrects.
+
+**Honest limitations:** Single LLM (deepseek-r1:7b). A larger model might reason more carefully about the *absence* of expected artifacts as a signal. 77 windows is a small evaluation set. The CoT prompt structure is one of many possible formulations.
+
+**New modules:** `src/llm_cot_critic.py`, `llm_cot_critic_analysis.py`, `llm_cot_cache.json` (77 cached responses), `tests/test_llm_cot_critic.py` (58 tests). numpy + stdlib + ollama (optional, cached).
+
+---
+
+#### Emotion-aware routing simulation — can text+emotion fusion beat text-only?
+
+RQ36 (PR #956) found the LLM reads Mode S as "reliable." RQ16 (PR #912) found the text-only corrected router achieves cpWER 1.043. RQ53 simulates 4 routing policies (text-only, emotion-only, AND, OR) using cached emotion readings.
+
+| PR | Study | RQ | Outcome | Evidence |
+|---|---|---|---|---|
+| #970 | **Emotion-aware routing simulation (RQ53)** | Can a decoupled text+emotion router improve cpWER? | ❌ **H53a KILLED** (AND cpWER 1.082 > 1.043 — emotion false alarms hurt). ❌ **H53b KILLED** (OR cpWER 1.371 ≥ 1.043 — requiring emotion agreement lets hallucinations through). ✅ **H53c SUPPORTED** (40.3% disagreement > 20% — decoupling is non-trivial). | `results/frontier/emotion_aware_routing/` |
+
+**Key insight:** The text signal (lang-id entropy) strictly dominates the emotion signal for ASR routing. Neither fusion policy beats text-only. The 40.3% disagreement is dominated (27/31) by the emotion signal reading hallucinated transcripts as "reliable" — the RQ36 Mode S failure generalised. Fusion adds noise the text signal had already resolved. This is consistent with the stable baseline's "opposite tax" finding: separation helps emotion but hurts ASR, so the two signals point in opposite directions and combining them cannot help ASR.
+
+**New modules:** `emotion_aware_routing_analysis.py`, `emotion_aware_routing_results.json`, `tests/test_emotion_aware_routing.py` (84 tests). numpy + stdlib only; runtime ≈ 5 s.
+
+---
+
+#### Cascade with F1 calibration — does F1 improve the cascade's robustness?
+
+RQ43 (PR #959) used "max sensitivity at ≥90% specificity" to calibrate the KL gate at 3.30. RQ48 (PR #965) found F1 gives 2 threshold modes. RQ54 replaces the original rule with F1 in the cascade's KL gate and bootstraps the Pareto frontier.
+
+| PR | Study | RQ | Outcome | Evidence |
+|---|---|---|---|---|
+| #971 | **Cascade with F1 calibration (RQ54)** | Does F1 calibration improve cascade robustness? | ✅ **H54a SUPPORTED** (1 bootstrap mode at KL=0.01, 96.3% — more stable than RQ48's F1 on lang-id because the KL detector lacks Mode S identifiability). ✅ **H54b SUPPORTED** razor-thin (BCa width 0.2481 < 0.2489, margin 0.0008 — not meaningfully tighter). ✅ **H54c SUPPORTED** (OOB median cpWER 0.780 ≤ 0.889, 12.3% improvement but at 1.77× compute). | `results/frontier/cascade_f1_calibration/` |
+
+**Key insight:** The F1-calibrated cascade is more stable (1 mode vs RQ43's potentially multi-modal original rule) but the BCa width improvement is negligible (0.0008). The 12.3% cpWER improvement comes at a compute cost (1.77× vs 1.4×) — F1 escalates 83% of windows to base, trading compute for cpWER. This is a compute/cpWER trade-off, not a free gain.
+
+**Honest limitations:** The F1 threshold (KL=0.01) is very aggressive — it escalates nearly everything to base. This is because F1 maximises precision×recall, and on this meeting's hallucination distribution, the F1-optimal point is near-zero threshold. A different meeting might produce a different F1 threshold. The "1 mode" stability is partly an artefact of the aggressive threshold concentrating at one grid point.
+
+**New modules:** `cascade_f1_analysis.py`, `cascade_f1_results.json`, `tests/test_cascade_f1_calibration.py` (57 tests). numpy + stdlib only; runtime ≈ 45 s.
 
 All findings labeled `experimental/frontier`. No gold tables or verified references touched.
 
