@@ -9,7 +9,7 @@ migration.
 
 **Role:** Frontier research lead; overlap-hallucination mechanism investigator; ASR×LLM×emotion axis explorer; research-entropy meta-analyst; engineering harness architect.
 
-**Scope summary:** ~95 merged PRs (#780–#872, #886–#894, #898–#900, #905–#907, #911–#913, #917–#919, #923–#925, #929–#931, #935–#937, #946–#951, #956–#973), 80+ issues, 80+ new modules, 75+ frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled `experimental/frontier` or `external/sanity-check`; no gold tables or verified references touched.
+**Scope summary:** ~100 merged PRs (#780–#872, #886–#894, #898–#900, #905–#907, #911–#913, #917–#919, #923–#925, #929–#931, #935–#937, #946–#951, #956–#983), 85+ issues, 85+ new modules, 80+ frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled `experimental/frontier` or `external/sanity-check`; no gold tables or verified references touched.
 
 ---
 
@@ -1101,6 +1101,56 @@ RQ43 (PR #959) used "max sensitivity at ≥90% specificity" to calibrate the KL 
 **Honest limitations:** The F1 threshold (KL=0.01) is very aggressive — it escalates nearly everything to base. This is because F1 maximises precision×recall, and on this meeting's hallucination distribution, the F1-optimal point is near-zero threshold. A different meeting might produce a different F1 threshold. The "1 mode" stability is partly an artefact of the aggressive threshold concentrating at one grid point.
 
 **New modules:** `cascade_f1_analysis.py`, `cascade_f1_results.json`, `tests/test_cascade_f1_calibration.py` (57 tests). numpy + stdlib only; runtime ≈ 45 s.
+
+#### Char-level BCa CI on the corrected router — does the narrower char-level CI exclude the oracle?
+
+RQ39 (PR #960) computed the word-level BCa CI [1.0130, 1.0974] and found it *includes* the oracle (1.0173): the corrected router is statistically indistinguishable from the oracle at word-level. RQ31 (PR #950) showed char-level cpWER shrinks the separation tax ~79.5×. RQ55 asks whether the char-level BCa CI — which should be narrower because char-level cpWER is less lumpy — excludes the char-level oracle (0.8768), which would upgrade the claim from "reaches oracle within noise" to "beats oracle."
+
+**Method:** Bootstrap (B=10,000, seed=42, jackknife-accelerated BCa) on the corrected router's char-level cpWER, using RQ31's char-level MeetEval convention and RQ39's BCa framework verbatim. Threshold 0.38 (verified identical routing to RQ13's 0.409 — no window has entropy in (0.38, 0.409]). The word-level and char-level BCa CIs reproduce RQ39 bit-for-bit.
+
+**Findings:** H55a KILLED — char-level BCa CI [0.8730, 0.9314] includes the oracle (0.8768); the BCa lower bound dips 0.0038 below the oracle, a bias-correction artefact on left-skewed data (per construction corrected ≥ oracle every window). H55b SUPPORTED — char-level BCa width 0.0584 vs word-level 0.0844, a 31% narrowing (char-level's smoother per-window distribution gives a tighter bootstrap). H55c SUPPORTED at the point estimate (0.9061 < 0.9106, Δ=−0.0045) but the paired-delta CI [−0.0226, +0.0117] straddles zero — not statistically significant. The narrower char-level CI does NOT exclude the oracle; the corrected router only "reaches oracle within noise" at both granularities. The strongest defensible claim remains RQ39's word-level "statistically indistinguishable from oracle."
+
+**New modules:** `char_level_bca_analysis.py`, `char_level_bca_results.json`, `tests/test_char_level_bca.py` (78 tests). numpy + scipy + MeetEval 0.4.3; runtime ≈ 10 s.
+
+#### Per-speaker lang-id entropy aggregation — does MAX vs SUM vs MEAN vs MIN change detection?
+
+RQ13/RQ16/RQ25 all aggregate per-speaker lang-id entropy by MAX (worst-case speaker). RQ37 (PR #946) showed the worst speaker contributes 96.5% of cpWER in the top-10 windows. RQ56 asks whether the aggregation function changes the corrected router's detection performance and cpWER. If the worst speaker dominates, MAX may already be optimal; alternatively SUM or MEAN may smooth single-speaker noise and produce a more stable (fewer-mode) threshold distribution.
+
+**Method:** Compute `language_id_entropy` (RQ13 primitive) for each separated speaker track per window, then aggregate into one window-level score using 4 functions: MAX (convention), SUM, MEAN, MIN. For each aggregation: calibrate threshold at ≥90% specificity, compute corrected-router cpWER, bootstrap (B=10,000, seed=42) the threshold and count modes (RQ48's `count_modes`).
+
+**Findings:** H56a SUPPORTED — MAX ties SUM at 0.9459 sensitivity (not strictly exceeded); both calibrate to threshold 0.38 with identical operating points because windows where SUM > MAX already have MAX well above 0.38 (worst-speaker-dominance). H56b KILLED — SUM has 5 modes ≥ MAX's 5 modes; SUM does NOT smooth the distribution. H56c KILLED — MIN cpWER 1.257 > 1.10; MIN picks the best-case speaker and misses multi-speaker hallucinations. The ordering is MAX ≈ SUM > MEAN > MIN. The 0.01 "Mode S" mode appears under all 4 aggregations — it is aggregation-invariant, confirming it is a detector limitation (Mode S's territory per RQ19), not an aggregation choice. Actionable conclusion: deploy 0.38 with MAX aggregation (unchanged from RQ44/RQ48).
+
+**New modules:** `per_speaker_aggregation_analysis.py`, `per_speaker_aggregation_results.json`, `tests/test_per_speaker_aggregation.py` (92 tests). numpy + stdlib only; runtime ≈ 50 s.
+
+#### Window-duration stratified threshold — does duration stratification reduce modality?
+
+RQ49 (PR #968) showed speaker-count stratification does NOT reduce the 6-modality of RQ44's bootstrap threshold distribution. RQ57 tests a different stratification variable: window duration (total separated text length, split at median into short/long strata). The hypothesis is that longer windows have more speaker overlap and different hallucination patterns, so duration might isolate the modality-producing windows better than speaker count.
+
+**Method:** For each stratum: B=10,000 bootstrap resamples (seed=42), calibrate lang-id entropy threshold at ≥90% specificity on in-bag, evaluate corrected-router cpWER on out-of-bag, count threshold modes. Combined stratified router: each OOB window routed by its OWN stratum's threshold. Mann-Whitney U two-sided test on the two strata's threshold distributions (numpy + stdlib only, no scipy).
+
+**Findings:** H57a KILLED — 3 modes in BOTH strata (>2); duration stratification does not reduce modality. H57b KILLED — combined OOB cpWER 1.106 > RQ44's 1.056; stratification is WORSE (the long stratum's high calibrated threshold 0.95 under-flags hallucinated long windows, driving combined cpWER up). H57c SUPPORTED — Mann-Whitney p≈0.0, z=−117.39 (strata differ significantly, but the difference hurts rather than helps). This is convergent negative evidence with RQ49: the 6-modality is intrinsic to `calibrate_threshold_at_spec`'s sensitivity to small-sample composition, not a confound any single stratification variable can remove. Next lever: a different calibration rule (shrinkage/regularised), not another stratification variable.
+
+**New modules:** `duration_stratified_analysis.py`, `duration_stratified_results.json`, `tests/test_duration_stratified.py` (101 tests). numpy + stdlib only; runtime ≈ 45 s.
+
+#### Corrected router with n-gram KL detector — does KL beat lang-id on Mode S?
+
+RQ34 (PR #951) found the character n-gram KL-divergence detector catches 100% of Mode S at 90% specificity — the first detector to catch Mode S (windows 22, 30). RQ16's corrected router uses lang-id entropy (94.6% sensitivity on all hallucinations but 0% on Mode S) and plateaus at cpWER 1.043. RQ58 replaces lang-id with the n-gram KL detector in the corrected router and asks whether cpWER improves below 1.043.
+
+**Method:** Build reference 2-gram distribution from 40 non-hallucinated tracks' separated text (RQ34's `build_reference_distribution`). Compute max-across-speakers 2-gram KL anomaly score per window (RQ34's `compute_anomaly_score`). Calibrate threshold at ≥90% specificity (empirically, NOT RQ34's non-reproducible 3.30 per RQ40). Route: KL ≥ threshold → MIXED, else SEPARATED. Bootstrap (B=10,000, seed=42) BCa CI (RQ39 framework). Compare to RQ16's lang-id corrected router.
+
+**Findings:** H58a SUPPORTED — KL-corrected cpWER 1.030 < RQ16's 1.043 (point estimate improvement; per-window paired-delta CI [−0.065, +0.026] includes zero, so not per-window significant). H58b SUPPORTED — Mode S sensitivity 0%→100% (2/2; windows 22 & 30 scored KL=13.08/13.00 vs threshold 5.42). This is the headline: KL is the first detector to catch Mode S *inside the router*. H58c KILLED — BCa CI [1.0065, 1.0779] includes oracle 1.0173; KL reaches oracle within statistical noise (same qualitative verdict as lang-id). Empirically-calibrated threshold 5.42 at 90% specificity (4 false positives). KL significantly beats always-mixed: paired-delta CI [−0.312, −0.013] entirely below zero. Regret recovery: 50% of RQ16's gap to oracle, 91.7% of always-mixed's gap.
+
+**New modules:** `kl_corrected_router_analysis.py`, `kl_corrected_router_results.json`, `tests/test_kl_corrected_router.py` (100 tests). numpy + stdlib only; runtime ≈ 30 s.
+
+#### Cascade Pareto with Youden's J — is it less aggressive than F1?
+
+RQ54 (PR #971) found F1 calibration of RQ43's KL gate collapses to a single mode (KL=0.01, 96.3%) but escalates 83.1% of windows to whisper-base (1.77× compute). RQ48 (PR #965) found Youden's J gives 3 modes on lang-id-entropy. RQ59 tests whether Youden's J (TPR − FPR) gives a less aggressive cascade operating point than F1 while maintaining robustness.
+
+**Method:** Controlled comparison — the ONLY variable vs RQ54 is the calibration rule (Youden's J instead of F1). Cascade simulation held fixed at RQ43's implementation (tiny→KL gate→base). Calibrate Youden's J threshold (RQ48's `calibrate_youdens_j`). Bootstrap (B=10,000, seed=42) the cascade: calibrate on in-bag, evaluate OOB cpWER. Count modes, compute BCa CI (RQ46 framework).
+
+**Findings:** H59a KILLED — Youden's J escalates 83.1% of windows = F1's 83.1%; both pick KL=0.01 (sensitivity=1.0, specificity=0.325). H59b SUPPORTED — OOB median cpWER 0.782 ≤ 0.889, but this is the same mechanical gain F1 achieves by escalating 83% to the cheaper base tier, not a calibration-rule quality gain. H59c KILLED — BCa width 0.2827 > 0.2489 (wider than both RQ46's original rule and RQ54's F1); Youden's J is less stable under bootstrap (91.6% at 0.01 vs F1's 96.3%, with 8.4% off-mode spread across 6 thresholds up to KL=4.44). Root cause: the KL detector's ROC is flat-topped — all 37 hallucinated windows have KL ∈ [2.98, 6.58] while clean span [0.0, 8.53], leaving an empty band (0.01, 2.98) over which both J and F1 are maximised. RQ48's finding that Youden's J gives 3 modes on lang-id-entropy does NOT transfer to the KL detector (which has a clean class-separation gap that lang-id lacks).
+
+**New modules:** `cascade_youdens_j_analysis.py`, `cascade_youdens_j_results.json`, `tests/test_cascade_youdens_j.py` (67 tests). numpy + stdlib only; runtime ≈ 45 s.
 
 All findings labeled `experimental/frontier`. No gold tables or verified references touched.
 
