@@ -9,7 +9,7 @@ migration.
 
 **Role:** Frontier research lead; overlap-hallucination mechanism investigator; ASR×LLM×emotion axis explorer; research-entropy meta-analyst; engineering harness architect.
 
-**Scope summary:** ~100 merged PRs (#780–#872, #886–#894, #898–#900, #905–#907, #911–#913, #917–#919, #923–#925, #929–#931, #935–#937, #946–#951, #956–#983), 85+ issues, 85+ new modules, 80+ frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled `experimental/frontier` or `external/sanity-check`; no gold tables or verified references touched.
+**Scope summary:** ~105 merged PRs (#780–#872, #886–#894, #898–#900, #905–#907, #911–#913, #917–#919, #923–#925, #929–#931, #935–#937, #946–#951, #956–#993), 90+ issues, 90+ new modules, 85+ frontier result directories, 15+ experimental figures, 6-agent literature review. All frontier work labeled `experimental/frontier` or `external/sanity-check`; no gold tables or verified references touched.
 
 ---
 
@@ -1151,6 +1151,50 @@ RQ54 (PR #971) found F1 calibration of RQ43's KL gate collapses to a single mode
 **Findings:** H59a KILLED — Youden's J escalates 83.1% of windows = F1's 83.1%; both pick KL=0.01 (sensitivity=1.0, specificity=0.325). H59b SUPPORTED — OOB median cpWER 0.782 ≤ 0.889, but this is the same mechanical gain F1 achieves by escalating 83% to the cheaper base tier, not a calibration-rule quality gain. H59c KILLED — BCa width 0.2827 > 0.2489 (wider than both RQ46's original rule and RQ54's F1); Youden's J is less stable under bootstrap (91.6% at 0.01 vs F1's 96.3%, with 8.4% off-mode spread across 6 thresholds up to KL=4.44). Root cause: the KL detector's ROC is flat-topped — all 37 hallucinated windows have KL ∈ [2.98, 6.58] while clean span [0.0, 8.53], leaving an empty band (0.01, 2.98) over which both J and F1 are maximised. RQ48's finding that Youden's J gives 3 modes on lang-id-entropy does NOT transfer to the KL detector (which has a clean class-separation gap that lang-id lacks).
 
 **New modules:** `cascade_youdens_j_analysis.py`, `cascade_youdens_j_results.json`, `tests/test_cascade_youdens_j.py` (67 tests). numpy + stdlib only; runtime ≈ 45 s.
+
+#### KL+lang-id ensemble corrected router — does combining complementary detectors help?
+
+RQ58 (PR #981) showed the KL detector catches Mode S (0%→100%) but has 4 false positives, cpWER 1.030. RQ16 (PR #912) showed lang-id catches 94.6% of all hallucinations but 0% of Mode S, cpWER 1.043. The two detectors are complementary in *what they catch*. RQ60 tests whether an OR/AND ensemble beats both individually.
+
+**Method:** Compute KL (RQ58, threshold 5.42) and lang-id (RQ13, threshold 0.38) scores per window. OR: route to MIXED if either flags. AND: route to MIXED only if both flag. Bootstrap (B=10,000, seed=42) BCa CIs.
+
+**Findings:** H60a KILLED — OR ensemble cpWER = 1.030 = KL-alone exactly. KL already catches 100% of hallucinations, so OR can only add cpWER-neutral false positives (the 2 disagreement windows are both non-hallucinated with mixed == separated == 1.0). H60b SUPPORTED — OR catches 100% Mode S + 100% all hallucinations. H60c SUPPORTED — AND FP = 2.5% < 7.5%, but AND = lang-id-alone (loses Mode S because Mode S has low lang-id entropy). Complementarity was in coverage, not cpWER benefit; KL-alone is already optimal.
+
+**New modules:** `ensemble_router_analysis.py`, `ensemble_router_results.json`, `tests/test_ensemble_router.py` (113 tests). numpy + stdlib only; runtime ≈ 20 s.
+
+#### Shrinkage threshold calibration — does a Bayesian prior reduce modality?
+
+RQ44 (PR #963) showed 6-modality (width 0.94). RQ49 (speaker-count) and RQ57 (duration) stratification both failed. RQ57 recommended "a different calibration rule (shrinkage/regularised)." RQ61 tests a Bayesian shrinkage prior: maximise `sensitivity − λ·|threshold − 0.38|` for λ in {0.0, 0.01, 0.1, 0.5, 1.0}.
+
+**Findings:** H61a KILLED — best λ=1.0 gives 3 modes (>2). H61b SUPPORTED — OOB cpWER 1.052 < 1.056 (improved). H61c SUPPORTED — width 0.49 < 0.94 (48% reduction). Shrinkage eliminates the 0.01 "Mode S" mode (overturning RQ48's "calibration-rule-invariant" conclusion — at λ≥0.5 the 0.01 mode drops below 5% frequency) but cannot eliminate the high-threshold modes (0.84, 0.87) because they arise from the hard ≥90% specificity constraint making 0.38 infeasible on some resamples. The penalty `λ·|t−0.38|` cannot help when 0.38 is infeasible. Predicts shrinkage + smooth rule (e.g. F1) is the path to ≤2 modes.
+
+**New modules:** `shrinkage_threshold_analysis.py`, `shrinkage_threshold_results.json`, `tests/test_shrinkage_threshold.py` (78 tests). numpy + stdlib only; runtime ≈ 3 s.
+
+#### Cascade with KL+lang-id ensemble gate — does ensemble escape the 83.1% collapse?
+
+RQ59 (PR #980) showed both Youden's J and F1 collapse to 83.1% escalation on the KL detector. RQ62 tests whether a KL+lang-id ensemble gate (escalate if EITHER flags) produces a less aggressive cascade.
+
+**Findings:** H62a SUPPORTED — 55.8% escalation < 83.1% (ensemble escapes RQ59's collapse). H62b KILLED — OOB cpWER 0.942 > 0.889 (less aggressive ≠ more accurate; the ensemble gate lets some hallucinated windows through to tiny). H62c SUPPORTED — BCa width 0.239 < 0.249 (maintains robustness). Compute savings: 1.519× vs RQ59's 1.861× (−18.4%). The ensemble gate trades cpWER for compute efficiency — useful when compute budget is constrained, but not a cpWER improvement.
+
+**New modules:** `ensemble_cascade_analysis.py`, `ensemble_cascade_results.json`, `tests/test_ensemble_cascade.py` (108 tests). numpy + stdlib only; runtime ≈ 30 s.
+
+#### Cost-aware cascade Pareto — is there an interior Pareto knee?
+
+RQ54 (F1) and RQ59 (Youden's J) both collapse to 83.1% escalation. RQ63 tests whether a cost-aware threshold maximising cpWER-per-compute-unit finds a better Pareto point than detection-metric-calibrated thresholds.
+
+**Findings:** H63a KILLED — 83.1% = RQ54 (cost-aware collapses to the same point). H63b SUPPORTED — OOB cpWER 0.778 ≤ 0.889. H63c KILLED — ratio = RQ54 (not strictly better). The cascade frontier is MONOTONIC — no interior Pareto knee exists because base cpWER = tiny × 0.428 < tiny for every window, so escalating always reduces cpWER and the 0.428 compute surcharge is small relative to the cpWER reduction. All three cost-aware objectives (min-ratio, max-ratio, max-marginal-efficiency) collapse to corners. Bootstrap is degenerate (all 10,000 resamples pick threshold 0.01, zero selection variance).
+
+**New modules:** `cost_aware_cascade_analysis.py`, `cost_aware_cascade_results.json`, `tests/test_cost_aware_cascade.py` (81 tests). numpy + stdlib only; runtime ≈ 40 s.
+
+#### Retrospective bootstrap power analysis — is "includes oracle" a sample-size problem?
+
+RQ39 (word-level), RQ55 (char-level), and RQ58 (KL) all showed the corrected router's BCa CI INCLUDES the oracle — "statistically indistinguishable from oracle." RQ64 asks: is this a sample-size problem (n=77 too small) or a real ceiling (gap ≈ 0)?
+
+**Method:** Extrapolated bootstrap — resample WITH replacement at sizes n ∈ {77, 105, 154, 250, 308, 616, 1232, 2464}, compute BCa CI at each n, find minimum n where CI excludes oracle. Test both lang-id (RQ39, gap 0.026) and KL (RQ58, gap 0.013) corrected routers.
+
+**Findings:** H64a SUPPORTED — at n=77 both BCa CIs include oracle (confirms RQ39/RQ55/RQ58). H64b KILLED — lang-id needs n=105 (1.36×), KL needs n=250 (3.25×); both < 770 (tractable!). H64c KILLED — effect sizes 0.026 (lang-id) and 0.013 (KL) are both > 0.01 (real, not negligible). **HEADLINE: the "corrected router reaches oracle within noise" verdict is a SAMPLE SIZE problem, not a real ceiling.** With ~105 windows (lang-id) or ~250 (KL), the BCa CI would EXCLUDE the oracle. KL needs more windows precisely because its effect is smaller (0.013 vs 0.026) — the usual small-effect / large-n trade-off. The KL exclusion at n=250 is genuinely tight: BCa lower bound 1.017333 vs oracle 1.017316 (margin 0.000017).
+
+**New modules:** `bootstrap_power_analysis.py`, `bootstrap_power_results.json`, `tests/test_bootstrap_power.py` (105 tests). numpy + stdlib only; runtime ≈ 15 s.
 
 All findings labeled `experimental/frontier`. No gold tables or verified references touched.
 
